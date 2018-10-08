@@ -1,0 +1,536 @@
+This is Ruby2_5.info, produced by makeinfo version 6.5 from
+Ruby2_5.texi.
+
+Copyright (C) 2018
+wlharvey4
+All Rights Reserved.
+
+   The Ruby2.5 Information and Documentation program is copyright (C)
+2018 by wlharvey4.  It is published under the conditions of the GNU
+General Public License, version 3.
+
+
+   This is Edition 0.1a of 'Ruby 2.5 Information and Documentation'.
+
+
+File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
+
+General Introduction
+********************
+
+This file documents Ruby 2.5, <https://www.ruby-lang.org>
+
+   Copyright (C) 2018
+wlharvey4
+All Rights Reserved.
+
+   The Ruby2.5 Information and Documentation program is copyright (C)
+2018 by wlharvey4.  It is published under the conditions of the GNU
+General Public License, version 3.
+
+
+   This is Edition 0.1a of 'Ruby 2.5 Information and Documentation'.
+
+* Menu:
+
+* Preface::
+* Introduction::
+* Documentation::
+* First appendix::
+* Code Chunk Summaries::
+* Bibliography::
+* Concept Index::
+
+ -- The Detailed Node Listing --
+
+Preface
+
+* Audience::
+* Overview::
+* Conventions::
+* Acknowledgements::
+
+Documentation
+
+* Installing Ruby::
+* Getting Started::
+* Manuals::
+* Reference Documentation::
+* Editors and IDEs::
+* Further Reading::
+
+Installation Methods
+
+* Package Management Systems::
+* Installers::
+* Managers::
+* Building From Source::
+
+Package Management Systems
+
+* Homebrew (OS X)::
+
+Installers
+
+* ruby-build::
+* ruby-install::
+
+Managers
+
+* chruby::
+* rbenv::
+* RVM (``Ruby Version Manager'')::
+* uru::
+
+Code Chunk Summaries
+
+* File Definitions::
+* Code Chunk Definitions::
+* Code Chunk References::
+
+
+
+File: Ruby2_5.info,  Node: Preface,  Next: Introduction,  Prev: Top,  Up: Top
+
+Preface
+*******
+
+Text here.
+
+* Menu:
+
+* Audience::
+* Overview::
+* Conventions::
+* Acknowledgements::
+
+
+File: Ruby2_5.info,  Node: Audience,  Next: Overview,  Up: Preface
+
+Intended Audience
+=================
+
+Text here.
+
+
+File: Ruby2_5.info,  Node: Overview,  Next: Conventions,  Prev: Audience,  Up: Preface
+
+What Is Covered
+===============
+
+Text and chapter by chapter description here.
+
+
+File: Ruby2_5.info,  Node: Conventions,  Next: Acknowledgements,  Prev: Overview,  Up: Preface
+
+Typographical Conventions
+=========================
+
+This Info file is written in an enhanced version of Texinfo
+(http://www.gnu.org/software/texinfo/), the GNU documentation
+formatting language.  A single Texinfo source file is used to produce
+both the printed and online versions of a program's documentation.
+
+   Examples you would type at the command-line are preceded by the
+common shell primary and secondary prompts, '$' and '>'.  Input that
+you type is shown 'like this'.  Output from the command is preceded by
+the glyph "-|".  This typically represents the command's standard
+output.  Error messages, and other output on the command's standard
+error, are preceded by the glyph "error->".  For example:
+
+     $ echo hi on stdout
+     -| hi on stdout
+     $ echo hello on stderr 1>&2
+     error-> hello on stderr
+
+
+File: Ruby2_5.info,  Node: Acknowledgements,  Prev: Conventions,  Up: Preface
+
+Acknowledgements
+================
+
+
+File: Ruby2_5.info,  Node: Introduction,  Next: Documentation,  Prev: Preface,  Up: Top
+
+1 Introduction
+**************
+
+Ruby is ...
+
+   A dynamic, open source programming language with a focus on
+simplicity and productivity.  It has an elegant syntax that is natural
+to read and easy to write.
+
+
+File: Ruby2_5.info,  Node: Documentation,  Next: First appendix,  Prev: Introduction,  Up: Top
+
+2 Documentation
+***************
+
+Here you will find pointers to manuals, tutorials and references that
+will come in handy when you feel like coding in Ruby.
+
+* Menu:
+
+* Installing Ruby::
+* Getting Started::
+* Manuals::
+* Reference Documentation::
+* Editors and IDEs::
+* Further Reading::
+
+
+File: Ruby2_5.info,  Node: Installing Ruby,  Next: Getting Started,  Up: Documentation
+
+2.1 Installing Ruby
+===================
+
+Installation Methods
+--------------------
+
+There are several ways to install Ruby:
+
+   * Package Manager: When you are on a UNIX-like operating system,
+     using your system’s package manager is the easiest way of
+     getting started.  However, the packaged Ruby version usually is
+     not the newest one.
+   * Installers: can be used to install a specific or multiple Ruby
+     versions.  There is also an installer for Windows.
+   * Managers help you to switch between multiple Ruby installations
+     on your system.
+   * Source: And finally, you can also build Ruby from source.
+
+   The following overview lists available installation methods for
+different needs and platforms.
+
+* Menu:
+
+* Package Management Systems::
+* Installers::
+* Managers::
+* Building From Source::
+
+
+File: Ruby2_5.info,  Node: Package Management Systems,  Next: Installers,  Up: Installing Ruby
+
+2.1.1 Package Management Systems
+--------------------------------
+
+If you cannot compile your own Ruby, and you do not want to use a
+third-party tool, you can use your system’s package manager to
+install Ruby.
+
+   Certain members in the Ruby community feel very strongly that you
+should never use a package manager to install Ruby and that you should
+use tools instead.  While the full list of pros and cons is outside of
+the scope of this page, the most basic reason is that most package
+managers have older versions of Ruby in their official repositories.
+If you would like to use the newest Ruby, make sure you use the
+correct package name, or use the tools described further below
+instead.
+
+* Menu:
+
+* Homebrew (OS X)::
+
+
+File: Ruby2_5.info,  Node: Homebrew (OS X),  Up: Package Management Systems
+
+2.1.1.1 Homebrew (OS X)
+.......................
+
+Homebrew (http://brew.sh/)
+
+   On macOS (High) Sierra and OS X El Capitan, Ruby 2.0 is included.
+
+   Many people on OS X use Homebrew as a package manager.  It is
+really easy to get a newer version of Ruby using Homebrew:
+
+     $ brew install ruby
+
+   This should install the latest Ruby version.
+
+
+File: Ruby2_5.info,  Node: Installers,  Next: Managers,  Prev: Package Management Systems,  Up: Installing Ruby
+
+2.1.2 Installers
+----------------
+
+If the version of Ruby provided by your system or package manager is
+out of date, a newer one can be installed using a third-party
+installer.  Some of them also allow you to install multiple versions
+on the same system; associated managers can help to switch between the
+different Rubies.  If you are planning to use RVM as a version manager
+you do not need a separate installer, it comes with its own.
+
+* Menu:
+
+* ruby-build::
+* ruby-install::
+
+
+File: Ruby2_5.info,  Node: ruby-build,  Next: ruby-install,  Up: Installers
+
+2.1.2.1 'ruby-build'
+....................
+
+'ruby-build' (https://github.com/rbenv/ruby-build#readme)
+
+   'rbenv'
+(https://www.ruby-lang.org/en/documentation/installation/#rbenv)
+
+   'ruby-build' is a plugin for 'rbenv' (*note rbenv:: that allows you
+to compile and install different versions of Ruby into arbitrary
+directories.  'ruby-build' can also be used as a standalone program
+without 'rbenv'.  It is available for OS X, Linux, and other UNIX-like
+operating systems.
+
+
+File: Ruby2_5.info,  Node: ruby-install,  Prev: ruby-build,  Up: Installers
+
+2.1.2.2 'ruby-install'
+......................
+
+'ruby-install' version manager 'chruby' version switcher
+
+   'ruby-install' (https://github.com/postmodern/ruby-install#readme)
+
+   'chruby'
+(https://www.ruby-lang.org/en/documentation/installation/#chruby)
+
+   'ruby-install' allows you to compile and install different versions
+of Ruby into arbitrary directories.  There is also a sibling, 'chruby'
+(*note chruby::), which handles switching between Ruby versions.  It
+is available for OS X, Linux, and other UNIX-like operating systems.
+
+
+File: Ruby2_5.info,  Node: Managers,  Next: Building From Source,  Prev: Installers,  Up: Installing Ruby
+
+2.1.3 Managers
+--------------
+
+Many Rubyists use Ruby managers to manage multiple Rubies.  They
+confer various advantages but are not officially supported.  Their
+respective communities are very helpful, however.
+
+* Menu:
+
+* chruby::
+* rbenv::
+* RVM (``Ruby Version Manager'')::
+* uru::
+
+
+File: Ruby2_5.info,  Node: chruby,  Next: rbenv,  Up: Managers
+
+2.1.3.1 chruby
+..............
+
+'chruby' allows you to switch between multiple Rubies.  'chruby' can
+manage Rubies installed by 'ruby-install' (*note ruby-install::) or
+even built from source.
+
+
+File: Ruby2_5.info,  Node: rbenv,  Next: RVM (``Ruby Version Manager''),  Prev: chruby,  Up: Managers
+
+2.1.3.2 'rbenv'
+...............
+
+'rbenv' (https://github.com/rbenv/rbenv#readme)
+
+   'ruby-build'
+(https://www.ruby-lang.org/en/documentation/installation/#ruby-build)
+
+   'rbenv' allows you to manage multiple installations of Ruby.  It
+does not support installing Ruby, but there is a popular plugin named
+'ruby-build' (*note ruby-build::) to install Ruby.  Both tools are
+available for OS X, Linux, or other UNIX-like operating systems.
+
+
+File: Ruby2_5.info,  Node: RVM (``Ruby Version Manager''),  Next: uru,  Prev: rbenv,  Up: Managers
+
+2.1.3.3 RVM ("Ruby Version Manager")
+....................................
+
+RVM (http://rvm.io/)
+
+   RVM allows you to install and manage multiple installations of Ruby
+on your system.  It can also manage different gemsets.  It is
+available for OS X, Linux, or other UNIX-like operating systems.
+
+
+File: Ruby2_5.info,  Node: uru,  Prev: RVM (``Ruby Version Manager''),  Up: Managers
+
+2.1.3.4 'uru'
+.............
+
+Uru (https://bitbucket.org/jonforums/uru)
+
+   Uru is a lightweight, multi-platform command line tool that helps
+you to use multiple Rubies on OS X, Linux, or Windows systems.
+
+
+File: Ruby2_5.info,  Node: Building From Source,  Prev: Managers,  Up: Installing Ruby
+
+2.1.4 Building From Source
+--------------------------
+
+Of course, you can install Ruby from source.  Download and unpack a
+tarball, then just do this:
+
+     $ ./configure
+     $ make
+     $ sudo make install
+
+   By default, this will install Ruby into '/usr/local'.  To change,
+pass the '--prefix=DIR' option to the './configure' script.
+
+   Using the third-party tools or package managers might be a better
+idea, though, because the installed Ruby won’t be managed by any
+tools.
+
+
+File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Installing Ruby,  Up: Documentation
+
+2.2 Getting Started
+===================
+
+
+File: Ruby2_5.info,  Node: Manuals,  Next: Reference Documentation,  Prev: Getting Started,  Up: Documentation
+
+2.3 Manuals
+===========
+
+
+File: Ruby2_5.info,  Node: Reference Documentation,  Next: Editors and IDEs,  Prev: Manuals,  Up: Documentation
+
+2.4 Reference Documentation
+===========================
+
+
+File: Ruby2_5.info,  Node: Editors and IDEs,  Next: Further Reading,  Prev: Reference Documentation,  Up: Documentation
+
+2.5 Editors and IDEs
+====================
+
+
+File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Documentation
+
+2.6 Further Reading
+===================
+
+
+File: Ruby2_5.info,  Node: First appendix,  Next: Code Chunk Summaries,  Prev: Documentation,  Up: Top
+
+Appendix A First Appendix Title
+*******************************
+
+
+File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: First appendix,  Up: Top
+
+Appendix B Code Chunk Summaries
+*******************************
+
+This major node presents alphabetical lists of all the file
+definitions, the code chunk definitions, and the code chunk
+references.
+
+* Menu:
+
+* File Definitions::
+* Code Chunk Definitions::
+* Code Chunk References::
+
+
+File: Ruby2_5.info,  Node: File Definitions,  Next: Code Chunk Definitions,  Up: Code Chunk Summaries
+
+B.1 Source File Definitions
+===========================
+
+
+File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,  Prev: File Definitions,  Up: Code Chunk Summaries
+
+B.2 Code Chunk Definitions
+==========================
+
+
+File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,  Up: Code Chunk Summaries
+
+B.3 Code Chunk References
+=========================
+
+
+File: Ruby2_5.info,  Node: Bibliography,  Next: Concept Index,  Prev: Code Chunk Summaries,  Up: Top
+
+Bibliography
+************
+
+
+File: Ruby2_5.info,  Node: Concept Index,  Prev: Bibliography,  Up: Top
+
+Index
+*****
+
+ [index ]
+* Menu:
+
+* chruby:                                chruby.              (line 6)
+* Documentation:                         Documentation.       (line 6)
+* gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
+                                                              (line 6)
+* installer, third party:                Installers.          (line 6)
+* manage Rubies using chruby:            chruby.              (line 6)
+* multiple installations, manage using RVM: RVM (``Ruby Version Manager'').
+                                                              (line 6)
+* multiple Rubies, command-line tool uru: uru.                (line 6)
+* rbenv:                                 rbenv.               (line 6)
+* rbenv version manager:                 ruby-build.          (line 6)
+* Rubies, switch between:                Installers.          (line 6)
+* ruby-build plugin:                     ruby-build.          (line 6)
+* RVM version manager:                   Installers.          (line 6)
+* source, building:                      Building From Source.
+                                                              (line 6)
+* Texinfo document formatting language:  Conventions.         (line 6)
+* uru:                                   uru.                 (line 6)
+* version managers:                      Installers.          (line 6)
+* versions, multiple installations using rbenv: rbenv.        (line 6)
+* versions, switch between using chruby: chruby.              (line 6)
+* versions,multiple:                     Installers.          (line 6)
+
+
+
+Tag Table:
+Node: Top371
+Node: Preface1588
+Node: Audience1771
+Node: Overview1890
+Node: Conventions2060
+Node: Acknowledgements2980
+Node: Introduction3096
+Node: Documentation3393
+Node: Installing Ruby3780
+Node: Package Management Systems4693
+Node: Homebrew (OS X)5518
+Node: Installers5944
+Node: ruby-build6540
+Node: ruby-install7093
+Node: Managers7708
+Node: chruby8105
+Node: rbenv8364
+Node: RVM (``Ruby Version Manager'')8909
+Node: uru9307
+Node: Building From Source9600
+Node: Getting Started10173
+Node: Manuals10320
+Node: Reference Documentation10459
+Node: Editors and IDEs10631
+Node: Further Reading10797
+Node: First appendix10929
+Node: Code Chunk Summaries11100
+Node: File Definitions11487
+Node: Code Chunk Definitions11649
+Node: Code Chunk References11839
+Node: Bibliography12002
+Node: Concept Index12133
+
+End Tag Table

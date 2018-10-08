@@ -1,0 +1,589 @@
+% Ruby2_5.twjr file.
+% Uncomment the 1st \input line if you need the MF logo
+% \input mftmac % for Metafont logo
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header (This is for running Texinfo on a region.)
+@setfilename Ruby2_5.info
+@settitle Ruby2_5 Information
+@c %**end of header (This is for running Texinfo on a region.)
+
+@c Change how xref titles are quoted.
+@dquotexrefs
+@c And let braces in index entries work.
+@allowindexbraces
+@ifclear FORPRINT
+@pdflinkcolor
+@urllinkcolor
+@hideurls
+@end ifclear
+
+
+@c The following information should be updated here only!
+@c This sets the edition of the document.
+
+@c These apply across the board.
+@set UPDATE-MONTH OCTOBER, 2018
+@set EDITION 0.1a
+
+@set TITLE Ruby 2.5 Information and Documentation
+@set SHORTTITLE Ruby 2.5 Info
+
+@iftex
+@set DOCUMENT book
+@set CHAPTER chapter
+@set APPENDIX appendix
+@set SECTION section
+@set SUBSECTION subsection
+@end iftex
+@ifhtml
+@set DOCUMENT Web page
+@set CHAPTER chapter
+@set APPENDIX appendix
+@set SECTION section
+@set SUBSECTION subsection
+@end ifhtml
+@ifinfo
+@set DOCUMENT Info file
+@set CHAPTER major node
+@set APPENDIX major node
+@set SECTION minor node
+@set SUBSECTION node
+@end ifinfo
+@ifdocbook
+@set DOCUMENT book
+@set CHAPTER chapter
+@set APPENDIX appendix
+@set SECTION section
+@set SUBSECTION subsection
+@end ifdocbook
+
+@c some special symbols
+@ifnottex
+@macro ii{text}
+@i{\text\}
+@end macro
+@end ifnottex
+
+@c Uncomment this if you want the metafont logo.
+@ignore
+@ifnottex
+@macro MF{}
+@sc{METAFONT}
+@end macro
+@end ifnottex
+@end ignore
+
+@c merge the function and variable indexes into the concept index
+@c do so without the code font, and in the index entries do the
+@c font management ourselves.  Also merge in the chunk definition
+@c and reference entries, which jrweave creates for us.
+@ifnothtml
+@synindex fn cp
+@synindex vr cp
+@synindex cd cp
+@synindex cr cp
+@end ifnothtml
+
+@c If "finalout" is commented out, the printed output will show
+@c black boxes that mark lines that are too long.  Thus, it is
+@c unwise to comment it out when running a master in case there are
+@c overfulls which are deemed okay.
+
+@iftex
+@c @finalout
+@end iftex
+
+@copying
+@docbook
+<para>Published by:</para>
+
+<literallayout class="normal">Full Name
+Address Line 1
+Address Line 2
+etc.
+Email: <email>wlharvey4@@mac.com</email>
+URL: <ulink url="http://www.example.com/">http://www.example.com/</ulink></literallayout>
+
+<literallayout class="normal">Copyright &copy; 2018
+wlharvey4
+All Rights Reserved.</literallayout>
+@end docbook
+
+@ifnotdocbook
+Copyright @copyright{} 2018 @*
+wlharvey4 @*
+All Rights Reserved.
+@end ifnotdocbook
+@sp 1
+The Ruby2.5 Information and Documentation program is copyright
+@copyright{} 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+@sp 2
+This is Edition @value{EDITION} of @cite{@value{TITLE}}.
+@end copying
+
+@c Uncomment this for the release.  Leaving it off saves paper
+@c during editing and review.
+@c @setchapternewpage odd
+
+@c Uncomment this if it's ever printed as a real book(let).
+@c @shorttitlepage @value{SHORTTITLE}
+
+@titlepage
+@title @value{TITLE}
+@subtitle @value{UPDATE-MONTH}
+@author wlharvey4
+
+@ifnotdocbook
+@c Include the Distribution inside the titlepage environment so
+@c that headings are turned off.  Headings on and off do not work.
+
+@page
+@vskip 0pt plus 1filll
+Published by:
+@sp 1
+wlharvey4 @*
+Address Line 1 @*
+Address Line 2 @*
+etc. @*
+Email: @EMAIL{wlharvey4@@emac.com,wlharvey4 AT mac.com} @*
+URL: @url{http://www.example.com/} @*
+
+@insertcopying
+@end ifnotdocbook
+@end titlepage
+
+@set DRAFT @i{DRAFT}
+
+@iftex
+@headings off
+@evenheading @thispage @| @value{DRAFT} @| @strong{@value{SHORTTITLE}}
+@oddheading  @strong{@thischapter} @| @value{DRAFT} @| @thispage
+@end iftex
+
+@ifnottex
+@ifnotdocbook
+@ifnotxml
+@node Top
+@top General Introduction
+@c Preface node should come right after the Top
+@c node, in `unnumbered' sections, then the introductory chapter.
+@c Licensing nodes are appendices, they're not central to TexiWebJr.
+
+This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
+
+@insertcopying
+@end ifnotxml
+@end ifnotdocbook
+@end ifnottex
+
+@menu
+@detailmenu
+@end detailmenu
+@end menu
+
+@c @summarycontents
+@contents
+
+@c Add these to the menu if they ever get included.
+@c @node Foreword
+@c @unnumbered Foreword
+
+@node Preface
+@unnumbered Preface
+
+Text here.
+
+@node Audience
+@unnumberedsec Intended Audience
+
+Text here.
+
+
+@node Overview
+@unnumberedsec What Is Covered
+
+Text and chapter by chapter description here.
+
+@node Conventions
+@unnumberedsec Typographical Conventions
+
+@c Copied mostly verbatim from the gawk manual.
+
+@cindex Texinfo document formatting language
+This @value{DOCUMENT} is written in an enhanced version of
+@uref{http://www.gnu.org/software/texinfo/, Texinfo},
+the GNU documentation formatting language.
+A single Texinfo source file is used to produce both the printed and online
+versions of a program's documentation.
+@ifnotinfo
+Because of this, the typographical conventions
+are slightly different than in other books you may have read.
+@end ifnotinfo
+
+Examples you would type at the command-line are preceded by the common
+shell primary and secondary prompts, @samp{$} and @samp{>}.  Input that
+you type is shown @kbd{like this}.  Output from the command is preceded
+by the glyph ``@print{}''.  This typically represents the command's
+standard output.  Error messages, and other output on the command's
+standard error, are preceded by the glyph ``@error{}''.  For example:
+
+@example
+$ @kbd{echo hi on stdout}
+@print{} hi on stdout
+$ @kbd{echo hello on stderr 1>&2}
+@error{} hello on stderr
+@end example
+
+@ifnotinfo
+In the text, command names appear in @code{this font}, while code segments
+appear in the same font and quoted, @samp{like this}.  Options look
+like this: @option{-f}.  Some things are emphasized @emph{like this},
+and if a point needs to be made strongly, it is done @strong{like this}.
+The first occurrence of a new term is usually its @dfn{definition} and
+appears in the same font as the previous occurrence of ``definition''
+in this sentence.  Finally, file names are indicated like this:
+@file{/path/to/our/file}.
+@end ifnotinfo
+
+@node Acknowledgements
+@unnumberedsec Acknowledgements
+
+@node Introduction
+@chapter Introduction
+
+Ruby is @dots{}
+
+A dynamic, open source programming language with a focus on simplicity
+and productivity.  It has an elegant syntax that is natural to read and
+easy to write.
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node Documentation
+@chapter Documentation
+@cindex Documentation
+
+Here you will find pointers to manuals, tutorials and references that will come
+in handy when you feel like coding in Ruby.
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Installing Ruby
+@section Installing Ruby
+
+@subheading Installation Methods
+
+There are several ways to install Ruby:
+
+@itemize
+@item
+@b{Package Manager}: When you are on a UNIX-like operating system,
+using your system’s package manager is the easiest way of getting
+started. However, the packaged Ruby version usually is not the newest
+one.
+@item
+@b{Installers}: can be used to install a specific or multiple Ruby
+versions. There is also an installer for Windows.
+@item
+@b{Managers} help you to switch between multiple Ruby installations on
+your system.
+@item
+@b{Source}: And finally, you can also build Ruby from source.
+@end itemize
+
+The following overview lists available installation methods for
+different needs and platforms.
+
+
+@c .....................................
+
+@node Package Management Systems
+@subsection Package Management Systems
+
+If you cannot compile your own Ruby, and you do not want to use a
+third-party tool, you can use your system’s package manager to install
+Ruby.
+
+Certain members in the Ruby community feel very strongly that you
+should never use a package manager to install Ruby and that you should
+use tools instead.  While the full list of pros and cons is outside of
+the scope of this page, the most basic reason is that most package
+managers have older versions of Ruby in their official
+repositories.  If you would like to use the newest Ruby, make sure you
+use the correct package name, or use the tools described further below
+instead.
+
+@c _____________________________________
+
+@node Homebrew (OS X)
+@subsubsection Homebrew (OS X)
+
+@url{http://brew.sh/, Homebrew}
+
+On macOS (High) Sierra and OS X El Capitan, Ruby 2.0 is included.
+
+Many people on OS X use Homebrew as a package manager.  It is really
+easy to get a newer version of Ruby using Homebrew:
+
+@example
+$ brew install ruby
+@end example
+
+This should install the latest Ruby version.
+
+
+@c .....................................
+
+@node Installers
+@subsection Installers
+@cindex installer, third party
+@cindex version managers
+@cindex versions,multiple
+@cindex Rubies, switch between
+@cindex RVM version manager
+
+If the version of Ruby provided by your system or package manager is
+out of date, a newer one can be installed using a third-party
+installer.  Some of them also allow you to install multiple versions on
+the same system; associated managers can help to switch between the
+different Rubies.  If you are planning to use RVM as a version manager
+you do not need a separate installer, it comes with its own.
+
+@c _____________________________________
+
+@node ruby-build
+@subsubsection @command{ruby-build}
+@cindex @command{ruby-build} plugin
+@cindex @command{rbenv} version manager
+
+@url{https://github.com/rbenv/ruby-build#readme, @command{ruby-build}}
+
+@url{https://www.ruby-lang.org/en/documentation/installation/#rbenv,
+@command{rbenv}}
+
+@command{ruby-build} is a plugin for @command{rbenv} (@pxref{rbenv}
+that allows you to compile and install different versions of Ruby into
+arbitrary directories.  @command{ruby-build} can also be used as a
+standalone program without @command{rbenv}.  It is available for OS X,
+Linux, and other UNIX-like operating systems.
+
+@c _____________________________________
+
+@node ruby-install
+@subsubsection @command{ruby-install}
+@command{ruby-install} version manager
+@command{chruby} version switcher
+
+@url{https://github.com/postmodern/ruby-install#readme, @command{ruby-install}}
+
+@url{https://www.ruby-lang.org/en/documentation/installation/#chruby,
+@command{chruby}}
+
+@command{ruby-install} allows you to compile and install different
+versions of Ruby into arbitrary directories.  There is also a sibling,
+@command{chruby} (@pxref{chruby}), which handles switching between
+Ruby versions.  It is available for OS X, Linux, and other UNIX-like
+operating systems.
+
+
+@c .....................................
+
+@node Managers
+@subsection Managers
+
+Many Rubyists use Ruby managers to manage multiple Rubies.  They confer
+various advantages but are not officially supported.  Their respective
+communities are very helpful, however.
+
+@c _____________________________________
+
+@node chruby
+@subsubsection chruby
+@cindex @command{chruby}
+@cindex versions, switch between using @command{chruby}
+@cindex manage Rubies using @command{chruby}
+
+@command{chruby} allows you to switch between multiple Rubies.
+@command{chruby} can manage Rubies installed by @command{ruby-install}
+(@pxref{ruby-install}) or even built from source.
+
+@c _____________________________________
+
+@node rbenv
+@subsubsection @command{rbenv}
+@cindex @command{rbenv}
+@cindex versions, multiple installations using @command{rbenv}
+
+@url{https://github.com/rbenv/rbenv#readme, @command{rbenv}}
+
+@url{https://www.ruby-lang.org/en/documentation/installation/#ruby-build,
+@command{ruby-build}}
+
+@command{rbenv} allows you to manage multiple installations of Ruby.
+It does not support installing Ruby, but there is a popular plugin
+named @command{ruby-build} (@pxref{ruby-build}) to install Ruby.  Both
+tools are available for OS X, Linux, or other UNIX-like operating
+systems.
+
+@c _____________________________________
+
+@node RVM (``Ruby Version Manager'')
+@subsubsection RVM (``Ruby Version Manager'')
+@cindex multiple installations, manage using RVM
+@cindex gemsets, manage different using RVM
+
+@url{http://rvm.io/, RVM}
+
+RVM allows you to install and manage multiple installations of Ruby on
+your system.  It can also manage different gemsets.  It is available for
+OS X, Linux, or other UNIX-like operating systems.
+
+@c _____________________________________
+
+@node uru
+@subsubsection @command{uru}
+@cindex @command{uru}
+@cindex multiple Rubies, command-line tool @command{uru}
+
+@url{https://bitbucket.org/jonforums/uru, Uru}
+
+Uru is a lightweight, multi-platform command line tool that helps you
+to use multiple Rubies on OS X, Linux, or Windows systems.
+
+
+@c .....................................
+
+@node Building From Source
+@subsection Building From Source
+@cindex source, building
+
+Of course, you can install Ruby from source.  Download and unpack a
+tarball, then just do this:
+
+@example
+$ ./configure
+$ make
+$ sudo make install
+@end example
+
+By default, this will install Ruby into @file{/usr/local}.  To change, pass
+the @option{--prefix=DIR} option to the @file{./configure} script.
+
+Using the third-party tools or package managers might be a better
+idea, though, because the installed Ruby won’t be managed by any
+tools.
+
+
+
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Getting Started
+@section Getting Started
+
+
+
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Manuals
+@section Manuals
+
+
+
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Reference Documentation
+@section Reference Documentation
+
+
+
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Editors and IDEs
+@section Editors and IDEs
+
+
+
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Further Reading
+@section Further Reading
+
+
+
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node First appendix
+@appendix First Appendix Title
+
+@node Code Chunk Summaries
+@appendix Code Chunk Summaries
+
+This @value{APPENDIX} presents alphabetical lists of all the file
+definitions, the code chunk definitions, and the code chunk
+references.
+
+@node File Definitions
+@appendixsec Source File Definitions
+
+@print_file_defs
+
+@node Code Chunk Definitions
+@appendixsec Code Chunk Definitions
+
+@print_code_defs
+
+@node Code Chunk References
+@appendixsec Code Chunk References
+
+@print_code_refs
+
+@node Bibliography
+@unnumbered Bibliography
+
+@node Concept Index
+@unnumbered Index
+
+@printindex cp
+
+@bye
+
+TODO:
