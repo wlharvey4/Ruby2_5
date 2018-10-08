@@ -278,6 +278,18 @@ Managers
 * RVM (``Ruby Version Manager'')::
 * uru::
 
+Getting Started
+
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+
 Code Chunk Summaries
 
 * File Definitions::
@@ -610,6 +622,10 @@ to use multiple Rubies on OS X, Linux, or Windows systems.
 @subsection Building From Source
 @cindex source, building
 
+@url{https://www.ruby-lang.org/en/downloads/, Ruby 2.5.1}
+
+@url{https://github.com/ruby/ruby, Ruby Github}
+
 Of course, you can install Ruby from source.  Download and unpack a
 tarball, then just do this:
 
@@ -626,6 +642,11 @@ Using the third-party tools or package managers might be a better
 idea, though, because the installed Ruby won’t be managed by any
 tools.
 
+Installing from the source code is a great solution for when you are
+comfortable enough with your platform and perhaps need specific settings for
+your environment.  It’s also a good solution in the event that there are no
+other premade packages for your platform.
+
 
 
 
@@ -637,6 +658,117 @@ tools.
 
 @node Getting Started
 @section Getting Started
+
+
+@c .....................................
+
+@menu
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+@end menu
+
+@node Try Ruby!
+@subsection Try Ruby!
+
+@url{https://ruby.github.io/TryRuby/, Try Ruby!}
+
+An interactive tutorial that lets you try out Ruby right in your browser.  This
+15-minute tutorial is aimed at beginners who want to get a feeling of the
+language.
+
+
+@c .....................................
+
+@node Official FAQ
+@subsection Official FAQ
+
+The official frequently asked questions.
+
+@url{https://www.ruby-lang.org/en/documentation/faq/, FAQ}
+
+
+@c .....................................
+
+@node Ruby Koans
+@subsection Ruby Koans
+
+@url{http://rubykoans.com/, Ruby Koans}
+
+
+@c .....................................
+
+@node Why’s (Poignant) Guide to Ruby
+@subsection Why’s (Poignant) Guide to Ruby
+
+@url{http://mislav.uniqpath.com/poignant-guide/, Why's Guide to Ruby}
+
+An unconventional but interesting book that will teach you Ruby through
+stories, wit, and comics.  Originally created by @cite{why the lucky stiff},
+this guide remains a classic for Ruby learners.
+
+
+@c .....................................
+
+@node Ruby in Twenty Minutes
+@subsection Ruby in Twenty Minutes
+
+@url{https://www.ruby-lang.org/en/documentation/quickstart/, Ruby in Twenty
+Minutes}
+
+A nice tutorial covering the basics of Ruby. From start to finish it shouldn’t
+take you more than twenty minutes.
+
+
+@c .....................................
+
+@node Ruby from Other Languages
+@subsection Ruby from Other Languages
+
+@url{https://www.ruby-lang.org/en/documentation/ruby-from-other-languages/,
+Ruby from Other Languages}
+
+
+@c .....................................
+
+@node Learning Ruby
+@subsection Learning Ruby
+
+@url{http://rubylearning.com/, Learning Ruby}
+
+A thorough collection of Ruby study notes for those who are new to the language
+and in search of a solid introduction to Ruby’s concepts and constructs.
+
+
+@c .....................................
+
+
+@node Ruby Essentials
+@subsection Ruby Essentials
+
+@url{http://www.techotopia.com/index.php/Ruby_Essentials, Ruby Essentials}
+
+
+@c .....................................
+
+@node Learn to Program
+@subsection Learn to Program
+
+@url{http://pine.fm/LearnToProgram/, Learn to Program}
+
+A wonderful little tutorial by Chris Pine for programming newbies.  If you don’t
+know how to program, start here.
+
+
+@c .....................................
+
+@url{http://ruby.learncodethehardway.org/, Learn Ruby the Hard Way}
 
 
 
@@ -701,9 +833,8 @@ tools.
 @node Code Chunk Summaries
 @appendix Code Chunk Summaries
 
-This @value{APPENDIX} presents alphabetical lists of all the file
-definitions, the code chunk definitions, and the code chunk
-references.
+This @value{APPENDIX} presents alphabetical lists of all the file definitions,
+the code chunk definitions, and the code chunk references.
 
 @menu
 * File Definitions::

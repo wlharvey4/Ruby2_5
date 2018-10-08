@@ -82,6 +82,18 @@ Managers
 * RVM (``Ruby Version Manager'')::
 * uru::
 
+Getting Started
+
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+
 Code Chunk Summaries
 
 * File Definitions::
@@ -191,9 +203,9 @@ Installation Methods
 There are several ways to install Ruby:
 
    * Package Manager: When you are on a UNIX-like operating system,
-     using your system’s package manager is the easiest way of
-     getting started.  However, the packaged Ruby version usually is
-     not the newest one.
+     using your system’s package manager is the easiest way of getting
+     started.  However, the packaged Ruby version usually is not the
+     newest one.
    * Installers: can be used to install a specific or multiple Ruby
      versions.  There is also an installer for Windows.
    * Managers help you to switch between multiple Ruby installations
@@ -217,8 +229,8 @@ File: Ruby2_5.info,  Node: Package Management Systems,  Next: Installers,  Up: I
 --------------------------------
 
 If you cannot compile your own Ruby, and you do not want to use a
-third-party tool, you can use your system’s package manager to
-install Ruby.
+third-party tool, you can use your system’s package manager to install
+Ruby.
 
    Certain members in the Ruby community feel very strongly that you
 should never use a package manager to install Ruby and that you should
@@ -375,7 +387,11 @@ File: Ruby2_5.info,  Node: Building From Source,  Prev: Managers,  Up: Installin
 2.1.4 Building From Source
 --------------------------
 
-Of course, you can install Ruby from source.  Download and unpack a
+Ruby 2.5.1 (https://www.ruby-lang.org/en/downloads/)
+
+   Ruby Github (https://github.com/ruby/ruby)
+
+   Of course, you can install Ruby from source.  Download and unpack a
 tarball, then just do this:
 
      $ ./configure
@@ -389,11 +405,124 @@ pass the '--prefix=DIR' option to the './configure' script.
 idea, though, because the installed Ruby won’t be managed by any
 tools.
 
+   Installing from the source code is a great solution for when you
+are comfortable enough with your platform and perhaps need specific
+settings for your environment.  It’s also a good solution in the event
+that there are no other premade packages for your platform.
+
 
 File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Installing Ruby,  Up: Documentation
 
 2.2 Getting Started
 ===================
+
+* Menu:
+
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+
+
+File: Ruby2_5.info,  Node: Try Ruby!,  Next: Official FAQ,  Up: Getting Started
+
+2.2.1 Try Ruby!
+---------------
+
+Try Ruby!  (https://ruby.github.io/TryRuby/)
+
+   An interactive tutorial that lets you try out Ruby right in your
+browser.  This 15-minute tutorial is aimed at beginners who want to
+get a feeling of the language.
+
+
+File: Ruby2_5.info,  Node: Official FAQ,  Next: Ruby Koans,  Prev: Try Ruby!,  Up: Getting Started
+
+2.2.2 Official FAQ
+------------------
+
+The official frequently asked questions.
+
+   FAQ (https://www.ruby-lang.org/en/documentation/faq/)
+
+
+File: Ruby2_5.info,  Node: Ruby Koans,  Next: Why’s (Poignant) Guide to Ruby,  Prev: Official FAQ,  Up: Getting Started
+
+2.2.3 Ruby Koans
+----------------
+
+Ruby Koans (http://rubykoans.com/)
+
+
+File: Ruby2_5.info,  Node: Why’s (Poignant) Guide to Ruby,  Next: Ruby in Twenty Minutes,  Prev: Ruby Koans,  Up: Getting Started
+
+2.2.4 Why’s (Poignant) Guide to Ruby
+------------------------------------
+
+Why's Guide to Ruby (http://mislav.uniqpath.com/poignant-guide/)
+
+   An unconventional but interesting book that will teach you Ruby
+through stories, wit, and comics.  Originally created by 'why the
+lucky stiff', this guide remains a classic for Ruby learners.
+
+
+File: Ruby2_5.info,  Node: Ruby in Twenty Minutes,  Next: Ruby from Other Languages,  Prev: Why’s (Poignant) Guide to Ruby,  Up: Getting Started
+
+2.2.5 Ruby in Twenty Minutes
+----------------------------
+
+Ruby in Twenty Minutes
+(https://www.ruby-lang.org/en/documentation/quickstart/)
+
+   A nice tutorial covering the basics of Ruby.  From start to finish
+it shouldn’t take you more than twenty minutes.
+
+
+File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Learning Ruby,  Prev: Ruby in Twenty Minutes,  Up: Getting Started
+
+2.2.6 Ruby from Other Languages
+-------------------------------
+
+Ruby from Other Languages
+(https://www.ruby-lang.org/en/documentation/ruby-from-other-languages/)
+
+
+File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Ruby from Other Languages,  Up: Getting Started
+
+2.2.7 Learning Ruby
+-------------------
+
+Learning Ruby (http://rubylearning.com/)
+
+   A thorough collection of Ruby study notes for those who are new to
+the language and in search of a solid introduction to Ruby’s concepts
+and constructs.
+
+
+File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Learning Ruby,  Up: Getting Started
+
+2.2.8 Ruby Essentials
+---------------------
+
+Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
+
+
+File: Ruby2_5.info,  Node: Learn to Program,  Prev: Ruby Essentials,  Up: Getting Started
+
+2.2.9 Learn to Program
+----------------------
+
+Learn to Program (http://pine.fm/LearnToProgram/)
+
+   A wonderful little tutorial by Chris Pine for programming newbies.
+If you don’t know how to program, start here.
+
+   Learn Ruby the Hard Way (http://ruby.learncodethehardway.org/)
 
 
 File: Ruby2_5.info,  Node: Manuals,  Next: Reference Documentation,  Prev: Getting Started,  Up: Documentation
@@ -501,36 +630,45 @@ Index
 
 Tag Table:
 Node: Top371
-Node: Preface1588
-Node: Audience1771
-Node: Overview1890
-Node: Conventions2060
-Node: Acknowledgements2980
-Node: Introduction3096
-Node: Documentation3393
-Node: Installing Ruby3780
-Node: Package Management Systems4693
-Node: Homebrew (OS X)5518
-Node: Installers5944
-Node: ruby-build6540
-Node: ruby-install7093
-Node: Managers7708
-Node: chruby8105
-Node: rbenv8364
-Node: RVM (``Ruby Version Manager'')8909
-Node: uru9307
-Node: Building From Source9600
-Node: Getting Started10173
-Node: Manuals10320
-Node: Reference Documentation10459
-Node: Editors and IDEs10631
-Node: Further Reading10797
-Node: First appendix10929
-Node: Code Chunk Summaries11100
-Node: File Definitions11487
-Node: Code Chunk Definitions11649
-Node: Code Chunk References11839
-Node: Bibliography12002
-Node: Concept Index12133
+Node: Preface1805
+Node: Audience1988
+Node: Overview2107
+Node: Conventions2277
+Node: Acknowledgements3197
+Node: Introduction3313
+Node: Documentation3610
+Node: Installing Ruby3997
+Node: Package Management Systems4910
+Node: Homebrew (OS X)5735
+Node: Installers6161
+Node: ruby-build6757
+Node: ruby-install7310
+Node: Managers7925
+Node: chruby8322
+Node: rbenv8581
+Node: RVM (``Ruby Version Manager'')9126
+Node: uru9524
+Node: Building From Source9817
+Node: Getting Started10764
+Node: Try Ruby!11120
+Node: Official FAQ11450
+Node: Ruby Koans11691
+Node: Why’s (Poignant) Guide to Ruby11887
+Node: Ruby in Twenty Minutes12361
+Node: Ruby from Other Languages12772
+Node: Learning Ruby13067
+Node: Ruby Essentials13433
+Node: Learn to Program13664
+Node: Manuals14041
+Node: Reference Documentation14180
+Node: Editors and IDEs14352
+Node: Further Reading14518
+Node: First appendix14650
+Node: Code Chunk Summaries14821
+Node: File Definitions15208
+Node: Code Chunk Definitions15370
+Node: Code Chunk References15560
+Node: Bibliography15723
+Node: Concept Index15854
 
 End Tag Table
