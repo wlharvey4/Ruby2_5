@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.1b of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FAQ Syntax (Ruby2_5 Information)</title>
+
+<meta name="description" content="FAQ Syntax (Ruby2_5 Information)">
+<meta name="keywords" content="FAQ Syntax (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Official-FAQ.html#Official-FAQ" rel="up" title="Official FAQ">
+<link href="FAQ-Methods.html#FAQ-Methods" rel="next" title="FAQ Methods">
+<link href="FAQ-Iterators.html#FAQ-Iterators" rel="prev" title="FAQ Iterators">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="FAQ-Syntax"></a>
+<div class="header">
+<p>
+Next: <a href="FAQ-Methods.html#FAQ-Methods" accesskey="n" rel="next">FAQ Methods</a>, Previous: <a href="FAQ-Iterators.html#FAQ-Iterators" accesskey="p" rel="prev">FAQ Iterators</a>, Up: <a href="Official-FAQ.html#Official-FAQ" accesskey="u" rel="up">Official FAQ</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="FAQ-Syntax-1"></a>
+<h4 class="subsubsection">2.3.2.2 FAQ Syntax</h4>
+
+<p>List of FAQ items:
+</p>
+<p><a href="#immediate-value">What is the difference between an immediate
+value and a reference?</a>
+</p>
+<p><a href="#nil-vs-false">What is the difference between <code>nil</code> and
+<code>false</code>?</a>
+</p>
+<p><a href="#empty-string">The Empty String</a>
+</p>
+<p><a href="#symbol-object">A Symbol Object</a>
+</p>
+<p><a href="#value-of-symbol">How can I access the value of a symbol?</a>
+</p>
+<p><a href="#loop">Is <code>loop</code> a control structure?</a>
+</p>
+<p><a href="#post_002dtest-loop">Ruby doesn&rsquo;t have a post-test loop</a>
+</p>
+<p><a href="#hash-literal">Why canât I pass a hash literal to a method <code>p {}</code>?</a>
+</p>
+<p><a href="#pos-val">I canât get <code>def pos=(val)</code> to work!</a>
+</p>
+<p><a href="#g_t_005c1-and-_005c_005c1">What is the difference between <code>\1</code> and
+<code>\\1</code>?</a>
+</p>
+<p><a href="#g_t2-dots-vs-3-dots">What is the difference between <code>..</code> and
+<code>...</code>?</a>
+</p>
+<p><a href="#or-and">What is the difference between or and ||?</a>
+</p>
+<p><a href="#function-pointers">Does Ruby have function pointers?</a>
+</p>
+<p><a href="#load-vs-require">What is the difference between load and
+require?</a>
+</p>
+<p><a href="#exception-handling">Does Ruby have exception handling?</a>
+</p>
+<a name="immediate-value"></a><a name="What-is-the-difference-between-an-immediate-value-and-a-reference_003f"></a>
+<h4 class="subheading">What is the difference between an immediate value and a reference?</h4>
+<a name="index-immediate-values"></a>
+
+<p><code>Fixnum</code>, <code>true</code>, <code>nil</code>, and <code>false</code> are
+implemented as <em>immediate values</em>.  With immediate values,
+variables hold the objects themselves, rather than references to them.
+</p>
+<p>Singleton methods cannot be defined for such objects.  Two
+<samp>Fixnums</samp> of the same value always represent the same object
+instance, so (for example) instance variables for the <samp>Fixnum</samp>
+with the value 1 are shared between all the 1&rsquo;s in the system.  This
+makes it impossible to define a singleton method for just one of
+these.
+</p>
+<a name="nil-vs-false"></a><a name="What-is-the-difference-between-nil-and-false_003f"></a>
+<h4 class="subheading">What is the difference between <code>nil</code> and <code>false</code>?</h4>
+<a name="index-nil-and-false_002c-similariaties-and-differences"></a>
+<a name="index-false-and-nil"></a>
+<a name="index-boolean-context"></a>
+<a name="index-_0060_0060falsey_0027_0027-values"></a>
+<a name="index-_0060_0060truthy_0027_0027-values"></a>
+
+<p>First the similarity: <code>nil</code> and <code>false</code> are the only two
+objects that evaluate to <code>false</code> in a boolean context.  (In other
+words: they are the only &ldquo;falsy&rdquo; values; all other objects are
+&ldquo;truthy&rdquo;.)
+</p>
+<p>However, <code>nil</code> and <code>false</code> are instances of different
+classes (<samp>NilClass</samp> and <samp>FalseClass</samp>), and have different behavior
+elsewhere.
+<a name="index-NilClass"></a>
+<a name="index-FalseClass"></a>
+</p>
+<p>We recommend that <em>predicate methods</em> (those whose name ends with
+a question mark) return <code>true</code> or <code>false</code>.  Other methods that need to
+indicate failure should return <code>nil</code>.
+<a name="index-predicate-methods"></a>
+</p>
+<a name="empty-string"></a><a name="The-Empty-String"></a>
+<h4 class="subheading">The Empty String</h4>
+<a name="index-empty-string"></a>
+<a name="index-conditional-expression_002c-false-values"></a>
+
+<p>An empty string (<code>&quot;&quot;</code>) returns <code>true</code> in a conditional
+expression!  In Perl, itâs <code>false</code>.  Itâs very simple: in Ruby,
+only <code>nil</code> and <code>false</code> are <code>false</code> in conditional
+contexts.
+</p>
+<p>You can use <code>empty?</code>, compare the string to <code>&quot;&quot;</code>, or compare
+the stringâs size or length to 0 to find out if a string is empty.
+</p>
+<a name="symbol-object"></a><a name="A-Symbol-Object"></a>
+<h4 class="subheading">A Symbol Object</h4>
+<a name="index-Symbol-object"></a>
+<a name="index-_0022name_0022_002eto_005fsym"></a>
+<a name="index-_0022name_0022_002eintern"></a>
+
+<p>What does <code>:name</code> mean?
+</p>
+<p>A colon followed by a name generates a <em>Symbol object</em> which
+corresponds one-to-one with the identifier.  During the duration of a
+program&rsquo;s execution the same Symbol object will be created for a given
+name or string.  Symbols can also be created with <code>&quot;name&quot;.intern</code>
+or <code>&quot;name&quot;.to_sym</code>.
+</p>
+<p>Symbol objects can represent identifiers for methods, variables, and
+so on.  Some methods, like <code>define_method</code>,
+<code>method_missing</code>, or <code>trace_var</code>, require a symbol.  Other
+methods, e.g. <code>attr_accessor</code>, <code>send</code>, or <code>autoload</code>,
+also accept a string.
+</p>
+<p>Due to the fact that they are created only once, Symbols are often
+used as hash keys.  String hash keys would create a new object for
+every single use, thereby causing some memory overhead.  There is even
+a special syntax for symbol hash keys:
+<a name="index-symbols-as-hash-keys"></a>
+</p>
+<div class="example">
+<pre class="example">person_1 = { :name =&gt; &quot;John&quot;, :age =&gt; 42 }
+person_2 = { name: &quot;Jane&quot;, age: 24 }        # alternate syntax
+</pre></div>
+
+<p>Symbols can also be used as enumeration values or to assign unique
+values to constants:
+<a name="index-symbols-as-enumeration-values"></a>
+<a name="index-symbols_002c-unique-constants"></a>
+</p>
+<div class="example">
+<pre class="example">status = :open  # :closed, ...
+
+NORTH = :NORTH
+SOUTH = :SOUTH
+</pre></div>
+
+<a name="value-of-symbol"></a><a name="How-can-I-access-the-value-of-a-symbol_003f"></a>
+<h4 class="subheading">How can I access the value of a symbol?</h4>
+<a name="index-symbol_002c-access-value-of"></a>
+<a name="index-symbol_002eto_005fs"></a>
+<a name="index-_0022_0023symbol_0022"></a>
+<a name="index-eval"></a>
+
+<p>To get the value of the variable corresponding to a symbol, you can
+use <code>symbol.to_s</code> or <code>&quot;#{symbol}&quot;</code> to get the name of the
+variable, and then <code>eval</code> that in the scope of the symbol to get
+the variableâs contents:
+</p>
+<div class="example">
+<pre class="example">a = &quot;This is the content of `a'&quot;
+b = eval(&quot;#{:a}&quot;)
+a.object_id == b.object_id  # =&gt; true
+</pre></div>
+
+<p>You can also use:
+</p>
+<div class="example">
+<pre class="example">b = binding.local_variable_get(:a)
+</pre></div>
+<a name="index-binding_002elocal_005fvariable_005fget_0028_003asymbol_0029"></a>
+
+<p>If your symbol corresponds to the name of a method, you can use
+<code>send</code>:
+<a name="index-send"></a>
+</p>
+<div class="example">
+<pre class="example">class Demo
+  def hello
+    &quot;Hello, world&quot;
+  end
+end
+
+demo = Demo.new
+demo.send(:hello)
+</pre></div>
+
+<p>Or you can use <code>Object#method</code> to return a corresponding <samp>Method</samp>
+object, which you may then call:
+</p>
+<div class="example">
+<pre class="example">m = demo.method(:hello)  # =&gt; #&lt;Method: Demo#hello&gt;
+m.call                   # =&gt; &quot;Hello, world&quot;
+</pre></div>
+
+<a name="loop"></a><a name="Is-loop-a-control-structure_003f"></a>
+<h4 class="subheading">Is <code>loop</code> a control structure?</h4>
+<a name="index-loop"></a>
+<a name="index-Kernel"></a>
+
+<p>Although <code>loop</code> looks like a control structure, it is actually a
+method defined in <samp>Kernel</samp>.  The block which follows introduces a
+new scope for local variables.
+</p>
+<a name="post_002dtest-loop"></a><a name="Ruby-doesnat-have-a-post_002dtest-loop"></a>
+<h4 class="subheading">Ruby doesnât have a post-test loop</h4>
+<a name="index-do-_2026-_007d-while"></a>
+
+<p>Ruby does not have a <code>do { &hellip; } while</code> construct, so how
+can I implement loops that test the condition at the end?
+</p>
+<p>Clemens Hintze says: &ldquo;You can use a combination of Rubyâs <code>begin
+&hellip; end</code> and the <code>while</code> or <code>until</code> statement modifiers
+to achieve the same effect:
+</p>
+<div class="example">
+<pre class="example">i = 0
+begin
+  puts &quot;i = #{i}&quot;
+  i += 1
+end until i &gt; 4
+</pre></div>
+
+<a name="hash-literal"></a><a name="Why-canat-I-pass-a-hash-literal-to-a-method_003a-p-_007b_007d_003f"></a>
+<h4 class="subheading">Why canât I pass a hash literal to a method: <code>p {}</code>?</h4>
+
+<p>The <code>{}</code> is parsed as a block, not a <samp>Hash</samp> constructor.
+You can force the <code>{}</code> to be treated as an expression by making
+the fact that it&rsquo;s a parameter explicit: <code>p({})</code>.
+</p>
+<a name="pos-val"></a><a name="I-canat-get-def-pos_003d_0028val_0029-to-work_0021"></a>
+<h4 class="subheading">I canât get <code>def pos=(val)</code> to work!</h4>
+
+<p>I have the following code, but I cannot use the method <code>pos = 1</code>.
+</p>
+<div class="example">
+<pre class="example">def pos=(val)
+  @pos = val
+  puts @pos
+end
+</pre></div>
+
+<p>Methods with <kbd>=</kbd> appended must be called with an explicit receiver
+(without the receiver, you are just assigning to a local
+variable).  Invoke it as <code>self.pos = 1</code>.
+</p>
+<a name="g_t_005c1-and-_005c_005c1"></a><a name="What-is-the-difference-between-_005c1-and-_005c_005c1_003f"></a>
+<h4 class="subheading">What is the difference between <code>\1</code> and <code>\\1</code>?</h4>
+
+<p>They have the same meaning.  In a single quoted string, only <code>\'</code>
+and <code>\\</code> are transformed and other combinations remain unchanged.
+</p>
+<p>However, in a double quoted string, <code>&quot;\1&quot;</code> is the byte
+<code>\001</code> (an octal bit pattern), while <code>&quot;\\1&quot;</code> is the two
+character string containing a backslash and the character <code>&quot;1&quot;</code>.
+</p>
+<a name="g_t2-dots-vs-3-dots"></a><a name="What-is-the-difference-between-_002e_002e-and-_002e_002e_002e_003f"></a>
+<h4 class="subheading">What is the difference between <code>..</code> and <code>...</code>?</h4>
+<a name="index-_002e_002e-vs_002e-_002e_002e_002e"></a>
+
+<p><code>..</code>  includes the right hand side in the range, while <code>...</code>
+does not:
+</p>
+<div class="example">
+<pre class="example">(5..8).to_a   # =&gt; [5, 6, 7, 8]
+(5...8).to_a  # =&gt; [5, 6, 7]
+</pre></div>
+
+<a name="or-and"></a><a name="What-is-the-difference-between-or-and-_007c_007c_003f"></a>
+<h4 class="subheading">What is the difference between <code>or</code> and <code>||</code>?</h4>
+<a name="index-precedence-of-or"></a>
+
+<p><code>p(nil || &quot;Hello&quot;)</code> prints <code>&quot;Hello&quot;</code>, while <code>p(nil or
+&quot;Hello&quot;)</code> gives a parse error.  Why?
+</p>
+<p><code>or</code> has a very low precedence; <code>p( (nil or &quot;Hello&quot;) )</code> will
+work.
+</p>
+<p>The precedence of <code>or</code> is for instance also lower than that of <code>=</code>,
+whereas <code> || </code> has a higher precedence:
+</p>
+<div class="example">
+<pre class="example">foo = nil || &quot;Hello&quot;  # parsed as: foo = (nil || &quot;Hello&quot;)
+foo  # =&gt; &quot;Hello&quot;
+
+# but perhaps surprisingly:
+
+foo = nil or &quot;Hello&quot;  # parsed as: (foo = nil) or &quot;Hello&quot;
+foo  # =&gt; nil
+</pre></div>
+
+<p><code>or</code> (and similarly <code>and</code>) is best used, not for combining
+boolean expressions, but for control flow, like in:
+</p>
+<div class="example">
+<pre class="example">do_something  or raise &quot;some error!&quot;
+</pre></div>
+
+<p>where <code>do_something</code> returns <code>false</code> or <code>nil</code> when an
+error occurs.
+</p>
+<a name="function-pointers"></a><a name="Does-Ruby-have-function-pointers_003f"></a>
+<h4 class="subheading">Does Ruby have function pointers?</h4>
+<a name="index-function-pointers"></a>
+
+<p>A <samp>Proc</samp> object generated by <code>Proc.new</code>, <code>proc</code>, or
+<code>lambda</code> can be referenced from a variable, so that variable
+could be said to be a function pointer.  You can also get references to
+methods within a particular object instance using <code>object.method</code>.
+</p>
+<a name="load-vs-require"></a><a name="What-is-the-difference-between-load-and-require_003f"></a>
+<h4 class="subheading">What is the difference between load and require?</h4>
+<a name="index-load"></a>
+<a name="index-require"></a>
+
+<p><code>load</code> will load and execute a Ruby program (<samp>*.rb</samp>).
+</p>
+<p><code>require</code> loads Ruby programs as well, but will also load
+<em>binary Ruby extension modules</em> (shared libraries or DLLs).  In
+addition, <code>require</code> ensures that a feature is never loaded
+more than once.
+<a name="index-binary-Ruby-extension-modules"></a>
+<a name="index-shared-libraries"></a>
+<a name="index-DLLs"></a>
+</p>
+<a name="exception-handling"></a><a name="Does-Ruby-have-exception-handling_003f"></a>
+<h4 class="subheading">Does Ruby have exception handling?</h4>
+<a name="index-exception-handling"></a>
+
+<p>Ruby supports a flexible exception handling scheme:
+</p>
+<div class="example">
+<pre class="example">begin
+  statements which may raise exceptions
+rescue [exception class names]
+  statements when an exception occurred
+rescue [exception class names]
+  statements when an exception occurred
+ensure
+  statements that will always run
+end
+</pre></div>
+<a name="index-rescue-clause"></a>
+<a name="index-ensure-clause"></a>
+
+<p>If an exception occurs in the <code>begin</code> clause, the <code>rescue</code>
+clause with the matching exception name is executed.  The
+<code>ensure</code> clause is executed whether an exception occurred or not.
+<code>rescue</code> and <code>ensure</code> clauses may be omitted.
+</p>
+<p>If no exception class is designated for a <code>rescue</code> clause,
+<samp>StandardError</samp> exception is implied, and exceptions which are in
+a <code>is_a?</code> relation to <samp>StandardError</samp> are captured.
+</p>
+<p>This expression returns the value of the <code>begin</code> clause.
+</p>
+<p>The latest exception is accessed by the global variable <code>$!</code> (and
+so its type can be determined using <code>$!.type</code>).
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="FAQ-Methods.html#FAQ-Methods" accesskey="n" rel="next">FAQ Methods</a>, Previous: <a href="FAQ-Iterators.html#FAQ-Iterators" accesskey="p" rel="prev">FAQ Iterators</a>, Up: <a href="Official-FAQ.html#Official-FAQ" accesskey="u" rel="up">Official FAQ</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.1a
+@set EDITION 0.1b
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -249,6 +249,7 @@ Preface
 Documentation
 
 * Installing Ruby::
+* Developing Ruby::
 * Getting Started::
 * Manuals::
 * Reference Documentation::
@@ -283,7 +284,6 @@ Building From Source
 * Releases Page::
 * Branches Page::
 * Issue Tracking::
-* Ruby Core::
 
 Getting Started
 
@@ -296,6 +296,16 @@ Getting Started
 * Learning Ruby::
 * Ruby Essentials::
 * Learn to Program::
+
+Official FAQ
+
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
 
 Code Chunk Summaries
 
@@ -412,6 +422,7 @@ in handy when you feel like coding in Ruby.
 
 @menu
 * Installing Ruby::
+* Developing Ruby::
 * Getting Started::
 * Manuals::
 * Reference Documentation::
@@ -662,7 +673,6 @@ other premade packages for your platform.
 * Releases Page::
 * Branches Page::
 * Issue Tracking::
-* Ruby Core::
 @end menu
 
 @node Releases Page
@@ -794,11 +804,14 @@ EOL date: 2018-03-31@*
 @url{https://bugs.ruby-lang.org/projects/ruby-trunk/issues?set_filter=1, All
 Issues}
 
-@c _____________________________________
 
-@node Ruby Core
-@subsubsection Ruby Core
-@cindex core
+
+
+@c -----------------------------------------------------------------------------
+
+@node Developing Ruby
+@section Developing Ruby
+@cindex developing Ruby
 
 @url{https://www.ruby-lang.org/en/community/ruby-core/, Ruby Core}
 
@@ -806,6 +819,9 @@ Now is a fantastic time to follow Ruby’s development.  With the increased
 attention Ruby has received in the past few years, there’s a growing need for
 good talent to help enhance Ruby and document its parts.  So, where do you
 start?
+
+@subheading Ruby Core
+@cindex Ruby core
 
 The topics related to Ruby development covered here are:
 
@@ -932,6 +948,763 @@ language.
 The official frequently asked questions.
 
 @url{https://www.ruby-lang.org/en/documentation/faq/, FAQ}
+
+This document contains Frequently Asked Questions about Ruby with
+answers.
+
+This FAQ is based on
+@url{http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html, The Ruby
+Language FAQ} originally compiled by Shugo Maeda and translated into
+English by Kentaro Goto.  Thanks to Zachary Scott and Marcus
+Stollsteimer for incorporating the FAQ into the site and for a major
+overhaul of the content.
+
+@itemize
+@item
+General questions
+@item
+How does Ruby stack up against…?
+@item
+Installing Ruby
+@item
+Variables, constants, and arguments
+@item
+@ref{FAQ Iterators}
+@item
+@ref{FAQ Syntax}
+@item
+Methods
+@item
+Classes and modules
+@item
+Built-in libraries
+@item
+Extension library
+@item
+Other features
+@end itemize
+
+@c _____________________________________
+
+@menu
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
+@end menu
+
+@node FAQ Iterators
+@subsubsection FAQ Iterators
+@cindex iterators
+
+@subheading What is an iterator?
+@cindex @file{Proc} object, passed to iterator
+@cindex block object, passed to iterator
+
+An iterator is a method which accepts a block or a @file{Proc}
+object.  In the source file, the block is placed immediately after the
+invocation of the method.  Iterators are used to produce user-defined
+control structures --- especially loops.
+
+Let’s look at an example to see how this works.  Iterators are often
+used to repeat the same action on each element of a collection, like
+this:
+
+@example
+data = [1, 2, 3]
+data.each do |i|
+  puts i
+end
+@end example
+
+The @code{each} method of the array @code{data} is passed the @code{do
+@dots{} end} block, and executes it repeatedly.  On each call, the
+block is passed successive elements of the array.
+@cindex @code{each} method of iterator
+
+You can define blocks with @code{@{ @dots{} @}} in place of @code{do
+@dots{} end}.
+
+@example
+data = [1, 2, 3]
+data.each @{ |i|
+  puts i
+@}
+@end example
+
+This code has the same meaning as the last example.  However, in some
+cases, precedence issues cause @code{do @dots{} end} and @code{@{
+@dots{} @}} to act differently.
+@cindex precedence, iterators, different results
+@cindex binding of @code{@{ @dots{} @}}
+
+@example
+foobar a, b do @dots{} end	# foobar is the iterator.
+foobar a, b @{ @dots{} @}	# b is the iterator.
+@end example
+
+This is because @code{@{ @dots{} @}} binds more tightly to the
+preceding expression than does a @code{do @dots{} end} block.  The
+first example is equivalent to @samp{foobar(a, b) do @dots{} end},
+while the second is @samp{foobar(a, b @{ @dots{} @})}.
+
+@subheading How can I pass a block to an iterator?
+
+You simply place the block after the iterator call.  You can also pass
+a @file{Proc} object by prepending @kbd{&} to the variable or constant
+name that refers to the @file{Proc}.
+
+@subheading How is a block used in an iterator?
+@cindex block, used in an iterator
+@cindex iterator, block
+@cindex @code{yield} control structor, or statement
+
+@emph{This section or parts of it might be out-dated or in need of
+confirmation.}
+
+There are three ways to execute a block from an iterator method:
+
+@enumerate
+@item
+the @code{yield} control structure;
+@cindex @code{yield} control structure in iterator
+
+The @code{yield} statement calls the block, optionally passing it one
+or more arguments.
+
+@example
+def my_iterator
+  yield 1, 2
+end
+
+my_iterator @{|a, b| puts a, b @}
+@end example
+
+@item
+calling a @file{Proc} argument (made from a block) with @code{call};
+
+If a method definition has a block argument (the last formal parameter
+has an ampersand (@kbd{&}) prepended), it will receive the attached
+block, converted to a @file{Proc} object. This may be called using
+@code{prc.call(args)}.
+
+@example
+def my_iterator(&b)
+  b.call(1, 2)
+end
+
+my_iterator @{|a, b| puts a, b @}
+@end example
+
+and
+
+@item
+using @code{Proc.new} followed by a @code{call}.
+@cindex @code{Proc.new}, followed by @code{call}
+@cindex @code{lambda} as a synonym of @file{Proc}
+
+@code{Proc.new} (or the equivalent @code{proc} or @code{lambda}
+calls), when used in an iterator definition, takes the block which is
+given to the method as its argument and generates a procedure object
+from it.  (@code{proc} and @code{lambda} are effectively synonyms.)
+
+@emph{[Update needed: @code{lambda} behaves in a slightly different
+way and produces a warning @samp{tried to create Proc object without a
+block}.]}
+
+@example
+def my_iterator
+  Proc.new.call(3, 4)
+  proc.call(5, 6)
+  lambda.call(7, 8)
+end
+
+my_iterator @{|a, b| puts a, b @}
+@end example
+
+Perhaps surprisingly, @code{Proc.new} and friends do not in any sense
+consume the block attached to the method --- each call to
+@code{Proc.new} generates a new procedure object out of the same
+block.
+
+You can tell if there is a block associated with a method by calling
+@code{block_given?}.
+@cindex @code{block_given?}
+
+@end enumerate
+
+@subheading What does Proc.new without a block do?
+
+@code{Proc.new} without a block cannot generate a procedure object and
+an error occurs.  In a method definition, however, @code{Proc.new}
+without a block implies the existence of a block at the time the
+method is called, and so no error will occur.
+
+@subheading How can I run iterators in parallel?
+
+See @url{http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/5252}
+
+@c _____________________________________
+
+@node FAQ Syntax
+@subsubsection FAQ Syntax
+
+List of FAQ items:
+
+@ref{immediate value, What is the difference between an immediate
+value and a reference?}
+
+@ref{nil vs false, What is the difference between @code{nil} and
+@code{false}?}
+
+@ref{empty string, The Empty String}
+
+@ref{symbol object, A Symbol Object}
+
+@ref{value of symbol, How can I access the value of a symbol?}
+
+@ref{loop, Is @code{loop} a control structure?}
+
+@ref{post-test loop, Ruby doesn't have a post-test loop}
+
+@ref{hash literal, Why can’t I pass a hash literal to a method @code{p @{@}}?}
+
+@ref{pos val, I can’t get @code{def pos=(val)} to work!}
+
+@ref{\1 and \\1, What is the difference between @code{\1} and
+@code{\\1}?}
+
+@ref{2 dots vs 3 dots, What is the difference between @code{..} and
+@code{...}?}
+
+@ref{or and, What is the difference between or and ||?}
+
+@ref{function pointers, Does Ruby have function pointers?}
+
+@ref{load vs require, What is the difference between load and
+require?}
+
+@ref{exception handling, Does Ruby have exception handling?}
+
+@anchor{immediate value}
+@subheading What is the difference between an immediate value and a reference?
+@cindex immediate values
+
+@code{Fixnum}, @code{true}, @code{nil}, and @code{false} are
+implemented as @dfn{immediate values}.  With immediate values,
+variables hold the objects themselves, rather than references to them.
+
+Singleton methods cannot be defined for such objects.  Two
+@file{Fixnums} of the same value always represent the same object
+instance, so (for example) instance variables for the @file{Fixnum}
+with the value 1 are shared between all the 1's in the system.  This
+makes it impossible to define a singleton method for just one of
+these.
+
+@anchor{nil vs false}
+@subheading What is the difference between @code{nil} and @code{false}?
+@cindex @code{nil} and @code{false}, similariaties and differences
+@cindex @code{false} and @code{nil}
+@cindex boolean context
+@cindex ``falsey'' values
+@cindex ``truthy'' values
+
+First the similarity: @code{nil} and @code{false} are the only two
+objects that evaluate to @code{false} in a boolean context.  (In other
+words: they are the only ``falsy'' values; all other objects are
+``truthy''.)
+
+However, @code{nil} and @code{false} are instances of different
+classes (@file{NilClass} and @file{FalseClass}), and have different behavior
+elsewhere.
+@cindex @file{NilClass}
+@cindex @file{FalseClass}
+
+We recommend that @dfn{predicate methods} (those whose name ends with
+a question mark) return @code{true} or @code{false}.  Other methods that need to
+indicate failure should return @code{nil}.
+@cindex predicate methods
+
+@anchor{empty string}
+@subheading The Empty String
+@cindex empty string
+@cindex conditional expression, @code{false} values
+
+An empty string (@code{""}) returns @code{true} in a conditional
+expression!  In Perl, it’s @code{false}.  It’s very simple: in Ruby,
+only @code{nil} and @code{false} are @code{false} in conditional
+contexts.
+
+You can use @code{empty?}, compare the string to @code{""}, or compare
+the string’s size or length to 0 to find out if a string is empty.
+
+@anchor{symbol object}
+@subheading A Symbol Object
+@cindex Symbol object
+@cindex @code{"name".to_sym}
+@cindex @code{"name".intern}
+
+What does @code{:name} mean?
+
+A colon followed by a name generates a @dfn{Symbol object} which
+corresponds one-to-one with the identifier.  During the duration of a
+program's execution the same Symbol object will be created for a given
+name or string.  Symbols can also be created with @code{"name".intern}
+or @code{"name".to_sym}.
+
+Symbol objects can represent identifiers for methods, variables, and
+so on.  Some methods, like @code{define_method},
+@code{method_missing}, or @code{trace_var}, require a symbol.  Other
+methods, e.g. @code{attr_accessor}, @code{send}, or @code{autoload},
+also accept a string.
+
+Due to the fact that they are created only once, Symbols are often
+used as hash keys.  String hash keys would create a new object for
+every single use, thereby causing some memory overhead.  There is even
+a special syntax for symbol hash keys:
+@cindex symbols as hash keys
+
+@example
+person_1 = @{ :name => "John", :age => 42 @}
+person_2 = @{ name: "Jane", age: 24 @}        # alternate syntax
+@end example
+
+Symbols can also be used as enumeration values or to assign unique
+values to constants:
+@cindex symbols as enumeration values
+@cindex symbols, unique constants
+
+@example
+status = :open  # :closed, ...
+
+NORTH = :NORTH
+SOUTH = :SOUTH
+@end example
+
+@anchor{value of symbol}
+@subheading How can I access the value of a symbol?
+@cindex symbol, access value of
+@cindex @code{symbol.to_s}
+@cindex @code{"#symbol"}
+@cindex @code{eval}
+
+To get the value of the variable corresponding to a symbol, you can
+use @code{symbol.to_s} or @code{"#@{symbol@}"} to get the name of the
+variable, and then @code{eval} that in the scope of the symbol to get
+the variable’s contents:
+
+@example
+a = "This is the content of `a'"
+b = eval("#@{:a@}")
+a.object_id == b.object_id  # => true
+@end example
+
+You can also use:
+
+@example
+b = binding.local_variable_get(:a)
+@end example
+@cindex @code{binding.local_variable_get(:symbol)}
+
+If your symbol corresponds to the name of a method, you can use
+@code{send}:
+@cindex @code{send}
+
+@example
+class Demo
+  def hello
+    "Hello, world"
+  end
+end
+
+demo = Demo.new
+demo.send(:hello)
+@end example
+
+Or you can use @code{Object#method} to return a corresponding @file{Method}
+object, which you may then call:
+
+@example
+m = demo.method(:hello)  # => #<Method: Demo#hello>
+m.call                   # => "Hello, world"
+@end example
+
+@anchor{loop}
+@subheading Is @code{loop} a control structure?
+@cindex @code{loop}
+@cindex @file{Kernel}
+
+Although @code{loop} looks like a control structure, it is actually a
+method defined in @file{Kernel}.  The block which follows introduces a
+new scope for local variables.
+
+@anchor{post-test loop}
+@subheading Ruby doesn’t have a post-test loop
+@cindex @code{do @dots{} @} while}
+
+Ruby does not have a @code{do @{ @dots{} @} while} construct, so how
+can I implement loops that test the condition at the end?
+
+Clemens Hintze says: ``You can use a combination of Ruby’s @code{begin
+@dots{} end} and the @code{while} or @code{until} statement modifiers
+to achieve the same effect:
+
+@example
+i = 0
+begin
+  puts "i = #@{i@}"
+  i += 1
+end until i > 4
+@end example
+
+@anchor{hash literal}
+@subheading Why can’t I pass a hash literal to a method: @code{p @{@}}?
+
+The @code{@{@}} is parsed as a block, not a @file{Hash} constructor.
+You can force the @code{@{@}} to be treated as an expression by making
+the fact that it's a parameter explicit: @code{p(@{@})}.
+
+@anchor{pos val}
+@subheading I can’t get @code{def pos=(val)} to work!
+
+I have the following code, but I cannot use the method @code{pos = 1}.
+
+@example
+def pos=(val)
+  @@pos = val
+  puts @@pos
+end
+@end example
+
+Methods with @kbd{=} appended must be called with an explicit receiver
+(without the receiver, you are just assigning to a local
+variable).  Invoke it as @code{self.pos = 1}.
+
+@anchor{\1 and \\1}
+@subheading What is the difference between @code{\1} and @code{\\1}?
+
+They have the same meaning.  In a single quoted string, only @code{\'}
+and @code{\\} are transformed and other combinations remain unchanged.
+
+However, in a double quoted string, @code{"\1"} is the byte
+@code{\001} (an octal bit pattern), while @code{"\\1"} is the two
+character string containing a backslash and the character @code{"1"}.
+
+@anchor{2 dots vs 3 dots}
+@subheading What is the difference between @code{..} and @code{...}?
+@cindex @code{..} vs. @code{...}
+
+@code{..}  includes the right hand side in the range, while @code{...}
+does not:
+
+@example
+(5..8).to_a   # => [5, 6, 7, 8]
+(5...8).to_a  # => [5, 6, 7]
+@end example
+
+@anchor{or and}
+@subheading What is the difference between @code{or} and @code{||}?
+@cindex precedence of @code{or}
+
+@code{p(nil || "Hello")} prints @code{"Hello"}, while @code{p(nil or
+"Hello")} gives a parse error.  Why?
+
+@code{or} has a very low precedence; @code{p( (nil or "Hello") )} will
+work.
+
+The precedence of @code{or} is for instance also lower than that of @code{=},
+whereas @code{ || } has a higher precedence:
+
+@example
+foo = nil || "Hello"  # parsed as: foo = (nil || "Hello")
+foo  # => "Hello"
+
+# but perhaps surprisingly:
+
+foo = nil or "Hello"  # parsed as: (foo = nil) or "Hello"
+foo  # => nil
+@end example
+
+@code{or} (and similarly @code{and}) is best used, not for combining
+boolean expressions, but for control flow, like in:
+
+@example
+do_something  or raise "some error!"
+@end example
+
+where @code{do_something} returns @code{false} or @code{nil} when an
+error occurs.
+
+@anchor{function pointers}
+@subheading Does Ruby have function pointers?
+@cindex function pointers
+
+A @file{Proc} object generated by @code{Proc.new}, @code{proc}, or
+@code{lambda} can be referenced from a variable, so that variable
+could be said to be a function pointer.  You can also get references to
+methods within a particular object instance using @code{object.method}.
+
+@anchor{load vs require}
+@subheading What is the difference between load and require?
+@cindex @command{load}
+@cindex @command{require}
+
+@command{load} will load and execute a Ruby program (@file{*.rb}).
+
+@command{require} loads Ruby programs as well, but will also load
+@dfn{binary Ruby extension modules} (shared libraries or DLLs).  In
+addition, @command{require} ensures that a feature is never loaded
+more than once.
+@cindex binary Ruby extension modules
+@cindex shared libraries
+@cindex DLLs
+
+@anchor{exception handling}
+@subheading Does Ruby have exception handling?
+@cindex exception handling
+
+Ruby supports a flexible exception handling scheme:
+
+@example
+begin
+  statements which may raise exceptions
+rescue [exception class names]
+  statements when an exception occurred
+rescue [exception class names]
+  statements when an exception occurred
+ensure
+  statements that will always run
+end
+@end example
+@cindex @code{rescue} clause
+@cindex @code{ensure} clause
+
+If an exception occurs in the @code{begin} clause, the @code{rescue}
+clause with the matching exception name is executed.  The
+@code{ensure} clause is executed whether an exception occurred or not.
+@code{rescue} and @code{ensure} clauses may be omitted.
+
+If no exception class is designated for a @code{rescue} clause,
+@file{StandardError} exception is implied, and exceptions which are in
+a @code{is_a?} relation to @file{StandardError} are captured.
+
+This expression returns the value of the @code{begin} clause.
+
+The latest exception is accessed by the global variable @code{$!} (and
+so its type can be determined using @code{$!.type}).
+
+@c _____________________________________
+
+@node FAQ Methods
+@subsubsection FAQ Methods
+
+@subheading How does Ruby choose which method to invoke?
+@cindex method, invoking 
+
+@subheading Are @code{+, -, *, ...} operators?
+@cindex operators?
+
+@subheading Where are @code{++} and @code{--} ?
+@cindex @code{++} and @code{--}
+
+@subheading What is a singleton method?
+@cindex singleton method
+
+@subheading All these objects are fine, but does Ruby have any simple functions?
+@cindex simple functions?
+
+@subheading So where do all these function-like methods come from?
+@cindex function-like methods, where from?
+
+@subheading Can I access an object’s instance variables?
+@cindex instance variables, accessing
+
+@subheading What’s the difference between @code{private} and @code{protected}?
+@cindex @code{private} vs @code{protected}
+
+@subheading How can I change the visibility of a method?
+@cindex visibility, changing
+
+@subheading Can an identifier beginning with a capital letter be a method name?
+@cindex identifier with capital letter, method?
+
+@subheading Calling @code{super} gives an @file{ArgumentError}.
+@cindex @code{super} gives @file{ArgumentError}
+@cindex @file{ArgumentError}, after calling @code{super}
+
+@subheading How can I call the method of the same name two levels up?
+@cindex calling method 2 levels up
+
+@subheading How can I invoke an original built-in method after redefining it?
+@cindex invoking original method after redefinition
+
+@subheading What is a destructive method?
+@cindex destructive method
+@cindex method, destructive
+
+@subheading Why can destructive methods be dangerous?
+@cindex dangerous, destructive methods
+
+@subheading Can I return multiple values from a method?
+@cindex return mutliple values
+
+@c _____________________________________
+
+@node FAQ Classes and Modules
+@subsubsection FAQ Classes and Modules
+
+@subheading Can a class definition be repeated?
+@cindex class definition, repeating
+
+@subheading Are there class variables?
+@cindex class variables?
+
+@subheading What is a class instance variable?
+@cindex class instance variable?
+
+@subheading What is the difference between class variables and class instance variables?
+@cindex class variables vs class instance variables
+
+@subheading Does Ruby have class methods?
+@cindex class methods?
+
+@subheading What is a singleton class?
+@cindex singleton class?
+
+@subheading What is a module function?
+@cindex module function?
+
+@subheading What is the difference between a class and a module?
+@cindex class vs module
+
+@subheading Can you subclass modules?
+@cindex modules, subclassing?
+
+@subheading Give me an example of a mixin
+@cindex mixin example
+
+@subheading Why are there two ways of defining class methods?
+@cindex class methods, defining, 2 ways
+
+@subheading What is the difference between include and extend?
+@cindex @code{include} vs @code{extend}
+
+@subheading What does @code{self} mean?
+@cindex @code{self}, meaning
+
+@c _____________________________________
+
+@node FAQ Built-In Libraries
+@subsubsection FAQ Built-In Libraries
+
+@subheading What does @code{instance_methods(false)} return?
+@cindex @code{instance_methods(false)}
+
+@subheading How do random number seeds work?
+@cindex random number seeds
+
+@subheading I read a file and changed it, but the file on disk has not changed.
+@cindex files, reading vs modifying
+
+@subheading How can I process a file and update its contents?
+@cindex file, process and update contents
+
+@subheading I wrote a file, copied it, but the end of the copy seems to be lost.
+@cindex file, copy
+
+@subheading How can I get the line number in the current input file?
+@cindex file, line number
+@cindex line number of input file
+
+@subheading How can I use @command{less} to display my program’s output?
+@cindex program output, display using @command{less}
+
+@subheading What happens to a @file{File} object which is no longer referenced?
+@cindex @file{File} object, no reference
+
+@subheading I feel uneasy if I don’t close a file.
+@cindex files, closing
+
+@subheading How can I sort files by their modification time?
+@cindex files, sorting by modification time
+
+@subheading How can I count the frequency of words in a file?
+@cindex files, counting words
+
+@subheading How can I sort strings in alphabetical order?
+@cindex strings, sort alphabetically
+
+@subheading How can I expand tabs to spaces?
+@cindex tabs, expand into spaces
+
+@subheading How can I escape a backslash in a regular expression?
+@cindex regular expression, escaping a backslash
+
+@subheading What is the difference between @code{sub} and @code{sub!}?
+@cindex @code{sub} vs @code{sub!}
+
+@subheading Where does @code{\Z} match?
+@cindex @code{\Z}
+
+@subheading What is the difference between @code{thread} and @code{fork}?
+@cindex @code{thread} vs @code{fork}
+@cindex @code{fork} vs @code{thread}
+
+@subheading How can I use @file{Marshal}?
+@cindex @file{Marshal}
+
+@subheading How can I use @code{trap}?
+@cindex @code{trap}
+
+@c _____________________________________
+
+@node FAQ Extension Library
+@subsubsection FAQ Extension Library
+
+@subheading How can I use Ruby interactively?
+@cindex interactively use Ruby
+
+@subheading Is there a debugger for Ruby?
+@cindex debugger for Ruby
+
+@subheading How can I use a library written in C from Ruby?
+@cindex C library, use
+
+@subheading Can I use @file{Tcl/Tk} in Ruby?
+@cindex @file{Tcl/Tk}, use
+
+@subheading @file{Tk} won't work. Why?
+@cindex @file{Tk}, won't work
+
+@subheading Can I use @command{gtk+} or @command{xforms} interfaces in Ruby?
+@cindex @command{gtk+}
+@cindex @command{xforms}
+
+@subheading How can I do date arithmetic?
+@cindex arithmetic
+
+@c _____________________________________
+
+@node FAQ Other Features
+@subsubsection FAQ Other Features
+
+@subheading What does a ? b : c mean?
+@cindex ternary operator
+
+@subheading How can I count the number of lines in a file?
+@cindex file, count lines in
+
+@subheading What do @code{MatchData#begin} and @code{MatchData#end} return?
+@cindex @code{MatchData#begin} and @code{MatchData#end}
+
+@subheading How can I sum the elements in an array?
+@cindex array, sum elements in
+
+@subheading How can I use continuations?
+@cindex continuations, using
 
 
 @c .....................................

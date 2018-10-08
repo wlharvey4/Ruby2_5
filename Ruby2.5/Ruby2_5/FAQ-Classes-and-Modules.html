@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.1b of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FAQ Classes and Modules (Ruby2_5 Information)</title>
+
+<meta name="description" content="FAQ Classes and Modules (Ruby2_5 Information)">
+<meta name="keywords" content="FAQ Classes and Modules (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Official-FAQ.html#Official-FAQ" rel="up" title="Official FAQ">
+<link href="FAQ-Built_002dIn-Libraries.html#FAQ-Built_002dIn-Libraries" rel="next" title="FAQ Built-In Libraries">
+<link href="FAQ-Methods.html#FAQ-Methods" rel="prev" title="FAQ Methods">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="FAQ-Classes-and-Modules"></a>
+<div class="header">
+<p>
+Next: <a href="FAQ-Built_002dIn-Libraries.html#FAQ-Built_002dIn-Libraries" accesskey="n" rel="next">FAQ Built-In Libraries</a>, Previous: <a href="FAQ-Methods.html#FAQ-Methods" accesskey="p" rel="prev">FAQ Methods</a>, Up: <a href="Official-FAQ.html#Official-FAQ" accesskey="u" rel="up">Official FAQ</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="FAQ-Classes-and-Modules-1"></a>
+<h4 class="subsubsection">2.3.2.4 FAQ Classes and Modules</h4>
+
+<a name="Can-a-class-definition-be-repeated_003f"></a>
+<h4 class="subheading">Can a class definition be repeated?</h4>
+<a name="index-class-definition_002c-repeating"></a>
+
+<a name="Are-there-class-variables_003f"></a>
+<h4 class="subheading">Are there class variables?</h4>
+<a name="index-class-variables_003f"></a>
+
+<a name="What-is-a-class-instance-variable_003f"></a>
+<h4 class="subheading">What is a class instance variable?</h4>
+<a name="index-class-instance-variable_003f"></a>
+
+<a name="What-is-the-difference-between-class-variables-and-class-instance-variables_003f"></a>
+<h4 class="subheading">What is the difference between class variables and class instance variables?</h4>
+<a name="index-class-variables-vs-class-instance-variables"></a>
+
+<a name="Does-Ruby-have-class-methods_003f"></a>
+<h4 class="subheading">Does Ruby have class methods?</h4>
+<a name="index-class-methods_003f"></a>
+
+<a name="What-is-a-singleton-class_003f"></a>
+<h4 class="subheading">What is a singleton class?</h4>
+<a name="index-singleton-class_003f"></a>
+
+<a name="What-is-a-module-function_003f"></a>
+<h4 class="subheading">What is a module function?</h4>
+<a name="index-module-function_003f"></a>
+
+<a name="What-is-the-difference-between-a-class-and-a-module_003f"></a>
+<h4 class="subheading">What is the difference between a class and a module?</h4>
+<a name="index-class-vs-module"></a>
+
+<a name="Can-you-subclass-modules_003f"></a>
+<h4 class="subheading">Can you subclass modules?</h4>
+<a name="index-modules_002c-subclassing_003f"></a>
+
+<a name="Give-me-an-example-of-a-mixin"></a>
+<h4 class="subheading">Give me an example of a mixin</h4>
+<a name="index-mixin-example"></a>
+
+<a name="Why-are-there-two-ways-of-defining-class-methods_003f"></a>
+<h4 class="subheading">Why are there two ways of defining class methods?</h4>
+<a name="index-class-methods_002c-defining_002c-2-ways"></a>
+
+<a name="What-is-the-difference-between-include-and-extend_003f"></a>
+<h4 class="subheading">What is the difference between include and extend?</h4>
+<a name="index-include-vs-extend"></a>
+
+<a name="What-does-self-mean_003f"></a>
+<h4 class="subheading">What does <code>self</code> mean?</h4>
+<a name="index-self_002c-meaning"></a>
+
+
+
+
+
+</body>
+</html>

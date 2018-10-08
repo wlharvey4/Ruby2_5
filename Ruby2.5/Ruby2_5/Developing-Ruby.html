@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.1b of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Developing Ruby (Ruby2_5 Information)</title>
+
+<meta name="description" content="Developing Ruby (Ruby2_5 Information)">
+<meta name="keywords" content="Developing Ruby (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Documentation.html#Documentation" rel="up" title="Documentation">
+<link href="Getting-Started.html#Getting-Started" rel="next" title="Getting Started">
+<link href="Issue-Tracking.html#Issue-Tracking" rel="prev" title="Issue Tracking">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Developing-Ruby"></a>
+<div class="header">
+<p>
+Next: <a href="Getting-Started.html#Getting-Started" accesskey="n" rel="next">Getting Started</a>, Previous: <a href="Installing-Ruby.html#Installing-Ruby" accesskey="p" rel="prev">Installing Ruby</a>, Up: <a href="Documentation.html#Documentation" accesskey="u" rel="up">Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Developing-Ruby-1"></a>
+<h3 class="section">2.2 Developing Ruby</h3>
+<a name="index-developing-Ruby"></a>
+
+<p><a href="https://www.ruby-lang.org/en/community/ruby-core/">Ruby Core</a>
+</p>
+<p>Now is a fantastic time to follow Rubyâs development.  With the increased
+attention Ruby has received in the past few years, thereâs a growing need for
+good talent to help enhance Ruby and document its parts.  So, where do you
+start?
+</p>
+<a name="Ruby-Core"></a>
+<h4 class="subheading">Ruby Core</h4>
+<a name="index-Ruby-core"></a>
+
+<p>The topics related to Ruby development covered here are:
+</p>
+<ul>
+<li> <a href="#subversion">Using Subversion to Track Ruby Development</a>
+</li><li> <a href="#MainRubyRepo">How to Use Git With the Main Ruby Repository</a>
+</li><li> <a href="#PatchByPatch">Patch by Patch</a>
+</li><li> Rules for Core Developers
+</li></ul>
+
+<a name="subversion"></a><a name="Using-Subversion-to-Track-Ruby-Development"></a>
+<h4 class="subsubheading">Using Subversion to Track Ruby Development</h4>
+<a name="index-Subversion"></a>
+<a name="index-track-Ruby-development"></a>
+<a name="index-Ruby-development_002c-tracking"></a>
+
+<p>Getting the latest Ruby source code is a matter of an anonymous checkout from
+the <a href="http://subversion.apache.org/">Subversion</a> repository.  From your
+command line:
+</p>
+<div class="example">
+<pre class="example"><kbd>$ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby</kbd>
+</pre></div>
+
+<p>The <samp>ruby</samp> directory will now contain the latest source code for the
+development version of Ruby (<samp>ruby-trunk</samp>).  Currently patches applied to
+the trunk are backported to the stable 2.5, 2.4, and 2.3 branches (see below).
+</p>
+<p>If youâd like to follow patching of Ruby 2.5, you should use the ruby_2_5
+branch when checking out:
+<a name="index-patching-of-Ruby"></a>
+</p>
+<div class="example">
+<pre class="example">$ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
+</pre></div>
+
+<p>This will check out the respective development tree into a <samp>ruby_2_5</samp>
+directory. Developers working on the maintenance branches are expected to
+migrate their changes to Rubyâs trunk, so often the branches are very similar,
+with the exception of improvements made by Matz and Nobu to the language
+itself.
+</p>
+<p>If you prefer, you may browse
+<a href="https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/">Rubyâs Subversion
+repository via the web</a>.
+<a name="index-Subversion-repository"></a>
+<a name="index-repository_002c-Subversion"></a>
+</p>
+<a name="MainRubyRepo"></a><a name="How-to-Use-Git-With-the-Main-Ruby-Repository"></a>
+<h4 class="subsubheading">How to Use Git With the Main Ruby Repository</h4>
+<a name="index-GitHub_002c-ruby-repository"></a>
+<a name="index-respository_002c-GitHub"></a>
+
+<p>Those who prefer to use Git over Subversion can find instructions with the
+<a href="https://github.com/ruby/ruby">mirror on GitHub</a>, both for those with
+commit access and <a href="https://github.com/shyouhei/ruby/wiki/noncommitterhowto">everybody else</a>.
+</p>
+<a name="PatchByPatch"></a><a name="Improving-Ruby_002c-Patch-by-Patch"></a>
+<h4 class="subsubheading">Improving Ruby, Patch by Patch</h4>
+<a name="index-issue-tracker"></a>
+<a name="index-mailing-lists"></a>
+<a name="index-Ruby-Core-mailing-list"></a>
+
+<p>The core team maintains an <a href="https://bugs.ruby-lang.org/">issue tracker</a> for
+submitting patches and bug reports to Matz and the gang.  These reports also
+get submitted to the
+<a href="https://www.ruby-lang.org/en/community/mailing-lists/">Ruby-Core mailing
+list</a> for discussion, so you can be sure your request wonât go unnoticed.  You
+can also send your patches straight to the mailing list.  Either way, you are
+encouraged to take part in the discussion that ensues.
+</p>
+<p>Please look over the
+<a href="https://www.ruby-lang.org/en/community/ruby-core/writing-patches/">Patch
+Writerâs Guide</a> for some tips, straight from Matz, on how to get your patches
+considered.
+<a name="index-Patch-Writer_0027s-Guide"></a>
+</p>
+<p><a href="https://www.ruby-lang.org/en/community/ruby-core/">Steps for Building a
+Patch</a>
+</p>
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Getting-Started.html#Getting-Started" accesskey="n" rel="next">Getting Started</a>, Previous: <a href="Installing-Ruby.html#Installing-Ruby" accesskey="p" rel="prev">Installing Ruby</a>, Up: <a href="Documentation.html#Documentation" accesskey="u" rel="up">Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.1b of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.1b of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -53,6 +53,7 @@ Preface
 Documentation
 
 * Installing Ruby::
+* Developing Ruby::
 * Getting Started::
 * Manuals::
 * Reference Documentation::
@@ -87,7 +88,6 @@ Building From Source
 * Releases Page::
 * Branches Page::
 * Issue Tracking::
-* Ruby Core::
 
 Getting Started
 
@@ -100,6 +100,16 @@ Getting Started
 * Learning Ruby::
 * Ruby Essentials::
 * Learn to Program::
+
+Official FAQ
+
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
 
 Code Chunk Summaries
 
@@ -192,6 +202,7 @@ will come in handy when you feel like coding in Ruby.
 * Menu:
 
 * Installing Ruby::
+* Developing Ruby::
 * Getting Started::
 * Manuals::
 * Reference Documentation::
@@ -199,7 +210,7 @@ will come in handy when you feel like coding in Ruby.
 * Further Reading::
 
 
-File: Ruby2_5.info,  Node: Installing Ruby,  Next: Getting Started,  Up: Documentation
+File: Ruby2_5.info,  Node: Installing Ruby,  Next: Developing Ruby,  Up: Documentation
 
 2.1 Installing Ruby
 ===================
@@ -210,9 +221,9 @@ Installation Methods
 There are several ways to install Ruby:
 
    * Package Manager: When you are on a UNIX-like operating system,
-     using your system’s package manager is the easiest way of getting
-     started.  However, the packaged Ruby version usually is not the
-     newest one.
+     using your system’s package manager is the easiest way of
+     getting started.  However, the packaged Ruby version usually is
+     not the newest one.
    * Installers: can be used to install a specific or multiple Ruby
      versions.  There is also an installer for Windows.
    * Managers help you to switch between multiple Ruby installations
@@ -236,8 +247,8 @@ File: Ruby2_5.info,  Node: Package Management Systems,  Next: Installers,  Up: I
 --------------------------------
 
 If you cannot compile your own Ruby, and you do not want to use a
-third-party tool, you can use your system’s package manager to install
-Ruby.
+third-party tool, you can use your system’s package manager to
+install Ruby.
 
    Certain members in the Ruby community feel very strongly that you
 should never use a package manager to install Ruby and that you should
@@ -414,15 +425,14 @@ tools.
 
    Installing from the source code is a great solution for when you
 are comfortable enough with your platform and perhaps need specific
-settings for your environment.  It’s also a good solution in the event
-that there are no other premade packages for your platform.
+settings for your environment.  It’s also a good solution in the
+event that there are no other premade packages for your platform.
 
 * Menu:
 
 * Releases Page::
 * Branches Page::
 * Issue Tracking::
-* Ruby Core::
 
 
 File: Ruby2_5.info,  Node: Releases Page,  Next: Branches Page,  Up: Building From Source
@@ -529,7 +539,7 @@ release date: 2014-12-25
 EOL date: 2018-03-31
 
 
-File: Ruby2_5.info,  Node: Issue Tracking,  Next: Ruby Core,  Prev: Branches Page,  Up: Building From Source
+File: Ruby2_5.info,  Node: Issue Tracking,  Prev: Branches Page,  Up: Building From Source
 
 2.1.4.3 Ruby Issue Tracking System
 ..................................
@@ -551,19 +561,22 @@ Ruby Trunk (https://bugs.ruby-lang.org/projects/ruby-trunk)
 (https://bugs.ruby-lang.org/projects/ruby-trunk/issues?set_filter=1)
 
 
-File: Ruby2_5.info,  Node: Ruby Core,  Prev: Issue Tracking,  Up: Building From Source
+File: Ruby2_5.info,  Node: Developing Ruby,  Next: Getting Started,  Prev: Installing Ruby,  Up: Documentation
 
-2.1.4.4 Ruby Core
-.................
+2.2 Developing Ruby
+===================
 
 Ruby Core (https://www.ruby-lang.org/en/community/ruby-core/)
 
    Now is a fantastic time to follow Ruby’s development.  With the
-increased attention Ruby has received in the past few years, there’s a
-growing need for good talent to help enhance Ruby and document its
+increased attention Ruby has received in the past few years, there’s
+a growing need for good talent to help enhance Ruby and document its
 parts.  So, where do you start?
 
-   The topics related to Ruby development covered here are:
+Ruby Core
+---------
+
+The topics related to Ruby development covered here are:
 
    * *note Using Subversion to Track Ruby Development: subversion.
    * *note How to Use Git With the Main Ruby Repository: MainRubyRepo.
@@ -595,8 +608,8 @@ are expected to migrate their changes to Ruby’s trunk, so often the
 branches are very similar, with the exception of improvements made by
 Matz and Nobu to the language itself.
 
-   If you prefer, you may browse Ruby’s Subversion repository via the
-web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
+   If you prefer, you may browse Ruby’s Subversion repository via
+the web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
 
 How to Use Git With the Main Ruby Repository
 ............................................
@@ -626,9 +639,9 @@ considered.
 (https://www.ruby-lang.org/en/community/ruby-core/)
 
 
-File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Installing Ruby,  Up: Documentation
+File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Developing Ruby,  Up: Documentation
 
-2.2 Getting Started
+2.3 Getting Started
 ===================
 
 * Menu:
@@ -646,7 +659,7 @@ File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Installing Ru
 
 File: Ruby2_5.info,  Node: Try Ruby!,  Next: Official FAQ,  Up: Getting Started
 
-2.2.1 Try Ruby!
+2.3.1 Try Ruby!
 ---------------
 
 Try Ruby!  (https://ruby.github.io/TryRuby/)
@@ -658,17 +671,665 @@ get a feeling of the language.
 
 File: Ruby2_5.info,  Node: Official FAQ,  Next: Ruby Koans,  Prev: Try Ruby!,  Up: Getting Started
 
-2.2.2 Official FAQ
+2.3.2 Official FAQ
 ------------------
 
 The official frequently asked questions.
 
    FAQ (https://www.ruby-lang.org/en/documentation/faq/)
 
+   This document contains Frequently Asked Questions about Ruby with
+answers.
+
+   This FAQ is based on The Ruby Language FAQ
+(http://ruby-doc.org/docs/ruby-doc-bundle/FAQ/FAQ.html) originally
+compiled by Shugo Maeda and translated into English by Kentaro Goto.
+Thanks to Zachary Scott and Marcus Stollsteimer for incorporating the
+FAQ into the site and for a major overhaul of the content.
+
+   * General questions
+   * How does Ruby stack up against…?
+   * Installing Ruby
+   * Variables, constants, and arguments
+   * *note FAQ Iterators::
+   * *note FAQ Syntax::
+   * Methods
+   * Classes and modules
+   * Built-in libraries
+   * Extension library
+   * Other features
+
+* Menu:
+
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
+
+
+File: Ruby2_5.info,  Node: FAQ Iterators,  Next: FAQ Syntax,  Up: Official FAQ
+
+2.3.2.1 FAQ Iterators
+.....................
+
+What is an iterator?
+--------------------
+
+An iterator is a method which accepts a block or a 'Proc' object.  In
+the source file, the block is placed immediately after the invocation
+of the method.  Iterators are used to produce user-defined control
+structures -- especially loops.
+
+   Let’s look at an example to see how this works.  Iterators are
+often used to repeat the same action on each element of a collection,
+like this:
+
+     data = [1, 2, 3]
+     data.each do |i|
+       puts i
+     end
+
+   The 'each' method of the array 'data' is passed the 'do ... end'
+block, and executes it repeatedly.  On each call, the block is passed
+successive elements of the array.
+
+   You can define blocks with '{ ... }' in place of 'do ... end'.
+
+     data = [1, 2, 3]
+     data.each { |i|
+       puts i
+     }
+
+   This code has the same meaning as the last example.  However, in
+some cases, precedence issues cause 'do ... end' and '{ ... }' to act
+differently.
+
+     foobar a, b do ... end	# foobar is the iterator.
+     foobar a, b { ... }	# b is the iterator.
+
+   This is because '{ ... }' binds more tightly to the preceding
+expression than does a 'do ... end' block.  The first example is
+equivalent to 'foobar(a, b) do ... end', while the second is
+'foobar(a, b { ... })'.
+
+How can I pass a block to an iterator?
+--------------------------------------
+
+You simply place the block after the iterator call.  You can also pass
+a 'Proc' object by prepending '&' to the variable or constant name
+that refers to the 'Proc'.
+
+How is a block used in an iterator?
+-----------------------------------
+
+_This section or parts of it might be out-dated or in need of
+confirmation._
+
+   There are three ways to execute a block from an iterator method:
+
+  1. the 'yield' control structure;
+
+     The 'yield' statement calls the block, optionally passing it one
+     or more arguments.
+
+          def my_iterator
+            yield 1, 2
+          end
+
+          my_iterator {|a, b| puts a, b }
+
+  2. calling a 'Proc' argument (made from a block) with 'call';
+
+     If a method definition has a block argument (the last formal
+     parameter has an ampersand ('&') prepended), it will receive the
+     attached block, converted to a 'Proc' object.  This may be called
+     using 'prc.call(args)'.
+
+          def my_iterator(&b)
+            b.call(1, 2)
+          end
+
+          my_iterator {|a, b| puts a, b }
+
+     and
+
+  3. using 'Proc.new' followed by a 'call'.
+
+     'Proc.new' (or the equivalent 'proc' or 'lambda' calls), when
+     used in an iterator definition, takes the block which is given to
+     the method as its argument and generates a procedure object from
+     it.  ('proc' and 'lambda' are effectively synonyms.)
+
+     _[Update needed: 'lambda' behaves in a slightly different way and
+     produces a warning 'tried to create Proc object without a
+     block'.]_
+
+          def my_iterator
+            Proc.new.call(3, 4)
+            proc.call(5, 6)
+            lambda.call(7, 8)
+          end
+
+          my_iterator {|a, b| puts a, b }
+
+     Perhaps surprisingly, 'Proc.new' and friends do not in any sense
+     consume the block attached to the method -- each call to
+     'Proc.new' generates a new procedure object out of the same
+     block.
+
+     You can tell if there is a block associated with a method by
+     calling 'block_given?'.
+
+What does Proc.new without a block do?
+--------------------------------------
+
+'Proc.new' without a block cannot generate a procedure object and an
+error occurs.  In a method definition, however, 'Proc.new' without a
+block implies the existence of a block at the time the method is
+called, and so no error will occur.
+
+How can I run iterators in parallel?
+------------------------------------
+
+See <http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/5252>
+
+
+File: Ruby2_5.info,  Node: FAQ Syntax,  Next: FAQ Methods,  Prev: FAQ Iterators,  Up: Official FAQ
+
+2.3.2.2 FAQ Syntax
+..................
+
+List of FAQ items:
+
+   *note What is the difference between an immediate value and a
+reference?: immediate value.
+
+   *note What is the difference between 'nil' and 'false'?: nil vs
+false.
+
+   *note The Empty String: empty string.
+
+   *note A Symbol Object: symbol object.
+
+   *note How can I access the value of a symbol?: value of symbol.
+
+   *note Is 'loop' a control structure?: loop.
+
+   *note Ruby doesn't have a post-test loop: post-test loop.
+
+   *note Why can’t I pass a hash literal to a method 'p {}'?: hash
+literal.
+
+   *note I can’t get 'def pos=(val)' to work!: pos val.
+
+   *note What is the difference between '\1' and '\\1'?: \1 and \\1.
+
+   *note What is the difference between '..' and '...'?: 2 dots vs 3
+dots.
+
+   *note What is the difference between or and ||?: or and.
+
+   *note Does Ruby have function pointers?: function pointers.
+
+   *note What is the difference between load and require?: load vs
+require.
+
+   *note Does Ruby have exception handling?: exception handling.
+
+What is the difference between an immediate value and a reference?
+------------------------------------------------------------------
+
+'Fixnum', 'true', 'nil', and 'false' are implemented as "immediate
+values".  With immediate values, variables hold the objects
+themselves, rather than references to them.
+
+   Singleton methods cannot be defined for such objects.  Two
+'Fixnums' of the same value always represent the same object instance,
+so (for example) instance variables for the 'Fixnum' with the value 1
+are shared between all the 1's in the system.  This makes it
+impossible to define a singleton method for just one of these.
+
+What is the difference between 'nil' and 'false'?
+-------------------------------------------------
+
+First the similarity: 'nil' and 'false' are the only two objects that
+evaluate to 'false' in a boolean context.  (In other words: they are
+the only "falsy" values; all other objects are "truthy".)
+
+   However, 'nil' and 'false' are instances of different classes
+('NilClass' and 'FalseClass'), and have different behavior elsewhere.
+
+   We recommend that "predicate methods" (those whose name ends with a
+question mark) return 'true' or 'false'.  Other methods that need to
+indicate failure should return 'nil'.
+
+The Empty String
+----------------
+
+An empty string ('""') returns 'true' in a conditional expression!  In
+Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and
+'false' are 'false' in conditional contexts.
+
+   You can use 'empty?', compare the string to '""', or compare the
+string’s size or length to 0 to find out if a string is empty.
+
+A Symbol Object
+---------------
+
+What does ':name' mean?
+
+   A colon followed by a name generates a "Symbol object" which
+corresponds one-to-one with the identifier.  During the duration of a
+program's execution the same Symbol object will be created for a given
+name or string.  Symbols can also be created with '"name".intern' or
+'"name".to_sym'.
+
+   Symbol objects can represent identifiers for methods, variables,
+and so on.  Some methods, like 'define_method', 'method_missing', or
+'trace_var', require a symbol.  Other methods, e.g.  'attr_accessor',
+'send', or 'autoload', also accept a string.
+
+   Due to the fact that they are created only once, Symbols are often
+used as hash keys.  String hash keys would create a new object for
+every single use, thereby causing some memory overhead.  There is even
+a special syntax for symbol hash keys:
+
+     person_1 = { :name => "John", :age => 42 }
+     person_2 = { name: "Jane", age: 24 }        # alternate syntax
+
+   Symbols can also be used as enumeration values or to assign unique
+values to constants:
+
+     status = :open  # :closed, ...
+
+     NORTH = :NORTH
+     SOUTH = :SOUTH
+
+How can I access the value of a symbol?
+---------------------------------------
+
+To get the value of the variable corresponding to a symbol, you can
+use 'symbol.to_s' or '"#{symbol}"' to get the name of the variable,
+and then 'eval' that in the scope of the symbol to get the
+variable’s contents:
+
+     a = "This is the content of `a'"
+     b = eval("#{:a}")
+     a.object_id == b.object_id  # => true
+
+   You can also use:
+
+     b = binding.local_variable_get(:a)
+
+   If your symbol corresponds to the name of a method, you can use
+'send':
+
+     class Demo
+       def hello
+         "Hello, world"
+       end
+     end
+
+     demo = Demo.new
+     demo.send(:hello)
+
+   Or you can use 'Object#method' to return a corresponding 'Method'
+object, which you may then call:
+
+     m = demo.method(:hello)  # => #<Method: Demo#hello>
+     m.call                   # => "Hello, world"
+
+Is 'loop' a control structure?
+------------------------------
+
+Although 'loop' looks like a control structure, it is actually a
+method defined in 'Kernel'.  The block which follows introduces a new
+scope for local variables.
+
+Ruby doesn’t have a post-test loop
+----------------------------------
+
+Ruby does not have a 'do { ... } while' construct, so how can I
+implement loops that test the condition at the end?
+
+   Clemens Hintze says: "You can use a combination of Ruby’s 'begin
+... end' and the 'while' or 'until' statement modifiers to achieve the
+same effect:
+
+     i = 0
+     begin
+       puts "i = #{i}"
+       i += 1
+     end until i > 4
+
+Why can’t I pass a hash literal to a method: 'p {}'?
+----------------------------------------------------
+
+The '{}' is parsed as a block, not a 'Hash' constructor.  You can
+force the '{}' to be treated as an expression by making the fact that
+it's a parameter explicit: 'p({})'.
+
+I can’t get 'def pos=(val)' to work!
+------------------------------------
+
+I have the following code, but I cannot use the method 'pos = 1'.
+
+     def pos=(val)
+       @pos = val
+       puts @pos
+     end
+
+   Methods with '=' appended must be called with an explicit receiver
+(without the receiver, you are just assigning to a local variable).
+Invoke it as 'self.pos = 1'.
+
+What is the difference between '\1' and '\\1'?
+----------------------------------------------
+
+They have the same meaning.  In a single quoted string, only '\'' and
+'\\' are transformed and other combinations remain unchanged.
+
+   However, in a double quoted string, '"\1"' is the byte '\001' (an
+octal bit pattern), while '"\\1"' is the two character string
+containing a backslash and the character '"1"'.
+
+What is the difference between '..' and '...'?
+----------------------------------------------
+
+'..' includes the right hand side in the range, while '...' does not:
+
+     (5..8).to_a   # => [5, 6, 7, 8]
+     (5...8).to_a  # => [5, 6, 7]
+
+What is the difference between 'or' and '||'?
+---------------------------------------------
+
+'p(nil || "Hello")' prints '"Hello"', while 'p(nil or "Hello")' gives
+a parse error.  Why?
+
+   'or' has a very low precedence; 'p( (nil or "Hello") )' will work.
+
+   The precedence of 'or' is for instance also lower than that of '=',
+whereas ' || ' has a higher precedence:
+
+     foo = nil || "Hello"  # parsed as: foo = (nil || "Hello")
+     foo  # => "Hello"
+
+     # but perhaps surprisingly:
+
+     foo = nil or "Hello"  # parsed as: (foo = nil) or "Hello"
+     foo  # => nil
+
+   'or' (and similarly 'and') is best used, not for combining boolean
+expressions, but for control flow, like in:
+
+     do_something  or raise "some error!"
+
+   where 'do_something' returns 'false' or 'nil' when an error occurs.
+
+Does Ruby have function pointers?
+---------------------------------
+
+A 'Proc' object generated by 'Proc.new', 'proc', or 'lambda' can be
+referenced from a variable, so that variable could be said to be a
+function pointer.  You can also get references to methods within a
+particular object instance using 'object.method'.
+
+What is the difference between load and require?
+------------------------------------------------
+
+'load' will load and execute a Ruby program ('*.rb').
+
+   'require' loads Ruby programs as well, but will also load "binary
+Ruby extension modules" (shared libraries or DLLs).  In addition,
+'require' ensures that a feature is never loaded more than once.
+
+Does Ruby have exception handling?
+----------------------------------
+
+Ruby supports a flexible exception handling scheme:
+
+     begin
+       statements which may raise exceptions
+     rescue [exception class names]
+       statements when an exception occurred
+     rescue [exception class names]
+       statements when an exception occurred
+     ensure
+       statements that will always run
+     end
+
+   If an exception occurs in the 'begin' clause, the 'rescue' clause
+with the matching exception name is executed.  The 'ensure' clause is
+executed whether an exception occurred or not.  'rescue' and 'ensure'
+clauses may be omitted.
+
+   If no exception class is designated for a 'rescue' clause,
+'StandardError' exception is implied, and exceptions which are in a
+'is_a?' relation to 'StandardError' are captured.
+
+   This expression returns the value of the 'begin' clause.
+
+   The latest exception is accessed by the global variable '$!' (and
+so its type can be determined using '$!.type').
+
+
+File: Ruby2_5.info,  Node: FAQ Methods,  Next: FAQ Classes and Modules,  Prev: FAQ Syntax,  Up: Official FAQ
+
+2.3.2.3 FAQ Methods
+...................
+
+How does Ruby choose which method to invoke?
+--------------------------------------------
+
+Are '+, -, *, ...' operators?
+-----------------------------
+
+Where are '++' and '--' ?
+-------------------------
+
+What is a singleton method?
+---------------------------
+
+All these objects are fine, but does Ruby have any simple functions?
+--------------------------------------------------------------------
+
+So where do all these function-like methods come from?
+------------------------------------------------------
+
+Can I access an object’s instance variables?
+--------------------------------------------
+
+What’s the difference between 'private' and 'protected'?
+--------------------------------------------------------
+
+How can I change the visibility of a method?
+--------------------------------------------
+
+Can an identifier beginning with a capital letter be a method name?
+-------------------------------------------------------------------
+
+Calling 'super' gives an 'ArgumentError'.
+-----------------------------------------
+
+How can I call the method of the same name two levels up?
+---------------------------------------------------------
+
+How can I invoke an original built-in method after redefining it?
+-----------------------------------------------------------------
+
+What is a destructive method?
+-----------------------------
+
+Why can destructive methods be dangerous?
+-----------------------------------------
+
+Can I return multiple values from a method?
+-------------------------------------------
+
+
+File: Ruby2_5.info,  Node: FAQ Classes and Modules,  Next: FAQ Built-In Libraries,  Prev: FAQ Methods,  Up: Official FAQ
+
+2.3.2.4 FAQ Classes and Modules
+...............................
+
+Can a class definition be repeated?
+-----------------------------------
+
+Are there class variables?
+--------------------------
+
+What is a class instance variable?
+----------------------------------
+
+What is the difference between class variables and class instance variables?
+----------------------------------------------------------------------------
+
+Does Ruby have class methods?
+-----------------------------
+
+What is a singleton class?
+--------------------------
+
+What is a module function?
+--------------------------
+
+What is the difference between a class and a module?
+----------------------------------------------------
+
+Can you subclass modules?
+-------------------------
+
+Give me an example of a mixin
+-----------------------------
+
+Why are there two ways of defining class methods?
+-------------------------------------------------
+
+What is the difference between include and extend?
+--------------------------------------------------
+
+What does 'self' mean?
+----------------------
+
+
+File: Ruby2_5.info,  Node: FAQ Built-In Libraries,  Next: FAQ Extension Library,  Prev: FAQ Classes and Modules,  Up: Official FAQ
+
+2.3.2.5 FAQ Built-In Libraries
+..............................
+
+What does 'instance_methods(false)' return?
+-------------------------------------------
+
+How do random number seeds work?
+--------------------------------
+
+I read a file and changed it, but the file on disk has not changed.
+-------------------------------------------------------------------
+
+How can I process a file and update its contents?
+-------------------------------------------------
+
+I wrote a file, copied it, but the end of the copy seems to be lost.
+--------------------------------------------------------------------
+
+How can I get the line number in the current input file?
+--------------------------------------------------------
+
+How can I use 'less' to display my program’s output?
+----------------------------------------------------
+
+What happens to a 'File' object which is no longer referenced?
+--------------------------------------------------------------
+
+I feel uneasy if I don’t close a file.
+--------------------------------------
+
+How can I sort files by their modification time?
+------------------------------------------------
+
+How can I count the frequency of words in a file?
+-------------------------------------------------
+
+How can I sort strings in alphabetical order?
+---------------------------------------------
+
+How can I expand tabs to spaces?
+--------------------------------
+
+How can I escape a backslash in a regular expression?
+-----------------------------------------------------
+
+What is the difference between 'sub' and 'sub!'?
+------------------------------------------------
+
+Where does '\Z' match?
+----------------------
+
+What is the difference between 'thread' and 'fork'?
+---------------------------------------------------
+
+How can I use 'Marshal'?
+------------------------
+
+How can I use 'trap'?
+---------------------
+
+
+File: Ruby2_5.info,  Node: FAQ Extension Library,  Next: FAQ Other Features,  Prev: FAQ Built-In Libraries,  Up: Official FAQ
+
+2.3.2.6 FAQ Extension Library
+.............................
+
+How can I use Ruby interactively?
+---------------------------------
+
+Is there a debugger for Ruby?
+-----------------------------
+
+How can I use a library written in C from Ruby?
+-----------------------------------------------
+
+Can I use 'Tcl/Tk' in Ruby?
+---------------------------
+
+'Tk' won't work. Why?
+---------------------
+
+Can I use 'gtk+' or 'xforms' interfaces in Ruby?
+------------------------------------------------
+
+How can I do date arithmetic?
+-----------------------------
+
+
+File: Ruby2_5.info,  Node: FAQ Other Features,  Prev: FAQ Extension Library,  Up: Official FAQ
+
+2.3.2.7 FAQ Other Features
+..........................
+
+What does a ? b : c mean?
+-------------------------
+
+How can I count the number of lines in a file?
+----------------------------------------------
+
+What do 'MatchData#begin' and 'MatchData#end' return?
+-----------------------------------------------------
+
+How can I sum the elements in an array?
+---------------------------------------
+
+How can I use continuations?
+----------------------------
+
 
 File: Ruby2_5.info,  Node: Ruby Koans,  Next: Why’s (Poignant) Guide to Ruby,  Prev: Official FAQ,  Up: Getting Started
 
-2.2.3 Ruby Koans
+2.3.3 Ruby Koans
 ----------------
 
 Ruby Koans (http://rubykoans.com/)
@@ -676,7 +1337,7 @@ Ruby Koans (http://rubykoans.com/)
 
 File: Ruby2_5.info,  Node: Why’s (Poignant) Guide to Ruby,  Next: Ruby in Twenty Minutes,  Prev: Ruby Koans,  Up: Getting Started
 
-2.2.4 Why’s (Poignant) Guide to Ruby
+2.3.4 Why’s (Poignant) Guide to Ruby
 ------------------------------------
 
 Why's Guide to Ruby (http://mislav.uniqpath.com/poignant-guide/)
@@ -688,7 +1349,7 @@ lucky stiff', this guide remains a classic for Ruby learners.
 
 File: Ruby2_5.info,  Node: Ruby in Twenty Minutes,  Next: Ruby from Other Languages,  Prev: Why’s (Poignant) Guide to Ruby,  Up: Getting Started
 
-2.2.5 Ruby in Twenty Minutes
+2.3.5 Ruby in Twenty Minutes
 ----------------------------
 
 Ruby in Twenty Minutes
@@ -700,7 +1361,7 @@ it shouldn’t take you more than twenty minutes.
 
 File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Learning Ruby,  Prev: Ruby in Twenty Minutes,  Up: Getting Started
 
-2.2.6 Ruby from Other Languages
+2.3.6 Ruby from Other Languages
 -------------------------------
 
 Ruby from Other Languages
@@ -709,19 +1370,19 @@ Ruby from Other Languages
 
 File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Ruby from Other Languages,  Up: Getting Started
 
-2.2.7 Learning Ruby
+2.3.7 Learning Ruby
 -------------------
 
 Learning Ruby (http://rubylearning.com/)
 
    A thorough collection of Ruby study notes for those who are new to
-the language and in search of a solid introduction to Ruby’s concepts
-and constructs.
+the language and in search of a solid introduction to Ruby’s
+concepts and constructs.
 
 
 File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Learning Ruby,  Up: Getting Started
 
-2.2.8 Ruby Essentials
+2.3.8 Ruby Essentials
 ---------------------
 
 Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
@@ -729,7 +1390,7 @@ Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
 
 File: Ruby2_5.info,  Node: Learn to Program,  Prev: Ruby Essentials,  Up: Getting Started
 
-2.2.9 Learn to Program
+2.3.9 Learn to Program
 ----------------------
 
 Learn to Program (http://pine.fm/LearnToProgram/)
@@ -742,25 +1403,25 @@ If you don’t know how to program, start here.
 
 File: Ruby2_5.info,  Node: Manuals,  Next: Reference Documentation,  Prev: Getting Started,  Up: Documentation
 
-2.3 Manuals
+2.4 Manuals
 ===========
 
 
 File: Ruby2_5.info,  Node: Reference Documentation,  Next: Editors and IDEs,  Prev: Manuals,  Up: Documentation
 
-2.4 Reference Documentation
+2.5 Reference Documentation
 ===========================
 
 
 File: Ruby2_5.info,  Node: Editors and IDEs,  Next: Further Reading,  Prev: Reference Documentation,  Up: Documentation
 
-2.5 Editors and IDEs
+2.6 Editors and IDEs
 ====================
 
 
 File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Documentation
 
-2.6 Further Reading
+2.7 Further Reading
 ===================
 
 
@@ -818,95 +1479,280 @@ Index
  [index ]
 * Menu:
 
-* branches page:                         Branches Page.      (line  6)
-* chruby:                                chruby.             (line  6)
-* core:                                  Ruby Core.          (line  6)
-* Documentation:                         Documentation.      (line  6)
+* "#symbol":                             FAQ Syntax.        (line 115)
+* "falsey" values:                       FAQ Syntax.        (line  59)
+* "name".intern:                         FAQ Syntax.        (line  83)
+* "name".to_sym:                         FAQ Syntax.        (line  83)
+* "truthy" values:                       FAQ Syntax.        (line  59)
+* ++ and --:                             FAQ Methods.       (line  15)
+* .. vs. ...:                            FAQ Syntax.        (line 203)
+* \Z:                                    FAQ Built-In Libraries.
+                                                            (line  54)
+* ArgumentError, after calling super:    FAQ Methods.       (line  39)
+* arithmetic:                            FAQ Extension Library.
+                                                            (line  26)
+* array, sum elements in:                FAQ Other Features.
+                                                            (line  18)
+* binary Ruby extension modules:         FAQ Syntax.        (line 249)
+* binding of { ... }:                    FAQ Iterators.     (line  36)
+* binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
+* block object, passed to iterator:      FAQ Iterators.     (line   9)
+* block, used in an iterator:            FAQ Iterators.     (line  56)
+* block_given?:                          FAQ Iterators.     (line 112)
+* boolean context:                       FAQ Syntax.        (line  59)
+* branches page:                         Branches Page.     (line   6)
+* C library, use:                        FAQ Extension Library.
+                                                            (line  15)
+* calling method 2 levels up:            FAQ Methods.       (line  42)
+* chruby:                                chruby.            (line   6)
+* class definition, repeating:           FAQ Classes and Modules.
+                                                            (line   9)
+* class instance variable?:              FAQ Classes and Modules.
+                                                            (line  15)
+* class methods, defining, 2 ways:       FAQ Classes and Modules.
+                                                            (line  39)
+* class methods?:                        FAQ Classes and Modules.
+                                                            (line  21)
+* class variables vs class instance variables: FAQ Classes and Modules.
+                                                            (line  18)
+* class variables?:                      FAQ Classes and Modules.
+                                                            (line  12)
+* class vs module:                       FAQ Classes and Modules.
+                                                            (line  30)
+* conditional expression, false values:  FAQ Syntax.        (line  73)
+* continuations, using:                  FAQ Other Features.
+                                                            (line  20)
+* dangerous, destructive methods:        FAQ Methods.       (line  51)
+* debugger for Ruby:                     FAQ Extension Library.
+                                                            (line  12)
+* destructive method:                    FAQ Methods.       (line  48)
+* developing Ruby:                       Developing Ruby.   (line   6)
+* DLLs:                                  FAQ Syntax.        (line 249)
+* do ... } while:                        FAQ Syntax.        (line 156)
+* Documentation:                         Documentation.     (line   6)
+* each method of iterator:               FAQ Iterators.     (line  25)
+* empty string:                          FAQ Syntax.        (line  73)
+* ensure clause:                         FAQ Syntax.        (line 265)
+* eval:                                  FAQ Syntax.        (line 115)
+* exception handling:                    FAQ Syntax.        (line 254)
+* false and nil:                         FAQ Syntax.        (line  59)
+* FalseClass:                            FAQ Syntax.        (line  64)
+* File object, no reference:             FAQ Built-In Libraries.
+                                                            (line  30)
+* file, copy:                            FAQ Built-In Libraries.
+                                                            (line  21)
+* file, count lines in:                  FAQ Other Features.
+                                                            (line  12)
+* file, line number:                     FAQ Built-In Libraries.
+                                                            (line  24)
+* file, process and update contents:     FAQ Built-In Libraries.
+                                                            (line  18)
+* files, closing:                        FAQ Built-In Libraries.
+                                                            (line  33)
+* files, counting words:                 FAQ Built-In Libraries.
+                                                            (line  39)
+* files, reading vs modifying:           FAQ Built-In Libraries.
+                                                            (line  15)
+* files, sorting by modification time:   FAQ Built-In Libraries.
+                                                            (line  36)
+* fork vs thread:                        FAQ Built-In Libraries.
+                                                            (line  57)
+* function pointers:                     FAQ Syntax.        (line 237)
+* function-like methods, where from?:    FAQ Methods.       (line  24)
 * gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
-                                                             (line  6)
-* GitHub, ruby repository:               Ruby Core.          (line 51)
-* installer, third party:                Installers.         (line  6)
-* issue tracker:                         Ruby Core.          (line 59)
-* issue tracking:                        Issue Tracking.     (line  6)
-* mailing lists:                         Ruby Core.          (line 59)
-* manage Rubies using chruby:            chruby.             (line  6)
+                                                            (line   6)
+* GitHub, ruby repository:               Developing Ruby.   (line  54)
+* gtk+:                                  FAQ Extension Library.
+                                                            (line  24)
+* identifier with capital letter, method?: FAQ Methods.     (line  36)
+* immediate values:                      FAQ Syntax.        (line  46)
+* include vs extend:                     FAQ Classes and Modules.
+                                                            (line  42)
+* installer, third party:                Installers.        (line   6)
+* instance variables, accessing:         FAQ Methods.       (line  27)
+* instance_methods(false):               FAQ Built-In Libraries.
+                                                            (line   9)
+* interactively use Ruby:                FAQ Extension Library.
+                                                            (line   9)
+* invoking original method after redefinition: FAQ Methods. (line  45)
+* issue tracker:                         Developing Ruby.   (line  62)
+* issue tracking:                        Issue Tracking.    (line   6)
+* iterator, block:                       FAQ Iterators.     (line  56)
+* iterators:                             FAQ Iterators.     (line   6)
+* Kernel:                                FAQ Syntax.        (line 149)
+* lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
+* line number of input file:             FAQ Built-In Libraries.
+                                                            (line  24)
+* load:                                  FAQ Syntax.        (line 245)
+* loop:                                  FAQ Syntax.        (line 149)
+* mailing lists:                         Developing Ruby.   (line  62)
+* manage Rubies using chruby:            chruby.            (line   6)
+* Marshal:                               FAQ Built-In Libraries.
+                                                            (line  60)
+* MatchData#begin and MatchData#end:     FAQ Other Features.
+                                                            (line  15)
+* method, destructive:                   FAQ Methods.       (line  48)
+* method, invoking:                      FAQ Methods.       (line   9)
+* mixin example:                         FAQ Classes and Modules.
+                                                            (line  36)
+* module function?:                      FAQ Classes and Modules.
+                                                            (line  27)
+* modules, subclassing?:                 FAQ Classes and Modules.
+                                                            (line  33)
 * multiple installations, manage using RVM: RVM (``Ruby Version Manager'').
-                                                             (line  6)
-* multiple Rubies, command-line tool uru: uru.               (line  6)
-* Patch Writer's Guide:                  Ruby Core.          (line 70)
-* patching of Ruby:                      Ruby Core.          (line 35)
-* rbenv:                                 rbenv.              (line  6)
-* rbenv version manager:                 ruby-build.         (line  6)
-* releases:                              Releases Page.      (line  6)
-* repository, Subversion:                Ruby Core.          (line 46)
-* respository, GitHub:                   Ruby Core.          (line 51)
-* Rubies, switch between:                Installers.         (line  6)
-* Ruby Core mailing list:                Ruby Core.          (line 59)
-* Ruby development, tracking:            Ruby Core.          (line 23)
-* ruby-build plugin:                     ruby-build.         (line  6)
-* RVM version manager:                   Installers.         (line  6)
+                                                            (line   6)
+* multiple Rubies, command-line tool uru: uru.              (line   6)
+* nil and false, similariaties and differences: FAQ Syntax. (line  59)
+* NilClass:                              FAQ Syntax.        (line  64)
+* operators?:                            FAQ Methods.       (line  12)
+* Patch Writer's Guide:                  Developing Ruby.   (line  73)
+* patching of Ruby:                      Developing Ruby.   (line  38)
+* precedence of or:                      FAQ Syntax.        (line 211)
+* precedence, iterators, different results: FAQ Iterators.  (line  36)
+* predicate methods:                     FAQ Syntax.        (line  68)
+* private vs protected:                  FAQ Methods.       (line  30)
+* Proc object, passed to iterator:       FAQ Iterators.     (line   9)
+* Proc.new, followed by call:            FAQ Iterators.     (line  87)
+* program output, display using less:    FAQ Built-In Libraries.
+                                                            (line  27)
+* random number seeds:                   FAQ Built-In Libraries.
+                                                            (line  12)
+* rbenv:                                 rbenv.             (line   6)
+* rbenv version manager:                 ruby-build.        (line   6)
+* regular expression, escaping a backslash: FAQ Built-In Libraries.
+                                                            (line  48)
+* releases:                              Releases Page.     (line   6)
+* repository, Subversion:                Developing Ruby.   (line  49)
+* require:                               FAQ Syntax.        (line 245)
+* rescue clause:                         FAQ Syntax.        (line 265)
+* respository, GitHub:                   Developing Ruby.   (line  54)
+* return mutliple values:                FAQ Methods.       (line  53)
+* Rubies, switch between:                Installers.        (line   6)
+* Ruby core:                             Developing Ruby.   (line  16)
+* Ruby Core mailing list:                Developing Ruby.   (line  62)
+* Ruby development, tracking:            Developing Ruby.   (line  26)
+* ruby-build plugin:                     ruby-build.        (line   6)
+* RVM version manager:                   Installers.        (line   6)
+* self, meaning:                         FAQ Classes and Modules.
+                                                            (line  44)
+* send:                                  FAQ Syntax.        (line 129)
+* shared libraries:                      FAQ Syntax.        (line 249)
+* simple functions?:                     FAQ Methods.       (line  21)
+* singleton class?:                      FAQ Classes and Modules.
+                                                            (line  24)
+* singleton method:                      FAQ Methods.       (line  18)
 * source, building:                      Building From Source.
-                                                             (line  6)
-* Subversion:                            Ruby Core.          (line 23)
-* Subversion repository:                 Ruby Core.          (line 46)
-* Texinfo document formatting language:  Conventions.        (line  6)
-* track Ruby development:                Ruby Core.          (line 23)
-* uru:                                   uru.                (line  6)
-* version managers:                      Installers.         (line  6)
-* versions, multiple installations using rbenv: rbenv.       (line  6)
-* versions, switch between using chruby: chruby.             (line  6)
-* versions,multiple:                     Installers.         (line  6)
+                                                            (line   6)
+* strings, sort alphabetically:          FAQ Built-In Libraries.
+                                                            (line  42)
+* sub vs sub!:                           FAQ Built-In Libraries.
+                                                            (line  51)
+* Subversion:                            Developing Ruby.   (line  26)
+* Subversion repository:                 Developing Ruby.   (line  49)
+* super gives ArgumentError:             FAQ Methods.       (line  39)
+* Symbol object:                         FAQ Syntax.        (line  83)
+* symbol, access value of:               FAQ Syntax.        (line 115)
+* symbol.to_s:                           FAQ Syntax.        (line 115)
+* symbols as enumeration values:         FAQ Syntax.        (line 105)
+* symbols as hash keys:                  FAQ Syntax.        (line  99)
+* symbols, unique constants:             FAQ Syntax.        (line 105)
+* tabs, expand into spaces:              FAQ Built-In Libraries.
+                                                            (line  45)
+* Tcl/Tk, use:                           FAQ Extension Library.
+                                                            (line  18)
+* ternary operator:                      FAQ Other Features.
+                                                            (line   9)
+* Texinfo document formatting language:  Conventions.       (line   6)
+* thread vs fork:                        FAQ Built-In Libraries.
+                                                            (line  57)
+* Tk, won't work:                        FAQ Extension Library.
+                                                            (line  21)
+* track Ruby development:                Developing Ruby.   (line  26)
+* trap:                                  FAQ Built-In Libraries.
+                                                            (line  62)
+* uru:                                   uru.               (line   6)
+* version managers:                      Installers.        (line   6)
+* versions, multiple installations using rbenv: rbenv.      (line   6)
+* versions, switch between using chruby: chruby.            (line   6)
+* versions,multiple:                     Installers.        (line   6)
+* visibility, changing:                  FAQ Methods.       (line  33)
+* xforms:                                FAQ Extension Library.
+                                                            (line  24)
+* yield control structor, or statement:  FAQ Iterators.     (line  56)
+* yield control structure in iterator:   FAQ Iterators.     (line  61)
 
 
 
 Tag Table:
 Node: Top371
-Node: Preface1897
-Node: Audience2080
-Node: Overview2199
-Node: Conventions2369
-Node: Acknowledgements3289
-Node: Introduction3405
-Node: Documentation3702
-Node: Installing Ruby4089
-Node: Package Management Systems5002
-Node: Homebrew (OS X)5827
-Node: Installers6253
-Node: ruby-build6849
-Node: ruby-install7402
-Node: Managers8017
-Node: chruby8414
-Node: rbenv8673
-Node: RVM (``Ruby Version Manager'')9218
-Node: uru9616
-Node: Building From Source9909
-Node: Releases Page10935
-Node: Branches Page12035
-Node: Issue Tracking13835
-Node: Ruby Core14337
-Ref: subversion15041
-Ref: MainRubyRepo16193
-Ref: PatchByPatch16521
-Node: Getting Started17318
-Node: Try Ruby!17674
-Node: Official FAQ18004
-Node: Ruby Koans18245
-Node: Why’s (Poignant) Guide to Ruby18441
-Node: Ruby in Twenty Minutes18915
-Node: Ruby from Other Languages19326
-Node: Learning Ruby19621
-Node: Ruby Essentials19987
-Node: Learn to Program20218
-Node: Manuals20595
-Node: Reference Documentation20734
-Node: Editors and IDEs20906
-Node: Further Reading21072
-Node: First appendix21204
-Node: Code Chunk Summaries21375
-Node: File Definitions21762
-Node: Code Chunk Definitions21924
-Node: Code Chunk References22114
-Node: Bibliography22277
-Node: Concept Index22408
+Node: Preface2071
+Node: Audience2254
+Node: Overview2373
+Node: Conventions2543
+Node: Acknowledgements3463
+Node: Introduction3579
+Node: Documentation3876
+Node: Installing Ruby4283
+Node: Package Management Systems5196
+Node: Homebrew (OS X)6021
+Node: Installers6447
+Node: ruby-build7043
+Node: ruby-install7596
+Node: Managers8211
+Node: chruby8608
+Node: rbenv8867
+Node: RVM (``Ruby Version Manager'')9412
+Node: uru9810
+Node: Building From Source10103
+Node: Releases Page11115
+Node: Branches Page12215
+Node: Issue Tracking14015
+Node: Developing Ruby14499
+Ref: subversion15249
+Ref: MainRubyRepo16401
+Ref: PatchByPatch16729
+Node: Getting Started17526
+Node: Try Ruby!17882
+Node: Official FAQ18212
+Node: FAQ Iterators19289
+Node: FAQ Syntax23228
+Ref: immediate value24373
+Ref: nil vs false25008
+Ref: empty string25622
+Ref: symbol object25975
+Ref: value of symbol27113
+Ref: loop27991
+Ref: post-test loop28217
+Ref: hash literal28643
+Ref: pos val28925
+Ref: \1 and \\129301
+Ref: 2 dots vs 3 dots29709
+Ref: or and29947
+Ref: function pointers30749
+Ref: load vs require31071
+Ref: exception handling31426
+Node: FAQ Methods32423
+Node: FAQ Classes and Modules34096
+Node: FAQ Built-In Libraries35282
+Node: FAQ Extension Library37260
+Node: FAQ Other Features37939
+Node: Ruby Koans38489
+Node: Why’s (Poignant) Guide to Ruby38685
+Node: Ruby in Twenty Minutes39159
+Node: Ruby from Other Languages39570
+Node: Learning Ruby39865
+Node: Ruby Essentials40231
+Node: Learn to Program40462
+Node: Manuals40839
+Node: Reference Documentation40978
+Node: Editors and IDEs41150
+Node: Further Reading41316
+Node: First appendix41448
+Node: Code Chunk Summaries41619
+Node: File Definitions42006
+Node: Code Chunk Definitions42168
+Node: Code Chunk References42358
+Node: Bibliography42521
+Node: Concept Index42652
 
 End Tag Table
