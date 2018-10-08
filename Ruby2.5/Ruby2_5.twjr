@@ -263,6 +263,8 @@ easy to write.
 
 
 
+
+
 @c *****************************************************************************
 
 @node Documentation
@@ -491,9 +493,233 @@ comfortable enough with your platform and perhaps need specific settings for
 your environment.  It’s also a good solution in the event that there are no
 other premade packages for your platform.
 
+@c _____________________________________
 
+@node Releases Page
+@subsubsection Releases Page
+@cindex releases
 
+@url{https://www.ruby-lang.org/en/downloads/releases/, Releases Page}
 
+For more information about specific releases, particularly older
+releases or previews, see the Releases page.
+
+This page lists individual Ruby releases.
+
+@subsubheading Ruby 2.5.1 Released
+
+@url{https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz,
+ruby-2.1.5.tar.gz}
+
+Posted by naruse on 28 Mar 2018
+
+This release includes some bug fixes and some security fixes.
+
+@itemize
+@item
+CVE-2017-17742: HTTP response splitting in WEBrick
+@item
+CVE-2018-6914: Unintentional file and directory creation with
+directory traversal in tempfile and tmpdir
+@item
+CVE-2018-8777: DoS by large request in WEBrick
+@item
+CVE-2018-8778: Buffer under-read in String#unpack
+@item
+CVE-2018-8779: Unintentional socket creation by poisoned NUL byte in
+UNIXServer and UNIXSocket
+@item
+CVE-2018-8780: Unintentional directory traversal by poisoned NUL byte
+in Dir
+@item
+Multiple vulnerabilities in RubyGems
+@end itemize
+
+@c _____________________________________
+
+@node Branches Page
+@subsubsection Branches Page
+@cindex branches page
+
+@url{https://www.ruby-lang.org/en/downloads/branches/, Branches Page}
+
+Information about the current maintenance status of the various Ruby branches
+can be found on the Branches page.
+
+This page lists the current maintenance status of the various Ruby branches.
+This is a preliminary list of Ruby branches and their maintenance status. The
+shown dates are inferred from the English versions of release posts or EOL
+announcements.
+
+The Ruby branches or release series are categorized below into the following
+phases:
+
+@itemize
+@item
+normal maintenance (bug fix): Branch receives general bug fixes and security
+fixes.
+@item
+security maintenance (security fix): Only security fixes are backported to this
+branch.
+@item
+eol (end-of-life): Branch is not supported by the ruby-core team any longer and
+does not receive any fixes. No further patch release will be released.
+@item
+preview: Only previews or release candidates have been released for this branch
+so far.
+@end itemize
+
+@subsubheading Ruby 2.6
+@url{https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview2.tar.gz}
+
+@noindent
+ruby-2.6.0-preview2@*
+status: preview@*
+release date:@*
+
+@subsubheading Ruby 2.5
+@url{https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz}
+
+@noindent
+status: normal maintenance@*
+release date: 2017-12-25@*
+
+@subsubheading Ruby 2.4
+@url{https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.4.tar.gz}
+
+@noindent
+status: normal maintenance@*
+release date: 2016-12-25@*
+
+@subsubheading Ruby 2.3
+@url{https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.gz}
+
+@noindent
+status: security maintenance@*
+release date: 2015-12-25@*
+EOL date: scheduled for 2019-03-31@*
+
+@subsubheading Ruby 2.2
+
+status: eol@*
+release date: 2014-12-25@*
+EOL date: 2018-03-31@*
+
+@c _____________________________________
+
+@node Issue Tracking
+@subsubsection Ruby Issue Tracking System
+@cindex issue tracking
+
+@url{https://bugs.ruby-lang.org, Bugs}
+
+@subsubheading How to report a bug
+
+@url{https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport, How To Report}
+
+@subsubheading Ruby Trunk
+
+@url{https://bugs.ruby-lang.org/projects/ruby-trunk, Ruby Trunk}
+
+@url{https://bugs.ruby-lang.org/projects/ruby-trunk/issues?set_filter=1, All
+Issues}
+
+@c _____________________________________
+
+@node Ruby Core
+@subsubsection Ruby Core
+@cindex core
+
+@url{https://www.ruby-lang.org/en/community/ruby-core/, Ruby Core}
+
+Now is a fantastic time to follow Ruby’s development.  With the increased
+attention Ruby has received in the past few years, there’s a growing need for
+good talent to help enhance Ruby and document its parts.  So, where do you
+start?
+
+The topics related to Ruby development covered here are:
+
+@itemize
+@item
+@ref{subversion, Using Subversion to Track Ruby Development}
+@item
+@ref{MainRubyRepo, How to Use Git With the Main Ruby Repository}
+@item
+@ref{PatchByPatch, Improving Ruby, Patch by Patch}
+@item
+Rules for Core Developers
+@end itemize
+
+@anchor{subversion}
+@subsubheading Using Subversion to Track Ruby Development
+@cindex Subversion
+@cindex track Ruby development
+@cindex Ruby development, tracking
+
+Getting the latest Ruby source code is a matter of an anonymous checkout from
+the @url{http://subversion.apache.org/, Subversion} repository.  From your
+command line:
+
+@example
+@kbd{$ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby}
+@end example
+
+The @file{ruby} directory will now contain the latest source code for the
+development version of Ruby (@file{ruby-trunk}).  Currently patches applied to
+the trunk are backported to the stable 2.5, 2.4, and 2.3 branches (see below).
+
+If you’d like to follow patching of Ruby 2.5, you should use the ruby_2_5
+branch when checking out:
+@cindex patching of Ruby
+
+@example
+$ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
+@end example
+
+This will check out the respective development tree into a @file{ruby_2_5}
+directory. Developers working on the maintenance branches are expected to
+migrate their changes to Ruby’s trunk, so often the branches are very similar,
+with the exception of improvements made by Matz and Nobu to the language
+itself.
+
+If you prefer, you may browse
+@url{https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/, Ruby’s Subversion
+repository via the web}.
+@cindex Subversion repository
+@cindex repository, Subversion
+
+@anchor{MainRubyRepo}
+@subsubheading How to Use Git With the Main Ruby Repository
+@cindex GitHub, ruby repository
+@cindex respository, GitHub
+
+Those who prefer to use Git over Subversion can find instructions with the
+@url{https://github.com/ruby/ruby, mirror on GitHub}, both for those with
+commit access and @url{https://github.com/shyouhei/ruby/wiki/noncommitterhowto,
+everybody else}.
+
+@anchor{PatchByPatch}
+@subsubheading Improving Ruby, Patch by Patch
+@cindex issue tracker
+@cindex mailing lists
+@cindex Ruby Core mailing list
+
+The core team maintains an @url{https://bugs.ruby-lang.org/, issue tracker} for
+submitting patches and bug reports to Matz and the gang.  These reports also
+get submitted to the
+@url{https://www.ruby-lang.org/en/community/mailing-lists/, Ruby-Core mailing
+list} for discussion, so you can be sure your request won’t go unnoticed.  You
+can also send your patches straight to the mailing list.  Either way, you are
+encouraged to take part in the discussion that ensues.
+
+Please look over the
+@url{https://www.ruby-lang.org/en/community/ruby-core/writing-patches/, Patch
+Writer’s Guide} for some tips, straight from Matz, on how to get your patches
+considered.
+@cindex Patch Writer's Guide
+
+@url{https://www.ruby-lang.org/en/community/ruby-core/, Steps for Building a
+Patch}
 
 
 

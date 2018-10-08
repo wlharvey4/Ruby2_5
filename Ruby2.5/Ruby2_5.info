@@ -82,6 +82,13 @@ Managers
 * RVM (``Ruby Version Manager'')::
 * uru::
 
+Building From Source
+
+* Releases Page::
+* Branches Page::
+* Issue Tracking::
+* Ruby Core::
+
 Getting Started
 
 * Try Ruby!::
@@ -410,6 +417,214 @@ are comfortable enough with your platform and perhaps need specific
 settings for your environment.  It’s also a good solution in the event
 that there are no other premade packages for your platform.
 
+* Menu:
+
+* Releases Page::
+* Branches Page::
+* Issue Tracking::
+* Ruby Core::
+
+
+File: Ruby2_5.info,  Node: Releases Page,  Next: Branches Page,  Up: Building From Source
+
+2.1.4.1 Releases Page
+.....................
+
+Releases Page (https://www.ruby-lang.org/en/downloads/releases/)
+
+   For more information about specific releases, particularly older
+releases or previews, see the Releases page.
+
+   This page lists individual Ruby releases.
+
+Ruby 2.5.1 Released
+...................
+
+ruby-2.1.5.tar.gz
+(https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz)
+
+   Posted by naruse on 28 Mar 2018
+
+   This release includes some bug fixes and some security fixes.
+
+   * CVE-2017-17742: HTTP response splitting in WEBrick
+   * CVE-2018-6914: Unintentional file and directory creation with
+     directory traversal in tempfile and tmpdir
+   * CVE-2018-8777: DoS by large request in WEBrick
+   * CVE-2018-8778: Buffer under-read in String#unpack
+   * CVE-2018-8779: Unintentional socket creation by poisoned NUL byte
+     in UNIXServer and UNIXSocket
+   * CVE-2018-8780: Unintentional directory traversal by poisoned NUL
+     byte in Dir
+   * Multiple vulnerabilities in RubyGems
+
+
+File: Ruby2_5.info,  Node: Branches Page,  Next: Issue Tracking,  Prev: Releases Page,  Up: Building From Source
+
+2.1.4.2 Branches Page
+.....................
+
+Branches Page (https://www.ruby-lang.org/en/downloads/branches/)
+
+   Information about the current maintenance status of the various
+Ruby branches can be found on the Branches page.
+
+   This page lists the current maintenance status of the various Ruby
+branches.  This is a preliminary list of Ruby branches and their
+maintenance status.  The shown dates are inferred from the English
+versions of release posts or EOL announcements.
+
+   The Ruby branches or release series are categorized below into the
+following phases:
+
+   * normal maintenance (bug fix): Branch receives general bug fixes
+     and security fixes.
+   * security maintenance (security fix): Only security fixes are
+     backported to this branch.
+   * eol (end-of-life): Branch is not supported by the ruby-core team
+     any longer and does not receive any fixes.  No further patch
+     release will be released.
+   * preview: Only previews or release candidates have been released
+     for this branch so far.
+
+Ruby 2.6
+........
+
+<https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.0-preview2.tar.gz>
+
+ruby-2.6.0-preview2
+status: preview
+release date:
+
+Ruby 2.5
+........
+
+<https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz>
+
+status: normal maintenance
+release date: 2017-12-25
+
+Ruby 2.4
+........
+
+<https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.4.tar.gz>
+
+status: normal maintenance
+release date: 2016-12-25
+
+Ruby 2.3
+........
+
+<https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.7.tar.gz>
+
+status: security maintenance
+release date: 2015-12-25
+EOL date: scheduled for 2019-03-31
+
+Ruby 2.2
+........
+
+status: eol
+release date: 2014-12-25
+EOL date: 2018-03-31
+
+
+File: Ruby2_5.info,  Node: Issue Tracking,  Next: Ruby Core,  Prev: Branches Page,  Up: Building From Source
+
+2.1.4.3 Ruby Issue Tracking System
+..................................
+
+Bugs (https://bugs.ruby-lang.org)
+
+How to report a bug
+...................
+
+How To Report
+(https://bugs.ruby-lang.org/projects/ruby/wiki/HowToReport)
+
+Ruby Trunk
+..........
+
+Ruby Trunk (https://bugs.ruby-lang.org/projects/ruby-trunk)
+
+   All Issues
+(https://bugs.ruby-lang.org/projects/ruby-trunk/issues?set_filter=1)
+
+
+File: Ruby2_5.info,  Node: Ruby Core,  Prev: Issue Tracking,  Up: Building From Source
+
+2.1.4.4 Ruby Core
+.................
+
+Ruby Core (https://www.ruby-lang.org/en/community/ruby-core/)
+
+   Now is a fantastic time to follow Ruby’s development.  With the
+increased attention Ruby has received in the past few years, there’s a
+growing need for good talent to help enhance Ruby and document its
+parts.  So, where do you start?
+
+   The topics related to Ruby development covered here are:
+
+   * *note Using Subversion to Track Ruby Development: subversion.
+   * *note How to Use Git With the Main Ruby Repository: MainRubyRepo.
+   * *note Improving Ruby: PatchByPatch.
+   * Rules for Core Developers
+
+Using Subversion to Track Ruby Development
+..........................................
+
+Getting the latest Ruby source code is a matter of an anonymous
+checkout from the Subversion (http://subversion.apache.org/)
+repository.  From your command line:
+
+     $ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
+
+   The 'ruby' directory will now contain the latest source code for
+the development version of Ruby ('ruby-trunk').  Currently patches
+applied to the trunk are backported to the stable 2.5, 2.4, and 2.3
+branches (see below).
+
+   If you’d like to follow patching of Ruby 2.5, you should use the
+ruby_2_5 branch when checking out:
+
+     $ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
+
+   This will check out the respective development tree into a
+'ruby_2_5' directory.  Developers working on the maintenance branches
+are expected to migrate their changes to Ruby’s trunk, so often the
+branches are very similar, with the exception of improvements made by
+Matz and Nobu to the language itself.
+
+   If you prefer, you may browse Ruby’s Subversion repository via the
+web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
+
+How to Use Git With the Main Ruby Repository
+............................................
+
+Those who prefer to use Git over Subversion can find instructions with
+the mirror on GitHub (https://github.com/ruby/ruby), both for those
+with commit access and everybody else
+(https://github.com/shyouhei/ruby/wiki/noncommitterhowto).
+
+Improving Ruby, Patch by Patch
+..............................
+
+The core team maintains an issue tracker (https://bugs.ruby-lang.org/)
+for submitting patches and bug reports to Matz and the gang.  These
+reports also get submitted to the Ruby-Core mailing list
+(https://www.ruby-lang.org/en/community/mailing-lists/) for
+discussion, so you can be sure your request won’t go unnoticed.  You
+can also send your patches straight to the mailing list.  Either way,
+you are encouraged to take part in the discussion that ensues.
+
+   Please look over the Patch Writer’s Guide
+(https://www.ruby-lang.org/en/community/ruby-core/writing-patches/)
+for some tips, straight from Matz, on how to get your patches
+considered.
+
+   Steps for Building a Patch
+(https://www.ruby-lang.org/en/community/ruby-core/)
+
 
 File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Installing Ruby,  Up: Documentation
 
@@ -603,72 +818,95 @@ Index
  [index ]
 * Menu:
 
-* chruby:                                chruby.              (line 6)
-* Documentation:                         Documentation.       (line 6)
+* branches page:                         Branches Page.      (line  6)
+* chruby:                                chruby.             (line  6)
+* core:                                  Ruby Core.          (line  6)
+* Documentation:                         Documentation.      (line  6)
 * gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
-                                                              (line 6)
-* installer, third party:                Installers.          (line 6)
-* manage Rubies using chruby:            chruby.              (line 6)
+                                                             (line  6)
+* GitHub, ruby repository:               Ruby Core.          (line 51)
+* installer, third party:                Installers.         (line  6)
+* issue tracker:                         Ruby Core.          (line 59)
+* issue tracking:                        Issue Tracking.     (line  6)
+* mailing lists:                         Ruby Core.          (line 59)
+* manage Rubies using chruby:            chruby.             (line  6)
 * multiple installations, manage using RVM: RVM (``Ruby Version Manager'').
-                                                              (line 6)
-* multiple Rubies, command-line tool uru: uru.                (line 6)
-* rbenv:                                 rbenv.               (line 6)
-* rbenv version manager:                 ruby-build.          (line 6)
-* Rubies, switch between:                Installers.          (line 6)
-* ruby-build plugin:                     ruby-build.          (line 6)
-* RVM version manager:                   Installers.          (line 6)
+                                                             (line  6)
+* multiple Rubies, command-line tool uru: uru.               (line  6)
+* Patch Writer's Guide:                  Ruby Core.          (line 70)
+* patching of Ruby:                      Ruby Core.          (line 35)
+* rbenv:                                 rbenv.              (line  6)
+* rbenv version manager:                 ruby-build.         (line  6)
+* releases:                              Releases Page.      (line  6)
+* repository, Subversion:                Ruby Core.          (line 46)
+* respository, GitHub:                   Ruby Core.          (line 51)
+* Rubies, switch between:                Installers.         (line  6)
+* Ruby Core mailing list:                Ruby Core.          (line 59)
+* Ruby development, tracking:            Ruby Core.          (line 23)
+* ruby-build plugin:                     ruby-build.         (line  6)
+* RVM version manager:                   Installers.         (line  6)
 * source, building:                      Building From Source.
-                                                              (line 6)
-* Texinfo document formatting language:  Conventions.         (line 6)
-* uru:                                   uru.                 (line 6)
-* version managers:                      Installers.          (line 6)
-* versions, multiple installations using rbenv: rbenv.        (line 6)
-* versions, switch between using chruby: chruby.              (line 6)
-* versions,multiple:                     Installers.          (line 6)
+                                                             (line  6)
+* Subversion:                            Ruby Core.          (line 23)
+* Subversion repository:                 Ruby Core.          (line 46)
+* Texinfo document formatting language:  Conventions.        (line  6)
+* track Ruby development:                Ruby Core.          (line 23)
+* uru:                                   uru.                (line  6)
+* version managers:                      Installers.         (line  6)
+* versions, multiple installations using rbenv: rbenv.       (line  6)
+* versions, switch between using chruby: chruby.             (line  6)
+* versions,multiple:                     Installers.         (line  6)
 
 
 
 Tag Table:
 Node: Top371
-Node: Preface1805
-Node: Audience1988
-Node: Overview2107
-Node: Conventions2277
-Node: Acknowledgements3197
-Node: Introduction3313
-Node: Documentation3610
-Node: Installing Ruby3997
-Node: Package Management Systems4910
-Node: Homebrew (OS X)5735
-Node: Installers6161
-Node: ruby-build6757
-Node: ruby-install7310
-Node: Managers7925
-Node: chruby8322
-Node: rbenv8581
-Node: RVM (``Ruby Version Manager'')9126
-Node: uru9524
-Node: Building From Source9817
-Node: Getting Started10764
-Node: Try Ruby!11120
-Node: Official FAQ11450
-Node: Ruby Koans11691
-Node: Why’s (Poignant) Guide to Ruby11887
-Node: Ruby in Twenty Minutes12361
-Node: Ruby from Other Languages12772
-Node: Learning Ruby13067
-Node: Ruby Essentials13433
-Node: Learn to Program13664
-Node: Manuals14041
-Node: Reference Documentation14180
-Node: Editors and IDEs14352
-Node: Further Reading14518
-Node: First appendix14650
-Node: Code Chunk Summaries14821
-Node: File Definitions15208
-Node: Code Chunk Definitions15370
-Node: Code Chunk References15560
-Node: Bibliography15723
-Node: Concept Index15854
+Node: Preface1897
+Node: Audience2080
+Node: Overview2199
+Node: Conventions2369
+Node: Acknowledgements3289
+Node: Introduction3405
+Node: Documentation3702
+Node: Installing Ruby4089
+Node: Package Management Systems5002
+Node: Homebrew (OS X)5827
+Node: Installers6253
+Node: ruby-build6849
+Node: ruby-install7402
+Node: Managers8017
+Node: chruby8414
+Node: rbenv8673
+Node: RVM (``Ruby Version Manager'')9218
+Node: uru9616
+Node: Building From Source9909
+Node: Releases Page10935
+Node: Branches Page12035
+Node: Issue Tracking13835
+Node: Ruby Core14337
+Ref: subversion15041
+Ref: MainRubyRepo16193
+Ref: PatchByPatch16521
+Node: Getting Started17318
+Node: Try Ruby!17674
+Node: Official FAQ18004
+Node: Ruby Koans18245
+Node: Why’s (Poignant) Guide to Ruby18441
+Node: Ruby in Twenty Minutes18915
+Node: Ruby from Other Languages19326
+Node: Learning Ruby19621
+Node: Ruby Essentials19987
+Node: Learn to Program20218
+Node: Manuals20595
+Node: Reference Documentation20734
+Node: Editors and IDEs20906
+Node: Further Reading21072
+Node: First appendix21204
+Node: Code Chunk Summaries21375
+Node: File Definitions21762
+Node: Code Chunk Definitions21924
+Node: Code Chunk References22114
+Node: Bibliography22277
+Node: Concept Index22408
 
 End Tag Table
