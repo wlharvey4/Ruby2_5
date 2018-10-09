@@ -2131,10 +2131,18 @@ SHELL := /bin/bash
 @node Makefile Default Rule
 @appendixsec Default Rule
 
+The @code{default} rule is to create a @acronym{PDF} document and all
+@acronym{HTML} files.  This assumes that the @acronym{TEXI} file has been
+generated and updated by hand first.  Therefore, the target @code{TWJR} will
+run both @command{jrtangle} and @command{jrweave}, while the target
+@code{WEAVE} or alternatively @code{TEXI} will run just @command{jrweave} on
+the @file{.twjr} file.  Thereafter, you can update the @file{.texi} file and
+run the @code{default}.
+
 @<Makefile---Default Rule@>=
 .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
 .PHONY : twjr tangle weave texi pdf html
-default : TEXI PDF HTML
+default : PDF HTML
 
 @
 

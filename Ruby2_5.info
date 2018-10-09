@@ -1946,10 +1946,17 @@ File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Rules,  P
 A.2 Default Rule
 ================
 
+The 'default' rule is to create a PDF document and all HTML files.
+This assumes that the TEXI file has been generated and updated by hand
+first.  Therefore, the target 'TWJR' will run both 'jrtangle' and
+'jrweave', while the target 'WEAVE' or alternatively 'TEXI' will run
+just 'jrweave' on the '.twjr' file.  Thereafter, you can update the
+'.texi' file and run the 'default'.
+
 <Makefile--Default Rule> ==
      .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
      .PHONY : twjr tangle weave texi pdf html
-     default : TEXI PDF HTML
+     default : PDF HTML
 
 
 This chunk is called by {'Makefile'}; see its first definition at
@@ -2131,7 +2138,7 @@ Index
                                                             (line   6)
 * <Makefile--Clean Rules>, use:          The Makefile.      (line   6)
 * <Makefile--Default Rule>, definition:  Makefile Default Rule.
-                                                            (line   6)
+                                                            (line  13)
 * <Makefile--Default Rule>, use:         The Makefile.      (line   6)
 * <Makefile--TWJR Rules>, definition:    Makefile TWJR Rules.
                                                             (line   6)
@@ -2473,16 +2480,16 @@ Ref: Makefile56278
 Node: Makefile Variable Definitions56997
 Ref: Makefile---Variable-Definitions57175
 Node: Makefile Default Rule57343
-Ref: Makefile---Default-Rule57515
-Node: Makefile TWJR Rules57759
-Ref: Makefile---TWJR-Rules57918
-Node: Makefile Clean Rules58549
-Ref: Makefile---Clean-Rules58680
-Node: Code Chunk Summaries59137
-Node: File Definitions59522
-Node: Code Chunk Definitions59811
-Node: Code Chunk References60754
-Node: Bibliography61918
-Node: Concept Index62049
+Ref: Makefile---Default-Rule57893
+Node: Makefile TWJR Rules58132
+Ref: Makefile---TWJR-Rules58291
+Node: Makefile Clean Rules58922
+Ref: Makefile---Clean-Rules59053
+Node: Code Chunk Summaries59510
+Node: File Definitions59895
+Node: Code Chunk Definitions60184
+Node: Code Chunk References61127
+Node: Bibliography62291
+Node: Concept Index62422
 
 End Tag Table

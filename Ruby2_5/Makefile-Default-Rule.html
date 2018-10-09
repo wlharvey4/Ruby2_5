@@ -70,12 +70,20 @@ Next: <a href="Makefile-TWJR-Rules.html#Makefile-TWJR-Rules" accesskey="n" rel="
 <a name="Default-Rule"></a>
 <h3 class="appendixsec">A.2 Default Rule</h3>
 
+<p>The <code>default</code> rule is to create a <acronym>PDF</acronym> document and all
+<acronym>HTML</acronym> files.  This assumes that the <acronym>TEXI</acronym> file has been
+generated and updated by hand first.  Therefore, the target <code>TWJR</code> will
+run both <code>jrtangle</code> and <code>jrweave</code>, while the target
+<code>WEAVE</code> or alternatively <code>TEXI</code> will run just <code>jrweave</code> on
+the <samp>.twjr</samp> file.  Thereafter, you can update the <samp>.texi</samp> file and
+run the <code>default</code>.
+</p>
 <a name="Makefile_002d_002d_002dDefault_002dRule"></a><a name="index-_003cMakefile_002d_002d_002dDefault-Rule_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>Makefile&mdash;Default Rule</i>&gt;</span> &equiv;
 </p><div class="example">
 <pre class="example">.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
 .PHONY : twjr tangle weave texi pdf html
-default : TEXI PDF HTML
+default : PDF HTML
 
 </pre></div>
 
