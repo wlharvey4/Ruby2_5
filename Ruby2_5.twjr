@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.1c
+@set EDITION 0.1e
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -1512,6 +1512,10 @@ so its type can be determined using @code{$!.type}).
 
 @url{http://rubykoans.com/, Ruby Koans}
 
+The Koans walk you along the path to enlightenment in order to learn Ruby.  The
+goal is to learn the Ruby language, syntax, structure, and some common
+functions and libraries.  We also teach you culture.  
+
 
 @c .....................................
 
@@ -1534,7 +1538,474 @@ this guide remains a classic for Ruby learners.
 Minutes}
 
 A nice tutorial covering the basics of Ruby. From start to finish it shouldn’t
-take you more than twenty minutes.
+take you more than twenty minutes.  It makes the assumption that you already
+have Ruby installed.  (If you do not have Ruby on your computer install it
+before you get started.)
+
+@c _____________________________________
+
+@node Interactive Ruby
+@subsubsection Interactive Ruby
+@cindex @command{irb}
+
+Ruby comes with a program that will show the results of any Ruby statements you
+feed it.  Playing with Ruby code in interactive sessions like this is a terrific
+way to learn the language.
+
+Open up @file{IRB} (which stands for Interactive Ruby).
+
+@example
+? irb
+@print{} irb(main):001:0>
+
+irb(main):001:0> "Hello World"
+@result{} "Hello World"
+@print{} irb(main):002:0>
+@end example
+
+The second line is just IRB’s way of telling us the result of the last
+expression it evaluated.  To print:
+
+@example
+irb(main):002:0> puts "Hello World"
+@print{} Hello World
+@result{} nil
+@print{} irb(main):003:0>
+@end example
+
+@command{puts} is the basic command to print something out in Ruby.  But then
+what’s the @samp{=> nil} bit?  That’s the result of the expression.
+@command{puts} always returns @code{nil}, which is Ruby’s
+absolutely-positively-nothing value.
+
+@c _____________________________________
+
+@node Defining Methods
+@subsubsection Defining Methods
+@cindex methods, defining
+@cindex @code{def}
+
+Define a method:
+
+@example
+irb(main):010:0> def hi
+irb(main):011:1> puts "Hello World!"
+irb(main):012:1> end
+=> :hi
+@end example
+
+The code @samp{def hi} starts the definition of the method.  The next line is
+the body of the method.  Finally, the last line end tells Ruby we’re done
+defining the method.  Ruby’s response @print{} @code{=> :hi} tells us that it
+knows we're done defining the method.
+
+Try running that method a few times:
+
+@example
+irb(main):013:0> hi
+Hello World!
+=> nil
+irb(main):014:0> hi()
+Hello World!
+=> nil
+@end example
+@cindex method, invoking
+@cindex parentheses, optional
+
+If the method doesn't take parameters that's all you need.  You can add empty
+parentheses if you’d like, but they’re not needed.
+
+@subsubheading Define Method with a Parameter
+@cindex method parameters
+@cindex parameters, methods
+
+What if we want to say hello to one person, and not the whole world? Just
+redefine @code{hi} to take a name as a parameter.
+
+@example
+irb(main):015:0> def hi(name)
+irb(main):016:1> puts "Hello #@{name@}!"
+irb(main):017:1> end
+=> :hi
+irb(main):018:0> hi("Matz")
+Hello Matz!
+=> nil
+@end example
+@cindex insert code into a string
+
+What's the @code{#@{name@}} bit?  That's Ruby's way of inserting something into
+a string.  The bit between the braces is turned into a string (if it isn’t one
+already) and then substituted into the outer string at that point.  You can also
+use this to make sure that someone's name is properly capitalized:
+
+@example
+irb(main):019:0> def hi(name = "World")
+irb(main):020:1> puts "Hello #@{name.capitalize@}!"
+irb(main):021:1> end
+=> :hi
+irb(main):022:0> hi "chris"
+Hello Chris!
+=> nil
+irb(main):023:0> hi
+Hello World!
+=> nil
+@end example
+@cindex parentheses, optional
+
+A couple of other tricks to spot here.  One is that we're calling the method
+without parentheses again.  If it's obvious what you’re doing, the parentheses
+are optional.  The other trick is the default parameter World. What this is
+saying is ``If the name isn't supplied, use the default name of "World"''.
+
+@subheading Create a Class
+@cindex class definition
+@cindex @code{class} keyword
+
+What if we want a real greeter around, one that remembers your name and
+welcomes you and treats you always with respect.  You might want to use an
+object for that.  Let’s create a “Greeter” class.
+
+@example
+irb(main):024:0> class Greeter
+irb(main):025:1>   def initialize(name = "World")
+irb(main):026:2>     @@name = name
+irb(main):027:2>   end
+irb(main):028:1>   def say_hi
+irb(main):029:2>     puts "Hi #@{@@name@}!"
+irb(main):030:2>   end
+irb(main):031:1>   def say_bye
+irb(main):032:2>     puts "Bye #@{@@name@}, come back soon."
+irb(main):033:2>   end
+irb(main):034:1> end
+=> :say_bye
+@end example
+@cindex instance variable
+
+The new keyword here is @code{class}.  This defines a new class called
+@file{Greeter} and a bunch of methods for that class.  Also notice
+@code{@@name}.  This is an instance variable, and is available to all the
+methods of the class.  As you can see it’s used by @code{say_hi} and
+@code{say_bye}.
+
+@subheading Create an Object
+@cindex object, create from class definition
+
+Now let’s create a greeter object and use it:
+
+@example
+irb(main):035:0> greeter = Greeter.new("Pat")
+=> #<Greeter:0x16cac @@name="Pat">
+irb(main):036:0> greeter.say_hi
+Hi Pat!
+=> nil
+irb(main):037:0> greeter.say_bye
+Bye Pat, come back soon.
+=> nil
+@end example
+
+@subheading Instance Variables
+@cindex instance variables, encapsulation
+
+Instance variables are hidden away inside the object.  They’re not terribly
+hidden, you see them whenever you inspect the object, and there are other ways
+of accessing them, but Ruby uses the good object-oriented approach of keeping
+data sort-of hidden away.
+
+So what methods do exist for Greeter objects?
+
+@samp{Object#instance_methods}
+@cindex @code{Object#instance_methods}
+
+@example
+irb(main):039:0> Greeter.instance_methods
+=> [:say_hi, :say_bye, :instance_of?, :public_send,
+    :instance_variable_get, :instance_variable_set,
+    :instance_variable_defined?, :remove_instance_variable,
+    :private_methods, :kind_of?, :instance_variables, :tap,
+    :is_a?, :extend, :define_singleton_method, :to_enum,
+    :enum_for, :<=>, :===, :=~, :!~, :eql?, :respond_to?,
+    :freeze, :inspect, :display, :send, :object_id, :to_s,
+    :method, :public_method, :singleton_method, :nil?, :hash,
+    :class, :singleton_class, :clone, :dup, :itself, :taint,
+    :tainted?, :untaint, :untrust, :trust, :untrusted?, :methods,
+    :protected_methods, :frozen?, :public_methods, :singleton_methods,
+    :!, :==, :!=, :__send__, :equal?, :instance_eval, :instance_exec, :__id__]
+ @end example
+
+We only defined two methods.  What’s going on here?  Well this is all of the
+methods for Greeter objects, a complete list, including ones defined by
+ancestor classes.  If we want to just list methods defined for Greeter we can
+tell it to not include ancestors by passing it the parameter false, meaning we
+don’t want methods defined by ancestors.
+
+@samp{Object#instance_methods(false)}
+
+@example
+irb(main):040:0> Greeter.instance_methods(false)
+=> [:say_hi, :say_bye]
+@end example
+
+So let’s see which methods our greeter object responds to:
+
+@samp{Object#respond_to?}
+@cindex @code{Object#respond_to?}
+
+@example
+irb(main):041:0> greeter.respond_to?("name")
+=> false
+irb(main):042:0> greeter.respond_to?("say_hi")
+=> true
+irb(main):043:0> greeter.respond_to?("to_s")
+=> true
+@end example
+
+So, it knows @code{say_hi}, and @code{to_s} (meaning convert something to a
+string, a method that's defined by default for every object), but it doesn't
+know @code{name}.
+
+@c _____________________________________
+
+@node Altering Classes
+@subsubsection Altering Classes
+
+But what if you want to be able to view or change the name?  Ruby provides an
+easy way of providing access to an object's variables.
+
+@samp{attr_accessor :name}
+@cindex @code{attr_accessor :name}
+
+@example
+irb(main):044:0> class Greeter
+irb(main):045:1>   attr_accessor :name
+irb(main):046:1> end
+=> nil
+@end example
+
+In Ruby, you can open a class up again and modify it.  The changes will be
+present in any new objects you create and even available in existing objects of
+that class.  So, let’s create a new object and play with its @code{@@name}
+property.
+@cindex classes, modifying
+
+@example
+irb(main):047:0> greeter = Greeter.new("Andy")
+=> #<Greeter:0x3c9b0 @@name="Andy">
+irb(main):048:0> greeter.respond_to?("name")
+=> true
+irb(main):049:0> greeter.respond_to?("name=")
+=> true
+irb(main):050:0> greeter.say_hi
+Hi Andy!
+=> nil
+irb(main):051:0> greeter.name="Betty"
+=> "Betty"
+irb(main):052:0> greeter
+=> #<Greeter:0x3c9b0 @@name="Betty">
+irb(main):053:0> greeter.name
+=> "Betty"
+irb(main):054:0> greeter.say_hi
+Hi Betty!
+=> nil
+@end example
+
+Using @code{attr_accessor} defined two new methods for us, @code{name} to get
+the value, and @code{name=} to set it.
+@cindex @code{attr_accessor}, methods defined
+
+@c _____________________________________
+
+@node Large Class Definition
+@subsubsection Large Class Definition
+
+What if we had some kind of MegaGreeter that could either greet the world, one
+person, or a whole list of people?  Let’s write this one in a file instead of
+directly in the interactive Ruby interpreter IRB.
+
+@(ri20min.rb@)=
+#!/usr/bin/env ruby
+
+class MegaGreeter
+  attr_accessor :names
+
+  @<MegaGreeter---Initialize Method@>
+  @<MegaGreeter---say_hi Method@>
+  @<MegaGreeter---say_bye Method@>
+end
+
+if __FILE__ == $0
+  @<MegaGreeter---Main Script@>
+end
+
+@
+
+@subsubheading Initialize Method
+@cindex @code{initialize} method
+
+@<MegaGreeter---Initialize Method@>=
+  # Create the object
+  def initialize(names = "World")
+    @names = names
+  end
+  
+@
+
+@subheading @code{say_hi} Method
+@cindex respond to message, instance variable
+@cindex @code{respond_to?} method
+
+The @code{say_hi} method has become a bit more complicated.  It now looks at
+the @code{@@names} instance variable to make decisions.  If it's @code{nil}, it
+just prints out three dots.  No point greeting nobody, right?
+
+If the @code{@@names} object responds to each, it is something that you can
+iterate over, so iterate over it and greet each person in turn.  Finally, if
+@code{@@names} is anything else, just let it get turned into a string
+automatically and do the default greeting.
+
+@<MegaGreeter---say_hi Method@>=
+  # Say hi to everybody
+  def say_hi
+    if @names.nil?
+      puts "..."
+    elsif @names.respond_to?("each")
+      # @names is a list of some kind, iterate!
+      @names.each do |name|
+        puts "Hello #{name}!"
+      end
+    else
+      puts "Hello #{@names}!"
+    end
+  end
+  
+@
+
+@subsubheading The Iterator
+@cindex iterator
+@cindex block
+@cindex @code{yield}
+
+Let’s look at that iterator in more depth:
+
+@example
+@@names.each do |name|
+  puts "Hello #@{name@}!"
+end
+@end example
+
+@code{each} is a method that accepts a block of code then runs that block of
+code for every element in a list, and the bit between @code{do} and @code{end}
+is just such a block.  A @dfn{block} is like an anonymous function or lambda.
+The variable between pipe characters is the parameter for this block.
+
+What happens here is that for every entry in a list, @code{name} is bound to
+that list element, and then the expression puts @samp{"Hello #@{name@}!"} is
+run with that name.
+
+Internally, the @code{each} method will essentially call @code{yield}
+@samp{"Albert"}, then @code{yield} @samp{"Brenda"} and then @code{yield}
+@samp{"Charles"}, and so on.
+
+@subsubheading The Real Power of Blocks
+
+The real power of blocks is when dealing with things that are more complicated
+than lists.  Beyond handling simple housekeeping details within the method, you
+can also handle setup, teardown, and errors—all hidden away from the cares of
+the user.
+
+@subheading @code{say_bye} Method
+@cindex @code{join} method, respond to
+
+The @code{say_bye} method doesn't use @code{each}; instead it checks to see if
+@code{@@names} @dfn{responds} to the @code{join} method, and if so, uses
+it.  Otherwise, it just prints out the variable as a string.
+
+@subsubheading Duck Typing
+@cindex duck typing
+
+This method of not caring about the actual type of a variable, just relying on
+what methods it supports is known as @dfn{Duck Typing}, as in ``if it walks like
+a duck and quacks like a duck@dots{}''.  The benefit of this is that it doesn't
+unnecessarily restrict the types of variables that are supported.  If someone
+comes up with a new kind of list class, as long as it implements the
+@code{join} method with the same semantics as other lists, everything will work
+as planned.
+
+@<MegaGreeter---say_bye Method@>=
+  # Say bye to everybody
+  def say_bye
+    if @names.nil?
+      puts "..."
+    elsif @names.respond_to?("join")
+      # Join the list elements with commas
+      puts "Goodbye #{@names.join(", ")}.  Come back soon!"
+    else
+      puts "Goodbye #{@names}.  Come back soon!"
+    end
+  end
+  
+@
+
+@subheading MegaGreeter Main Script
+@cindex @code{__FILE__} special variable
+@cindex script code
+
+There’s one final trick to notice, and that’s the line:
+
+@example
+if __FILE__ == $0
+@end example
+
+@var{__FILE__} is the magic variable that contains the name of the current
+file.  $0 is the name of the file used to start the program.  This check says
+``If this is the main file being used@dots{}''  This allows a file to be used
+as a library, and not to execute code in that context, but if the file is being
+used as an executable, then execute that code.
+
+@<MegaGreeter---Main Script@>=
+  mg = MegaGreeter.new
+  mg.say_hi
+  mg.say_bye
+
+  # Change name to be "Zeke"
+  mg.names = "Zeke"
+  mg.say_hi
+  mg.say_bye
+
+  # Change the name to an array of names
+  mg.names = ["Albert", "Brenda", "Charles",
+              "Dave", "Engelbert"]
+  mg.say_hi
+  mg.say_bye
+
+  # Change to nil
+  mg.names = nil
+  mg.say_hi
+  mg.say_bye
+
+@
+
+@c _____________________________________
+
+@node Run MegaGreeter
+@subsubsection Run MegaGreeter
+
+Run the program @file{ri20min.rb} as @samp{ruby ri20min.rb}.  The output should
+be:
+
+@example
+Hello World!
+Goodbye World.  Come back soon!
+Hello Zeke!
+Goodbye Zeke.  Come back soon!
+Hello Albert!
+Hello Brenda!
+Hello Charles!
+Hello Dave!
+Hello Engelbert!
+Goodbye Albert, Brenda, Charles, Dave, Engelbert.  Come back soon!
+...
+...
+@end example
 
 
 @c .....................................
@@ -1653,6 +2124,7 @@ know how to program, start here.
 
 @<Makefile---Variable Definitions@>=
 FILE := Ruby2_5
+SHELL := /bin/bash
 
 @
 
@@ -1660,8 +2132,9 @@ FILE := Ruby2_5
 @appendixsec Default Rule
 
 @<Makefile---Default Rule@>=
-.PHONY : default TANGLE WEAVE TEXI PDF HTML
-default : WEAVE TEXI PDF HTML
+.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
+.PHONY : twjr tangle weave texi pdf html
+default : TEXI PDF HTML
 
 @
 
@@ -1669,6 +2142,9 @@ default : WEAVE TEXI PDF HTML
 @appendixsec TWJR Rules
 
 @<Makefile---TWJR Rules@>=
+TWJR : twjr
+twjr : tangle weave
+
 TANGLE : tangle
 tangle : $(FILE).twjr
 	jrtangle $(FILE).twjr
@@ -1698,16 +2174,18 @@ $(FILE)/ : $(FILE).texi
 @appendixsec Clean Rules
 
 @<Makefile---Clean Rules@>=
-.PHONY : clean distclean worldclean
+.PHONY : clean distclean veryclean worldclean
 clean :
 	rm -f *~ \#*\#
 
 distclean : clean
 	rm -f *.{aux,log,toc,cp,cps}
 
-worldclean : distclean
-	rm -f $(FILE).{texi,info,pdf}
-	rm -fr $(FILE)/
+veryclean : clean
+	for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+
+worldclean : veryclean
+	rm -fr $(FILE).{texi,info,pdf} $(FILE)/
 
 @
 

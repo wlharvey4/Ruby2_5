@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Large Class Definition (Ruby2_5 Information)</title>
+
+<meta name="description" content="Large Class Definition (Ruby2_5 Information)">
+<meta name="keywords" content="Large Class Definition (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" rel="up" title="Ruby in Twenty Minutes">
+<link href="Run-MegaGreeter.html#Run-MegaGreeter" rel="next" title="Run MegaGreeter">
+<link href="Altering-Classes.html#Altering-Classes" rel="prev" title="Altering Classes">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Large-Class-Definition"></a>
+<div class="header">
+<p>
+Next: <a href="Run-MegaGreeter.html#Run-MegaGreeter" accesskey="n" rel="next">Run MegaGreeter</a>, Previous: <a href="Altering-Classes.html#Altering-Classes" accesskey="p" rel="prev">Altering Classes</a>, Up: <a href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" accesskey="u" rel="up">Ruby in Twenty Minutes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Large-Class-Definition-1"></a>
+<h4 class="subsubsection">2.3.5.4 Large Class Definition</h4>
+
+<p>What if we had some kind of MegaGreeter that could either greet the world, one
+person, or a whole list of people?  Letâs write this one in a file instead of
+directly in the interactive Ruby interpreter IRB.
+</p>
+<a name="ri20min_002drb"></a><a name="index-_003cMegaGreeter_002d_002d_002dInitialize-Method_003e_002c-use"></a>
+<a name="index-_003cMegaGreeter_002d_002d_002dsay_005fhi-Method_003e_002c-use"></a>
+<a name="index-_003cMegaGreeter_002d_002d_002dsay_005fbye-Method_003e_002c-use"></a>
+<a name="index-_003cMegaGreeter_002d_002d_002dMain-Script_003e_002c-use"></a>
+<a name="index-_007bri20min_002erb_007d_002c-definition"></a>
+<p><span class="roman">{<samp>ri20min.rb</samp>}</span> &equiv;
+</p><div class="example">
+<pre class="example">#!/usr/bin/env ruby
+
+class MegaGreeter
+  attr_accessor :names
+
+  <span class="roman">&lt;<i>MegaGreeter&mdash;Initialize Method</i>&gt;</span>
+  <span class="roman">&lt;<i>MegaGreeter&mdash;say_hi Method</i>&gt;</span>
+  <span class="roman">&lt;<i>MegaGreeter&mdash;say_bye Method</i>&gt;</span>
+end
+
+if __FILE__ == $0
+  <span class="roman">&lt;<i>MegaGreeter&mdash;Main Script</i>&gt;</span>
+end
+
+</pre></div>
+
+<p>The following table lists called chunk definition points.
+</p><table>
+<thead><tr><th width="35%">Chunk name</th><th width="65%">First definition point</th></tr></thead>
+<tr><td width="35%"><span class="roman">&lt;<i>MegaGreeter&mdash;Initialize Method</i>&gt;</span></td><td width="65%">See <a href="#MegaGreeter_002d_002d_002dInitialize_002dMethod">MegaGreeter---Initialize-Method</a>.</td></tr>
+<tr><td width="35%"><span class="roman">&lt;<i>MegaGreeter&mdash;Main Script</i>&gt;</span></td><td width="65%">See <a href="#MegaGreeter_002d_002d_002dMain_002dScript">MegaGreeter---Main-Script</a>.</td></tr>
+<tr><td width="35%"><span class="roman">&lt;<i>MegaGreeter&mdash;say_bye Method</i>&gt;</span></td><td width="65%">See <a href="#MegaGreeter_002d_002d_002dsay_002dbye_002dMethod">MegaGreeter---say-bye-Method</a>.</td></tr>
+<tr><td width="35%"><span class="roman">&lt;<i>MegaGreeter&mdash;say_hi Method</i>&gt;</span></td><td width="65%">See <a href="#MegaGreeter_002d_002d_002dsay_002dhi_002dMethod">MegaGreeter---say-hi-Method</a>.</td></tr>
+</table>
+
+<a name="Initialize-Method"></a>
+<h4 class="subsubheading">Initialize Method</h4>
+<a name="index-initialize-method"></a>
+
+<a name="MegaGreeter_002d_002d_002dInitialize_002dMethod"></a><a name="index-_003cMegaGreeter_002d_002d_002dInitialize-Method_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>MegaGreeter&mdash;Initialize Method</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">  # Create the object
+  def initialize(names = &quot;World&quot;)
+    @names = names
+  end
+  
+</pre></div>
+
+<p>This chunk is called by <span class="roman">{<samp>ri20min.rb</samp>}</span>; see its first definition at <a href="#ri20min_002drb">ri20min-rb</a>.
+</p>
+<a name="say_005fhi-Method"></a>
+<h4 class="subheading"><code>say_hi</code> Method</h4>
+<a name="index-respond-to-message_002c-instance-variable"></a>
+<a name="index-respond_005fto_003f-method"></a>
+
+<p>The <code>say_hi</code> method has become a bit more complicated.  It now looks at
+the <code>@names</code> instance variable to make decisions.  If it&rsquo;s <code>nil</code>, it
+just prints out three dots.  No point greeting nobody, right?
+</p>
+<p>If the <code>@names</code> object responds to each, it is something that you can
+iterate over, so iterate over it and greet each person in turn.  Finally, if
+<code>@names</code> is anything else, just let it get turned into a string
+automatically and do the default greeting.
+</p>
+<a name="MegaGreeter_002d_002d_002dsay_002dhi_002dMethod"></a><a name="index-_003cMegaGreeter_002d_002d_002dsay_005fhi-Method_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>MegaGreeter&mdash;say_hi Method</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">  # Say hi to everybody
+  def say_hi
+    if @names.nil?
+      puts &quot;...&quot;
+    elsif @names.respond_to?(&quot;each&quot;)
+      # @names is a list of some kind, iterate!
+      @names.each do |name|
+        puts &quot;Hello #{name}!&quot;
+      end
+    else
+      puts &quot;Hello #{@names}!&quot;
+    end
+  end
+  
+</pre></div>
+
+<p>This chunk is called by <span class="roman">{<samp>ri20min.rb</samp>}</span>; see its first definition at <a href="#ri20min_002drb">ri20min-rb</a>.
+</p>
+<a name="The-Iterator"></a>
+<h4 class="subsubheading">The Iterator</h4>
+<a name="index-iterator"></a>
+<a name="index-block"></a>
+<a name="index-yield"></a>
+
+<p>Letâs look at that iterator in more depth:
+</p>
+<div class="example">
+<pre class="example">@names.each do |name|
+  puts &quot;Hello #{name}!&quot;
+end
+</pre></div>
+
+<p><code>each</code> is a method that accepts a block of code then runs that block of
+code for every element in a list, and the bit between <code>do</code> and <code>end</code>
+is just such a block.  A <em>block</em> is like an anonymous function or lambda.
+The variable between pipe characters is the parameter for this block.
+</p>
+<p>What happens here is that for every entry in a list, <code>name</code> is bound to
+that list element, and then the expression puts &lsquo;<samp>&quot;Hello #{name}!&quot;</samp>&rsquo; is
+run with that name.
+</p>
+<p>Internally, the <code>each</code> method will essentially call <code>yield</code>
+&lsquo;<samp>&quot;Albert&quot;</samp>&rsquo;, then <code>yield</code> &lsquo;<samp>&quot;Brenda&quot;</samp>&rsquo; and then <code>yield</code>
+&lsquo;<samp>&quot;Charles&quot;</samp>&rsquo;, and so on.
+</p>
+<a name="The-Real-Power-of-Blocks"></a>
+<h4 class="subsubheading">The Real Power of Blocks</h4>
+
+<p>The real power of blocks is when dealing with things that are more complicated
+than lists.  Beyond handling simple housekeeping details within the method, you
+can also handle setup, teardown, and errorsâall hidden away from the cares of
+the user.
+</p>
+<a name="say_005fbye-Method"></a>
+<h4 class="subheading"><code>say_bye</code> Method</h4>
+<a name="index-join-method_002c-respond-to"></a>
+
+<p>The <code>say_bye</code> method doesn&rsquo;t use <code>each</code>; instead it checks to see if
+<code>@names</code> <em>responds</em> to the <code>join</code> method, and if so, uses
+it.  Otherwise, it just prints out the variable as a string.
+</p>
+<a name="Duck-Typing"></a>
+<h4 class="subsubheading">Duck Typing</h4>
+<a name="index-duck-typing"></a>
+
+<p>This method of not caring about the actual type of a variable, just relying on
+what methods it supports is known as <em>Duck Typing</em>, as in &ldquo;if it walks like
+a duck and quacks like a duck&hellip;&rdquo;.  The benefit of this is that it doesn&rsquo;t
+unnecessarily restrict the types of variables that are supported.  If someone
+comes up with a new kind of list class, as long as it implements the
+<code>join</code> method with the same semantics as other lists, everything will work
+as planned.
+</p>
+<a name="MegaGreeter_002d_002d_002dsay_002dbye_002dMethod"></a><a name="index-_003cMegaGreeter_002d_002d_002dsay_005fbye-Method_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>MegaGreeter&mdash;say_bye Method</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">  # Say bye to everybody
+  def say_bye
+    if @names.nil?
+      puts &quot;...&quot;
+    elsif @names.respond_to?(&quot;join&quot;)
+      # Join the list elements with commas
+      puts &quot;Goodbye #{@names.join(&quot;, &quot;)}.  Come back soon!&quot;
+    else
+      puts &quot;Goodbye #{@names}.  Come back soon!&quot;
+    end
+  end
+  
+</pre></div>
+
+<p>This chunk is called by <span class="roman">{<samp>ri20min.rb</samp>}</span>; see its first definition at <a href="#ri20min_002drb">ri20min-rb</a>.
+</p>
+<a name="MegaGreeter-Main-Script"></a>
+<h4 class="subheading">MegaGreeter Main Script</h4>
+<a name="index-_005f_005fFILE_005f_005f-special-variable"></a>
+<a name="index-script-code"></a>
+
+<p>Thereâs one final trick to notice, and thatâs the line:
+</p>
+<div class="example">
+<pre class="example">if __FILE__ == $0
+</pre></div>
+
+<p><var>__FILE__</var> is the magic variable that contains the name of the current
+file.  $0 is the name of the file used to start the program.  This check says
+&ldquo;If this is the main file being used&hellip;&rdquo;  This allows a file to be used
+as a library, and not to execute code in that context, but if the file is being
+used as an executable, then execute that code.
+</p>
+<a name="MegaGreeter_002d_002d_002dMain_002dScript"></a><a name="index-_003cMegaGreeter_002d_002d_002dMain-Script_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>MegaGreeter&mdash;Main Script</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">  mg = MegaGreeter.new
+  mg.say_hi
+  mg.say_bye
+
+  # Change name to be &quot;Zeke&quot;
+  mg.names = &quot;Zeke&quot;
+  mg.say_hi
+  mg.say_bye
+
+  # Change the name to an array of names
+  mg.names = [&quot;Albert&quot;, &quot;Brenda&quot;, &quot;Charles&quot;,
+              &quot;Dave&quot;, &quot;Engelbert&quot;]
+  mg.say_hi
+  mg.say_bye
+
+  # Change to nil
+  mg.names = nil
+  mg.say_hi
+  mg.say_bye
+
+</pre></div>
+
+<p>This chunk is called by <span class="roman">{<samp>ri20min.rb</samp>}</span>; see its first definition at <a href="#ri20min_002drb">ri20min-rb</a>.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Run-MegaGreeter.html#Run-MegaGreeter" accesskey="n" rel="next">Run MegaGreeter</a>, Previous: <a href="Altering-Classes.html#Altering-Classes" accesskey="p" rel="prev">Altering Classes</a>, Up: <a href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" accesskey="u" rel="up">Ruby in Twenty Minutes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

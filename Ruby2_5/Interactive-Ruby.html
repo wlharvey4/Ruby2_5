@@ -16,19 +16,19 @@ This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Homebrew (OS X) (Ruby2_5 Information)</title>
+<title>Interactive Ruby (Ruby2_5 Information)</title>
 
-<meta name="description" content="Homebrew (OS X) (Ruby2_5 Information)">
-<meta name="keywords" content="Homebrew (OS X) (Ruby2_5 Information)">
+<meta name="description" content="Interactive Ruby (Ruby2_5 Information)">
+<meta name="keywords" content="Interactive Ruby (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Package-Management-Systems.html#Package-Management-Systems" rel="up" title="Package Management Systems">
-<link href="Installers.html#Installers" rel="next" title="Installers">
-<link href="Package-Management-Systems.html#Package-Management-Systems" rel="prev" title="Package Management Systems">
+<link href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" rel="up" title="Ruby in Twenty Minutes">
+<link href="Defining-Methods.html#Defining-Methods" rel="next" title="Defining Methods">
+<link href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" rel="prev" title="Ruby in Twenty Minutes">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -61,29 +61,46 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Homebrew-_0028OS-X_0029"></a>
+<a name="Interactive-Ruby"></a>
 <div class="header">
 <p>
-Up: <a href="Package-Management-Systems.html#Package-Management-Systems" accesskey="u" rel="up">Package Management Systems</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Defining-Methods.html#Defining-Methods" accesskey="n" rel="next">Defining Methods</a>, Up: <a href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" accesskey="u" rel="up">Ruby in Twenty Minutes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Homebrew-_0028OS-X_0029-1"></a>
-<h4 class="subsubsection">2.1.1.1 Homebrew (OS X)</h4>
+<a name="Interactive-Ruby-1"></a>
+<h4 class="subsubsection">2.3.5.1 Interactive Ruby</h4>
+<a name="index-irb"></a>
 
-<p><a href="http://brew.sh/">Homebrew</a>
+<p>Ruby comes with a program that will show the results of any Ruby statements you
+feed it.  Playing with Ruby code in interactive sessions like this is a terrific
+way to learn the language.
 </p>
-<p>On macOS (High) Sierra and OS X El Capitan, Ruby 2.0 is included.
-</p>
-<p>Many people on OS X use Homebrew as a package manager.  It is really
-easy to get a newer version of Ruby using Homebrew:
+<p>Open up <samp>IRB</samp> (which stands for Interactive Ruby).
 </p>
 <div class="example">
-<pre class="example">$ brew install ruby
+<pre class="example">? irb
+-| irb(main):001:0&gt;
+
+irb(main):001:0&gt; &quot;Hello World&quot;
+&rArr; &quot;Hello World&quot;
+-| irb(main):002:0&gt;
 </pre></div>
 
-<p>This should install the latest Ruby version.
+<p>The second line is just IRBâs way of telling us the result of the last
+expression it evaluated.  To print:
 </p>
+<div class="example">
+<pre class="example">irb(main):002:0&gt; puts &quot;Hello World&quot;
+-| Hello World
+&rArr; nil
+-| irb(main):003:0&gt;
+</pre></div>
 
+<p><code>puts</code> is the basic command to print something out in Ruby.  But then
+whatâs the &lsquo;<samp>=&gt; nil</samp>&rsquo; bit?  Thatâs the result of the expression.
+<code>puts</code> always returns <code>nil</code>, which is Rubyâs
+absolutely-positively-nothing value.
+</p>
 
 
 

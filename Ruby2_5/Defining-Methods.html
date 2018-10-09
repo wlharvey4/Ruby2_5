@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Defining Methods (Ruby2_5 Information)</title>
+
+<meta name="description" content="Defining Methods (Ruby2_5 Information)">
+<meta name="keywords" content="Defining Methods (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" rel="up" title="Ruby in Twenty Minutes">
+<link href="Altering-Classes.html#Altering-Classes" rel="next" title="Altering Classes">
+<link href="Interactive-Ruby.html#Interactive-Ruby" rel="prev" title="Interactive Ruby">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Defining-Methods"></a>
+<div class="header">
+<p>
+Next: <a href="Altering-Classes.html#Altering-Classes" accesskey="n" rel="next">Altering Classes</a>, Previous: <a href="Interactive-Ruby.html#Interactive-Ruby" accesskey="p" rel="prev">Interactive Ruby</a>, Up: <a href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" accesskey="u" rel="up">Ruby in Twenty Minutes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Defining-Methods-1"></a>
+<h4 class="subsubsection">2.3.5.2 Defining Methods</h4>
+<a name="index-methods_002c-defining"></a>
+<a name="index-def"></a>
+
+<p>Define a method:
+</p>
+<div class="example">
+<pre class="example">irb(main):010:0&gt; def hi
+irb(main):011:1&gt; puts &quot;Hello World!&quot;
+irb(main):012:1&gt; end
+=&gt; :hi
+</pre></div>
+
+<p>The code &lsquo;<samp>def hi</samp>&rsquo; starts the definition of the method.  The next line is
+the body of the method.  Finally, the last line end tells Ruby weâre done
+defining the method.  Rubyâs response -| <code>=&gt; :hi</code> tells us that it
+knows we&rsquo;re done defining the method.
+</p>
+<p>Try running that method a few times:
+</p>
+<div class="example">
+<pre class="example">irb(main):013:0&gt; hi
+Hello World!
+=&gt; nil
+irb(main):014:0&gt; hi()
+Hello World!
+=&gt; nil
+</pre></div>
+<a name="index-method_002c-invoking-1"></a>
+<a name="index-parentheses_002c-optional"></a>
+
+<p>If the method doesn&rsquo;t take parameters that&rsquo;s all you need.  You can add empty
+parentheses if youâd like, but theyâre not needed.
+</p>
+<a name="Define-Method-with-a-Parameter"></a>
+<h4 class="subsubheading">Define Method with a Parameter</h4>
+<a name="index-method-parameters"></a>
+<a name="index-parameters_002c-methods"></a>
+
+<p>What if we want to say hello to one person, and not the whole world? Just
+redefine <code>hi</code> to take a name as a parameter.
+</p>
+<div class="example">
+<pre class="example">irb(main):015:0&gt; def hi(name)
+irb(main):016:1&gt; puts &quot;Hello #{name}!&quot;
+irb(main):017:1&gt; end
+=&gt; :hi
+irb(main):018:0&gt; hi(&quot;Matz&quot;)
+Hello Matz!
+=&gt; nil
+</pre></div>
+<a name="index-insert-code-into-a-string"></a>
+
+<p>What&rsquo;s the <code>#{name}</code> bit?  That&rsquo;s Ruby&rsquo;s way of inserting something into
+a string.  The bit between the braces is turned into a string (if it isnât one
+already) and then substituted into the outer string at that point.  You can also
+use this to make sure that someone&rsquo;s name is properly capitalized:
+</p>
+<div class="example">
+<pre class="example">irb(main):019:0&gt; def hi(name = &quot;World&quot;)
+irb(main):020:1&gt; puts &quot;Hello #{name.capitalize}!&quot;
+irb(main):021:1&gt; end
+=&gt; :hi
+irb(main):022:0&gt; hi &quot;chris&quot;
+Hello Chris!
+=&gt; nil
+irb(main):023:0&gt; hi
+Hello World!
+=&gt; nil
+</pre></div>
+<a name="index-parentheses_002c-optional-1"></a>
+
+<p>A couple of other tricks to spot here.  One is that we&rsquo;re calling the method
+without parentheses again.  If it&rsquo;s obvious what youâre doing, the parentheses
+are optional.  The other trick is the default parameter World. What this is
+saying is &ldquo;If the name isn&rsquo;t supplied, use the default name of &quot;World&quot;&rdquo;.
+</p>
+<a name="Create-a-Class"></a>
+<h4 class="subheading">Create a Class</h4>
+<a name="index-class-definition"></a>
+<a name="index-class-keyword"></a>
+
+<p>What if we want a real greeter around, one that remembers your name and
+welcomes you and treats you always with respect.  You might want to use an
+object for that.  Letâs create a âGreeterâ class.
+</p>
+<div class="example">
+<pre class="example">irb(main):024:0&gt; class Greeter
+irb(main):025:1&gt;   def initialize(name = &quot;World&quot;)
+irb(main):026:2&gt;     @name = name
+irb(main):027:2&gt;   end
+irb(main):028:1&gt;   def say_hi
+irb(main):029:2&gt;     puts &quot;Hi #{@name}!&quot;
+irb(main):030:2&gt;   end
+irb(main):031:1&gt;   def say_bye
+irb(main):032:2&gt;     puts &quot;Bye #{@name}, come back soon.&quot;
+irb(main):033:2&gt;   end
+irb(main):034:1&gt; end
+=&gt; :say_bye
+</pre></div>
+<a name="index-instance-variable"></a>
+
+<p>The new keyword here is <code>class</code>.  This defines a new class called
+<samp>Greeter</samp> and a bunch of methods for that class.  Also notice
+<code>@name</code>.  This is an instance variable, and is available to all the
+methods of the class.  As you can see itâs used by <code>say_hi</code> and
+<code>say_bye</code>.
+</p>
+<a name="Create-an-Object"></a>
+<h4 class="subheading">Create an Object</h4>
+<a name="index-object_002c-create-from-class-definition"></a>
+
+<p>Now letâs create a greeter object and use it:
+</p>
+<div class="example">
+<pre class="example">irb(main):035:0&gt; greeter = Greeter.new(&quot;Pat&quot;)
+=&gt; #&lt;Greeter:0x16cac @name=&quot;Pat&quot;&gt;
+irb(main):036:0&gt; greeter.say_hi
+Hi Pat!
+=&gt; nil
+irb(main):037:0&gt; greeter.say_bye
+Bye Pat, come back soon.
+=&gt; nil
+</pre></div>
+
+<a name="Instance-Variables"></a>
+<h4 class="subheading">Instance Variables</h4>
+<a name="index-instance-variables_002c-encapsulation"></a>
+
+<p>Instance variables are hidden away inside the object.  Theyâre not terribly
+hidden, you see them whenever you inspect the object, and there are other ways
+of accessing them, but Ruby uses the good object-oriented approach of keeping
+data sort-of hidden away.
+</p>
+<p>So what methods do exist for Greeter objects?
+</p>
+<p>&lsquo;<samp>Object#instance_methods</samp>&rsquo;
+<a name="index-Object_0023instance_005fmethods"></a>
+</p>
+<div class="example">
+<pre class="example">irb(main):039:0&gt; Greeter.instance_methods
+=&gt; [:say_hi, :say_bye, :instance_of?, :public_send,
+    :instance_variable_get, :instance_variable_set,
+    :instance_variable_defined?, :remove_instance_variable,
+    :private_methods, :kind_of?, :instance_variables, :tap,
+    :is_a?, :extend, :define_singleton_method, :to_enum,
+    :enum_for, :&lt;=&gt;, :===, :=~, :!~, :eql?, :respond_to?,
+    :freeze, :inspect, :display, :send, :object_id, :to_s,
+    :method, :public_method, :singleton_method, :nil?, :hash,
+    :class, :singleton_class, :clone, :dup, :itself, :taint,
+    :tainted?, :untaint, :untrust, :trust, :untrusted?, :methods,
+    :protected_methods, :frozen?, :public_methods, :singleton_methods,
+    :!, :==, :!=, :__send__, :equal?, :instance_eval, :instance_exec, :__id__]
+ </pre></div>
+
+<p>We only defined two methods.  Whatâs going on here?  Well this is all of the
+methods for Greeter objects, a complete list, including ones defined by
+ancestor classes.  If we want to just list methods defined for Greeter we can
+tell it to not include ancestors by passing it the parameter false, meaning we
+donât want methods defined by ancestors.
+</p>
+<p>&lsquo;<samp>Object#instance_methods(false)</samp>&rsquo;
+</p>
+<div class="example">
+<pre class="example">irb(main):040:0&gt; Greeter.instance_methods(false)
+=&gt; [:say_hi, :say_bye]
+</pre></div>
+
+<p>So letâs see which methods our greeter object responds to:
+</p>
+<p>&lsquo;<samp>Object#respond_to?</samp>&rsquo;
+<a name="index-Object_0023respond_005fto_003f"></a>
+</p>
+<div class="example">
+<pre class="example">irb(main):041:0&gt; greeter.respond_to?(&quot;name&quot;)
+=&gt; false
+irb(main):042:0&gt; greeter.respond_to?(&quot;say_hi&quot;)
+=&gt; true
+irb(main):043:0&gt; greeter.respond_to?(&quot;to_s&quot;)
+=&gt; true
+</pre></div>
+
+<p>So, it knows <code>say_hi</code>, and <code>to_s</code> (meaning convert something to a
+string, a method that&rsquo;s defined by default for every object), but it doesn&rsquo;t
+know <code>name</code>.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Altering-Classes.html#Altering-Classes" accesskey="n" rel="next">Altering Classes</a>, Previous: <a href="Interactive-Ruby.html#Interactive-Ruby" accesskey="p" rel="prev">Interactive Ruby</a>, Up: <a href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" accesskey="u" rel="up">Ruby in Twenty Minutes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

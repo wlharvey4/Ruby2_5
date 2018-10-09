@@ -1,7 +1,12 @@
 FILE := Ruby2_5
+SHELL := /bin/bash
 
-.PHONY : default TANGLE WEAVE TEXI PDF HTML
-default : WEAVE TEXI PDF HTML
+.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
+.PHONY : twjr tangle weave texi pdf html
+default : TEXI PDF HTML
+
+TWJR : twjr
+twjr : tangle weave
 
 TANGLE : tangle
 tangle : $(FILE).twjr
@@ -26,14 +31,16 @@ html : $(FILE)/
 $(FILE)/ : $(FILE).texi
 	makeinfo --html $(FILE).texi
 
-.PHONY : clean distclean worldclean
+.PHONY : clean distclean veryclean worldclean
 clean :
 	rm -f *~ \#*\#
 
 distclean : clean
 	rm -f *.{aux,log,toc,cp,cps}
 
-worldclean : distclean
-	rm -f $(FILE).{texi,info,pdf}
-	rm -fr $(FILE)/
+veryclean : clean
+	for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+
+worldclean : veryclean
+	rm -fr $(FILE).{texi,info,pdf} $(FILE)/
 

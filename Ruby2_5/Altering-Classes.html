@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Altering Classes (Ruby2_5 Information)</title>
+
+<meta name="description" content="Altering Classes (Ruby2_5 Information)">
+<meta name="keywords" content="Altering Classes (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" rel="up" title="Ruby in Twenty Minutes">
+<link href="Large-Class-Definition.html#Large-Class-Definition" rel="next" title="Large Class Definition">
+<link href="Defining-Methods.html#Defining-Methods" rel="prev" title="Defining Methods">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Altering-Classes"></a>
+<div class="header">
+<p>
+Next: <a href="Large-Class-Definition.html#Large-Class-Definition" accesskey="n" rel="next">Large Class Definition</a>, Previous: <a href="Defining-Methods.html#Defining-Methods" accesskey="p" rel="prev">Defining Methods</a>, Up: <a href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes" accesskey="u" rel="up">Ruby in Twenty Minutes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Altering-Classes-1"></a>
+<h4 class="subsubsection">2.3.5.3 Altering Classes</h4>
+
+<p>But what if you want to be able to view or change the name?  Ruby provides an
+easy way of providing access to an object&rsquo;s variables.
+</p>
+<p>&lsquo;<samp>attr_accessor :name</samp>&rsquo;
+<a name="index-attr_005faccessor-_003aname"></a>
+</p>
+<div class="example">
+<pre class="example">irb(main):044:0&gt; class Greeter
+irb(main):045:1&gt;   attr_accessor :name
+irb(main):046:1&gt; end
+=&gt; nil
+</pre></div>
+
+<p>In Ruby, you can open a class up again and modify it.  The changes will be
+present in any new objects you create and even available in existing objects of
+that class.  So, letâs create a new object and play with its <code>@name</code>
+property.
+<a name="index-classes_002c-modifying"></a>
+</p>
+<div class="example">
+<pre class="example">irb(main):047:0&gt; greeter = Greeter.new(&quot;Andy&quot;)
+=&gt; #&lt;Greeter:0x3c9b0 @name=&quot;Andy&quot;&gt;
+irb(main):048:0&gt; greeter.respond_to?(&quot;name&quot;)
+=&gt; true
+irb(main):049:0&gt; greeter.respond_to?(&quot;name=&quot;)
+=&gt; true
+irb(main):050:0&gt; greeter.say_hi
+Hi Andy!
+=&gt; nil
+irb(main):051:0&gt; greeter.name=&quot;Betty&quot;
+=&gt; &quot;Betty&quot;
+irb(main):052:0&gt; greeter
+=&gt; #&lt;Greeter:0x3c9b0 @name=&quot;Betty&quot;&gt;
+irb(main):053:0&gt; greeter.name
+=&gt; &quot;Betty&quot;
+irb(main):054:0&gt; greeter.say_hi
+Hi Betty!
+=&gt; nil
+</pre></div>
+
+<p>Using <code>attr_accessor</code> defined two new methods for us, <code>name</code> to get
+the value, and <code>name=</code> to set it.
+<a name="index-attr_005faccessor_002c-methods-defined"></a>
+</p>
+
+
+
+
+</body>
+</html>

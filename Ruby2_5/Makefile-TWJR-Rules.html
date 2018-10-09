@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.1c of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -73,7 +73,10 @@ Next: <a href="Makefile-Clean-Rules.html#Makefile-Clean-Rules" accesskey="n" rel
 <a name="Makefile_002d_002d_002dTWJR_002dRules"></a><a name="index-_003cMakefile_002d_002d_002dTWJR-Rules_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>Makefile&mdash;TWJR Rules</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example">TANGLE : tangle
+<pre class="example">TWJR : twjr
+twjr : tangle weave
+
+TANGLE : tangle
 tangle : $(FILE).twjr
     jrtangle $(FILE).twjr
 

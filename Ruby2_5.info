@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.1e of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.1e of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -110,6 +110,14 @@ Official FAQ
 * FAQ Built-In Libraries::
 * FAQ Extension Library::
 * FAQ Other Features::
+
+Ruby in Twenty Minutes
+
+* Interactive Ruby::
+* Defining Methods::
+* Altering Classes::
+* Large Class Definition::
+* Run MegaGreeter::
 
 The Makefile
 
@@ -1341,6 +1349,11 @@ File: Ruby2_5.info,  Node: Ruby Koans,  Next: Why’s (Poignant) Guide to Ruby, 
 
 Ruby Koans (http://rubykoans.com/)
 
+   The Koans walk you along the path to enlightenment in order to
+learn Ruby.  The goal is to learn the Ruby language, syntax,
+structure, and some common functions and libraries.  We also teach you
+culture.
+
 
 File: Ruby2_5.info,  Node: Why’s (Poignant) Guide to Ruby,  Next: Ruby in Twenty Minutes,  Prev: Ruby Koans,  Up: Getting Started
 
@@ -1363,7 +1376,460 @@ Ruby in Twenty Minutes
 (https://www.ruby-lang.org/en/documentation/quickstart/)
 
    A nice tutorial covering the basics of Ruby.  From start to finish
-it shouldn’t take you more than twenty minutes.
+it shouldn’t take you more than twenty minutes.  It makes the
+assumption that you already have Ruby installed.  (If you do not have
+Ruby on your computer install it before you get started.)
+
+* Menu:
+
+* Interactive Ruby::
+* Defining Methods::
+* Altering Classes::
+* Large Class Definition::
+* Run MegaGreeter::
+
+
+File: Ruby2_5.info,  Node: Interactive Ruby,  Next: Defining Methods,  Up: Ruby in Twenty Minutes
+
+2.3.5.1 Interactive Ruby
+........................
+
+Ruby comes with a program that will show the results of any Ruby
+statements you feed it.  Playing with Ruby code in interactive
+sessions like this is a terrific way to learn the language.
+
+   Open up 'IRB' (which stands for Interactive Ruby).
+
+     ? irb
+     -| irb(main):001:0>
+
+     irb(main):001:0> "Hello World"
+     => "Hello World"
+     -| irb(main):002:0>
+
+   The second line is just IRB’s way of telling us the result of the
+last expression it evaluated.  To print:
+
+     irb(main):002:0> puts "Hello World"
+     -| Hello World
+     => nil
+     -| irb(main):003:0>
+
+   'puts' is the basic command to print something out in Ruby.  But
+then what’s the '=> nil' bit?  That’s the result of the expression.
+'puts' always returns 'nil', which is Ruby’s
+absolutely-positively-nothing value.
+
+
+File: Ruby2_5.info,  Node: Defining Methods,  Next: Altering Classes,  Prev: Interactive Ruby,  Up: Ruby in Twenty Minutes
+
+2.3.5.2 Defining Methods
+........................
+
+Define a method:
+
+     irb(main):010:0> def hi
+     irb(main):011:1> puts "Hello World!"
+     irb(main):012:1> end
+     => :hi
+
+   The code 'def hi' starts the definition of the method.  The next
+line is the body of the method.  Finally, the last line end tells Ruby
+we’re done defining the method.  Ruby’s response -| '=> :hi' tells us
+that it knows we're done defining the method.
+
+   Try running that method a few times:
+
+     irb(main):013:0> hi
+     Hello World!
+     => nil
+     irb(main):014:0> hi()
+     Hello World!
+     => nil
+
+   If the method doesn't take parameters that's all you need.  You can
+add empty parentheses if you’d like, but they’re not needed.
+
+Define Method with a Parameter
+..............................
+
+What if we want to say hello to one person, and not the whole world?
+Just redefine 'hi' to take a name as a parameter.
+
+     irb(main):015:0> def hi(name)
+     irb(main):016:1> puts "Hello #{name}!"
+     irb(main):017:1> end
+     => :hi
+     irb(main):018:0> hi("Matz")
+     Hello Matz!
+     => nil
+
+   What's the '#{name}' bit?  That's Ruby's way of inserting something
+into a string.  The bit between the braces is turned into a string (if
+it isn’t one already) and then substituted into the outer string at
+that point.  You can also use this to make sure that someone's name is
+properly capitalized:
+
+     irb(main):019:0> def hi(name = "World")
+     irb(main):020:1> puts "Hello #{name.capitalize}!"
+     irb(main):021:1> end
+     => :hi
+     irb(main):022:0> hi "chris"
+     Hello Chris!
+     => nil
+     irb(main):023:0> hi
+     Hello World!
+     => nil
+
+   A couple of other tricks to spot here.  One is that we're calling
+the method without parentheses again.  If it's obvious what you’re
+doing, the parentheses are optional.  The other trick is the default
+parameter World.  What this is saying is "If the name isn't supplied,
+use the default name of "World"".
+
+Create a Class
+--------------
+
+What if we want a real greeter around, one that remembers your name
+and welcomes you and treats you always with respect.  You might want
+to use an object for that.  Let’s create a “Greeter” class.
+
+     irb(main):024:0> class Greeter
+     irb(main):025:1>   def initialize(name = "World")
+     irb(main):026:2>     @name = name
+     irb(main):027:2>   end
+     irb(main):028:1>   def say_hi
+     irb(main):029:2>     puts "Hi #{@name}!"
+     irb(main):030:2>   end
+     irb(main):031:1>   def say_bye
+     irb(main):032:2>     puts "Bye #{@name}, come back soon."
+     irb(main):033:2>   end
+     irb(main):034:1> end
+     => :say_bye
+
+   The new keyword here is 'class'.  This defines a new class called
+'Greeter' and a bunch of methods for that class.  Also notice '@name'.
+This is an instance variable, and is available to all the methods of
+the class.  As you can see it’s used by 'say_hi' and 'say_bye'.
+
+Create an Object
+----------------
+
+Now let’s create a greeter object and use it:
+
+     irb(main):035:0> greeter = Greeter.new("Pat")
+     => #<Greeter:0x16cac @name="Pat">
+     irb(main):036:0> greeter.say_hi
+     Hi Pat!
+     => nil
+     irb(main):037:0> greeter.say_bye
+     Bye Pat, come back soon.
+     => nil
+
+Instance Variables
+------------------
+
+Instance variables are hidden away inside the object.  They’re not
+terribly hidden, you see them whenever you inspect the object, and
+there are other ways of accessing them, but Ruby uses the good
+object-oriented approach of keeping data sort-of hidden away.
+
+   So what methods do exist for Greeter objects?
+
+   'Object#instance_methods'
+
+     irb(main):039:0> Greeter.instance_methods
+     => [:say_hi, :say_bye, :instance_of?, :public_send,
+         :instance_variable_get, :instance_variable_set,
+         :instance_variable_defined?, :remove_instance_variable,
+         :private_methods, :kind_of?, :instance_variables, :tap,
+         :is_a?, :extend, :define_singleton_method, :to_enum,
+         :enum_for, :<=>, :===, :=~, :!~, :eql?, :respond_to?,
+         :freeze, :inspect, :display, :send, :object_id, :to_s,
+         :method, :public_method, :singleton_method, :nil?, :hash,
+         :class, :singleton_class, :clone, :dup, :itself, :taint,
+         :tainted?, :untaint, :untrust, :trust, :untrusted?, :methods,
+         :protected_methods, :frozen?, :public_methods, :singleton_methods,
+         :!, :==, :!=, :__send__, :equal?, :instance_eval, :instance_exec, :__id__]
+
+   We only defined two methods.  What’s going on here?  Well this is
+all of the methods for Greeter objects, a complete list, including
+ones defined by ancestor classes.  If we want to just list methods
+defined for Greeter we can tell it to not include ancestors by passing
+it the parameter false, meaning we don’t want methods defined by
+ancestors.
+
+   'Object#instance_methods(false)'
+
+     irb(main):040:0> Greeter.instance_methods(false)
+     => [:say_hi, :say_bye]
+
+   So let’s see which methods our greeter object responds to:
+
+   'Object#respond_to?'
+
+     irb(main):041:0> greeter.respond_to?("name")
+     => false
+     irb(main):042:0> greeter.respond_to?("say_hi")
+     => true
+     irb(main):043:0> greeter.respond_to?("to_s")
+     => true
+
+   So, it knows 'say_hi', and 'to_s' (meaning convert something to a
+string, a method that's defined by default for every object), but it
+doesn't know 'name'.
+
+
+File: Ruby2_5.info,  Node: Altering Classes,  Next: Large Class Definition,  Prev: Defining Methods,  Up: Ruby in Twenty Minutes
+
+2.3.5.3 Altering Classes
+........................
+
+But what if you want to be able to view or change the name?  Ruby
+provides an easy way of providing access to an object's variables.
+
+   'attr_accessor :name'
+
+     irb(main):044:0> class Greeter
+     irb(main):045:1>   attr_accessor :name
+     irb(main):046:1> end
+     => nil
+
+   In Ruby, you can open a class up again and modify it.  The changes
+will be present in any new objects you create and even available in
+existing objects of that class.  So, let’s create a new object and
+play with its '@name' property.
+
+     irb(main):047:0> greeter = Greeter.new("Andy")
+     => #<Greeter:0x3c9b0 @name="Andy">
+     irb(main):048:0> greeter.respond_to?("name")
+     => true
+     irb(main):049:0> greeter.respond_to?("name=")
+     => true
+     irb(main):050:0> greeter.say_hi
+     Hi Andy!
+     => nil
+     irb(main):051:0> greeter.name="Betty"
+     => "Betty"
+     irb(main):052:0> greeter
+     => #<Greeter:0x3c9b0 @name="Betty">
+     irb(main):053:0> greeter.name
+     => "Betty"
+     irb(main):054:0> greeter.say_hi
+     Hi Betty!
+     => nil
+
+   Using 'attr_accessor' defined two new methods for us, 'name' to get
+the value, and 'name=' to set it.
+
+
+File: Ruby2_5.info,  Node: Large Class Definition,  Next: Run MegaGreeter,  Prev: Altering Classes,  Up: Ruby in Twenty Minutes
+
+2.3.5.4 Large Class Definition
+..............................
+
+What if we had some kind of MegaGreeter that could either greet the
+world, one person, or a whole list of people?  Let’s write this one in
+a file instead of directly in the interactive Ruby interpreter IRB.
+
+{'ri20min.rb'} ==
+     #!/usr/bin/env ruby
+
+     class MegaGreeter
+       attr_accessor :names
+
+       <MegaGreeter--Initialize Method>
+       <MegaGreeter--say_hi Method>
+       <MegaGreeter--say_bye Method>
+     end
+
+     if __FILE__ == $0
+       <MegaGreeter--Main Script>
+     end
+
+
+The following table lists called chunk definition points.
+Chunk name                First definition point
+-------------------------------------------------------------------------
+<MegaGreeter--Initialize  See *note MegaGreeter---Initialize-Method::.
+Method>
+<MegaGreeter--Main        See *note MegaGreeter---Main-Script::.
+Script>
+<MegaGreeter--say_bye     See *note MegaGreeter---say-bye-Method::.
+Method>
+<MegaGreeter--say_hi      See *note MegaGreeter---say-hi-Method::.
+Method>
+
+Initialize Method
+.................
+
+<MegaGreeter--Initialize Method> ==
+       # Create the object
+       def initialize(names = "World")
+         @names = names
+       end
+
+
+This chunk is called by {'ri20min.rb'}; see its first definition at
+*note ri20min-rb::.
+
+'say_hi' Method
+---------------
+
+The 'say_hi' method has become a bit more complicated.  It now looks
+at the '@names' instance variable to make decisions.  If it's 'nil',
+it just prints out three dots.  No point greeting nobody, right?
+
+   If the '@names' object responds to each, it is something that you
+can iterate over, so iterate over it and greet each person in turn.
+Finally, if '@names' is anything else, just let it get turned into a
+string automatically and do the default greeting.
+
+<MegaGreeter--say_hi Method> ==
+       # Say hi to everybody
+       def say_hi
+         if @names.nil?
+           puts "..."
+         elsif @names.respond_to?("each")
+           # @names is a list of some kind, iterate!
+           @names.each do |name|
+             puts "Hello #{name}!"
+           end
+         else
+           puts "Hello #{@names}!"
+         end
+       end
+
+
+This chunk is called by {'ri20min.rb'}; see its first definition at
+*note ri20min-rb::.
+
+The Iterator
+............
+
+Let’s look at that iterator in more depth:
+
+     @names.each do |name|
+       puts "Hello #{name}!"
+     end
+
+   'each' is a method that accepts a block of code then runs that
+block of code for every element in a list, and the bit between 'do'
+and 'end' is just such a block.  A "block" is like an anonymous
+function or lambda.  The variable between pipe characters is the
+parameter for this block.
+
+   What happens here is that for every entry in a list, 'name' is
+bound to that list element, and then the expression puts '"Hello
+#{name}!"' is run with that name.
+
+   Internally, the 'each' method will essentially call 'yield'
+'"Albert"', then 'yield' '"Brenda"' and then 'yield' '"Charles"', and
+so on.
+
+The Real Power of Blocks
+........................
+
+The real power of blocks is when dealing with things that are more
+complicated than lists.  Beyond handling simple housekeeping details
+within the method, you can also handle setup, teardown, and errors—all
+hidden away from the cares of the user.
+
+'say_bye' Method
+----------------
+
+The 'say_bye' method doesn't use 'each'; instead it checks to see if
+'@names' "responds" to the 'join' method, and if so, uses it.
+Otherwise, it just prints out the variable as a string.
+
+Duck Typing
+...........
+
+This method of not caring about the actual type of a variable, just
+relying on what methods it supports is known as "Duck Typing", as in
+"if it walks like a duck and quacks like a duck...".  The benefit of
+this is that it doesn't unnecessarily restrict the types of variables
+that are supported.  If someone comes up with a new kind of list
+class, as long as it implements the 'join' method with the same
+semantics as other lists, everything will work as planned.
+
+<MegaGreeter--say_bye Method> ==
+       # Say bye to everybody
+       def say_bye
+         if @names.nil?
+           puts "..."
+         elsif @names.respond_to?("join")
+           # Join the list elements with commas
+           puts "Goodbye #{@names.join(", ")}.  Come back soon!"
+         else
+           puts "Goodbye #{@names}.  Come back soon!"
+         end
+       end
+
+
+This chunk is called by {'ri20min.rb'}; see its first definition at
+*note ri20min-rb::.
+
+MegaGreeter Main Script
+-----------------------
+
+There’s one final trick to notice, and that’s the line:
+
+     if __FILE__ == $0
+
+   __FILE__ is the magic variable that contains the name of the
+current file.  $0 is the name of the file used to start the program.
+This check says "If this is the main file being used..." This allows a
+file to be used as a library, and not to execute code in that context,
+but if the file is being used as an executable, then execute that
+code.
+
+<MegaGreeter--Main Script> ==
+       mg = MegaGreeter.new
+       mg.say_hi
+       mg.say_bye
+
+       # Change name to be "Zeke"
+       mg.names = "Zeke"
+       mg.say_hi
+       mg.say_bye
+
+       # Change the name to an array of names
+       mg.names = ["Albert", "Brenda", "Charles",
+                   "Dave", "Engelbert"]
+       mg.say_hi
+       mg.say_bye
+
+       # Change to nil
+       mg.names = nil
+       mg.say_hi
+       mg.say_bye
+
+
+This chunk is called by {'ri20min.rb'}; see its first definition at
+*note ri20min-rb::.
+
+
+File: Ruby2_5.info,  Node: Run MegaGreeter,  Prev: Large Class Definition,  Up: Ruby in Twenty Minutes
+
+2.3.5.5 Run MegaGreeter
+.......................
+
+Run the program 'ri20min.rb' as 'ruby ri20min.rb'.  The output should
+be:
+
+     Hello World!
+     Goodbye World.  Come back soon!
+     Hello Zeke!
+     Goodbye Zeke.  Come back soon!
+     Hello Albert!
+     Hello Brenda!
+     Hello Charles!
+     Hello Dave!
+     Hello Engelbert!
+     Goodbye Albert, Brenda, Charles, Dave, Engelbert.  Come back soon!
+     ...
+     ...
 
 
 File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Learning Ruby,  Prev: Ruby in Twenty Minutes,  Up: Getting Started
@@ -1468,6 +1934,7 @@ A.1 Makefile Variable Definitions
 
 <Makefile--Variable Definitions> ==
      FILE := Ruby2_5
+     SHELL := /bin/bash
 
 
 This chunk is called by {'Makefile'}; see its first definition at
@@ -1480,8 +1947,9 @@ A.2 Default Rule
 ================
 
 <Makefile--Default Rule> ==
-     .PHONY : default TANGLE WEAVE TEXI PDF HTML
-     default : WEAVE TEXI PDF HTML
+     .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
+     .PHONY : twjr tangle weave texi pdf html
+     default : TEXI PDF HTML
 
 
 This chunk is called by {'Makefile'}; see its first definition at
@@ -1494,6 +1962,9 @@ A.3 TWJR Rules
 ==============
 
 <Makefile--TWJR Rules> ==
+     TWJR : twjr
+     twjr : tangle weave
+
      TANGLE : tangle
      tangle : $(FILE).twjr
          jrtangle $(FILE).twjr
@@ -1528,16 +1999,18 @@ A.4 Clean Rules
 ===============
 
 <Makefile--Clean Rules> ==
-     .PHONY : clean distclean worldclean
+     .PHONY : clean distclean veryclean worldclean
      clean :
          rm -f *~ \#*\#
 
      distclean : clean
          rm -f *.{aux,log,toc,cp,cps}
 
-     worldclean : distclean
-         rm -f $(FILE).{texi,info,pdf}
-         rm -fr $(FILE)/
+     veryclean : clean
+         for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+
+     worldclean : veryclean
+         rm -fr $(FILE).{texi,info,pdf} $(FILE)/
 
 
 This chunk is called by {'Makefile'}; see its first definition at
@@ -1567,6 +2040,8 @@ B.1 Source File Definitions
 
 {'Makefile'}
      This chunk is defined in *note Makefile::.
+{'ri20min.rb'}
+     This chunk is defined in *note ri20min-rb::.
 
 
 File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,  Prev: File Definitions,  Up: Code Chunk Summaries
@@ -1582,6 +2057,14 @@ B.2 Code Chunk Definitions
      This chunk is defined in *note Makefile---TWJR-Rules::.
 <Makefile--Variable Definitions>
      This chunk is defined in *note Makefile---Variable-Definitions::.
+<MegaGreeter--Initialize Method>
+     This chunk is defined in *note MegaGreeter---Initialize-Method::.
+<MegaGreeter--Main Script>
+     This chunk is defined in *note MegaGreeter---Main-Script::.
+<MegaGreeter--say_bye Method>
+     This chunk is defined in *note MegaGreeter---say-bye-Method::.
+<MegaGreeter--say_hi Method>
+     This chunk is defined in *note MegaGreeter---say-hi-Method::.
 
 
 File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,  Up: Code Chunk Summaries
@@ -1605,6 +2088,22 @@ B.3 Code Chunk References
 
      This chunk is called by {'Makefile'}; see its first definition at
      *note Makefile::.
+<MegaGreeter--Initialize Method>
+
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
+<MegaGreeter--Main Script>
+
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
+<MegaGreeter--say_bye Method>
+
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
+<MegaGreeter--say_hi Method>
+
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
 
 
 File: Ruby2_5.info,  Node: Bibliography,  Next: Concept Index,  Prev: Code Chunk Summaries,  Up: Top
@@ -1640,17 +2139,41 @@ Index
 * <Makefile--Variable Definitions>, definition: Makefile Variable Definitions.
                                                             (line   6)
 * <Makefile--Variable Definitions>, use: The Makefile.      (line   6)
+* <MegaGreeter--Initialize Method>, definition: Large Class Definition.
+                                                            (line  41)
+* <MegaGreeter--Initialize Method>, use: Large Class Definition.
+                                                            (line  10)
+* <MegaGreeter--Main Script>, definition: Large Class Definition.
+                                                            (line 162)
+* <MegaGreeter--Main Script>, use:       Large Class Definition.
+                                                            (line  10)
+* <MegaGreeter--say_bye Method>, definition: Large Class Definition.
+                                                            (line 131)
+* <MegaGreeter--say_bye Method>, use:    Large Class Definition.
+                                                            (line  10)
+* <MegaGreeter--say_hi Method>, definition: Large Class Definition.
+                                                            (line  63)
+* <MegaGreeter--say_hi Method>, use:     Large Class Definition.
+                                                            (line  10)
 * \Z:                                    FAQ Built-In Libraries.
                                                             (line  54)
+* __FILE__ special variable:             Large Class Definition.
+                                                            (line 151)
 * {Makefile}, definition:                The Makefile.      (line   6)
+* {ri20min.rb}, definition:              Large Class Definition.
+                                                            (line  10)
 * ArgumentError, after calling super:    FAQ Methods.       (line  39)
 * arithmetic:                            FAQ Extension Library.
                                                             (line  26)
 * array, sum elements in:                FAQ Other Features.
                                                             (line  18)
+* attr_accessor :name:                   Altering Classes.  (line   9)
+* attr_accessor, methods defined:        Altering Classes.  (line  41)
 * binary Ruby extension modules:         FAQ Syntax.        (line 249)
 * binding of { ... }:                    FAQ Iterators.     (line  36)
 * binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
+* block:                                 Large Class Definition.
+                                                            (line  85)
 * block object, passed to iterator:      FAQ Iterators.     (line   9)
 * block, used in an iterator:            FAQ Iterators.     (line  56)
 * block_given?:                          FAQ Iterators.     (line 112)
@@ -1660,10 +2183,12 @@ Index
                                                             (line  15)
 * calling method 2 levels up:            FAQ Methods.       (line  42)
 * chruby:                                chruby.            (line   6)
+* class definition:                      Defining Methods.  (line  70)
 * class definition, repeating:           FAQ Classes and Modules.
                                                             (line   9)
 * class instance variable?:              FAQ Classes and Modules.
                                                             (line  15)
+* class keyword:                         Defining Methods.  (line  70)
 * class methods, defining, 2 ways:       FAQ Classes and Modules.
                                                             (line  39)
 * class methods?:                        FAQ Classes and Modules.
@@ -1674,17 +2199,21 @@ Index
                                                             (line  12)
 * class vs module:                       FAQ Classes and Modules.
                                                             (line  30)
+* classes, modifying:                    Altering Classes.  (line  19)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
 * continuations, using:                  FAQ Other Features.
                                                             (line  20)
 * dangerous, destructive methods:        FAQ Methods.       (line  51)
 * debugger for Ruby:                     FAQ Extension Library.
                                                             (line  12)
+* def:                                   Defining Methods.  (line   6)
 * destructive method:                    FAQ Methods.       (line  48)
 * developing Ruby:                       Developing Ruby.   (line   6)
 * DLLs:                                  FAQ Syntax.        (line 249)
 * do ... } while:                        FAQ Syntax.        (line 156)
 * Documentation:                         Documentation.     (line   6)
+* duck typing:                           Large Class Definition.
+                                                            (line 123)
 * each method of iterator:               FAQ Iterators.     (line  25)
 * empty string:                          FAQ Syntax.        (line  73)
 * ensure clause:                         FAQ Syntax.        (line 265)
@@ -1723,17 +2252,27 @@ Index
 * immediate values:                      FAQ Syntax.        (line  46)
 * include vs extend:                     FAQ Classes and Modules.
                                                             (line  42)
+* initialize method:                     Large Class Definition.
+                                                            (line  41)
+* insert code into a string:             Defining Methods.  (line  43)
 * installer, third party:                Installers.        (line   6)
+* instance variable:                     Defining Methods.  (line  86)
 * instance variables, accessing:         FAQ Methods.       (line  27)
+* instance variables, encapsulation:     Defining Methods.  (line 109)
 * instance_methods(false):               FAQ Built-In Libraries.
                                                             (line   9)
 * interactively use Ruby:                FAQ Extension Library.
                                                             (line   9)
 * invoking original method after redefinition: FAQ Methods. (line  45)
+* irb:                                   Interactive Ruby.  (line   6)
 * issue tracker:                         Developing Ruby.   (line  62)
 * issue tracking:                        Issue Tracking.    (line   6)
+* iterator:                              Large Class Definition.
+                                                            (line  85)
 * iterator, block:                       FAQ Iterators.     (line  56)
 * iterators:                             FAQ Iterators.     (line   6)
+* join method, respond to:               Large Class Definition.
+                                                            (line 116)
 * Kernel:                                FAQ Syntax.        (line 149)
 * lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
 * line number of input file:             FAQ Built-In Libraries.
@@ -1746,8 +2285,11 @@ Index
                                                             (line  60)
 * MatchData#begin and MatchData#end:     FAQ Other Features.
                                                             (line  15)
+* method parameters:                     Defining Methods.  (line  33)
 * method, destructive:                   FAQ Methods.       (line  48)
 * method, invoking:                      FAQ Methods.       (line   9)
+* method, invoking <1>:                  Defining Methods.  (line  26)
+* methods, defining:                     Defining Methods.  (line   6)
 * mixin example:                         FAQ Classes and Modules.
                                                             (line  36)
 * module function?:                      FAQ Classes and Modules.
@@ -1759,7 +2301,13 @@ Index
 * multiple Rubies, command-line tool uru: uru.              (line   6)
 * nil and false, similariaties and differences: FAQ Syntax. (line  59)
 * NilClass:                              FAQ Syntax.        (line  64)
+* Object#instance_methods:               Defining Methods.  (line 116)
+* Object#respond_to?:                    Defining Methods.  (line 146)
+* object, create from class definition:  Defining Methods.  (line  95)
 * operators?:                            FAQ Methods.       (line  12)
+* parameters, methods:                   Defining Methods.  (line  33)
+* parentheses, optional:                 Defining Methods.  (line  26)
+* parentheses, optional <1>:             Defining Methods.  (line  60)
 * Patch Writer's Guide:                  Developing Ruby.   (line  73)
 * patching of Ruby:                      Developing Ruby.   (line  38)
 * precedence of or:                      FAQ Syntax.        (line 211)
@@ -1780,6 +2328,10 @@ Index
 * repository, Subversion:                Developing Ruby.   (line  49)
 * require:                               FAQ Syntax.        (line 245)
 * rescue clause:                         FAQ Syntax.        (line 265)
+* respond to message, instance variable: Large Class Definition.
+                                                            (line  54)
+* respond_to? method:                    Large Class Definition.
+                                                            (line  54)
 * respository, GitHub:                   Developing Ruby.   (line  54)
 * return mutliple values:                FAQ Methods.       (line  53)
 * Rubies, switch between:                Installers.        (line   6)
@@ -1788,6 +2340,8 @@ Index
 * Ruby development, tracking:            Developing Ruby.   (line  26)
 * ruby-build plugin:                     ruby-build.        (line   6)
 * RVM version manager:                   Installers.        (line   6)
+* script code:                           Large Class Definition.
+                                                            (line 151)
 * self, meaning:                         FAQ Classes and Modules.
                                                             (line  44)
 * send:                                  FAQ Syntax.        (line 129)
@@ -1833,6 +2387,8 @@ Index
 * visibility, changing:                  FAQ Methods.       (line  33)
 * xforms:                                FAQ Extension Library.
                                                             (line  24)
+* yield:                                 Large Class Definition.
+                                                            (line  85)
 * yield control structor, or statement:  FAQ Iterators.     (line  56)
 * yield control structure in iterator:   FAQ Iterators.     (line  61)
 
@@ -1840,83 +2396,93 @@ Index
 
 Tag Table:
 Node: Top371
-Node: Preface2193
-Node: Audience2376
-Node: Overview2495
-Node: Conventions2665
-Node: Acknowledgements3585
-Node: Introduction3701
-Node: Documentation3998
-Node: Installing Ruby4403
-Node: Package Management Systems5316
-Node: Homebrew (OS X)6141
-Node: Installers6567
-Node: ruby-build7163
-Node: ruby-install7716
-Node: Managers8331
-Node: chruby8728
-Node: rbenv8987
-Node: RVM (``Ruby Version Manager'')9532
-Node: uru9930
-Node: Building From Source10223
-Node: Releases Page11235
-Node: Branches Page12335
-Node: Issue Tracking14135
-Node: Developing Ruby14619
-Ref: subversion15369
-Ref: MainRubyRepo16521
-Ref: PatchByPatch16849
-Node: Getting Started17646
-Node: Try Ruby!18002
-Node: Official FAQ18332
-Node: FAQ Iterators19409
-Node: FAQ Syntax23348
-Ref: immediate value24493
-Ref: nil vs false25128
-Ref: empty string25742
-Ref: symbol object26095
-Ref: value of symbol27233
-Ref: loop28111
-Ref: post-test loop28337
-Ref: hash literal28763
-Ref: pos val29045
-Ref: \1 and \\129421
-Ref: 2 dots vs 3 dots29829
-Ref: or and30067
-Ref: function pointers30869
-Ref: load vs require31191
-Ref: exception handling31546
-Node: FAQ Methods32543
-Node: FAQ Classes and Modules34216
-Node: FAQ Built-In Libraries35402
-Node: FAQ Extension Library37380
-Node: FAQ Other Features38059
-Node: Ruby Koans38609
-Node: Why’s (Poignant) Guide to Ruby38805
-Node: Ruby in Twenty Minutes39279
-Node: Ruby from Other Languages39690
-Node: Learning Ruby39985
-Node: Ruby Essentials40351
-Node: Learn to Program40582
-Node: Manuals40959
-Node: Reference Documentation41098
-Node: Editors and IDEs41270
-Node: Further Reading41436
-Node: The Makefile41568
-Ref: Makefile41721
-Node: Makefile Variable Definitions42440
-Ref: Makefile---Variable-Definitions42618
-Node: Makefile Default Rule42762
-Ref: Makefile---Default-Rule42934
-Node: Makefile TWJR Rules43133
-Ref: Makefile---TWJR-Rules43292
-Node: Makefile Clean Rules43880
-Ref: Makefile---Clean-Rules44011
-Node: Code Chunk Summaries44358
-Node: File Definitions44743
-Node: Code Chunk Definitions44967
-Node: Code Chunk References45520
-Node: Bibliography46169
-Node: Concept Index46300
+Node: Preface2328
+Node: Audience2511
+Node: Overview2630
+Node: Conventions2800
+Node: Acknowledgements3720
+Node: Introduction3836
+Node: Documentation4133
+Node: Installing Ruby4538
+Node: Package Management Systems5451
+Node: Homebrew (OS X)6276
+Node: Installers6702
+Node: ruby-build7298
+Node: ruby-install7851
+Node: Managers8466
+Node: chruby8863
+Node: rbenv9122
+Node: RVM (``Ruby Version Manager'')9667
+Node: uru10065
+Node: Building From Source10358
+Node: Releases Page11370
+Node: Branches Page12470
+Node: Issue Tracking14270
+Node: Developing Ruby14754
+Ref: subversion15504
+Ref: MainRubyRepo16656
+Ref: PatchByPatch16984
+Node: Getting Started17781
+Node: Try Ruby!18137
+Node: Official FAQ18467
+Node: FAQ Iterators19544
+Node: FAQ Syntax23483
+Ref: immediate value24628
+Ref: nil vs false25263
+Ref: empty string25877
+Ref: symbol object26230
+Ref: value of symbol27368
+Ref: loop28246
+Ref: post-test loop28472
+Ref: hash literal28898
+Ref: pos val29180
+Ref: \1 and \\129556
+Ref: 2 dots vs 3 dots29964
+Ref: or and30202
+Ref: function pointers31004
+Ref: load vs require31326
+Ref: exception handling31681
+Node: FAQ Methods32678
+Node: FAQ Classes and Modules34351
+Node: FAQ Built-In Libraries35537
+Node: FAQ Extension Library37515
+Node: FAQ Other Features38194
+Node: Ruby Koans38744
+Node: Why’s (Poignant) Guide to Ruby39148
+Node: Ruby in Twenty Minutes39622
+Node: Interactive Ruby40295
+Node: Defining Methods41249
+Node: Altering Classes46753
+Node: Large Class Definition48089
+Ref: ri20min-rb48493
+Ref: MegaGreeter---Initialize-Method49302
+Ref: MegaGreeter---say-hi-Method50024
+Ref: MegaGreeter---say-bye-Method52241
+Ref: MegaGreeter---Main-Script53189
+Node: Run MegaGreeter53721
+Node: Ruby from Other Languages54247
+Node: Learning Ruby54542
+Node: Ruby Essentials54908
+Node: Learn to Program55139
+Node: Manuals55516
+Node: Reference Documentation55655
+Node: Editors and IDEs55827
+Node: Further Reading55993
+Node: The Makefile56125
+Ref: Makefile56278
+Node: Makefile Variable Definitions56997
+Ref: Makefile---Variable-Definitions57175
+Node: Makefile Default Rule57343
+Ref: Makefile---Default-Rule57515
+Node: Makefile TWJR Rules57759
+Ref: Makefile---TWJR-Rules57918
+Node: Makefile Clean Rules58549
+Ref: Makefile---Clean-Rules58680
+Node: Code Chunk Summaries59137
+Node: File Definitions59522
+Node: Code Chunk Definitions59811
+Node: Code Chunk References60754
+Node: Bibliography61918
+Node: Concept Index62049
 
 End Tag Table
