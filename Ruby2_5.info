@@ -119,6 +119,15 @@ Ruby in Twenty Minutes
 * Large Class Definition::
 * Run MegaGreeter::
 
+Ruby from Other Languages
+
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+* Important Language Features::
+
 The Makefile
 
 * Makefile Variable Definitions::
@@ -1840,6 +1849,269 @@ File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Learning Ruby,  Pre
 Ruby from Other Languages
 (https://www.ruby-lang.org/en/documentation/ruby-from-other-languages/)
 
+   This document contains two major sections.  The first attempts to
+be a rapid-fire summary of what you can expect to see when going from
+language X to Ruby.  The second section tackles the major language
+features and how they might compare to what you’re already familiar
+with.
+
+* Menu:
+
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+* Important Language Features::
+
+
+File: Ruby2_5.info,  Node: To Ruby From C and C++,  Next: To Ruby From Java,  Up: Ruby from Other Languages
+
+2.3.6.1 To Ruby From C and C++
+..............................
+
+Everything Is Differerent
+-------------------------
+
+It's difficult to write a bulleted list describing how your code will
+be different in Ruby from C or C++ because it's quite a large
+difference.  One reason is that the Ruby runtime does so much for you.
+Ruby seems about as far as you can get from C's "no hidden mechanism"
+principle--the whole point of Ruby is to make the human's job easier
+at the expense of making the runtime shoulder more of the work.
+
+Ruby is Quicker to Code But Slower to Execute
+.............................................
+
+That said, for one thing, you can expect your Ruby code to execute
+much more slowly than "equivalent" C or C++ code.  At the same time,
+your head will spin at how rapidly you can get a Ruby program up and
+running, as well as at how few lines of code it will take to write it.
+Ruby is much much simpler than C++.
+
+Dynamically Typed
+-----------------
+
+Ruby is dynamically typed, rather than statically typed--the runtime
+does as much as possible at run-time.  For example, you don't need to
+know what modules your Ruby program will "link to" (that is, load and
+use) or what methods it will call ahead of time.
+
+Extension Modules
+-----------------
+
+Happily, it turns out that Ruby and C have a healthy symbiotic
+relationship.  Ruby supports so-called "extension modules".  These are
+modules that you can use from your Ruby programs (and which, from the
+outside, will look and act just like any other Ruby module), but which
+are written in C. In this way, you can compartmentalize the
+performance-critical parts of your Ruby software, and smelt those down
+to pure C.
+
+   And, of course, Ruby itself is written in C.
+
+Similarities With C
+-------------------
+
+   * You may program procedurally if you like (but it will still be
+     object-oriented behind the scenes).
+   * Most of the operators are the same (including the compound
+     assignment and also bitwise operators).  Though, Ruby doesn’t
+     have '++' or '--'.
+   * Ruby has __FILE__ and __LINE__.
+   * You can also have constants, though there’s no special const
+     keyword.  'Const'-ness is enforced by a naming convention instead
+     -- names starting with a capital letter are for constants.
+   * Strings go in double-quotes and are mutable
+   * Just like man pages, you can read most docs in your terminal
+     window -- though using the 'ri' command.
+   * You’ve got the same sort of command-line debugger available.
+
+Similarities with C++
+---------------------
+
+   * You’ve got mostly the same operators (even '::').  '<<' is often
+     used for appending elements to a list.  One note though: with
+     Ruby you never use '->' -- it's always just '.'.
+   * 'public', 'private', and 'protected' do similar jobs.
+   * Inheritance syntax is still only one character, but it's '<'
+     instead of ':'.
+   * You may put your code into "modules", similar to how 'namespace'
+     in C++ is used.
+   * Exceptions work in a similar manner, though the keyword names
+     have been changed to protect the innocent.
+
+Differences From C
+------------------
+
+   * You don’t need to compile your code.  You just run it directly.
+   * Objects are strongly typed (and variable names themselves have no
+     type at all).
+   * There’s no macros or preprocessor; no casts; no pointers (nor
+     pointer arithmetic); no typedefs, sizeof, or enums.
+   * There are no header files.  You just define your functions
+     (usually referred to as "methods") and classes in the main source
+     code files.
+   * There’s no '#define'.  Just use constants instead.
+   * All variables live on the heap.  Further, you don’t need to free
+     them yourself -- the garbage collector takes care of that.
+   * Arguments to methods (i.e.  functions) are passed by value, where
+     the values are always object references.
+   * It's 'require 'foo'' instead of '#include <foo>' or '#include
+     "foo"'.
+   * You cannot drop down to assembly.
+   * There’s no semicolons ending lines.
+   * You go without parentheses for 'if' and 'while' condition
+     expressions.
+   * Parentheses for method (i.e.  function) calls are often optional.
+   * You don’t usually use braces -- just end multi-line constructs
+     (like 'while' loops) with an 'end' keyword.
+   * The 'do' keyword is for so-called "blocks".  There’s no "do
+     statement" like in C.
+   * The term "block" means something different.  It's for a block of
+     code that you associate with a method call so the method body can
+     call out to the block while it executes.
+   * There are no variable declarations.  You just assign to new names
+     on-the-fly when you need them.
+   * When tested for truth, only 'false' and 'nil' evaluate to a
+     'false' value.  Everything else is true (including '0', '0.0',
+     and '"0"').
+   * There is no 'char' -- they are just 1-letter strings.
+   * Strings don’t end with a null byte.
+   * Array literals go in brackets instead of braces.
+   * Arrays just automatically get bigger when you stuff more elements
+     into them.
+   * If you add two arrays, you get back a new and bigger array (of
+     course, allocated on the heap) instead of doing pointer
+     arithmetic.
+   * More often than not, everything is an expression (that is, things
+     like 'while' statements actually evaluate to an 'rvalue').
+
+Differences from C++
+--------------------
+
+   * There’s no explicit references.  That is, in Ruby, every variable
+     is just an automatically dereferenced name for some object.
+   * Objects are strongly but _dynamically_ typed.  The runtime
+     discovers _at runtime_ if that method call actually works.
+   * The "constructor" is called 'initialize' instead of the class
+     name.
+   * All methods are always virtual.
+   * "Class" ('static') variable names always begin with '@@' (as in
+     '@@total_widgets').
+   * You don’t directly access member variables -- all access to
+     public member variables (known in Ruby as "attributes") is via
+     methods.
+   * It's 'self' instead of 'this'.
+   * Some methods end in a '?' or a '!'.  It's actually part of the
+     method name.
+   * There's no multiple inheritance per se.  Though Ruby has "mixins"
+     (i.e.  you can "inherit" all instance methods of a module).
+   * There are some enforced case-conventions (ex.  class names start
+     with a capital letter, variables start with a lowercase letter).
+   * Parentheses for method calls are usually optional.
+   * You can re-open a class anytime and add more methods.
+   * There’s no need of C++ templates (since you can assign any kind
+     of object to a given variable, and types get figured out at
+     runtime anyway).  No casting either.
+   * Iteration is done a bit differently.  In Ruby, you don't use a
+     separate iterator object (like 'vector<T>::const_iterator iter').
+     Instead you use an iterator method of the container object (like
+     'each') that takes a block of code to which it passes successive
+     elements.
+   * There’s only two container types: 'Array' and 'Hash'.
+   * There’s no type conversions.  With Ruby though, you’ll probably
+     find that they aren’t necessary.
+   * Multithreading is built-in, but as of Ruby 1.8 they are "green
+     threads" (implemented only within the interpreter) as opposed to
+     native threads.
+   * A unit testing lib comes standard with Ruby.
+
+
+File: Ruby2_5.info,  Node: To Ruby From Java,  Next: To Ruby From Perl,  Prev: To Ruby From C and C++,  Up: Ruby from Other Languages
+
+2.3.6.2 To Ruby From Java
+.........................
+
+Ruby is Less Verbose
+--------------------
+
+Java is mature.  It's tested.  And it's fast (contrary to what the
+anti-Java crowd may still claim).  It's also quite verbose.  Going
+from Java to Ruby, expect your code size to shrink down considerably.
+You can also expect it to take less time to knock together quick
+prototypes.
+
+Similarities with Java
+----------------------
+
+   * Memory is managed for you via a garbage collector.
+   * Objects are strongly typed.
+   * There are 'public', 'private', and 'protected' methods.
+   * There are embedded doc tools (Ruby's is called 'RDoc').  The docs
+     generated by 'rdoc' look very similar to those generated by
+     'javadoc'.
+
+Differences From Java
+---------------------
+
+   * You don’t need to compile your code.  You just run it directly.
+   * There are several different popular third-party GUI toolkits.
+     Ruby users can try 'WxRuby', 'FXRuby', 'Ruby-GNOME2', 'Qt', or
+     the bundled-in 'Ruby Tk' for example.
+   * You use the 'end' keyword after defining things like classes,
+     instead of having to put braces around blocks of code.
+   * You have 'require' instead of 'import'.
+   * All member variables are private.  From the outside, you access
+     everything via methods.
+   * Parentheses in method calls are usually optional and often
+     omitted.
+   * Everything is an object, including numbers like '2' and
+     '3.14159'.
+   * There’s no static type checking.
+   * Variable names are just labels.  They don’t have a type
+     associated with them.
+   * There are no type declarations.  You just assign to new variable
+     names as-needed and they just "spring up" (i.e.  'a = [1,2,3]'
+     rather than 'int[] a = {1,2,3};').
+   * There’s no casting.  Just call the methods.  Your unit tests
+     should tell you before you even run the code if you’re going to
+     see an exception.
+   * It's 'foo = Foo.new("hi")' instead of 'Foo foo = new Foo("hi")'.
+   * The constructor is always named 'initialize' instead of the name
+     of the class.
+   * You have "mixins" instead of interfaces.
+   * YAML tends to be favored over XML.
+   * It's 'nil' instead of 'null'.
+   * '==' and 'equals()' are handled differently in Ruby.  Use '=='
+     when you want to test "equivalence" in Ruby ('equals()' in Java).
+     Use 'equal?()' when you want to know if two objects are "the
+     same" ('==' in Java).
+
+
+File: Ruby2_5.info,  Node: To Ruby From Perl,  Next: To Ruby From PHP,  Prev: To Ruby From Java,  Up: Ruby from Other Languages
+
+2.3.6.3 To Ruby From Perl
+.........................
+
+
+File: Ruby2_5.info,  Node: To Ruby From PHP,  Next: To Ruby From Python,  Prev: To Ruby From Perl,  Up: Ruby from Other Languages
+
+2.3.6.4 To Ruby From PHP
+........................
+
+
+File: Ruby2_5.info,  Node: To Ruby From Python,  Next: Important Language Features,  Prev: To Ruby From PHP,  Up: Ruby from Other Languages
+
+2.3.6.5 To Ruby From Python
+...........................
+
+
+File: Ruby2_5.info,  Node: Important Language Features,  Prev: To Ruby From Python,  Up: Ruby from Other Languages
+
+2.3.6.6 Important Language Features
+...................................
+
 
 File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Ruby from Other Languages,  Up: Getting Started
 
@@ -2162,6 +2434,7 @@ Index
                                                             (line  63)
 * <MegaGreeter--say_hi Method>, use:     Large Class Definition.
                                                             (line  10)
+* == vs equals():                        To Ruby From Java. (line  59)
 * \Z:                                    FAQ Built-In Libraries.
                                                             (line  54)
 * __FILE__ special variable:             Large Class Definition.
@@ -2169,11 +2442,22 @@ Index
 * {Makefile}, definition:                The Makefile.      (line   6)
 * {ri20min.rb}, definition:              Large Class Definition.
                                                             (line  10)
+* access control:                        To Ruby From Java. (line  36)
 * ArgumentError, after calling super:    FAQ Methods.       (line  39)
 * arithmetic:                            FAQ Extension Library.
                                                             (line  26)
+* Array:                                 To Ruby From C and C++.
+                                                            (line 155)
+* array literals in brackets:            To Ruby From C and C++.
+                                                            (line 114)
 * array, sum elements in:                FAQ Other Features.
                                                             (line  18)
+* arrays are dynamic and mutable:        To Ruby From C and C++.
+                                                            (line 116)
+* arrays, adding:                        To Ruby From C and C++.
+                                                            (line 119)
+* attributes:                            To Ruby From C and C++.
+                                                            (line 137)
 * attr_accessor :name:                   Altering Classes.  (line   9)
 * attr_accessor, methods defined:        Altering Classes.  (line  41)
 * binary Ruby extension modules:         FAQ Syntax.        (line 249)
@@ -2181,14 +2465,25 @@ Index
 * binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
 * block:                                 Large Class Definition.
                                                             (line  85)
+* block <1>:                             To Ruby From C and C++.
+                                                            (line 106)
+* block for iterator:                    To Ruby From C and C++.
+                                                            (line 154)
 * block object, passed to iterator:      FAQ Iterators.     (line   9)
 * block, used in an iterator:            FAQ Iterators.     (line  56)
 * block_given?:                          FAQ Iterators.     (line 112)
 * boolean context:                       FAQ Syntax.        (line  59)
+* braces, none:                          To Ruby From C and C++.
+                                                            (line 101)
 * branches page:                         Branches Page.     (line   6)
 * C library, use:                        FAQ Extension Library.
                                                             (line  15)
 * calling method 2 levels up:            FAQ Methods.       (line  42)
+* case conventions, enforced:            To Ruby From C and C++.
+                                                            (line 144)
+* cast:                                  To Ruby From C and C++.
+                                                            (line 149)
+* casting, none:                         To Ruby From Java. (line  49)
 * chruby:                                chruby.            (line   6)
 * class definition:                      Defining Methods.  (line  70)
 * class definition, repeating:           FAQ Classes and Modules.
@@ -2208,6 +2503,11 @@ Index
                                                             (line  30)
 * classes, modifying:                    Altering Classes.  (line  19)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
+* constructor:                           To Ruby From C and C++.
+                                                            (line 131)
+* constructor <1>:                       To Ruby From Java. (line  52)
+* container types:                       To Ruby From C and C++.
+                                                            (line 155)
 * continuations, using:                  FAQ Other Features.
                                                             (line  20)
 * dangerous, destructive methods:        FAQ Methods.       (line  51)
@@ -2218,14 +2518,22 @@ Index
 * developing Ruby:                       Developing Ruby.   (line   6)
 * DLLs:                                  FAQ Syntax.        (line 249)
 * do ... } while:                        FAQ Syntax.        (line 156)
+* do keyword:                            To Ruby From C and C++.
+                                                            (line 103)
 * Documentation:                         Documentation.     (line   6)
+* documentation tool:                    To Ruby From Java. (line  23)
 * duck typing:                           Large Class Definition.
                                                             (line 123)
+* dynamicly typed:                       To Ruby From C and C++.
+                                                            (line  28)
 * each method of iterator:               FAQ Iterators.     (line  25)
 * empty string:                          FAQ Syntax.        (line  73)
 * ensure clause:                         FAQ Syntax.        (line 265)
+* equivalence vs the same:               To Ruby From Java. (line  59)
 * eval:                                  FAQ Syntax.        (line 115)
 * exception handling:                    FAQ Syntax.        (line 254)
+* extension modules:                     To Ruby From C and C++.
+                                                            (line  36)
 * false and nil:                         FAQ Syntax.        (line  59)
 * FalseClass:                            FAQ Syntax.        (line  64)
 * File object, no reference:             FAQ Built-In Libraries.
@@ -2250,17 +2558,28 @@ Index
                                                             (line  57)
 * function pointers:                     FAQ Syntax.        (line 237)
 * function-like methods, where from?:    FAQ Methods.       (line  24)
+* FXRuby:                                To Ruby From Java. (line  31)
+* garbage collector:                     To Ruby From Java. (line  18)
 * gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
                                                             (line   6)
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
+* green threads vs native threads:       To Ruby From C and C++.
+                                                            (line 160)
 * gtk+:                                  FAQ Extension Library.
                                                             (line  24)
+* GUI toolkits:                          To Ruby From Java. (line  31)
+* Hash:                                  To Ruby From C and C++.
+                                                            (line 155)
+* heap:                                  To Ruby From C and C++.
+                                                            (line  89)
 * identifier with capital letter, method?: FAQ Methods.     (line  36)
 * immediate values:                      FAQ Syntax.        (line  46)
+* import:                                To Ruby From Java. (line  34)
 * include vs extend:                     FAQ Classes and Modules.
                                                             (line  42)
 * initialize method:                     Large Class Definition.
                                                             (line  41)
+* initialize, constructor:               To Ruby From Java. (line  52)
 * insert code into a string:             Defining Methods.  (line  43)
 * installer, third party:                Installers.        (line   6)
 * instance variable:                     Defining Methods.  (line  86)
@@ -2270,14 +2589,20 @@ Index
                                                             (line   9)
 * interactively use Ruby:                FAQ Extension Library.
                                                             (line   9)
+* interfaces, none, use mixins:          To Ruby From Java. (line  53)
 * invoking original method after redefinition: FAQ Methods. (line  45)
 * irb:                                   Interactive Ruby.  (line   6)
 * issue tracker:                         Developing Ruby.   (line  62)
 * issue tracking:                        Issue Tracking.    (line   6)
+* iteration:                             To Ruby From C and C++.
+                                                            (line 154)
 * iterator:                              Large Class Definition.
                                                             (line  85)
+* iterator method:                       To Ruby From C and C++.
+                                                            (line 154)
 * iterator, block:                       FAQ Iterators.     (line  56)
 * iterators:                             FAQ Iterators.     (line   6)
+* javadoc:                               To Ruby From Java. (line  23)
 * join method, respond to:               Large Class Definition.
                                                             (line 116)
 * Kernel:                                FAQ Syntax.        (line 149)
@@ -2292,29 +2617,54 @@ Index
                                                             (line  60)
 * MatchData#begin and MatchData#end:     FAQ Other Features.
                                                             (line  15)
+* member variables, access to:           To Ruby From C and C++.
+                                                            (line 137)
+* memory management:                     To Ruby From Java. (line  18)
 * method parameters:                     Defining Methods.  (line  33)
 * method, destructive:                   FAQ Methods.       (line  48)
 * method, invoking:                      FAQ Methods.       (line   9)
 * method, invoking <1>:                  Defining Methods.  (line  26)
+* methods are virtual:                   To Ruby From C and C++.
+                                                            (line 132)
 * methods, defining:                     Defining Methods.  (line   6)
 * mixin example:                         FAQ Classes and Modules.
                                                             (line  36)
+* mixins:                                To Ruby From C and C++.
+                                                            (line 142)
+* mixins <1>:                            To Ruby From Java. (line  53)
 * module function?:                      FAQ Classes and Modules.
                                                             (line  27)
 * modules, subclassing?:                 FAQ Classes and Modules.
                                                             (line  33)
+* multiple inheritance:                  To Ruby From C and C++.
+                                                            (line 142)
 * multiple installations, manage using RVM: RVM (``Ruby Version Manager'').
                                                             (line   6)
 * multiple Rubies, command-line tool uru: uru.              (line   6)
+* multithreading:                        To Ruby From C and C++.
+                                                            (line 160)
 * nil and false, similariaties and differences: FAQ Syntax. (line  59)
+* nil vs null:                           To Ruby From Java. (line  55)
 * NilClass:                              FAQ Syntax.        (line  64)
+* null vs nil:                           To Ruby From Java. (line  55)
+* object reference is self:              To Ruby From C and C++.
+                                                            (line 138)
 * Object#instance_methods:               Defining Methods.  (line 116)
 * Object#respond_to?:                    Defining Methods.  (line 146)
 * object, create from class definition:  Defining Methods.  (line  95)
+* objects, everything including numbers: To Ruby From Java. (line  40)
+* objects, strongly and dynamically typed: To Ruby From C and C++.
+                                                            (line 129)
+* objects, strongly typed:               To Ruby From Java. (line  19)
 * operators?:                            FAQ Methods.       (line  12)
 * parameters, methods:                   Defining Methods.  (line  33)
+* parentheses, none for condition expressions: To Ruby From C and C++.
+                                                            (line  98)
 * parentheses, optional:                 Defining Methods.  (line  26)
 * parentheses, optional <1>:             Defining Methods.  (line  60)
+* parentheses, optional for method calls: To Ruby From C and C++.
+                                                            (line 100)
+* parentheses, optional in method calls: To Ruby From Java. (line  38)
 * Patch Writer's Guide:                  Developing Ruby.   (line  73)
 * patching of Ruby:                      Developing Ruby.   (line  38)
 * precedence of or:                      FAQ Syntax.        (line 211)
@@ -2325,15 +2675,19 @@ Index
 * Proc.new, followed by call:            FAQ Iterators.     (line  87)
 * program output, display using less:    FAQ Built-In Libraries.
                                                             (line  27)
+* Qt:                                    To Ruby From Java. (line  31)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
 * rbenv:                                 rbenv.             (line   6)
 * rbenv version manager:                 ruby-build.        (line   6)
+* RDoc:                                  To Ruby From Java. (line  23)
+* rdoc:                                  To Ruby From Java. (line  23)
 * regular expression, escaping a backslash: FAQ Built-In Libraries.
                                                             (line  48)
 * releases:                              Releases Page.     (line   6)
 * repository, Subversion:                Developing Ruby.   (line  49)
 * require:                               FAQ Syntax.        (line 245)
+* require <1>:                           To Ruby From Java. (line  34)
 * rescue clause:                         FAQ Syntax.        (line 265)
 * respond to message, instance variable: Large Class Definition.
                                                             (line  54)
@@ -2345,12 +2699,16 @@ Index
 * Ruby core:                             Developing Ruby.   (line  16)
 * Ruby Core mailing list:                Developing Ruby.   (line  62)
 * Ruby development, tracking:            Developing Ruby.   (line  26)
+* Ruby Tk:                               To Ruby From Java. (line  31)
 * ruby-build plugin:                     ruby-build.        (line   6)
+* Ruby-GNOME2:                           To Ruby From Java. (line  31)
 * RVM version manager:                   Installers.        (line   6)
 * script code:                           Large Class Definition.
                                                             (line 151)
 * self, meaning:                         FAQ Classes and Modules.
                                                             (line  44)
+* self, object reference:                To Ruby From C and C++.
+                                                            (line 138)
 * send:                                  FAQ Syntax.        (line 129)
 * shared libraries:                      FAQ Syntax.        (line 249)
 * simple functions?:                     FAQ Methods.       (line  21)
@@ -2359,8 +2717,13 @@ Index
 * singleton method:                      FAQ Methods.       (line  18)
 * source, building:                      Building From Source.
                                                             (line   6)
+* static checking, none:                 To Ruby From Java. (line  41)
+* statically typed:                      To Ruby From C and C++.
+                                                            (line  28)
 * strings, sort alphabetically:          FAQ Built-In Libraries.
                                                             (line  42)
+* strongly typed objects:                To Ruby From C and C++.
+                                                            (line  80)
 * sub vs sub!:                           FAQ Built-In Libraries.
                                                             (line  51)
 * Subversion:                            Developing Ruby.   (line  26)
@@ -2376,24 +2739,39 @@ Index
                                                             (line  45)
 * Tcl/Tk, use:                           FAQ Extension Library.
                                                             (line  18)
+* templates:                             To Ruby From C and C++.
+                                                            (line 149)
 * ternary operator:                      FAQ Other Features.
                                                             (line   9)
 * Texinfo document formatting language:  Conventions.       (line   6)
 * thread vs fork:                        FAQ Built-In Libraries.
                                                             (line  57)
+* threads, native vs green:              To Ruby From C and C++.
+                                                            (line 160)
 * Tk, won't work:                        FAQ Extension Library.
                                                             (line  21)
 * track Ruby development:                Developing Ruby.   (line  26)
 * trap:                                  FAQ Built-In Libraries.
                                                             (line  62)
+* truth values:                          To Ruby From C and C++.
+                                                            (line 111)
+* type conversions:                      To Ruby From C and C++.
+                                                            (line 157)
+* type declarations, none:               To Ruby From Java. (line  46)
+* unit testing lib:                      To Ruby From C and C++.
+                                                            (line 161)
 * uru:                                   uru.               (line   6)
 * version managers:                      Installers.        (line   6)
 * versions, multiple installations using rbenv: rbenv.      (line   6)
 * versions, switch between using chruby: chruby.            (line   6)
 * versions,multiple:                     Installers.        (line   6)
+* visibility features:                   To Ruby From Java. (line  20)
 * visibility, changing:                  FAQ Methods.       (line  33)
+* WxRuby:                                To Ruby From Java. (line  31)
 * xforms:                                FAQ Extension Library.
                                                             (line  24)
+* XML vs YAML:                           To Ruby From Java. (line  54)
+* YAML vs XML:                           To Ruby From Java. (line  54)
 * yield:                                 Large Class Definition.
                                                             (line  85)
 * yield control structor, or statement:  FAQ Iterators.     (line  56)
@@ -2403,93 +2781,99 @@ Index
 
 Tag Table:
 Node: Top371
-Node: Preface2328
-Node: Audience2511
-Node: Overview2630
-Node: Conventions2800
-Node: Acknowledgements3720
-Node: Introduction3836
-Node: Documentation4133
-Node: Installing Ruby4538
-Node: Package Management Systems5451
-Node: Homebrew (OS X)6276
-Node: Installers6702
-Node: ruby-build7298
-Node: ruby-install7851
-Node: Managers8466
-Node: chruby8863
-Node: rbenv9122
-Node: RVM (``Ruby Version Manager'')9667
-Node: uru10065
-Node: Building From Source10358
-Node: Releases Page11370
-Node: Branches Page12470
-Node: Issue Tracking14270
-Node: Developing Ruby14754
-Ref: subversion15504
-Ref: MainRubyRepo16656
-Ref: PatchByPatch16984
-Node: Getting Started17781
-Node: Try Ruby!18137
-Node: Official FAQ18467
-Node: FAQ Iterators19544
-Node: FAQ Syntax23483
-Ref: immediate value24628
-Ref: nil vs false25263
-Ref: empty string25877
-Ref: symbol object26230
-Ref: value of symbol27368
-Ref: loop28246
-Ref: post-test loop28472
-Ref: hash literal28898
-Ref: pos val29180
-Ref: \1 and \\129556
-Ref: 2 dots vs 3 dots29964
-Ref: or and30202
-Ref: function pointers31004
-Ref: load vs require31326
-Ref: exception handling31681
-Node: FAQ Methods32678
-Node: FAQ Classes and Modules34351
-Node: FAQ Built-In Libraries35537
-Node: FAQ Extension Library37515
-Node: FAQ Other Features38194
-Node: Ruby Koans38744
-Node: Why’s (Poignant) Guide to Ruby39148
-Node: Ruby in Twenty Minutes39622
-Node: Interactive Ruby40295
-Node: Defining Methods41249
-Node: Altering Classes46753
-Node: Large Class Definition48089
-Ref: ri20min-rb48493
-Ref: MegaGreeter---Initialize-Method49302
-Ref: MegaGreeter---say-hi-Method50024
-Ref: MegaGreeter---say-bye-Method52241
-Ref: MegaGreeter---Main-Script53189
-Node: Run MegaGreeter53721
-Node: Ruby from Other Languages54247
-Node: Learning Ruby54542
-Node: Ruby Essentials54908
-Node: Learn to Program55139
-Node: Manuals55516
-Node: Reference Documentation55655
-Node: Editors and IDEs55827
-Node: Further Reading55993
-Node: The Makefile56125
-Ref: Makefile56278
-Node: Makefile Variable Definitions56997
-Ref: Makefile---Variable-Definitions57175
-Node: Makefile Default Rule57343
-Ref: Makefile---Default-Rule57893
-Node: Makefile TWJR Rules58132
-Ref: Makefile---TWJR-Rules58291
-Node: Makefile Clean Rules58922
-Ref: Makefile---Clean-Rules59053
-Node: Code Chunk Summaries59510
-Node: File Definitions59895
-Node: Code Chunk Definitions60184
-Node: Code Chunk References61127
-Node: Bibliography62291
-Node: Concept Index62422
+Node: Preface2504
+Node: Audience2687
+Node: Overview2806
+Node: Conventions2976
+Node: Acknowledgements3896
+Node: Introduction4012
+Node: Documentation4309
+Node: Installing Ruby4714
+Node: Package Management Systems5627
+Node: Homebrew (OS X)6452
+Node: Installers6878
+Node: ruby-build7474
+Node: ruby-install8027
+Node: Managers8642
+Node: chruby9039
+Node: rbenv9298
+Node: RVM (``Ruby Version Manager'')9843
+Node: uru10241
+Node: Building From Source10534
+Node: Releases Page11546
+Node: Branches Page12646
+Node: Issue Tracking14446
+Node: Developing Ruby14930
+Ref: subversion15680
+Ref: MainRubyRepo16832
+Ref: PatchByPatch17160
+Node: Getting Started17957
+Node: Try Ruby!18313
+Node: Official FAQ18643
+Node: FAQ Iterators19720
+Node: FAQ Syntax23659
+Ref: immediate value24804
+Ref: nil vs false25439
+Ref: empty string26053
+Ref: symbol object26406
+Ref: value of symbol27544
+Ref: loop28422
+Ref: post-test loop28648
+Ref: hash literal29074
+Ref: pos val29356
+Ref: \1 and \\129732
+Ref: 2 dots vs 3 dots30140
+Ref: or and30378
+Ref: function pointers31180
+Ref: load vs require31502
+Ref: exception handling31857
+Node: FAQ Methods32854
+Node: FAQ Classes and Modules34527
+Node: FAQ Built-In Libraries35713
+Node: FAQ Extension Library37691
+Node: FAQ Other Features38370
+Node: Ruby Koans38920
+Node: Why’s (Poignant) Guide to Ruby39324
+Node: Ruby in Twenty Minutes39798
+Node: Interactive Ruby40471
+Node: Defining Methods41425
+Node: Altering Classes46929
+Node: Large Class Definition48265
+Ref: ri20min-rb48669
+Ref: MegaGreeter---Initialize-Method49478
+Ref: MegaGreeter---say-hi-Method50200
+Ref: MegaGreeter---say-bye-Method52417
+Ref: MegaGreeter---Main-Script53365
+Node: Run MegaGreeter53897
+Node: Ruby from Other Languages54423
+Node: To Ruby From C and C++55159
+Node: To Ruby From Java62688
+Node: To Ruby From Perl65255
+Node: To Ruby From PHP65439
+Node: To Ruby From Python65623
+Node: Important Language Features65823
+Node: Learning Ruby66014
+Node: Ruby Essentials66380
+Node: Learn to Program66611
+Node: Manuals66988
+Node: Reference Documentation67127
+Node: Editors and IDEs67299
+Node: Further Reading67465
+Node: The Makefile67597
+Ref: Makefile67750
+Node: Makefile Variable Definitions68469
+Ref: Makefile---Variable-Definitions68647
+Node: Makefile Default Rule68815
+Ref: Makefile---Default-Rule69365
+Node: Makefile TWJR Rules69604
+Ref: Makefile---TWJR-Rules69763
+Node: Makefile Clean Rules70394
+Ref: Makefile---Clean-Rules70525
+Node: Code Chunk Summaries70982
+Node: File Definitions71367
+Node: Code Chunk Definitions71656
+Node: Code Chunk References72599
+Node: Bibliography73763
+Node: Concept Index73894
 
 End Tag Table

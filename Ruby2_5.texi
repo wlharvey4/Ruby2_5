@@ -315,6 +315,15 @@ Ruby in Twenty Minutes
 * Large Class Definition::
 * Run MegaGreeter::
 
+Ruby from Other Languages
+
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+* Important Language Features::
+
 The Makefile
 
 * Makefile Variable Definitions::
@@ -2322,6 +2331,391 @@ Goodbye Albert, Brenda, Charles, Dave, Engelbert.  Come back soon!
 @url{https://www.ruby-lang.org/en/documentation/ruby-from-other-languages/,
 Ruby from Other Languages}
 
+This document contains two major sections.  The first attempts to be a
+rapid-fire summary of what you can expect to see when going from language X
+to Ruby.  The second section tackles the major language features and how they
+might compare to what you’re already familiar with.
+
+@c _____________________________________
+
+@menu
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+* Important Language Features::
+@end menu
+
+@node To Ruby From C and C++
+@subsubsection To Ruby From C and C++
+
+@subheading Everything Is Differerent
+
+It's difficult to write a bulleted list describing how your code will be
+different in Ruby from C or C++ because it's quite a large difference.  One
+reason is that the Ruby runtime does so much for you.  Ruby seems about as far
+as you can get from C's ``no hidden mechanism'' principle---the whole point of
+Ruby is to make the human's job easier at the expense of making the runtime
+shoulder more of the work.
+
+@subsubheading Ruby is Quicker to Code But Slower to Execute
+
+That said, for one thing, you can expect your Ruby code to execute much more
+slowly than ``equivalent'' C or C++ code.  At the same time, your head will spin
+at how rapidly you can get a Ruby program up and running, as well as at how
+few lines of code it will take to write it.  Ruby is much much simpler than
+C++.
+
+@subheading Dynamically Typed
+@cindex dynamicly typed
+@cindex statically typed
+
+Ruby is dynamically typed, rather than statically typed---the runtime does as
+much as possible at run-time.  For example, you don't need to know what
+modules your Ruby program will ``link to'' (that is, load and use) or what
+methods it will call ahead of time.
+
+@subheading Extension Modules
+@cindex extension modules
+
+Happily, it turns out that Ruby and C have a healthy symbiotic relationship.
+Ruby supports so-called @dfn{extension modules}.  These are modules that you
+can use from your Ruby programs (and which, from the outside, will look and
+act just like any other Ruby module), but which are written in C.  In this
+way, you can compartmentalize the performance-critical parts of your Ruby
+software, and smelt those down to pure C.
+
+And, of course, Ruby itself is written in C.
+
+@subheading Similarities With C
+
+@itemize
+@item
+You may program procedurally if you like (but it will still be
+object-oriented behind the scenes).
+@item
+Most of the operators are the same (including the compound assignment and
+also bitwise operators).  Though, Ruby doesn’t have @code{++} or @code{--}.
+@item
+Ruby has @var{__FILE__} and @var{__LINE__}.
+@item
+You can also have constants, though there’s no special const keyword.
+@code{Const}-ness is enforced by a naming convention instead --- names
+starting with a capital letter are for constants.
+@item
+Strings go in double-quotes and are mutable
+@item
+Just like man pages, you can read most docs in your terminal window ---
+though using the @command{ri} command.
+@item
+You’ve got the same sort of command-line debugger available.
+@end itemize
+
+@subheading Similarities with C++
+
+@itemize
+@item
+You’ve got mostly the same operators (even @code{::}).  @code{<<} is often
+used for appending elements to a list.  One note though: with Ruby you never
+use @code{->} --- it's always just @code{.}.
+@item
+@code{public}, @code{private}, and @code{protected} do similar jobs.
+@item
+Inheritance syntax is still only one character, but it's @code{<} instead of
+@code{:}.
+@item
+You may put your code into ``modules'', similar to how @code{namespace} in C++ is
+used.
+@item
+Exceptions work in a similar manner, though the keyword names have been
+changed to protect the innocent.
+@end itemize
+
+@subheading Differences From C
+@cindex strongly typed objects
+
+@itemize
+@item
+You don’t need to compile your code.  You just run it directly.
+@item
+Objects are strongly typed (and variable names themselves have no type at
+all).
+@item
+There’s no macros or preprocessor; no casts; no pointers (nor pointer
+arithmetic); no typedefs, sizeof, or enums.
+@item
+There are no header files.  You just define your functions (usually referred
+to as ``methods'') and classes in the main source code files.
+@item
+There’s no @code{#define}.  Just use constants instead.
+@item
+@cindex heap
+All variables live on the heap.  Further, you don’t need to free them
+yourself --- the garbage collector takes care of that.
+@item
+Arguments to methods (i.e. functions) are passed by value, where the values
+are always object references.
+@item
+It's @samp{require 'foo'} instead of @samp{#include <foo>} or @samp{#include
+"foo"}.
+@item
+You cannot drop down to assembly.
+@item
+There’s no semicolons ending lines.
+@item
+You go without parentheses for @code{if} and @code{while} condition
+expressions.
+@cindex parentheses, none for condition expressions
+@item
+Parentheses for method (i.e. function) calls are often optional.
+@cindex parentheses, optional for method calls
+@item
+You don’t usually use braces --- just end multi-line constructs (like
+@code{while} loops) with an @code{end} keyword.
+@cindex braces, none
+@item
+The @code{do} keyword is for so-called @dfn{blocks}.  There’s no ``do
+statement'' like in C.
+@cindex @code{do} keyword
+@item
+The term @dfn{block} means something different.  It's for a block of code
+that you associate with a method call so the method body can call out to the
+block while it executes.
+@cindex block
+@item
+There are no variable declarations.  You just assign to new names on-the-fly
+when you need them.
+@item
+When tested for truth, only @code{false} and @code{nil} evaluate to a
+@code{false} value.  Everything else is true (including @code{0}, @code{0.0},
+and @code{"0"}).
+@cindex truth values
+@item
+There is no @code{char} --- they are just 1-letter strings.
+@item
+Strings don’t end with a null byte.
+@item
+Array literals go in brackets instead of braces.
+@cindex array literals in brackets
+@item
+Arrays just automatically get bigger when you stuff more elements into them.
+@cindex arrays are dynamic and mutable
+@item
+If you add two arrays, you get back a new and bigger array (of course,
+allocated on the heap) instead of doing pointer arithmetic.
+@cindex arrays, adding
+@item
+More often than not, everything is an expression (that is, things like
+@code{while} statements actually evaluate to an @code{rvalue}).
+@end itemize
+
+@subheading Differences from C++
+
+@itemize
+@item
+There’s no explicit references.  That is, in Ruby, every variable is just an
+automatically dereferenced name for some object.
+@item
+Objects are strongly but @emph{dynamically} typed.  The runtime discovers
+@emph{at runtime} if that method call actually works.
+@cindex objects, strongly and dynamically typed
+@item
+The @dfn{constructor} is called @code{initialize} instead of the class name.
+@cindex constructor
+@item
+All methods are always virtual.
+@cindex methods are virtual
+@item
+``Class'' (@code{static}) variable names always begin with @code{@@@@} (as in
+@code{@@@@total_widgets}).
+@item
+You don’t directly access member variables --- all access to public member
+variables (known in Ruby as @dfn{attributes}) is via methods.
+@cindex attributes
+@cindex member variables, access to
+@item
+It's @code{self} instead of @code{this}.
+@cindex object reference is @code{self}
+@cindex @code{self}, object reference
+@item
+Some methods end in a @code{?} or a @code{!}.  It's actually part of the
+method name.
+@item
+There's no multiple inheritance per se.  Though Ruby has @dfn{mixins}
+(i.e. you can ``inherit'' all instance methods of a module).
+@cindex multiple inheritance
+@cindex mixins
+@item
+There are some enforced case-conventions (ex. class names start with a
+capital letter, variables start with a lowercase letter).
+@cindex case conventions, enforced
+@item
+Parentheses for method calls are usually optional.
+@item
+You can re-open a class anytime and add more methods.
+@item
+There’s no need of C++ templates (since you can assign any kind of object to
+a given variable, and types get figured out at runtime anyway).  No casting
+either.
+@cindex templates
+@cindex cast
+@item
+Iteration is done a bit differently.  In Ruby, you don't use a separate
+iterator object (like @code{vector<T>::const_iterator iter}).  Instead you use an
+iterator method of the container object (like @code{each}) that takes a block of
+code to which it passes successive elements.
+@cindex iteration
+@cindex iterator method
+@cindex block for iterator
+@item
+There’s only two container types: @file{Array} and @file{Hash}.
+@cindex @file{Array}
+@cindex @file{Hash}
+@cindex container types
+@item
+There’s no type conversions.  With Ruby though, you’ll probably find that they
+aren’t necessary.
+@cindex type conversions
+@item
+Multithreading is built-in, but as of Ruby 1.8 they are @dfn{green threads}
+(implemented only within the interpreter) as opposed to native threads.
+@cindex multithreading
+@cindex green threads vs native threads
+@cindex threads, native vs green
+@item
+A unit testing lib comes standard with Ruby.
+@cindex unit testing lib
+@end itemize
+
+@c _____________________________________
+
+@node To Ruby From Java
+@subsubsection To Ruby From Java
+
+@subheading Ruby is Less Verbose
+
+Java is mature.  It's tested.  And it's fast (contrary to what the anti-Java
+crowd may still claim).  It's also quite verbose.  Going from Java to Ruby,
+expect your code size to shrink down considerably.  You can also expect it to
+take less time to knock together quick prototypes.
+
+@subheading Similarities with Java
+
+@itemize
+@item
+Memory is managed for you via a garbage collector.
+@cindex memory management
+@cindex garbage collector
+@item
+Objects are strongly typed.
+@cindex objects, strongly typed
+@item
+There are @code{public}, @code{private}, and @code{protected} methods.
+@cindex visibility features
+@item
+There are embedded doc tools (Ruby's is called @file{RDoc}).  The docs
+generated by @command{rdoc} look very similar to those generated by
+@command{javadoc}.
+@cindex @file{RDoc}
+@cindex @command{rdoc}
+@cindex documentation tool
+@cindex @command{javadoc}
+@end itemize
+
+@subheading Differences From Java
+
+@itemize
+@item
+You don’t need to compile your code. You just run it directly.
+@item
+There are several different popular third-party GUI toolkits.  Ruby users can
+try @file{WxRuby}, @file{FXRuby}, @file{Ruby-GNOME2}, @file{Qt}, or the
+bundled-in @file{Ruby Tk} for example.
+@cindex GUI toolkits
+@cindex @file{WxRuby}
+@cindex @file{FXRuby}
+@cindex @file{Ruby-GNOME2}
+@cindex @file{Qt}
+@cindex @file{Ruby Tk}
+@item
+You use the @code{end} keyword after defining things like classes, instead of
+having to put braces around blocks of code.
+@item
+You have @code{require} instead of @file{import}.
+@cindex @code{require}
+@cindex @code{import}
+@item
+All member variables are private.  From the outside, you access everything
+via methods.
+@cindex access control
+@item
+Parentheses in method calls are usually optional and often omitted.
+@cindex parentheses, optional in method calls
+@item
+Everything is an object, including numbers like @code{2} and @code{3.14159}.
+@cindex objects, everything including numbers
+@item
+There’s no static type checking.
+@cindex static checking, none
+@item
+Variable names are just labels.  They don’t have a type associated with them.
+@item
+There are no type declarations.  You just assign to new variable names
+as-needed and they just ``spring up'' (i.e. @samp{a = [1,2,3]} rather than
+@samp{int[] a = @{1,2,3@};}).
+@cindex type declarations, none
+@item
+There’s no casting.  Just call the methods.  Your unit tests should tell you
+before you even run the code if you’re going to see an exception.
+@cindex casting, none
+@item
+It's @samp{foo = Foo.new("hi")} instead of @samp{Foo foo = new Foo("hi")}.
+@item
+The constructor is always named @code{initialize} instead of the name of the
+class.
+@cindex constructor
+@cindex @code{initialize}, constructor
+@item
+You have ``mixins'' instead of interfaces.
+@cindex mixins
+@cindex interfaces, none, use mixins
+@item
+@acronym{YAML} tends to be favored over @acronym{XML}.
+@cindex YAML vs XML
+@cindex XML vs YAML
+@item
+It's @code{nil} instead of @code{null}.
+@cindex @code{nil} vs @code{null}
+@cindex @code{null} vs @code{nil}
+@item
+@code{==} and @code{equals()} are handled differently in Ruby.  Use @code{==}
+when you want to test ``equivalence'' in Ruby (@code{equals()} in Java).  Use
+@code{equal?()} when you want to know if two objects are ``the same''
+(@code{==} in Java).
+@cindex equivalence vs the same
+@cindex @code{==} vs @code{equals()}
+@end itemize
+
+@c _____________________________________
+
+@node To Ruby From Perl
+@subsubsection To Ruby From Perl
+
+@c _____________________________________
+
+@node To Ruby From PHP
+@subsubsection To Ruby From PHP
+
+@c _____________________________________
+
+@node To Ruby From Python
+@subsubsection To Ruby From Python
+
+@c _____________________________________
+
+@node Important Language Features
+@subsubsection Important Language Features
 
 @c .....................................
 
