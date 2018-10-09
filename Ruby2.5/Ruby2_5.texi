@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.1b
+@set EDITION 0.1c
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -231,7 +231,7 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Preface::
 * Introduction::
 * Documentation::
-* First appendix::
+* The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
 * Concept Index::
@@ -306,6 +306,13 @@ Official FAQ
 * FAQ Built-In Libraries::
 * FAQ Extension Library::
 * FAQ Other Features::
+
+The Makefile
+
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Rules::
+* Makefile Clean Rules::
 
 Code Chunk Summaries
 
@@ -1840,8 +1847,166 @@ know how to program, start here.
 
 @c -----------------------------------------------------------------------------
 
-@node First appendix
-@appendix First Appendix Title
+@node The Makefile
+@appendix The Makefile
+
+@need 400
+@anchor{Makefile}
+@crindex @r{<@i{Makefile---Variable Definitions}>}, use
+@crindex @r{<@i{Makefile---Default Rule}>}, use
+@crindex @r{<@i{Makefile---TWJR Rules}>}, use
+@crindex @r{<@i{Makefile---Clean Rules}>}, use
+@cdindex @r{@{@file{Makefile}@}}, definition
+@noindent
+@r{@{@file{Makefile}@}} @equiv{}
+@example
+@r{<@i{Makefile---Variable Definitions}>}
+@r{<@i{Makefile---Default Rule}>}
+@r{<@i{Makefile---TWJR Rules}>}
+@r{<@i{Makefile---Clean Rules}>}
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+The following table lists called chunk definition points.
+@multitable @columnfractions .35 .65
+@headitem Chunk name @tab First definition point
+@item @r{<@i{Makefile---Clean Rules}>} @tab See @ref{Makefile---Clean-Rules}.
+@item @r{<@i{Makefile---Default Rule}>} @tab See @ref{Makefile---Default-Rule}.
+@item @r{<@i{Makefile---TWJR Rules}>} @tab See @ref{Makefile---TWJR-Rules}.
+@item @r{<@i{Makefile---Variable Definitions}>} @tab See @ref{Makefile---Variable-Definitions}.
+@end multitable
+@iftex
+@textfonts @rm
+@end iftex
+
+@menu
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Rules::
+* Makefile Clean Rules::
+@end menu
+
+@node Makefile Variable Definitions
+@appendixsec Makefile Variable Definitions
+
+@need 400
+@anchor{Makefile---Variable-Definitions}
+@cdindex @r{<@i{Makefile---Variable Definitions}>}, definition
+@noindent
+@r{<@i{Makefile---Variable Definitions}>} @equiv{}
+@example
+FILE := Ruby2_5
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@node Makefile Default Rule
+@appendixsec Default Rule
+
+@need 400
+@anchor{Makefile---Default-Rule}
+@cdindex @r{<@i{Makefile---Default Rule}>}, definition
+@noindent
+@r{<@i{Makefile---Default Rule}>} @equiv{}
+@example
+.PHONY : default TANGLE WEAVE TEXI PDF HTML
+default : WEAVE TEXI PDF HTML
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@node Makefile TWJR Rules
+@appendixsec TWJR Rules
+
+@need 400
+@anchor{Makefile---TWJR-Rules}
+@cdindex @r{<@i{Makefile---TWJR Rules}>}, definition
+@noindent
+@r{<@i{Makefile---TWJR Rules}>} @equiv{}
+@example
+TANGLE : tangle
+tangle : $(FILE).twjr
+    jrtangle $(FILE).twjr
+
+WEAVE : weave
+weave : TEXI
+TEXI  : texi
+texi  : $(FILE).texi
+
+$(FILE).texi : $(FILE).twjr
+    jrweave $(FILE).twjr > $(FILE).texi
+
+PDF : pdf
+pdf : $(FILE).pdf
+$(FILE).pdf : $(FILE).texi
+    pdftexi2dvi $(FILE).texi
+    make distclean
+    
+HTML : html
+html : $(FILE)/
+$(FILE)/ : $(FILE).texi
+    makeinfo --html $(FILE).texi
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@node Makefile Clean Rules
+@appendixsec Clean Rules
+
+@need 400
+@anchor{Makefile---Clean-Rules}
+@cdindex @r{<@i{Makefile---Clean Rules}>}, definition
+@noindent
+@r{<@i{Makefile---Clean Rules}>} @equiv{}
+@example
+.PHONY : clean distclean worldclean
+clean :
+    rm -f *~ \#*\#
+
+distclean : clean
+    rm -f *.@{aux,log,toc,cp,cps@}
+
+worldclean : distclean
+    rm -f $(FILE).@{texi,info,pdf@}
+    rm -fr $(FILE)/
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@iftex
+@textfonts @rm
+@end iftex
 
 @node Code Chunk Summaries
 @appendix Code Chunk Summaries
@@ -1859,18 +2024,49 @@ the code chunk definitions, and the code chunk references.
 @appendixsec Source File Definitions
 
 @table @asis
+@item @r{@{@file{Makefile}@}}
+This chunk is defined in
+@ref{Makefile}.
 @end table
 
 @node Code Chunk Definitions
 @appendixsec Code Chunk Definitions
 
 @table @asis
+@item @r{<@i{Makefile---Clean Rules}>}
+This chunk is defined in
+@ref{Makefile---Clean-Rules}.
+@item @r{<@i{Makefile---Default Rule}>}
+This chunk is defined in
+@ref{Makefile---Default-Rule}.
+@item @r{<@i{Makefile---TWJR Rules}>}
+This chunk is defined in
+@ref{Makefile---TWJR-Rules}.
+@item @r{<@i{Makefile---Variable Definitions}>}
+This chunk is defined in
+@ref{Makefile---Variable-Definitions}.
 @end table
 
 @node Code Chunk References
 @appendixsec Code Chunk References
 
 @table @asis
+@item @r{<@i{Makefile---Clean Rules}>}
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@item @r{<@i{Makefile---Default Rule}>}
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@item @r{<@i{Makefile---TWJR Rules}>}
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@item @r{<@i{Makefile---Variable Definitions}>}
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
 @end table
 
 @node Bibliography

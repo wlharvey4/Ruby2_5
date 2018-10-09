@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1b of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.1c of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,14 +29,14 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1b of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.1c of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
 * Preface::
 * Introduction::
 * Documentation::
-* First appendix::
+* The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
 * Concept Index::
@@ -110,6 +110,13 @@ Official FAQ
 * FAQ Built-In Libraries::
 * FAQ Extension Library::
 * FAQ Other Features::
+
+The Makefile
+
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Rules::
+* Makefile Clean Rules::
 
 Code Chunk Summaries
 
@@ -191,7 +198,7 @@ simplicity and productivity.  It has an elegant syntax that is natural
 to read and easy to write.
 
 
-File: Ruby2_5.info,  Node: Documentation,  Next: First appendix,  Prev: Introduction,  Up: Top
+File: Ruby2_5.info,  Node: Documentation,  Next: The Makefile,  Prev: Introduction,  Up: Top
 
 2 Documentation
 ***************
@@ -221,9 +228,9 @@ Installation Methods
 There are several ways to install Ruby:
 
    * Package Manager: When you are on a UNIX-like operating system,
-     using your system’s package manager is the easiest way of
-     getting started.  However, the packaged Ruby version usually is
-     not the newest one.
+     using your system’s package manager is the easiest way of getting
+     started.  However, the packaged Ruby version usually is not the
+     newest one.
    * Installers: can be used to install a specific or multiple Ruby
      versions.  There is also an installer for Windows.
    * Managers help you to switch between multiple Ruby installations
@@ -247,8 +254,8 @@ File: Ruby2_5.info,  Node: Package Management Systems,  Next: Installers,  Up: I
 --------------------------------
 
 If you cannot compile your own Ruby, and you do not want to use a
-third-party tool, you can use your system’s package manager to
-install Ruby.
+third-party tool, you can use your system’s package manager to install
+Ruby.
 
    Certain members in the Ruby community feel very strongly that you
 should never use a package manager to install Ruby and that you should
@@ -425,8 +432,8 @@ tools.
 
    Installing from the source code is a great solution for when you
 are comfortable enough with your platform and perhaps need specific
-settings for your environment.  It’s also a good solution in the
-event that there are no other premade packages for your platform.
+settings for your environment.  It’s also a good solution in the event
+that there are no other premade packages for your platform.
 
 * Menu:
 
@@ -569,8 +576,8 @@ File: Ruby2_5.info,  Node: Developing Ruby,  Next: Getting Started,  Prev: Insta
 Ruby Core (https://www.ruby-lang.org/en/community/ruby-core/)
 
    Now is a fantastic time to follow Ruby’s development.  With the
-increased attention Ruby has received in the past few years, there’s
-a growing need for good talent to help enhance Ruby and document its
+increased attention Ruby has received in the past few years, there’s a
+growing need for good talent to help enhance Ruby and document its
 parts.  So, where do you start?
 
 Ruby Core
@@ -608,8 +615,8 @@ are expected to migrate their changes to Ruby’s trunk, so often the
 branches are very similar, with the exception of improvements made by
 Matz and Nobu to the language itself.
 
-   If you prefer, you may browse Ruby’s Subversion repository via
-the web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
+   If you prefer, you may browse Ruby’s Subversion repository via the
+web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
 
 How to Use Git With the Main Ruby Repository
 ............................................
@@ -910,8 +917,8 @@ The Empty String
 ----------------
 
 An empty string ('""') returns 'true' in a conditional expression!  In
-Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and
-'false' are 'false' in conditional contexts.
+Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and 'false'
+are 'false' in conditional contexts.
 
    You can use 'empty?', compare the string to '""', or compare the
 string’s size or length to 0 to find out if a string is empty.
@@ -953,8 +960,8 @@ How can I access the value of a symbol?
 
 To get the value of the variable corresponding to a symbol, you can
 use 'symbol.to_s' or '"#{symbol}"' to get the name of the variable,
-and then 'eval' that in the scope of the symbol to get the
-variable’s contents:
+and then 'eval' that in the scope of the symbol to get the variable’s
+contents:
 
      a = "This is the content of `a'"
      b = eval("#{:a}")
@@ -1376,8 +1383,8 @@ File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Ruby fr
 Learning Ruby (http://rubylearning.com/)
 
    A thorough collection of Ruby study notes for those who are new to
-the language and in search of a solid introduction to Ruby’s
-concepts and constructs.
+the language and in search of a solid introduction to Ruby’s concepts
+and constructs.
 
 
 File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Learning Ruby,  Up: Getting Started
@@ -1425,13 +1432,119 @@ File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Docume
 ===================
 
 
-File: Ruby2_5.info,  Node: First appendix,  Next: Code Chunk Summaries,  Prev: Documentation,  Up: Top
+File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Documentation,  Up: Top
 
-Appendix A First Appendix Title
-*******************************
+Appendix A The Makefile
+***********************
+
+{'Makefile'} ==
+     <Makefile--Variable Definitions>
+     <Makefile--Default Rule>
+     <Makefile--TWJR Rules>
+     <Makefile--Clean Rules>
+
+The following table lists called chunk definition points.
+Chunk name                First definition point
+-------------------------------------------------------------------------
+<Makefile--Clean Rules>   See *note Makefile---Clean-Rules::.
+<Makefile--Default        See *note Makefile---Default-Rule::.
+Rule>
+<Makefile--TWJR Rules>    See *note Makefile---TWJR-Rules::.
+<Makefile--Variable       See *note Makefile---Variable-Definitions::.
+Definitions>
+
+* Menu:
+
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Rules::
+* Makefile Clean Rules::
 
 
-File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: First appendix,  Up: Top
+File: Ruby2_5.info,  Node: Makefile Variable Definitions,  Next: Makefile Default Rule,  Up: The Makefile
+
+A.1 Makefile Variable Definitions
+=================================
+
+<Makefile--Variable Definitions> ==
+     FILE := Ruby2_5
+
+
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
+
+
+File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Rules,  Prev: Makefile Variable Definitions,  Up: The Makefile
+
+A.2 Default Rule
+================
+
+<Makefile--Default Rule> ==
+     .PHONY : default TANGLE WEAVE TEXI PDF HTML
+     default : WEAVE TEXI PDF HTML
+
+
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
+
+
+File: Ruby2_5.info,  Node: Makefile TWJR Rules,  Next: Makefile Clean Rules,  Prev: Makefile Default Rule,  Up: The Makefile
+
+A.3 TWJR Rules
+==============
+
+<Makefile--TWJR Rules> ==
+     TANGLE : tangle
+     tangle : $(FILE).twjr
+         jrtangle $(FILE).twjr
+
+     WEAVE : weave
+     weave : TEXI
+     TEXI  : texi
+     texi  : $(FILE).texi
+
+     $(FILE).texi : $(FILE).twjr
+         jrweave $(FILE).twjr > $(FILE).texi
+
+     PDF : pdf
+     pdf : $(FILE).pdf
+     $(FILE).pdf : $(FILE).texi
+         pdftexi2dvi $(FILE).texi
+         make distclean
+
+     HTML : html
+     html : $(FILE)/
+     $(FILE)/ : $(FILE).texi
+         makeinfo --html $(FILE).texi
+
+
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
+
+
+File: Ruby2_5.info,  Node: Makefile Clean Rules,  Prev: Makefile TWJR Rules,  Up: The Makefile
+
+A.4 Clean Rules
+===============
+
+<Makefile--Clean Rules> ==
+     .PHONY : clean distclean worldclean
+     clean :
+         rm -f *~ \#*\#
+
+     distclean : clean
+         rm -f *.{aux,log,toc,cp,cps}
+
+     worldclean : distclean
+         rm -f $(FILE).{texi,info,pdf}
+         rm -fr $(FILE)/
+
+
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
+
+
+File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: The Makefile,  Up: Top
 
 Appendix B Code Chunk Summaries
 *******************************
@@ -1452,17 +1565,46 @@ File: Ruby2_5.info,  Node: File Definitions,  Next: Code Chunk Definitions,  Up:
 B.1 Source File Definitions
 ===========================
 
+{'Makefile'}
+     This chunk is defined in *note Makefile::.
+
 
 File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,  Prev: File Definitions,  Up: Code Chunk Summaries
 
 B.2 Code Chunk Definitions
 ==========================
 
+<Makefile--Clean Rules>
+     This chunk is defined in *note Makefile---Clean-Rules::.
+<Makefile--Default Rule>
+     This chunk is defined in *note Makefile---Default-Rule::.
+<Makefile--TWJR Rules>
+     This chunk is defined in *note Makefile---TWJR-Rules::.
+<Makefile--Variable Definitions>
+     This chunk is defined in *note Makefile---Variable-Definitions::.
+
 
 File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,  Up: Code Chunk Summaries
 
 B.3 Code Chunk References
 =========================
+
+<Makefile--Clean Rules>
+
+     This chunk is called by {'Makefile'}; see its first definition at
+     *note Makefile::.
+<Makefile--Default Rule>
+
+     This chunk is called by {'Makefile'}; see its first definition at
+     *note Makefile::.
+<Makefile--TWJR Rules>
+
+     This chunk is called by {'Makefile'}; see its first definition at
+     *note Makefile::.
+<Makefile--Variable Definitions>
+
+     This chunk is called by {'Makefile'}; see its first definition at
+     *note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Bibliography,  Next: Concept Index,  Prev: Code Chunk Summaries,  Up: Top
@@ -1486,8 +1628,21 @@ Index
 * "truthy" values:                       FAQ Syntax.        (line  59)
 * ++ and --:                             FAQ Methods.       (line  15)
 * .. vs. ...:                            FAQ Syntax.        (line 203)
+* <Makefile--Clean Rules>, definition:   Makefile Clean Rules.
+                                                            (line   6)
+* <Makefile--Clean Rules>, use:          The Makefile.      (line   6)
+* <Makefile--Default Rule>, definition:  Makefile Default Rule.
+                                                            (line   6)
+* <Makefile--Default Rule>, use:         The Makefile.      (line   6)
+* <Makefile--TWJR Rules>, definition:    Makefile TWJR Rules.
+                                                            (line   6)
+* <Makefile--TWJR Rules>, use:           The Makefile.      (line   6)
+* <Makefile--Variable Definitions>, definition: Makefile Variable Definitions.
+                                                            (line   6)
+* <Makefile--Variable Definitions>, use: The Makefile.      (line   6)
 * \Z:                                    FAQ Built-In Libraries.
                                                             (line  54)
+* {Makefile}, definition:                The Makefile.      (line   6)
 * ArgumentError, after calling super:    FAQ Methods.       (line  39)
 * arithmetic:                            FAQ Extension Library.
                                                             (line  26)
@@ -1685,74 +1840,83 @@ Index
 
 Tag Table:
 Node: Top371
-Node: Preface2071
-Node: Audience2254
-Node: Overview2373
-Node: Conventions2543
-Node: Acknowledgements3463
-Node: Introduction3579
-Node: Documentation3876
-Node: Installing Ruby4283
-Node: Package Management Systems5196
-Node: Homebrew (OS X)6021
-Node: Installers6447
-Node: ruby-build7043
-Node: ruby-install7596
-Node: Managers8211
-Node: chruby8608
-Node: rbenv8867
-Node: RVM (``Ruby Version Manager'')9412
-Node: uru9810
-Node: Building From Source10103
-Node: Releases Page11115
-Node: Branches Page12215
-Node: Issue Tracking14015
-Node: Developing Ruby14499
-Ref: subversion15249
-Ref: MainRubyRepo16401
-Ref: PatchByPatch16729
-Node: Getting Started17526
-Node: Try Ruby!17882
-Node: Official FAQ18212
-Node: FAQ Iterators19289
-Node: FAQ Syntax23228
-Ref: immediate value24373
-Ref: nil vs false25008
-Ref: empty string25622
-Ref: symbol object25975
-Ref: value of symbol27113
-Ref: loop27991
-Ref: post-test loop28217
-Ref: hash literal28643
-Ref: pos val28925
-Ref: \1 and \\129301
-Ref: 2 dots vs 3 dots29709
-Ref: or and29947
-Ref: function pointers30749
-Ref: load vs require31071
-Ref: exception handling31426
-Node: FAQ Methods32423
-Node: FAQ Classes and Modules34096
-Node: FAQ Built-In Libraries35282
-Node: FAQ Extension Library37260
-Node: FAQ Other Features37939
-Node: Ruby Koans38489
-Node: Why’s (Poignant) Guide to Ruby38685
-Node: Ruby in Twenty Minutes39159
-Node: Ruby from Other Languages39570
-Node: Learning Ruby39865
-Node: Ruby Essentials40231
-Node: Learn to Program40462
-Node: Manuals40839
-Node: Reference Documentation40978
-Node: Editors and IDEs41150
-Node: Further Reading41316
-Node: First appendix41448
-Node: Code Chunk Summaries41619
-Node: File Definitions42006
-Node: Code Chunk Definitions42168
-Node: Code Chunk References42358
-Node: Bibliography42521
-Node: Concept Index42652
+Node: Preface2193
+Node: Audience2376
+Node: Overview2495
+Node: Conventions2665
+Node: Acknowledgements3585
+Node: Introduction3701
+Node: Documentation3998
+Node: Installing Ruby4403
+Node: Package Management Systems5316
+Node: Homebrew (OS X)6141
+Node: Installers6567
+Node: ruby-build7163
+Node: ruby-install7716
+Node: Managers8331
+Node: chruby8728
+Node: rbenv8987
+Node: RVM (``Ruby Version Manager'')9532
+Node: uru9930
+Node: Building From Source10223
+Node: Releases Page11235
+Node: Branches Page12335
+Node: Issue Tracking14135
+Node: Developing Ruby14619
+Ref: subversion15369
+Ref: MainRubyRepo16521
+Ref: PatchByPatch16849
+Node: Getting Started17646
+Node: Try Ruby!18002
+Node: Official FAQ18332
+Node: FAQ Iterators19409
+Node: FAQ Syntax23348
+Ref: immediate value24493
+Ref: nil vs false25128
+Ref: empty string25742
+Ref: symbol object26095
+Ref: value of symbol27233
+Ref: loop28111
+Ref: post-test loop28337
+Ref: hash literal28763
+Ref: pos val29045
+Ref: \1 and \\129421
+Ref: 2 dots vs 3 dots29829
+Ref: or and30067
+Ref: function pointers30869
+Ref: load vs require31191
+Ref: exception handling31546
+Node: FAQ Methods32543
+Node: FAQ Classes and Modules34216
+Node: FAQ Built-In Libraries35402
+Node: FAQ Extension Library37380
+Node: FAQ Other Features38059
+Node: Ruby Koans38609
+Node: Why’s (Poignant) Guide to Ruby38805
+Node: Ruby in Twenty Minutes39279
+Node: Ruby from Other Languages39690
+Node: Learning Ruby39985
+Node: Ruby Essentials40351
+Node: Learn to Program40582
+Node: Manuals40959
+Node: Reference Documentation41098
+Node: Editors and IDEs41270
+Node: Further Reading41436
+Node: The Makefile41568
+Ref: Makefile41721
+Node: Makefile Variable Definitions42440
+Ref: Makefile---Variable-Definitions42618
+Node: Makefile Default Rule42762
+Ref: Makefile---Default-Rule42934
+Node: Makefile TWJR Rules43133
+Ref: Makefile---TWJR-Rules43292
+Node: Makefile Clean Rules43880
+Ref: Makefile---Clean-Rules44011
+Node: Code Chunk Summaries44358
+Node: File Definitions44743
+Node: Code Chunk Definitions44967
+Node: Code Chunk References45520
+Node: Bibliography46169
+Node: Concept Index46300
 
 End Tag Table

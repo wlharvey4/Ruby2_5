@@ -16,19 +16,19 @@ This is Edition 0.1c of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Package Management Systems (Ruby2_5 Information)</title>
+<title>Makefile Variable Definitions (Ruby2_5 Information)</title>
 
-<meta name="description" content="Package Management Systems (Ruby2_5 Information)">
-<meta name="keywords" content="Package Management Systems (Ruby2_5 Information)">
+<meta name="description" content="Makefile Variable Definitions (Ruby2_5 Information)">
+<meta name="keywords" content="Makefile Variable Definitions (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Installing-Ruby.html#Installing-Ruby" rel="up" title="Installing Ruby">
-<link href="Homebrew-_0028OS-X_0029.html#Homebrew-_0028OS-X_0029" rel="next" title="Homebrew (OS X)">
-<link href="Installing-Ruby.html#Installing-Ruby" rel="prev" title="Installing Ruby">
+<link href="The-Makefile.html#The-Makefile" rel="up" title="The Makefile">
+<link href="Makefile-Default-Rule.html#Makefile-Default-Rule" rel="next" title="Makefile Default Rule">
+<link href="The-Makefile.html#The-Makefile" rel="prev" title="The Makefile">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -61,34 +61,24 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Package-Management-Systems"></a>
+<a name="Makefile-Variable-Definitions"></a>
 <div class="header">
 <p>
-Next: <a href="Installers.html#Installers" accesskey="n" rel="next">Installers</a>, Up: <a href="Installing-Ruby.html#Installing-Ruby" accesskey="u" rel="up">Installing Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Makefile-Default-Rule.html#Makefile-Default-Rule" accesskey="n" rel="next">Makefile Default Rule</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Package-Management-Systems-1"></a>
-<h4 class="subsection">2.1.1 Package Management Systems</h4>
+<a name="Makefile-Variable-Definitions-1"></a>
+<h3 class="appendixsec">A.1 Makefile Variable Definitions</h3>
 
-<p>If you cannot compile your own Ruby, and you do not want to use a
-third-party tool, you can use your systemâs package manager to install
-Ruby.
+<a name="Makefile_002d_002d_002dVariable_002dDefinitions"></a><a name="index-_003cMakefile_002d_002d_002dVariable-Definitions_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>Makefile&mdash;Variable Definitions</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">FILE := Ruby2_5
+
+</pre></div>
+
+<p>This chunk is called by <span class="roman">{<samp>Makefile</samp>}</span>; see its first definition at <a href="The-Makefile.html#Makefile">Makefile</a>.
 </p>
-<p>Certain members in the Ruby community feel very strongly that you
-should never use a package manager to install Ruby and that you should
-use tools instead.  While the full list of pros and cons is outside of
-the scope of this page, the most basic reason is that most package
-managers have older versions of Ruby in their official
-repositories.  If you would like to use the newest Ruby, make sure you
-use the correct package name, or use the tools described further below
-instead.
-</p>
-
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="Homebrew-_0028OS-X_0029.html#Homebrew-_0028OS-X_0029" accesskey="1">Homebrew (OS X)</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
-
 
 
 

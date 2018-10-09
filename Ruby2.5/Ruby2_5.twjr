@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.1b
+@set EDITION 0.1c
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -1638,8 +1638,78 @@ know how to program, start here.
 
 @c -----------------------------------------------------------------------------
 
-@node First appendix
-@appendix First Appendix Title
+@node The Makefile
+@appendix The Makefile
+
+@(Makefile@)=
+@<Makefile---Variable Definitions@>
+@<Makefile---Default Rule@>
+@<Makefile---TWJR Rules@>
+@<Makefile---Clean Rules@>
+@
+
+@node Makefile Variable Definitions
+@appendixsec Makefile Variable Definitions
+
+@<Makefile---Variable Definitions@>=
+FILE := Ruby2_5
+
+@
+
+@node Makefile Default Rule
+@appendixsec Default Rule
+
+@<Makefile---Default Rule@>=
+.PHONY : default TANGLE WEAVE TEXI PDF HTML
+default : WEAVE TEXI PDF HTML
+
+@
+
+@node Makefile TWJR Rules
+@appendixsec TWJR Rules
+
+@<Makefile---TWJR Rules@>=
+TANGLE : tangle
+tangle : $(FILE).twjr
+	jrtangle $(FILE).twjr
+
+WEAVE : weave
+weave : TEXI
+TEXI  : texi
+texi  : $(FILE).texi
+
+$(FILE).texi : $(FILE).twjr
+	jrweave $(FILE).twjr > $(FILE).texi
+
+PDF : pdf
+pdf : $(FILE).pdf
+$(FILE).pdf : $(FILE).texi
+	pdftexi2dvi $(FILE).texi
+	make distclean
+	
+HTML : html
+html : $(FILE)/
+$(FILE)/ : $(FILE).texi
+	makeinfo --html $(FILE).texi
+
+@
+
+@node Makefile Clean Rules
+@appendixsec Clean Rules
+
+@<Makefile---Clean Rules@>=
+.PHONY : clean distclean worldclean
+clean :
+	rm -f *~ \#*\#
+
+distclean : clean
+	rm -f *.{aux,log,toc,cp,cps}
+
+worldclean : distclean
+	rm -f $(FILE).{texi,info,pdf}
+	rm -fr $(FILE)/
+
+@
 
 @node Code Chunk Summaries
 @appendix Code Chunk Summaries
