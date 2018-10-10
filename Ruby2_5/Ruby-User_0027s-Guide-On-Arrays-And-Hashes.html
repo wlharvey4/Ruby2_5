@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Arrays And Hashes (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Arrays And Hashes (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Arrays And Hashes (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Programming-Ruby.html#Programming-Ruby" rel="next" title="Programming Ruby">
+<link href="Ruby-User_0027s-Guide-on-Regular-Expressions.html#Ruby-User_0027s-Guide-on-Regular-Expressions" rel="prev" title="Ruby User's Guide on Regular Expressions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Arrays-And-Hashes"></a>
+<div class="header">
+<p>
+Previous: <a href="Ruby-User_0027s-Guide-on-Regular-Expressions.html#Ruby-User_0027s-Guide-on-Regular-Expressions" accesskey="p" rel="prev">Ruby User's Guide on Regular Expressions</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Arrays-And-Hashes"></a>
+<h4 class="subsubsection">2.4.1.6 On Arrays And Hashes</h4>
+<a name="index-arrays"></a>
+
+<a name="Creating-An-Array"></a>
+<h4 class="subheading">Creating An Array</h4>
+<a name="index-array_002c-creating"></a>
+
+<p>You can create an array by listing some items within square brackets
+(<code>[]</code>) and separating them with commas.  Ruby&rsquo;s arrays can accomodate
+diverse object types.  &lsquo;<samp>ary = [1, 2, &quot;3&quot;]</samp>&rsquo; &rArr; &lsquo;<samp>[1, 2, &quot;3&quot;]</samp>&rsquo;
+</p>
+<a name="Concatenating-and-Repeating-Arrays"></a>
+<h4 class="subheading">Concatenating and Repeating Arrays</h4>
+<a name="index-arrays_002c-concatenating"></a>
+<a name="index-arrays_002c-repeating"></a>
+
+<p>Arrays can be concatenated or repeated just as strings can.  &lsquo;<samp>ary
++ [&quot;foo&quot;, &quot;bar&quot;]</samp>&rsquo; &rArr; &lsquo;<samp>[1, 2, &quot;3&quot;, &quot;foo&quot;, &quot;bar&quot;]</samp>&rsquo;;
+&lsquo;<samp>ary * 2</samp>&rsquo; &rArr; &lsquo;<samp>[1, 2, &quot;3&quot;, 1, 2, &quot;3&quot;]</samp>&rsquo;.
+</p>
+<a name="Referring-To-Elements-of-Arrays"></a>
+<h4 class="subheading">Referring To Elements of Arrays</h4>
+<a name="index-array_002c-referring-to-elements"></a>
+
+<p>We can use index numbers to refer to any part of a array.
+&lsquo;<samp>ary[0]</samp>&rsquo; &rArr; &lsquo;<samp>1</samp>&rsquo;; &lsquo;<samp>ary[0,2]</samp>&rsquo; &rArr; &lsquo;<samp>[1, 2]</samp>&rsquo;;
+&lsquo;<samp>ary[0..1]</samp>&rsquo; &rArr; &lsquo;<samp>[1, 2]</samp>&rsquo;.
+</p>
+<a name="Converted-To-And-From-Strings"></a>
+<h4 class="subheading">Converted To And From Strings</h4>
+<a name="index-array_002c-converting-to-and-from-string"></a>
+<a name="index-join"></a>
+<a name="index-split"></a>
+
+<p>Arrays can be converted to and from strings, using <code>join</code> and
+<code>split</code> respecitvely.  &lsquo;<samp>str = ary.join(&quot;:&quot;)</samp>&rsquo; &rArr; &lsquo;<samp>&quot;1:2:3&quot;</samp>&rsquo;.
+&lsquo;<samp>str.split(&quot;:&quot;)</samp>&rsquo; &rArr; &lsquo;<samp>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</samp>&rsquo;.
+</p>
+<a name="Hashes"></a>
+<h4 class="subheading">Hashes</h4>
+<a name="index-hash"></a>
+<a name="index-dictionary"></a>
+<a name="index-associative-array"></a>
+<a name="index-key_002c-for-hash"></a>
+
+<p>An <em>associative array</em> has elements that are accessed not by
+sequential index numbers, but by keys which can have any sort of
+value.  Such an array is sometimes called a <em>hash</em> or
+<em>dictionary</em>; in the ruby world, we prefer the term hash.  A hash
+can be constructed by quoting pairs of items within curly braces
+(<code>{}</code>).  You use a key to find something in a hash, much as you
+use an index to find something in an array.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; h = {1 =&gt; 2, &quot;2&quot; =&gt; &quot;4&quot;}
+   {1=&gt;2, &quot;2&quot;=&gt;&quot;4&quot;}
+ruby&gt; h[1]
+   2
+ruby&gt; h[&quot;2&quot;]
+   &quot;4&quot;
+ruby&gt; h[5]
+   nil
+ruby&gt; h[5] = 10    # appending an entry
+   10
+ruby&gt; h
+   {5=&gt;10, 1=&gt;2, &quot;2&quot;=&gt;&quot;4&quot;}
+ruby&gt; h.delete 1   # deleting an entry by key
+   2
+ruby&gt; h[1]
+   nil
+ruby&gt; h
+   {5=&gt;10, &quot;2&quot;=&gt;&quot;4&quot;}
+</pre></div>
+   
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Ruby-User_0027s-Guide-on-Regular-Expressions.html#Ruby-User_0027s-Guide-on-Regular-Expressions" accesskey="p" rel="prev">Ruby User's Guide on Regular Expressions</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

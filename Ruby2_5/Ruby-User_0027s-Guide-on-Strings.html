@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide on Strings (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide on Strings (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide on Strings (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Puzzle-Program.html#Puzzle-Program" rel="next" title="Puzzle Program">
+<link href="Simple-Examples.html#Simple-Examples" rel="prev" title="Simple Examples">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-on-Strings"></a>
+<div class="header">
+<p>
+Next: <a href="Puzzle-Program.html#Puzzle-Program" accesskey="n" rel="next">Puzzle Program</a>, Previous: <a href="Simple-Examples.html#Simple-Examples" accesskey="p" rel="prev">Simple Examples</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Strings"></a>
+<h4 class="subsubsection">2.4.1.3 On Strings</h4>
+<a name="index-Strings"></a>
+
+<a name="Quoting-Strings"></a>
+<h4 class="subheading">Quoting Strings</h4>
+<a name="index-strings_002c-quoting-syntax-and-semantics"></a>
+
+<p>A string may be double-quoted (&lsquo;<samp>&quot;...&quot;</samp>&rsquo;) or single-quoted (&lsquo;<samp>'...'</samp>&rsquo;).
+</p>
+<p>Double- and single-quoting have different effects in some cases.  A
+double-quoted string allows character escapes by a leading backslash, and the
+evaluation of embedded expressions using <code>#{}</code>.  A single-quoted string
+does not do this interpreting; what you see is what you get.
+</p>
+<a name="String-Methods"></a>
+<h4 class="subheading">String Methods</h4>
+<a name="index-string-_002b-and-_002a"></a>
+
+<p>You can concatenate strings with <code>+</code>, and repeat a string many times with
+<code>*</code>.
+</p>
+<p>Here are some things you can do with strings.
+</p>
+<dl compact="compact">
+<dt><i>Concatenation</i></dt>
+<dd><p>&lsquo;<samp>word = &quot;fo&quot; + &quot;o&quot;</samp>&rsquo; &rArr; &lsquo;<samp>&quot;foo&quot;</samp>&rsquo;
+</p></dd>
+<dt><i>Repetition</i></dt>
+<dd><p>&lsquo;<samp>word = word * 2</samp>&rsquo; &rArr; &lsquo;<samp>&quot;foofoo&quot;</samp>&rsquo;
+</p></dd>
+<dt><i>Extracting characters</i></dt>
+<dd><p>(note that characters are integers in ruby)<br>
+&lsquo;<samp>word[0]</samp>&rsquo; &rArr; &lsquo;<samp>102</samp>&rsquo; &lsquo;<samp># 102 is ASCII code of `f'</samp>&rsquo;<br>
+&lsquo;<samp>word[-1]</samp>&rsquo; &rArr; &lsquo;<samp>111</samp>&rsquo; &lsquo;<samp># 111 is ASCII code of `o'</samp>&rsquo;
+</p></dd>
+<dt><i>Extracting substrings</i></dt>
+<dd><div class="example">
+<pre class="example">ruby&gt; herb = &quot;parsley&quot;
+   &quot;parsley&quot;
+ruby&gt; herb[0,1]
+   &quot;p&quot;
+ruby&gt; herb[-2,2]
+   &quot;ey&quot;
+ruby&gt; herb[0..3]
+   &quot;pars&quot;
+ruby&gt; herb[-5..-2]
+   &quot;rsle&quot;
+</pre></div>
+</dd>
+<dt><i>Testing for equality:</i></dt>
+<dd><p>&lsquo;<samp>&quot;foo&quot; == &quot;foo&quot;</samp>&rsquo; &rArr; &lsquo;<samp>true</samp>&rsquo;<br>
+&lsquo;<samp>&quot;foo&quot; == &quot;bar&quot;</samp>&rsquo; &rArr; &lsquo;<samp>false</samp>&rsquo;
+</p></dd>
+</dl>
+
+
+
+
+
+</body>
+</html>

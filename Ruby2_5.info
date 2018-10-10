@@ -41,6 +41,7 @@ General Public License, version 3.
 * Code Chunk Summaries::
 * Bibliography::
 * Concept Index::
+* Program Index::
 
  -- The Detailed Node Listing --
 
@@ -158,6 +159,10 @@ Ruby User's Guide
 
 * What Is Ruby?::
 * Simple Examples::
+* Ruby User's Guide on Strings::
+* Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
 
 Utility Programs
 
@@ -2857,6 +2862,10 @@ Mark Slagell, is a nice overview of many aspects of the Ruby language.
 
 * What Is Ruby?::
 * Simple Examples::
+* Ruby User's Guide on Strings::
+* Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
 
 
 File: Ruby2_5.info,  Node: What Is Ruby?,  Next: Simple Examples,  Up: Ruby User's Guide
@@ -2892,7 +2901,7 @@ also:
         * threading support
 
 
-File: Ruby2_5.info,  Node: Simple Examples,  Prev: What Is Ruby?,  Up: Ruby User's Guide
+File: Ruby2_5.info,  Node: Simple Examples,  Next: Ruby User's Guide on Strings,  Prev: What Is Ruby?,  Up: Ruby User's Guide
 
 2.4.1.2 Simple Examples
 .......................
@@ -2927,14 +2936,14 @@ Command Line Arguments -- In Array ARGV
 .......................................
 
 'ARGV' is an array which contains the command line arguments, and
-'to_i' converts a character string to an integer.
+'to_i' converts a character string to an integer.(1)
 
 The 'end' Statement
 ...................
 
 You may notice the repeated occurrence of 'end'.  Ruby has been called
 "Algol-like" because of this.  (Actually, the syntax of ruby more
-closely mimics that of a langage named Eiffel
+closely mimics that of a language named Eiffel
 (https://www.eiffel.org/).)
 
 Takeaway -- 'return' Statement Optional
@@ -2993,12 +3002,12 @@ standard input and executes them after the end of input:
 Ruby Evaluation Program -- 'eval.rb'
 ....................................
 
-Ruby also comes with a program called 'eval.rb' that allows you to
-enter ruby code from the keyboard in an interactive loop, showing you
-the results as you go.  It will be used extensively through the rest
-of this guide.  You should use this enhanced 'eval.rb'
-(http://www.rubyist.net/~slagell/ruby/eval.txt) that adds visual
-indenting assistance, warning reports, and color highlighting.
+Ruby also comes with a program called 'eval.rb' (*note eval.rb::) that
+allows you to enter ruby code from the keyboard in an interactive
+loop, showing you the results as you go.  It will be used extensively
+through the rest of this guide.  You should use this enhanced
+'eval.rb' (http://www.rubyist.net/~slagell/ruby/eval.txt) that adds
+visual indenting assistance, warning reports, and color highlighting.
 
    Here is a short 'eval.rb' session:
 
@@ -3021,6 +3030,355 @@ No Distinction Between Statement and Expression
    Here, 'nil' indicates that 'puts' does not return a meaningful
 value.  Note that we can leave this interpreter loop by saying 'exit',
 although <C-D> still works too.
+
+   ---------- Footnotes ----------
+
+   (1) Ruby does not convert strings into integers automatically like
+perl does.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide on Strings,  Next: Puzzle Program,  Prev: Simple Examples,  Up: Ruby User's Guide
+
+2.4.1.3 On Strings
+..................
+
+Quoting Strings
+---------------
+
+A string may be double-quoted ('"..."') or single-quoted (''...'').
+
+   Double- and single-quoting have different effects in some cases.  A
+double-quoted string allows character escapes by a leading backslash,
+and the evaluation of embedded expressions using '#{}'.  A
+single-quoted string does not do this interpreting; what you see is
+what you get.
+
+String Methods
+--------------
+
+You can concatenate strings with '+', and repeat a string many times
+with '*'.
+
+   Here are some things you can do with strings.
+
+Concatenation
+     'word = "fo" + "o"' => '"foo"'
+Repetition
+     'word = word * 2' => '"foofoo"'
+Extracting characters
+     (note that characters are integers in ruby)
+     'word[0]' => '102' '# 102 is ASCII code of `f''
+     'word[-1]' => '111' '# 111 is ASCII code of `o''
+Extracting substrings
+          ruby> herb = "parsley"
+             "parsley"
+          ruby> herb[0,1]
+             "p"
+          ruby> herb[-2,2]
+             "ey"
+          ruby> herb[0..3]
+             "pars"
+          ruby> herb[-5..-2]
+             "rsle"
+Testing for equality:
+     '"foo" == "foo"' => 'true'
+     '"foo" == "bar"' => 'false'
+
+
+File: Ruby2_5.info,  Node: Puzzle Program,  Next: Ruby User's Guide on Regular Expressions,  Prev: Ruby User's Guide on Strings,  Up: Ruby User's Guide
+
+2.4.1.4 Puzzle Program
+......................
+
+{'guess.rb'} ==
+     # save this as guess.rb
+     words = ['foobar', 'baz', 'quux']
+     secret = words[rand(3)]
+
+     print "guess? "
+     while guess = STDIN.gets
+       guess.chop!
+       if guess == secret
+         puts "You win!"
+         break
+       else
+         puts "Sorry, you lose."
+       end
+       print "guess? "
+     end
+     puts "The word was ", secret, "."
+
+New Control Structure 'while'
+-----------------------------
+
+In this program, a new control structure, 'while', is used.  The code
+between 'while' and its corresponding 'end' will execute repeatedly as
+long as some specified condition remains true.  In this case,
+'guess=STDIN.gets' is both an active statement (collecting a line of
+user input and storing it as guess), and a condition (if there is no
+input, guess, which repesents the value of the whole
+'guess=STDIN.gets' expression, has a 'nil' value, causing while to
+stop looping).
+
+Standard Input Object -- STDIN
+------------------------------
+
+STDIN is the standard input object.  Usually, 'guess=gets' does the
+same thing as 'guess=STDIN.gets'.  In line 5 we read one line from
+standard input by the method STDIN.'gets'.  If EOF (end of file)
+occurs while getting the line, 'gets' returns 'nil'.  So the code
+associated with this 'while' will repeat until it sees <^D> signifying
+the end of input.
+
+'guess.chop!'
+-------------
+
+'guess.chop!' in line 6 deletes the last character from 'guess'; in
+this case it will always be a 'newline' character, 'gets' includes
+that character to reflect the user's <return> keystroke, but we're not
+interested in it.
+
+Printing Variables
+------------------
+
+In line 15 we print the secret word.  We have written this as a 'puts'
+('put s'tring) statement with two arguments, which are printed one
+after the other; but it would have been equally effective to do it
+with a single argument, writing secret as '#{secret}' to make it clear
+that it is a variable to be evaluated, not a literal word to be
+printed:
+
+     puts "the word is #{secret}."
+
+   It builds a single string and presents it as a single argument to
+'puts'.
+
+'print' vs 'puts'
+-----------------
+
+Also, we are by now used to the idea of using 'puts' for standard
+script output, but this script uses 'print' instead, in lines 4 and
+13.  They are not quite the same thing.  'print' outputs exactly what
+it is given; 'puts' also ensures that the output line ends.  Using
+'print' in lines 4 and 13 leaves the cursor next to what was just
+printed, rather than moving it to the beginning of the next line.
+This creates a recognizable prompt for user input.  In general, the
+four output calls below are equivalent:
+
+Flushing Standard Output
+------------------------
+
+Sometimes a text window is programmed to _buffer_ output for the sake
+of speed, collecting individual characters and displaying them only
+when it is given a <newline> character.  So if the guessing game
+script misbehaves by not showing the prompt lines until after the user
+supplies a guess, _buffering_ is the likely culprit.  To make sure
+this doesn't happen, you can "flush" the output as soon as you have
+printed the prompt.  It tells the standard output device (an object
+named STDOUT), "don't wait; display what you have in your buffer right
+now."  '04 print "guess? "; STDOUT.flush'.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide on Regular Expressions,  Next: Ruby User's Guide On Arrays And Hashes,  Prev: Puzzle Program,  Up: Ruby User's Guide
+
+2.4.1.5 Regular Expressions
+...........................
+
+     ruby> def chab(s)   # "contains hex in angle brackets"
+         |    (s =~ /<0(x|X)(\d|[a-f]|[A-F])+>/) != nil
+         | end
+       nil
+     ruby> chab "Not this one."
+       false
+     ruby> chab "Maybe this? {0x35}"    # wrong kind of brackets
+       false
+     ruby> chab "Or this? <0x38z7e>"    # bogus hex digit
+       false
+     ruby> chab "Okay, this: <0xfc0004>."
+       true
+
+Program To Help Experiment With Regular Expressions
+---------------------------------------------------
+
+Here is a little program to help you experiment with regular
+expressions.  Store it as 'regx.rb' and run it by typing 'ruby
+regx.rb' at the command line.
+
+   The program requires input twice, once for a string and once for a
+regular expression.  The string is tested against the regular
+expression, then displayed with all the matching parts highlighted in
+reverse video.
+
+{'regx.rb'} ==
+     # Requires an ANSI terminal!
+
+     st = "\033[7m"
+     en = "\033[m"
+
+     puts "Enter an empty string at any time to exit."
+
+     while true
+       print "str> "; STDOUT.flush; str = gets.chop
+       break if str.empty?
+       print "pat> "; STDOUT.flush; pat = gets.chop
+       break if pat.empty?
+       re = Regexp.new(pat)
+       puts str.gsub(re,"#{st}\\&#{en}")
+     end
+
+Explication of 'regx.rb'
+------------------------
+
+The 'break' Statement
+.....................
+
+In line 6, the condition for 'while' is hardwired to 'true', so it
+forms what looks like an infinite loop.  However we put 'break'
+statements in the 8th and 10th lines to escape the loop.
+
+'if' Modifiers
+..............
+
+     break if str.empty?
+     break if pat.empty?
+
+   These two 'break's are also an example of "if modifiers".  An 'if'
+modifier executes the statement on its left hand side if and only if
+the specified condition is satisfied.  This construction is unusual in
+that it operates logically from right to left, but it is provided
+because for many people it mimics a similar pattern in natural speech.
+It also has the advantage of brevity, as it needs no 'end' statement
+to tell the interpreter how much of the following code is supposed to
+be conditional.  An 'if' modifier is conventionally used in situations
+where a statement and condition are short enough to fit comfortably
+together on one script line.
+
+   Note the difference in the user interface compared to the
+string-guessing script.  This one lets the user quit by hitting the
+<Return> key on an empty line.  We are testing for emptiness of the
+input string, not for its nonexistence.
+
+Nondestructive 'chops' vs Destructive 'chops!'
+..............................................
+
+In lines 7 and 9 we have a "non-destructive" 'chop'; again, we're
+getting rid of the unwanted newline character we always get from
+'gets'.  Add the exclamation point, and we have a "destructive" chop.
+What's the difference?  In ruby, we conventionally attach '!' or '?'
+to the end of certain method names.  The exclamation point ('!',
+sometimes pronounced aloud as "bang!")  indicates something
+potentially destructive, that is to say, something that can change the
+value of what it touches.  'chop!' affects a string directly, but
+'chop' gives you a chopped copy without damaging the original.
+
+'chomp' And 'chomp!'
+....................
+
+You'll also sometimes see 'chomp' and 'chomp'!  used.  These are more
+selective: the end of a string gets bit off only if it happens to be a
+newline.  So for example, '"XYZ".chomp!' does nothing.  If you need a
+trick to remember the difference, think of a person or animal tasting
+something before deciding to take a bite, as opposed to an axe
+chopping indiscriminately.
+
+Predicate Method Naming Convention
+..................................
+
+The other method naming convention appears in lines 8 and 10.  A
+question mark ('?', sometimes pronounced aloud as "huh?")  indicates a
+"predicate" method, one that can return either true or false.
+
+Regular Expressions At Work
+...........................
+
+Line 11 creates a regular expression object out of the string supplied
+by the user.  The real work is finally done in line 12, which uses
+'gsub' to globally substitute each match of that expression with
+itself, but surrounded by ansi markups; also the same line outputs the
+results.
+
+   In line 12 we see '\\&'.  This is a little tricky.  Since the
+replacement string is in double quotes, the pair of backslashes will
+be interpreted as a single backslash; what 'gsub' actually sees will
+be '\&', and that happens to be a special code that refers to whatever
+matched the pattern in the first place.  So the new string, when
+displayed, looks just like the old one, except that the parts that
+matched the given pattern are highlighted in inverse video.
+
+The '=~' Matching Operator
+--------------------------
+
+'=~' is a matching operator with respect to regular expressions; it
+returns the position in a string where a match was found, or 'nil' if
+the pattern did not match.
+
+     ruby> "abcdef" =~ /d/
+        3
+     ruby> "aaaaaa" =~ /d/
+        nil
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Arrays And Hashes,  Prev: Ruby User's Guide on Regular Expressions,  Up: Ruby User's Guide
+
+2.4.1.6 On Arrays And Hashes
+............................
+
+Creating An Array
+-----------------
+
+You can create an array by listing some items within square brackets
+('[]') and separating them with commas.  Ruby's arrays can accomodate
+diverse object types.  'ary = [1, 2, "3"]' => '[1, 2, "3"]'
+
+Concatenating and Repeating Arrays
+----------------------------------
+
+Arrays can be concatenated or repeated just as strings can.  'ary +
+["foo", "bar"]' => '[1, 2, "3", "foo", "bar"]'; 'ary * 2' => '[1, 2,
+"3", 1, 2, "3"]'.
+
+Referring To Elements of Arrays
+-------------------------------
+
+We can use index numbers to refer to any part of a array.  'ary[0]' =>
+'1'; 'ary[0,2]' => '[1, 2]'; 'ary[0..1]' => '[1, 2]'.
+
+Converted To And From Strings
+-----------------------------
+
+Arrays can be converted to and from strings, using 'join' and 'split'
+respecitvely.  'str = ary.join(":")' => '"1:2:3"'.  'str.split(":")'
+=> '["1", "2", "3"]'.
+
+Hashes
+------
+
+An "associative array" has elements that are accessed not by
+sequential index numbers, but by keys which can have any sort of
+value.  Such an array is sometimes called a "hash" or "dictionary"; in
+the ruby world, we prefer the term hash.  A hash can be constructed by
+quoting pairs of items within curly braces ('{}').  You use a key to
+find something in a hash, much as you use an index to find something
+in an array.
+
+     ruby> h = {1 => 2, "2" => "4"}
+        {1=>2, "2"=>"4"}
+     ruby> h[1]
+        2
+     ruby> h["2"]
+        "4"
+     ruby> h[5]
+        nil
+     ruby> h[5] = 10    # appending an entry
+        10
+     ruby> h
+        {5=>10, 1=>2, "2"=>"4"}
+     ruby> h.delete 1   # deleting an entry by key
+        2
+     ruby> h[1]
+        nil
+     ruby> h
+        {5=>10, "2"=>"4"}
 
 
 File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
@@ -3441,8 +3799,10 @@ Appendix B The Makefile
 ***********************
 
 {'Makefile'} ==
-     <Makefile--Variable Definitions> <Makefile--Default Rule>
-     <Makefile--TWJR Rules> <Makefile--Clean Rules>
+     <Makefile--Variable Definitions>
+     <Makefile--Default Rule>
+     <Makefile--TWJR Rules>
+     <Makefile--Clean Rules>
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
@@ -3546,7 +3906,7 @@ B.4 Clean Rules
          rm -f *~ \#*\#
 
      distclean : clean
-         rm -f *.{aux,log,toc,cp,cps}
+         rm -f *.{aux,log,toc,cp,cps,pg,pgs}
 
      veryclean : clean
          for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
@@ -3586,6 +3946,10 @@ C.1 Source File Definitions
      This chunk is defined in *note eval-rb::.
 {'fact.rb'}
      This chunk is defined in *note fact-rb::.
+{'guess.rb'}
+     This chunk is defined in *note guess-rb::.
+{'regx.rb'}
+     This chunk is defined in *note regx-rb::.
 {'ri20min.rb'}
      This chunk is defined in *note ri20min-rb::.
 
@@ -3713,7 +4077,7 @@ Bibliography
 ************
 
 
-File: Ruby2_5.info,  Node: Concept Index,  Prev: Bibliography,  Up: Top
+File: Ruby2_5.info,  Node: Concept Index,  Next: Program Index,  Prev: Bibliography,  Up: Top
 
 Index
 *****
@@ -3785,13 +4149,18 @@ Index
 * <MegaGreeter--say_hi Method>, use:     Large Class Definition.
                                                             (line  10)
 * == vs equals():                        To Ruby From Java. (line  59)
+* =~ matching operator:                  Ruby User's Guide on Regular Expressions.
+                                                            (line 130)
 * \Z:                                    FAQ Built-In Libraries.
                                                             (line  54)
 * __FILE__ special variable:             Large Class Definition.
                                                             (line 151)
 * {eval.rb}, definition:                 eval.rb.           (line   8)
 * {fact.rb}, definition:                 Simple Examples.   (line  17)
+* {guess.rb}, definition:                Puzzle Program.    (line   6)
 * {Makefile}, definition:                The Makefile.      (line   6)
+* {regx.rb}, definition:                 Ruby User's Guide on Regular Expressions.
+                                                            (line  31)
 * {ri20min.rb}, definition:              Large Class Definition.
                                                             (line  10)
 * access control:                        To Ruby From Java. (line  36)
@@ -3807,12 +4176,26 @@ Index
                                                             (line 155)
 * array literals in brackets:            To Ruby From C and C++.
                                                             (line 114)
+* array, converting to and from string:  Ruby User's Guide On Arrays And Hashes.
+                                                            (line  29)
+* array, creating:                       Ruby User's Guide On Arrays And Hashes.
+                                                            (line   9)
+* array, referring to elements:          Ruby User's Guide On Arrays And Hashes.
+                                                            (line  23)
 * array, sum elements in:                FAQ Other Features.
                                                             (line  18)
+* arrays:                                Ruby User's Guide On Arrays And Hashes.
+                                                            (line   6)
 * arrays are dynamic and mutable:        To Ruby From C and C++.
                                                             (line 116)
 * arrays, adding:                        To Ruby From C and C++.
                                                             (line 119)
+* arrays, concatenating:                 Ruby User's Guide On Arrays And Hashes.
+                                                            (line  16)
+* arrays, repeating:                     Ruby User's Guide On Arrays And Hashes.
+                                                            (line  16)
+* associative array:                     Ruby User's Guide On Arrays And Hashes.
+                                                            (line  36)
 * attributes:                            To Ruby From C and C++.
                                                             (line 137)
 * attr_accessor :name:                   Altering Classes.  (line   9)
@@ -3835,6 +4218,9 @@ Index
 * braces, none:                          To Ruby From C and C++.
                                                             (line 101)
 * branches page:                         Branches Page.     (line   6)
+* break statement:                       Ruby User's Guide on Regular Expressions.
+                                                            (line  54)
+* buffering:                             Puzzle Program.    (line  84)
 * C library, use:                        FAQ Extension Library.
                                                             (line  15)
 * calling method 2 levels up:            FAQ Methods.       (line  42)
@@ -3843,6 +4229,10 @@ Index
 * cast:                                  To Ruby From C and C++.
                                                             (line 149)
 * casting, none:                         To Ruby From Java. (line  49)
+* chop:                                  Ruby User's Guide on Regular Expressions.
+                                                            (line  83)
+* chop!:                                 Ruby User's Guide on Regular Expressions.
+                                                            (line  83)
 * chruby:                                chruby.            (line   6)
 * class definition:                      Defining Methods.  (line  70)
 * class definition, repeating:           FAQ Classes and Modules.
@@ -3884,7 +4274,11 @@ Index
                                                             (line  12)
 * def:                                   Defining Methods.  (line   6)
 * destructive method:                    FAQ Methods.       (line  48)
+* destructive method vs nondestructive method: Ruby User's Guide on Regular Expressions.
+                                                            (line  83)
 * developing Ruby:                       Developing Ruby.   (line   6)
+* dictionary:                            Ruby User's Guide On Arrays And Hashes.
+                                                            (line  36)
 * DLLs:                                  FAQ Syntax.        (line 249)
 * do ... } while:                        FAQ Syntax.        (line 156)
 * do keyword:                            To Ruby From C and C++.
@@ -3934,6 +4328,7 @@ Index
                                                             (line  36)
 * find:                                  Pointers on Iteration.
                                                             (line  17)
+* flush standard output:                 Puzzle Program.    (line  84)
 * fork vs thread:                        FAQ Built-In Libraries.
                                                             (line  57)
 * function pointers:                     FAQ Syntax.        (line 237)
@@ -3947,14 +4342,21 @@ Index
                                                             (line   9)
 * green threads vs native threads:       To Ruby From C and C++.
                                                             (line 160)
+* gsub method:                           Ruby User's Guide on Regular Expressions.
+                                                            (line 113)
 * gtk+:                                  FAQ Extension Library.
                                                             (line  24)
+* guess.chop!:                           Puzzle Program.    (line  49)
 * GUI toolkits:                          To Ruby From Java. (line  31)
 * Hash:                                  To Ruby From C and C++.
                                                             (line 155)
+* hash:                                  Ruby User's Guide On Arrays And Hashes.
+                                                            (line  36)
 * heap:                                  To Ruby From C and C++.
                                                             (line  89)
 * identifier with capital letter, method?: FAQ Methods.     (line  36)
+* if modifier:                           Ruby User's Guide on Regular Expressions.
+                                                            (line  61)
 * immediate values:                      FAQ Syntax.        (line  46)
 * import:                                To Ruby From Java. (line  34)
 * include vs extend:                     FAQ Classes and Modules.
@@ -3993,9 +4395,13 @@ Index
 * iterator, block:                       FAQ Iterators.     (line  56)
 * iterators:                             FAQ Iterators.     (line   6)
 * javadoc:                               To Ruby From Java. (line  23)
+* join:                                  Ruby User's Guide On Arrays And Hashes.
+                                                            (line  29)
 * join method, respond to:               Large Class Definition.
                                                             (line 116)
 * Kernel:                                FAQ Syntax.        (line 149)
+* key, for hash:                         Ruby User's Guide On Arrays And Hashes.
+                                                            (line  36)
 * lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
 * lambda method:                         Blocks are Objects.
                                                             (line  19)
@@ -4009,6 +4415,8 @@ Index
                                                             (line  60)
 * MatchData#begin and MatchData#end:     FAQ Other Features.
                                                             (line  15)
+* matching operator:                     Ruby User's Guide on Regular Expressions.
+                                                            (line 130)
 * member variables, access to:           To Ruby From C and C++.
                                                             (line 137)
 * memory management:                     To Ruby From Java. (line  18)
@@ -4064,6 +4472,10 @@ Index
 * patching of Ruby:                      Developing Ruby.   (line  38)
 * precedence of or:                      FAQ Syntax.        (line 211)
 * precedence, iterators, different results: FAQ Iterators.  (line  36)
+* predicate method:                      Ruby User's Guide on Regular Expressions.
+                                                            (line 106)
+* predicate method naming convention:    Ruby User's Guide on Regular Expressions.
+                                                            (line 106)
 * predicate methods:                     FAQ Syntax.        (line  68)
 * private vs protected:                  FAQ Methods.       (line  30)
 * Proc:                                  Blocks are Objects.
@@ -4072,6 +4484,7 @@ Index
 * Proc.new, followed by call:            FAQ Iterators.     (line  87)
 * program output, display using less:    FAQ Built-In Libraries.
                                                             (line  27)
+* puts:                                  Puzzle Program.    (line  57)
 * Qt:                                    To Ruby From Java. (line  31)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
@@ -4082,9 +4495,14 @@ Index
 * rdoc <1>:                              To Ruby From Perl. (line  30)
 * rdoc <2>:                              To Ruby From Python.
                                                             (line  29)
+* read one line from standard input:     Puzzle Program.    (line  39)
 * regexes:                               To Ruby From Perl. (line  17)
 * regular expression, escaping a backslash: FAQ Built-In Libraries.
                                                             (line  48)
+* regular expressions:                   Ruby User's Guide on Regular Expressions.
+                                                            (line   6)
+* regular expressions at work:           Ruby User's Guide on Regular Expressions.
+                                                            (line 113)
 * releases:                              Releases Page.     (line   6)
 * repository, Subversion:                Developing Ruby.   (line  49)
 * require:                               FAQ Syntax.        (line 245)
@@ -4127,12 +4545,23 @@ Index
                                                             (line  17)
 * source, building:                      Building From Source.
                                                             (line   6)
+* split:                                 Ruby User's Guide On Arrays And Hashes.
+                                                            (line  29)
+* standard input object STDIN:           Puzzle Program.    (line  39)
 * statement vs expression:               Simple Examples.   (line 123)
 * static checking, none:                 To Ruby From Java. (line  41)
 * statically typed:                      To Ruby From C and C++.
                                                             (line  28)
+* STDIN:                                 Puzzle Program.    (line  39)
+* STDIN.gets:                            Puzzle Program.    (line  39)
+* string + and *:                        Ruby User's Guide on Strings.
+                                                            (line  20)
 * String or Symbol:                      Symbols are not lightweight Strings.
                                                             (line  34)
+* Strings:                               Ruby User's Guide on Strings.
+                                                            (line   6)
+* strings, quoting syntax and semantics: Ruby User's Guide on Strings.
+                                                            (line   9)
 * strings, sort alphabetically:          FAQ Built-In Libraries.
                                                             (line  42)
 * strongly typed objects:                To Ruby From C and C++.
@@ -4196,6 +4625,7 @@ Index
 * versions,multiple:                     Installers.        (line   6)
 * visibility features:                   To Ruby From Java. (line  20)
 * visibility, changing:                  FAQ Methods.       (line  33)
+* while:                                 Puzzle Program.    (line  27)
 * WxRuby:                                To Ruby From Java. (line  31)
 * xforms:                                FAQ Extension Library.
                                                             (line  24)
@@ -4208,142 +4638,166 @@ Index
 * yield control structor, or statement:  FAQ Iterators.     (line  56)
 * yield control structure in iterator:   FAQ Iterators.     (line  61)
 
+
+File: Ruby2_5.info,  Node: Program Index,  Prev: Concept Index,  Up: Top
+
+Program Index
+*************
+
+ [index ]
+* Menu:
+
+* eval.rb:                               eval.rb.            (line  6)
+* fact.rb:                               Simple Examples.    (line  9)
+* guess.rb:                              Puzzle Program.     (line  6)
+* Makefile:                              The Makefile.       (line  6)
+* regx.rb:                               Ruby User's Guide on Regular Expressions.
+                                                             (line 31)
+
 
 
 Tag Table:
 Node: Top371
-Node: Preface3359
-Node: Audience3542
-Node: Overview3661
-Node: Conventions3831
-Node: Acknowledgements4751
-Node: Introduction4867
-Node: Documentation5164
-Node: Installing Ruby5573
-Node: Package Management Systems6486
-Node: Homebrew (OS X)7311
-Node: Installers7737
-Node: ruby-build8333
-Node: ruby-install8886
-Node: Managers9501
-Node: chruby9898
-Node: rbenv10157
-Node: RVM (``Ruby Version Manager'')10702
-Node: uru11100
-Node: Building From Source11393
-Node: Releases Page12405
-Node: Branches Page13505
-Node: Issue Tracking15305
-Node: Developing Ruby15789
-Ref: subversion16539
-Ref: MainRubyRepo17691
-Ref: PatchByPatch18019
-Node: Getting Started18816
-Node: Try Ruby!19204
-Node: Official FAQ19534
-Node: FAQ Iterators20611
-Node: FAQ Syntax24550
-Ref: immediate value25695
-Ref: nil vs false26330
-Ref: empty string26944
-Ref: symbol object27297
-Ref: value of symbol28435
-Ref: loop29313
-Ref: post-test loop29539
-Ref: hash literal29965
-Ref: pos val30247
-Ref: \1 and \\130623
-Ref: 2 dots vs 3 dots31031
-Ref: or and31269
-Ref: function pointers32071
-Ref: load vs require32393
-Ref: exception handling32748
-Node: FAQ Methods33745
-Node: FAQ Classes and Modules35418
-Node: FAQ Built-In Libraries36604
-Node: FAQ Extension Library38582
-Node: FAQ Other Features39261
-Node: Ruby Koans39811
-Node: Why’s (Poignant) Guide to Ruby40215
-Node: Ruby in Twenty Minutes40689
-Node: Interactive Ruby41362
-Node: Defining Methods42316
-Node: Altering Classes47820
-Node: Large Class Definition49156
-Ref: ri20min-rb49560
-Ref: MegaGreeter---Initialize-Method50369
-Ref: MegaGreeter---say-hi-Method51091
-Ref: MegaGreeter---say-bye-Method53308
-Ref: MegaGreeter---Main-Script54256
-Node: Run MegaGreeter54788
-Node: Ruby from Other Languages55314
-Node: To Ruby From C and C++56032
-Node: To Ruby From Java63561
-Node: To Ruby From Perl66128
-Node: To Ruby From PHP69087
-Node: To Ruby From Python71264
-Node: Important Language Features75399
-Node: Pointers on Iteration76153
-Node: Everything has a value76949
-Node: Symbols are not lightweight Strings77429
-Node: Everything is an Object78874
-Node: Variable Constants79435
-Node: Naming conventions79828
-Node: Keyword arguments80524
-Node: The universal truth81074
-Node: Access modifiers are Methods81826
-Node: Method access82829
-Node: Classes are open84443
-Node: Funny method names85158
-Node: Singleton methods85960
-Node: Missing methods86587
-Node: Message passing --- not function calls87666
-Node: Blocks are Objects88087
-Node: Operators are syntactic sugar88998
-Node: Learning Ruby90011
-Node: Ruby Essentials90379
-Node: Learn to Program90610
-Node: Manuals90989
-Node: Ruby User's Guide91181
-Node: What Is Ruby?91632
-Node: Simple Examples92621
-Ref: fact-rb93012
-Node: Programming Ruby96707
-Node: Reference Documentation101137
-Node: Editors and IDEs101309
-Node: Further Reading101475
-Node: Utility Programs101607
-Node: eval.rb101786
-Ref: eval-rb101935
-Node: eval Module Code103882
-Ref: eval---EvalWrapper--Constants104037
-Node: eval Indentation Deltas Code104564
-Ref: eval---EvalWrapper--Indentation-Deltas104775
-Node: eval Main Get Line Code105654
-Ref: eval---Main--Get-Line105866
-Node: eval Main Process Line Code106326
-Ref: eval---Main--Process-Line106509
-Node: eval If Not Line Code107150
-Ref: eval---Main--Process-Line-If-Not-Line107336
-Node: eval If Is Line Code107683
-Ref: eval---Main--Process-Line-Is-Line107867
-Ref: eval---Main--Process-Line-Is-Line-Indentation108717
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-109438
-Node: The Makefile110154
-Ref: Makefile110310
-Node: Makefile Variable Definitions111019
-Ref: Makefile---Variable-Definitions111197
-Node: Makefile Default Rule111365
-Ref: Makefile---Default-Rule111915
-Node: Makefile TWJR Rules112154
-Ref: Makefile---TWJR-Rules112313
-Node: Makefile Clean Rules112944
-Ref: Makefile---Clean-Rules113075
-Node: Code Chunk Summaries113532
-Node: File Definitions113917
-Node: Code Chunk Definitions114324
-Node: Code Chunk References116178
-Node: Bibliography118543
-Node: Concept Index118674
+Node: Preface3517
+Node: Audience3700
+Node: Overview3819
+Node: Conventions3989
+Node: Acknowledgements4909
+Node: Introduction5025
+Node: Documentation5322
+Node: Installing Ruby5731
+Node: Package Management Systems6644
+Node: Homebrew (OS X)7469
+Node: Installers7895
+Node: ruby-build8491
+Node: ruby-install9044
+Node: Managers9659
+Node: chruby10056
+Node: rbenv10315
+Node: RVM (``Ruby Version Manager'')10860
+Node: uru11258
+Node: Building From Source11551
+Node: Releases Page12563
+Node: Branches Page13663
+Node: Issue Tracking15463
+Node: Developing Ruby15947
+Ref: subversion16697
+Ref: MainRubyRepo17849
+Ref: PatchByPatch18177
+Node: Getting Started18974
+Node: Try Ruby!19362
+Node: Official FAQ19692
+Node: FAQ Iterators20769
+Node: FAQ Syntax24708
+Ref: immediate value25853
+Ref: nil vs false26488
+Ref: empty string27102
+Ref: symbol object27455
+Ref: value of symbol28593
+Ref: loop29471
+Ref: post-test loop29697
+Ref: hash literal30123
+Ref: pos val30405
+Ref: \1 and \\130781
+Ref: 2 dots vs 3 dots31189
+Ref: or and31427
+Ref: function pointers32229
+Ref: load vs require32551
+Ref: exception handling32906
+Node: FAQ Methods33903
+Node: FAQ Classes and Modules35576
+Node: FAQ Built-In Libraries36762
+Node: FAQ Extension Library38740
+Node: FAQ Other Features39419
+Node: Ruby Koans39969
+Node: Why’s (Poignant) Guide to Ruby40373
+Node: Ruby in Twenty Minutes40847
+Node: Interactive Ruby41520
+Node: Defining Methods42474
+Node: Altering Classes47978
+Node: Large Class Definition49314
+Ref: ri20min-rb49718
+Ref: MegaGreeter---Initialize-Method50527
+Ref: MegaGreeter---say-hi-Method51249
+Ref: MegaGreeter---say-bye-Method53466
+Ref: MegaGreeter---Main-Script54414
+Node: Run MegaGreeter54946
+Node: Ruby from Other Languages55472
+Node: To Ruby From C and C++56190
+Node: To Ruby From Java63719
+Node: To Ruby From Perl66286
+Node: To Ruby From PHP69245
+Node: To Ruby From Python71422
+Node: Important Language Features75557
+Node: Pointers on Iteration76311
+Node: Everything has a value77107
+Node: Symbols are not lightweight Strings77587
+Node: Everything is an Object79032
+Node: Variable Constants79593
+Node: Naming conventions79986
+Node: Keyword arguments80682
+Node: The universal truth81232
+Node: Access modifiers are Methods81984
+Node: Method access82987
+Node: Classes are open84601
+Node: Funny method names85316
+Node: Singleton methods86118
+Node: Missing methods86745
+Node: Message passing --- not function calls87824
+Node: Blocks are Objects88245
+Node: Operators are syntactic sugar89156
+Node: Learning Ruby90169
+Node: Ruby Essentials90537
+Node: Learn to Program90768
+Node: Manuals91147
+Node: Ruby User's Guide91339
+Node: What Is Ruby?91930
+Node: Simple Examples92919
+Ref: fact-rb93347
+Ref: Simple Examples-Footnote-197100
+Node: Ruby User's Guide on Strings97182
+Node: Puzzle Program98523
+Ref: guess-rb98725
+Node: Ruby User's Guide on Regular Expressions102009
+Ref: regx-rb103100
+Node: Ruby User's Guide On Arrays And Hashes107241
+Node: Programming Ruby109130
+Node: Reference Documentation113560
+Node: Editors and IDEs113732
+Node: Further Reading113898
+Node: Utility Programs114030
+Node: eval.rb114209
+Ref: eval-rb114358
+Node: eval Module Code116305
+Ref: eval---EvalWrapper--Constants116460
+Node: eval Indentation Deltas Code116987
+Ref: eval---EvalWrapper--Indentation-Deltas117198
+Node: eval Main Get Line Code118077
+Ref: eval---Main--Get-Line118289
+Node: eval Main Process Line Code118749
+Ref: eval---Main--Process-Line118932
+Node: eval If Not Line Code119573
+Ref: eval---Main--Process-Line-If-Not-Line119759
+Node: eval If Is Line Code120106
+Ref: eval---Main--Process-Line-Is-Line120290
+Ref: eval---Main--Process-Line-Is-Line-Indentation121140
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-121861
+Node: The Makefile122577
+Ref: Makefile122733
+Node: Makefile Variable Definitions123452
+Ref: Makefile---Variable-Definitions123630
+Node: Makefile Default Rule123798
+Ref: Makefile---Default-Rule124348
+Node: Makefile TWJR Rules124587
+Ref: Makefile---TWJR-Rules124746
+Node: Makefile Clean Rules125377
+Ref: Makefile---Clean-Rules125508
+Node: Code Chunk Summaries125972
+Node: File Definitions126357
+Node: Code Chunk Definitions126884
+Node: Code Chunk References128738
+Node: Bibliography131103
+Node: Concept Index131234
+Node: Program Index170116
 
 End Tag Table

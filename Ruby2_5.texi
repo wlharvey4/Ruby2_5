@@ -236,6 +236,7 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Code Chunk Summaries::
 * Bibliography::
 * Concept Index::
+* Program Index::
 
 @detailmenu
  --- The Detailed Node Listing ---
@@ -354,6 +355,10 @@ Ruby User's Guide
 
 * What Is Ruby?::
 * Simple Examples::
+* Ruby User's Guide on Strings::
+* Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
 
 Utility Programs
 
@@ -3609,6 +3614,10 @@ nice overview of many aspects of the Ruby language.
 @menu
 * What Is Ruby?::
 * Simple Examples::
+* Ruby User's Guide on Strings::
+* Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
 @end menu
 
 @node What Is Ruby?
@@ -3677,6 +3686,7 @@ threading support
 
 @subheading Factorial in Ruby
 @cindex factorial in Ruby
+@pindex fact.rb
 
 Let's write a function to compute factorials.  The mathematical definition of
 @dfn{n factorial} is:
@@ -3720,13 +3730,14 @@ puts fact(ARGV[0].to_i)
 @cindex @code{to_i} method
 
 @code{ARGV} is an array which contains the command line arguments, and
-@code{to_i} converts a character string to an integer.
+@code{to_i} converts a character string to an integer.@footnote{Ruby
+does not convert strings into integers automatically like perl does.}
 
 @subsubheading The @code{end} Statement
 
 You may notice the repeated occurrence of @code{end}.  Ruby has been called
 ``Algol-like'' because of this.  (Actually, the syntax of ruby more closely
-mimics that of a langage named @url{https://www.eiffel.org/,Eiffel}.)
+mimics that of a language named @url{https://www.eiffel.org/,Eiffel}.)
 
 @subsubheading Takeaway --- @code{return} Statement Optional
 
@@ -3790,12 +3801,13 @@ good-bye world
 @subsubheading Ruby Evaluation Program --- @file{eval.rb}
 @cindex @file{eval.rb}
 
-Ruby also comes with a program called @file{eval.rb} that allows you to enter
-ruby code from the keyboard in an interactive loop, showing you the results
-as you go.  It will be used extensively through the rest of this guide.  You
-should use this enhanced @url{http://www.rubyist.net/~slagell/ruby/eval.txt,
-@file{eval.rb}} that adds visual indenting assistance, warning reports, and
-color highlighting.
+Ruby also comes with a program called @file{eval.rb} (@pxref{eval.rb})
+that allows you to enter ruby code from the keyboard in an interactive
+loop, showing you the results as you go.  It will be used extensively
+through the rest of this guide.  You should use this enhanced
+@url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
+that adds visual indenting assistance, warning reports, and color
+highlighting.
 
 Here is a short @file{eval.rb} session:
 
@@ -3822,6 +3834,405 @@ piece of code basically means the same thing as executing it.
 Here, @code{nil} indicates that @code{puts} does not return a meaningful
 value.  Note that we can leave this interpreter loop by saying
 @command{exit}, although @key{C-D} still works too.
+
+@c _____________________________________
+
+@node Ruby User's Guide on Strings
+@subsubsection On Strings
+@cindex Strings
+
+@subheading Quoting Strings
+@cindex strings, quoting syntax and semantics
+
+A string may be double-quoted (@samp{"..."}) or single-quoted (@samp{'...'}).
+
+Double- and single-quoting have different effects in some cases.  A
+double-quoted string allows character escapes by a leading backslash, and the
+evaluation of embedded expressions using @code{#@{@}}.  A single-quoted string
+does not do this interpreting; what you see is what you get.
+
+@subheading String Methods
+@cindex string @code{+} and @code{*}
+
+You can concatenate strings with @code{+}, and repeat a string many times with
+@code{*}.
+
+Here are some things you can do with strings.
+
+@table @i
+@item Concatenation
+@samp{word = "fo" + "o"} @result{} @samp{"foo"}
+@item Repetition
+@samp{word = word * 2} @result{} @samp{"foofoo"}
+@item Extracting characters
+(note that characters are integers in ruby)@*
+@samp{word[0]} @result{} @samp{102} @samp{# 102 is ASCII code of `f'}@*
+@samp{word[-1]} @result{} @samp{111} @samp{# 111 is ASCII code of `o'}
+@item Extracting substrings
+@example
+ruby> herb = "parsley"
+   "parsley"
+ruby> herb[0,1]
+   "p"
+ruby> herb[-2,2]
+   "ey"
+ruby> herb[0..3]
+   "pars"
+ruby> herb[-5..-2]
+   "rsle"
+@end example
+@item Testing for equality:
+@samp{"foo" == "foo"} @result{} @samp{true}@*
+@samp{"foo" == "bar"} @result{} @samp{false}
+@end table
+
+@c _____________________________________
+
+@node Puzzle Program
+@subsubsection Puzzle Program
+@pindex guess.rb
+
+@need 400
+@anchor{guess-rb}
+@cdindex @r{@{@file{guess.rb}@}}, definition
+@noindent
+@r{@{@file{guess.rb}@}} @equiv{}
+@example
+# save this as guess.rb
+words = ['foobar', 'baz', 'quux']
+secret = words[rand(3)]
+
+print "guess? "
+while guess = STDIN.gets
+  guess.chop!
+  if guess == secret
+    puts "You win!"
+    break
+  else
+    puts "Sorry, you lose."
+  end
+  print "guess? "
+end
+puts "The word was ", secret, "."
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading New Control Structure @code{while}
+@cindex @code{while}
+
+In this program, a new control structure, @code{while}, is used.  The
+code between @code{while} and its corresponding @code{end} will
+execute repeatedly as long as some specified condition remains true.
+In this case, @samp{guess=STDIN.gets} is both an active statement
+(collecting a line of user input and storing it as guess), and a
+condition (if there is no input, guess, which repesents the value of
+the whole @samp{guess=STDIN.gets} expression, has a @code{nil} value,
+causing while to stop looping).
+
+@subheading Standard Input Object --- @var{STDIN}
+@cindex standard input object @var{stdin}
+@cindex @var{stdin}
+@cindex @var{stdin}.@code{gets}
+@cindex read one line from standard input
+
+@var{STDIN} is the standard input object.  Usually, @samp{guess=gets}
+does the same thing as @samp{guess=STDIN.gets}.  In line 5 we read one
+line from standard input by the method @var{STDIN}.@code{gets}.  If
+@var{EOF} (end of file) occurs while getting the line, @code{gets}
+returns @code{nil}.  So the code associated with this @code{while} will
+repeat until it sees @key{^D} signifying the end of input.
+
+@subheading @code{guess.chop!}
+@cindex @code{guess.chop!}
+
+@code{guess.chop!} in line 6 deletes the last character from
+@code{guess}; in this case it will always be a @code{newline}
+character, @code{gets} includes that character to reflect the user's
+@key{return} keystroke, but we're not interested in it.
+
+@subheading Printing Variables
+@cindex @code{puts}
+
+In line 15 we print the secret word.  We have written this as a
+@code{puts} (@code{put s}tring) statement with two arguments, which
+are printed one after the other; but it would have been equally
+effective to do it with a single argument, writing secret as
+@code{#@{secret@}} to make it clear that it is a variable to be
+evaluated, not a literal word to be printed:
+
+@example
+puts "the word is #@{secret@}."
+@end example
+
+It builds a single string and presents it as a single argument to
+@code{puts}.
+
+@subheading @code{print} vs @code{puts}
+
+Also, we are by now used to the idea of using @code{puts} for standard
+script output, but this script uses @code{print} instead, in lines 4
+and 13.  They are not quite the same thing.  @code{print} outputs
+exactly what it is given; @code{puts} also ensures that the output
+line ends.  Using @code{print} in lines 4 and 13 leaves the cursor
+next to what was just printed, rather than moving it to the beginning
+of the next line.  This creates a recognizable prompt for user
+input.  In general, the four output calls below are equivalent:
+
+@subheading Flushing Standard Output
+@cindex flush standard output
+@cindex buffering
+
+Sometimes a text window is programmed to @emph{buffer} output for the
+sake of speed, collecting individual characters and displaying them
+only when it is given a @key{newline} character.  So if the guessing
+game script misbehaves by not showing the prompt lines until after the
+user supplies a guess, @emph{buffering} is the likely culprit.  To
+make sure this doesn't happen, you can ``flush'' the output as soon as
+you have printed the prompt.  It tells the standard output device (an
+object named @var{STDOUT}), ``don't wait; display what you have in your
+buffer right now.''  @samp{04 print "guess? "; STDOUT.flush}.  
+
+
+@c _____________________________________
+
+@node Ruby User's Guide on Regular Expressions
+@subsubsection Regular Expressions
+@cindex regular expressions
+
+@example
+ruby> def chab(s)   # "contains hex in angle brackets"
+    |    (s =~ /<0(x|X)(\d|[a-f]|[A-F])+>/) != nil
+    | end
+  nil
+ruby> chab "Not this one."
+  false
+ruby> chab "Maybe this? @{0x35@}"    # wrong kind of brackets
+  false
+ruby> chab "Or this? <0x38z7e>"    # bogus hex digit
+  false
+ruby> chab "Okay, this: <0xfc0004>."
+  true
+@end example
+
+@subheading Program To Help Experiment With Regular Expressions
+
+Here is a little program to help you experiment with regular
+expressions.  Store it as @file{regx.rb} and run it by typing @kbd{ruby
+regx.rb} at the command line.
+
+The program requires input twice, once for a string and once for a
+regular expression.  The string is tested against the regular
+expression, then displayed with all the matching parts highlighted in
+reverse video.
+
+@pindex @file{regx.rb}
+@need 400
+@anchor{regx-rb}
+@cdindex @r{@{@file{regx.rb}@}}, definition
+@noindent
+@r{@{@file{regx.rb}@}} @equiv{}
+@example
+# Requires an ANSI terminal!
+
+st = "\033[7m"
+en = "\033[m"
+
+puts "Enter an empty string at any time to exit."
+
+while true
+  print "str> "; STDOUT.flush; str = gets.chop
+  break if str.empty?
+  print "pat> "; STDOUT.flush; pat = gets.chop
+  break if pat.empty?
+  re = Regexp.new(pat)
+  puts str.gsub(re,"#@{st@}\\&#@{en@}")
+end
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Explication of @file{regx.rb}
+
+@subsubheading The @code{break} Statement
+@cindex @code{break} statement
+
+In line 6, the condition for @code{while} is hardwired to @code{true},
+so it forms what looks like an infinite loop.  However we put @code{break}
+statements in the 8th and 10th lines to escape the loop.
+
+@subsubheading @code{if} Modifiers
+@cindex @code{if} modifier
+
+@example
+break if str.empty?
+break if pat.empty?
+@end example
+
+These two @code{break}s are also an example of @dfn{if modifiers}.  An
+@code{if} modifier executes the statement on its left hand side if and
+only if the specified condition is satisfied.  This construction is
+unusual in that it operates logically from right to left, but it is
+provided because for many people it mimics a similar pattern in
+natural speech.  It also has the advantage of brevity, as it needs no
+@code{end} statement to tell the interpreter how much of the following
+code is supposed to be conditional.  An @code{if} modifier is
+conventionally used in situations where a statement and condition are
+short enough to fit comfortably together on one script line.
+
+Note the difference in the user interface compared to the
+string-guessing script.  This one lets the user quit by hitting the
+@key{Return} key on an empty line.  We are testing for emptiness of the
+input string, not for its nonexistence.
+
+@subsubheading Nondestructive @code{chops} vs Destructive @code{chops!}
+@cindex @code{chop}
+@cindex @code{chop!}
+@cindex destructive method vs nondestructive method
+
+In lines 7 and 9 we have a @dfn{non-destructive} @code{chop}; again,
+we're getting rid of the unwanted newline character we always get from
+@code{gets}.  Add the exclamation point, and we have a
+@dfn{destructive} chop.  What's the difference? In ruby, we
+conventionally attach @kbd{!} or @kbd{?} to the end of certain method
+names.  The exclamation point (@kbd{!}, sometimes pronounced aloud as
+``bang!'') indicates something potentially destructive, that is to
+say, something that can change the value of what it touches.
+@code{chop!} affects a string directly, but @code{chop} gives you a
+chopped copy without damaging the original.
+
+@subsubheading @code{chomp} And @code{chomp!}
+
+You'll also sometimes see @code{chomp} and @code{chomp}! used.  These
+are more selective: the end of a string gets bit off only if it
+happens to be a newline.  So for example, @code{"XYZ".chomp!} does
+nothing.  If you need a trick to remember the difference, think of a
+person or animal tasting something before deciding to take a bite, as
+opposed to an axe chopping indiscriminately.
+
+@subsubheading Predicate Method Naming Convention
+@cindex predicate method
+@cindex predicate method naming convention
+
+The other method naming convention appears in lines 8 and 10.  A
+question mark (@kbd{?}, sometimes pronounced aloud as ``huh?'')
+indicates a @dfn{predicate} method, one that can return either true or
+false.
+
+@subsubheading Regular Expressions At Work
+@cindex regular expressions at work
+@cindex @code{gsub} method
+
+Line 11 creates a regular expression object out of the string supplied
+by the user.  The real work is finally done in line 12, which uses
+@code{gsub} to globally substitute each match of that expression with
+itself, but surrounded by ansi markups; also the same line outputs the
+results.
+
+In line 12 we see @code{\\&}.  This is a little tricky.  Since the
+replacement string is in double quotes, the pair of backslashes will
+be interpreted as a single backslash; what @code{gsub} actually sees
+will be @code{\&}, and that happens to be a special code that refers
+to whatever matched the pattern in the first place.  So the new string,
+when displayed, looks just like the old one, except that the parts
+that matched the given pattern are highlighted in inverse video.
+
+@subheading The @code{=~} Matching Operator
+@cindex @code{=~} matching operator
+@cindex matching operator
+
+@code{=~} is a matching operator with respect to regular expressions;
+it returns the position in a string where a match was found, or
+@code{nil} if the pattern did not match.
+
+@example
+ruby> "abcdef" =~ /d/
+   3
+ruby> "aaaaaa" =~ /d/
+   nil
+@end example
+
+@c _____________________________________
+
+@node Ruby User's Guide On Arrays And Hashes
+@subsubsection On Arrays And Hashes
+@cindex arrays
+
+@subheading Creating An Array
+@cindex array, creating
+
+You can create an array by listing some items within square brackets
+(@code{[]}) and separating them with commas.  Ruby's arrays can accomodate
+diverse object types.  @samp{ary = [1, 2, "3"]} @result{} @samp{[1, 2, "3"]}
+
+@subheading Concatenating and Repeating Arrays
+@cindex arrays, concatenating
+@cindex arrays, repeating
+
+Arrays can be concatenated or repeated just as strings can.  @samp{ary
++ ["foo", "bar"]} @result{} @samp{[1, 2, "3", "foo", "bar"]};
+@samp{ary * 2} @result{} @samp{[1, 2, "3", 1, 2, "3"]}.
+
+@subheading Referring To Elements of Arrays
+@cindex array, referring to elements
+
+We can use index numbers to refer to any part of a array.
+@samp{ary[0]} @result{} @samp{1}; @samp{ary[0,2]} @result{} @samp{[1, 2]};
+@samp{ary[0..1]} @result{} @samp{[1, 2]}.
+
+@subheading Converted To And From Strings
+@cindex array, converting to and from string
+@cindex @code{join}
+@cindex @code{split}
+
+Arrays can be converted to and from strings, using @code{join} and
+@code{split} respecitvely.  @samp{str = ary.join(":")} @result{} @samp{"1:2:3"}.
+@samp{str.split(":")} @result{} @samp{["1", "2", "3"]}.
+
+@subheading Hashes
+@cindex hash
+@cindex dictionary
+@cindex associative array
+@cindex key, for hash
+
+An @dfn{associative array} has elements that are accessed not by
+sequential index numbers, but by keys which can have any sort of
+value.  Such an array is sometimes called a @dfn{hash} or
+@dfn{dictionary}; in the ruby world, we prefer the term hash.  A hash
+can be constructed by quoting pairs of items within curly braces
+(@code{@{@}}).  You use a key to find something in a hash, much as you
+use an index to find something in an array.
+
+@example
+ruby> h = @{1 => 2, "2" => "4"@}
+   @{1=>2, "2"=>"4"@}
+ruby> h[1]
+   2
+ruby> h["2"]
+   "4"
+ruby> h[5]
+   nil
+ruby> h[5] = 10    # appending an entry
+   10
+ruby> h
+   @{5=>10, 1=>2, "2"=>"4"@}
+ruby> h.delete 1   # deleting an entry by key
+   2
+ruby> h[1]
+   nil
+ruby> h
+   @{5=>10, "2"=>"4"@}
+@end example
+   
+
 
 @c .....................................
 
@@ -3970,6 +4381,7 @@ have taken days.
 
 @node eval.rb
 @appendixsec @file{eval.rb}
+@pindex eval.rb
 
 @url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
 
@@ -4362,6 +4774,7 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 
 @node The Makefile
 @appendix The Makefile
+@pindex Makefile
 
 @need 400
 @anchor{Makefile}
@@ -4373,8 +4786,10 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 @noindent
 @r{@{@file{Makefile}@}} @equiv{}
 @example
-@r{<@i{Makefile---Variable Definitions}>} @r{<@i{Makefile---Default Rule}>}
-@r{<@i{Makefile---TWJR Rules}>} @r{<@i{Makefile---Clean Rules}>}
+@r{<@i{Makefile---Variable Definitions}>}
+@r{<@i{Makefile---Default Rule}>}
+@r{<@i{Makefile---TWJR Rules}>}
+@r{<@i{Makefile---Clean Rules}>}
 @end example
 @iftex
 @smallfonts @rm
@@ -4515,7 +4930,7 @@ clean :
     rm -f *~ \#*\#
 
 distclean : clean
-    rm -f *.@{aux,log,toc,cp,cps@}
+    rm -f *.@{aux,log,toc,cp,cps,pg,pgs@}
 
 veryclean : clean
     for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
@@ -4559,6 +4974,12 @@ This chunk is defined in
 @item @r{@{@file{fact.rb}@}}
 This chunk is defined in
 @ref{fact-rb}.
+@item @r{@{@file{guess.rb}@}}
+This chunk is defined in
+@ref{guess-rb}.
+@item @r{@{@file{regx.rb}@}}
+This chunk is defined in
+@ref{regx-rb}.
 @item @r{@{@file{ri20min.rb}@}}
 This chunk is defined in
 @ref{ri20min-rb}.
@@ -4695,6 +5116,13 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 @unnumbered Index
 
 @printindex cp
+
+@page
+
+@node Program Index
+@unnumbered Program Index
+
+@printindex pg
 
 @bye
 

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide on Regular Expressions (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide on Regular Expressions (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide on Regular Expressions (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes" rel="next" title="Ruby User's Guide On Arrays And Hashes">
+<link href="Puzzle-Program.html#Puzzle-Program" rel="prev" title="Puzzle Program">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-on-Regular-Expressions"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes" accesskey="n" rel="next">Ruby User's Guide On Arrays And Hashes</a>, Previous: <a href="Puzzle-Program.html#Puzzle-Program" accesskey="p" rel="prev">Puzzle Program</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Regular-Expressions"></a>
+<h4 class="subsubsection">2.4.1.5 Regular Expressions</h4>
+<a name="index-regular-expressions"></a>
+
+<div class="example">
+<pre class="example">ruby&gt; def chab(s)   # &quot;contains hex in angle brackets&quot;
+    |    (s =~ /&lt;0(x|X)(\d|[a-f]|[A-F])+&gt;/) != nil
+    | end
+  nil
+ruby&gt; chab &quot;Not this one.&quot;
+  false
+ruby&gt; chab &quot;Maybe this? {0x35}&quot;    # wrong kind of brackets
+  false
+ruby&gt; chab &quot;Or this? &lt;0x38z7e&gt;&quot;    # bogus hex digit
+  false
+ruby&gt; chab &quot;Okay, this: &lt;0xfc0004&gt;.&quot;
+  true
+</pre></div>
+
+<a name="Program-To-Help-Experiment-With-Regular-Expressions"></a>
+<h4 class="subheading">Program To Help Experiment With Regular Expressions</h4>
+
+<p>Here is a little program to help you experiment with regular
+expressions.  Store it as <samp>regx.rb</samp> and run it by typing <kbd>ruby
+regx.rb</kbd> at the command line.
+</p>
+<p>The program requires input twice, once for a string and once for a
+regular expression.  The string is tested against the regular
+expression, then displayed with all the matching parts highlighted in
+reverse video.
+</p>
+<a name="index-regx_002erb"></a>
+<a name="regx_002drb"></a><a name="index-_007bregx_002erb_007d_002c-definition"></a>
+<p><span class="roman">{<samp>regx.rb</samp>}</span> &equiv;
+</p><div class="example">
+<pre class="example"># Requires an ANSI terminal!
+
+st = &quot;\033[7m&quot;
+en = &quot;\033[m&quot;
+
+puts &quot;Enter an empty string at any time to exit.&quot;
+
+while true
+  print &quot;str&gt; &quot;; STDOUT.flush; str = gets.chop
+  break if str.empty?
+  print &quot;pat&gt; &quot;; STDOUT.flush; pat = gets.chop
+  break if pat.empty?
+  re = Regexp.new(pat)
+  puts str.gsub(re,&quot;#{st}\\&amp;#{en}&quot;)
+end
+</pre></div>
+
+<a name="Explication-of-regx_002erb"></a>
+<h4 class="subheading">Explication of <samp>regx.rb</samp></h4>
+
+<a name="The-break-Statement"></a>
+<h4 class="subsubheading">The <code>break</code> Statement</h4>
+<a name="index-break-statement"></a>
+
+<p>In line 6, the condition for <code>while</code> is hardwired to <code>true</code>,
+so it forms what looks like an infinite loop.  However we put <code>break</code>
+statements in the 8th and 10th lines to escape the loop.
+</p>
+<a name="if-Modifiers"></a>
+<h4 class="subsubheading"><code>if</code> Modifiers</h4>
+<a name="index-if-modifier"></a>
+
+<div class="example">
+<pre class="example">break if str.empty?
+break if pat.empty?
+</pre></div>
+
+<p>These two <code>break</code>s are also an example of <em>if modifiers</em>.  An
+<code>if</code> modifier executes the statement on its left hand side if and
+only if the specified condition is satisfied.  This construction is
+unusual in that it operates logically from right to left, but it is
+provided because for many people it mimics a similar pattern in
+natural speech.  It also has the advantage of brevity, as it needs no
+<code>end</code> statement to tell the interpreter how much of the following
+code is supposed to be conditional.  An <code>if</code> modifier is
+conventionally used in situations where a statement and condition are
+short enough to fit comfortably together on one script line.
+</p>
+<p>Note the difference in the user interface compared to the
+string-guessing script.  This one lets the user quit by hitting the
+<tt class="key">Return</tt> key on an empty line.  We are testing for emptiness of the
+input string, not for its nonexistence.
+</p>
+<a name="Nondestructive-chops-vs-Destructive-chops_0021"></a>
+<h4 class="subsubheading">Nondestructive <code>chops</code> vs Destructive <code>chops!</code></h4>
+<a name="index-chop"></a>
+<a name="index-chop_0021"></a>
+<a name="index-destructive-method-vs-nondestructive-method"></a>
+
+<p>In lines 7 and 9 we have a <em>non-destructive</em> <code>chop</code>; again,
+we&rsquo;re getting rid of the unwanted newline character we always get from
+<code>gets</code>.  Add the exclamation point, and we have a
+<em>destructive</em> chop.  What&rsquo;s the difference? In ruby, we
+conventionally attach <kbd>!</kbd> or <kbd>?</kbd> to the end of certain method
+names.  The exclamation point (<kbd>!</kbd>, sometimes pronounced aloud as
+&ldquo;bang!&rdquo;) indicates something potentially destructive, that is to
+say, something that can change the value of what it touches.
+<code>chop!</code> affects a string directly, but <code>chop</code> gives you a
+chopped copy without damaging the original.
+</p>
+<a name="chomp-And-chomp_0021"></a>
+<h4 class="subsubheading"><code>chomp</code> And <code>chomp!</code></h4>
+
+<p>You&rsquo;ll also sometimes see <code>chomp</code> and <code>chomp</code>! used.  These
+are more selective: the end of a string gets bit off only if it
+happens to be a newline.  So for example, <code>&quot;XYZ&quot;.chomp!</code> does
+nothing.  If you need a trick to remember the difference, think of a
+person or animal tasting something before deciding to take a bite, as
+opposed to an axe chopping indiscriminately.
+</p>
+<a name="Predicate-Method-Naming-Convention"></a>
+<h4 class="subsubheading">Predicate Method Naming Convention</h4>
+<a name="index-predicate-method"></a>
+<a name="index-predicate-method-naming-convention"></a>
+
+<p>The other method naming convention appears in lines 8 and 10.  A
+question mark (<kbd>?</kbd>, sometimes pronounced aloud as &ldquo;huh?&rdquo;)
+indicates a <em>predicate</em> method, one that can return either true or
+false.
+</p>
+<a name="Regular-Expressions-At-Work"></a>
+<h4 class="subsubheading">Regular Expressions At Work</h4>
+<a name="index-regular-expressions-at-work"></a>
+<a name="index-gsub-method"></a>
+
+<p>Line 11 creates a regular expression object out of the string supplied
+by the user.  The real work is finally done in line 12, which uses
+<code>gsub</code> to globally substitute each match of that expression with
+itself, but surrounded by ansi markups; also the same line outputs the
+results.
+</p>
+<p>In line 12 we see <code>\\&amp;</code>.  This is a little tricky.  Since the
+replacement string is in double quotes, the pair of backslashes will
+be interpreted as a single backslash; what <code>gsub</code> actually sees
+will be <code>\&amp;</code>, and that happens to be a special code that refers
+to whatever matched the pattern in the first place.  So the new string,
+when displayed, looks just like the old one, except that the parts
+that matched the given pattern are highlighted in inverse video.
+</p>
+<a name="The-_003d_007e-Matching-Operator"></a>
+<h4 class="subheading">The <code>=~</code> Matching Operator</h4>
+<a name="index-_003d_007e-matching-operator"></a>
+<a name="index-matching-operator"></a>
+
+<p><code>=~</code> is a matching operator with respect to regular expressions;
+it returns the position in a string where a match was found, or
+<code>nil</code> if the pattern did not match.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; &quot;abcdef&quot; =~ /d/
+   3
+ruby&gt; &quot;aaaaaa&quot; =~ /d/
+   nil
+</pre></div>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes" accesskey="n" rel="next">Ruby User's Guide On Arrays And Hashes</a>, Previous: <a href="Puzzle-Program.html#Puzzle-Program" accesskey="p" rel="prev">Puzzle Program</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -78,7 +78,7 @@ clean :
     rm -f *~ \#*\#
 
 distclean : clean
-    rm -f *.{aux,log,toc,cp,cps}
+    rm -f *.{aux,log,toc,cp,cps,pg,pgs}
 
 veryclean : clean
     for file in *; do [[ $$file =~ $(FILE)|Makefile ]] &amp;&amp; : || rm -vrf $$file ; done;

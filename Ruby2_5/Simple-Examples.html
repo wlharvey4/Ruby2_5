@@ -27,7 +27,7 @@ This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
-<link href="Programming-Ruby.html#Programming-Ruby" rel="next" title="Programming Ruby">
+<link href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings" rel="next" title="Ruby User's Guide on Strings">
 <link href="What-Is-Ruby_003f.html#What-Is-Ruby_003f" rel="prev" title="What Is Ruby?">
 <style type="text/css">
 <!--
@@ -64,7 +64,7 @@ ul.no-bullet {list-style: none}
 <a name="Simple-Examples"></a>
 <div class="header">
 <p>
-Previous: <a href="What-Is-Ruby_003f.html#What-Is-Ruby_003f" accesskey="p" rel="prev">What Is Ruby?</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings" accesskey="n" rel="next">Ruby User's Guide on Strings</a>, Previous: <a href="What-Is-Ruby_003f.html#What-Is-Ruby_003f" accesskey="p" rel="prev">What Is Ruby?</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="Simple-Examples-1"></a>
@@ -73,6 +73,7 @@ Previous: <a href="What-Is-Ruby_003f.html#What-Is-Ruby_003f" accesskey="p" rel="
 <a name="Factorial-in-Ruby"></a>
 <h4 class="subheading">Factorial in Ruby</h4>
 <a name="index-factorial-in-Ruby"></a>
+<a name="index-fact_002erb"></a>
 
 <p>Let&rsquo;s write a function to compute factorials.  The mathematical definition of
 <em>n factorial</em> is:
@@ -108,14 +109,14 @@ puts fact(ARGV[0].to_i)
 <a name="index-to_005fi-method"></a>
 
 <p><code>ARGV</code> is an array which contains the command line arguments, and
-<code>to_i</code> converts a character string to an integer.
+<code>to_i</code> converts a character string to an integer.<a name="DOCF1" href="#FOOT1"><sup>1</sup></a>
 </p>
 <a name="The-end-Statement"></a>
 <h4 class="subsubheading">The <code>end</code> Statement</h4>
 
 <p>You may notice the repeated occurrence of <code>end</code>.  Ruby has been called
 &ldquo;Algol-like&rdquo; because of this.  (Actually, the syntax of ruby more closely
-mimics that of a langage named <a href="https://www.eiffel.org/">Eiffel</a>.)
+mimics that of a language named <a href="https://www.eiffel.org/">Eiffel</a>.)
 </p>
 <a name="Takeaway-_002d_002d_002d-return-Statement-Optional"></a>
 <h4 class="subsubheading">Takeaway &mdash; <code>return</code> Statement Optional</h4>
@@ -183,11 +184,13 @@ good-bye world
 <h4 class="subsubheading">Ruby Evaluation Program &mdash; <samp>eval.rb</samp></h4>
 <a name="index-eval_002erb"></a>
 
-<p>Ruby also comes with a program called <samp>eval.rb</samp> that allows you to enter
-ruby code from the keyboard in an interactive loop, showing you the results
-as you go.  It will be used extensively through the rest of this guide.  You
-should use this enhanced <a href="http://www.rubyist.net/~slagell/ruby/eval.txt"><samp>eval.rb</samp></a> that adds visual indenting assistance, warning reports, and
-color highlighting.
+<p>Ruby also comes with a program called <samp>eval.rb</samp> (see section <a href="eval_002erb.html#eval_002erb"><samp>eval.rb</samp></a>)
+that allows you to enter ruby code from the keyboard in an interactive
+loop, showing you the results as you go.  It will be used extensively
+through the rest of this guide.  You should use this enhanced
+<a href="http://www.rubyist.net/~slagell/ruby/eval.txt"><samp>eval.rb</samp></a>
+that adds visual indenting assistance, warning reports, and color
+highlighting.
 </p>
 <p>Here is a short <samp>eval.rb</samp> session:
 </p>
@@ -217,10 +220,18 @@ value.  Note that we can leave this interpreter loop by saying
 <code>exit</code>, although <tt class="key">C-D</tt> still works too.
 </p>
 
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
+<p>Ruby
+does not convert strings into integers automatically like perl does.</p>
+</div>
 <hr>
 <div class="header">
 <p>
-Previous: <a href="What-Is-Ruby_003f.html#What-Is-Ruby_003f" accesskey="p" rel="prev">What Is Ruby?</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings" accesskey="n" rel="next">Ruby User's Guide on Strings</a>, Previous: <a href="What-Is-Ruby_003f.html#What-Is-Ruby_003f" accesskey="p" rel="prev">What Is Ruby?</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 
 
