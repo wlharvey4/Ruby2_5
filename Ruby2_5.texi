@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.2a
+@set EDITION 0.2c
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -231,6 +231,7 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Preface::
 * Introduction::
 * Documentation::
+* Utility Programs::
 * The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
@@ -353,6 +354,22 @@ Ruby User's Guide
 
 * What Is Ruby?::
 * Simple Examples::
+
+Utility Programs
+
+* eval.rb::
+
+@file{eval.rb}
+
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+
+@file{eval.rb} Main Process Line Code
+
+* eval If Not Line Code::
+* eval If Is Line Code::
 
 The Makefile
 
@@ -3756,7 +3773,55 @@ Ruby can deal with any integer which is allowed by your machine's memory.  So
 0000000000000000000000000000000000000000000
 @end example
 
+@subheading The Input/Evaluation Loop
 
+When you invoke ruby with no arguments, it reads commands from standard input
+and executes them after the end of input:
+
+@example
+% ruby
+puts "hello world"
+puts "good-bye world"
+^D
+hello world
+good-bye world
+@end example
+
+@subsubheading Ruby Evaluation Program --- @file{eval.rb}
+@cindex @file{eval.rb}
+
+Ruby also comes with a program called @file{eval.rb} that allows you to enter
+ruby code from the keyboard in an interactive loop, showing you the results
+as you go.  It will be used extensively through the rest of this guide.  You
+should use this enhanced @url{http://www.rubyist.net/~slagell/ruby/eval.txt,
+@file{eval.rb}} that adds visual indenting assistance, warning reports, and
+color highlighting.
+
+Here is a short @file{eval.rb} session:
+
+@example
+% ruby eval.rb
+ruby> puts "Hello, world."
+Hello, world.
+   nil
+ruby> exit
+@end example
+
+@samp{hello world} is produced by @code{puts}.  The next line, in this case
+@code{nil}, reports on whatever was last evaluated;
+
+@subsubheading No Distinction Between Statement and Expression
+@cindex statement vs expression
+@cindex expression vs statement
+
+@quotation
+Ruby does not distinguish between statements and expressions, so evaluating a
+piece of code basically means the same thing as executing it.
+@end quotation
+
+Here, @code{nil} indicates that @code{puts} does not return a meaningful
+value.  Note that we can leave this interpreter loop by saying
+@command{exit}, although @key{C-D} still works too.
 
 @c .....................................
 
@@ -3885,6 +3950,412 @@ have taken days.
 
 
 
+
+
+@c *****************************************************************************
+@c APPENDICES
+@c *****************************************************************************
+
+@node Utility Programs
+@appendix Utility Programs
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@menu
+* eval.rb::
+@end menu
+
+@node eval.rb
+@appendixsec @file{eval.rb}
+
+@url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
+
+@need 400
+@anchor{eval-rb}
+@crindex @r{<@i{eval---EvalWrapper--Constants}>}, use
+@crindex @r{<@i{eval---EvalWrapper--Indentation Deltas}>}, use
+@crindex @r{<@i{eval---Main--Get Line}>}, use
+@crindex @r{<@i{eval---Main--Process Line}>}, use
+@cdindex @r{@{@file{eval.rb}@}}, definition
+@noindent
+@r{@{@file{eval.rb}@}} @equiv{}
+@example
+#!/usr/local/bin/ruby
+
+#######################################################
+#
+# Ruby interactive input/eval loop
+# Written by matz           (matz@@netlab.co.jp)
+# Modified by Mark Slagell  (slagell@@ruby-lang.org)
+#    with suggestions for improvement from Dave Thomas
+#                           (Dave@@Thomases.com)
+#
+#######################################################
+#
+# NOTE - this file has been renamed with a .txt extension to
+# allow you to view or download it without the rubyist.net
+# web server trying to run it as a CGI script.  You will
+# probably want to rename it back to eval.rb.
+#
+#######################################################
+
+module EvalWrapper
+
+  @r{<@i{eval---EvalWrapper--Constants}>}
+
+  @r{<@i{eval---EvalWrapper--Indentation Deltas}>}
+
+  # On exit, restore normal screen colors.
+  END @{  print Norm,"\n" @}
+
+  ##############################################################
+  # Execution starts here.
+  ##############################################################
+ 
+  indent=0
+  while true   # Top of main loop.
+
+    @r{<@i{eval---Main--Get Line}>}
+    @r{<@i{eval---Main--Process Line}>}
+
+  end          # Bottom of main loop
+  print "\n"
+
+end # module
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+The following table lists called chunk definition points.
+@multitable @columnfractions .35 .65
+@headitem Chunk name @tab First definition point
+@item @r{<@i{eval---EvalWrapper--Constants}>} @tab See @ref{eval---EvalWrapper--Constants}.
+@item @r{<@i{eval---EvalWrapper--Indentation Deltas}>} @tab See @ref{eval---EvalWrapper--Indentation-Deltas}.
+@item @r{<@i{eval---Main--Get Line}>} @tab See @ref{eval---Main--Get-Line}.
+@item @r{<@i{eval---Main--Process Line}>} @tab See @ref{eval---Main--Process-Line}.
+@end multitable
+@iftex
+@textfonts @rm
+@end iftex
+
+
+@c .....................................
+
+@menu
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+@end menu
+
+@node eval Module Code
+@appendixsubsec @file{eval.rb} Module Code
+
+@need 400
+@anchor{eval---EvalWrapper--Constants}
+@cdindex @r{<@i{eval---EvalWrapper--Constants}>}, definition
+@noindent
+@r{<@i{eval---EvalWrapper--Constants}>} @equiv{}
+@example
+# Constants for ANSI screen interaction.  Adjust to your liking.
+
+Norm   = "\033[0m"
+PCol   = Norm           # Prompt color
+Code   = "\033[1;32m"   # yellow 
+Eval   = "\033[0;36m"   # cyan 
+Prompt = PCol+"ruby> "+Norm
+PrMore = PCol+"    | "+Norm
+Ispace = "   "          # Adjust length of this for indentation.
+Wipe   = "\033[A\033[K" # Move cursor up and erase line
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@iftex
+@textfonts @rm
+@end iftex
+
+
+@c .....................................
+
+@node eval Indentation Deltas Code
+@appendixsubsec @file{eval.rb} Indentation Deltas Code
+
+@need 400
+@anchor{eval---EvalWrapper--Indentation-Deltas}
+@cdindex @r{<@i{eval---EvalWrapper--Indentation Deltas}>}, definition
+@noindent
+@r{<@i{eval---EvalWrapper--Indentation Deltas}>} @equiv{}
+@example
+# Return a pair of indentation deltas. The first applies before
+# the current line is printed, the second after.
+
+def EvalWrapper.indentation( code )
+  case code
+
+  when /^\s*(class|module|def|if|case|while|for|begin)\b[^_]/
+    [0,1]      # increase indentation because of keyword
+
+  when /^\s*end\b[^_]/
+    [-1,0]     # decrease because of end
+
+  when /\@{\s*(\|.*\|)?\s*$/
+    [0,1]      # increase because of '@{'
+
+  when /^\s*\@}/
+    [-1,0]     # decrease because of '@}'
+
+  when /^\s*(rescue|ensure|elsif|else)\b[^_]/
+    [-1,1]     # decrease for this line, then come back
+
+  else
+    [0,0]      # we see no reason to change anything
+
+  end # case
+end # def
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@iftex
+@textfonts @rm
+@end iftex
+
+
+@c .....................................
+
+@node eval Main Get Line Code
+@appendixsubsec @file{eval.rb} Main Get Line Code
+
+@need 400
+@anchor{eval---Main--Get-Line}
+@cdindex @r{<@i{eval---Main--Get Line}>}, definition
+@noindent
+@r{<@i{eval---Main--Get Line}>} @equiv{}
+@example
+# Print prompt, move cursor to tentative indentation level, and get
+# a line of input from the user.
+
+if( indent == 0 )
+  expr = ''; print Prompt  # (expecting a fresh expression)
+
+else
+  print PrMore             # (appending to previous lines)
+
+end
+
+print Ispace * indent,Code
+line = gets
+print Norm
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@c .....................................
+
+@node eval Main Process Line Code
+@appendixsubsec @file{eval.rb} Main Process Line Code
+
+@need 400
+@anchor{eval---Main--Process-Line}
+@crindex @r{<@i{eval---Main--Process Line-If Not Line}>}, use
+@crindex @r{<@i{eval---Main--Process Line-Is Line}>}, use
+@cdindex @r{<@i{eval---Main--Process Line}>}, definition
+@noindent
+@r{<@i{eval---Main--Process Line}>} @equiv{}
+@example
+@r{<@i{eval---Main--Process Line-If Not Line}>}
+
+@r{<@i{eval---Main--Process Line-Is Line}>}
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+
+@noindent
+The following table lists called chunk definition points.
+@multitable @columnfractions .35 .65
+@headitem Chunk name @tab First definition point
+@item @r{<@i{eval---Main--Process Line-If Not Line}>} @tab See @ref{eval---Main--Process-Line-If-Not-Line}.
+@item @r{<@i{eval---Main--Process Line-Is Line}>} @tab See @ref{eval---Main--Process-Line-Is-Line}.
+@end multitable
+@iftex
+@textfonts @rm
+@end iftex
+
+@c _____________________________________
+
+@menu
+* eval If Not Line Code::
+* eval If Is Line Code::
+@end menu
+
+@node eval If Not Line Code
+@appendixsubsubsec @file{eval.rb} If Not Line Code
+
+@need 400
+@anchor{eval---Main--Process-Line-If-Not-Line}
+@cdindex @r{<@i{eval---Main--Process Line-If Not Line}>}, definition
+@noindent
+@r{<@i{eval---Main--Process Line-If Not Line}>} @equiv{}
+@example
+if not line
+  # end of input (^D) - if there is no expression, exit, else
+  # reset cursor to the beginning of this line.
+
+  if expr == '' then break else print "\r" end
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line}>}; see its first definition at @ref{eval---Main--Process-Line}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@c _____________________________________
+
+@node eval If Is Line Code
+@appendixsubsubsec @file{eval.rb} If Is Line Code
+
+@need 400
+@anchor{eval---Main--Process-Line-Is-Line}
+@crindex @r{<@i{eval---Main--Process Line-Is Line_Indentation}>}, use
+@crindex @r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>}, use
+@cdindex @r{<@i{eval---Main--Process Line-Is Line}>}, definition
+@noindent
+@r{<@i{eval---Main--Process Line-Is Line}>} @equiv{}
+@example
+else
+
+  # Append the input to whatever we had.
+  expr << line
+
+  @r{<@i{eval---Main--Process Line-Is Line_Indentation}>}
+
+  @r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>}
+
+end # if not line
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line}>}; see its first definition at @ref{eval---Main--Process-Line}.
+
+@noindent
+The following table lists called chunk definition points.
+@multitable @columnfractions .35 .65
+@headitem Chunk name @tab First definition point
+@item @r{<@i{eval---Main--Process Line-Is Line_Indentation}>} @tab See @ref{eval---Main--Process-Line-Is-Line-Indentation}.
+@item @r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>} @tab See @ref{eval---Main--Process-Line-Is-Line-Worth-Evaluating-}.
+@end multitable
+@iftex
+@textfonts @rm
+@end iftex
+
+@c #####################################
+
+@subheading ### Indentation ###
+
+@need 400
+@anchor{eval---Main--Process-Line-Is-Line-Indentation}
+@cdindex @r{<@i{eval---Main--Process Line-Is Line_Indentation}>}, definition
+@noindent
+@r{<@i{eval---Main--Process Line-Is Line_Indentation}>} @equiv{}
+@example
+# Determine changes in indentation, reposition this line if
+# necessary, and adjust indentation for the next prompt.
+
+begin
+  ind1,ind2 = indentation( line )
+  if( ind1 != 0 )
+    indent += ind1
+    print Wipe,PrMore,(Ispace*indent),Code,line,Norm
+  end
+  indent += ind2
+
+rescue      # On error, restart the main loop.
+  print Eval,"ERR: Nesting violation\n",Norm
+  indent = 0
+  redo
+
+end # begin
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its first definition at @ref{eval---Main--Process-Line-Is-Line}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@c #####################################
+
+@subheading ### Something Worth Evaluating? ###
+
+@need 400
+@anchor{eval---Main--Process-Line-Is-Line-Worth-Evaluating-}
+@cdindex @r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>}, definition
+@noindent
+@r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>} @equiv{}
+@example
+# Okay, do we have something worth evaulating?
+
+if (indent == 0) && (expr.chop =~ /[^; \t\n\r\f]+/)
+
+  begin
+    result = eval(expr, TOPLEVEL_BINDING).inspect
+    if $!  # no exception, but $! non-nil, means a warning
+      print Eval,$!,Norm,"\n"
+      $!=nil
+    end
+    print Eval,"   ",result,Norm,"\n"
+
+  rescue ScriptError,StandardError
+    $! = 'exception raised' if not $!
+    print Eval,"ERR: ",$!,Norm,"\n"
+  end
+
+  break if not line
+
+end # if
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its first definition at @ref{eval---Main--Process-Line-Is-Line}.
+@iftex
+@textfonts @rm
+@end iftex
 
 
 @c -----------------------------------------------------------------------------
@@ -4082,6 +4553,9 @@ the code chunk definitions, and the code chunk references.
 @item @r{@{@file{Makefile}@}}
 This chunk is defined in
 @ref{Makefile}.
+@item @r{@{@file{eval.rb}@}}
+This chunk is defined in
+@ref{eval-rb}.
 @item @r{@{@file{fact.rb}@}}
 This chunk is defined in
 @ref{fact-rb}.
@@ -4118,6 +4592,30 @@ This chunk is defined in
 @item @r{<@i{MegaGreeter---say_hi Method}>}
 This chunk is defined in
 @ref{MegaGreeter---say-hi-Method}.
+@item @r{<@i{eval---EvalWrapper--Constants}>}
+This chunk is defined in
+@ref{eval---EvalWrapper--Constants}.
+@item @r{<@i{eval---EvalWrapper--Indentation Deltas}>}
+This chunk is defined in
+@ref{eval---EvalWrapper--Indentation-Deltas}.
+@item @r{<@i{eval---Main--Get Line}>}
+This chunk is defined in
+@ref{eval---Main--Get-Line}.
+@item @r{<@i{eval---Main--Process Line}>}
+This chunk is defined in
+@ref{eval---Main--Process-Line}.
+@item @r{<@i{eval---Main--Process Line-If Not Line}>}
+This chunk is defined in
+@ref{eval---Main--Process-Line-If-Not-Line}.
+@item @r{<@i{eval---Main--Process Line-Is Line}>}
+This chunk is defined in
+@ref{eval---Main--Process-Line-Is-Line}.
+@item @r{<@i{eval---Main--Process Line-Is Line_Indentation}>}
+This chunk is defined in
+@ref{eval---Main--Process-Line-Is-Line-Indentation}.
+@item @r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>}
+This chunk is defined in
+@ref{eval---Main--Process-Line-Is-Line-Worth-Evaluating-}.
 @end table
 
 @node Code Chunk References
@@ -4156,6 +4654,38 @@ This chunk is called by @r{@{@file{ri20min.rb}@}}; see its first definition at @
 
 @noindent
 This chunk is called by @r{@{@file{ri20min.rb}@}}; see its first definition at @ref{ri20min-rb}.
+@item @r{<@i{eval---EvalWrapper--Constants}>}
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@item @r{<@i{eval---EvalWrapper--Indentation Deltas}>}
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@item @r{<@i{eval---Main--Get Line}>}
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@item @r{<@i{eval---Main--Process Line}>}
+
+@noindent
+This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref{eval-rb}.
+@item @r{<@i{eval---Main--Process Line-If Not Line}>}
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line}>}; see its first definition at @ref{eval---Main--Process-Line}.
+@item @r{<@i{eval---Main--Process Line-Is Line}>}
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line}>}; see its first definition at @ref{eval---Main--Process-Line}.
+@item @r{<@i{eval---Main--Process Line-Is Line_Indentation}>}
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its first definition at @ref{eval---Main--Process-Line-Is-Line}.
+@item @r{<@i{eval---Main--Process Line-Is Line_Worth Evaluating?}>}
+
+@noindent
+This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its first definition at @ref{eval---Main--Process-Line-Is-Line}.
 @end table
 
 @node Bibliography

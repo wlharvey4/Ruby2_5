@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>eval If Is Line Code (Ruby2_5 Information)</title>
+
+<meta name="description" content="eval If Is Line Code (Ruby2_5 Information)">
+<meta name="keywords" content="eval If Is Line Code (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code" rel="up" title="eval Main Process Line Code">
+<link href="The-Makefile.html#The-Makefile" rel="next" title="The Makefile">
+<link href="eval-If-Not-Line-Code.html#eval-If-Not-Line-Code" rel="prev" title="eval If Not Line Code">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="eval-If-Is-Line-Code"></a>
+<div class="header">
+<p>
+Previous: <a href="eval-If-Not-Line-Code.html#eval-If-Not-Line-Code" accesskey="p" rel="prev">eval If Not Line Code</a>, Up: <a href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code" accesskey="u" rel="up">eval Main Process Line Code</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="eval_002erb-If-Is-Line-Code"></a>
+<h4 class="appendixsubsubsec">A.1.4.2 <samp>eval.rb</samp> If Is Line Code</h4>
+
+<a name="eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine"></a><a name="index-_003ceval_002d_002d_002dMain_002d_002dProcess-Line_002dIs-Line_005fIndentation_003e_002c-use"></a>
+<a name="index-_003ceval_002d_002d_002dMain_002d_002dProcess-Line_002dIs-Line_005fWorth-Evaluating_003f_003e_002c-use"></a>
+<a name="index-_003ceval_002d_002d_002dMain_002d_002dProcess-Line_002dIs-Line_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">else
+
+  # Append the input to whatever we had.
+  expr &lt;&lt; line
+
+  <span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line_Indentation</i>&gt;</span>
+
+  <span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line_Worth Evaluating?</i>&gt;</span>
+
+end # if not line
+</pre></div>
+
+<p>This chunk is called by <span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line</i>&gt;</span>; see its first definition at <a href="eval-Main-Process-Line-Code.html#eval_002d_002d_002dMain_002d_002dProcess_002dLine">eval---Main--Process-Line</a>.
+</p>
+<p>The following table lists called chunk definition points.
+</p><table>
+<thead><tr><th width="35%">Chunk name</th><th width="65%">First definition point</th></tr></thead>
+<tr><td width="35%"><span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line_Indentation</i>&gt;</span></td><td width="65%">See <a href="#eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine_002dIndentation">eval---Main--Process-Line-Is-Line-Indentation</a>.</td></tr>
+<tr><td width="35%"><span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line_Worth Evaluating?</i>&gt;</span></td><td width="65%">See <a href="#eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine_002dWorth_002dEvaluating_002d">eval---Main--Process-Line-Is-Line-Worth-Evaluating-</a>.</td></tr>
+</table>
+
+
+<a name="g_t_0023_0023_0023-Indentation-_0023_0023_0023"></a>
+<h4 class="subheading">### Indentation ###</h4>
+
+<a name="eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine_002dIndentation"></a><a name="index-_003ceval_002d_002d_002dMain_002d_002dProcess-Line_002dIs-Line_005fIndentation_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line_Indentation</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example"># Determine changes in indentation, reposition this line if
+# necessary, and adjust indentation for the next prompt.
+
+begin
+  ind1,ind2 = indentation( line )
+  if( ind1 != 0 )
+    indent += ind1
+    print Wipe,PrMore,(Ispace*indent),Code,line,Norm
+  end
+  indent += ind2
+
+rescue      # On error, restart the main loop.
+  print Eval,&quot;ERR: Nesting violation\n&quot;,Norm
+  indent = 0
+  redo
+
+end # begin
+</pre></div>
+
+<p>This chunk is called by <span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line</i>&gt;</span>; see its first definition at <a href="#eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine">eval---Main--Process-Line-Is-Line</a>.
+</p>
+
+<a name="g_t_0023_0023_0023-Something-Worth-Evaluating_003f-_0023_0023_0023"></a>
+<h4 class="subheading">### Something Worth Evaluating? ###</h4>
+
+<a name="eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine_002dWorth_002dEvaluating_002d"></a><a name="index-_003ceval_002d_002d_002dMain_002d_002dProcess-Line_002dIs-Line_005fWorth-Evaluating_003f_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line_Worth Evaluating?</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example"># Okay, do we have something worth evaulating?
+
+if (indent == 0) &amp;&amp; (expr.chop =~ /[^; \t\n\r\f]+/)
+
+  begin
+    result = eval(expr, TOPLEVEL_BINDING).inspect
+    if $!  # no exception, but $! non-nil, means a warning
+      print Eval,$!,Norm,&quot;\n&quot;
+      $!=nil
+    end
+    print Eval,&quot;   &quot;,result,Norm,&quot;\n&quot;
+
+  rescue ScriptError,StandardError
+    $! = 'exception raised' if not $!
+    print Eval,&quot;ERR: &quot;,$!,Norm,&quot;\n&quot;
+  end
+
+  break if not line
+
+end # if
+</pre></div>
+
+<p>This chunk is called by <span class="roman">&lt;<i>eval&mdash;Main&ndash;Process Line-Is Line</i>&gt;</span>; see its first definition at <a href="#eval_002d_002d_002dMain_002d_002dProcess_002dLine_002dIs_002dLine">eval---Main--Process-Line-Is-Line</a>.
+</p>
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="eval-If-Not-Line-Code.html#eval-If-Not-Line-Code" accesskey="p" rel="prev">eval If Not Line Code</a>, Up: <a href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code" accesskey="u" rel="up">eval Main Process Line Code</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

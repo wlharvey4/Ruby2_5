@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.2a
+@set EDITION 0.2c
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -3361,7 +3361,55 @@ Ruby can deal with any integer which is allowed by your machine's memory.  So
 0000000000000000000000000000000000000000000
 @end example
 
+@subheading The Input/Evaluation Loop
 
+When you invoke ruby with no arguments, it reads commands from standard input
+and executes them after the end of input:
+
+@example
+% ruby
+puts "hello world"
+puts "good-bye world"
+^D
+hello world
+good-bye world
+@end example
+
+@subsubheading Ruby Evaluation Program --- @file{eval.rb}
+@cindex @file{eval.rb}
+
+Ruby also comes with a program called @file{eval.rb} that allows you to enter
+ruby code from the keyboard in an interactive loop, showing you the results
+as you go.  It will be used extensively through the rest of this guide.  You
+should use this enhanced @url{http://www.rubyist.net/~slagell/ruby/eval.txt,
+@file{eval.rb}} that adds visual indenting assistance, warning reports, and
+color highlighting.
+
+Here is a short @file{eval.rb} session:
+
+@example
+% ruby eval.rb
+ruby> puts "Hello, world."
+Hello, world.
+   nil
+ruby> exit
+@end example
+
+@samp{hello world} is produced by @code{puts}.  The next line, in this case
+@code{nil}, reports on whatever was last evaluated;
+
+@subsubheading No Distinction Between Statement and Expression
+@cindex statement vs expression
+@cindex expression vs statement
+
+@quotation
+Ruby does not distinguish between statements and expressions, so evaluating a
+piece of code basically means the same thing as executing it.
+@end quotation
+
+Here, @code{nil} indicates that @code{puts} does not return a meaningful
+value.  Note that we can leave this interpreter loop by saying
+@command{exit}, although @key{C-D} still works too.
 
 @c .....................................
 
@@ -3490,6 +3538,240 @@ have taken days.
 
 
 
+
+
+@c *****************************************************************************
+@c APPENDICES
+@c *****************************************************************************
+
+@node Utility Programs
+@appendix Utility Programs
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node eval.rb
+@appendixsec @file{eval.rb}
+
+@url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
+
+@(eval.rb@)=
+#!/usr/local/bin/ruby
+
+#######################################################
+#
+# Ruby interactive input/eval loop
+# Written by matz           (matz@netlab.co.jp)
+# Modified by Mark Slagell  (slagell@ruby-lang.org)
+#    with suggestions for improvement from Dave Thomas
+#                           (Dave@Thomases.com)
+#
+#######################################################
+#
+# NOTE - this file has been renamed with a .txt extension to
+# allow you to view or download it without the rubyist.net
+# web server trying to run it as a CGI script.  You will
+# probably want to rename it back to eval.rb.
+#
+#######################################################
+
+module EvalWrapper
+
+  @<eval---EvalWrapper--Constants@>
+
+  @<eval---EvalWrapper--Indentation Deltas@>
+
+  # On exit, restore normal screen colors.
+  END {  print Norm,"\n" }
+
+  ##############################################################
+  # Execution starts here.
+  ##############################################################
+ 
+  indent=0
+  while true   # Top of main loop.
+
+    @<eval---Main--Get Line@>
+    @<eval---Main--Process Line@>
+
+  end          # Bottom of main loop
+  print "\n"
+
+end # module
+@
+
+
+@c .....................................
+
+@node eval Module Code
+@appendixsubsec @file{eval.rb} Module Code
+
+@<eval---EvalWrapper--Constants@>=
+
+# Constants for ANSI screen interaction.  Adjust to your liking.
+
+Norm   = "\033[0m"
+PCol   = Norm           # Prompt color
+Code   = "\033[1;32m"   # yellow 
+Eval   = "\033[0;36m"   # cyan 
+Prompt = PCol+"ruby> "+Norm
+PrMore = PCol+"    | "+Norm
+Ispace = "   "          # Adjust length of this for indentation.
+Wipe   = "\033[A\033[K" # Move cursor up and erase line
+@
+
+
+@c .....................................
+
+@node eval Indentation Deltas Code
+@appendixsubsec @file{eval.rb} Indentation Deltas Code
+
+@<eval---EvalWrapper--Indentation Deltas@>=
+# Return a pair of indentation deltas. The first applies before
+# the current line is printed, the second after.
+
+def EvalWrapper.indentation( code )
+  case code
+
+  when /^\s*(class|module|def|if|case|while|for|begin)\b[^_]/
+    [0,1]      # increase indentation because of keyword
+
+  when /^\s*end\b[^_]/
+    [-1,0]     # decrease because of end
+
+  when /\{\s*(\|.*\|)?\s*$/
+    [0,1]      # increase because of '{'
+
+  when /^\s*\}/
+    [-1,0]     # decrease because of '}'
+
+  when /^\s*(rescue|ensure|elsif|else)\b[^_]/
+    [-1,1]     # decrease for this line, then come back
+
+  else
+    [0,0]      # we see no reason to change anything
+
+  end # case
+end # def
+@
+
+
+@c .....................................
+
+@node eval Main Get Line Code
+@appendixsubsec @file{eval.rb} Main Get Line Code
+
+@<eval---Main--Get Line@>=
+# Print prompt, move cursor to tentative indentation level, and get
+# a line of input from the user.
+
+if( indent == 0 )
+  expr = ''; print Prompt  # (expecting a fresh expression)
+
+else
+  print PrMore             # (appending to previous lines)
+
+end
+
+print Ispace * indent,Code
+line = gets
+print Norm
+@
+
+@c .....................................
+
+@node eval Main Process Line Code
+@appendixsubsec @file{eval.rb} Main Process Line Code
+
+@<eval---Main--Process Line@>=
+@<eval---Main--Process Line-If Not Line@>
+
+@<eval---Main--Process Line-Is Line@>
+@
+
+@c _____________________________________
+
+@node eval If Not Line Code
+@appendixsubsubsec @file{eval.rb} If Not Line Code
+
+@<eval---Main--Process Line-If Not Line@>=
+if not line
+  # end of input (^D) - if there is no expression, exit, else
+  # reset cursor to the beginning of this line.
+
+  if expr == '' then break else print "\r" end
+@
+
+@c _____________________________________
+
+@node eval If Is Line Code
+@appendixsubsubsec @file{eval.rb} If Is Line Code
+
+@<eval---Main--Process Line-Is Line@>=
+else
+
+  # Append the input to whatever we had.
+  expr << line
+
+  @<eval---Main--Process Line-Is Line_Indentation@>
+
+  @<eval---Main--Process Line-Is Line_Worth Evaluating?@>
+
+end # if not line
+@
+
+@c #####################################
+
+@subheading ### Indentation ###
+
+@<eval---Main--Process Line-Is Line_Indentation@>=
+# Determine changes in indentation, reposition this line if
+# necessary, and adjust indentation for the next prompt.
+
+begin
+  ind1,ind2 = indentation( line )
+  if( ind1 != 0 )
+    indent += ind1
+    print Wipe,PrMore,(Ispace*indent),Code,line,Norm
+  end
+  indent += ind2
+
+rescue      # On error, restart the main loop.
+  print Eval,"ERR: Nesting violation\n",Norm
+  indent = 0
+  redo
+
+end # begin
+@
+
+@c #####################################
+
+@subheading ### Something Worth Evaluating? ###
+
+@<eval---Main--Process Line-Is Line_Worth Evaluating?@>=
+# Okay, do we have something worth evaulating?
+
+if (indent == 0) && (expr.chop =~ /[^; \t\n\r\f]+/)
+
+  begin
+    result = eval(expr, TOPLEVEL_BINDING).inspect
+    if $!  # no exception, but $! non-nil, means a warning
+      print Eval,$!,Norm,"\n"
+      $!=nil
+    end
+    print Eval,"   ",result,Norm,"\n"
+
+  rescue ScriptError,StandardError
+    $! = 'exception raised' if not $!
+    print Eval,"ERR: ",$!,Norm,"\n"
+  end
+
+  break if not line
+
+end # if
+@
 
 
 @c -----------------------------------------------------------------------------

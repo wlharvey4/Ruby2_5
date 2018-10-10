@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>eval Main Get Line Code (Ruby2_5 Information)</title>
+
+<meta name="description" content="eval Main Get Line Code (Ruby2_5 Information)">
+<meta name="keywords" content="eval Main Get Line Code (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="eval_002erb.html#eval_002erb" rel="up" title="eval.rb">
+<link href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code" rel="next" title="eval Main Process Line Code">
+<link href="eval-Indentation-Deltas-Code.html#eval-Indentation-Deltas-Code" rel="prev" title="eval Indentation Deltas Code">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="eval-Main-Get-Line-Code"></a>
+<div class="header">
+<p>
+Next: <a href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code" accesskey="n" rel="next">eval Main Process Line Code</a>, Previous: <a href="eval-Indentation-Deltas-Code.html#eval-Indentation-Deltas-Code" accesskey="p" rel="prev">eval Indentation Deltas Code</a>, Up: <a href="eval_002erb.html#eval_002erb" accesskey="u" rel="up">eval.rb</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="eval_002erb-Main-Get-Line-Code"></a>
+<h4 class="appendixsubsec">A.1.3 <samp>eval.rb</samp> Main Get Line Code</h4>
+
+<a name="eval_002d_002d_002dMain_002d_002dGet_002dLine"></a><a name="index-_003ceval_002d_002d_002dMain_002d_002dGet-Line_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>eval&mdash;Main&ndash;Get Line</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example"># Print prompt, move cursor to tentative indentation level, and get
+# a line of input from the user.
+
+if( indent == 0 )
+  expr = ''; print Prompt  # (expecting a fresh expression)
+
+else
+  print PrMore             # (appending to previous lines)
+
+end
+
+print Ispace * indent,Code
+line = gets
+print Norm
+</pre></div>
+
+<p>This chunk is called by <span class="roman">{<samp>eval.rb</samp>}</span>; see its first definition at <a href="eval_002erb.html#eval_002drb">eval-rb</a>.
+</p>
+
+
+
+
+</body>
+</html>

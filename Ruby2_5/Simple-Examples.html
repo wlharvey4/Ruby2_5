@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.2a of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.2c of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -164,8 +164,58 @@ statement here is permissible but unnecessary.
 0000000000000000000000000000000000000000000
 </pre></div>
 
+<a name="The-Input_002fEvaluation-Loop"></a>
+<h4 class="subheading">The Input/Evaluation Loop</h4>
 
+<p>When you invoke ruby with no arguments, it reads commands from standard input
+and executes them after the end of input:
+</p>
+<div class="example">
+<pre class="example">% ruby
+puts &quot;hello world&quot;
+puts &quot;good-bye world&quot;
+^D
+hello world
+good-bye world
+</pre></div>
 
+<a name="Ruby-Evaluation-Program-_002d_002d_002d-eval_002erb"></a>
+<h4 class="subsubheading">Ruby Evaluation Program &mdash; <samp>eval.rb</samp></h4>
+<a name="index-eval_002erb"></a>
+
+<p>Ruby also comes with a program called <samp>eval.rb</samp> that allows you to enter
+ruby code from the keyboard in an interactive loop, showing you the results
+as you go.  It will be used extensively through the rest of this guide.  You
+should use this enhanced <a href="http://www.rubyist.net/~slagell/ruby/eval.txt"><samp>eval.rb</samp></a> that adds visual indenting assistance, warning reports, and
+color highlighting.
+</p>
+<p>Here is a short <samp>eval.rb</samp> session:
+</p>
+<div class="example">
+<pre class="example">% ruby eval.rb
+ruby&gt; puts &quot;Hello, world.&quot;
+Hello, world.
+   nil
+ruby&gt; exit
+</pre></div>
+
+<p>&lsquo;<samp>hello world</samp>&rsquo; is produced by <code>puts</code>.  The next line, in this case
+<code>nil</code>, reports on whatever was last evaluated;
+</p>
+<a name="No-Distinction-Between-Statement-and-Expression"></a>
+<h4 class="subsubheading">No Distinction Between Statement and Expression</h4>
+<a name="index-statement-vs-expression"></a>
+<a name="index-expression-vs-statement"></a>
+
+<blockquote>
+<p>Ruby does not distinguish between statements and expressions, so evaluating a
+piece of code basically means the same thing as executing it.
+</p></blockquote>
+
+<p>Here, <code>nil</code> indicates that <code>puts</code> does not return a meaningful
+value.  Note that we can leave this interpreter loop by saying
+<code>exit</code>, although <tt class="key">C-D</tt> still works too.
+</p>
 
 <hr>
 <div class="header">

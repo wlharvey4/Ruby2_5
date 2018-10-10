@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.2a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2c of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,13 +29,14 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.2a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2c of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
 * Preface::
 * Introduction::
 * Documentation::
+* Utility Programs::
 * The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
@@ -158,6 +159,22 @@ Ruby User's Guide
 * What Is Ruby?::
 * Simple Examples::
 
+Utility Programs
+
+* eval.rb::
+
+'eval.rb'
+
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+
+'eval.rb' Main Process Line Code
+
+* eval If Not Line Code::
+* eval If Is Line Code::
+
 The Makefile
 
 * Makefile Variable Definitions::
@@ -245,7 +262,7 @@ simplicity and productivity.  It has an elegant syntax that is natural
 to read and easy to write.
 
 
-File: Ruby2_5.info,  Node: Documentation,  Next: The Makefile,  Prev: Introduction,  Up: Top
+File: Ruby2_5.info,  Node: Documentation,  Next: Utility Programs,  Prev: Introduction,  Up: Top
 
 2 Documentation
 ***************
@@ -2960,6 +2977,51 @@ memory.  So 400!  can be calculated:
      00800000000000000000000000000000000000000000000000000000000
      0000000000000000000000000000000000000000000
 
+The Input/Evaluation Loop
+-------------------------
+
+When you invoke ruby with no arguments, it reads commands from
+standard input and executes them after the end of input:
+
+     % ruby
+     puts "hello world"
+     puts "good-bye world"
+     ^D
+     hello world
+     good-bye world
+
+Ruby Evaluation Program -- 'eval.rb'
+....................................
+
+Ruby also comes with a program called 'eval.rb' that allows you to
+enter ruby code from the keyboard in an interactive loop, showing you
+the results as you go.  It will be used extensively through the rest
+of this guide.  You should use this enhanced 'eval.rb'
+(http://www.rubyist.net/~slagell/ruby/eval.txt) that adds visual
+indenting assistance, warning reports, and color highlighting.
+
+   Here is a short 'eval.rb' session:
+
+     % ruby eval.rb
+     ruby> puts "Hello, world."
+     Hello, world.
+        nil
+     ruby> exit
+
+   'hello world' is produced by 'puts'.  The next line, in this case
+'nil', reports on whatever was last evaluated;
+
+No Distinction Between Statement and Expression
+...............................................
+
+     Ruby does not distinguish between statements and expressions, so
+     evaluating a piece of code basically means the same thing as
+     executing it.
+
+   Here, 'nil' indicates that 'puts' does not return a meaningful
+value.  Note that we can leave this interpreter loop by saying 'exit',
+although <C-D> still works too.
+
 
 File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
 
@@ -3084,9 +3146,298 @@ File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Docume
 ===================
 
 
-File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Documentation,  Up: Top
+File: Ruby2_5.info,  Node: Utility Programs,  Next: The Makefile,  Prev: Documentation,  Up: Top
 
-Appendix A The Makefile
+Appendix A Utility Programs
+***************************
+
+* Menu:
+
+* eval.rb::
+
+
+File: Ruby2_5.info,  Node: eval.rb,  Up: Utility Programs
+
+A.1 'eval.rb'
+=============
+
+'eval.rb' (http://www.rubyist.net/~slagell/ruby/eval.txt)
+
+{'eval.rb'} ==
+     #!/usr/local/bin/ruby
+
+     #######################################################
+     #
+     # Ruby interactive input/eval loop
+     # Written by matz           (matz@netlab.co.jp)
+     # Modified by Mark Slagell  (slagell@ruby-lang.org)
+     #    with suggestions for improvement from Dave Thomas
+     #                           (Dave@Thomases.com)
+     #
+     #######################################################
+     #
+     # NOTE - this file has been renamed with a .txt extension to
+     # allow you to view or download it without the rubyist.net
+     # web server trying to run it as a CGI script.  You will
+     # probably want to rename it back to eval.rb.
+     #
+     #######################################################
+
+     module EvalWrapper
+
+       <eval--EvalWrapper-Constants>
+
+       <eval--EvalWrapper-Indentation Deltas>
+
+       # On exit, restore normal screen colors.
+       END {  print Norm,"\n" }
+
+       ##############################################################
+       # Execution starts here.
+       ##############################################################
+
+       indent=0
+       while true   # Top of main loop.
+
+         <eval--Main-Get Line>
+         <eval--Main-Process Line>
+
+       end          # Bottom of main loop
+       print "\n"
+
+     end # module
+
+The following table lists called chunk definition points.
+Chunk name                First definition point
+-------------------------------------------------------------------------
+<eval--EvalWrapper-Constants>See *note eval---EvalWrapper--Constants::.
+<eval--EvalWrapper-IndentationSee
+Deltas>                   *note eval---EvalWrapper--Indentation-Deltas::.
+<eval--Main-Get Line>     See *note eval---Main--Get-Line::.
+<eval--Main-Process       See *note eval---Main--Process-Line::.
+Line>
+
+* Menu:
+
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+
+
+File: Ruby2_5.info,  Node: eval Module Code,  Next: eval Indentation Deltas Code,  Up: eval.rb
+
+A.1.1 'eval.rb' Module Code
+---------------------------
+
+<eval--EvalWrapper-Constants> ==
+     # Constants for ANSI screen interaction.  Adjust to your liking.
+
+     Norm   = "\033[0m"
+     PCol   = Norm           # Prompt color
+     Code   = "\033[1;32m"   # yellow
+     Eval   = "\033[0;36m"   # cyan
+     Prompt = PCol+"ruby> "+Norm
+     PrMore = PCol+"    | "+Norm
+     Ispace = "   "          # Adjust length of this for indentation.
+     Wipe   = "\033[A\033[K" # Move cursor up and erase line
+
+This chunk is called by {'eval.rb'}; see its first definition at *note
+eval-rb::.
+
+
+File: Ruby2_5.info,  Node: eval Indentation Deltas Code,  Next: eval Main Get Line Code,  Prev: eval Module Code,  Up: eval.rb
+
+A.1.2 'eval.rb' Indentation Deltas Code
+---------------------------------------
+
+<eval--EvalWrapper-Indentation Deltas> ==
+     # Return a pair of indentation deltas. The first applies before
+     # the current line is printed, the second after.
+
+     def EvalWrapper.indentation( code )
+       case code
+
+       when /^\s*(class|module|def|if|case|while|for|begin)\b[^_]/
+         [0,1]      # increase indentation because of keyword
+
+       when /^\s*end\b[^_]/
+         [-1,0]     # decrease because of end
+
+       when /\{\s*(\|.*\|)?\s*$/
+         [0,1]      # increase because of '{'
+
+       when /^\s*\}/
+         [-1,0]     # decrease because of '}'
+
+       when /^\s*(rescue|ensure|elsif|else)\b[^_]/
+         [-1,1]     # decrease for this line, then come back
+
+       else
+         [0,0]      # we see no reason to change anything
+
+       end # case
+     end # def
+
+This chunk is called by {'eval.rb'}; see its first definition at *note
+eval-rb::.
+
+
+File: Ruby2_5.info,  Node: eval Main Get Line Code,  Next: eval Main Process Line Code,  Prev: eval Indentation Deltas Code,  Up: eval.rb
+
+A.1.3 'eval.rb' Main Get Line Code
+----------------------------------
+
+<eval--Main-Get Line> ==
+     # Print prompt, move cursor to tentative indentation level, and get
+     # a line of input from the user.
+
+     if( indent == 0 )
+       expr = ''; print Prompt  # (expecting a fresh expression)
+
+     else
+       print PrMore             # (appending to previous lines)
+
+     end
+
+     print Ispace * indent,Code
+     line = gets
+     print Norm
+
+This chunk is called by {'eval.rb'}; see its first definition at *note
+eval-rb::.
+
+
+File: Ruby2_5.info,  Node: eval Main Process Line Code,  Prev: eval Main Get Line Code,  Up: eval.rb
+
+A.1.4 'eval.rb' Main Process Line Code
+--------------------------------------
+
+<eval--Main-Process Line> ==
+     <eval--Main-Process Line-If Not Line>
+
+     <eval--Main-Process Line-Is Line>
+
+This chunk is called by {'eval.rb'}; see its first definition at *note
+eval-rb::.
+
+The following table lists called chunk definition points.
+Chunk name                First definition point
+-------------------------------------------------------------------------
+<eval--Main-Process       See
+Line-If Not Line>         *note eval---Main--Process-Line-If-Not-Line::.
+<eval--Main-Process       See
+Line-Is Line>             *note eval---Main--Process-Line-Is-Line::.
+
+* Menu:
+
+* eval If Not Line Code::
+* eval If Is Line Code::
+
+
+File: Ruby2_5.info,  Node: eval If Not Line Code,  Next: eval If Is Line Code,  Up: eval Main Process Line Code
+
+A.1.4.1 'eval.rb' If Not Line Code
+..................................
+
+<eval--Main-Process Line-If Not Line> ==
+     if not line
+       # end of input (^D) - if there is no expression, exit, else
+       # reset cursor to the beginning of this line.
+
+       if expr == '' then break else print "\r" end
+
+This chunk is called by <eval--Main-Process Line>; see its first
+definition at *note eval---Main--Process-Line::.
+
+
+File: Ruby2_5.info,  Node: eval If Is Line Code,  Prev: eval If Not Line Code,  Up: eval Main Process Line Code
+
+A.1.4.2 'eval.rb' If Is Line Code
+.................................
+
+<eval--Main-Process Line-Is Line> ==
+     else
+
+       # Append the input to whatever we had.
+       expr << line
+
+       <eval--Main-Process Line-Is Line_Indentation>
+
+       <eval--Main-Process Line-Is Line_Worth Evaluating?>
+
+     end # if not line
+
+This chunk is called by <eval--Main-Process Line>; see its first
+definition at *note eval---Main--Process-Line::.
+
+The following table lists called chunk definition points.
+Chunk name                First definition point
+-------------------------------------------------------------------------
+<eval--Main-Process       See
+Line-Is                   *note eval---Main--Process-Line-Is-Line-Indentation::.
+Line_Indentation>
+<eval--Main-Process       See
+Line-Is Line_Worth        *note eval---Main--Process-Line-Is-Line-Worth-Evaluating-::.
+Evaluating?>
+
+### Indentation ###
+-------------------
+
+<eval--Main-Process Line-Is Line_Indentation> ==
+     # Determine changes in indentation, reposition this line if
+     # necessary, and adjust indentation for the next prompt.
+
+     begin
+       ind1,ind2 = indentation( line )
+       if( ind1 != 0 )
+         indent += ind1
+         print Wipe,PrMore,(Ispace*indent),Code,line,Norm
+       end
+       indent += ind2
+
+     rescue      # On error, restart the main loop.
+       print Eval,"ERR: Nesting violation\n",Norm
+       indent = 0
+       redo
+
+     end # begin
+
+This chunk is called by <eval--Main-Process Line-Is Line>; see its
+first definition at *note eval---Main--Process-Line-Is-Line::.
+
+### Something Worth Evaluating? ###
+-----------------------------------
+
+<eval--Main-Process Line-Is Line_Worth Evaluating?> ==
+     # Okay, do we have something worth evaulating?
+
+     if (indent == 0) && (expr.chop =~ /[^; \t\n\r\f]+/)
+
+       begin
+         result = eval(expr, TOPLEVEL_BINDING).inspect
+         if $!  # no exception, but $! non-nil, means a warning
+           print Eval,$!,Norm,"\n"
+           $!=nil
+         end
+         print Eval,"   ",result,Norm,"\n"
+
+       rescue ScriptError,StandardError
+         $! = 'exception raised' if not $!
+         print Eval,"ERR: ",$!,Norm,"\n"
+       end
+
+       break if not line
+
+     end # if
+
+This chunk is called by <eval--Main-Process Line-Is Line>; see its
+first definition at *note eval---Main--Process-Line-Is-Line::.
+
+
+File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Utility Programs,  Up: Top
+
+Appendix B The Makefile
 ***********************
 
 {'Makefile'} ==
@@ -3113,7 +3464,7 @@ Definitions>
 
 File: Ruby2_5.info,  Node: Makefile Variable Definitions,  Next: Makefile Default Rule,  Up: The Makefile
 
-A.1 Makefile Variable Definitions
+B.1 Makefile Variable Definitions
 =================================
 
 <Makefile--Variable Definitions> ==
@@ -3127,7 +3478,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Rules,  Prev: Makefile Variable Definitions,  Up: The Makefile
 
-A.2 Default Rule
+B.2 Default Rule
 ================
 
 The 'default' rule is to create a PDF document and all HTML files.
@@ -3149,7 +3500,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile TWJR Rules,  Next: Makefile Clean Rules,  Prev: Makefile Default Rule,  Up: The Makefile
 
-A.3 TWJR Rules
+B.3 TWJR Rules
 ==============
 
 <Makefile--TWJR Rules> ==
@@ -3186,7 +3537,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Clean Rules,  Prev: Makefile TWJR Rules,  Up: The Makefile
 
-A.4 Clean Rules
+B.4 Clean Rules
 ===============
 
 <Makefile--Clean Rules> ==
@@ -3210,7 +3561,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: The Makefile,  Up: Top
 
-Appendix B Code Chunk Summaries
+Appendix C Code Chunk Summaries
 *******************************
 
 This major node presents alphabetical lists of all the file
@@ -3226,11 +3577,13 @@ references.
 
 File: Ruby2_5.info,  Node: File Definitions,  Next: Code Chunk Definitions,  Up: Code Chunk Summaries
 
-B.1 Source File Definitions
+C.1 Source File Definitions
 ===========================
 
 {'Makefile'}
      This chunk is defined in *note Makefile::.
+{'eval.rb'}
+     This chunk is defined in *note eval-rb::.
 {'fact.rb'}
      This chunk is defined in *note fact-rb::.
 {'ri20min.rb'}
@@ -3239,7 +3592,7 @@ B.1 Source File Definitions
 
 File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,  Prev: File Definitions,  Up: Code Chunk Summaries
 
-B.2 Code Chunk Definitions
+C.2 Code Chunk Definitions
 ==========================
 
 <Makefile--Clean Rules>
@@ -3258,11 +3611,32 @@ B.2 Code Chunk Definitions
      This chunk is defined in *note MegaGreeter---say-bye-Method::.
 <MegaGreeter--say_hi Method>
      This chunk is defined in *note MegaGreeter---say-hi-Method::.
+<eval--EvalWrapper-Constants>
+     This chunk is defined in *note eval---EvalWrapper--Constants::.
+<eval--EvalWrapper-Indentation Deltas>
+     This chunk is defined in *note
+     eval---EvalWrapper--Indentation-Deltas::.
+<eval--Main-Get Line>
+     This chunk is defined in *note eval---Main--Get-Line::.
+<eval--Main-Process Line>
+     This chunk is defined in *note eval---Main--Process-Line::.
+<eval--Main-Process Line-If Not Line>
+     This chunk is defined in *note
+     eval---Main--Process-Line-If-Not-Line::.
+<eval--Main-Process Line-Is Line>
+     This chunk is defined in *note
+     eval---Main--Process-Line-Is-Line::.
+<eval--Main-Process Line-Is Line_Indentation>
+     This chunk is defined in *note
+     eval---Main--Process-Line-Is-Line-Indentation::.
+<eval--Main-Process Line-Is Line_Worth Evaluating?>
+     This chunk is defined in *note
+     eval---Main--Process-Line-Is-Line-Worth-Evaluating-::.
 
 
 File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,  Up: Code Chunk Summaries
 
-B.3 Code Chunk References
+C.3 Code Chunk References
 =========================
 
 <Makefile--Clean Rules>
@@ -3297,6 +3671,40 @@ B.3 Code Chunk References
 
      This chunk is called by {'ri20min.rb'}; see its first definition
      at *note ri20min-rb::.
+<eval--EvalWrapper-Constants>
+
+     This chunk is called by {'eval.rb'}; see its first definition at
+     *note eval-rb::.
+<eval--EvalWrapper-Indentation Deltas>
+
+     This chunk is called by {'eval.rb'}; see its first definition at
+     *note eval-rb::.
+<eval--Main-Get Line>
+
+     This chunk is called by {'eval.rb'}; see its first definition at
+     *note eval-rb::.
+<eval--Main-Process Line>
+
+     This chunk is called by {'eval.rb'}; see its first definition at
+     *note eval-rb::.
+<eval--Main-Process Line-If Not Line>
+
+     This chunk is called by <eval--Main-Process Line>; see its first
+     definition at *note eval---Main--Process-Line::.
+<eval--Main-Process Line-Is Line>
+
+     This chunk is called by <eval--Main-Process Line>; see its first
+     definition at *note eval---Main--Process-Line::.
+<eval--Main-Process Line-Is Line_Indentation>
+
+     This chunk is called by <eval--Main-Process Line-Is Line>; see
+     its first definition at *note
+     eval---Main--Process-Line-Is-Line::.
+<eval--Main-Process Line-Is Line_Worth Evaluating?>
+
+     This chunk is called by <eval--Main-Process Line-Is Line>; see
+     its first definition at *note
+     eval---Main--Process-Line-Is-Line::.
 
 
 File: Ruby2_5.info,  Node: Bibliography,  Next: Concept Index,  Prev: Code Chunk Summaries,  Up: Top
@@ -3320,6 +3728,34 @@ Index
 * "truthy" values:                       FAQ Syntax.        (line  59)
 * ++ and --:                             FAQ Methods.       (line  15)
 * .. vs. ...:                            FAQ Syntax.        (line 203)
+* <eval--EvalWrapper-Constants>, definition: eval Module Code.
+                                                            (line   6)
+* <eval--EvalWrapper-Constants>, use:    eval.rb.           (line   8)
+* <eval--EvalWrapper-Indentation Deltas>, definition: eval Indentation Deltas Code.
+                                                            (line   6)
+* <eval--EvalWrapper-Indentation Deltas>, use: eval.rb.     (line   8)
+* <eval--Main-Get Line>, definition:     eval Main Get Line Code.
+                                                            (line   6)
+* <eval--Main-Get Line>, use:            eval.rb.           (line   8)
+* <eval--Main-Process Line-If Not Line>, definition: eval If Not Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line-If Not Line>, use: eval Main Process Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line-Is Line>, definition: eval If Is Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line-Is Line>, use: eval Main Process Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line-Is Line_Indentation>, definition: eval If Is Line Code.
+                                                            (line  34)
+* <eval--Main-Process Line-Is Line_Indentation>, use: eval If Is Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line-Is Line_Worth Evaluating?>, definition: eval If Is Line Code.
+                                                            (line  59)
+* <eval--Main-Process Line-Is Line_Worth Evaluating?>, use: eval If Is Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line>, definition: eval Main Process Line Code.
+                                                            (line   6)
+* <eval--Main-Process Line>, use:        eval.rb.           (line   8)
 * <Makefile--Clean Rules>, definition:   Makefile Clean Rules.
                                                             (line   6)
 * <Makefile--Clean Rules>, use:          The Makefile.      (line   6)
@@ -3353,6 +3789,7 @@ Index
                                                             (line  54)
 * __FILE__ special variable:             Large Class Definition.
                                                             (line 151)
+* {eval.rb}, definition:                 eval.rb.           (line   8)
 * {fact.rb}, definition:                 Simple Examples.   (line  17)
 * {Makefile}, definition:                The Makefile.      (line   6)
 * {ri20min.rb}, definition:              Large Class Definition.
@@ -3469,7 +3906,9 @@ Index
 * ensure clause:                         FAQ Syntax.        (line 265)
 * equivalence vs the same:               To Ruby From Java. (line  59)
 * eval:                                  FAQ Syntax.        (line 115)
+* eval.rb:                               Simple Examples.   (line 102)
 * exception handling:                    FAQ Syntax.        (line 254)
+* expression vs statement:               Simple Examples.   (line 123)
 * extension modules:                     To Ruby From C and C++.
                                                             (line  36)
 * factorial in Ruby:                     Simple Examples.   (line   9)
@@ -3688,6 +4127,7 @@ Index
                                                             (line  17)
 * source, building:                      Building From Source.
                                                             (line   6)
+* statement vs expression:               Simple Examples.   (line 123)
 * static checking, none:                 To Ruby From Java. (line  41)
 * statically typed:                      To Ruby From C and C++.
                                                             (line  28)
@@ -3772,121 +4212,138 @@ Index
 
 Tag Table:
 Node: Top371
-Node: Preface3095
-Node: Audience3278
-Node: Overview3397
-Node: Conventions3567
-Node: Acknowledgements4487
-Node: Introduction4603
-Node: Documentation4900
-Node: Installing Ruby5305
-Node: Package Management Systems6218
-Node: Homebrew (OS X)7043
-Node: Installers7469
-Node: ruby-build8065
-Node: ruby-install8618
-Node: Managers9233
-Node: chruby9630
-Node: rbenv9889
-Node: RVM (``Ruby Version Manager'')10434
-Node: uru10832
-Node: Building From Source11125
-Node: Releases Page12137
-Node: Branches Page13237
-Node: Issue Tracking15037
-Node: Developing Ruby15521
-Ref: subversion16271
-Ref: MainRubyRepo17423
-Ref: PatchByPatch17751
-Node: Getting Started18548
-Node: Try Ruby!18936
-Node: Official FAQ19266
-Node: FAQ Iterators20343
-Node: FAQ Syntax24282
-Ref: immediate value25427
-Ref: nil vs false26062
-Ref: empty string26676
-Ref: symbol object27029
-Ref: value of symbol28167
-Ref: loop29045
-Ref: post-test loop29271
-Ref: hash literal29697
-Ref: pos val29979
-Ref: \1 and \\130355
-Ref: 2 dots vs 3 dots30763
-Ref: or and31001
-Ref: function pointers31803
-Ref: load vs require32125
-Ref: exception handling32480
-Node: FAQ Methods33477
-Node: FAQ Classes and Modules35150
-Node: FAQ Built-In Libraries36336
-Node: FAQ Extension Library38314
-Node: FAQ Other Features38993
-Node: Ruby Koans39543
-Node: Why’s (Poignant) Guide to Ruby39947
-Node: Ruby in Twenty Minutes40421
-Node: Interactive Ruby41094
-Node: Defining Methods42048
-Node: Altering Classes47552
-Node: Large Class Definition48888
-Ref: ri20min-rb49292
-Ref: MegaGreeter---Initialize-Method50101
-Ref: MegaGreeter---say-hi-Method50823
-Ref: MegaGreeter---say-bye-Method53040
-Ref: MegaGreeter---Main-Script53988
-Node: Run MegaGreeter54520
-Node: Ruby from Other Languages55046
-Node: To Ruby From C and C++55764
-Node: To Ruby From Java63293
-Node: To Ruby From Perl65860
-Node: To Ruby From PHP68819
-Node: To Ruby From Python70996
-Node: Important Language Features75131
-Node: Pointers on Iteration75885
-Node: Everything has a value76681
-Node: Symbols are not lightweight Strings77161
-Node: Everything is an Object78606
-Node: Variable Constants79167
-Node: Naming conventions79560
-Node: Keyword arguments80256
-Node: The universal truth80806
-Node: Access modifiers are Methods81558
-Node: Method access82561
-Node: Classes are open84175
-Node: Funny method names84890
-Node: Singleton methods85692
-Node: Missing methods86319
-Node: Message passing --- not function calls87398
-Node: Blocks are Objects87819
-Node: Operators are syntactic sugar88730
-Node: Learning Ruby89743
-Node: Ruby Essentials90111
-Node: Learn to Program90342
-Node: Manuals90721
-Node: Ruby User's Guide90913
-Node: What Is Ruby?91364
-Node: Simple Examples92353
-Ref: fact-rb92744
-Node: Programming Ruby95012
-Node: Reference Documentation99442
-Node: Editors and IDEs99614
-Node: Further Reading99780
-Node: The Makefile99912
-Ref: Makefile100065
-Node: Makefile Variable Definitions100774
-Ref: Makefile---Variable-Definitions100952
-Node: Makefile Default Rule101120
-Ref: Makefile---Default-Rule101670
-Node: Makefile TWJR Rules101909
-Ref: Makefile---TWJR-Rules102068
-Node: Makefile Clean Rules102699
-Ref: Makefile---Clean-Rules102830
-Node: Code Chunk Summaries103287
-Node: File Definitions103672
-Node: Code Chunk Definitions104020
-Node: Code Chunk References104963
-Node: Bibliography106127
-Node: Concept Index106258
+Node: Preface3359
+Node: Audience3542
+Node: Overview3661
+Node: Conventions3831
+Node: Acknowledgements4751
+Node: Introduction4867
+Node: Documentation5164
+Node: Installing Ruby5573
+Node: Package Management Systems6486
+Node: Homebrew (OS X)7311
+Node: Installers7737
+Node: ruby-build8333
+Node: ruby-install8886
+Node: Managers9501
+Node: chruby9898
+Node: rbenv10157
+Node: RVM (``Ruby Version Manager'')10702
+Node: uru11100
+Node: Building From Source11393
+Node: Releases Page12405
+Node: Branches Page13505
+Node: Issue Tracking15305
+Node: Developing Ruby15789
+Ref: subversion16539
+Ref: MainRubyRepo17691
+Ref: PatchByPatch18019
+Node: Getting Started18816
+Node: Try Ruby!19204
+Node: Official FAQ19534
+Node: FAQ Iterators20611
+Node: FAQ Syntax24550
+Ref: immediate value25695
+Ref: nil vs false26330
+Ref: empty string26944
+Ref: symbol object27297
+Ref: value of symbol28435
+Ref: loop29313
+Ref: post-test loop29539
+Ref: hash literal29965
+Ref: pos val30247
+Ref: \1 and \\130623
+Ref: 2 dots vs 3 dots31031
+Ref: or and31269
+Ref: function pointers32071
+Ref: load vs require32393
+Ref: exception handling32748
+Node: FAQ Methods33745
+Node: FAQ Classes and Modules35418
+Node: FAQ Built-In Libraries36604
+Node: FAQ Extension Library38582
+Node: FAQ Other Features39261
+Node: Ruby Koans39811
+Node: Why’s (Poignant) Guide to Ruby40215
+Node: Ruby in Twenty Minutes40689
+Node: Interactive Ruby41362
+Node: Defining Methods42316
+Node: Altering Classes47820
+Node: Large Class Definition49156
+Ref: ri20min-rb49560
+Ref: MegaGreeter---Initialize-Method50369
+Ref: MegaGreeter---say-hi-Method51091
+Ref: MegaGreeter---say-bye-Method53308
+Ref: MegaGreeter---Main-Script54256
+Node: Run MegaGreeter54788
+Node: Ruby from Other Languages55314
+Node: To Ruby From C and C++56032
+Node: To Ruby From Java63561
+Node: To Ruby From Perl66128
+Node: To Ruby From PHP69087
+Node: To Ruby From Python71264
+Node: Important Language Features75399
+Node: Pointers on Iteration76153
+Node: Everything has a value76949
+Node: Symbols are not lightweight Strings77429
+Node: Everything is an Object78874
+Node: Variable Constants79435
+Node: Naming conventions79828
+Node: Keyword arguments80524
+Node: The universal truth81074
+Node: Access modifiers are Methods81826
+Node: Method access82829
+Node: Classes are open84443
+Node: Funny method names85158
+Node: Singleton methods85960
+Node: Missing methods86587
+Node: Message passing --- not function calls87666
+Node: Blocks are Objects88087
+Node: Operators are syntactic sugar88998
+Node: Learning Ruby90011
+Node: Ruby Essentials90379
+Node: Learn to Program90610
+Node: Manuals90989
+Node: Ruby User's Guide91181
+Node: What Is Ruby?91632
+Node: Simple Examples92621
+Ref: fact-rb93012
+Node: Programming Ruby96707
+Node: Reference Documentation101137
+Node: Editors and IDEs101309
+Node: Further Reading101475
+Node: Utility Programs101607
+Node: eval.rb101786
+Ref: eval-rb101935
+Node: eval Module Code103882
+Ref: eval---EvalWrapper--Constants104037
+Node: eval Indentation Deltas Code104564
+Ref: eval---EvalWrapper--Indentation-Deltas104775
+Node: eval Main Get Line Code105654
+Ref: eval---Main--Get-Line105866
+Node: eval Main Process Line Code106326
+Ref: eval---Main--Process-Line106509
+Node: eval If Not Line Code107150
+Ref: eval---Main--Process-Line-If-Not-Line107336
+Node: eval If Is Line Code107683
+Ref: eval---Main--Process-Line-Is-Line107867
+Ref: eval---Main--Process-Line-Is-Line-Indentation108717
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-109438
+Node: The Makefile110154
+Ref: Makefile110310
+Node: Makefile Variable Definitions111019
+Ref: Makefile---Variable-Definitions111197
+Node: Makefile Default Rule111365
+Ref: Makefile---Default-Rule111915
+Node: Makefile TWJR Rules112154
+Ref: Makefile---TWJR-Rules112313
+Node: Makefile Clean Rules112944
+Ref: Makefile---Clean-Rules113075
+Node: Code Chunk Summaries113532
+Node: File Definitions113917
+Node: Code Chunk Definitions114324
+Node: Code Chunk References116178
+Node: Bibliography118543
+Node: Concept Index118674
 
 End Tag Table
