@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.2a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -70,7 +70,76 @@ Next: <a href="To-Ruby-From-PHP.html#To-Ruby-From-PHP" accesskey="n" rel="next">
 <a name="To-Ruby-From-Perl-1"></a>
 <h4 class="subsubsection">2.3.6.3 To Ruby From Perl</h4>
 
+<p>Perl is awesome.  Perl&rsquo;s docs are awesome.  The Perl community is &mdash;
+awesome.  However, the language is fairly large and arguably complex.  For
+those Perlers who long for a simpler time, a more orthogonal language, and
+elegant OO features built-in from the beginning, Ruby may be for you.
+</p>
+<a name="Similarities-with-Perl"></a>
+<h4 class="subheading">Similarities with Perl</h4>
 
+<ul>
+<li> Youâve got a package management system, somewhat like CPAN (though itâs
+called <a href="http://guides.rubygems.org/">RubyGems</a>).
+</li><li> Regexes are built right in.
+</li><li> <a name="index-regexes"></a>
+There&rsquo;s a fairly large number of commonly-used built-ins.
+</li><li> Parentheses are often optional.
+</li><li> Strings work basically the same.
+</li><li> Thereâs a general delimited string and regex quoting syntax similar to
+Perlâs.  It looks like <tt>%q{this}</tt> (single-quoted), or
+<tt>%Q{this}</tt> (double-quoted), and <tt>%w{this for a single-quoted
+list of words}</tt>.  You <tt>%Q|can|</tt> <tt>%Q(use)</tt> <tt>%Q^other^</tt>
+delimiters if you like.
+</li><li> Youâve got double-quotish variable interpolation, though it &lsquo;<samp>&quot;looks
+#{like} this&quot;</samp>&rsquo; (and you can put any Ruby code you like inside that
+<code>#{}</code>).
+</li><li> Shell command expansion uses <code>`backticks`</code>.
+</li><li> Youâve got embedded doc tools (Rubyâs is called <code>rdoc</code>).
+<a name="index-rdoc-1"></a>
+<a name="index-doc-tools"></a>
+</li></ul>
+
+<a name="Differences-From-Perl"></a>
+<h4 class="subheading">Differences From Perl</h4>
+
+<ul>
+<li> You donât have the context-dependent rules like with Perl.
+</li><li> A variable isn&rsquo;t the same as the object to which it refers.  Instead, it&rsquo;s
+always just a reference to an object.
+</li><li> Although <code>$</code> and <code>@</code> are used as the first character in variable
+names sometimes, rather than indicating type, they indicate scope (<code>$</code>
+for globals, <code>@</code> for object instance, and <code>@@</code> for class
+attributes).
+</li><li> <a name="index-sygils-in-Ruby"></a>
+Array literals go in brackets instead of parentheses.
+</li><li> Composing lists of other lists does not flatten them into one big
+list.  Instead you get an array of arrays.
+</li><li> It&rsquo;s <code>def</code> instead of <code>sub</code>.
+</li><li> There&rsquo;s no semicolons needed at the end of each line.  Incidentally, you end
+things like function definitions, class definitions, and case statements with
+the <code>end</code> keyword.
+</li><li> Objects are strongly typed.  Youâll be manually calling <code>foo.to_i</code>,
+<code>foo.to_s</code>, etc., if you need to convert between types.
+</li><li> Thereâs no <code>eq</code>, <code>ne</code>, <code>lt</code>, <code>gt</code>, <code>ge</code>, nor
+<code>le</code>.
+</li><li> Thereâs no diamond operator (<code>&lt;&gt;</code>).  You usually use
+<code>IO.some_method</code> instead.
+</li><li> The fat comma <code>=&gt;</code> is only used for hash literals.
+</li><li> Thereâs no <code>undef</code>.  In Ruby you have <code>nil</code>.  <code>nil</code> is an
+object (like anything else in Ruby).  It&rsquo;s not the same as an undefined
+variable.  It evaluates to <code>false</code> if you treat it like a boolean.
+</li><li> When tested for truth, only <code>false</code> and <code>nil</code> evaluate to a
+<code>false</code> value.  Everything else is <code>true</code> (including <code>0</code>,
+<code>0.0</code>, and <code>&quot;0&quot;</code>).
+</li></ul>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="To-Ruby-From-PHP.html#To-Ruby-From-PHP" accesskey="n" rel="next">To Ruby From PHP</a>, Previous: <a href="To-Ruby-From-Java.html#To-Ruby-From-Java" accesskey="p" rel="prev">To Ruby From Java</a>, Up: <a href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" accesskey="u" rel="up">Ruby from Other Languages</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 

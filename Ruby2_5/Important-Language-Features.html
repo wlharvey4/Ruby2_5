@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.2a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -26,8 +26,8 @@ This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" rel="up" title="Ruby from Other Languages">
-<link href="Learning-Ruby.html#Learning-Ruby" rel="next" title="Learning Ruby">
+<link href="Getting-Started.html#Getting-Started" rel="up" title="Getting Started">
+<link href="Pointers-on-Iteration.html#Pointers-on-Iteration" rel="next" title="Pointers on Iteration">
 <link href="To-Ruby-From-Python.html#To-Ruby-From-Python" rel="prev" title="To Ruby From Python">
 <style type="text/css">
 <!--
@@ -64,12 +64,52 @@ ul.no-bullet {list-style: none}
 <a name="Important-Language-Features"></a>
 <div class="header">
 <p>
-Previous: <a href="To-Ruby-From-Python.html#To-Ruby-From-Python" accesskey="p" rel="prev">To Ruby From Python</a>, Up: <a href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" accesskey="u" rel="up">Ruby from Other Languages</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Learning-Ruby.html#Learning-Ruby" accesskey="n" rel="next">Learning Ruby</a>, Previous: <a href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" accesskey="p" rel="prev">Ruby from Other Languages</a>, Up: <a href="Getting-Started.html#Getting-Started" accesskey="u" rel="up">Getting Started</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="Important-Language-Features-1"></a>
-<h4 class="subsubsection">2.3.6.6 Important Language Features</h4>
+<h4 class="subsection">2.3.7 Important Language Features</h4>
 
+<p>Here are some pointers and hints on major Ruby features you&rsquo;ll see while
+learning Ruby.
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Pointers-on-Iteration.html#Pointers-on-Iteration" accesskey="1">Pointers on Iteration</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Everything-has-a-value.html#Everything-has-a-value" accesskey="2">Everything has a value</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Symbols-are-not-lightweight-Strings.html#Symbols-are-not-lightweight-Strings" accesskey="3">Symbols are not lightweight Strings</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Everything-is-an-Object.html#Everything-is-an-Object" accesskey="4">Everything is an Object</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Variable-Constants.html#Variable-Constants" accesskey="5">Variable Constants</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Naming-conventions.html#Naming-conventions" accesskey="6">Naming conventions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Keyword-arguments.html#Keyword-arguments" accesskey="7">Keyword arguments</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="The-universal-truth.html#The-universal-truth" accesskey="8">The universal truth</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Access-modifiers-are-Methods.html#Access-modifiers-are-Methods" accesskey="9">Access modifiers are Methods</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Method-access.html#Method-access">Method access</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Classes-are-open.html#Classes-are-open">Classes are open</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Funny-method-names.html#Funny-method-names">Funny method names</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Singleton-methods.html#Singleton-methods">Singleton methods</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Missing-methods.html#Missing-methods">Missing methods</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Message-passing-_002d_002d_002d-not-function-calls.html#Message-passing-_002d_002d_002d-not-function-calls">Message passing --- not function calls</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Blocks-are-Objects.html#Blocks-are-Objects">Blocks are Objects</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Operators-are-syntactic-sugar.html#Operators-are-syntactic-sugar">Operators are syntactic sugar</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
 
 
 

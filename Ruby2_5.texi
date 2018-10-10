@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.1e
+@set EDITION 0.2a
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -293,6 +293,7 @@ Getting Started
 * Why’s (Poignant) Guide to Ruby::
 * Ruby in Twenty Minutes::
 * Ruby from Other Languages::
+* Important Language Features::
 * Learning Ruby::
 * Ruby Essentials::
 * Learn to Program::
@@ -322,7 +323,36 @@ Ruby from Other Languages
 * To Ruby From Perl::
 * To Ruby From PHP::
 * To Ruby From Python::
-* Important Language Features::
+
+Important Language Features
+
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+
+Manuals
+
+* Ruby User's Guide::
+* Programming Ruby::
+
+Ruby User's Guide
+
+* What Is Ruby?::
+* Simple Examples::
 
 The Makefile
 
@@ -949,6 +979,7 @@ Patch}
 * Why’s (Poignant) Guide to Ruby::
 * Ruby in Twenty Minutes::
 * Ruby from Other Languages::
+* Important Language Features::
 * Learning Ruby::
 * Ruby Essentials::
 * Learn to Program::
@@ -2344,7 +2375,6 @@ might compare to what you’re already familiar with.
 * To Ruby From Perl::
 * To Ruby From PHP::
 * To Ruby From Python::
-* Important Language Features::
 @end menu
 
 @node To Ruby From C and C++
@@ -2702,20 +2732,796 @@ when you want to test ``equivalence'' in Ruby (@code{equals()} in Java).  Use
 @node To Ruby From Perl
 @subsubsection To Ruby From Perl
 
+Perl is awesome.  Perl's docs are awesome.  The Perl community is ---
+awesome.  However, the language is fairly large and arguably complex.  For
+those Perlers who long for a simpler time, a more orthogonal language, and
+elegant OO features built-in from the beginning, Ruby may be for you.
+
+@subheading Similarities with Perl
+
+@itemize
+@item
+You’ve got a package management system, somewhat like CPAN (though it’s
+called @url{http://guides.rubygems.org/,RubyGems}).
+@item
+Regexes are built right in.
+@cindex regexes
+@item
+There's a fairly large number of commonly-used built-ins.
+@item
+Parentheses are often optional.
+@item
+Strings work basically the same.
+@item
+There’s a general delimited string and regex quoting syntax similar to
+Perl’s.  It looks like @verb{|%q{this}|} (single-quoted), or
+@verb{|%Q{this}|} (double-quoted), and @verb{|%w{this for a single-quoted
+list of words}|}.  You @verb{|%Q|can||} @verb{|%Q(use)|} @verb{|%Q^other^|}
+delimiters if you like.
+@item
+You’ve got double-quotish variable interpolation, though it @samp{"looks
+#@{like@} this"} (and you can put any Ruby code you like inside that
+@code{#@{@}}).
+@item
+Shell command expansion uses @code{`backticks`}.
+@item
+You’ve got embedded doc tools (Ruby’s is called @command{rdoc}).
+@cindex @command{rdoc}
+@cindex doc tools
+@end itemize
+
+@subheading Differences From Perl
+
+@itemize
+@item
+You don’t have the context-dependent rules like with Perl.
+@item
+A variable isn't the same as the object to which it refers.  Instead, it's
+always just a reference to an object.
+@item
+Although @code{$} and @code{@@} are used as the first character in variable
+names sometimes, rather than indicating type, they indicate scope (@code{$}
+for globals, @code{@@} for object instance, and @code{@@@@} for class
+attributes).
+@cindex sygils in Ruby
+@item
+Array literals go in brackets instead of parentheses.
+@item
+Composing lists of other lists does not flatten them into one big
+list.  Instead you get an array of arrays.
+@item
+It's @code{def} instead of @code{sub}.
+@item
+There's no semicolons needed at the end of each line.  Incidentally, you end
+things like function definitions, class definitions, and case statements with
+the @code{end} keyword.
+@item
+Objects are strongly typed.  You’ll be manually calling @code{foo.to_i},
+@code{foo.to_s}, etc., if you need to convert between types.
+@item
+There’s no @code{eq}, @code{ne}, @code{lt}, @code{gt}, @code{ge}, nor
+@code{le}.
+@item
+There’s no diamond operator (@code{<>}).  You usually use
+@code{IO.some_method} instead.
+@item
+The fat comma @code{=>} is only used for hash literals.
+@item
+There’s no @code{undef}.  In Ruby you have @code{nil}.  @code{nil} is an
+object (like anything else in Ruby).  It's not the same as an undefined
+variable.  It evaluates to @code{false} if you treat it like a boolean.
+@item
+When tested for truth, only @code{false} and @code{nil} evaluate to a
+@code{false} value.  Everything else is @code{true} (including @code{0},
+@code{0.0}, and @code{"0"}).
+@end itemize
+
 @c _____________________________________
 
 @node To Ruby From PHP
 @subsubsection To Ruby From PHP
+
+PHP is in widespread use for web applications, but if you want to use Ruby on
+Rails or just want a language that’s more tailored for general use, Ruby is
+worth a look.
+
+@subheading Similarities with PHP
+
+@itemize
+@item
+Ruby is dynamically typed, like in PHP, so you don’t need to worry about
+having to declare variables.
+@item
+There are classes, and you can control access to them like in PHP 5 (public,
+protected and private).
+@item
+Some variables start with @code{$}, like in PHP (but not all).
+@item
+There's @code{eval}, too.
+@item
+You can use string interpolation.  Instead of doing @samp{"$foo is a $bar"},
+you can do @samp{"#@{foo@} is a #@{bar@}"} --- like in PHP, this doesn’t apply
+for single-quoted strings.
+@item
+There’s heredocs.
+@item
+Ruby has exceptions, like PHP 5.
+@item
+There’s a fairly large standard library.
+@item
+Arrays and hashes work like expected, if you exchange @code{array()} for
+@code{@{} and @code{@}}: @code{array('a' => 'b')} becomes @code{@{'a' =>
+'b'@}}.
+@item
+@code{true} and @code{false} behave like in PHP, but @code{null} is called
+@code{nil}.
+@end itemize
+
+@subheading Differences From PHP
+
+@itemize
+@item
+There’s strong typing.  You’ll need to call @code{to_s}, @code{to_i} etc. to
+convert between strings, integers and so on, instead of relying on the
+language to do it.
+@item
+Strings, numbers, arrays, hashes, etc. are objects.  Instead of calling
+@code{abs(-1)} it’s @code{-1.abs}.
+@item
+Parentheses are optional in method calls, except to clarify which parameters
+go to which method calls.
+@item
+The standard library and extensions are organized in modules and classes.
+@item
+Reflection is an inherent capability of objects; you don’t need to use
+@file{Reflection} classes like in PHP 5.
+@item
+Variables are references.
+@item
+There’s no @file{abstract} classes or @file{interfaces}.
+@item
+Hashes and arrays are not interchangeable.
+@item
+Only @code{false} and @code{nil} are false: @code{0}, @code{array()} and
+@code{""} are all true in conditionals.
+@item
+Almost everything is a method call, even @code{raise} (@code{throw} in PHP).
+@end itemize
 
 @c _____________________________________
 
 @node To Ruby From Python
 @subsubsection To Ruby From Python
 
-@c _____________________________________
+Python is another very nice general purpose programming language.  Going from
+Python to Ruby, you'll find that there's a little bit more syntax to learn
+than with Python.
+
+@subheading Similarities With Python
+
+@itemize
+@item
+There’s an interactive prompt (called @command{irb}).
+@cindex @command{irb}
+@item
+You can read docs on the command line (with the @command{ri} command instead
+of @command{pydoc}).
+@item
+There are no special line terminators (except the usual newline).
+@item
+String literals can span multiple lines like Python's triple-quoted strings.
+@item
+Brackets are for lists, and braces are for dicts (which, in Ruby, are called
+``hashes'').
+@item
+Arrays work the same (adding them makes one long array, but composing them
+like this @samp{a3 = [ a1, a2 ]} gives you an array of arrays).
+@item
+Objects are strongly and dynamically typed.
+@item
+Everything is an object, and variables are just references to objects.
+@item
+Although the keywords are a bit different, exceptions work about the same.
+@item
+You’ve got embedded doc tools (Ruby’s is called @command{rdoc}).
+@cindex @command{rdoc}
+@cindex doc tools
+@item
+There is good support for functional programming with first-class functions,
+anonymous functions, and closures.
+@end itemize
+
+@subheading Differences From Python
+
+@itemize
+@item
+Strings are mutable.
+@item
+You can make constants (variables whose value you don’t intend to change).
+@item
+There are some enforced case-conventions (ex. class names start with a
+capital letter, variables start with a lowercase letter).
+@item
+There's only one kind of list container (an @file{Array}), and it's mutable.
+@item
+Double-quoted strings allow escape sequences (like @code{\t}) and a special
+``expression substitution'' syntax (which allows you to insert the results of
+Ruby expressions directly into other strings without having to @samp{"add " +
+"strings " + "together"}).  Single-quoted strings are like Python's @code{r"raw
+strings"}.
+@item
+There are no ``new style'' and ``old style'' classes.  Just one kind.  (Python 3+
+doesn’t have this issue, but it isn’t fully backward compatible with Python
+2.)
+@item
+You never directly access attributes.  With Ruby, it’s all method calls.
+@item
+Parentheses for method calls are usually optional.
+@item
+There's @code{public}, @code{private}, and @code{protected} to enforce
+access, instead of Python's @code{_voluntary_} underscore
+@code{__convention__}.
+@item
+``mixins'' are used instead of multiple inheritance.
+@item
+You can add or modify the methods of built-in classes.  Both languages let you
+open up and modify classes at any point, but Python prevents modification of
+built-ins --- Ruby does not.
+@item
+You’ve got @code{true} and @code{false} instead of @code{True} and
+@code{False} (and @code{nil} instead of @code{None}).
+@item
+When tested for truth, only @code{false} and @code{nil} evaluate to a
+@code{false} value.  Everything else is @code{true} (including @code{0},
+@code{0.0}, @code{""}, and @code{[]}).
+@item
+It's @code{elsif} instead of @code{elif}.
+@item
+It's @code{require} instead of @code{import}.  Otherwise though, usage is the
+same.
+@item
+The usual-style comments on the line(s) above things (instead of docstrings
+below them) are used for generating docs.
+@item
+There are a number of shortcuts that, although give you more to remember, you
+quickly learn.  They tend to make Ruby fun and very productive.
+@item
+There’s no way to unset a variable once set (like Python's @code{del}
+statement).  You can reset a variable to @code{nil}, allowing the old
+contents to be garbage collected, but the variable will remain in the symbol
+table as long as it is in scope.
+@item
+The @code{yield} keyword behaves differently.  In Python it will return
+execution to the scope outside the function's invocation.  External code is
+responsible for resuming the function.  In Ruby @code{yield} will execute
+another function that has been passed as the final argument, then immediately
+resume.
+@item
+Python supports just one kind of anonymous functions, lambdas, while Ruby
+contains blocks, Procs, and lambdas.
+@end itemize
+
+
+@c .....................................
 
 @node Important Language Features
-@subsubsection Important Language Features
+@subsection Important Language Features
+
+Here are some pointers and hints on major Ruby features you'll see while
+learning Ruby.
+
+@c _____________________________________
+
+@menu
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+@end menu
+
+@node Pointers on Iteration
+@subsubsection Pointers on Iteration
+@cindex iteration
+
+Two Ruby features that are a bit unlike what you may have seen before, and
+which take some getting used to, are ``blocks'' and iterators.  Instead of
+looping over an index (like with C, C++, or pre-1.5 Java), or looping over a
+list (like Perl's @code{for (@@a) @{@dots{}@}}, or Python's @code{for i in aList:
+@dots{}}), with Ruby you'll very often instead see:
+
+@example
+some_list.each do |this_item|
+  # We're inside the block.
+  # deal with this_item.
+end
+@end example
+
+For more info on @code{each} and its friends
+@cindex @code{each}
+@cindex @code{collect}
+@cindex @code{find}
+@cindex @code{inject}
+@cindex @code{sort}
+
+@itemize
+@item
+@code{collect},
+@item
+@code{find},
+@item
+@code{inject},
+@item
+@code{sort},
+@end itemize
+
+etc., see @command{ri Enumerable} (and then @command{ri
+Enumerable#some_method}).
+@cindex @command{ri}
+
+@c _____________________________________
+
+@node Everything has a value
+@subsubsection Everything has a value
+@cindex value, everthing has one
+
+There’s no difference between an expression and a statement.  Everything has a
+value, even if that value is @code{nil}.  This is possible:
+
+@example
+x = 10
+y = 11
+z = if x < y
+      true
+    else
+      false
+    end
+z # => true
+@end example
+
+@c _____________________________________
+
+@node Symbols are not lightweight Strings
+@subsubsection Symbols are not lightweight Strings
+@cindex symbols
+
+Many Ruby newbies struggle with understanding what Symbols are, and what they
+can be used for.
+
+@dfn{Symbols} can best be described as identities.  A symbol is all about who it is,
+not what it is.  Fire up @command{irb} and see the difference:
+
+@example
+irb(main):001:0> :george.object_id == :george.object_id
+=> true
+irb(main):002:0> "george".object_id == "george".object_id
+=> false
+irb(main):003:0>
+@end example
+
+The @code{object_id} methods returns the identity of an Object.  If two
+objects have the same @code{object_id}, they are the same (point to the same
+Object in memory).
+@cindex @code{object_id} methods
+
+As you can see, once you have used a Symbol once, any Symbol with the same
+characters references the same Object in memory.  For any given two Symbols
+that represent the same characters, the @code{object_id}s match.
+@cindex Symbol
+
+Now take a look at the String (@code{“george”}).  The @code{object_id}s don't
+match.  That means they're referencing two different objects in memory.
+Whenever you use a new String, Ruby allocates memory for it.
+
+If you're in doubt whether to use a Symbol or a String, consider what’s more
+important: the identity of an object (i.e. a Hash key), or the contents (in
+the example above, @code{“george”}).
+@cindex Symbol or String
+@cindex String or Symbol
+
+@c _____________________________________
+
+@node Everything is an Object
+@subsubsection Everything is an Object
+
+@example
+``Everything is an object'' isn't just hyperbole.  Even classes and integers are
+objects, and you can do the same things with them as with any other object:
+
+# This is the same as
+# class MyClass
+#   attr_accessor :instance_var
+# end
+MyClass = Class.new do
+  attr_accessor :instance_var
+end
+@end example
+
+@c _____________________________________
+
+@node Variable Constants
+@subsubsection Variable Constants
+
+Constants are not really constant.  If you modify an already initialized
+constant, it will trigger a warning, but not halt your program.  That isn't to
+say you should redefine constants, though.
+
+@c _____________________________________
+
+@node Naming conventions
+@subsubsection Naming conventions
+@cindex conventions, naming
+
+Ruby enforces some naming conventions.  If an identifier starts with a
+capital letter, it is a constant.  If it starts with a dollar sign
+(@code{$}), it is a global variable.  If it starts with @code{@@}, it is an
+instance variable. If it starts with @code{@@@@}, it is a class variable.
+@cindex constant naming convention
+@cindex global variable @code{$}
+@cindex varible, global @code{$}
+@cindex instance variable @code{@@}
+@cindex variable, instance @code{@@}
+@cindex class variable @code{@@@@}
+@cindex variable, class @code{@@@@}
+
+Method names, however, are allowed to start with capital letters.  This can
+lead to confusion, as the example below shows:
+
+@example
+Constant = 10
+def Constant
+  11
+end
+@end example
+
+Now @code{Constant} is 10, but @code{Constant()} is 11.
+
+@c _____________________________________
+
+@node Keyword arguments
+@subsubsection Keyword arguments
+
+Like in Python, since Ruby 2.0 methods can be defined using keyword
+arguments:
+
+@example
+def deliver(from: "A", to: nil, via: "mail")
+  "Sending from #@{from@} to #@{to@} via #@{via@}."
+end
+
+deliver(to: "B")
+# => "Sending from A to B via mail."
+deliver(via: "Pony Express", from: "B", to: "A")
+# => "Sending from B to A via Pony Express."
+@end example
+
+@c _____________________________________
+
+@node The universal truth
+@subsubsection The universal truth
+
+In Ruby, everything except @code{nil} and @code{false} is considered true.
+In C, Python and many other languages, @code{0} and possibly other values,
+such as empty lists, are considered false.  Take a look at the following
+Python code (the example applies to other languages, too):
+
+@example
+# in Python
+if 0:
+  print("0 is true")
+else:
+  print("0 is false")
+@end example
+
+This will print @samp{“0 is false”}.  The equivalent Ruby:
+
+@example
+# in Ruby
+if 0
+  puts "0 is true"
+else
+  puts "0 is false"
+end
+@end example
+
+Prints @samp{“0 is true”}.
+
+@c _____________________________________
+
+@node Access modifiers are Methods
+@subsubsection Access modifiers are Methods
+@cindex access modifiers @code{public}, @code{private}, @code{protected}
+@cindex access modifier scope
+@cindex scope, access modifiers
+
+Access modifiers apply until the end of scope.
+
+In the following Ruby code,
+
+@example
+class MyClass
+  private
+  def a_method; true; end
+  def another_method; false; end
+end
+@end example
+
+You might expect @code{another_method} to be public.  Not so.  The
+@code{private} access modifier continues until the end of the scope, or until
+another access modifier pops up, whichever comes first.  By default, methods
+are public:
+
+@example
+class MyClass
+  # Now a_method is public
+  def a_method; true; end
+
+  private
+
+  # another_method is private
+  def another_method; false; end
+end
+@end example
+
+@itemize
+@item
+@code{public}, 
+@item
+@code{private} and
+@item
+@code{protected}
+@end itemize
+
+are really methods, so they can take parameters.  If you pass a Symbol to one
+of them, that method’s visibility is altered.
+
+@c _____________________________________
+
+@node Method access
+@subsubsection Method access
+
+In Java, @code{public} means a method is accessible by
+anyone. @code{protected} means the class's instances, instances of descendant
+classes, and instances of classes in the same package can access it, but not
+anyone else; and @code{private} means nobody besides the class's instances
+can access the method.
+
+Ruby differs slightly.  @code{public} is, naturally, public.  @code{private}
+means the method(s) are accessible only when they can be called without an
+explicit receiver.  Only @code{self} is allowed to be the receiver of a
+private method call.
+
+@code{protected} is the one to be on the lookout for.  A @code{protected}
+method can be called from a class or descendant class instances, but also
+with another instance as its receiver.  Here is an example (adapted from The
+Ruby Language FAQ):
+
+@example
+class Test
+  # public by default
+  def identifier
+    99
+  end
+
+  def ==(other)
+    identifier == other.identifier
+  end
+end
+
+t1 = Test.new  # => #<Test:0x34ab50>
+t2 = Test.new  # => #<Test:0x342784>
+t1 == t2       # => true
+
+# now make `identifier' protected; it still works
+# because protected allows `other' as receiver
+
+class Test
+  protected :identifier
+end
+
+t1 == t2  # => true
+
+# now make `identifier' private
+
+class Test
+  private :identifier
+end
+
+t1 == t2
+# NoMethodError: private method `identifier' called for #<Test:0x342784>
+@end example
+
+@c _____________________________________
+
+@node Classes are open
+@subsubsection Classes are open
+@cindex classes, open
+
+Ruby classes are open.  You can open them up, add to them, and change them at
+any time.  Even core classes, like @file{Fixnum} or even @file{Object}, the
+parent of all objects.  Ruby on Rails defines a bunch of methods for dealing
+with time on @file{Fixnum}.  Watch:
+
+@example
+class Fixnum
+  def hours
+    self * 3600 # number of seconds in an hour
+  end
+  alias hour hours
+end
+
+# 14 hours from 00:00 January 1st
+# (aka when you finally wake up ;)
+Time.mktime(2006, 01, 01) + 14.hours # => Sun Jan 01 14:00:00
+@end example
+
+@c _____________________________________
+
+@node Funny method names
+@subsubsection Funny method names
+
+In Ruby, methods are allowed to end with question marks or exclamation marks.
+By convention, methods that answer questions end in question marks
+(e.g. @code{Array#empty?}, which returns @code{true} if the receiver is
+empty).  Potentially ``dangerous'' methods by convention end with exclamation
+marks (e.g. methods that modify @code{self} or the arguments, @code{exit!},
+etc.).  Not all methods that change their arguments end with exclamation
+marks, though.  @code{Array#replace} replaces the contents of an array with the
+contents of another array.  It doesn’t make much sense to have a method like
+that that doesn't modify self.
+
+@c _____________________________________
+
+@node Singleton methods
+@subsubsection Singleton methods
+@cindex singleton methods
+
+@dfn{Singleton methods} are per-object methods.  They are only available on the
+Object you defined it on.
+
+@example
+class Car
+  def inspect
+    "Cheap car"
+  end
+end
+
+porsche = Car.new
+porsche.inspect # => Cheap car
+def porsche.inspect
+  "Expensive car"
+end
+
+porsche.inspect # => Expensive car
+
+# Other objects are not affected
+other_car = Car.new
+other_car.inspect # => Cheap car
+@end example
+
+@c _____________________________________
+
+@node Missing methods
+@subsubsection Missing methods
+@cindex @code{method_missing} method
+
+Ruby doesn't give up if it can't find a method that responds to a particular
+message.  It calls the @code{method_missing} method with the name of the
+method it couldn't find and the arguments.  By default, @code{method_missing}
+raises a @file{NameError} exception, but you can redefine it to better fit
+your application, and many libraries do.  Here is an example:
+
+@example
+# id is the name of the method called, the * syntax collects
+# all the arguments in an array named 'arguments'
+def method_missing(id, *arguments)
+  puts "Method #@{id@} was called, but not found. It has " +
+       "these arguments: #@{arguments.join(", ")@}"
+end
+
+__ :a, :b, 10
+# => Method __ was called, but not found. It has these
+# arguments: a, b, 10
+@end example
+
+The code above just prints the details of the call, but you are free to
+handle the message in any way that is appropriate.
+
+@c _____________________________________
+
+@node Message passing --- not function calls
+@subsubsection Message passing, not function calls
+
+A method call is really a ``message'' to another object:
+
+@example
+# This
+1 + 2
+# Is the same as this ...
+1.+(2)
+# Which is the same as this:
+1.send "+", 2
+@end example
+
+@c _____________________________________
+
+@node Blocks are Objects
+@subsubsection Blocks are Objects
+@cindex blocks
+@cindex @code{yield}
+@cindex @code{Proc}
+
+Blocks (closures, really) are heavily used by the standard library.  To call
+a block, you can either use @code{yield}, or make it a @code{Proc} by
+appending a special argument to the argument list, like so:
+
+@example
+def block(&the_block)
+  # Inside here, the_block is the block passed to the method
+  the_block # return the block
+end
+adder = block @{ |a, b| a + b @}
+# adder is now a Proc object
+adder.class # => Proc
+@end example
+
+You can create blocks outside of method calls, too, by calling
+@code{Proc.new} with a block or calling the @code{lambda} method.
+@cindex @code{lambda} method
+
+Similarly, methods are also Objects in the making:
+
+@example
+method(:puts).call "puts is an object!"
+# => puts is an object!
+@end example
+
+@c _____________________________________
+
+@node Operators are syntactic sugar
+@subsubsection Operators are syntactic sugar
+
+Most operators in Ruby are just syntactic sugar (with some precedence rules)
+for method calls.  You can, for example, override @file{Fixnum}’s @code{+}
+method:
+
+@example
+class Fixnum
+  # You can, but please don't do this
+  def +(other)
+    self - other
+  end
+end
+@end example
+
+You don’t need C++'s @code{operator+}, etc.
+
+You can even have array-style access if you define the @code{[]} and
+@code{[]=} methods.  To define the unary @code{+} and @code{-} (think
+@samp{+1} and @samp{-2}), you must define the @code{+@@} and @code{-@@}
+methods, respectively.  The operators below are not syntactic sugar,
+though.  They are not methods, and cannot be redefined:
+
+@example
+=, .., ..., not, &&, and, ||, or, ::
+@end example
+
+In addition, @samp{+=, *=} etc. are just abbreviations for @samp{var = var +
+other_var}, @samp{var = var * other_var}, etc. and therefore cannot be
+redefined.
+
 
 @c .....................................
 
@@ -2729,7 +3535,6 @@ and in search of a solid introduction to Ruby’s concepts and constructs.
 
 
 @c .....................................
-
 
 @node Ruby Essentials
 @subsection Ruby Essentials
@@ -2766,9 +3571,284 @@ know how to program, start here.
 
 
 
+@c .....................................
+
+@menu
+* Ruby User's Guide::
+* Programming Ruby::
+@end menu
+
+@node Ruby User's Guide
+@subsection Ruby User's Guide
+
+Translated from the original Japanese version written by Yukihiro Matsumoto
+(the creator of Ruby), this version, by Goto Kentaro and Mark Slagell, is a
+nice overview of many aspects of the Ruby language.
+
+@url{http://www.rubyist.net/~slagell/ruby/, Ruby User's Guide}
+
+@c _____________________________________
+
+@menu
+* What Is Ruby?::
+* Simple Examples::
+@end menu
+
+@node What Is Ruby?
+@subsubsection What Is Ruby?
+
+Ruby is ``an interpreted scripting language for quick and easy object-oriented
+programming'' --- what does this mean?
+@cindex Ruby, what it is
+
+@table @i
+
+@item interpreted scripting language:
+@itemize
+@item
+ability to make operating system calls directly
+@item
+powerful string operations and regular expressions
+@item
+immediate feedback during development
+@end itemize
+
+@item quick and easy:
+@itemize
+@item
+variable declarations are unnecessary
+@item
+variables are not typed
+@item
+syntax is simple and consistent
+@item
+memory management is automatic
+@end itemize
+
+@item object oriented programming:
+@itemize
+@item
+everything is an object
+@item
+classes, methods, inheritance, etc.
+@item
+singleton methods
+@item
+``mixin'' functionality by module
+@item
+iterators and closures
+@end itemize
+
+@item also:
+@itemize
+@item
+multiple precision integers
+@item
+convenient exception processing
+@item
+dynamic loading
+@item
+threading support
+@end itemize
+
+@end table
+
+@c _____________________________________
+
+@node Simple Examples
+@subsubsection Simple Examples
+
+@subheading Factorial in Ruby
+@cindex factorial in Ruby
+
+Let's write a function to compute factorials.  The mathematical definition of
+@dfn{n factorial} is:
+
+@display
+n! = 1                (when n==0)
+   = n * (n-1)!       (otherwise)
+@end display
+
+In ruby, this can be written as:
+
+@need 400
+@anchor{fact-rb}
+@cdindex @r{@{@file{fact.rb}@}}, definition
+@noindent
+@r{@{@file{fact.rb}@}} @equiv{}
+@example
+# Program to find the factorial of a number
+# Save this as fact.rb
+
+def fact(n)
+  if n == 0
+    1
+  else
+    n * fact(n-1)
+  end
+end
+
+puts fact(ARGV[0].to_i)
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+@iftex
+@textfonts @rm
+@end iftex
+
+@subsubheading Command Line Arguments ---  In Array @var{ARGV}
+@cindex command line arguments in @code{ARGV}
+@cindex @code{to_i} method
+
+@code{ARGV} is an array which contains the command line arguments, and
+@code{to_i} converts a character string to an integer.
+
+@subsubheading The @code{end} Statement
+
+You may notice the repeated occurrence of @code{end}.  Ruby has been called
+``Algol-like'' because of this.  (Actually, the syntax of ruby more closely
+mimics that of a langage named @url{https://www.eiffel.org/,Eiffel}.)
+
+@subsubheading Takeaway --- @code{return} Statement Optional
+
+You may also notice the lack of a @code{return} statement.
+
+@quotation
+[A @code{return} statement] is unneeded because @strong{a ruby function
+returns the last thing that was evaluated in it}.  Use of a @code{return}
+statement here is permissible but unnecessary.
+@end quotation
+@cindex Algol and Ruby
+@cindex Eiffel and Ruby
+@cindex @code{return} statement unnecessary
+
+@subsubheading Running @file{fact.rb}
+
+Ruby can deal with any integer which is allowed by your machine's memory.  So
+400! can be calculated:
+
+@example
+% ruby fact.rb 1
+1
+% ruby fact.rb 5
+120
+
+% ruby fact.rb 40
+815915283247897734345611269596115894272000000000
+
+% ruby fact.rb 400
+64034522846623895262347970319503005850702583026002959458684
+44594280239716918683143627847864746326467629435057503585681
+08482981628835174352289619886468029979373416541508381624264
+61942352307046244325015114448670890662773914918117331955996
+44070954967134529047702032243491121079759328079510154537266
+72516278778900093497637657103263503315339653498683868313393
+52024373788157786791506311858702618270169819740062983025308
+59129834616227230455833952075961150530223608681043329725519
+48526744322324386699484224042325998055516106359423769613992 
+31917134063858996537970147827206606320217379472010321356624 
+61380907794230459736069956759583609615871512991382228657857 
+95493616176544804532220078258184008484364155912294542753848 
+03558374518022675900061399560145595206127211192918105032491 
+00800000000000000000000000000000000000000000000000000000000 
+0000000000000000000000000000000000000000000
+@end example
 
 
 
+@c .....................................
+
+@node Programming Ruby
+@subsection Programming Ruby
+
+@subheading The Programmatic Programmer's Guide
+
+@url{http://ruby-doc.com/docs/ProgrammingRuby/,Programming Ruby}
+
+@subsubheading What This Book Is
+
+This book is a tutorial and reference for the Ruby programming language.  Use
+Ruby, and you'll write better code, be more productive, and enjoy programming
+more.
+
+@subsubheading What Ruby Is
+
+Take a true object-oriented language, such as Smalltalk.  Drop the unfamiliar
+syntax and move to more conventional, file-based source code.  Now add in a
+good measure of the flexibility and convenience of languages such as Python
+and Perl.
+
+You end up with Ruby.
+
+@subsubheading Ruby is OO
+
+OO aficionados will find much to like in Ruby:  things such as pure object
+orientation (everything's an object), metaclasses, closures, iterators, and
+ubiquitous heterogeneous collections.  Smalltalk users will feel right at home
+(and C++ and Java users will feel jealous).
+
+@subsubheading Ruby is Perl and Python
+
+At the same time, Perl and Python wizards will find many of their favorite
+features:  full regular expression support, tight integration with the
+underlying operating system, convenient shortcuts, and dynamic evaluation.
+
+@subsubheading Principle of Lease Surprise
+
+Ruby follows the Principle of Least Surprise --- things work the way you
+would expect them to, with very few special cases or exceptions.
+
+@subsubheading Ruby is a ``Transparent'' Language
+
+We call Ruby a ``transparent'' language.  By that we mean that Ruby doesn't
+obscure the solutions you write behind lots of syntax and the need to churn
+out reams of support code just to get simple things done.  With Ruby you write
+programs close to the problem domain.  Rather than constantly mapping your
+ideas and designs down to the pedestrian level of most languages, with Ruby
+you'll find you can express them directly and express them elegantly.  This
+means you code faster.  It also means your programs stay readable and
+maintainable.
+
+@subsubheading Ruby is a ``Scripting'' Language
+
+What exactly is a scripting language?  Frankly we don't know if it's a
+distinction worth making.  In Ruby, you can access all the underlying
+operating system features.  You can do the same stuff in Ruby that you can in
+Perl or Python, and you can do it more cleanly.  But Ruby is fundamentally
+different.  It is a true programming language, too, with strong theoretical
+roots and an elegant, lightweight syntax.  You could hack together a mess of
+``scripts'' with Ruby, but you probably won't.  Instead, you'll be more
+inclined to engineer a solution, to produce a program that is easy to
+understand, simple to maintain, and a piece of cake to extend and reuse in
+the future.
+
+@subsubheading Ruby is a General Purpose Programming Language
+
+Although we have used Ruby for scripting jobs, most of the time we use it as
+a general-purpose programming language.  We've used it to write GUI
+applications and middle-tier server processes, and we're using it to format
+large parts of this book.  Others have used it for managing server machines
+and databases.  Ruby is serving Web pages, interfacing to databases and
+generating dynamic content.  People are writing artificial intelligence and
+machine learning programs in Ruby, and at least one person is using it to
+investigate natural evolution.  Ruby's finding a home as a vehicle for
+exploratory mathematics.  And people all over the world are using it as a way
+of gluing together all their different applications.  It truly is a great
+language for producing solutions in a wide variety of problem domains.
+
+@subsubheading Should I Use Ruby?
+
+However, Ruby is probably more applicable than you might think.  It is easy to
+extend, both from within the language and by linking in third-party
+libraries.  It is portable across a number of platforms.  It's relatively
+lightweight and consumes only modest system resources.  And it's easy to
+learn; we've known people who've put Ruby code into production systems within
+a day of picking up drafts of this book.  We've used Ruby to implement parts
+of an X11 window manager, a task that's normally considered severe C
+coding.  Ruby excelled, and helped us write code in hours that would otherwise
+have taken days.
 
 
 @c -----------------------------------------------------------------------------
@@ -2822,10 +3902,8 @@ know how to program, start here.
 @noindent
 @r{@{@file{Makefile}@}} @equiv{}
 @example
-@r{<@i{Makefile---Variable Definitions}>}
-@r{<@i{Makefile---Default Rule}>}
-@r{<@i{Makefile---TWJR Rules}>}
-@r{<@i{Makefile---Clean Rules}>}
+@r{<@i{Makefile---Variable Definitions}>} @r{<@i{Makefile---Default Rule}>}
+@r{<@i{Makefile---TWJR Rules}>} @r{<@i{Makefile---Clean Rules}>}
 @end example
 @iftex
 @smallfonts @rm
@@ -3004,6 +4082,9 @@ the code chunk definitions, and the code chunk references.
 @item @r{@{@file{Makefile}@}}
 This chunk is defined in
 @ref{Makefile}.
+@item @r{@{@file{fact.rb}@}}
+This chunk is defined in
+@ref{fact-rb}.
 @item @r{@{@file{ri20min.rb}@}}
 This chunk is defined in
 @ref{ri20min-rb}.

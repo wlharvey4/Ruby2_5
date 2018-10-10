@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Access modifiers are Methods (Ruby2_5 Information)</title>
+
+<meta name="description" content="Access modifiers are Methods (Ruby2_5 Information)">
+<meta name="keywords" content="Access modifiers are Methods (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Important-Language-Features.html#Important-Language-Features" rel="up" title="Important Language Features">
+<link href="Method-access.html#Method-access" rel="next" title="Method access">
+<link href="The-universal-truth.html#The-universal-truth" rel="prev" title="The universal truth">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Access-modifiers-are-Methods"></a>
+<div class="header">
+<p>
+Next: <a href="Method-access.html#Method-access" accesskey="n" rel="next">Method access</a>, Previous: <a href="The-universal-truth.html#The-universal-truth" accesskey="p" rel="prev">The universal truth</a>, Up: <a href="Important-Language-Features.html#Important-Language-Features" accesskey="u" rel="up">Important Language Features</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Access-modifiers-are-Methods-1"></a>
+<h4 class="subsubsection">2.3.7.9 Access modifiers are Methods</h4>
+<a name="index-access-modifiers-public_002c-private_002c-protected"></a>
+<a name="index-access-modifier-scope"></a>
+<a name="index-scope_002c-access-modifiers"></a>
+
+<p>Access modifiers apply until the end of scope.
+</p>
+<p>In the following Ruby code,
+</p>
+<div class="example">
+<pre class="example">class MyClass
+  private
+  def a_method; true; end
+  def another_method; false; end
+end
+</pre></div>
+
+<p>You might expect <code>another_method</code> to be public.  Not so.  The
+<code>private</code> access modifier continues until the end of the scope, or until
+another access modifier pops up, whichever comes first.  By default, methods
+are public:
+</p>
+<div class="example">
+<pre class="example">class MyClass
+  # Now a_method is public
+  def a_method; true; end
+
+  private
+
+  # another_method is private
+  def another_method; false; end
+end
+</pre></div>
+
+<ul>
+<li> <code>public</code>, 
+</li><li> <code>private</code> and
+</li><li> <code>protected</code>
+</li></ul>
+
+<p>are really methods, so they can take parameters.  If you pass a Symbol to one
+of them, that methodâs visibility is altered.
+</p>
+
+
+
+
+</body>
+</html>

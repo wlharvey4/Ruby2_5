@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2a of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.1e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2a of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -97,6 +97,7 @@ Getting Started
 * Why’s (Poignant) Guide to Ruby::
 * Ruby in Twenty Minutes::
 * Ruby from Other Languages::
+* Important Language Features::
 * Learning Ruby::
 * Ruby Essentials::
 * Learn to Program::
@@ -126,7 +127,36 @@ Ruby from Other Languages
 * To Ruby From Perl::
 * To Ruby From PHP::
 * To Ruby From Python::
-* Important Language Features::
+
+Important Language Features
+
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+
+Manuals
+
+* Ruby User's Guide::
+* Programming Ruby::
+
+Ruby User's Guide
+
+* What Is Ruby?::
+* Simple Examples::
 
 The Makefile
 
@@ -676,6 +706,7 @@ File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Developing Ru
 * Why’s (Poignant) Guide to Ruby::
 * Ruby in Twenty Minutes::
 * Ruby from Other Languages::
+* Important Language Features::
 * Learning Ruby::
 * Ruby Essentials::
 * Learn to Program::
@@ -1841,7 +1872,7 @@ be:
      ...
 
 
-File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Learning Ruby,  Prev: Ruby in Twenty Minutes,  Up: Getting Started
+File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Important Language Features,  Prev: Ruby in Twenty Minutes,  Up: Getting Started
 
 2.3.6 Ruby from Other Languages
 -------------------------------
@@ -1862,7 +1893,6 @@ with.
 * To Ruby From Perl::
 * To Ruby From PHP::
 * To Ruby From Python::
-* Important Language Features::
 
 
 File: Ruby2_5.info,  Node: To Ruby From C and C++,  Next: To Ruby From Java,  Up: Ruby from Other Languages
@@ -2094,28 +2124,666 @@ File: Ruby2_5.info,  Node: To Ruby From Perl,  Next: To Ruby From PHP,  Prev: To
 2.3.6.3 To Ruby From Perl
 .........................
 
+Perl is awesome.  Perl's docs are awesome.  The Perl community is --
+awesome.  However, the language is fairly large and arguably complex.
+For those Perlers who long for a simpler time, a more orthogonal
+language, and elegant OO features built-in from the beginning, Ruby
+may be for you.
+
+Similarities with Perl
+----------------------
+
+   * You’ve got a package management system, somewhat like CPAN
+     (though it’s called RubyGems (http://guides.rubygems.org/)).
+   * Regexes are built right in.
+   * There's a fairly large number of commonly-used built-ins.
+   * Parentheses are often optional.
+   * Strings work basically the same.
+   * There’s a general delimited string and regex quoting syntax
+     similar to Perl’s.  It looks like %q{this} (single-quoted), or
+     %Q{this} (double-quoted), and %w{this for a single-quoted
+     list of words}.  You %Q|can| %Q(use) %Q^other^ delimiters if you
+     like.
+   * You’ve got double-quotish variable interpolation, though it
+     '"looks #{like} this"' (and you can put any Ruby code you like
+     inside that '#{}').
+   * Shell command expansion uses '`backticks`'.
+   * You’ve got embedded doc tools (Ruby’s is called 'rdoc').
+
+Differences From Perl
+---------------------
+
+   * You don’t have the context-dependent rules like with Perl.
+   * A variable isn't the same as the object to which it refers.
+     Instead, it's always just a reference to an object.
+   * Although '$' and '@' are used as the first character in variable
+     names sometimes, rather than indicating type, they indicate scope
+     ('$' for globals, '@' for object instance, and '@@' for class
+     attributes).
+   * Array literals go in brackets instead of parentheses.
+   * Composing lists of other lists does not flatten them into one big
+     list.  Instead you get an array of arrays.
+   * It's 'def' instead of 'sub'.
+   * There's no semicolons needed at the end of each line.
+     Incidentally, you end things like function definitions, class
+     definitions, and case statements with the 'end' keyword.
+   * Objects are strongly typed.  You’ll be manually calling
+     'foo.to_i', 'foo.to_s', etc., if you need to convert between
+     types.
+   * There’s no 'eq', 'ne', 'lt', 'gt', 'ge', nor 'le'.
+   * There’s no diamond operator ('<>').  You usually use
+     'IO.some_method' instead.
+   * The fat comma '=>' is only used for hash literals.
+   * There’s no 'undef'.  In Ruby you have 'nil'.  'nil' is an object
+     (like anything else in Ruby).  It's not the same as an undefined
+     variable.  It evaluates to 'false' if you treat it like a
+     boolean.
+   * When tested for truth, only 'false' and 'nil' evaluate to a
+     'false' value.  Everything else is 'true' (including '0', '0.0',
+     and '"0"').
+
 
 File: Ruby2_5.info,  Node: To Ruby From PHP,  Next: To Ruby From Python,  Prev: To Ruby From Perl,  Up: Ruby from Other Languages
 
 2.3.6.4 To Ruby From PHP
 ........................
 
+PHP is in widespread use for web applications, but if you want to use
+Ruby on Rails or just want a language that’s more tailored for general
+use, Ruby is worth a look.
+
+Similarities with PHP
+---------------------
+
+   * Ruby is dynamically typed, like in PHP, so you don’t need to
+     worry about having to declare variables.
+   * There are classes, and you can control access to them like in PHP
+     5 (public, protected and private).
+   * Some variables start with '$', like in PHP (but not all).
+   * There's 'eval', too.
+   * You can use string interpolation.  Instead of doing '"$foo is a
+     $bar"', you can do '"#{foo} is a #{bar}"' -- like in PHP, this
+     doesn’t apply for single-quoted strings.
+   * There’s heredocs.
+   * Ruby has exceptions, like PHP 5.
+   * There’s a fairly large standard library.
+   * Arrays and hashes work like expected, if you exchange 'array()'
+     for '{' and '}': 'array('a' => 'b')' becomes '{'a' => 'b'}'.
+   * 'true' and 'false' behave like in PHP, but 'null' is called
+     'nil'.
+
+Differences From PHP
+--------------------
+
+   * There’s strong typing.  You’ll need to call 'to_s', 'to_i' etc.
+     to convert between strings, integers and so on, instead of
+     relying on the language to do it.
+   * Strings, numbers, arrays, hashes, etc.  are objects.  Instead of
+     calling 'abs(-1)' it’s '-1.abs'.
+   * Parentheses are optional in method calls, except to clarify which
+     parameters go to which method calls.
+   * The standard library and extensions are organized in modules and
+     classes.
+   * Reflection is an inherent capability of objects; you don’t need
+     to use 'Reflection' classes like in PHP 5.
+   * Variables are references.
+   * There’s no 'abstract' classes or 'interfaces'.
+   * Hashes and arrays are not interchangeable.
+   * Only 'false' and 'nil' are false: '0', 'array()' and '""' are all
+     true in conditionals.
+   * Almost everything is a method call, even 'raise' ('throw' in
+     PHP).
+
 
-File: Ruby2_5.info,  Node: To Ruby From Python,  Next: Important Language Features,  Prev: To Ruby From PHP,  Up: Ruby from Other Languages
+File: Ruby2_5.info,  Node: To Ruby From Python,  Prev: To Ruby From PHP,  Up: Ruby from Other Languages
 
 2.3.6.5 To Ruby From Python
 ...........................
 
+Python is another very nice general purpose programming language.
+Going from Python to Ruby, you'll find that there's a little bit more
+syntax to learn than with Python.
+
+Similarities With Python
+------------------------
+
+   * There’s an interactive prompt (called 'irb').
+   * You can read docs on the command line (with the 'ri' command
+     instead of 'pydoc').
+   * There are no special line terminators (except the usual newline).
+   * String literals can span multiple lines like Python's
+     triple-quoted strings.
+   * Brackets are for lists, and braces are for dicts (which, in Ruby,
+     are called "hashes").
+   * Arrays work the same (adding them makes one long array, but
+     composing them like this 'a3 = [ a1, a2 ]' gives you an array of
+     arrays).
+   * Objects are strongly and dynamically typed.
+   * Everything is an object, and variables are just references to
+     objects.
+   * Although the keywords are a bit different, exceptions work about
+     the same.
+   * You’ve got embedded doc tools (Ruby’s is called 'rdoc').
+   * There is good support for functional programming with first-class
+     functions, anonymous functions, and closures.
+
+Differences From Python
+-----------------------
+
+   * Strings are mutable.
+   * You can make constants (variables whose value you don’t intend to
+     change).
+   * There are some enforced case-conventions (ex.  class names start
+     with a capital letter, variables start with a lowercase letter).
+   * There's only one kind of list container (an 'Array'), and it's
+     mutable.
+   * Double-quoted strings allow escape sequences (like '\t') and a
+     special "expression substitution" syntax (which allows you to
+     insert the results of Ruby expressions directly into other
+     strings without having to '"add " + "strings " + "together"').
+     Single-quoted strings are like Python's 'r"raw strings"'.
+   * There are no "new style" and "old style" classes.  Just one kind.
+     (Python 3+ doesn’t have this issue, but it isn’t fully backward
+     compatible with Python 2.)
+   * You never directly access attributes.  With Ruby, it’s all method
+     calls.
+   * Parentheses for method calls are usually optional.
+   * There's 'public', 'private', and 'protected' to enforce access,
+     instead of Python's '_voluntary_' underscore '__convention__'.
+   * "mixins" are used instead of multiple inheritance.
+   * You can add or modify the methods of built-in classes.  Both
+     languages let you open up and modify classes at any point, but
+     Python prevents modification of built-ins -- Ruby does not.
+   * You’ve got 'true' and 'false' instead of 'True' and 'False' (and
+     'nil' instead of 'None').
+   * When tested for truth, only 'false' and 'nil' evaluate to a
+     'false' value.  Everything else is 'true' (including '0', '0.0',
+     '""', and '[]').
+   * It's 'elsif' instead of 'elif'.
+   * It's 'require' instead of 'import'.  Otherwise though, usage is
+     the same.
+   * The usual-style comments on the line(s) above things (instead of
+     docstrings below them) are used for generating docs.
+   * There are a number of shortcuts that, although give you more to
+     remember, you quickly learn.  They tend to make Ruby fun and very
+     productive.
+   * There’s no way to unset a variable once set (like Python's 'del'
+     statement).  You can reset a variable to 'nil', allowing the old
+     contents to be garbage collected, but the variable will remain in
+     the symbol table as long as it is in scope.
+   * The 'yield' keyword behaves differently.  In Python it will
+     return execution to the scope outside the function's invocation.
+     External code is responsible for resuming the function.  In Ruby
+     'yield' will execute another function that has been passed as the
+     final argument, then immediately resume.
+   * Python supports just one kind of anonymous functions, lambdas,
+     while Ruby contains blocks, Procs, and lambdas.
+
 
-File: Ruby2_5.info,  Node: Important Language Features,  Prev: To Ruby From Python,  Up: Ruby from Other Languages
+File: Ruby2_5.info,  Node: Important Language Features,  Next: Learning Ruby,  Prev: Ruby from Other Languages,  Up: Getting Started
 
-2.3.6.6 Important Language Features
-...................................
+2.3.7 Important Language Features
+---------------------------------
+
+Here are some pointers and hints on major Ruby features you'll see
+while learning Ruby.
+
+* Menu:
+
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
 
 
-File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Ruby from Other Languages,  Up: Getting Started
+File: Ruby2_5.info,  Node: Pointers on Iteration,  Next: Everything has a value,  Up: Important Language Features
 
-2.3.7 Learning Ruby
+2.3.7.1 Pointers on Iteration
+.............................
+
+Two Ruby features that are a bit unlike what you may have seen before,
+and which take some getting used to, are "blocks" and iterators.
+Instead of looping over an index (like with C, C++, or pre-1.5 Java),
+or looping over a list (like Perl's 'for (@a) {...}', or Python's 'for
+i in aList: ...'), with Ruby you'll very often instead see:
+
+     some_list.each do |this_item|
+       # We're inside the block.
+       # deal with this_item.
+     end
+
+   For more info on 'each' and its friends
+
+   * 'collect',
+   * 'find',
+   * 'inject',
+   * 'sort',
+
+   etc., see 'ri Enumerable' (and then 'ri Enumerable#some_method').
+
+
+File: Ruby2_5.info,  Node: Everything has a value,  Next: Symbols are not lightweight Strings,  Prev: Pointers on Iteration,  Up: Important Language Features
+
+2.3.7.2 Everything has a value
+..............................
+
+There’s no difference between an expression and a statement.
+Everything has a value, even if that value is 'nil'.  This is
+possible:
+
+     x = 10
+     y = 11
+     z = if x < y
+           true
+         else
+           false
+         end
+     z # => true
+
+
+File: Ruby2_5.info,  Node: Symbols are not lightweight Strings,  Next: Everything is an Object,  Prev: Everything has a value,  Up: Important Language Features
+
+2.3.7.3 Symbols are not lightweight Strings
+...........................................
+
+Many Ruby newbies struggle with understanding what Symbols are, and
+what they can be used for.
+
+   "Symbols" can best be described as identities.  A symbol is all
+about who it is, not what it is.  Fire up 'irb' and see the
+difference:
+
+     irb(main):001:0> :george.object_id == :george.object_id
+     => true
+     irb(main):002:0> "george".object_id == "george".object_id
+     => false
+     irb(main):003:0>
+
+   The 'object_id' methods returns the identity of an Object.  If two
+objects have the same 'object_id', they are the same (point to the
+same Object in memory).
+
+   As you can see, once you have used a Symbol once, any Symbol with
+the same characters references the same Object in memory.  For any
+given two Symbols that represent the same characters, the 'object_id's
+match.
+
+   Now take a look at the String ('“george”').  The 'object_id's don't
+match.  That means they're referencing two different objects in
+memory.  Whenever you use a new String, Ruby allocates memory for it.
+
+   If you're in doubt whether to use a Symbol or a String, consider
+what’s more important: the identity of an object (i.e.  a Hash key),
+or the contents (in the example above, '“george”').
+
+
+File: Ruby2_5.info,  Node: Everything is an Object,  Next: Variable Constants,  Prev: Symbols are not lightweight Strings,  Up: Important Language Features
+
+2.3.7.4 Everything is an Object
+...............................
+
+     ``Everything is an object'' isn't just hyperbole.  Even classes and integers are
+     objects, and you can do the same things with them as with any other object:
+
+     # This is the same as
+     # class MyClass
+     #   attr_accessor :instance_var
+     # end
+     MyClass = Class.new do
+       attr_accessor :instance_var
+     end
+
+
+File: Ruby2_5.info,  Node: Variable Constants,  Next: Naming conventions,  Prev: Everything is an Object,  Up: Important Language Features
+
+2.3.7.5 Variable Constants
+..........................
+
+Constants are not really constant.  If you modify an already
+initialized constant, it will trigger a warning, but not halt your
+program.  That isn't to say you should redefine constants, though.
+
+
+File: Ruby2_5.info,  Node: Naming conventions,  Next: Keyword arguments,  Prev: Variable Constants,  Up: Important Language Features
+
+2.3.7.6 Naming conventions
+..........................
+
+Ruby enforces some naming conventions.  If an identifier starts with a
+capital letter, it is a constant.  If it starts with a dollar sign
+('$'), it is a global variable.  If it starts with '@', it is an
+instance variable.  If it starts with '@@', it is a class variable.
+
+   Method names, however, are allowed to start with capital letters.
+This can lead to confusion, as the example below shows:
+
+     Constant = 10
+     def Constant
+       11
+     end
+
+   Now 'Constant' is 10, but 'Constant()' is 11.
+
+
+File: Ruby2_5.info,  Node: Keyword arguments,  Next: The universal truth,  Prev: Naming conventions,  Up: Important Language Features
+
+2.3.7.7 Keyword arguments
+.........................
+
+Like in Python, since Ruby 2.0 methods can be defined using keyword
+arguments:
+
+     def deliver(from: "A", to: nil, via: "mail")
+       "Sending from #{from} to #{to} via #{via}."
+     end
+
+     deliver(to: "B")
+     # => "Sending from A to B via mail."
+     deliver(via: "Pony Express", from: "B", to: "A")
+     # => "Sending from B to A via Pony Express."
+
+
+File: Ruby2_5.info,  Node: The universal truth,  Next: Access modifiers are Methods,  Prev: Keyword arguments,  Up: Important Language Features
+
+2.3.7.8 The universal truth
+...........................
+
+In Ruby, everything except 'nil' and 'false' is considered true.  In
+C, Python and many other languages, '0' and possibly other values,
+such as empty lists, are considered false.  Take a look at the
+following Python code (the example applies to other languages, too):
+
+     # in Python
+     if 0:
+       print("0 is true")
+     else:
+       print("0 is false")
+
+   This will print '“0 is false”'.  The equivalent Ruby:
+
+     # in Ruby
+     if 0
+       puts "0 is true"
+     else
+       puts "0 is false"
+     end
+
+   Prints '“0 is true”'.
+
+
+File: Ruby2_5.info,  Node: Access modifiers are Methods,  Next: Method access,  Prev: The universal truth,  Up: Important Language Features
+
+2.3.7.9 Access modifiers are Methods
+....................................
+
+Access modifiers apply until the end of scope.
+
+   In the following Ruby code,
+
+     class MyClass
+       private
+       def a_method; true; end
+       def another_method; false; end
+     end
+
+   You might expect 'another_method' to be public.  Not so.  The
+'private' access modifier continues until the end of the scope, or
+until another access modifier pops up, whichever comes first.  By
+default, methods are public:
+
+     class MyClass
+       # Now a_method is public
+       def a_method; true; end
+
+       private
+
+       # another_method is private
+       def another_method; false; end
+     end
+
+   * 'public',
+   * 'private' and
+   * 'protected'
+
+   are really methods, so they can take parameters.  If you pass a
+Symbol to one of them, that method’s visibility is altered.
+
+
+File: Ruby2_5.info,  Node: Method access,  Next: Classes are open,  Prev: Access modifiers are Methods,  Up: Important Language Features
+
+2.3.7.10 Method access
+......................
+
+In Java, 'public' means a method is accessible by anyone.  'protected'
+means the class's instances, instances of descendant classes, and
+instances of classes in the same package can access it, but not anyone
+else; and 'private' means nobody besides the class's instances can
+access the method.
+
+   Ruby differs slightly.  'public' is, naturally, public.  'private'
+means the method(s) are accessible only when they can be called
+without an explicit receiver.  Only 'self' is allowed to be the
+receiver of a private method call.
+
+   'protected' is the one to be on the lookout for.  A 'protected'
+method can be called from a class or descendant class instances, but
+also with another instance as its receiver.  Here is an example
+(adapted from The Ruby Language FAQ):
+
+     class Test
+       # public by default
+       def identifier
+         99
+       end
+
+       def ==(other)
+         identifier == other.identifier
+       end
+     end
+
+     t1 = Test.new  # => #<Test:0x34ab50>
+     t2 = Test.new  # => #<Test:0x342784>
+     t1 == t2       # => true
+
+     # now make `identifier' protected; it still works
+     # because protected allows `other' as receiver
+
+     class Test
+       protected :identifier
+     end
+
+     t1 == t2  # => true
+
+     # now make `identifier' private
+
+     class Test
+       private :identifier
+     end
+
+     t1 == t2
+     # NoMethodError: private method `identifier' called for #<Test:0x342784>
+
+
+File: Ruby2_5.info,  Node: Classes are open,  Next: Funny method names,  Prev: Method access,  Up: Important Language Features
+
+2.3.7.11 Classes are open
+.........................
+
+Ruby classes are open.  You can open them up, add to them, and change
+them at any time.  Even core classes, like 'Fixnum' or even 'Object',
+the parent of all objects.  Ruby on Rails defines a bunch of methods
+for dealing with time on 'Fixnum'.  Watch:
+
+     class Fixnum
+       def hours
+         self * 3600 # number of seconds in an hour
+       end
+       alias hour hours
+     end
+
+     # 14 hours from 00:00 January 1st
+     # (aka when you finally wake up ;)
+     Time.mktime(2006, 01, 01) + 14.hours # => Sun Jan 01 14:00:00
+
+
+File: Ruby2_5.info,  Node: Funny method names,  Next: Singleton methods,  Prev: Classes are open,  Up: Important Language Features
+
+2.3.7.12 Funny method names
+...........................
+
+In Ruby, methods are allowed to end with question marks or exclamation
+marks.  By convention, methods that answer questions end in question
+marks (e.g.  'Array#empty?', which returns 'true' if the receiver is
+empty).  Potentially "dangerous" methods by convention end with
+exclamation marks (e.g.  methods that modify 'self' or the arguments,
+'exit!', etc.).  Not all methods that change their arguments end with
+exclamation marks, though.  'Array#replace' replaces the contents of
+an array with the contents of another array.  It doesn’t make much
+sense to have a method like that that doesn't modify self.
+
+
+File: Ruby2_5.info,  Node: Singleton methods,  Next: Missing methods,  Prev: Funny method names,  Up: Important Language Features
+
+2.3.7.13 Singleton methods
+..........................
+
+"Singleton methods" are per-object methods.  They are only available
+on the Object you defined it on.
+
+     class Car
+       def inspect
+         "Cheap car"
+       end
+     end
+
+     porsche = Car.new
+     porsche.inspect # => Cheap car
+     def porsche.inspect
+       "Expensive car"
+     end
+
+     porsche.inspect # => Expensive car
+
+     # Other objects are not affected
+     other_car = Car.new
+     other_car.inspect # => Cheap car
+
+
+File: Ruby2_5.info,  Node: Missing methods,  Next: Message passing --- not function calls,  Prev: Singleton methods,  Up: Important Language Features
+
+2.3.7.14 Missing methods
+........................
+
+Ruby doesn't give up if it can't find a method that responds to a
+particular message.  It calls the 'method_missing' method with the
+name of the method it couldn't find and the arguments.  By default,
+'method_missing' raises a 'NameError' exception, but you can redefine
+it to better fit your application, and many libraries do.  Here is an
+example:
+
+     # id is the name of the method called, the * syntax collects
+     # all the arguments in an array named 'arguments'
+     def method_missing(id, *arguments)
+       puts "Method #{id} was called, but not found. It has " +
+            "these arguments: #{arguments.join(", ")}"
+     end
+
+     __ :a, :b, 10
+     # => Method __ was called, but not found. It has these
+     # arguments: a, b, 10
+
+   The code above just prints the details of the call, but you are
+free to handle the message in any way that is appropriate.
+
+
+File: Ruby2_5.info,  Node: Message passing --- not function calls,  Next: Blocks are Objects,  Prev: Missing methods,  Up: Important Language Features
+
+2.3.7.15 Message passing, not function calls
+............................................
+
+A method call is really a "message" to another object:
+
+     # This
+     1 + 2
+     # Is the same as this ...
+     1.+(2)
+     # Which is the same as this:
+     1.send "+", 2
+
+
+File: Ruby2_5.info,  Node: Blocks are Objects,  Next: Operators are syntactic sugar,  Prev: Message passing --- not function calls,  Up: Important Language Features
+
+2.3.7.16 Blocks are Objects
+...........................
+
+Blocks (closures, really) are heavily used by the standard library.
+To call a block, you can either use 'yield', or make it a 'Proc' by
+appending a special argument to the argument list, like so:
+
+     def block(&the_block)
+       # Inside here, the_block is the block passed to the method
+       the_block # return the block
+     end
+     adder = block { |a, b| a + b }
+     # adder is now a Proc object
+     adder.class # => Proc
+
+   You can create blocks outside of method calls, too, by calling
+'Proc.new' with a block or calling the 'lambda' method.
+
+   Similarly, methods are also Objects in the making:
+
+     method(:puts).call "puts is an object!"
+     # => puts is an object!
+
+
+File: Ruby2_5.info,  Node: Operators are syntactic sugar,  Prev: Blocks are Objects,  Up: Important Language Features
+
+2.3.7.17 Operators are syntactic sugar
+......................................
+
+Most operators in Ruby are just syntactic sugar (with some precedence
+rules) for method calls.  You can, for example, override 'Fixnum'’s
+'+' method:
+
+     class Fixnum
+       # You can, but please don't do this
+       def +(other)
+         self - other
+       end
+     end
+
+   You don’t need C++'s 'operator+', etc.
+
+   You can even have array-style access if you define the '[]' and
+'[]=' methods.  To define the unary '+' and '-' (think '+1' and '-2'),
+you must define the '+@' and '-@' methods, respectively.  The
+operators below are not syntactic sugar, though.  They are not
+methods, and cannot be redefined:
+
+     =, .., ..., not, &&, and, ||, or, ::
+
+   In addition, '+=, *=' etc.  are just abbreviations for 'var = var +
+other_var', 'var = var * other_var', etc.  and therefore cannot be
+redefined.
+
+
+File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Important Language Features,  Up: Getting Started
+
+2.3.8 Learning Ruby
 -------------------
 
 Learning Ruby (http://rubylearning.com/)
@@ -2127,7 +2795,7 @@ and constructs.
 
 File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Learning Ruby,  Up: Getting Started
 
-2.3.8 Ruby Essentials
+2.3.9 Ruby Essentials
 ---------------------
 
 Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
@@ -2135,8 +2803,8 @@ Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
 
 File: Ruby2_5.info,  Node: Learn to Program,  Prev: Ruby Essentials,  Up: Getting Started
 
-2.3.9 Learn to Program
-----------------------
+2.3.10 Learn to Program
+-----------------------
 
 Learn to Program (http://pine.fm/LearnToProgram/)
 
@@ -2150,6 +2818,252 @@ File: Ruby2_5.info,  Node: Manuals,  Next: Reference Documentation,  Prev: Getti
 
 2.4 Manuals
 ===========
+
+* Menu:
+
+* Ruby User's Guide::
+* Programming Ruby::
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide,  Next: Programming Ruby,  Up: Manuals
+
+2.4.1 Ruby User's Guide
+-----------------------
+
+Translated from the original Japanese version written by Yukihiro
+Matsumoto (the creator of Ruby), this version, by Goto Kentaro and
+Mark Slagell, is a nice overview of many aspects of the Ruby language.
+
+   Ruby User's Guide (http://www.rubyist.net/~slagell/ruby/)
+
+* Menu:
+
+* What Is Ruby?::
+* Simple Examples::
+
+
+File: Ruby2_5.info,  Node: What Is Ruby?,  Next: Simple Examples,  Up: Ruby User's Guide
+
+2.4.1.1 What Is Ruby?
+.....................
+
+Ruby is "an interpreted scripting language for quick and easy
+object-oriented programming" -- what does this mean?
+
+interpreted scripting language:
+        * ability to make operating system calls directly
+        * powerful string operations and regular expressions
+        * immediate feedback during development
+
+quick and easy:
+        * variable declarations are unnecessary
+        * variables are not typed
+        * syntax is simple and consistent
+        * memory management is automatic
+
+object oriented programming:
+        * everything is an object
+        * classes, methods, inheritance, etc.
+        * singleton methods
+        * "mixin" functionality by module
+        * iterators and closures
+
+also:
+        * multiple precision integers
+        * convenient exception processing
+        * dynamic loading
+        * threading support
+
+
+File: Ruby2_5.info,  Node: Simple Examples,  Prev: What Is Ruby?,  Up: Ruby User's Guide
+
+2.4.1.2 Simple Examples
+.......................
+
+Factorial in Ruby
+-----------------
+
+Let's write a function to compute factorials.  The mathematical
+definition of "n factorial" is:
+
+     n! = 1                (when n==0)
+        = n * (n-1)!       (otherwise)
+
+   In ruby, this can be written as:
+
+{'fact.rb'} ==
+     # Program to find the factorial of a number
+     # Save this as fact.rb
+
+     def fact(n)
+       if n == 0
+         1
+       else
+         n * fact(n-1)
+       end
+     end
+
+     puts fact(ARGV[0].to_i)
+
+
+Command Line Arguments -- In Array ARGV
+.......................................
+
+'ARGV' is an array which contains the command line arguments, and
+'to_i' converts a character string to an integer.
+
+The 'end' Statement
+...................
+
+You may notice the repeated occurrence of 'end'.  Ruby has been called
+"Algol-like" because of this.  (Actually, the syntax of ruby more
+closely mimics that of a langage named Eiffel
+(https://www.eiffel.org/).)
+
+Takeaway -- 'return' Statement Optional
+.......................................
+
+You may also notice the lack of a 'return' statement.
+
+     [A 'return' statement] is unneeded because *a ruby function
+     returns the last thing that was evaluated in it*.  Use of a
+     'return' statement here is permissible but unnecessary.
+
+Running 'fact.rb'
+.................
+
+Ruby can deal with any integer which is allowed by your machine's
+memory.  So 400!  can be calculated:
+
+     % ruby fact.rb 1
+     1
+     % ruby fact.rb 5
+     120
+
+     % ruby fact.rb 40
+     815915283247897734345611269596115894272000000000
+
+     % ruby fact.rb 400
+     64034522846623895262347970319503005850702583026002959458684
+     44594280239716918683143627847864746326467629435057503585681
+     08482981628835174352289619886468029979373416541508381624264
+     61942352307046244325015114448670890662773914918117331955996
+     44070954967134529047702032243491121079759328079510154537266
+     72516278778900093497637657103263503315339653498683868313393
+     52024373788157786791506311858702618270169819740062983025308
+     59129834616227230455833952075961150530223608681043329725519
+     48526744322324386699484224042325998055516106359423769613992
+     31917134063858996537970147827206606320217379472010321356624
+     61380907794230459736069956759583609615871512991382228657857
+     95493616176544804532220078258184008484364155912294542753848
+     03558374518022675900061399560145595206127211192918105032491
+     00800000000000000000000000000000000000000000000000000000000
+     0000000000000000000000000000000000000000000
+
+
+File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
+
+2.4.2 Programming Ruby
+----------------------
+
+The Programmatic Programmer's Guide
+-----------------------------------
+
+Programming Ruby (http://ruby-doc.com/docs/ProgrammingRuby/)
+
+What This Book Is
+.................
+
+This book is a tutorial and reference for the Ruby programming
+language.  Use Ruby, and you'll write better code, be more productive,
+and enjoy programming more.
+
+What Ruby Is
+............
+
+Take a true object-oriented language, such as Smalltalk.  Drop the
+unfamiliar syntax and move to more conventional, file-based source
+code.  Now add in a good measure of the flexibility and convenience of
+languages such as Python and Perl.
+
+   You end up with Ruby.
+
+Ruby is OO
+..........
+
+OO aficionados will find much to like in Ruby: things such as pure
+object orientation (everything's an object), metaclasses, closures,
+iterators, and ubiquitous heterogeneous collections.  Smalltalk users
+will feel right at home (and C++ and Java users will feel jealous).
+
+Ruby is Perl and Python
+.......................
+
+At the same time, Perl and Python wizards will find many of their
+favorite features: full regular expression support, tight integration
+with the underlying operating system, convenient shortcuts, and
+dynamic evaluation.
+
+Principle of Lease Surprise
+...........................
+
+Ruby follows the Principle of Least Surprise -- things work the way
+you would expect them to, with very few special cases or exceptions.
+
+Ruby is a "Transparent" Language
+................................
+
+We call Ruby a "transparent" language.  By that we mean that Ruby
+doesn't obscure the solutions you write behind lots of syntax and the
+need to churn out reams of support code just to get simple things
+done.  With Ruby you write programs close to the problem domain.
+Rather than constantly mapping your ideas and designs down to the
+pedestrian level of most languages, with Ruby you'll find you can
+express them directly and express them elegantly.  This means you code
+faster.  It also means your programs stay readable and maintainable.
+
+Ruby is a "Scripting" Language
+..............................
+
+What exactly is a scripting language?  Frankly we don't know if it's a
+distinction worth making.  In Ruby, you can access all the underlying
+operating system features.  You can do the same stuff in Ruby that you
+can in Perl or Python, and you can do it more cleanly.  But Ruby is
+fundamentally different.  It is a true programming language, too, with
+strong theoretical roots and an elegant, lightweight syntax.  You
+could hack together a mess of "scripts" with Ruby, but you probably
+won't.  Instead, you'll be more inclined to engineer a solution, to
+produce a program that is easy to understand, simple to maintain, and
+a piece of cake to extend and reuse in the future.
+
+Ruby is a General Purpose Programming Language
+..............................................
+
+Although we have used Ruby for scripting jobs, most of the time we use
+it as a general-purpose programming language.  We've used it to write
+GUI applications and middle-tier server processes, and we're using it
+to format large parts of this book.  Others have used it for managing
+server machines and databases.  Ruby is serving Web pages, interfacing
+to databases and generating dynamic content.  People are writing
+artificial intelligence and machine learning programs in Ruby, and at
+least one person is using it to investigate natural evolution.  Ruby's
+finding a home as a vehicle for exploratory mathematics.  And people
+all over the world are using it as a way of gluing together all their
+different applications.  It truly is a great language for producing
+solutions in a wide variety of problem domains.
+
+Should I Use Ruby?
+..................
+
+However, Ruby is probably more applicable than you might think.  It is
+easy to extend, both from within the language and by linking in
+third-party libraries.  It is portable across a number of platforms.
+It's relatively lightweight and consumes only modest system resources.
+And it's easy to learn; we've known people who've put Ruby code into
+production systems within a day of picking up drafts of this book.
+We've used Ruby to implement parts of an X11 window manager, a task
+that's normally considered severe C coding.  Ruby excelled, and helped
+us write code in hours that would otherwise have taken days.
 
 
 File: Ruby2_5.info,  Node: Reference Documentation,  Next: Editors and IDEs,  Prev: Manuals,  Up: Documentation
@@ -2176,10 +3090,8 @@ Appendix A The Makefile
 ***********************
 
 {'Makefile'} ==
-     <Makefile--Variable Definitions>
-     <Makefile--Default Rule>
-     <Makefile--TWJR Rules>
-     <Makefile--Clean Rules>
+     <Makefile--Variable Definitions> <Makefile--Default Rule>
+     <Makefile--TWJR Rules> <Makefile--Clean Rules>
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
@@ -2319,6 +3231,8 @@ B.1 Source File Definitions
 
 {'Makefile'}
      This chunk is defined in *note Makefile::.
+{'fact.rb'}
+     This chunk is defined in *note fact-rb::.
 {'ri20min.rb'}
      This chunk is defined in *note ri20min-rb::.
 
@@ -2439,10 +3353,16 @@ Index
                                                             (line  54)
 * __FILE__ special variable:             Large Class Definition.
                                                             (line 151)
+* {fact.rb}, definition:                 Simple Examples.   (line  17)
 * {Makefile}, definition:                The Makefile.      (line   6)
 * {ri20min.rb}, definition:              Large Class Definition.
                                                             (line  10)
 * access control:                        To Ruby From Java. (line  36)
+* access modifier scope:                 Access modifiers are Methods.
+                                                            (line   6)
+* access modifiers public, private, protected: Access modifiers are Methods.
+                                                            (line   6)
+* Algol and Ruby:                        Simple Examples.   (line  54)
 * ArgumentError, after calling super:    FAQ Methods.       (line  39)
 * arithmetic:                            FAQ Extension Library.
                                                             (line  26)
@@ -2471,6 +3391,8 @@ Index
                                                             (line 154)
 * block object, passed to iterator:      FAQ Iterators.     (line   9)
 * block, used in an iterator:            FAQ Iterators.     (line  56)
+* blocks:                                Blocks are Objects.
+                                                            (line   6)
 * block_given?:                          FAQ Iterators.     (line 112)
 * boolean context:                       FAQ Syntax.        (line  59)
 * braces, none:                          To Ruby From C and C++.
@@ -2495,6 +3417,8 @@ Index
                                                             (line  39)
 * class methods?:                        FAQ Classes and Modules.
                                                             (line  21)
+* class variable @@:                     Naming conventions.
+                                                            (line   9)
 * class variables vs class instance variables: FAQ Classes and Modules.
                                                             (line  18)
 * class variables?:                      FAQ Classes and Modules.
@@ -2502,7 +3426,13 @@ Index
 * class vs module:                       FAQ Classes and Modules.
                                                             (line  30)
 * classes, modifying:                    Altering Classes.  (line  19)
+* classes, open:                         Classes are open.  (line   6)
+* collect:                               Pointers on Iteration.
+                                                            (line  17)
+* command line arguments in ARGV:        Simple Examples.   (line  35)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
+* constant naming convention:            Naming conventions.
+                                                            (line   9)
 * constructor:                           To Ruby From C and C++.
                                                             (line 131)
 * constructor <1>:                       To Ruby From Java. (line  52)
@@ -2510,6 +3440,8 @@ Index
                                                             (line 155)
 * continuations, using:                  FAQ Other Features.
                                                             (line  20)
+* conventions, naming:                   Naming conventions.
+                                                            (line   6)
 * dangerous, destructive methods:        FAQ Methods.       (line  51)
 * debugger for Ruby:                     FAQ Extension Library.
                                                             (line  12)
@@ -2520,13 +3452,19 @@ Index
 * do ... } while:                        FAQ Syntax.        (line 156)
 * do keyword:                            To Ruby From C and C++.
                                                             (line 103)
+* doc tools:                             To Ruby From Perl. (line  30)
+* doc tools <1>:                         To Ruby From Python.
+                                                            (line  29)
 * Documentation:                         Documentation.     (line   6)
 * documentation tool:                    To Ruby From Java. (line  23)
 * duck typing:                           Large Class Definition.
                                                             (line 123)
 * dynamicly typed:                       To Ruby From C and C++.
                                                             (line  28)
+* each:                                  Pointers on Iteration.
+                                                            (line  17)
 * each method of iterator:               FAQ Iterators.     (line  25)
+* Eiffel and Ruby:                       Simple Examples.   (line  54)
 * empty string:                          FAQ Syntax.        (line  73)
 * ensure clause:                         FAQ Syntax.        (line 265)
 * equivalence vs the same:               To Ruby From Java. (line  59)
@@ -2534,6 +3472,7 @@ Index
 * exception handling:                    FAQ Syntax.        (line 254)
 * extension modules:                     To Ruby From C and C++.
                                                             (line  36)
+* factorial in Ruby:                     Simple Examples.   (line   9)
 * false and nil:                         FAQ Syntax.        (line  59)
 * FalseClass:                            FAQ Syntax.        (line  64)
 * File object, no reference:             FAQ Built-In Libraries.
@@ -2554,6 +3493,8 @@ Index
                                                             (line  15)
 * files, sorting by modification time:   FAQ Built-In Libraries.
                                                             (line  36)
+* find:                                  Pointers on Iteration.
+                                                            (line  17)
 * fork vs thread:                        FAQ Built-In Libraries.
                                                             (line  57)
 * function pointers:                     FAQ Syntax.        (line 237)
@@ -2563,6 +3504,8 @@ Index
 * gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
                                                             (line   6)
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
+* global variable $:                     Naming conventions.
+                                                            (line   9)
 * green threads vs native threads:       To Ruby From C and C++.
                                                             (line 160)
 * gtk+:                                  FAQ Extension Library.
@@ -2580,9 +3523,13 @@ Index
 * initialize method:                     Large Class Definition.
                                                             (line  41)
 * initialize, constructor:               To Ruby From Java. (line  52)
+* inject:                                Pointers on Iteration.
+                                                            (line  17)
 * insert code into a string:             Defining Methods.  (line  43)
 * installer, third party:                Installers.        (line   6)
 * instance variable:                     Defining Methods.  (line  86)
+* instance variable @:                   Naming conventions.
+                                                            (line   9)
 * instance variables, accessing:         FAQ Methods.       (line  27)
 * instance variables, encapsulation:     Defining Methods.  (line 109)
 * instance_methods(false):               FAQ Built-In Libraries.
@@ -2592,10 +3539,14 @@ Index
 * interfaces, none, use mixins:          To Ruby From Java. (line  53)
 * invoking original method after redefinition: FAQ Methods. (line  45)
 * irb:                                   Interactive Ruby.  (line   6)
+* irb <1>:                               To Ruby From Python.
+                                                            (line  13)
 * issue tracker:                         Developing Ruby.   (line  62)
 * issue tracking:                        Issue Tracking.    (line   6)
 * iteration:                             To Ruby From C and C++.
                                                             (line 154)
+* iteration <1>:                         Pointers on Iteration.
+                                                            (line   6)
 * iterator:                              Large Class Definition.
                                                             (line  85)
 * iterator method:                       To Ruby From C and C++.
@@ -2607,6 +3558,8 @@ Index
                                                             (line 116)
 * Kernel:                                FAQ Syntax.        (line 149)
 * lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
+* lambda method:                         Blocks are Objects.
+                                                            (line  19)
 * line number of input file:             FAQ Built-In Libraries.
                                                             (line  24)
 * load:                                  FAQ Syntax.        (line 245)
@@ -2627,6 +3580,7 @@ Index
 * methods are virtual:                   To Ruby From C and C++.
                                                             (line 132)
 * methods, defining:                     Defining Methods.  (line   6)
+* method_missing method:                 Missing methods.   (line   6)
 * mixin example:                         FAQ Classes and Modules.
                                                             (line  36)
 * mixins:                                To Ruby From C and C++.
@@ -2656,6 +3610,8 @@ Index
 * objects, strongly and dynamically typed: To Ruby From C and C++.
                                                             (line 129)
 * objects, strongly typed:               To Ruby From Java. (line  19)
+* object_id methods:                     Symbols are not lightweight Strings.
+                                                            (line  21)
 * operators?:                            FAQ Methods.       (line  12)
 * parameters, methods:                   Defining Methods.  (line  33)
 * parentheses, none for condition expressions: To Ruby From C and C++.
@@ -2671,6 +3627,8 @@ Index
 * precedence, iterators, different results: FAQ Iterators.  (line  36)
 * predicate methods:                     FAQ Syntax.        (line  68)
 * private vs protected:                  FAQ Methods.       (line  30)
+* Proc:                                  Blocks are Objects.
+                                                            (line   6)
 * Proc object, passed to iterator:       FAQ Iterators.     (line   9)
 * Proc.new, followed by call:            FAQ Iterators.     (line  87)
 * program output, display using less:    FAQ Built-In Libraries.
@@ -2682,6 +3640,10 @@ Index
 * rbenv version manager:                 ruby-build.        (line   6)
 * RDoc:                                  To Ruby From Java. (line  23)
 * rdoc:                                  To Ruby From Java. (line  23)
+* rdoc <1>:                              To Ruby From Perl. (line  30)
+* rdoc <2>:                              To Ruby From Python.
+                                                            (line  29)
+* regexes:                               To Ruby From Perl. (line  17)
 * regular expression, escaping a backslash: FAQ Built-In Libraries.
                                                             (line  48)
 * releases:                              Releases Page.     (line   6)
@@ -2695,14 +3657,20 @@ Index
                                                             (line  54)
 * respository, GitHub:                   Developing Ruby.   (line  54)
 * return mutliple values:                FAQ Methods.       (line  53)
+* return statement unnecessary:          Simple Examples.   (line  54)
+* ri:                                    Pointers on Iteration.
+                                                            (line  24)
 * Rubies, switch between:                Installers.        (line   6)
 * Ruby core:                             Developing Ruby.   (line  16)
 * Ruby Core mailing list:                Developing Ruby.   (line  62)
 * Ruby development, tracking:            Developing Ruby.   (line  26)
 * Ruby Tk:                               To Ruby From Java. (line  31)
+* Ruby, what it is:                      What Is Ruby?.     (line   7)
 * ruby-build plugin:                     ruby-build.        (line   6)
 * Ruby-GNOME2:                           To Ruby From Java. (line  31)
 * RVM version manager:                   Installers.        (line   6)
+* scope, access modifiers:               Access modifiers are Methods.
+                                                            (line   6)
 * script code:                           Large Class Definition.
                                                             (line 151)
 * self, meaning:                         FAQ Classes and Modules.
@@ -2715,11 +3683,16 @@ Index
 * singleton class?:                      FAQ Classes and Modules.
                                                             (line  24)
 * singleton method:                      FAQ Methods.       (line  18)
+* singleton methods:                     Singleton methods. (line   6)
+* sort:                                  Pointers on Iteration.
+                                                            (line  17)
 * source, building:                      Building From Source.
                                                             (line   6)
 * static checking, none:                 To Ruby From Java. (line  41)
 * statically typed:                      To Ruby From C and C++.
                                                             (line  28)
+* String or Symbol:                      Symbols are not lightweight Strings.
+                                                            (line  34)
 * strings, sort alphabetically:          FAQ Built-In Libraries.
                                                             (line  42)
 * strongly typed objects:                To Ruby From C and C++.
@@ -2729,9 +3702,16 @@ Index
 * Subversion:                            Developing Ruby.   (line  26)
 * Subversion repository:                 Developing Ruby.   (line  49)
 * super gives ArgumentError:             FAQ Methods.       (line  39)
+* sygils in Ruby:                        To Ruby From Perl. (line  41)
+* Symbol:                                Symbols are not lightweight Strings.
+                                                            (line  26)
 * Symbol object:                         FAQ Syntax.        (line  83)
+* Symbol or String:                      Symbols are not lightweight Strings.
+                                                            (line  34)
 * symbol, access value of:               FAQ Syntax.        (line 115)
 * symbol.to_s:                           FAQ Syntax.        (line 115)
+* symbols:                               Symbols are not lightweight Strings.
+                                                            (line   6)
 * symbols as enumeration values:         FAQ Syntax.        (line 105)
 * symbols as hash keys:                  FAQ Syntax.        (line  99)
 * symbols, unique constants:             FAQ Syntax.        (line 105)
@@ -2750,6 +3730,7 @@ Index
                                                             (line 160)
 * Tk, won't work:                        FAQ Extension Library.
                                                             (line  21)
+* to_i method:                           Simple Examples.   (line  35)
 * track Ruby development:                Developing Ruby.   (line  26)
 * trap:                                  FAQ Built-In Libraries.
                                                             (line  62)
@@ -2761,6 +3742,14 @@ Index
 * unit testing lib:                      To Ruby From C and C++.
                                                             (line 161)
 * uru:                                   uru.               (line   6)
+* value, everthing has one:              Everything has a value.
+                                                            (line   6)
+* variable, class @@:                    Naming conventions.
+                                                            (line   9)
+* variable, instance @:                  Naming conventions.
+                                                            (line   9)
+* varible, global $:                     Naming conventions.
+                                                            (line   9)
 * version managers:                      Installers.        (line   6)
 * versions, multiple installations using rbenv: rbenv.      (line   6)
 * versions, switch between using chruby: chruby.            (line   6)
@@ -2774,6 +3763,8 @@ Index
 * YAML vs XML:                           To Ruby From Java. (line  54)
 * yield:                                 Large Class Definition.
                                                             (line  85)
+* yield <1>:                             Blocks are Objects.
+                                                            (line   6)
 * yield control structor, or statement:  FAQ Iterators.     (line  56)
 * yield control structure in iterator:   FAQ Iterators.     (line  61)
 
@@ -2781,99 +3772,121 @@ Index
 
 Tag Table:
 Node: Top371
-Node: Preface2504
-Node: Audience2687
-Node: Overview2806
-Node: Conventions2976
-Node: Acknowledgements3896
-Node: Introduction4012
-Node: Documentation4309
-Node: Installing Ruby4714
-Node: Package Management Systems5627
-Node: Homebrew (OS X)6452
-Node: Installers6878
-Node: ruby-build7474
-Node: ruby-install8027
-Node: Managers8642
-Node: chruby9039
-Node: rbenv9298
-Node: RVM (``Ruby Version Manager'')9843
-Node: uru10241
-Node: Building From Source10534
-Node: Releases Page11546
-Node: Branches Page12646
-Node: Issue Tracking14446
-Node: Developing Ruby14930
-Ref: subversion15680
-Ref: MainRubyRepo16832
-Ref: PatchByPatch17160
-Node: Getting Started17957
-Node: Try Ruby!18313
-Node: Official FAQ18643
-Node: FAQ Iterators19720
-Node: FAQ Syntax23659
-Ref: immediate value24804
-Ref: nil vs false25439
-Ref: empty string26053
-Ref: symbol object26406
-Ref: value of symbol27544
-Ref: loop28422
-Ref: post-test loop28648
-Ref: hash literal29074
-Ref: pos val29356
-Ref: \1 and \\129732
-Ref: 2 dots vs 3 dots30140
-Ref: or and30378
-Ref: function pointers31180
-Ref: load vs require31502
-Ref: exception handling31857
-Node: FAQ Methods32854
-Node: FAQ Classes and Modules34527
-Node: FAQ Built-In Libraries35713
-Node: FAQ Extension Library37691
-Node: FAQ Other Features38370
-Node: Ruby Koans38920
-Node: Why’s (Poignant) Guide to Ruby39324
-Node: Ruby in Twenty Minutes39798
-Node: Interactive Ruby40471
-Node: Defining Methods41425
-Node: Altering Classes46929
-Node: Large Class Definition48265
-Ref: ri20min-rb48669
-Ref: MegaGreeter---Initialize-Method49478
-Ref: MegaGreeter---say-hi-Method50200
-Ref: MegaGreeter---say-bye-Method52417
-Ref: MegaGreeter---Main-Script53365
-Node: Run MegaGreeter53897
-Node: Ruby from Other Languages54423
-Node: To Ruby From C and C++55159
-Node: To Ruby From Java62688
-Node: To Ruby From Perl65255
-Node: To Ruby From PHP65439
-Node: To Ruby From Python65623
-Node: Important Language Features65823
-Node: Learning Ruby66014
-Node: Ruby Essentials66380
-Node: Learn to Program66611
-Node: Manuals66988
-Node: Reference Documentation67127
-Node: Editors and IDEs67299
-Node: Further Reading67465
-Node: The Makefile67597
-Ref: Makefile67750
-Node: Makefile Variable Definitions68469
-Ref: Makefile---Variable-Definitions68647
-Node: Makefile Default Rule68815
-Ref: Makefile---Default-Rule69365
-Node: Makefile TWJR Rules69604
-Ref: Makefile---TWJR-Rules69763
-Node: Makefile Clean Rules70394
-Ref: Makefile---Clean-Rules70525
-Node: Code Chunk Summaries70982
-Node: File Definitions71367
-Node: Code Chunk Definitions71656
-Node: Code Chunk References72599
-Node: Bibliography73763
-Node: Concept Index73894
+Node: Preface3095
+Node: Audience3278
+Node: Overview3397
+Node: Conventions3567
+Node: Acknowledgements4487
+Node: Introduction4603
+Node: Documentation4900
+Node: Installing Ruby5305
+Node: Package Management Systems6218
+Node: Homebrew (OS X)7043
+Node: Installers7469
+Node: ruby-build8065
+Node: ruby-install8618
+Node: Managers9233
+Node: chruby9630
+Node: rbenv9889
+Node: RVM (``Ruby Version Manager'')10434
+Node: uru10832
+Node: Building From Source11125
+Node: Releases Page12137
+Node: Branches Page13237
+Node: Issue Tracking15037
+Node: Developing Ruby15521
+Ref: subversion16271
+Ref: MainRubyRepo17423
+Ref: PatchByPatch17751
+Node: Getting Started18548
+Node: Try Ruby!18936
+Node: Official FAQ19266
+Node: FAQ Iterators20343
+Node: FAQ Syntax24282
+Ref: immediate value25427
+Ref: nil vs false26062
+Ref: empty string26676
+Ref: symbol object27029
+Ref: value of symbol28167
+Ref: loop29045
+Ref: post-test loop29271
+Ref: hash literal29697
+Ref: pos val29979
+Ref: \1 and \\130355
+Ref: 2 dots vs 3 dots30763
+Ref: or and31001
+Ref: function pointers31803
+Ref: load vs require32125
+Ref: exception handling32480
+Node: FAQ Methods33477
+Node: FAQ Classes and Modules35150
+Node: FAQ Built-In Libraries36336
+Node: FAQ Extension Library38314
+Node: FAQ Other Features38993
+Node: Ruby Koans39543
+Node: Why’s (Poignant) Guide to Ruby39947
+Node: Ruby in Twenty Minutes40421
+Node: Interactive Ruby41094
+Node: Defining Methods42048
+Node: Altering Classes47552
+Node: Large Class Definition48888
+Ref: ri20min-rb49292
+Ref: MegaGreeter---Initialize-Method50101
+Ref: MegaGreeter---say-hi-Method50823
+Ref: MegaGreeter---say-bye-Method53040
+Ref: MegaGreeter---Main-Script53988
+Node: Run MegaGreeter54520
+Node: Ruby from Other Languages55046
+Node: To Ruby From C and C++55764
+Node: To Ruby From Java63293
+Node: To Ruby From Perl65860
+Node: To Ruby From PHP68819
+Node: To Ruby From Python70996
+Node: Important Language Features75131
+Node: Pointers on Iteration75885
+Node: Everything has a value76681
+Node: Symbols are not lightweight Strings77161
+Node: Everything is an Object78606
+Node: Variable Constants79167
+Node: Naming conventions79560
+Node: Keyword arguments80256
+Node: The universal truth80806
+Node: Access modifiers are Methods81558
+Node: Method access82561
+Node: Classes are open84175
+Node: Funny method names84890
+Node: Singleton methods85692
+Node: Missing methods86319
+Node: Message passing --- not function calls87398
+Node: Blocks are Objects87819
+Node: Operators are syntactic sugar88730
+Node: Learning Ruby89743
+Node: Ruby Essentials90111
+Node: Learn to Program90342
+Node: Manuals90721
+Node: Ruby User's Guide90913
+Node: What Is Ruby?91364
+Node: Simple Examples92353
+Ref: fact-rb92744
+Node: Programming Ruby95012
+Node: Reference Documentation99442
+Node: Editors and IDEs99614
+Node: Further Reading99780
+Node: The Makefile99912
+Ref: Makefile100065
+Node: Makefile Variable Definitions100774
+Ref: Makefile---Variable-Definitions100952
+Node: Makefile Default Rule101120
+Ref: Makefile---Default-Rule101670
+Node: Makefile TWJR Rules101909
+Ref: Makefile---TWJR-Rules102068
+Node: Makefile Clean Rules102699
+Ref: Makefile---Clean-Rules102830
+Node: Code Chunk Summaries103287
+Node: File Definitions103672
+Node: Code Chunk Definitions104020
+Node: Code Chunk References104963
+Node: Bibliography106127
+Node: Concept Index106258
 
 End Tag Table

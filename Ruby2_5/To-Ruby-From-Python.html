@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.1e of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.2a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -64,13 +64,98 @@ ul.no-bullet {list-style: none}
 <a name="To-Ruby-From-Python"></a>
 <div class="header">
 <p>
-Next: <a href="Important-Language-Features.html#Important-Language-Features" accesskey="n" rel="next">Important Language Features</a>, Previous: <a href="To-Ruby-From-PHP.html#To-Ruby-From-PHP" accesskey="p" rel="prev">To Ruby From PHP</a>, Up: <a href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" accesskey="u" rel="up">Ruby from Other Languages</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="To-Ruby-From-PHP.html#To-Ruby-From-PHP" accesskey="p" rel="prev">To Ruby From PHP</a>, Up: <a href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" accesskey="u" rel="up">Ruby from Other Languages</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="To-Ruby-From-Python-1"></a>
 <h4 class="subsubsection">2.3.6.5 To Ruby From Python</h4>
 
+<p>Python is another very nice general purpose programming language.  Going from
+Python to Ruby, you&rsquo;ll find that there&rsquo;s a little bit more syntax to learn
+than with Python.
+</p>
+<a name="Similarities-With-Python"></a>
+<h4 class="subheading">Similarities With Python</h4>
 
+<ul>
+<li> Thereâs an interactive prompt (called <code>irb</code>).
+</li><li> <a name="index-irb-1"></a>
+You can read docs on the command line (with the <code>ri</code> command instead
+of <code>pydoc</code>).
+</li><li> There are no special line terminators (except the usual newline).
+</li><li> String literals can span multiple lines like Python&rsquo;s triple-quoted strings.
+</li><li> Brackets are for lists, and braces are for dicts (which, in Ruby, are called
+&ldquo;hashes&rdquo;).
+</li><li> Arrays work the same (adding them makes one long array, but composing them
+like this &lsquo;<samp>a3 = [ a1, a2 ]</samp>&rsquo; gives you an array of arrays).
+</li><li> Objects are strongly and dynamically typed.
+</li><li> Everything is an object, and variables are just references to objects.
+</li><li> Although the keywords are a bit different, exceptions work about the same.
+</li><li> Youâve got embedded doc tools (Rubyâs is called <code>rdoc</code>).
+</li><li> <a name="index-rdoc-2"></a>
+<a name="index-doc-tools-1"></a>
+There is good support for functional programming with first-class functions,
+anonymous functions, and closures.
+</li></ul>
+
+<a name="Differences-From-Python"></a>
+<h4 class="subheading">Differences From Python</h4>
+
+<ul>
+<li> Strings are mutable.
+</li><li> You can make constants (variables whose value you donât intend to change).
+</li><li> There are some enforced case-conventions (ex. class names start with a
+capital letter, variables start with a lowercase letter).
+</li><li> There&rsquo;s only one kind of list container (an <samp>Array</samp>), and it&rsquo;s mutable.
+</li><li> Double-quoted strings allow escape sequences (like <code>\t</code>) and a special
+&ldquo;expression substitution&rdquo; syntax (which allows you to insert the results of
+Ruby expressions directly into other strings without having to &lsquo;<samp>&quot;add &quot; +
+&quot;strings &quot; + &quot;together&quot;</samp>&rsquo;).  Single-quoted strings are like Python&rsquo;s <code>r&quot;raw
+strings&quot;</code>.
+</li><li> There are no &ldquo;new style&rdquo; and &ldquo;old style&rdquo; classes.  Just one kind.  (Python 3+
+doesnât have this issue, but it isnât fully backward compatible with Python
+2.)
+</li><li> You never directly access attributes.  With Ruby, itâs all method calls.
+</li><li> Parentheses for method calls are usually optional.
+</li><li> There&rsquo;s <code>public</code>, <code>private</code>, and <code>protected</code> to enforce
+access, instead of Python&rsquo;s <code>_voluntary_</code> underscore
+<code>__convention__</code>.
+</li><li> &ldquo;mixins&rdquo; are used instead of multiple inheritance.
+</li><li> You can add or modify the methods of built-in classes.  Both languages let you
+open up and modify classes at any point, but Python prevents modification of
+built-ins &mdash; Ruby does not.
+</li><li> Youâve got <code>true</code> and <code>false</code> instead of <code>True</code> and
+<code>False</code> (and <code>nil</code> instead of <code>None</code>).
+</li><li> When tested for truth, only <code>false</code> and <code>nil</code> evaluate to a
+<code>false</code> value.  Everything else is <code>true</code> (including <code>0</code>,
+<code>0.0</code>, <code>&quot;&quot;</code>, and <code>[]</code>).
+</li><li> It&rsquo;s <code>elsif</code> instead of <code>elif</code>.
+</li><li> It&rsquo;s <code>require</code> instead of <code>import</code>.  Otherwise though, usage is the
+same.
+</li><li> The usual-style comments on the line(s) above things (instead of docstrings
+below them) are used for generating docs.
+</li><li> There are a number of shortcuts that, although give you more to remember, you
+quickly learn.  They tend to make Ruby fun and very productive.
+</li><li> Thereâs no way to unset a variable once set (like Python&rsquo;s <code>del</code>
+statement).  You can reset a variable to <code>nil</code>, allowing the old
+contents to be garbage collected, but the variable will remain in the symbol
+table as long as it is in scope.
+</li><li> The <code>yield</code> keyword behaves differently.  In Python it will return
+execution to the scope outside the function&rsquo;s invocation.  External code is
+responsible for resuming the function.  In Ruby <code>yield</code> will execute
+another function that has been passed as the final argument, then immediately
+resume.
+</li><li> Python supports just one kind of anonymous functions, lambdas, while Ruby
+contains blocks, Procs, and lambdas.
+</li></ul>
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="To-Ruby-From-PHP.html#To-Ruby-From-PHP" accesskey="p" rel="prev">To Ruby From PHP</a>, Up: <a href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages" accesskey="u" rel="up">Ruby from Other Languages</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 
