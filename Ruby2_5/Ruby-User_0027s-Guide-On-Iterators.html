@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Iterators (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Iterators (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Iterators (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking" rel="next" title="Ruby User's Guide On Object-Oriented Thinking">
+<link href="Ruby-User_0027s-Guide-On-Control-Structures.html#Ruby-User_0027s-Guide-On-Control-Structures" rel="prev" title="Ruby User's Guide On Control Structures">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Iterators"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking" accesskey="n" rel="next">Ruby User's Guide On Object-Oriented Thinking</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Control-Structures.html#Ruby-User_0027s-Guide-On-Control-Structures" accesskey="p" rel="prev">Ruby User's Guide On Control Structures</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Ruby-User_0027s-Guide-On-Iterators-1"></a>
+<h4 class="subsubsection">2.4.1.8 Ruby User&rsquo;s Guide On Iterators</h4>
+<a name="index-iterators_002c-Ruby-User_0027s-Guide"></a>
+
+<p>Iterators are not an original concept with ruby.  They are in common
+use in object-oriented languages.  They are also used in Lisp, though
+there they are not called iterators.  However the concept of iterator
+is an unfamiliar one for many so it should be explained in more
+detail.
+</p>
+<p>An <em>iterator</em> is something that does the same thing many times.
+</p>
+<a name="Ruby-Allows-Us-To-Define-Iterators"></a>
+<h4 class="subheading">Ruby Allows Us To Define Iterators</h4>
+<a name="index-iterator_002c-defining"></a>
+
+<p>So every OOP language includes some facilities for iteration.  Some
+languages provide a special class for this purpose; ruby allows us to
+define iterators directly.
+</p>
+<a name="Iterators-In-String"></a>
+<h4 class="subsubheading">Iterators In String</h4>
+<a name="index-iterators-of-String-class"></a>
+
+<p>Ruby&rsquo;s String type has some useful iterators:
+</p>
+<a name="index-each_005fbyte"></a>
+<p><code>each_byte</code> is an iterator for each character in the string.
+Each character is substituted into the local variable c:
+&lsquo;<samp>&quot;abc&quot;.each_byte{|c| printf &quot;&lt;%c&gt;&quot;, c}; print &quot;\n&quot;</samp>&rsquo;.
+</p>
+<p>The <code>each_byte</code> iterator is both conceptually simpler and more
+likely to continue to work even if the String class happens to be
+radically modified in the future.  One benefit of iterators is that
+they tend to be robust in the face of such changes; indeed that is a
+characteristic of good code in general.
+</p>
+<a name="index-each_005fline"></a>
+<p>Another iterator of String is <code>each_line</code>: &lsquo;<samp>&quot;a\nb\nc\n&quot;.each_line{|l| print l}</samp>&rsquo;.
+</p>
+<p>The tasks that would take most of the programming effort in C (finding
+line delimiters, generating substrings, etc.) are easily tackled using
+iterators.
+</p>
+<p>The <code>for</code> statement appearing in the previous chapter does
+iteration by way of an <code>each</code> iterator.  String&rsquo;s <code>each</code>
+works the same as <code>each_line</code>, so let&rsquo;s rewrite the above example with
+<code>for</code>:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; for l in &quot;a\nb\nc\n&quot;
+    |   print l 
+    | end
+a
+b
+c
+   nil
+</pre></div>
+
+<a name="Control-Structures-retry-And-redo"></a>
+<h4 class="subheading">Control Structures <code>retry</code> And <code>redo</code></h4>
+<a name="index-retry"></a>
+<a name="index-redo-1"></a>
+<a name="index-control-structures-retry-and-redo"></a>
+
+<p>We can use a control structure <code>retry</code> in conjunction with an
+iterated loop, and it will retry the loop from the beginning.  <code>redo</code>
+causes just the current iteration of the loop to be redone.
+</p>
+<a name="yield-In-Iterators"></a>
+<h4 class="subheading"><code>yield</code> In Iterators</h4>
+<a name="index-yield-2"></a>
+
+<p><code>yield</code> occurs sometimes in a definition of an iterator.
+<em><code>yield</code></em> moves control to the block of code that is passed
+to the iterator (this will be explored in more detail in the chapter
+about procedure objects).
+</p>
+<p>The following example defines an iterator <code>repeat</code>, which repeats a
+block of code the number of times specified in an argument.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; def repeat(num)
+    |   while num &gt; 0
+    |     yield
+    |     num -= 1
+    |   end
+    | end
+   nil
+ruby&gt; repeat(3) { puts &quot;foo&quot; }
+foo
+foo
+foo
+   nil
+</pre></div>
+
+<p>With <code>retry</code>, one can define an iterator which works something like
+ruby&rsquo;s standard <code>while</code>.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; def WHILE(cond)
+    |   return if not cond
+    |   yield
+    |   retry
+    | end
+   nil
+ruby&gt; i=0; WHILE(i&lt;3) { print i; i+=1 }
+012   nil
+</pre></div>
+
+<a name="Summary-On-Iterarors"></a>
+<h4 class="subheading">Summary On Iterarors</h4>
+
+<p>There are a few restrictions, but you can write your original
+iterators; and in fact, whenever you define a new data type, it is
+often convenient to define suitable iterators to go with it.  In this
+sense, the above examples are not terribly useful.  We can talk about
+practical iterators after we have a better understanding of what
+classes are.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking" accesskey="n" rel="next">Ruby User's Guide On Object-Oriented Thinking</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Control-Structures.html#Ruby-User_0027s-Guide-On-Control-Structures" accesskey="p" rel="prev">Ruby User's Guide On Control Structures</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

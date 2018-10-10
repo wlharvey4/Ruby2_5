@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.2c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2d of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.2c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2d of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -163,6 +163,9 @@ Ruby User's Guide
 * Puzzle Program::
 * Ruby User's Guide on Regular Expressions::
 * Ruby User's Guide On Arrays And Hashes::
+* Ruby User's Guide On Control Structures::
+* Ruby User's Guide On Iterators::
+* Ruby User's Guide On Object-Oriented Thinking::
 
 Utility Programs
 
@@ -2866,6 +2869,9 @@ Mark Slagell, is a nice overview of many aspects of the Ruby language.
 * Puzzle Program::
 * Ruby User's Guide on Regular Expressions::
 * Ruby User's Guide On Arrays And Hashes::
+* Ruby User's Guide On Control Structures::
+* Ruby User's Guide On Iterators::
+* Ruby User's Guide On Object-Oriented Thinking::
 
 
 File: Ruby2_5.info,  Node: What Is Ruby?,  Next: Simple Examples,  Up: Ruby User's Guide
@@ -3318,7 +3324,7 @@ the pattern did not match.
         nil
 
 
-File: Ruby2_5.info,  Node: Ruby User's Guide On Arrays And Hashes,  Prev: Ruby User's Guide on Regular Expressions,  Up: Ruby User's Guide
+File: Ruby2_5.info,  Node: Ruby User's Guide On Arrays And Hashes,  Next: Ruby User's Guide On Control Structures,  Prev: Ruby User's Guide on Regular Expressions,  Up: Ruby User's Guide
 
 2.4.1.6 On Arrays And Hashes
 ............................
@@ -3379,6 +3385,265 @@ in an array.
         nil
      ruby> h
         {5=>10, "2"=>"4"}
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Control Structures,  Next: Ruby User's Guide On Iterators,  Prev: Ruby User's Guide On Arrays And Hashes,  Up: Ruby User's Guide
+
+2.4.1.7 On Control Structures
+.............................
+
+The 'case' Statement
+--------------------
+
+We use the 'case' statement to test a sequence of conditions.  This is
+superficially similar to 'switch' in C and Java but is considerably
+more powerful, as we shall see.
+
+     ruby> i=8
+     ruby> case i
+         | when 1, 2..5
+         |   puts "1..5"
+         | when 6..10
+         |   puts "6..10"
+         | end
+     6..10
+        nil
+
+Testing For A Range Of Values
+.............................
+
+'2..5' is an expression which means the _range_ between 2 and 5,
+inclusive.  The following expression tests whether the value of 'i'
+falls within that range: '(2..5) === i'.
+
+The Relationship Operator
+.........................
+
+'case' internally uses the _relationship_ operator '===' to check for
+several conditions at a time.  In keeping with ruby's object oriented
+nature, '===' is interpreted suitably for the object that appeared in
+the 'when' condition.
+
+   For example, the following code tests string equality in the first
+'when', and regular expression matching in the second 'when'.
+
+     ruby> case 'abcdef'
+         | when 'aaa', 'bbb'
+         |   puts "aaa or bbb"
+         | when /def/
+         |   puts "includes /def/"
+         | end
+     includes /def/
+        nil
+
+The 'while' Statement
+---------------------
+
+Ruby provides convenient ways to construct loops, although you will
+find in the next chapter that learning how to use iterators will make
+it unnecessary to write explicit loops very often.
+
+   A 'while' is a repeated 'if'.  We used it in our word-guessing
+puzzle and in the regular expression programs (see the previous
+chapter); there, it took the form 'while condition ... end'
+surrounding a block of code to be repeated while condition was true.
+But 'while' and 'if' can as easily be applied to individual
+statements: 'puts "It's zero." if i==0' => 'It's zero.' and 'puts i+=1
+while i<3' => '1 2 3'.
+
+Negated Conditions
+..................
+
+Sometimes you want to negate a test condition.  An 'unless' is a
+negated 'if', and an 'until' is a negated 'while'.
+
+Interrupting A Loop
+-------------------
+
+There are four ways to interrupt the progress of a loop from inside.
+
+  1. First, 'break' means, as in C, to escape from the loop entirely.
+  2. Second, 'next' skips to the beginning of the next iteration of
+     the loop (corresponding to C's continue).
+  3. Third, ruby has 'redo', which restarts the current iteration.
+  4. The fourth way to get out of a loop from the inside is 'return'.
+     An evaluation of 'return' causes escape not only from a loop but
+     from the method that contains the loop.  If an argument is given,
+     it will be returned from the method call, otherwise 'nil' is
+     returned.
+
+   The following is C code illustrating the meanings of 'break',
+'next', and 'redo':
+
+     while (condition) {
+     label_redo:
+        goto label_next;        /* ruby's "next" */
+        goto label_break;       /* ruby's "break" */
+        goto label_redo;        /* ruby's "redo" */
+        ...
+        ...
+     label_next:
+     }
+     label_break:
+     ...
+
+The 'for' Statement
+-------------------
+
+C programmers will be wondering by now how to make a 'for' loop.
+Ruby's 'for' can serve the same purpose, but adds some flexibility.
+The loop below runs once for each element in a collection (array,
+hash, numeric sequence, etc.), but doesn't make the programmer think
+about indices:
+
+     for elt in collection
+       # ... here, elt refers to an element of the collection
+     end
+
+   The collection can be a range of values (this is what most people
+mean when they talk about a 'for' loop):
+
+     ruby> for num in (4..6)
+         |    puts num
+         | end
+     4
+     5
+     6
+        4..6
+
+'for' Equivalent To 'each'
+..........................
+
+But we're getting ahead of ourselves.  'for' is really another way of
+writing 'each', which, it so happens, is our first example of an
+iterator.  The following two forms are equivalent:
+
+     #  If you're used to C or Java, you might prefer this.
+     for element in collection
+       ...
+     end
+
+     #  A Smalltalk programmer might prefer this.
+     collection.each {|element|
+       ...
+     }
+
+   Iterators can often be substituted for conventional loops, and once
+you get used to them, they are generally easier to deal with.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Iterators,  Next: Ruby User's Guide On Object-Oriented Thinking,  Prev: Ruby User's Guide On Control Structures,  Up: Ruby User's Guide
+
+2.4.1.8 Ruby User's Guide On Iterators
+......................................
+
+Iterators are not an original concept with ruby.  They are in common
+use in object-oriented languages.  They are also used in Lisp, though
+there they are not called iterators.  However the concept of iterator
+is an unfamiliar one for many so it should be explained in more
+detail.
+
+   An "iterator" is something that does the same thing many times.
+
+Ruby Allows Us To Define Iterators
+----------------------------------
+
+So every OOP language includes some facilities for iteration.  Some
+languages provide a special class for this purpose; ruby allows us to
+define iterators directly.
+
+Iterators In String
+...................
+
+Ruby's String type has some useful iterators:
+
+   'each_byte' is an iterator for each character in the string.  Each
+character is substituted into the local variable c:
+'"abc".each_byte{|c| printf "<%c>", c}; print "\n"'.
+
+   The 'each_byte' iterator is both conceptually simpler and more
+likely to continue to work even if the String class happens to be
+radically modified in the future.  One benefit of iterators is that
+they tend to be robust in the face of such changes; indeed that is a
+characteristic of good code in general.
+
+   Another iterator of String is 'each_line':
+'"a\nb\nc\n".each_line{|l| print l}'.
+
+   The tasks that would take most of the programming effort in C
+(finding line delimiters, generating substrings, etc.)  are easily
+tackled using iterators.
+
+   The 'for' statement appearing in the previous chapter does
+iteration by way of an 'each' iterator.  String's 'each' works the
+same as 'each_line', so let's rewrite the above example with 'for':
+
+     ruby> for l in "a\nb\nc\n"
+         |   print l
+         | end
+     a
+     b
+     c
+        nil
+
+Control Structures 'retry' And 'redo'
+-------------------------------------
+
+We can use a control structure 'retry' in conjunction with an iterated
+loop, and it will retry the loop from the beginning.  'redo' causes
+just the current iteration of the loop to be redone.
+
+'yield' In Iterators
+--------------------
+
+'yield' occurs sometimes in a definition of an iterator.  "'yield'"
+moves control to the block of code that is passed to the iterator
+(this will be explored in more detail in the chapter about procedure
+objects).
+
+   The following example defines an iterator 'repeat', which repeats a
+block of code the number of times specified in an argument.
+
+     ruby> def repeat(num)
+         |   while num > 0
+         |     yield
+         |     num -= 1
+         |   end
+         | end
+        nil
+     ruby> repeat(3) { puts "foo" }
+     foo
+     foo
+     foo
+        nil
+
+   With 'retry', one can define an iterator which works something like
+ruby's standard 'while'.
+
+     ruby> def WHILE(cond)
+         |   return if not cond
+         |   yield
+         |   retry
+         | end
+        nil
+     ruby> i=0; WHILE(i<3) { print i; i+=1 }
+     012   nil
+
+Summary On Iterarors
+--------------------
+
+There are a few restrictions, but you can write your original
+iterators; and in fact, whenever you define a new data type, it is
+often convenient to define suitable iterators to go with it.  In this
+sense, the above examples are not terribly useful.  We can talk about
+practical iterators after we have a better understanding of what
+classes are.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Object-Oriented Thinking,  Prev: Ruby User's Guide On Iterators,  Up: Ruby User's Guide
+
+2.4.1.9 On Object-Oriented Thinking
+...................................
 
 
 File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
@@ -4149,6 +4414,8 @@ Index
 * <MegaGreeter--say_hi Method>, use:     Large Class Definition.
                                                             (line  10)
 * == vs equals():                        To Ruby From Java. (line  59)
+* ===:                                   Ruby User's Guide On Control Structures.
+                                                            (line  33)
 * =~ matching operator:                  Ruby User's Guide on Regular Expressions.
                                                             (line 130)
 * \Z:                                    FAQ Built-In Libraries.
@@ -4218,6 +4485,8 @@ Index
 * braces, none:                          To Ruby From C and C++.
                                                             (line 101)
 * branches page:                         Branches Page.     (line   6)
+* break:                                 Ruby User's Guide On Control Structures.
+                                                            (line  74)
 * break statement:                       Ruby User's Guide on Regular Expressions.
                                                             (line  54)
 * buffering:                             Puzzle Program.    (line  84)
@@ -4256,6 +4525,10 @@ Index
 * classes, open:                         Classes are open.  (line   6)
 * collect:                               Pointers on Iteration.
                                                             (line  17)
+* collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
+                                                            (line 114)
+* collection, looping over elements using for: Ruby User's Guide On Control Structures.
+                                                            (line 104)
 * command line arguments in ARGV:        Simple Examples.   (line  35)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
 * constant naming convention:            Naming conventions.
@@ -4267,6 +4540,10 @@ Index
                                                             (line 155)
 * continuations, using:                  FAQ Other Features.
                                                             (line  20)
+* control structures:                    Ruby User's Guide On Control Structures.
+                                                            (line   6)
+* control structures retry and redo:     Ruby User's Guide On Iterators.
+                                                            (line  58)
 * conventions, naming:                   Naming conventions.
                                                             (line   6)
 * dangerous, destructive methods:        FAQ Methods.       (line  51)
@@ -4294,7 +4571,13 @@ Index
                                                             (line  28)
 * each:                                  Pointers on Iteration.
                                                             (line  17)
+* each equivalent to for:                Ruby User's Guide On Control Structures.
+                                                            (line 128)
 * each method of iterator:               FAQ Iterators.     (line  25)
+* each_byte:                             Ruby User's Guide On Iterators.
+                                                            (line  26)
+* each_line:                             Ruby User's Guide On Iterators.
+                                                            (line  36)
 * Eiffel and Ruby:                       Simple Examples.   (line  54)
 * empty string:                          FAQ Syntax.        (line  73)
 * ensure clause:                         FAQ Syntax.        (line 265)
@@ -4329,6 +4612,12 @@ Index
 * find:                                  Pointers on Iteration.
                                                             (line  17)
 * flush standard output:                 Puzzle Program.    (line  84)
+* for equivalent to each:                Ruby User's Guide On Control Structures.
+                                                            (line 128)
+* for loop:                              Ruby User's Guide On Control Structures.
+                                                            (line 104)
+* for statement:                         Ruby User's Guide On Control Structures.
+                                                            (line 104)
 * fork vs thread:                        FAQ Built-In Libraries.
                                                             (line  57)
 * function pointers:                     FAQ Syntax.        (line 237)
@@ -4390,10 +4679,18 @@ Index
                                                             (line   6)
 * iterator:                              Large Class Definition.
                                                             (line  85)
+* iterator as substitute for for loop:   Ruby User's Guide On Control Structures.
+                                                            (line 128)
 * iterator method:                       To Ruby From C and C++.
                                                             (line 154)
 * iterator, block:                       FAQ Iterators.     (line  56)
+* iterator, defining:                    Ruby User's Guide On Iterators.
+                                                            (line  17)
 * iterators:                             FAQ Iterators.     (line   6)
+* iterators of String class:             Ruby User's Guide On Iterators.
+                                                            (line  24)
+* iterators, Ruby User's Guide:          Ruby User's Guide On Iterators.
+                                                            (line   6)
 * javadoc:                               To Ruby From Java. (line  23)
 * join:                                  Ruby User's Guide On Arrays And Hashes.
                                                             (line  29)
@@ -4409,6 +4706,12 @@ Index
                                                             (line  24)
 * load:                                  FAQ Syntax.        (line 245)
 * loop:                                  FAQ Syntax.        (line 149)
+* loop interrupts:                       Ruby User's Guide On Control Structures.
+                                                            (line  74)
+* loop, for:                             Ruby User's Guide On Control Structures.
+                                                            (line 104)
+* loops using while:                     Ruby User's Guide On Control Structures.
+                                                            (line  53)
 * mailing lists:                         Developing Ruby.   (line  62)
 * manage Rubies using chruby:            chruby.            (line   6)
 * Marshal:                               FAQ Built-In Libraries.
@@ -4444,6 +4747,10 @@ Index
 * multiple Rubies, command-line tool uru: uru.              (line   6)
 * multithreading:                        To Ruby From C and C++.
                                                             (line 160)
+* negated conditions:                    Ruby User's Guide On Control Structures.
+                                                            (line  68)
+* next:                                  Ruby User's Guide On Control Structures.
+                                                            (line  74)
 * nil and false, similariaties and differences: FAQ Syntax. (line  59)
 * nil vs null:                           To Ruby From Java. (line  55)
 * NilClass:                              FAQ Syntax.        (line  64)
@@ -4488,6 +4795,9 @@ Index
 * Qt:                                    To Ruby From Java. (line  31)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
+* range expression:                      Ruby User's Guide On Control Structures.
+                                                            (line  26)
+* range operators .. vs ...:             FAQ Syntax.        (line 203)
 * rbenv:                                 rbenv.             (line   6)
 * rbenv version manager:                 ruby-build.        (line   6)
 * RDoc:                                  To Ruby From Java. (line  23)
@@ -4496,6 +4806,10 @@ Index
 * rdoc <2>:                              To Ruby From Python.
                                                             (line  29)
 * read one line from standard input:     Puzzle Program.    (line  39)
+* redo:                                  Ruby User's Guide On Control Structures.
+                                                            (line  74)
+* redo <1>:                              Ruby User's Guide On Iterators.
+                                                            (line  58)
 * regexes:                               To Ruby From Perl. (line  17)
 * regular expression, escaping a backslash: FAQ Built-In Libraries.
                                                             (line  48)
@@ -4503,6 +4817,8 @@ Index
                                                             (line   6)
 * regular expressions at work:           Ruby User's Guide on Regular Expressions.
                                                             (line 113)
+* relationship operator ===:             Ruby User's Guide On Control Structures.
+                                                            (line  33)
 * releases:                              Releases Page.     (line   6)
 * repository, Subversion:                Developing Ruby.   (line  49)
 * require:                               FAQ Syntax.        (line 245)
@@ -4513,6 +4829,10 @@ Index
 * respond_to? method:                    Large Class Definition.
                                                             (line  54)
 * respository, GitHub:                   Developing Ruby.   (line  54)
+* retry:                                 Ruby User's Guide On Iterators.
+                                                            (line  58)
+* return:                                Ruby User's Guide On Control Structures.
+                                                            (line  74)
 * return mutliple values:                FAQ Methods.       (line  53)
 * return statement unnecessary:          Simple Examples.   (line  54)
 * ri:                                    Pointers on Iteration.
@@ -4610,6 +4930,10 @@ Index
 * type declarations, none:               To Ruby From Java. (line  46)
 * unit testing lib:                      To Ruby From C and C++.
                                                             (line 161)
+* unless:                                Ruby User's Guide On Control Structures.
+                                                            (line  68)
+* until:                                 Ruby User's Guide On Control Structures.
+                                                            (line  68)
 * uru:                                   uru.               (line   6)
 * value, everthing has one:              Everything has a value.
                                                             (line   6)
@@ -4626,6 +4950,8 @@ Index
 * visibility features:                   To Ruby From Java. (line  20)
 * visibility, changing:                  FAQ Methods.       (line  33)
 * while:                                 Puzzle Program.    (line  27)
+* while statement:                       Ruby User's Guide On Control Structures.
+                                                            (line  53)
 * WxRuby:                                To Ruby From Java. (line  31)
 * xforms:                                FAQ Extension Library.
                                                             (line  24)
@@ -4635,6 +4961,8 @@ Index
                                                             (line  85)
 * yield <1>:                             Blocks are Objects.
                                                             (line   6)
+* yield <2>:                             Ruby User's Guide On Iterators.
+                                                            (line  65)
 * yield control structor, or statement:  FAQ Iterators.     (line  56)
 * yield control structure in iterator:   FAQ Iterators.     (line  61)
 
@@ -4658,146 +4986,149 @@ Program Index
 
 Tag Table:
 Node: Top371
-Node: Preface3517
-Node: Audience3700
-Node: Overview3819
-Node: Conventions3989
-Node: Acknowledgements4909
-Node: Introduction5025
-Node: Documentation5322
-Node: Installing Ruby5731
-Node: Package Management Systems6644
-Node: Homebrew (OS X)7469
-Node: Installers7895
-Node: ruby-build8491
-Node: ruby-install9044
-Node: Managers9659
-Node: chruby10056
-Node: rbenv10315
-Node: RVM (``Ruby Version Manager'')10860
-Node: uru11258
-Node: Building From Source11551
-Node: Releases Page12563
-Node: Branches Page13663
-Node: Issue Tracking15463
-Node: Developing Ruby15947
-Ref: subversion16697
-Ref: MainRubyRepo17849
-Ref: PatchByPatch18177
-Node: Getting Started18974
-Node: Try Ruby!19362
-Node: Official FAQ19692
-Node: FAQ Iterators20769
-Node: FAQ Syntax24708
-Ref: immediate value25853
-Ref: nil vs false26488
-Ref: empty string27102
-Ref: symbol object27455
-Ref: value of symbol28593
-Ref: loop29471
-Ref: post-test loop29697
-Ref: hash literal30123
-Ref: pos val30405
-Ref: \1 and \\130781
-Ref: 2 dots vs 3 dots31189
-Ref: or and31427
-Ref: function pointers32229
-Ref: load vs require32551
-Ref: exception handling32906
-Node: FAQ Methods33903
-Node: FAQ Classes and Modules35576
-Node: FAQ Built-In Libraries36762
-Node: FAQ Extension Library38740
-Node: FAQ Other Features39419
-Node: Ruby Koans39969
-Node: Why’s (Poignant) Guide to Ruby40373
-Node: Ruby in Twenty Minutes40847
-Node: Interactive Ruby41520
-Node: Defining Methods42474
-Node: Altering Classes47978
-Node: Large Class Definition49314
-Ref: ri20min-rb49718
-Ref: MegaGreeter---Initialize-Method50527
-Ref: MegaGreeter---say-hi-Method51249
-Ref: MegaGreeter---say-bye-Method53466
-Ref: MegaGreeter---Main-Script54414
-Node: Run MegaGreeter54946
-Node: Ruby from Other Languages55472
-Node: To Ruby From C and C++56190
-Node: To Ruby From Java63719
-Node: To Ruby From Perl66286
-Node: To Ruby From PHP69245
-Node: To Ruby From Python71422
-Node: Important Language Features75557
-Node: Pointers on Iteration76311
-Node: Everything has a value77107
-Node: Symbols are not lightweight Strings77587
-Node: Everything is an Object79032
-Node: Variable Constants79593
-Node: Naming conventions79986
-Node: Keyword arguments80682
-Node: The universal truth81232
-Node: Access modifiers are Methods81984
-Node: Method access82987
-Node: Classes are open84601
-Node: Funny method names85316
-Node: Singleton methods86118
-Node: Missing methods86745
-Node: Message passing --- not function calls87824
-Node: Blocks are Objects88245
-Node: Operators are syntactic sugar89156
-Node: Learning Ruby90169
-Node: Ruby Essentials90537
-Node: Learn to Program90768
-Node: Manuals91147
-Node: Ruby User's Guide91339
-Node: What Is Ruby?91930
-Node: Simple Examples92919
-Ref: fact-rb93347
-Ref: Simple Examples-Footnote-197100
-Node: Ruby User's Guide on Strings97182
-Node: Puzzle Program98523
-Ref: guess-rb98725
-Node: Ruby User's Guide on Regular Expressions102009
-Ref: regx-rb103100
-Node: Ruby User's Guide On Arrays And Hashes107241
-Node: Programming Ruby109130
-Node: Reference Documentation113560
-Node: Editors and IDEs113732
-Node: Further Reading113898
-Node: Utility Programs114030
-Node: eval.rb114209
-Ref: eval-rb114358
-Node: eval Module Code116305
-Ref: eval---EvalWrapper--Constants116460
-Node: eval Indentation Deltas Code116987
-Ref: eval---EvalWrapper--Indentation-Deltas117198
-Node: eval Main Get Line Code118077
-Ref: eval---Main--Get-Line118289
-Node: eval Main Process Line Code118749
-Ref: eval---Main--Process-Line118932
-Node: eval If Not Line Code119573
-Ref: eval---Main--Process-Line-If-Not-Line119759
-Node: eval If Is Line Code120106
-Ref: eval---Main--Process-Line-Is-Line120290
-Ref: eval---Main--Process-Line-Is-Line-Indentation121140
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-121861
-Node: The Makefile122577
-Ref: Makefile122733
-Node: Makefile Variable Definitions123452
-Ref: Makefile---Variable-Definitions123630
-Node: Makefile Default Rule123798
-Ref: Makefile---Default-Rule124348
-Node: Makefile TWJR Rules124587
-Ref: Makefile---TWJR-Rules124746
-Node: Makefile Clean Rules125377
-Ref: Makefile---Clean-Rules125508
-Node: Code Chunk Summaries125972
-Node: File Definitions126357
-Node: Code Chunk Definitions126884
-Node: Code Chunk References128738
-Node: Bibliography131103
-Node: Concept Index131234
-Node: Program Index170116
+Node: Preface3646
+Node: Audience3829
+Node: Overview3948
+Node: Conventions4118
+Node: Acknowledgements5038
+Node: Introduction5154
+Node: Documentation5451
+Node: Installing Ruby5860
+Node: Package Management Systems6773
+Node: Homebrew (OS X)7598
+Node: Installers8024
+Node: ruby-build8620
+Node: ruby-install9173
+Node: Managers9788
+Node: chruby10185
+Node: rbenv10444
+Node: RVM (``Ruby Version Manager'')10989
+Node: uru11387
+Node: Building From Source11680
+Node: Releases Page12692
+Node: Branches Page13792
+Node: Issue Tracking15592
+Node: Developing Ruby16076
+Ref: subversion16826
+Ref: MainRubyRepo17978
+Ref: PatchByPatch18306
+Node: Getting Started19103
+Node: Try Ruby!19491
+Node: Official FAQ19821
+Node: FAQ Iterators20898
+Node: FAQ Syntax24837
+Ref: immediate value25982
+Ref: nil vs false26617
+Ref: empty string27231
+Ref: symbol object27584
+Ref: value of symbol28722
+Ref: loop29600
+Ref: post-test loop29826
+Ref: hash literal30252
+Ref: pos val30534
+Ref: \1 and \\130910
+Ref: 2 dots vs 3 dots31318
+Ref: or and31556
+Ref: function pointers32358
+Ref: load vs require32680
+Ref: exception handling33035
+Node: FAQ Methods34032
+Node: FAQ Classes and Modules35705
+Node: FAQ Built-In Libraries36891
+Node: FAQ Extension Library38869
+Node: FAQ Other Features39548
+Node: Ruby Koans40098
+Node: Why’s (Poignant) Guide to Ruby40502
+Node: Ruby in Twenty Minutes40976
+Node: Interactive Ruby41649
+Node: Defining Methods42603
+Node: Altering Classes48107
+Node: Large Class Definition49443
+Ref: ri20min-rb49847
+Ref: MegaGreeter---Initialize-Method50656
+Ref: MegaGreeter---say-hi-Method51378
+Ref: MegaGreeter---say-bye-Method53595
+Ref: MegaGreeter---Main-Script54543
+Node: Run MegaGreeter55075
+Node: Ruby from Other Languages55601
+Node: To Ruby From C and C++56319
+Node: To Ruby From Java63848
+Node: To Ruby From Perl66415
+Node: To Ruby From PHP69374
+Node: To Ruby From Python71551
+Node: Important Language Features75686
+Node: Pointers on Iteration76440
+Node: Everything has a value77236
+Node: Symbols are not lightweight Strings77716
+Node: Everything is an Object79161
+Node: Variable Constants79722
+Node: Naming conventions80115
+Node: Keyword arguments80811
+Node: The universal truth81361
+Node: Access modifiers are Methods82113
+Node: Method access83116
+Node: Classes are open84730
+Node: Funny method names85445
+Node: Singleton methods86247
+Node: Missing methods86874
+Node: Message passing --- not function calls87953
+Node: Blocks are Objects88374
+Node: Operators are syntactic sugar89285
+Node: Learning Ruby90298
+Node: Ruby Essentials90666
+Node: Learn to Program90897
+Node: Manuals91276
+Node: Ruby User's Guide91468
+Node: What Is Ruby?92188
+Node: Simple Examples93177
+Ref: fact-rb93605
+Ref: Simple Examples-Footnote-197358
+Node: Ruby User's Guide on Strings97440
+Node: Puzzle Program98781
+Ref: guess-rb98983
+Node: Ruby User's Guide on Regular Expressions102267
+Ref: regx-rb103358
+Node: Ruby User's Guide On Arrays And Hashes107499
+Node: Ruby User's Guide On Control Structures109436
+Node: Ruby User's Guide On Iterators113954
+Node: Ruby User's Guide On Object-Oriented Thinking117475
+Node: Programming Ruby117687
+Node: Reference Documentation122117
+Node: Editors and IDEs122289
+Node: Further Reading122455
+Node: Utility Programs122587
+Node: eval.rb122766
+Ref: eval-rb122915
+Node: eval Module Code124862
+Ref: eval---EvalWrapper--Constants125017
+Node: eval Indentation Deltas Code125544
+Ref: eval---EvalWrapper--Indentation-Deltas125755
+Node: eval Main Get Line Code126634
+Ref: eval---Main--Get-Line126846
+Node: eval Main Process Line Code127306
+Ref: eval---Main--Process-Line127489
+Node: eval If Not Line Code128130
+Ref: eval---Main--Process-Line-If-Not-Line128316
+Node: eval If Is Line Code128663
+Ref: eval---Main--Process-Line-Is-Line128847
+Ref: eval---Main--Process-Line-Is-Line-Indentation129697
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-130418
+Node: The Makefile131134
+Ref: Makefile131290
+Node: Makefile Variable Definitions132009
+Ref: Makefile---Variable-Definitions132187
+Node: Makefile Default Rule132355
+Ref: Makefile---Default-Rule132905
+Node: Makefile TWJR Rules133144
+Ref: Makefile---TWJR-Rules133303
+Node: Makefile Clean Rules133934
+Ref: Makefile---Clean-Rules134065
+Node: Code Chunk Summaries134529
+Node: File Definitions134914
+Node: Code Chunk Definitions135441
+Node: Code Chunk References137295
+Node: Bibliography139660
+Node: Concept Index139791
+Node: Program Index183427
 
 End Tag Table

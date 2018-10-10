@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.2c
+@set EDITION 0.2d
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -1194,8 +1194,9 @@ character string containing a backslash and the character @code{"1"}.
 @anchor{2 dots vs 3 dots}
 @subheading What is the difference between @code{..} and @code{...}?
 @cindex @code{..} vs. @code{...}
+@cindex range operators @code{..} vs @code{...}
 
-@code{..}  includes the right hand side in the range, while @code{...}
+@code{..} includes the right hand side in the range, while @code{...}
 does not:
 
 @example
@@ -3788,7 +3789,307 @@ ruby> h[1]
 ruby> h
    @{5=>10, "2"=>"4"@}
 @end example
+
+@c _____________________________________
+
+@node Ruby User's Guide On Control Structures
+@subsubsection On Control Structures
+@cindex control structures
+
+@subheading The @code{case} Statement
+
+We use the @code{case} statement to test a sequence of conditions.
+This is superficially similar to @code{switch} in C and Java but is
+considerably more powerful, as we shall see.
+
+@example
+ruby> i=8
+ruby> case i
+    | when 1, 2..5
+    |   puts "1..5"
+    | when 6..10
+    |   puts "6..10"
+    | end
+6..10
+   nil
+@end example
+
+@subsubheading Testing For A Range Of Values
+@cindex range expression
+
+@code{2..5} is an expression which means the @emph{range} between 2
+and 5, inclusive.  The following expression tests whether the value of
+@code{i} falls within that range: @samp{(2..5) === i}.
+
+@subsubheading The Relationship Operator
+@cindex relationship operator @code{===}
+@cindex @code{===}
+
+@code{case} internally uses the @emph{relationship} operator
+@code{===} to check for several conditions at a time.  In keeping with
+ruby's object oriented nature, @code{===} is interpreted suitably for
+the object that appeared in the @code{when} condition.
+
+For example, the following code tests string equality in the first
+@code{when}, and regular expression matching in the second @code{when}.
+
+@example
+ruby> case 'abcdef'
+    | when 'aaa', 'bbb'
+    |   puts "aaa or bbb"
+    | when /def/
+    |   puts "includes /def/"
+    | end
+includes /def/
+   nil
+@end example
    
+@subheading The @code{while} Statement
+@cindex @code{while} statement
+@cindex loops using @code{while}
+
+Ruby provides convenient ways to construct loops, although you will
+find in the next chapter that learning how to use iterators will make
+it unnecessary to write explicit loops very often.
+
+A @code{while} is a repeated @code{if}.  We used it in our
+word-guessing puzzle and in the regular expression programs (see the
+previous chapter); there, it took the form @samp{while condition
+... end} surrounding a block of code to be repeated while condition
+was true.  But @code{while} and @code{if} can as easily be applied to
+individual statements: @samp{puts "It's zero." if i==0} @result{}
+@samp{It's zero.} and @samp{puts i+=1 while i<3} @result{} @samp{1 2
+3}.
+
+@subsubheading Negated Conditions
+@cindex @code{unless}
+@cindex @code{until}
+@cindex negated conditions
+
+Sometimes you want to negate a test condition.  An @code{unless} is a
+negated @code{if}, and an @code{until} is a negated @code{while}.
+
+@subheading Interrupting A Loop
+@cindex @code{break}
+@cindex @code{next}
+@cindex @code{redo}
+@cindex @code{return}
+@cindex loop interrupts
+
+There are four ways to interrupt the progress of a loop from
+inside.
+
+@enumerate
+@item
+First, @code{break} means, as in C, to escape from the loop entirely.
+@item
+Second, @code{next} skips to the beginning of the next iteration of
+the loop (corresponding to C's continue).
+@item
+Third, ruby has @code{redo}, which restarts the current iteration.
+@item
+The fourth way to get out of a loop from the inside is @code{return}.
+An evaluation of @code{return} causes escape not only from a loop but
+from the method that contains the loop.  If an argument is given, it
+will be returned from the method call, otherwise @code{nil} is
+returned.
+@end enumerate
+
+The following is C code illustrating the meanings of @code{break}, @code{next}, and
+@code{redo}:
+
+@example
+while (condition) @{
+label_redo:
+   goto label_next;        /* ruby's "next" */
+   goto label_break;       /* ruby's "break" */
+   goto label_redo;        /* ruby's "redo" */
+   ...
+   ...
+label_next:
+@}
+label_break:
+...
+@end example
+
+@subheading The @code{for} Statement
+@cindex @code{for} statement
+@cindex @code{for} loop
+@cindex loop, @code{for}
+@cindex collection, looping over elements using @code{for}
+
+C programmers will be wondering by now how to make a @code{for} loop.
+Ruby's @code{for} can serve the same purpose, but adds some
+flexibility.  The loop below runs once for each element in a collection
+(array, hash, numeric sequence, etc.), but doesn't make the programmer
+think about indices:
+
+@example
+for elt in collection
+  # ... here, elt refers to an element of the collection
+end
+@end example
+
+@cindex collection, looping over a range of values using @code{for}
+The collection can be a range of values (this is what most people mean
+when they talk about a @code{for} loop):
+
+@example
+ruby> for num in (4..6)
+    |    puts num
+    | end
+4
+5
+6
+   4..6
+@end example
+   
+@subsubheading @code{for} Equivalent To @code{each}
+@cindex @code{for} equivalent to @code{each}
+@cindex @code{each} equivalent to @code{for}
+@cindex iterator as substitute for @code{for} loop
+
+But we're getting ahead of ourselves.  @code{for} is really another
+way of writing @code{each}, which, it so happens, is our first example
+of an iterator.  The following two forms are equivalent:
+
+@example
+#  If you're used to C or Java, you might prefer this.
+for element in collection
+  ...
+end
+
+#  A Smalltalk programmer might prefer this.
+collection.each @{|element|
+  ...
+@}
+@end example
+
+Iterators can often be substituted for conventional loops, and once
+you get used to them, they are generally easier to deal with.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Iterators
+@subsubsection Ruby User's Guide On Iterators
+@cindex iterators, Ruby User's Guide
+
+Iterators are not an original concept with ruby.  They are in common
+use in object-oriented languages.  They are also used in Lisp, though
+there they are not called iterators.  However the concept of iterator
+is an unfamiliar one for many so it should be explained in more
+detail.
+
+An @dfn{iterator} is something that does the same thing many times.
+
+@subheading Ruby Allows Us To Define Iterators
+@cindex iterator, defining
+
+So every OOP language includes some facilities for iteration.  Some
+languages provide a special class for this purpose; ruby allows us to
+define iterators directly.
+
+@subsubheading Iterators In String
+@cindex iterators of String class
+
+Ruby's String type has some useful iterators:
+
+@cindex @code{each_byte}
+@code{each_byte} is an iterator for each character in the string.
+Each character is substituted into the local variable c:
+@samp{"abc".each_byte@{|c| printf "<%c>", c@}; print "\n"}.
+
+The @code{each_byte} iterator is both conceptually simpler and more
+likely to continue to work even if the String class happens to be
+radically modified in the future.  One benefit of iterators is that
+they tend to be robust in the face of such changes; indeed that is a
+characteristic of good code in general.
+
+@cindex @code{each_line}
+Another iterator of String is @code{each_line}: @samp{"a\nb\nc\n".each_line@{|l| print l@}}.
+
+The tasks that would take most of the programming effort in C (finding
+line delimiters, generating substrings, etc.) are easily tackled using
+iterators.
+
+The @code{for} statement appearing in the previous chapter does
+iteration by way of an @code{each} iterator.  String's @code{each}
+works the same as @code{each_line}, so let's rewrite the above example with
+@code{for}:
+
+@example
+ruby> for l in "a\nb\nc\n"
+    |   print l 
+    | end
+a
+b
+c
+   nil
+@end example
+
+@subheading Control Structures @code{retry} And @code{redo}
+@cindex @code{retry}
+@cindex @code{redo}
+@cindex control structures @code{retry} and @code{redo}
+
+We can use a control structure @code{retry} in conjunction with an
+iterated loop, and it will retry the loop from the beginning.  @code{redo}
+causes just the current iteration of the loop to be redone.
+
+@subheading @code{yield} In Iterators
+@cindex @code{yield}
+
+@code{yield} occurs sometimes in a definition of an iterator.
+@dfn{@code{yield}} moves control to the block of code that is passed
+to the iterator (this will be explored in more detail in the chapter
+about procedure objects).
+
+The following example defines an iterator @code{repeat}, which repeats a
+block of code the number of times specified in an argument.
+
+@example
+ruby> def repeat(num)
+    |   while num > 0
+    |     yield
+    |     num -= 1
+    |   end
+    | end
+   nil
+ruby> repeat(3) @{ puts "foo" @}
+foo
+foo
+foo
+   nil
+@end example
+
+With @code{retry}, one can define an iterator which works something like
+ruby's standard @code{while}.
+
+@example
+ruby> def WHILE(cond)
+    |   return if not cond
+    |   yield
+    |   retry
+    | end
+   nil
+ruby> i=0; WHILE(i<3) @{ print i; i+=1 @}
+012   nil
+@end example
+
+@subheading Summary On Iterarors
+
+There are a few restrictions, but you can write your original
+iterators; and in fact, whenever you define a new data type, it is
+often convenient to define suitable iterators to go with it.  In this
+sense, the above examples are not terribly useful.  We can talk about
+practical iterators after we have a better understanding of what
+classes are.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Object-Oriented Thinking
+@subsubsection On Object-Oriented Thinking
+
 
 
 @c .....................................

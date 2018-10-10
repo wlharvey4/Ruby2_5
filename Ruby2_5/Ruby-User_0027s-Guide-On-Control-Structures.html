@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Control Structures (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Control Structures (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Control Structures (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" rel="next" title="Ruby User's Guide On Iterators">
+<link href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes" rel="prev" title="Ruby User's Guide On Arrays And Hashes">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Control-Structures"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" accesskey="n" rel="next">Ruby User's Guide On Iterators</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes" accesskey="p" rel="prev">Ruby User's Guide On Arrays And Hashes</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Control-Structures"></a>
+<h4 class="subsubsection">2.4.1.7 On Control Structures</h4>
+<a name="index-control-structures"></a>
+
+<a name="The-case-Statement"></a>
+<h4 class="subheading">The <code>case</code> Statement</h4>
+
+<p>We use the <code>case</code> statement to test a sequence of conditions.
+This is superficially similar to <code>switch</code> in C and Java but is
+considerably more powerful, as we shall see.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; i=8
+ruby&gt; case i
+    | when 1, 2..5
+    |   puts &quot;1..5&quot;
+    | when 6..10
+    |   puts &quot;6..10&quot;
+    | end
+6..10
+   nil
+</pre></div>
+
+<a name="Testing-For-A-Range-Of-Values"></a>
+<h4 class="subsubheading">Testing For A Range Of Values</h4>
+<a name="index-range-expression"></a>
+
+<p><code>2..5</code> is an expression which means the <em>range</em> between 2
+and 5, inclusive.  The following expression tests whether the value of
+<code>i</code> falls within that range: &lsquo;<samp>(2..5) === i</samp>&rsquo;.
+</p>
+<a name="The-Relationship-Operator"></a>
+<h4 class="subsubheading">The Relationship Operator</h4>
+<a name="index-relationship-operator-_003d_003d_003d"></a>
+<a name="index-_003d_003d_003d"></a>
+
+<p><code>case</code> internally uses the <em>relationship</em> operator
+<code>===</code> to check for several conditions at a time.  In keeping with
+ruby&rsquo;s object oriented nature, <code>===</code> is interpreted suitably for
+the object that appeared in the <code>when</code> condition.
+</p>
+<p>For example, the following code tests string equality in the first
+<code>when</code>, and regular expression matching in the second <code>when</code>.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; case 'abcdef'
+    | when 'aaa', 'bbb'
+    |   puts &quot;aaa or bbb&quot;
+    | when /def/
+    |   puts &quot;includes /def/&quot;
+    | end
+includes /def/
+   nil
+</pre></div>
+   
+<a name="The-while-Statement"></a>
+<h4 class="subheading">The <code>while</code> Statement</h4>
+<a name="index-while-statement"></a>
+<a name="index-loops-using-while"></a>
+
+<p>Ruby provides convenient ways to construct loops, although you will
+find in the next chapter that learning how to use iterators will make
+it unnecessary to write explicit loops very often.
+</p>
+<p>A <code>while</code> is a repeated <code>if</code>.  We used it in our
+word-guessing puzzle and in the regular expression programs (see the
+previous chapter); there, it took the form &lsquo;<samp>while condition
+... end</samp>&rsquo; surrounding a block of code to be repeated while condition
+was true.  But <code>while</code> and <code>if</code> can as easily be applied to
+individual statements: &lsquo;<samp>puts &quot;It's zero.&quot; if i==0</samp>&rsquo; &rArr;
+&lsquo;<samp>It's zero.</samp>&rsquo; and &lsquo;<samp>puts i+=1 while i&lt;3</samp>&rsquo; &rArr; &lsquo;<samp>1 2
+3</samp>&rsquo;.
+</p>
+<a name="Negated-Conditions"></a>
+<h4 class="subsubheading">Negated Conditions</h4>
+<a name="index-unless"></a>
+<a name="index-until"></a>
+<a name="index-negated-conditions"></a>
+
+<p>Sometimes you want to negate a test condition.  An <code>unless</code> is a
+negated <code>if</code>, and an <code>until</code> is a negated <code>while</code>.
+</p>
+<a name="Interrupting-A-Loop"></a>
+<h4 class="subheading">Interrupting A Loop</h4>
+<a name="index-break"></a>
+<a name="index-next"></a>
+<a name="index-redo"></a>
+<a name="index-return"></a>
+<a name="index-loop-interrupts"></a>
+
+<p>There are four ways to interrupt the progress of a loop from
+inside.
+</p>
+<ol>
+<li> First, <code>break</code> means, as in C, to escape from the loop entirely.
+</li><li> Second, <code>next</code> skips to the beginning of the next iteration of
+the loop (corresponding to C&rsquo;s continue).
+</li><li> Third, ruby has <code>redo</code>, which restarts the current iteration.
+</li><li> The fourth way to get out of a loop from the inside is <code>return</code>.
+An evaluation of <code>return</code> causes escape not only from a loop but
+from the method that contains the loop.  If an argument is given, it
+will be returned from the method call, otherwise <code>nil</code> is
+returned.
+</li></ol>
+
+<p>The following is C code illustrating the meanings of <code>break</code>, <code>next</code>, and
+<code>redo</code>:
+</p>
+<div class="example">
+<pre class="example">while (condition) {
+label_redo:
+   goto label_next;        /* ruby's &quot;next&quot; */
+   goto label_break;       /* ruby's &quot;break&quot; */
+   goto label_redo;        /* ruby's &quot;redo&quot; */
+   ...
+   ...
+label_next:
+}
+label_break:
+...
+</pre></div>
+
+<a name="The-for-Statement"></a>
+<h4 class="subheading">The <code>for</code> Statement</h4>
+<a name="index-for-statement"></a>
+<a name="index-for-loop"></a>
+<a name="index-loop_002c-for"></a>
+<a name="index-collection_002c-looping-over-elements-using-for"></a>
+
+<p>C programmers will be wondering by now how to make a <code>for</code> loop.
+Ruby&rsquo;s <code>for</code> can serve the same purpose, but adds some
+flexibility.  The loop below runs once for each element in a collection
+(array, hash, numeric sequence, etc.), but doesn&rsquo;t make the programmer
+think about indices:
+</p>
+<div class="example">
+<pre class="example">for elt in collection
+  # ... here, elt refers to an element of the collection
+end
+</pre></div>
+
+<a name="index-collection_002c-looping-over-a-range-of-values-using-for"></a>
+<p>The collection can be a range of values (this is what most people mean
+when they talk about a <code>for</code> loop):
+</p>
+<div class="example">
+<pre class="example">ruby&gt; for num in (4..6)
+    |    puts num
+    | end
+4
+5
+6
+   4..6
+</pre></div>
+   
+<a name="for-Equivalent-To-each"></a>
+<h4 class="subsubheading"><code>for</code> Equivalent To <code>each</code></h4>
+<a name="index-for-equivalent-to-each"></a>
+<a name="index-each-equivalent-to-for"></a>
+<a name="index-iterator-as-substitute-for-for-loop"></a>
+
+<p>But we&rsquo;re getting ahead of ourselves.  <code>for</code> is really another
+way of writing <code>each</code>, which, it so happens, is our first example
+of an iterator.  The following two forms are equivalent:
+</p>
+<div class="example">
+<pre class="example">#  If you're used to C or Java, you might prefer this.
+for element in collection
+  ...
+end
+
+#  A Smalltalk programmer might prefer this.
+collection.each {|element|
+  ...
+}
+</pre></div>
+
+<p>Iterators can often be substituted for conventional loops, and once
+you get used to them, they are generally easier to deal with.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" accesskey="n" rel="next">Ruby User's Guide On Iterators</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes" accesskey="p" rel="prev">Ruby User's Guide On Arrays And Hashes</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
