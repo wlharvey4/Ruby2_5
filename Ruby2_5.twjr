@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.2e
+@set EDITION 0.2f
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -3211,8 +3211,8 @@ nice overview of many aspects of the Ruby language.
 
 @c _____________________________________
 
-@node What Is Ruby?
-@subsubsection What Is Ruby?
+@node Ruby User's Guide On What Ruby IS
+@subsubsection On What Ruby Is
 
 Ruby is ``an interpreted scripting language for quick and easy object-oriented
 programming'' --- what does this mean?
@@ -3272,8 +3272,8 @@ threading support
 
 @c _____________________________________
 
-@node Simple Examples
-@subsubsection Simple Examples
+@node Ruby User's Guide On Simple Examples
+@subsubsection On Simple Examples
 
 @subheading Factorial in Ruby
 @cindex factorial in Ruby
@@ -3468,8 +3468,8 @@ ruby> herb[-5..-2]
 
 @c _____________________________________
 
-@node Puzzle Program
-@subsubsection Puzzle Program
+@node Ruby User's Guide On Puzzle Program
+@subsubsection On Puzzle Program
 @pindex guess.rb
 
 @(guess.rb@)=
@@ -4647,7 +4647,7 @@ was made by the designers of Java).
 
 @c _____________________________________
 
-@node Ruby User's Guide On Procedure Objects (Procs)
+@node Ruby User's Guide On Procedure Objects
 @subsubsection On Procedure Objects (Procs)
 @cindex procedure objects
 @cindex Procs
@@ -4744,12 +4744,15 @@ see, we do not need variable declarations in ruby.
 
 The first character of an identifier categorizes it at a glance:
 
+@float Table,table:variable-identifiers
 @multitable @columnfractions .5 .5
 @item $          @tab   global variable
 @item @@         @tab   instance variable
 @item [a-z] or _ @tab   local variable
 @item [A-Z]      @tab   constant
 @end multitable
+@caption{List of Variable Identifiers}
+@end float
 
 @subheading Pseudo-Variables
 @cindex pseudo-variables @code{self} and @code{nil}
@@ -4805,6 +4808,7 @@ instance, it might be useful for keeping a GUI display up to date.
 
 @subheading List Of Major System Variables
 
+@float Table,table:global-variables
 @multitable @columnfractions .15 .85
 @item
 $!      @tab latest error message
@@ -4838,6 +4842,8 @@ $$      @tab interpreter's process ID
 @item
 $?      @tab exit status of last executed child process
 @end multitable
+@caption{List of Major System Variables}
+@end float
 
 @c _____________________________________
 
@@ -5185,8 +5191,396 @@ end
 @end example
 
 It is possible to use @code{ensure} without @code{rescue}, or vice versa, but
-if they are used together in the same @code{begin...end} block, the @code{rescue} must
-precede the @code{ensure}.
+if they are used together in the same @code{begin...end} block, the
+@code{rescue} must precede the @code{ensure}.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Accessors
+@subsubsection On Accessors
+@cindex accessors
+@cindex attributes
+@cindex instance variabes, as attributes
+@cindex attribute accessors
+@cindex writer accessor
+@cindex reader accessor
+
+We briefly discussed instance variables in an earlier chapter, but haven't done
+much with them yet.  An object's instance variables are its @dfn{attributes},
+the things that distinguish it from other objects of the same class.  It is
+important to be able to write and read these attributes; doing so requires
+methods called attribute accessors.  We'll see in a moment that we don't always
+have to write accessor methods explicitly, but let's go through all the motions
+for now.  The two kinds of accessors are writers and readers.
+
+@subheading Accessors: Writers And Readers
+
+@example
+ruby> class Fruit
+    |   def set_kind(k)  # a writer
+    |     @@kind = k
+    |   end
+    |   def get_kind     # a reader
+    |     @@kind
+    |   end
+    | end
+   nil
+ruby> f1 = Fruit.new
+   #<Fruit:0xfd7e7c8c>
+ruby> f1.set_kind("peach")  # use the writer
+   "peach"
+ruby> f1.get_kind           # use the reader
+   "peach"
+ruby> f1                    # inspect the object
+   #<Fruit:0xfd7e7c8c @@kind="peach">
+@end example
+
+Simple enough; we can store and retrieve information about what kind of fruit
+we're looking at.  But our method names are a little wordy.  The following is
+more concise, and more conventional:
+
+@example
+ruby> class Fruit
+    |   def kind=(k)
+    |     @@kind = k
+    |   end
+    |   def kind
+    |     @@kind
+    |   end
+    | end
+   nil
+ruby> f2 = Fruit.new
+   #<Fruit:0xfd7e7c8c>
+ruby> f2.kind = "banana"
+   "banana"
+ruby> f2.kind
+   "banana"
+@end example
+   
+@subheading The @code{inspect} Method
+@cindex @code{inspect} method
+
+A short digression is in order.  You've noticed by now that when we try to look
+at an object directly, we are shown something cryptic like
+@samp{#<anObject:0x83678>}.  This is just a default behavior, and we are free
+to change it.  All we need to do is add a method named @code{inspect}.  It
+should return a string that describes the object in some sensible way,
+including the states of some or all of its instance variables.
+
+@example
+ruby> class Fruit
+    |   def inspect
+    |     "a fruit of the #@{@@kind@} variety"
+    |   end
+    | end
+   nil
+ruby> f2
+   "a fruit of the banana variety"
+@end example
+
+@subheading @code{to_s} And @code{p} Methods
+@cindex @code{to_s} method
+@cindex @code{p} method
+
+A related method is @code{to_s} (convert to string), which is used when
+printing an object.  In general, you can think of @code{inspect} as a tool for
+when you are writing and debugging programs, and @code{to_s} as a way of
+refining program output.  @file{eval.rb} uses @code{inspect} whenever it
+displays results.  You can use the @code{p} method to easily get debugging
+output from programs.
+
+@example
+# These two lines are equivalent:
+p anObject
+puts anObject.inspect
+@end example
+
+@subheading Making Accessors
+@cindex accessors, using shortcuts
+
+Since many instance variables need accessor methods, Ruby provides convenient
+shortcuts for the standard forms.
+
+@float Table,table:accessor-shortcuts
+@multitable @columnfractions .35 .65
+@headitem Shortcut @tab Effect
+@item
+attr_reader :v @tab def v; @v; end
+@item
+attr_writer :v @tab def v=(value); @v=value; end
+@item
+attr_accessor :v @tab attr_reader :v; attr_writer :v
+@item
+attr_accessor :v, :w @tab attr_accessor :v; attr_accessor :w
+@end multitable
+@caption{List of Accessor Shortcuts}
+@end float
+
+Let's take advantage of this and add freshness information.  First we ask for an
+automatically generated reader and writer, and then we incorporate the new
+information into @code{inspect}:
+
+@example
+ruby> class Fruit
+    |   attr_accessor :condition
+    |   def inspect
+    |     "a #@{@@condition@} #@{@@kind@}"
+    |   end
+    | end
+   nil
+ruby> f2.condition = "ripe"
+   "ripe"
+ruby> f2
+   "a ripe banana"
+@end example
+
+If nobody eats our ripe fruit, perhaps we should let time take its toll.
+
+@example
+ruby> class Fruit
+    |   def time_passes
+    |     @@condition = "rotting"
+    |   end
+    | end
+   nil
+ruby> f2
+   "a ripe banana"
+ruby> f2.time_passes
+   "rotting"
+ruby> f2
+   "a rotting banana"
+@end example
+
+But while playing around here, we have introduced a small problem.  What happens
+if we try to create a third piece of fruit now?  Remember that instance
+variables don't exist until values are assigned to them.
+
+@example
+ruby> f3 = Fruit.new
+ERR: failed to convert nil into String
+@end example
+
+It is the @code{inspect} method that is complaining here, and with good reason.
+We have asked it to report on the kind and condition of a piece of fruit, but
+as yet @code{f3} has not been assigned either attribute.  If we wanted to, we
+could rewrite the @code{inspect} method so it tests instance variables using
+the @code{defined?}  method and then only reports on them if they exist, but
+maybe that's not very useful; since every piece of fruit has a kind and
+condition, it seems we should make sure those always get defined somehow.  That
+is the topic of the next chapter.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Object Initialization
+@subsubsection On Object Initialization
+@cindex initialization of objects
+@cindex @code{initialize} method
+
+Our @code{Fruit} class from the previous chapter had two instance variables,
+one to describe the kind of fruit and another to describe its condition.  It
+was only after writing a custom @code{inspect} method for the class that we
+realized it didn't make sense for a piece of fruit to lack those
+characteristics.  Fortunately, ruby provides a way to ensure that instance
+variables always get initialized.
+
+@subheading Default Argument Values in @code{initialize}
+@cindex default argument values
+@cindex argument values, setting default values
+
+Whenever Ruby creates a new object, it looks for a method named
+@code{initialize} and executes it.  So one simple thing we can do is use an
+@code{initialize} method to put default values into all the instance variables,
+so the @code{inspect} method will have something to say.
+
+There will be times when a default value doesn't make a lot of sense.  Is there
+such a thing as a default kind of fruit?  It may be preferable to require that
+each piece of fruit have its kind specified at the time of its creation.  To do
+this, we would add a formal argument to the @code{initialize} method.  For
+reasons we won't get into here, arguments you supply to @code{new} are actually
+delivered to @code{initialize}.
+
+@example
+ruby> class Fruit
+    |   def initialize( k )
+    |     @@kind = k
+    |     @@condition = "ripe"
+    |   end
+    | end
+   nil
+ruby> f5 = Fruit.new "mango"
+   "a ripe mango"
+ruby> f6 = Fruit.new
+ERR: (eval):1:in `initialize': wrong # of arguments(0 for 1)
+@end example
+
+Above we see that once an argument is associated with the @code{initialize}
+method, it can't be left off without generating an error.  If we want to be more
+considerate, we can use the argument if it is given, or fall back to default
+values otherwise.
+
+@example
+ruby> class Fruit
+    |   def initialize( k="apple" )
+    |     @@kind = k
+    |     @@condition = "ripe"
+    |   end
+    | end
+   nil
+ruby> f5 = Fruit.new "mango"
+   "a ripe mango"
+ruby> f6 = Fruit.new
+   "a ripe apple"
+@end example
+
+You can use @dfn{default argument values} for any method, not just @code{initialize}.
+The argument list must be arranged so that those with default values come last.
+
+@subheading Object Reflection, Variable-Length Argument Lists, Method Overloading
+@cindex reflection
+@cindex variable-length argument lists
+@cindex argument lists, variable length
+@cindex method overloading
+
+Sometimes it is useful to provide several ways to initialize an
+object.  Although it is outside the scope of this tutorial, ruby supports object
+reflection and variable-length argument lists, which together effectively allow
+method overloading.
+   
+@c _____________________________________
+
+@node Ruby User's Guide On Nuts And Bolts
+@subsubsection On Nuts And Bolts
+
+@subheading Statement Delimiters
+@cindex statement delimiters
+
+Some languages require some kind of punctuation, often a semicolon (@kbd{;}),
+to end each statement in a program.  Ruby instead follows the convention used
+in shells like @command{sh} and @command{csh}.  Multiple statements on one line
+must be separated by semicolons, but they are not required at the end of a
+line; a linefeed is treated like a semicolon.  If a line ends with a backslash
+(@kbd{\}), the linefeed following it is ignored; this allows you to have a
+single logical line that spans several lines.
+
+@subheading Comments
+@cindex comments
+
+Why write comments?  Although well written code tends to be self-documenting,
+it is often helpful to scribble in the margins, and it can be a mistake to
+believe that others will be able to look at your code and immediately see it
+the way you do.  Besides, for practical purposes, you yourself are a different
+person within a few days anyway; which of us hasn't gone back to fix or enhance
+a program after the passage of time and said, I know I wrote this, but what in
+blazes does it mean?
+
+Some experienced programmers will point out, quite correctly, that
+contradictory or outdated comments can be worse than none at all.  Certainly,
+comments shouldn't be a substitute for readable code; if your code is unclear,
+it's probably also buggy.  You may find that you need to comment more while you
+are learning ruby, and then less as you become better at expressing your ideas
+in simple, elegant, readable code.
+
+Ruby follows a common scripting convention, which is to use a pound symbol
+(@kbd{#}) to denote the start of a comment.  Anything following an unquoted
+@kbd{#}, to the end of the line on which it appears, is ignored by the
+interpreter.
+
+Also, to facilitate large comment blocks, the ruby interpreter also ignores
+anything between a line starting with @kbd{=begin} and another line starting
+with @kbd{=end}.
+
+@example
+#!/usr/bin/env ruby
+
+=begin
+**********************************************************************
+  This is a comment block, something you write for the benefit of
+  human readers (including yourself).  The interpreter ignores it.
+  There is no need for a '#' at the start of every line.
+**********************************************************************
+=end
+@end example
+
+@subheading Organizing Your Code
+
+Ruby's unusually high level of dynamism means that classes, modules, and
+methods exist only after their defining code runs.  If you're used to
+programming in a more static language, this can sometimes lead to surprises.
+
+@example
+# The below results in an "undefined method" error:
+
+puts successor(3)
+
+def successor(x)
+  x + 1
+end
+@end example
+
+Although the interpreter checks over the entire script file for syntax before
+executing it, the @code{def successor ... end} code has to actually run in
+order to create the @code{successor} method.  So the order in which you arrange
+a script can matter.
+
+This does not, as it might seem at first glance, force you to organize your
+code in a strictly bottom-up fashion.  When the interpreter encounters a method
+definition, it can safely include undefined references, as long as you can be
+sure they will be defined by the time the method is actually invoked:
+
+@example
+# Conversion of fahrenheit to celsius, broken
+# down into two steps.
+
+def f_to_c(f)
+  scale(f - 32.0)  # This is a forward reference, but it's okay.
+end
+
+def scale(x)
+  x * 5.0 / 9.0
+end
+
+printf "%.1f is a comfortable temperature.\n", f_to_c(72.3)
+@end example
+
+So while this may seem less convenient than what you may be used to in Perl or
+Java, it is less restrictive than trying to write C without prototypes (which
+would require you to always maintain a partial ordering of what references
+what).  Putting top-level code at the bottom of a source file always works.
+And even this is less of an annoyance than it might at first seem.  A sensible
+and painless way to enforce the behavior you want is to define a @code{main}
+function at the top of the file, and call it from the bottom.
+
+@example
+#!/usr/bin/env ruby
+
+def main
+  # Express the top level logic here...
+end
+
+# ... put support code here, organized as you see fit ...
+
+main # ... and start execution here.
+@end example
+
+@subheading @code{load} And @code{require}
+
+@cindex @code{include}
+@cindex @code{require}
+@cindex @code{load}
+It also helps that ruby provides tools for breaking complicated programs into
+readable, reusable, logically related chunks.  We have already seen the use of
+@code{include} for accessing modules (@pxref{Ruby User's Guide On Modules}.
+You will also find the @code{load} and @code{require} facilities useful.
+
+@table @code
+@item load
+works as if the file it refers to were copied and pasted in
+(something like the @code{#include} preprocessor directive in C).
+@item require
+is somewhat more sophisticated, causing code to be loaded at
+most once and only when needed.
+@end table
+
 
 @c .....................................
 
@@ -5309,6 +5703,20 @@ have taken days.
 
 @node Further Reading
 @section Further Reading
+
+
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node List of Tables
+@unnumbered List of Tables
+
+@listoffloats Table
 
 
 
@@ -5550,6 +5958,8 @@ if (indent == 0) && (expr.chop =~ /[^; \t\n\r\f]+/)
 
 end # if
 @
+
+
 
 
 @c -----------------------------------------------------------------------------

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2f of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Nuts And Bolts (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Nuts And Bolts (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Nuts And Bolts (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Programming-Ruby.html#Programming-Ruby" rel="next" title="Programming Ruby">
+<link href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization" rel="prev" title="Ruby User's Guide On Object Initialization">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Nuts-And-Bolts"></a>
+<div class="header">
+<p>
+Previous: <a href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization" accesskey="p" rel="prev">Ruby User's Guide On Object Initialization</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Nuts-And-Bolts"></a>
+<h4 class="subsubsection">2.4.1.27 On Nuts And Bolts</h4>
+
+<a name="Statement-Delimiters"></a>
+<h4 class="subheading">Statement Delimiters</h4>
+<a name="index-statement-delimiters"></a>
+
+<p>Some languages require some kind of punctuation, often a semicolon (<kbd>;</kbd>),
+to end each statement in a program.  Ruby instead follows the convention used
+in shells like <code>sh</code> and <code>csh</code>.  Multiple statements on one line
+must be separated by semicolons, but they are not required at the end of a
+line; a linefeed is treated like a semicolon.  If a line ends with a backslash
+(<kbd>\</kbd>), the linefeed following it is ignored; this allows you to have a
+single logical line that spans several lines.
+</p>
+<a name="Comments"></a>
+<h4 class="subheading">Comments</h4>
+<a name="index-comments"></a>
+
+<p>Why write comments?  Although well written code tends to be self-documenting,
+it is often helpful to scribble in the margins, and it can be a mistake to
+believe that others will be able to look at your code and immediately see it
+the way you do.  Besides, for practical purposes, you yourself are a different
+person within a few days anyway; which of us hasn&rsquo;t gone back to fix or enhance
+a program after the passage of time and said, I know I wrote this, but what in
+blazes does it mean?
+</p>
+<p>Some experienced programmers will point out, quite correctly, that
+contradictory or outdated comments can be worse than none at all.  Certainly,
+comments shouldn&rsquo;t be a substitute for readable code; if your code is unclear,
+it&rsquo;s probably also buggy.  You may find that you need to comment more while you
+are learning ruby, and then less as you become better at expressing your ideas
+in simple, elegant, readable code.
+</p>
+<p>Ruby follows a common scripting convention, which is to use a pound symbol
+(<kbd>#</kbd>) to denote the start of a comment.  Anything following an unquoted
+<kbd>#</kbd>, to the end of the line on which it appears, is ignored by the
+interpreter.
+</p>
+<p>Also, to facilitate large comment blocks, the ruby interpreter also ignores
+anything between a line starting with <kbd>=begin</kbd> and another line starting
+with <kbd>=end</kbd>.
+</p>
+<div class="example">
+<pre class="example">#!/usr/bin/env ruby
+
+=begin
+**********************************************************************
+  This is a comment block, something you write for the benefit of
+  human readers (including yourself).  The interpreter ignores it.
+  There is no need for a '#' at the start of every line.
+**********************************************************************
+=end
+</pre></div>
+
+<a name="Organizing-Your-Code"></a>
+<h4 class="subheading">Organizing Your Code</h4>
+
+<p>Ruby&rsquo;s unusually high level of dynamism means that classes, modules, and
+methods exist only after their defining code runs.  If you&rsquo;re used to
+programming in a more static language, this can sometimes lead to surprises.
+</p>
+<div class="example">
+<pre class="example"># The below results in an &quot;undefined method&quot; error:
+
+puts successor(3)
+
+def successor(x)
+  x + 1
+end
+</pre></div>
+
+<p>Although the interpreter checks over the entire script file for syntax before
+executing it, the <code>def successor ... end</code> code has to actually run in
+order to create the <code>successor</code> method.  So the order in which you arrange
+a script can matter.
+</p>
+<p>This does not, as it might seem at first glance, force you to organize your
+code in a strictly bottom-up fashion.  When the interpreter encounters a method
+definition, it can safely include undefined references, as long as you can be
+sure they will be defined by the time the method is actually invoked:
+</p>
+<div class="example">
+<pre class="example"># Conversion of fahrenheit to celsius, broken
+# down into two steps.
+
+def f_to_c(f)
+  scale(f - 32.0)  # This is a forward reference, but it's okay.
+end
+
+def scale(x)
+  x * 5.0 / 9.0
+end
+
+printf &quot;%.1f is a comfortable temperature.\n&quot;, f_to_c(72.3)
+</pre></div>
+
+<p>So while this may seem less convenient than what you may be used to in Perl or
+Java, it is less restrictive than trying to write C without prototypes (which
+would require you to always maintain a partial ordering of what references
+what).  Putting top-level code at the bottom of a source file always works.
+And even this is less of an annoyance than it might at first seem.  A sensible
+and painless way to enforce the behavior you want is to define a <code>main</code>
+function at the top of the file, and call it from the bottom.
+</p>
+<div class="example">
+<pre class="example">#!/usr/bin/env ruby
+
+def main
+  # Express the top level logic here...
+end
+
+# ... put support code here, organized as you see fit ...
+
+main # ... and start execution here.
+</pre></div>
+
+<a name="load-And-require"></a>
+<h4 class="subheading"><code>load</code> And <code>require</code></h4>
+
+<a name="index-include"></a>
+<a name="index-require-2"></a>
+<a name="index-load-1"></a>
+<p>It also helps that ruby provides tools for breaking complicated programs into
+readable, reusable, logically related chunks.  We have already seen the use of
+<code>include</code> for accessing modules (see section <a href="Ruby-User_0027s-Guide-On-Modules.html#Ruby-User_0027s-Guide-On-Modules">On Modules</a>.
+You will also find the <code>load</code> and <code>require</code> facilities useful.
+</p>
+<dl compact="compact">
+<dt><code>load</code></dt>
+<dd><p>works as if the file it refers to were copied and pasted in
+(something like the <code>#include</code> preprocessor directive in C).
+</p></dd>
+<dt><code>require</code></dt>
+<dd><p>is somewhat more sophisticated, causing code to be loaded at
+most once and only when needed.
+</p></dd>
+</dl>
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization" accesskey="p" rel="prev">Ruby User's Guide On Object Initialization</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

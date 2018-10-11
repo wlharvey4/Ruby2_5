@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2f of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Object Initialization (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Object Initialization (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Object Initialization (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Nuts-And-Bolts.html#Ruby-User_0027s-Guide-On-Nuts-And-Bolts" rel="next" title="Ruby User's Guide On Nuts And Bolts">
+<link href="Ruby-User_0027s-Guide-On-Accessors.html#Ruby-User_0027s-Guide-On-Accessors" rel="prev" title="Ruby User's Guide On Accessors">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Object-Initialization"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Nuts-And-Bolts.html#Ruby-User_0027s-Guide-On-Nuts-And-Bolts" accesskey="n" rel="next">Ruby User's Guide On Nuts And Bolts</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Accessors.html#Ruby-User_0027s-Guide-On-Accessors" accesskey="p" rel="prev">Ruby User's Guide On Accessors</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Object-Initialization"></a>
+<h4 class="subsubsection">2.4.1.26 On Object Initialization</h4>
+<a name="index-initialization-of-objects"></a>
+<a name="index-initialize-method-1"></a>
+
+<p>Our <code>Fruit</code> class from the previous chapter had two instance variables,
+one to describe the kind of fruit and another to describe its condition.  It
+was only after writing a custom <code>inspect</code> method for the class that we
+realized it didn&rsquo;t make sense for a piece of fruit to lack those
+characteristics.  Fortunately, ruby provides a way to ensure that instance
+variables always get initialized.
+</p>
+<a name="Default-Argument-Values-in-initialize"></a>
+<h4 class="subheading">Default Argument Values in <code>initialize</code></h4>
+<a name="index-default-argument-values"></a>
+<a name="index-argument-values_002c-setting-default-values"></a>
+
+<p>Whenever Ruby creates a new object, it looks for a method named
+<code>initialize</code> and executes it.  So one simple thing we can do is use an
+<code>initialize</code> method to put default values into all the instance variables,
+so the <code>inspect</code> method will have something to say.
+</p>
+<p>There will be times when a default value doesn&rsquo;t make a lot of sense.  Is there
+such a thing as a default kind of fruit?  It may be preferable to require that
+each piece of fruit have its kind specified at the time of its creation.  To do
+this, we would add a formal argument to the <code>initialize</code> method.  For
+reasons we won&rsquo;t get into here, arguments you supply to <code>new</code> are actually
+delivered to <code>initialize</code>.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   def initialize( k )
+    |     @kind = k
+    |     @condition = &quot;ripe&quot;
+    |   end
+    | end
+   nil
+ruby&gt; f5 = Fruit.new &quot;mango&quot;
+   &quot;a ripe mango&quot;
+ruby&gt; f6 = Fruit.new
+ERR: (eval):1:in `initialize': wrong # of arguments(0 for 1)
+</pre></div>
+
+<p>Above we see that once an argument is associated with the <code>initialize</code>
+method, it can&rsquo;t be left off without generating an error.  If we want to be more
+considerate, we can use the argument if it is given, or fall back to default
+values otherwise.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   def initialize( k=&quot;apple&quot; )
+    |     @kind = k
+    |     @condition = &quot;ripe&quot;
+    |   end
+    | end
+   nil
+ruby&gt; f5 = Fruit.new &quot;mango&quot;
+   &quot;a ripe mango&quot;
+ruby&gt; f6 = Fruit.new
+   &quot;a ripe apple&quot;
+</pre></div>
+
+<p>You can use <em>default argument values</em> for any method, not just <code>initialize</code>.
+The argument list must be arranged so that those with default values come last.
+</p>
+<a name="Object-Reflection_002c-Variable_002dLength-Argument-Lists_002c-Method-Overloading"></a>
+<h4 class="subheading">Object Reflection, Variable-Length Argument Lists, Method Overloading</h4>
+<a name="index-reflection"></a>
+<a name="index-variable_002dlength-argument-lists"></a>
+<a name="index-argument-lists_002c-variable-length"></a>
+<a name="index-method-overloading"></a>
+
+<p>Sometimes it is useful to provide several ways to initialize an
+object.  Although it is outside the scope of this tutorial, ruby supports object
+reflection and variable-length argument lists, which together effectively allow
+method overloading.
+</p>   
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Nuts-And-Bolts.html#Ruby-User_0027s-Guide-On-Nuts-And-Bolts" accesskey="n" rel="next">Ruby User's Guide On Nuts And Bolts</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Accessors.html#Ruby-User_0027s-Guide-On-Accessors" accesskey="p" rel="prev">Ruby User's Guide On Accessors</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

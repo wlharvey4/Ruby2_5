@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2f of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Accessors (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Accessors (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Accessors (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization" rel="next" title="Ruby User's Guide On Object Initialization">
+<link href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure" rel="prev" title="Ruby User's Guide On Exception Processing and ensure">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Accessors"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization" accesskey="n" rel="next">Ruby User's Guide On Object Initialization</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure" accesskey="p" rel="prev">Ruby User's Guide On Exception Processing and <code>ensure</code></a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Accessors"></a>
+<h4 class="subsubsection">2.4.1.25 On Accessors</h4>
+<a name="index-accessors"></a>
+<a name="index-attributes-1"></a>
+<a name="index-instance-variabes_002c-as-attributes"></a>
+<a name="index-attribute-accessors"></a>
+<a name="index-writer-accessor"></a>
+<a name="index-reader-accessor"></a>
+
+<p>We briefly discussed instance variables in an earlier chapter, but haven&rsquo;t done
+much with them yet.  An object&rsquo;s instance variables are its <em>attributes</em>,
+the things that distinguish it from other objects of the same class.  It is
+important to be able to write and read these attributes; doing so requires
+methods called attribute accessors.  We&rsquo;ll see in a moment that we don&rsquo;t always
+have to write accessor methods explicitly, but let&rsquo;s go through all the motions
+for now.  The two kinds of accessors are writers and readers.
+</p>
+<a name="Accessors_003a-Writers-And-Readers"></a>
+<h4 class="subheading">Accessors: Writers And Readers</h4>
+
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   def set_kind(k)  # a writer
+    |     @kind = k
+    |   end
+    |   def get_kind     # a reader
+    |     @kind
+    |   end
+    | end
+   nil
+ruby&gt; f1 = Fruit.new
+   #&lt;Fruit:0xfd7e7c8c&gt;
+ruby&gt; f1.set_kind(&quot;peach&quot;)  # use the writer
+   &quot;peach&quot;
+ruby&gt; f1.get_kind           # use the reader
+   &quot;peach&quot;
+ruby&gt; f1                    # inspect the object
+   #&lt;Fruit:0xfd7e7c8c @kind=&quot;peach&quot;&gt;
+</pre></div>
+
+<p>Simple enough; we can store and retrieve information about what kind of fruit
+we&rsquo;re looking at.  But our method names are a little wordy.  The following is
+more concise, and more conventional:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   def kind=(k)
+    |     @kind = k
+    |   end
+    |   def kind
+    |     @kind
+    |   end
+    | end
+   nil
+ruby&gt; f2 = Fruit.new
+   #&lt;Fruit:0xfd7e7c8c&gt;
+ruby&gt; f2.kind = &quot;banana&quot;
+   &quot;banana&quot;
+ruby&gt; f2.kind
+   &quot;banana&quot;
+</pre></div>
+   
+<a name="The-inspect-Method"></a>
+<h4 class="subheading">The <code>inspect</code> Method</h4>
+<a name="index-inspect-method"></a>
+
+<p>A short digression is in order.  You&rsquo;ve noticed by now that when we try to look
+at an object directly, we are shown something cryptic like
+&lsquo;<samp>#&lt;anObject:0x83678&gt;</samp>&rsquo;.  This is just a default behavior, and we are free
+to change it.  All we need to do is add a method named <code>inspect</code>.  It
+should return a string that describes the object in some sensible way,
+including the states of some or all of its instance variables.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   def inspect
+    |     &quot;a fruit of the #{@kind} variety&quot;
+    |   end
+    | end
+   nil
+ruby&gt; f2
+   &quot;a fruit of the banana variety&quot;
+</pre></div>
+
+<a name="to_005fs-And-p-Methods"></a>
+<h4 class="subheading"><code>to_s</code> And <code>p</code> Methods</h4>
+<a name="index-to_005fs-method"></a>
+<a name="index-p-method"></a>
+
+<p>A related method is <code>to_s</code> (convert to string), which is used when
+printing an object.  In general, you can think of <code>inspect</code> as a tool for
+when you are writing and debugging programs, and <code>to_s</code> as a way of
+refining program output.  <samp>eval.rb</samp> uses <code>inspect</code> whenever it
+displays results.  You can use the <code>p</code> method to easily get debugging
+output from programs.
+</p>
+<div class="example">
+<pre class="example"># These two lines are equivalent:
+p anObject
+puts anObject.inspect
+</pre></div>
+
+<a name="Making-Accessors"></a>
+<h4 class="subheading">Making Accessors</h4>
+<a name="index-accessors_002c-using-shortcuts"></a>
+
+<p>Since many instance variables need accessor methods, Ruby provides convenient
+shortcuts for the standard forms.
+</p>
+<div class="float"><a name="table_003aaccessor_002dshortcuts"></a>
+<table>
+<thead><tr><th width="35%">Shortcut</th><th width="65%">Effect</th></tr></thead>
+<tr><td width="35%">attr_reader :v</td><td width="65%">def v; ;&lt; end</td></tr>
+<tr><td width="35%">attr_writer :v</td><td width="65%">def v=(value); =&lt;value; end</td></tr>
+<tr><td width="35%">attr_accessor :v</td><td width="65%">attr_reader :v; attr_writer :v</td></tr>
+<tr><td width="35%">attr_accessor :v, :w</td><td width="65%">attr_accessor :v; attr_accessor :w</td></tr>
+</table>
+
+<div class="float-caption"><p><strong>Table 2.3: </strong>List of Accessor Shortcuts</p></div></div>
+<p>Let&rsquo;s take advantage of this and add freshness information.  First we ask for an
+automatically generated reader and writer, and then we incorporate the new
+information into <code>inspect</code>:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   attr_accessor :condition
+    |   def inspect
+    |     &quot;a #{@condition} #{@kind}&quot;
+    |   end
+    | end
+   nil
+ruby&gt; f2.condition = &quot;ripe&quot;
+   &quot;ripe&quot;
+ruby&gt; f2
+   &quot;a ripe banana&quot;
+</pre></div>
+
+<p>If nobody eats our ripe fruit, perhaps we should let time take its toll.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Fruit
+    |   def time_passes
+    |     @condition = &quot;rotting&quot;
+    |   end
+    | end
+   nil
+ruby&gt; f2
+   &quot;a ripe banana&quot;
+ruby&gt; f2.time_passes
+   &quot;rotting&quot;
+ruby&gt; f2
+   &quot;a rotting banana&quot;
+</pre></div>
+
+<p>But while playing around here, we have introduced a small problem.  What happens
+if we try to create a third piece of fruit now?  Remember that instance
+variables don&rsquo;t exist until values are assigned to them.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; f3 = Fruit.new
+ERR: failed to convert nil into String
+</pre></div>
+
+<p>It is the <code>inspect</code> method that is complaining here, and with good reason.
+We have asked it to report on the kind and condition of a piece of fruit, but
+as yet <code>f3</code> has not been assigned either attribute.  If we wanted to, we
+could rewrite the <code>inspect</code> method so it tests instance variables using
+the <code>defined?</code>  method and then only reports on them if they exist, but
+maybe that&rsquo;s not very useful; since every piece of fruit has a kind and
+condition, it seems we should make sure those always get defined somehow.  That
+is the topic of the next chapter.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization" accesskey="n" rel="next">Ruby User's Guide On Object Initialization</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure" accesskey="p" rel="prev">Ruby User's Guide On Exception Processing and <code>ensure</code></a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

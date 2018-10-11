@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2f of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Simple Examples (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Simple Examples (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Simple Examples (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings" rel="next" title="Ruby User's Guide on Strings">
+<link href="Ruby-User_0027s-Guide-On-What-Ruby-IS.html#Ruby-User_0027s-Guide-On-What-Ruby-IS" rel="prev" title="Ruby User's Guide On What Ruby IS">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Simple-Examples"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings" accesskey="n" rel="next">Ruby User's Guide on Strings</a>, Previous: <a href="Ruby-User_0027s-Guide-On-What-Ruby-IS.html#Ruby-User_0027s-Guide-On-What-Ruby-IS" accesskey="p" rel="prev">Ruby User's Guide On What Ruby IS</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Simple-Examples"></a>
+<h4 class="subsubsection">2.4.1.2 On Simple Examples</h4>
+
+<a name="Factorial-in-Ruby"></a>
+<h4 class="subheading">Factorial in Ruby</h4>
+<a name="index-factorial-in-Ruby"></a>
+<a name="index-fact_002erb"></a>
+
+<p>Let&rsquo;s write a function to compute factorials.  The mathematical definition of
+<em>n factorial</em> is:
+</p>
+<div class="display">
+<pre class="display">n! = 1                (when n==0)
+   = n * (n-1)!       (otherwise)
+</pre></div>
+
+<p>In ruby, this can be written as:
+</p>
+<a name="fact_002drb"></a><a name="index-_007bfact_002erb_007d_002c-definition"></a>
+<p><span class="roman">{<samp>fact.rb</samp>}</span> &equiv;
+</p><div class="example">
+<pre class="example"># Program to find the factorial of a number
+# Save this as fact.rb
+
+def fact(n)
+  if n == 0
+    1
+  else
+    n * fact(n-1)
+  end
+end
+
+puts fact(ARGV[0].to_i)
+
+</pre></div>
+
+<a name="Command-Line-Arguments-_002d_002d_002d-In-Array-ARGV"></a>
+<h4 class="subsubheading">Command Line Arguments &mdash;  In Array <var>ARGV</var></h4>
+<a name="index-command-line-arguments-in-ARGV"></a>
+<a name="index-to_005fi-method"></a>
+
+<p><code>ARGV</code> is an array which contains the command line arguments, and
+<code>to_i</code> converts a character string to an integer.<a name="DOCF1" href="#FOOT1"><sup>1</sup></a>
+</p>
+<a name="The-end-Statement"></a>
+<h4 class="subsubheading">The <code>end</code> Statement</h4>
+
+<p>You may notice the repeated occurrence of <code>end</code>.  Ruby has been called
+&ldquo;Algol-like&rdquo; because of this.  (Actually, the syntax of ruby more closely
+mimics that of a language named <a href="https://www.eiffel.org/">Eiffel</a>.)
+</p>
+<a name="Takeaway-_002d_002d_002d-return-Statement-Optional"></a>
+<h4 class="subsubheading">Takeaway &mdash; <code>return</code> Statement Optional</h4>
+
+<p>You may also notice the lack of a <code>return</code> statement.
+</p>
+<blockquote>
+<p>[A <code>return</code> statement] is unneeded because <strong>a ruby function
+returns the last thing that was evaluated in it</strong>.  Use of a <code>return</code>
+statement here is permissible but unnecessary.
+</p></blockquote>
+<a name="index-Algol-and-Ruby"></a>
+<a name="index-Eiffel-and-Ruby"></a>
+<a name="index-return-statement-unnecessary"></a>
+
+<a name="Running-fact_002erb"></a>
+<h4 class="subsubheading">Running <samp>fact.rb</samp></h4>
+
+<p>Ruby can deal with any integer which is allowed by your machine&rsquo;s memory.  So
+400! can be calculated:
+</p>
+<div class="example">
+<pre class="example">% ruby fact.rb 1
+1
+% ruby fact.rb 5
+120
+
+% ruby fact.rb 40
+815915283247897734345611269596115894272000000000
+
+% ruby fact.rb 400
+64034522846623895262347970319503005850702583026002959458684
+44594280239716918683143627847864746326467629435057503585681
+08482981628835174352289619886468029979373416541508381624264
+61942352307046244325015114448670890662773914918117331955996
+44070954967134529047702032243491121079759328079510154537266
+72516278778900093497637657103263503315339653498683868313393
+52024373788157786791506311858702618270169819740062983025308
+59129834616227230455833952075961150530223608681043329725519
+48526744322324386699484224042325998055516106359423769613992 
+31917134063858996537970147827206606320217379472010321356624 
+61380907794230459736069956759583609615871512991382228657857 
+95493616176544804532220078258184008484364155912294542753848 
+03558374518022675900061399560145595206127211192918105032491 
+00800000000000000000000000000000000000000000000000000000000 
+0000000000000000000000000000000000000000000
+</pre></div>
+
+<a name="The-Input_002fEvaluation-Loop"></a>
+<h4 class="subheading">The Input/Evaluation Loop</h4>
+
+<p>When you invoke ruby with no arguments, it reads commands from standard input
+and executes them after the end of input:
+</p>
+<div class="example">
+<pre class="example">% ruby
+puts &quot;hello world&quot;
+puts &quot;good-bye world&quot;
+^D
+hello world
+good-bye world
+</pre></div>
+
+<a name="Ruby-Evaluation-Program-_002d_002d_002d-eval_002erb"></a>
+<h4 class="subsubheading">Ruby Evaluation Program &mdash; <samp>eval.rb</samp></h4>
+<a name="index-eval_002erb"></a>
+
+<p>Ruby also comes with a program called <samp>eval.rb</samp> (see section <a href="eval_002erb.html#eval_002erb"><samp>eval.rb</samp></a>)
+that allows you to enter ruby code from the keyboard in an interactive
+loop, showing you the results as you go.  It will be used extensively
+through the rest of this guide.  You should use this enhanced
+<a href="http://www.rubyist.net/~slagell/ruby/eval.txt"><samp>eval.rb</samp></a>
+that adds visual indenting assistance, warning reports, and color
+highlighting.
+</p>
+<p>Here is a short <samp>eval.rb</samp> session:
+</p>
+<div class="example">
+<pre class="example">% ruby eval.rb
+ruby&gt; puts &quot;Hello, world.&quot;
+Hello, world.
+   nil
+ruby&gt; exit
+</pre></div>
+
+<p>&lsquo;<samp>hello world</samp>&rsquo; is produced by <code>puts</code>.  The next line, in this case
+<code>nil</code>, reports on whatever was last evaluated;
+</p>
+<a name="No-Distinction-Between-Statement-and-Expression"></a>
+<h4 class="subsubheading">No Distinction Between Statement and Expression</h4>
+<a name="index-statement-vs-expression"></a>
+<a name="index-expression-vs-statement"></a>
+
+<blockquote>
+<p>Ruby does not distinguish between statements and expressions, so evaluating a
+piece of code basically means the same thing as executing it.
+</p></blockquote>
+
+<p>Here, <code>nil</code> indicates that <code>puts</code> does not return a meaningful
+value.  Note that we can leave this interpreter loop by saying
+<code>exit</code>, although <tt class="key">C-D</tt> still works too.
+</p>
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
+<p>Ruby
+does not convert strings into integers automatically like perl does.</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings" accesskey="n" rel="next">Ruby User's Guide on Strings</a>, Previous: <a href="Ruby-User_0027s-Guide-On-What-Ruby-IS.html#Ruby-User_0027s-Guide-On-What-Ruby-IS" accesskey="p" rel="prev">Ruby User's Guide On What Ruby IS</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
