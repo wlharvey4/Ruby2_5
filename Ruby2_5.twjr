@@ -3848,17 +3848,16 @@ includes /def/
 @cindex @code{while} statement
 @cindex loops using @code{while}
 
-Ruby provides convenient ways to construct loops, although you will
-find in the next chapter that learning how to use iterators will make
-it unnecessary to write explicit loops very often.
+Ruby provides convenient ways to construct loops, although you will find in the
+next chapter that learning how to use iterators will make it unnecessary to
+write explicit loops very often.
 
-A @code{while} is a repeated @code{if}.  We used it in our
-word-guessing puzzle and in the regular expression programs (see the
-previous chapter); there, it took the form @samp{while condition
-... end} surrounding a block of code to be repeated while condition
-was true.  But @code{while} and @code{if} can as easily be applied to
-individual statements: @samp{puts "It's zero." if i==0} @result{}
-@samp{It's zero.} and @samp{puts i+=1 while i<3} @result{} @samp{1 2
+A @code{while} is a repeated @code{if}.  We used it in our word-guessing puzzle
+and in the regular expression programs (see the previous chapter); there, it
+took the form @samp{while condition ... end} surrounding a block of code to be
+repeated while condition was true.  But @code{while} and @code{if} can as
+easily be applied to individual statements: @samp{puts "It's zero." if i==0}
+@result{} @samp{It's zero.} and @samp{puts i+=1 while i<3} @result{} @samp{1 2
 3}.
 
 @subsubheading Negated Conditions
@@ -3866,8 +3865,8 @@ individual statements: @samp{puts "It's zero." if i==0} @result{}
 @cindex @code{until}
 @cindex negated conditions
 
-Sometimes you want to negate a test condition.  An @code{unless} is a
-negated @code{if}, and an @code{until} is a negated @code{while}.
+Sometimes you want to negate a test condition.  An @code{unless} is a negated
+@code{if}, and an @code{until} is a negated @code{while}.
 
 @subheading Interrupting A Loop
 @cindex @code{break}
@@ -3888,15 +3887,14 @@ the loop (corresponding to C's continue).
 @item
 Third, ruby has @code{redo}, which restarts the current iteration.
 @item
-The fourth way to get out of a loop from the inside is @code{return}.
-An evaluation of @code{return} causes escape not only from a loop but
-from the method that contains the loop.  If an argument is given, it
-will be returned from the method call, otherwise @code{nil} is
-returned.
+The fourth way to get out of a loop from the inside is @code{return}.  An
+evaluation of @code{return} causes escape not only from a loop but from the
+method that contains the loop.  If an argument is given, it will be returned
+from the method call, otherwise @code{nil} is returned.
 @end enumerate
 
-The following is C code illustrating the meanings of @code{break}, @code{next}, and
-@code{redo}:
+The following is C code illustrating the meanings of @code{break}, @code{next},
+and @code{redo}:
 
 @example
 while (condition) @{
@@ -3918,11 +3916,10 @@ label_break:
 @cindex loop, @code{for}
 @cindex collection, looping over elements using @code{for}
 
-C programmers will be wondering by now how to make a @code{for} loop.
-Ruby's @code{for} can serve the same purpose, but adds some
-flexibility.  The loop below runs once for each element in a collection
-(array, hash, numeric sequence, etc.), but doesn't make the programmer
-think about indices:
+C programmers will be wondering by now how to make a @code{for} loop.  Ruby's
+@code{for} can serve the same purpose, but adds some flexibility.  The loop
+below runs once for each element in a collection (array, hash, numeric
+sequence, etc.), but doesn't make the programmer think about indices:
 
 @example
 for elt in collection
@@ -3931,8 +3928,8 @@ end
 @end example
 
 @cindex collection, looping over a range of values using @code{for}
-The collection can be a range of values (this is what most people mean
-when they talk about a @code{for} loop):
+The collection can be a range of values (this is what most people mean when
+they talk about a @code{for} loop):
 
 @example
 ruby> for num in (4..6)
@@ -3949,9 +3946,9 @@ ruby> for num in (4..6)
 @cindex @code{each} equivalent to @code{for}
 @cindex iterator as substitute for @code{for} loop
 
-But we're getting ahead of ourselves.  @code{for} is really another
-way of writing @code{each}, which, it so happens, is our first example
-of an iterator.  The following two forms are equivalent:
+But we're getting ahead of ourselves.  @code{for} is really another way of
+writing @code{each}, which, it so happens, is our first example of an iterator.
+The following two forms are equivalent:
 
 @example
 #  If you're used to C or Java, you might prefer this.
@@ -3965,8 +3962,8 @@ collection.each @{|element|
 @}
 @end example
 
-Iterators can often be substituted for conventional loops, and once
-you get used to them, they are generally easier to deal with.
+Iterators can often be substituted for conventional loops, and once you get
+used to them, they are generally easier to deal with.
 
 @c _____________________________________
 
@@ -3974,20 +3971,19 @@ you get used to them, they are generally easier to deal with.
 @subsubsection Ruby User's Guide On Iterators
 @cindex iterators, Ruby User's Guide
 
-Iterators are not an original concept with ruby.  They are in common
-use in object-oriented languages.  They are also used in Lisp, though
-there they are not called iterators.  However the concept of iterator
-is an unfamiliar one for many so it should be explained in more
-detail.
+Iterators are not an original concept with ruby.  They are in common use in
+object-oriented languages.  They are also used in Lisp, though there they are
+not called iterators.  However the concept of iterator is an unfamiliar one for
+many so it should be explained in more detail.
 
 An @dfn{iterator} is something that does the same thing many times.
 
 @subheading Ruby Allows Us To Define Iterators
 @cindex iterator, defining
 
-So every OOP language includes some facilities for iteration.  Some
-languages provide a special class for this purpose; ruby allows us to
-define iterators directly.
+So every OOP language includes some facilities for iteration.  Some languages
+provide a special class for this purpose; ruby allows us to define iterators
+directly.
 
 @subsubheading Iterators In String
 @cindex iterators of String class
@@ -3995,27 +3991,24 @@ define iterators directly.
 Ruby's String type has some useful iterators:
 
 @cindex @code{each_byte}
-@code{each_byte} is an iterator for each character in the string.
-Each character is substituted into the local variable c:
-@samp{"abc".each_byte@{|c| printf "<%c>", c@}; print "\n"}.
+@code{each_byte} is an iterator for each character in the string.  Each
+character is substituted into the local variable c: @samp{"abc".each_byte@{|c|
+printf "<%c>", c@}; print "\n"}.
 
-The @code{each_byte} iterator is both conceptually simpler and more
-likely to continue to work even if the String class happens to be
-radically modified in the future.  One benefit of iterators is that
-they tend to be robust in the face of such changes; indeed that is a
-characteristic of good code in general.
+The @code{each_byte} iterator is both conceptually simpler and more likely to
+continue to work even if the String class happens to be radically modified in
+the future.  One benefit of iterators is that they tend to be robust in the
+face of such changes; indeed that is a characteristic of good code in general.
 
 @cindex @code{each_line}
 Another iterator of String is @code{each_line}: @samp{"a\nb\nc\n".each_line@{|l| print l@}}.
 
-The tasks that would take most of the programming effort in C (finding
-line delimiters, generating substrings, etc.) are easily tackled using
-iterators.
+The tasks that would take most of the programming effort in C (finding line
+delimiters, generating substrings, etc.) are easily tackled using iterators.
 
-The @code{for} statement appearing in the previous chapter does
-iteration by way of an @code{each} iterator.  String's @code{each}
-works the same as @code{each_line}, so let's rewrite the above example with
-@code{for}:
+The @code{for} statement appearing in the previous chapter does iteration by
+way of an @code{each} iterator.  String's @code{each} works the same as
+@code{each_line}, so let's rewrite the above example with @code{for}:
 
 @example
 ruby> for l in "a\nb\nc\n"
@@ -4032,20 +4025,20 @@ c
 @cindex @code{redo}
 @cindex control structures @code{retry} and @code{redo}
 
-We can use a control structure @code{retry} in conjunction with an
-iterated loop, and it will retry the loop from the beginning.  @code{redo}
-causes just the current iteration of the loop to be redone.
+We can use a control structure @code{retry} in conjunction with an iterated
+loop, and it will retry the loop from the beginning.  @code{redo} causes just
+the current iteration of the loop to be redone.
 
 @subheading @code{yield} In Iterators
 @cindex @code{yield}
 
 @code{yield} occurs sometimes in a definition of an iterator.
-@dfn{@code{yield}} moves control to the block of code that is passed
-to the iterator (this will be explored in more detail in the chapter
-about procedure objects).
+@dfn{@code{yield}} moves control to the block of code that is passed to the
+iterator (this will be explored in more detail in the chapter about procedure
+objects).
 
-The following example defines an iterator @code{repeat}, which repeats a
-block of code the number of times specified in an argument.
+The following example defines an iterator @code{repeat}, which repeats a block
+of code the number of times specified in an argument.
 
 @example
 ruby> def repeat(num)
@@ -4062,8 +4055,8 @@ foo
    nil
 @end example
 
-With @code{retry}, one can define an iterator which works something like
-ruby's standard @code{while}.
+With @code{retry}, one can define an iterator which works something like ruby's
+standard @code{while}.
 
 @example
 ruby> def WHILE(cond)
@@ -4078,19 +4071,698 @@ ruby> i=0; WHILE(i<3) @{ print i; i+=1 @}
 
 @subheading Summary On Iterarors
 
-There are a few restrictions, but you can write your original
-iterators; and in fact, whenever you define a new data type, it is
-often convenient to define suitable iterators to go with it.  In this
-sense, the above examples are not terribly useful.  We can talk about
-practical iterators after we have a better understanding of what
-classes are.
+There are a few restrictions, but you can write your original iterators; and in
+fact, whenever you define a new data type, it is often convenient to define
+suitable iterators to go with it.  In this sense, the above examples are not
+terribly useful.  We can talk about practical iterators after we have a better
+understanding of what classes are.
 
 @c _____________________________________
 
 @node Ruby User's Guide On Object-Oriented Thinking
 @subsubsection On Object-Oriented Thinking
 
+Ruby claims to be an object oriented scripting language; but what exactly does
+@dfn{object oriented} mean?  Rather than sum it too quickly, let's think for a
+moment about the traditional programming paradigm.
 
+Traditionally, a programming problem is attacked by coming up with some kinds
+of @emph{data representations}, and @emph{procedures} that operate on that
+data.  Under this model, data is inert, passive, and helpless; it sits at the
+complete mercy of a large procedural body, which is active, logical, and
+all-powerful.
+
+The problem with this approach is that programs are written by programmers, who
+are only human and can only keep so much detail clear in their heads at any one
+time.  As a project gets larger, its procedural core grows to the point where
+it is difficult to remember how the whole thing works.  Minor lapses of
+thinking and typographical errors become more likely to result in
+well-concealed bugs.  Complex and unintended interactions begin to emerge
+within the procedural core, and maintaining it becomes like trying to carry
+around an angry squid without letting any tentacles touch your face.  There are
+guidelines for programming that can help to minimize and localize bugs within
+this traditional paradigm, but there is a better solution that involves
+fundamentally changing the way we work.
+
+What object-oriented programming does is to let us delegate most of the mundane
+and repetitive logical work to the data itself; it changes our concept of data
+from passive to active.  Put another way,
+
+@itemize
+@item
+We stop treating each piece of data as a box with an open lid that lets us
+reach in and throw things around.
+@item
+We start treating each piece of data as a working machine with a closed lid and
+a few well-marked switches and dials.
+@end itemize
+
+What is described above as a ``machine'' may be very simple or complex on the
+inside; we can't tell from the outside, and we don't allow ourselves to open
+the machine up (except when we are absolutely sure something is wrong with its
+design), so we are required to do things like flip the switches and read the
+dials to interact with the data.  Once the machine is built, we don't want to
+have to think about how it operates.
+
+You might think we are just making more work for ourselves, but this approach
+tends to do a nice job of preventing all kinds of things from going wrong.
+
+It's worth noting here that the use of an OO language will not enforce proper
+OO design.  Indeed it is possible in any language to write code that is
+unclear, sloppy, ill-conceived, buggy, and wobbly all over.  What ruby does for
+you (as opposed, especially, to C++) is to make the practice of OO programming
+feel natural enough that even when you are working on a small scale you don't
+feel a necessity to resort to ugly code to save effort.  We will be discussing
+the ways in which ruby accomplishes that admirable goal as this guide
+progresses; the next topic will be the "switches and dials" (object methods)
+and from there we'll move on to the "factories" (classes).
+
+@c _____________________________________
+
+@node Ruby User's Guide on Methods
+@subsubsection On Methods
+@cindex methods
+
+@subheading What Is A Method?
+@cindex messages to objects
+
+What is a @dfn{method}?  In OO programming, we don't think of operating on data
+directly from outside an object; rather, objects have some understanding of how
+to operate on themselves (when asked nicely to do so).  You might say we pass
+messages to an object, and those messages will generally elicit some kind of an
+action or meaningful reply.  This ought to happen without our necessarily
+knowing or caring how the object really works inside.  The tasks we are allowed
+to ask an object to perform (or equivalently, the messages it understands) are
+that object's methods.
+
+@subheading Invoking Methods Of An Object
+@cindex invoke method
+@cindex method invocation
+@cindex dot notation
+
+In ruby, we invoke a method of an object with dot notation (just as in C++ or
+Java).  The object being talked to is named to the left of the dot.
+@samp{"abcdef".length}.  Intuitively, this string object is being asked how
+long it is.  Technically, we are invoking the @code{length} method of the
+object @code{abcdef}.
+
+Other objects may have a slightly different interpretation of length, or none
+at all.  Decisions about how to respond to a message are made on the fly,
+during program execution, and the action taken may change depending on what a
+variable refers to.  What we mean by length can vary depending on what object
+we are talking about.
+
+@subheading Polymorphism
+@cindex polymorphism
+
+An array knows something about what it means to be an array.  Pieces of data in
+ruby carry such knowledge with them, so that the demands made on them can
+automatically be satisfied in the various appropriate ways.  This relieves the
+programmer from the burden of memorizing a great many specific function names,
+because a relatively small number of method names, corresponding to concepts
+that we know how to express in natural language, can be applied to different
+kinds of data and the results will be what we expect.  This feature of OO
+programming languages (which, IMHO, Java has done a poor job of exploiting) is
+called @dfn{polymorphism}.
+
+@subheading Errors Are Raised
+@cindex errors in OO
+@cindex raise an error
+
+When an object receives a message that it does not understand, an error is
+@dfn{raised}: @samp{ERR: (eval):1: undefined method `length' for 5(Fixnum)}.
+So it is necessary to know what methods are acceptable to an object, though we
+need not know how the methods are processed.
+
+@subheading Arguments To A Method
+@cindex arguments to a method
+
+If arguments are given to a method, they are generally surrounded by
+parentheses, @samp{object.method(arg1, arg2)}, but they can be omitted if doing
+so does not cause ambiguity, @samp{object.method arg1, arg2}.
+
+@subheading The Special Variable @code{self}
+@cindex @code{self}
+
+There is a special variable self in ruby; it refers to whatever object calls a
+method.  This happens so often that for convenience the @code{self.} may be
+omitted from method calls from an object to itself:
+@samp{self.method_name(args...)} is the same as @samp{method_name(args...)}.
+
+What we would think of traditionally as a function call is just this
+abbreviated way of writing method invocations by self.  This makes ruby what is
+called a pure object oriented language.
+
+@c _____________________________________
+
+@node Ruby User's Guide on Classes
+@subsubsection On Classes
+@cindex classes
+@cindex instance of a class
+
+In OO programming terminology, a category of objects like ``dog'' is called a
+class, and some specific object belonging to a class is called an instance of
+that class.
+
+@subheading Making An Object From A Class
+@cindex class definition
+@cindex @code{class} keyword
+@cindex @code{end} keyword
+@cindex keywords @code{class} and @code{end}
+@cindex @code{def} keyword
+@cindex keyword @code{def}
+@cindex method definition
+
+Generally, to make an object in ruby or any other OO language, first one
+defines the characteristics of a class, then creates an instance.  To
+illustrate the process, let's first define a simple @code{Dog} class.
+
+@example
+ruby> class Dog
+    |   def speak
+    |     puts "Bow Wow"
+    |   end
+    | end
+   nil
+@end example
+
+In ruby, a @dfn{class definition} is a region of code between the keywords
+@code{class} and @code{end}.  A @code{def} inside this region begins the
+definition of a method of the class, which as we discussed in the previous
+chapter, corresponds to some specific behavior for objects of that class.
+
+@subheading Make A New Instance From A Class Definition
+@cindex @code{new} keyword
+@cindex keyword @code{new}
+@cindex instantiating a class
+
+Now that we have defined a @code{Dog} class, we can use it to make a dog:
+
+@example
+ruby> pochi = Dog.new
+   #<Dog:0xbcb90>
+@end example
+
+We have made a new instance of the class @code{Dog}, and have given it the name
+@code{pochi}.  The @code{new} method of any class makes a new instance.
+Because @code{pochi} is a @code{Dog} according to our class definition, it has
+whatever properties we decided a @code{Dog} should have.  Since our idea of
+@code{Dog}-ness was very simple, there is just one trick we can ask
+@code{pochi} to do.
+
+@example
+ruby> pochi.speak
+Bow Wow
+   nil
+@end example
+
+Making a new instance of a class is sometimes called @dfn{instantiating} that
+class.  We need to have a dog before we can experience the pleasure of its
+conversation; we can't merely ask the @code{Dog} class to bark for us.
+
+@c _____________________________________
+
+@node Ruby User's Guide on Inheritance
+@subsubsection On Inheritance
+@cindex inheritance
+@cindex superclass
+@cindex subclass
+
+Our classification of objects in everyday life is naturally hierarchical.  We
+know that all cats are mammals, and all mammals are animals.  Smaller classes
+@dfn{inherit} characteristics from the larger classes to which they belong.  If
+all mammals breathe, then all cats breathe.
+
+We can express this concept in ruby:
+
+@example
+ruby> class Mammal
+    |   def breathe
+    |     puts "inhale and exhale"
+    |   end
+    | end
+   nil
+ruby> class Cat<Mammal
+    |   def speak
+    |     puts "Meow"
+    |   end
+    | end
+   nil
+@end example
+
+Though we didn't specify how a @code{Cat} should breathe, every cat will
+inherit that behavior from the @code{Mammal} class since @code{Cat} was defined
+as a subclass of @code{Mammal}.  (In OO terminology, the smaller class is a
+@dfn{subclass} and the larger class is a @dfn{superclass}.)  Hence from a
+programmer's standpoint, cats get the ability to breathe for free; after we add
+a @code{speak} method, our cats can both breathe and speak.
+
+@example
+ruby> tama = Cat.new
+   #<Cat:0xbd80e8>
+ruby> tama.breathe
+inhale and exhale
+   nil
+ruby> tama.speak
+Meow
+   nil
+@end example
+
+@subheading Differential Programming
+
+There will be situations where certain properties of the superclass should not
+be inherited by a particular subclass.  Though birds generally know how to fly,
+penguins are a flightless subclass of birds.
+
+@example
+ruby> class Bird
+    |   def preen
+    |     puts "I am cleaning my feathers."
+    |   end
+    |   def fly
+    |     puts "I am flying."
+    |   end
+    | end
+   nil
+ruby> class Penguin<Bird
+    |   def fly
+    |     fail "Sorry. I'd rather swim."
+    |   end
+    | end
+   nil
+@end example
+
+@cindex differential programming
+Rather than exhaustively define every characteristic of every new
+class, we need only to append or to redefine the differences between
+each subclass and its superclass.  This use of inheritance is
+sometimes called @dfn{differential programming}.  It is one of the
+benefits of object-oriented programming.
+
+@c _____________________________________
+
+@node Ruby User's Guide on Redefinition Of Methods
+@subsubsection On Redefinition of Methods
+@cindex method redefinition
+@cindex redefine a method
+
+In a subclass, we can change the behavior of the instances by
+redefining superclass methods.
+
+@example
+ruby> class Human
+    |   def identify
+    |     puts "I'm a person."
+    |   end
+    |   def train_toll(age)
+    |     if age < 12
+    |       puts "Reduced fare.";
+    |     else
+    |       puts "Normal fare.";
+    |     end
+    |   end
+    | end
+   nil
+ruby> Human.new.identify
+I'm a person.
+   nil
+ruby> class Student1<Human
+    |   def identify
+    |     puts "I'm a student."
+    |   end
+    | end
+   nil
+ruby> Student1.new.identify
+I'm a student.
+   nil
+@end example
+
+@cindex @code{super}
+Suppose we would rather enhance the superclass's @code{identify} method than
+entirely replace it.  For this we can use @code{super}.
+
+@example
+ruby> class Student2<Human
+    |   def identify
+    |     super
+    |     puts "I'm a student too."
+    |   end
+    | end
+   nil
+ruby> Student2.new.identify
+I'm a person.
+I'm a student too.
+   nil
+@end example
+   
+@code{super} lets us pass arguments to the original method.  It is sometimes
+said that there are two kinds of people @dots{}
+
+@example
+ruby> class Dishonest<Human
+    |   def train_toll(age)
+    |     super(11) # we want a cheap fare.
+    |   end
+    | end
+   nil
+ruby> Dishonest.new.train_toll(25)
+Reduced fare. 
+   nil
+
+ruby> class Honest<Human
+    |   def train_toll(age)
+    |     super(age) # pass the argument we were given
+    |   end
+    | end
+   nil
+ruby> Honest.new.train_toll(25)
+Normal fare. 
+   nil
+@end example
+
+@c _____________________________________
+
+@node Ruby User's Guide On Access Control
+@subsubsection On Access Control
+@cindex access control
+
+Earlier, we said that ruby has no functions, only methods.  However there is
+more than one kind of method.  In this chapter we introduce @dfn{access
+controls}.
+
+Consider what happens when we define a method in the ``top level'', not inside
+a class definition.  We can think of such a method as analogous to a function
+in a more traditional language like C.
+
+@example
+ruby> def square(n)
+    |   n * n
+    | end
+   nil
+ruby> square(5)
+   25
+@end example
+   
+Our new method would appear not to belong to any class, but in fact ruby gives
+it to the @code{Object} class, which is a superclass of every other class.  As
+a result, any object should now be able to use that method.  That turns out to
+be true, but there's a small catch: it is a @emph{private} method of every
+class.  We'll discuss some of what this means below, but one consequence is
+that it may be invoked only in function style, as here:
+
+@example
+ruby> class Foo
+    |   def fourth_power_of(x)
+    |     square(x) * square(x)
+    |   end
+    | end
+  nil
+ruby> Foo.new.fourth_power_of 10
+  10000
+@end example
+  
+We are not allowed to explicitly apply the method to an object:
+
+@example
+ruby> "fish".square(5)
+ERR: (eval):1: private method `square' called for "fish":String
+@end example
+
+This rather cleverly preserves ruby's pure-OO nature (functions are still
+object methods, but the receiver is self implicitly) while providing functions
+that can be written just as in a more traditional language.
+
+@subheading Rationale For Private Methods: Encapsulation
+
+A common mental discipline in OO programming, which we have hinted at in an
+earlier chapter, concerns the separation of specification and implementation,
+or what tasks an object is supposed to accomplish and how it actually
+accomplishes them.  The internal workings of an object should be kept generally
+hidden from its users; they should only care about what goes in and what comes
+out, and trust the object to know what it is doing internally.  As such it is
+often helpful for classes to have methods that the outside world does not see,
+but which are used internally (and can be improved by the programmer whenever
+desired, without changing the way users see objects of that class).  In the
+trivial example below, think of engine as the invisible inner workings of the
+class.
+
+@example
+ruby> class Test
+    |   def times_two(a)
+    |     puts "#@{a@} times two is #@{engine(a)@}"
+    |   end
+    |   def engine(b)
+    |     b*2
+    |   end
+    |   private:engine  # this hides engine from users
+    | end
+   Test
+ruby> test = Test.new
+   #<Test:0x4017181c>
+ruby> test.engine(6)
+ERR: (eval):1: private method `engine' called for #<Test:0x4017181c>
+ruby> test.times_two(6)
+6 times two is 12.
+   nil
+@end example
+   
+We might have expected @code{test.engine(6)} to return 12, but instead we learn
+that @code{engine} is inaccessible when we are acting as a user of a
+@code{Test} object.  Only other @code{Test} methods, such as @code{times_two},
+are allowed to use engine.  We are required to go through the public interface,
+which consists of the @code{times_two} method.  The programmer who is in charge
+of this class can change @code{engine} freely (here, perhaps by changing
+@code{b*2} to @code{b+b}, assuming for the sake of argument that it improved
+performance) without affecting how the user interacts with @code{Test} objects.
+This example is of course much too simple to be useful; the benefits of access
+controls become more clear only when we begin to create more complicated and
+interesting classes.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Singleton Methods
+@subsubsection On Singleton Methods
+@cindex singleton methods
+
+The behavior of an instance is determined by its class, but there may be times
+we know that a particular instance should have special behavior.  In most
+languages, we must go to the trouble of defining another class, which would
+then only be instantiated once.  In ruby we can give any object its own
+methods.  A method given only to a single object is called a @dfn{singleton
+method}.
+
+Singleton methods are often used for elements of a graphic user interface
+(GUI), where different actions need to be taken when different buttons are
+pressed.
+
+@cindex prototype-based languages
+@cindex CLOS
+@cindex Dylan
+@cindex Self
+@cindex NewtonScript
+Singleton methods are not unique to ruby, as they appear in CLOS, Dylan, etc.
+Also, some languages, for example, Self and NewtonScript, have singleton
+methods only.  These are sometimes called @dfn{prototype-based} languages.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Modules
+@subsubsection On Modules
+@cindex modules
+
+Modules in ruby are similar to classes, except:
+
+@itemize
+@item
+A module can have no instances.
+@item
+A module can have no subclasses.
+@item
+A module is defined by @code{module @dots{} end}.
+@end itemize
+
+Actually... the @code{Module} class of @code{module} is the superclass of the
+@code{Class} class of @code{class}.  Got that?  No?  Let's move on.
+
+@subheading Module As Collection
+
+There are two typical uses of modules.  One is to collect related methods and
+constants in a central location.  The @code{Math} module in ruby's standard
+library plays such a role:
+
+@example
+ruby> Math.sqrt(2)
+   1.41421
+ruby> Math::PI
+   3.14159
+@end example
+
+@cindex @code{::} operator
+@cindex @code{include} statement
+The @code{::} operator tells the ruby interpreter which module it should
+consult for the value of a constant (conceivably, some module besides Math
+might mean something else by PI).  If we want to refer to the methods or
+constants of a module directly without using @code{::}, we can @code{include}
+that module:
+
+@example
+ruby> include Math
+   Object
+ruby> sqrt(2)
+   1.41421
+ruby> PI
+   3.14159
+@end example
+
+@subheading Module As Mixin
+@cindex mixin
+@cindex multiple inheritance
+
+Another use of modules is called @dfn{mixin}.  Some OO programming languages,
+including C++, allow @dfn{multiple inheritance}, that is, inheritance from more
+than one superclass.  A real-world example of multiple inheritance is an alarm
+clock; you can think of alarm clocks as belonging to the class of clocks and
+also the class of things with buzzers.
+
+@cindex mixin technique
+@cindex include a module, mixin
+Ruby purposely does not implement true multiple inheritance, but the @dfn{mixin
+technique} is a good alternative.  Remember that modules cannot be instantiated
+or subclassed; but if we @code{include} a module in a class definition, its
+methods are effectively appended, or @emph{mixed in}, to the class.
+
+@subsubheading Mixin As Properties
+
+Mixin can be thought of as a way of asking for whatever particular properties
+we want to have.  For example, if a class has a working @code{each} method,
+mixing in the standard library's @code{Enumerable} module gives us @code{sort}
+and @code{find} methods for free.
+
+@subsubheading Modules Instead Of Multiple Inheritance
+
+This use of modules gives us the basic functionality of multiple inheritance
+but allows us to represent class relationships with a simple tree structure,
+and so simplifies the language implementation considerably (a similar choice
+was made by the designers of Java).
+
+@c _____________________________________
+
+@node Ruby User's Guide On Procedure Objects (Procs)
+@subsubsection On Procedure Objects (Procs)
+@cindex procedure objects
+@cindex Procs
+@cindex @code{proc}
+
+It is often desirable to be able to specify responses to unexpected events.  As
+it turns out, this is most easily done if we can pass blocks of code as
+arguments to other methods, which means we want to be able to treat code as if
+it were data.
+
+A new procedure object is formed using @code{proc}:
+
+@example
+ruby> quux = proc @{
+    |   puts "QUUXQUUXQUUX!!!"
+    | @}
+   #<Proc:0x4017357c>
+@end example
+
+@cindex @code{call} method
+@cindex Proc, invoke
+@cindex @code{proc}, execute
+Now what @code{quux} refers to is an object, and like most objects, it has
+behavior that can be invoked.  Specifically, we can ask it to execute, via its
+@code{call} method:
+
+@example
+ruby> quux.call
+QUUXQUUXQUUX!!!
+   nil
+@end example
+
+@cindex Proc as method argument
+So, after all that, can @code{quux} be used as a method argument?
+Sure.
+
+@example
+ruby> def run( p )
+    |   puts "About to call a procedure..."
+    |   p.call
+    |   puts "There: finished."
+    | end
+   nil
+ruby> run quux
+About to call a procedure...
+QUUXQUUXQUUX!!!
+There: finished.
+   nil
+@end example
+
+@cindex @code{trap} method, and Proc
+The @code{trap} method lets us assign the response of our choice to
+any system signal.
+
+@example
+ruby> inthandler = proc@{ puts "^C was pressed." @}
+   #<Proc:0x401730a4>
+ruby> trap "SIGINT", inthandler
+   #<Proc:0x401735e0>
+@end example
+
+Normally pressing @key{^C} makes the interpreter quit.  Now a message is
+printed and the interpreter continues running, so you don't lose the work you
+were doing.  (You're not trapped in the interpreter forever; you can still exit
+by typing @kbd{exit}.)
+
+@subheading Anonymous Procedure Objects
+@cindex anonymous procedure objects
+
+A final note before we move on to other topics: it's not strictly necessary to
+give a procedure object a name before binding it to a signal.  An equivalent
+anonymous procedure object would look like @samp{trap "SIGINT", proc@{ puts "^C
+was pressed." @}}, or more compactly still, @samp{ trap "SIGINT", 'puts "^C was
+pressed."'}.  This abbreviated form provides some convenience and readability
+when you write small anonymous procedures.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Variables
+@subsubsection On Variables
+@cindex variables, description
+
+Ruby has three kinds of variables, one kind of constant and exactly two
+pseudo-variables.  The variables and the constants have no type.  While untyped
+variables have some drawbacks, they have many more advantages and fit well with
+ruby's quick and easy philosophy.
+
+@subheading No Variable Declarations
+
+Variables must be declared in most languages in order to specify their type,
+modifiability (i.e., whether they are constants), and scope; since type is not
+an issue, and the rest is evident from the variable name as you are about to
+see, we do not need variable declarations in ruby.
+
+The first character of an identifier categorizes it at a glance:
+
+@multitable @columnfractions .5 .5
+@item $          @tab   global variable
+@item @@         @tab   instance variable
+@item [a-z] or _ @tab   local variable
+@item [A-Z]      @tab   constant
+@end multitable
+
+@subheading Pseudo-Variables
+@cindex pseudo-variables @code{self} and @code{nil}
+
+The only exceptions to the above are ruby's pseudo-variables: @code{self},
+which always refers to the currently executing object, and @code{nil}, which is
+the meaningless value assigned to uninitialized variables.  Both are named as
+if they are local variables, but @code{self} is a global variable maintained by
+the interpreter, and @code{nil} is really a constant.  As these are the only
+two exceptions, they don't confuse things too much.
+
+You may not assign values to @code{self} or @code{nil}.  @code{main}, as a
+value of @code{self}, refers to the top-level object.
 
 @c .....................................
 

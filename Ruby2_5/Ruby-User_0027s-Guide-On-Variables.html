@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Variables (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Variables (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Variables (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Programming-Ruby.html#Programming-Ruby" rel="next" title="Programming Ruby">
+<link href="Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029.html#Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029" rel="prev" title="Ruby User's Guide On Procedure Objects (Procs)">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Variables"></a>
+<div class="header">
+<p>
+Previous: <a href="Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029.html#Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029" accesskey="p" rel="prev">Ruby User's Guide On Procedure Objects (Procs)</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Variables"></a>
+<h4 class="subsubsection">2.4.1.18 On Variables</h4>
+<a name="index-variables_002c-description"></a>
+
+<p>Ruby has three kinds of variables, one kind of constant and exactly two
+pseudo-variables.  The variables and the constants have no type.  While untyped
+variables have some drawbacks, they have many more advantages and fit well with
+ruby&rsquo;s quick and easy philosophy.
+</p>
+<a name="No-Variable-Declarations"></a>
+<h4 class="subheading">No Variable Declarations</h4>
+
+<p>Variables must be declared in most languages in order to specify their type,
+modifiability (i.e., whether they are constants), and scope; since type is not
+an issue, and the rest is evident from the variable name as you are about to
+see, we do not need variable declarations in ruby.
+</p>
+<p>The first character of an identifier categorizes it at a glance:
+</p>
+<table>
+<tr><td width="50%">$</td><td width="50%">global variable</td></tr>
+<tr><td width="50%">@</td><td width="50%">instance variable</td></tr>
+<tr><td width="50%">[a-z] or _</td><td width="50%">local variable</td></tr>
+<tr><td width="50%">[A-Z]</td><td width="50%">constant</td></tr>
+</table>
+
+<a name="Pseudo_002dVariables"></a>
+<h4 class="subheading">Pseudo-Variables</h4>
+<a name="index-pseudo_002dvariables-self-and-nil"></a>
+
+<p>The only exceptions to the above are ruby&rsquo;s pseudo-variables: <code>self</code>,
+which always refers to the currently executing object, and <code>nil</code>, which is
+the meaningless value assigned to uninitialized variables.  Both are named as
+if they are local variables, but <code>self</code> is a global variable maintained by
+the interpreter, and <code>nil</code> is really a constant.  As these are the only
+two exceptions, they don&rsquo;t confuse things too much.
+</p>
+<p>You may not assign values to <code>self</code> or <code>nil</code>.  <code>main</code>, as a
+value of <code>self</code>, refers to the top-level object.
+</p>
+
+
+
+
+</body>
+</html>

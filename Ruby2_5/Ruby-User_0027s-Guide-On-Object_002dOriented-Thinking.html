@@ -27,7 +27,7 @@ This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
-<link href="Programming-Ruby.html#Programming-Ruby" rel="next" title="Programming Ruby">
+<link href="Ruby-User_0027s-Guide-on-Methods.html#Ruby-User_0027s-Guide-on-Methods" rel="next" title="Ruby User's Guide on Methods">
 <link href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" rel="prev" title="Ruby User's Guide On Iterators">
 <style type="text/css">
 <!--
@@ -64,15 +64,71 @@ ul.no-bullet {list-style: none}
 <a name="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking"></a>
 <div class="header">
 <p>
-Previous: <a href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" accesskey="p" rel="prev">Ruby User's Guide On Iterators</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Ruby-User_0027s-Guide-on-Methods.html#Ruby-User_0027s-Guide-on-Methods" accesskey="n" rel="next">Ruby User's Guide on Methods</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" accesskey="p" rel="prev">Ruby User's Guide On Iterators</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="On-Object_002dOriented-Thinking"></a>
 <h4 class="subsubsection">2.4.1.9 On Object-Oriented Thinking</h4>
 
+<p>Ruby claims to be an object oriented scripting language; but what exactly does
+<em>object oriented</em> mean?  Rather than sum it too quickly, let&rsquo;s think for a
+moment about the traditional programming paradigm.
+</p>
+<p>Traditionally, a programming problem is attacked by coming up with some kinds
+of <em>data representations</em>, and <em>procedures</em> that operate on that
+data.  Under this model, data is inert, passive, and helpless; it sits at the
+complete mercy of a large procedural body, which is active, logical, and
+all-powerful.
+</p>
+<p>The problem with this approach is that programs are written by programmers, who
+are only human and can only keep so much detail clear in their heads at any one
+time.  As a project gets larger, its procedural core grows to the point where
+it is difficult to remember how the whole thing works.  Minor lapses of
+thinking and typographical errors become more likely to result in
+well-concealed bugs.  Complex and unintended interactions begin to emerge
+within the procedural core, and maintaining it becomes like trying to carry
+around an angry squid without letting any tentacles touch your face.  There are
+guidelines for programming that can help to minimize and localize bugs within
+this traditional paradigm, but there is a better solution that involves
+fundamentally changing the way we work.
+</p>
+<p>What object-oriented programming does is to let us delegate most of the mundane
+and repetitive logical work to the data itself; it changes our concept of data
+from passive to active.  Put another way,
+</p>
+<ul>
+<li> We stop treating each piece of data as a box with an open lid that lets us
+reach in and throw things around.
+</li><li> We start treating each piece of data as a working machine with a closed lid and
+a few well-marked switches and dials.
+</li></ul>
 
+<p>What is described above as a &ldquo;machine&rdquo; may be very simple or complex on the
+inside; we can&rsquo;t tell from the outside, and we don&rsquo;t allow ourselves to open
+the machine up (except when we are absolutely sure something is wrong with its
+design), so we are required to do things like flip the switches and read the
+dials to interact with the data.  Once the machine is built, we don&rsquo;t want to
+have to think about how it operates.
+</p>
+<p>You might think we are just making more work for ourselves, but this approach
+tends to do a nice job of preventing all kinds of things from going wrong.
+</p>
+<p>It&rsquo;s worth noting here that the use of an OO language will not enforce proper
+OO design.  Indeed it is possible in any language to write code that is
+unclear, sloppy, ill-conceived, buggy, and wobbly all over.  What ruby does for
+you (as opposed, especially, to C++) is to make the practice of OO programming
+feel natural enough that even when you are working on a small scale you don&rsquo;t
+feel a necessity to resort to ugly code to save effort.  We will be discussing
+the ways in which ruby accomplishes that admirable goal as this guide
+progresses; the next topic will be the &quot;switches and dials&quot; (object methods)
+and from there we&rsquo;ll move on to the &quot;factories&quot; (classes).
+</p>
 
-
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-on-Methods.html#Ruby-User_0027s-Guide-on-Methods" accesskey="n" rel="next">Ruby User's Guide on Methods</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators" accesskey="p" rel="prev">Ruby User's Guide On Iterators</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 

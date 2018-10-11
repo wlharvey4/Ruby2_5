@@ -71,11 +71,10 @@ Next: <a href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-U
 <h4 class="subsubsection">2.4.1.8 Ruby User&rsquo;s Guide On Iterators</h4>
 <a name="index-iterators_002c-Ruby-User_0027s-Guide"></a>
 
-<p>Iterators are not an original concept with ruby.  They are in common
-use in object-oriented languages.  They are also used in Lisp, though
-there they are not called iterators.  However the concept of iterator
-is an unfamiliar one for many so it should be explained in more
-detail.
+<p>Iterators are not an original concept with ruby.  They are in common use in
+object-oriented languages.  They are also used in Lisp, though there they are
+not called iterators.  However the concept of iterator is an unfamiliar one for
+many so it should be explained in more detail.
 </p>
 <p>An <em>iterator</em> is something that does the same thing many times.
 </p>
@@ -83,9 +82,9 @@ detail.
 <h4 class="subheading">Ruby Allows Us To Define Iterators</h4>
 <a name="index-iterator_002c-defining"></a>
 
-<p>So every OOP language includes some facilities for iteration.  Some
-languages provide a special class for this purpose; ruby allows us to
-define iterators directly.
+<p>So every OOP language includes some facilities for iteration.  Some languages
+provide a special class for this purpose; ruby allows us to define iterators
+directly.
 </p>
 <a name="Iterators-In-String"></a>
 <h4 class="subsubheading">Iterators In String</h4>
@@ -94,27 +93,24 @@ define iterators directly.
 <p>Ruby&rsquo;s String type has some useful iterators:
 </p>
 <a name="index-each_005fbyte"></a>
-<p><code>each_byte</code> is an iterator for each character in the string.
-Each character is substituted into the local variable c:
-&lsquo;<samp>&quot;abc&quot;.each_byte{|c| printf &quot;&lt;%c&gt;&quot;, c}; print &quot;\n&quot;</samp>&rsquo;.
+<p><code>each_byte</code> is an iterator for each character in the string.  Each
+character is substituted into the local variable c: &lsquo;<samp>&quot;abc&quot;.each_byte{|c|
+printf &quot;&lt;%c&gt;&quot;, c}; print &quot;\n&quot;</samp>&rsquo;.
 </p>
-<p>The <code>each_byte</code> iterator is both conceptually simpler and more
-likely to continue to work even if the String class happens to be
-radically modified in the future.  One benefit of iterators is that
-they tend to be robust in the face of such changes; indeed that is a
-characteristic of good code in general.
+<p>The <code>each_byte</code> iterator is both conceptually simpler and more likely to
+continue to work even if the String class happens to be radically modified in
+the future.  One benefit of iterators is that they tend to be robust in the
+face of such changes; indeed that is a characteristic of good code in general.
 </p>
 <a name="index-each_005fline"></a>
 <p>Another iterator of String is <code>each_line</code>: &lsquo;<samp>&quot;a\nb\nc\n&quot;.each_line{|l| print l}</samp>&rsquo;.
 </p>
-<p>The tasks that would take most of the programming effort in C (finding
-line delimiters, generating substrings, etc.) are easily tackled using
-iterators.
+<p>The tasks that would take most of the programming effort in C (finding line
+delimiters, generating substrings, etc.) are easily tackled using iterators.
 </p>
-<p>The <code>for</code> statement appearing in the previous chapter does
-iteration by way of an <code>each</code> iterator.  String&rsquo;s <code>each</code>
-works the same as <code>each_line</code>, so let&rsquo;s rewrite the above example with
-<code>for</code>:
+<p>The <code>for</code> statement appearing in the previous chapter does iteration by
+way of an <code>each</code> iterator.  String&rsquo;s <code>each</code> works the same as
+<code>each_line</code>, so let&rsquo;s rewrite the above example with <code>for</code>:
 </p>
 <div class="example">
 <pre class="example">ruby&gt; for l in &quot;a\nb\nc\n&quot;
@@ -132,21 +128,21 @@ c
 <a name="index-redo-1"></a>
 <a name="index-control-structures-retry-and-redo"></a>
 
-<p>We can use a control structure <code>retry</code> in conjunction with an
-iterated loop, and it will retry the loop from the beginning.  <code>redo</code>
-causes just the current iteration of the loop to be redone.
+<p>We can use a control structure <code>retry</code> in conjunction with an iterated
+loop, and it will retry the loop from the beginning.  <code>redo</code> causes just
+the current iteration of the loop to be redone.
 </p>
 <a name="yield-In-Iterators"></a>
 <h4 class="subheading"><code>yield</code> In Iterators</h4>
 <a name="index-yield-2"></a>
 
 <p><code>yield</code> occurs sometimes in a definition of an iterator.
-<em><code>yield</code></em> moves control to the block of code that is passed
-to the iterator (this will be explored in more detail in the chapter
-about procedure objects).
+<em><code>yield</code></em> moves control to the block of code that is passed to the
+iterator (this will be explored in more detail in the chapter about procedure
+objects).
 </p>
-<p>The following example defines an iterator <code>repeat</code>, which repeats a
-block of code the number of times specified in an argument.
+<p>The following example defines an iterator <code>repeat</code>, which repeats a block
+of code the number of times specified in an argument.
 </p>
 <div class="example">
 <pre class="example">ruby&gt; def repeat(num)
@@ -163,8 +159,8 @@ foo
    nil
 </pre></div>
 
-<p>With <code>retry</code>, one can define an iterator which works something like
-ruby&rsquo;s standard <code>while</code>.
+<p>With <code>retry</code>, one can define an iterator which works something like ruby&rsquo;s
+standard <code>while</code>.
 </p>
 <div class="example">
 <pre class="example">ruby&gt; def WHILE(cond)
@@ -180,12 +176,11 @@ ruby&gt; i=0; WHILE(i&lt;3) { print i; i+=1 }
 <a name="Summary-On-Iterarors"></a>
 <h4 class="subheading">Summary On Iterarors</h4>
 
-<p>There are a few restrictions, but you can write your original
-iterators; and in fact, whenever you define a new data type, it is
-often convenient to define suitable iterators to go with it.  In this
-sense, the above examples are not terribly useful.  We can talk about
-practical iterators after we have a better understanding of what
-classes are.
+<p>There are a few restrictions, but you can write your original iterators; and in
+fact, whenever you define a new data type, it is often convenient to define
+suitable iterators to go with it.  In this sense, the above examples are not
+terribly useful.  We can talk about practical iterators after we have a better
+understanding of what classes are.
 </p>
 
 <hr>

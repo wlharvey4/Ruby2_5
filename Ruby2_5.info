@@ -166,6 +166,15 @@ Ruby User's Guide
 * Ruby User's Guide On Control Structures::
 * Ruby User's Guide On Iterators::
 * Ruby User's Guide On Object-Oriented Thinking::
+* Ruby User's Guide on Methods::
+* Ruby User's Guide on Classes::
+* Ruby User's Guide on Inheritance::
+* Ruby User's Guide on Redefinition Of Methods::
+* Ruby User's Guide On Access Control::
+* Ruby User's Guide On Singleton Methods::
+* Ruby User's Guide On Modules::
+* Ruby User's Guide On Procedure Objects (Procs)::
+* Ruby User's Guide On Variables::
 
 Utility Programs
 
@@ -2872,6 +2881,15 @@ Mark Slagell, is a nice overview of many aspects of the Ruby language.
 * Ruby User's Guide On Control Structures::
 * Ruby User's Guide On Iterators::
 * Ruby User's Guide On Object-Oriented Thinking::
+* Ruby User's Guide on Methods::
+* Ruby User's Guide on Classes::
+* Ruby User's Guide on Inheritance::
+* Ruby User's Guide on Redefinition Of Methods::
+* Ruby User's Guide On Access Control::
+* Ruby User's Guide On Singleton Methods::
+* Ruby User's Guide On Modules::
+* Ruby User's Guide On Procedure Objects (Procs)::
+* Ruby User's Guide On Variables::
 
 
 File: Ruby2_5.info,  Node: What Is Ruby?,  Next: Simple Examples,  Up: Ruby User's Guide
@@ -3640,10 +3658,633 @@ practical iterators after we have a better understanding of what
 classes are.
 
 
-File: Ruby2_5.info,  Node: Ruby User's Guide On Object-Oriented Thinking,  Prev: Ruby User's Guide On Iterators,  Up: Ruby User's Guide
+File: Ruby2_5.info,  Node: Ruby User's Guide On Object-Oriented Thinking,  Next: Ruby User's Guide on Methods,  Prev: Ruby User's Guide On Iterators,  Up: Ruby User's Guide
 
 2.4.1.9 On Object-Oriented Thinking
 ...................................
+
+Ruby claims to be an object oriented scripting language; but what
+exactly does "object oriented" mean?  Rather than sum it too quickly,
+let's think for a moment about the traditional programming paradigm.
+
+   Traditionally, a programming problem is attacked by coming up with
+some kinds of _data representations_, and _procedures_ that operate on
+that data.  Under this model, data is inert, passive, and helpless; it
+sits at the complete mercy of a large procedural body, which is
+active, logical, and all-powerful.
+
+   The problem with this approach is that programs are written by
+programmers, who are only human and can only keep so much detail clear
+in their heads at any one time.  As a project gets larger, its
+procedural core grows to the point where it is difficult to remember
+how the whole thing works.  Minor lapses of thinking and typographical
+errors become more likely to result in well-concealed bugs.  Complex
+and unintended interactions begin to emerge within the procedural
+core, and maintaining it becomes like trying to carry around an angry
+squid without letting any tentacles touch your face.  There are
+guidelines for programming that can help to minimize and localize bugs
+within this traditional paradigm, but there is a better solution that
+involves fundamentally changing the way we work.
+
+   What object-oriented programming does is to let us delegate most of
+the mundane and repetitive logical work to the data itself; it changes
+our concept of data from passive to active.  Put another way,
+
+   * We stop treating each piece of data as a box with an open lid
+     that lets us reach in and throw things around.
+   * We start treating each piece of data as a working machine with a
+     closed lid and a few well-marked switches and dials.
+
+   What is described above as a "machine" may be very simple or
+complex on the inside; we can't tell from the outside, and we don't
+allow ourselves to open the machine up (except when we are absolutely
+sure something is wrong with its design), so we are required to do
+things like flip the switches and read the dials to interact with the
+data.  Once the machine is built, we don't want to have to think about
+how it operates.
+
+   You might think we are just making more work for ourselves, but
+this approach tends to do a nice job of preventing all kinds of things
+from going wrong.
+
+   It's worth noting here that the use of an OO language will not
+enforce proper OO design.  Indeed it is possible in any language to
+write code that is unclear, sloppy, ill-conceived, buggy, and wobbly
+all over.  What ruby does for you (as opposed, especially, to C++) is
+to make the practice of OO programming feel natural enough that even
+when you are working on a small scale you don't feel a necessity to
+resort to ugly code to save effort.  We will be discussing the ways in
+which ruby accomplishes that admirable goal as this guide progresses;
+the next topic will be the "switches and dials" (object methods) and
+from there we'll move on to the "factories" (classes).
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide on Methods,  Next: Ruby User's Guide on Classes,  Prev: Ruby User's Guide On Object-Oriented Thinking,  Up: Ruby User's Guide
+
+2.4.1.10 On Methods
+...................
+
+What Is A Method?
+-----------------
+
+What is a "method"?  In OO programming, we don't think of operating on
+data directly from outside an object; rather, objects have some
+understanding of how to operate on themselves (when asked nicely to do
+so).  You might say we pass messages to an object, and those messages
+will generally elicit some kind of an action or meaningful reply.
+This ought to happen without our necessarily knowing or caring how the
+object really works inside.  The tasks we are allowed to ask an object
+to perform (or equivalently, the messages it understands) are that
+object's methods.
+
+Invoking Methods Of An Object
+-----------------------------
+
+In ruby, we invoke a method of an object with dot notation (just as in
+C++ or Java).  The object being talked to is named to the left of the
+dot.  '"abcdef".length'.  Intuitively, this string object is being
+asked how long it is.  Technically, we are invoking the 'length'
+method of the object 'abcdef'.
+
+   Other objects may have a slightly different interpretation of
+length, or none at all.  Decisions about how to respond to a message
+are made on the fly, during program execution, and the action taken
+may change depending on what a variable refers to.  What we mean by
+length can vary depending on what object we are talking about.
+
+Polymorphism
+------------
+
+An array knows something about what it means to be an array.  Pieces
+of data in ruby carry such knowledge with them, so that the demands
+made on them can automatically be satisfied in the various appropriate
+ways.  This relieves the programmer from the burden of memorizing a
+great many specific function names, because a relatively small number
+of method names, corresponding to concepts that we know how to express
+in natural language, can be applied to different kinds of data and the
+results will be what we expect.  This feature of OO programming
+languages (which, IMHO, Java has done a poor job of exploiting) is
+called "polymorphism".
+
+Errors Are Raised
+-----------------
+
+When an object receives a message that it does not understand, an
+error is "raised": 'ERR: (eval):1: undefined method `length' for
+5(Fixnum)'.  So it is necessary to know what methods are acceptable to
+an object, though we need not know how the methods are processed.
+
+Arguments To A Method
+---------------------
+
+If arguments are given to a method, they are generally surrounded by
+parentheses, 'object.method(arg1, arg2)', but they can be omitted if
+doing so does not cause ambiguity, 'object.method arg1, arg2'.
+
+The Special Variable 'self'
+---------------------------
+
+There is a special variable self in ruby; it refers to whatever object
+calls a method.  This happens so often that for convenience the
+'self.' may be omitted from method calls from an object to itself:
+'self.method_name(args...)' is the same as 'method_name(args...)'.
+
+   What we would think of traditionally as a function call is just
+this abbreviated way of writing method invocations by self.  This
+makes ruby what is called a pure object oriented language.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide on Classes,  Next: Ruby User's Guide on Inheritance,  Prev: Ruby User's Guide on Methods,  Up: Ruby User's Guide
+
+2.4.1.11 On Classes
+...................
+
+In OO programming terminology, a category of objects like "dog" is
+called a class, and some specific object belonging to a class is
+called an instance of that class.
+
+Making An Object From A Class
+-----------------------------
+
+Generally, to make an object in ruby or any other OO language, first
+one defines the characteristics of a class, then creates an instance.
+To illustrate the process, let's first define a simple 'Dog' class.
+
+     ruby> class Dog
+         |   def speak
+         |     puts "Bow Wow"
+         |   end
+         | end
+        nil
+
+   In ruby, a "class definition" is a region of code between the
+keywords 'class' and 'end'.  A 'def' inside this region begins the
+definition of a method of the class, which as we discussed in the
+previous chapter, corresponds to some specific behavior for objects of
+that class.
+
+Make A New Instance From A Class Definition
+-------------------------------------------
+
+Now that we have defined a 'Dog' class, we can use it to make a dog:
+
+     ruby> pochi = Dog.new
+        #<Dog:0xbcb90>
+
+   We have made a new instance of the class 'Dog', and have given it
+the name 'pochi'.  The 'new' method of any class makes a new instance.
+Because 'pochi' is a 'Dog' according to our class definition, it has
+whatever properties we decided a 'Dog' should have.  Since our idea of
+'Dog'-ness was very simple, there is just one trick we can ask 'pochi'
+to do.
+
+     ruby> pochi.speak
+     Bow Wow
+        nil
+
+   Making a new instance of a class is sometimes called
+"instantiating" that class.  We need to have a dog before we can
+experience the pleasure of its conversation; we can't merely ask the
+'Dog' class to bark for us.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide on Inheritance,  Next: Ruby User's Guide on Redefinition Of Methods,  Prev: Ruby User's Guide on Classes,  Up: Ruby User's Guide
+
+2.4.1.12 On Inheritance
+.......................
+
+Our classification of objects in everyday life is naturally
+hierarchical.  We know that all cats are mammals, and all mammals are
+animals.  Smaller classes "inherit" characteristics from the larger
+classes to which they belong.  If all mammals breathe, then all cats
+breathe.
+
+   We can express this concept in ruby:
+
+     ruby> class Mammal
+         |   def breathe
+         |     puts "inhale and exhale"
+         |   end
+         | end
+        nil
+     ruby> class Cat<Mammal
+         |   def speak
+         |     puts "Meow"
+         |   end
+         | end
+        nil
+
+   Though we didn't specify how a 'Cat' should breathe, every cat will
+inherit that behavior from the 'Mammal' class since 'Cat' was defined
+as a subclass of 'Mammal'.  (In OO terminology, the smaller class is a
+"subclass" and the larger class is a "superclass".)  Hence from a
+programmer's standpoint, cats get the ability to breathe for free;
+after we add a 'speak' method, our cats can both breathe and speak.
+
+     ruby> tama = Cat.new
+        #<Cat:0xbd80e8>
+     ruby> tama.breathe
+     inhale and exhale
+        nil
+     ruby> tama.speak
+     Meow
+        nil
+
+Differential Programming
+------------------------
+
+There will be situations where certain properties of the superclass
+should not be inherited by a particular subclass.  Though birds
+generally know how to fly, penguins are a flightless subclass of
+birds.
+
+     ruby> class Bird
+         |   def preen
+         |     puts "I am cleaning my feathers."
+         |   end
+         |   def fly
+         |     puts "I am flying."
+         |   end
+         | end
+        nil
+     ruby> class Penguin<Bird
+         |   def fly
+         |     fail "Sorry. I'd rather swim."
+         |   end
+         | end
+        nil
+
+   Rather than exhaustively define every characteristic of every new
+class, we need only to append or to redefine the differences between
+each subclass and its superclass.  This use of inheritance is
+sometimes called "differential programming".  It is one of the
+benefits of object-oriented programming.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide on Redefinition Of Methods,  Next: Ruby User's Guide On Access Control,  Prev: Ruby User's Guide on Inheritance,  Up: Ruby User's Guide
+
+2.4.1.13 On Redefinition of Methods
+...................................
+
+In a subclass, we can change the behavior of the instances by
+redefining superclass methods.
+
+     ruby> class Human
+         |   def identify
+         |     puts "I'm a person."
+         |   end
+         |   def train_toll(age)
+         |     if age < 12
+         |       puts "Reduced fare.";
+         |     else
+         |       puts "Normal fare.";
+         |     end
+         |   end
+         | end
+        nil
+     ruby> Human.new.identify
+     I'm a person.
+        nil
+     ruby> class Student1<Human
+         |   def identify
+         |     puts "I'm a student."
+         |   end
+         | end
+        nil
+     ruby> Student1.new.identify
+     I'm a student.
+        nil
+
+   Suppose we would rather enhance the superclass's 'identify' method
+than entirely replace it.  For this we can use 'super'.
+
+     ruby> class Student2<Human
+         |   def identify
+         |     super
+         |     puts "I'm a student too."
+         |   end
+         | end
+        nil
+     ruby> Student2.new.identify
+     I'm a person.
+     I'm a student too.
+        nil
+
+   'super' lets us pass arguments to the original method.  It is
+sometimes said that there are two kinds of people ...
+
+     ruby> class Dishonest<Human
+         |   def train_toll(age)
+         |     super(11) # we want a cheap fare.
+         |   end
+         | end
+        nil
+     ruby> Dishonest.new.train_toll(25)
+     Reduced fare.
+        nil
+
+     ruby> class Honest<Human
+         |   def train_toll(age)
+         |     super(age) # pass the argument we were given
+         |   end
+         | end
+        nil
+     ruby> Honest.new.train_toll(25)
+     Normal fare.
+        nil
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Access Control,  Next: Ruby User's Guide On Singleton Methods,  Prev: Ruby User's Guide on Redefinition Of Methods,  Up: Ruby User's Guide
+
+2.4.1.14 On Access Control
+..........................
+
+Earlier, we said that ruby has no functions, only methods.  However
+there is more than one kind of method.  In this chapter we introduce
+"access controls".
+
+   Consider what happens when we define a method in the "top level",
+not inside a class definition.  We can think of such a method as
+analogous to a function in a more traditional language like C.
+
+     ruby> def square(n)
+         |   n * n
+         | end
+        nil
+     ruby> square(5)
+        25
+
+   Our new method would appear not to belong to any class, but in fact
+ruby gives it to the 'Object' class, which is a superclass of every
+other class.  As a result, any object should now be able to use that
+method.  That turns out to be true, but there's a small catch: it is a
+_private_ method of every class.  We'll discuss some of what this
+means below, but one consequence is that it may be invoked only in
+function style, as here:
+
+     ruby> class Foo
+         |   def fourth_power_of(x)
+         |     square(x) * square(x)
+         |   end
+         | end
+       nil
+     ruby> Foo.new.fourth_power_of 10
+       10000
+
+   We are not allowed to explicitly apply the method to an object:
+
+     ruby> "fish".square(5)
+     ERR: (eval):1: private method `square' called for "fish":String
+
+   This rather cleverly preserves ruby's pure-OO nature (functions are
+still object methods, but the receiver is self implicitly) while
+providing functions that can be written just as in a more traditional
+language.
+
+Rationale For Private Methods: Encapsulation
+--------------------------------------------
+
+A common mental discipline in OO programming, which we have hinted at
+in an earlier chapter, concerns the separation of specification and
+implementation, or what tasks an object is supposed to accomplish and
+how it actually accomplishes them.  The internal workings of an object
+should be kept generally hidden from its users; they should only care
+about what goes in and what comes out, and trust the object to know
+what it is doing internally.  As such it is often helpful for classes
+to have methods that the outside world does not see, but which are
+used internally (and can be improved by the programmer whenever
+desired, without changing the way users see objects of that class).
+In the trivial example below, think of engine as the invisible inner
+workings of the class.
+
+     ruby> class Test
+         |   def times_two(a)
+         |     puts "#{a} times two is #{engine(a)}"
+         |   end
+         |   def engine(b)
+         |     b*2
+         |   end
+         |   private:engine  # this hides engine from users
+         | end
+        Test
+     ruby> test = Test.new
+        #<Test:0x4017181c>
+     ruby> test.engine(6)
+     ERR: (eval):1: private method `engine' called for #<Test:0x4017181c>
+     ruby> test.times_two(6)
+     6 times two is 12.
+        nil
+
+   We might have expected 'test.engine(6)' to return 12, but instead
+we learn that 'engine' is inaccessible when we are acting as a user of
+a 'Test' object.  Only other 'Test' methods, such as 'times_two', are
+allowed to use engine.  We are required to go through the public
+interface, which consists of the 'times_two' method.  The programmer
+who is in charge of this class can change 'engine' freely (here,
+perhaps by changing 'b*2' to 'b+b', assuming for the sake of argument
+that it improved performance) without affecting how the user interacts
+with 'Test' objects.  This example is of course much too simple to be
+useful; the benefits of access controls become more clear only when we
+begin to create more complicated and interesting classes.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Singleton Methods,  Next: Ruby User's Guide On Modules,  Prev: Ruby User's Guide On Access Control,  Up: Ruby User's Guide
+
+2.4.1.15 On Singleton Methods
+.............................
+
+The behavior of an instance is determined by its class, but there may
+be times we know that a particular instance should have special
+behavior.  In most languages, we must go to the trouble of defining
+another class, which would then only be instantiated once.  In ruby we
+can give any object its own methods.  A method given only to a single
+object is called a "singleton method".
+
+   Singleton methods are often used for elements of a graphic user
+interface (GUI), where different actions need to be taken when
+different buttons are pressed.
+
+   Singleton methods are not unique to ruby, as they appear in CLOS,
+Dylan, etc.  Also, some languages, for example, Self and NewtonScript,
+have singleton methods only.  These are sometimes called
+"prototype-based" languages.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Modules,  Next: Ruby User's Guide On Procedure Objects (Procs),  Prev: Ruby User's Guide On Singleton Methods,  Up: Ruby User's Guide
+
+2.4.1.16 On Modules
+...................
+
+Modules in ruby are similar to classes, except:
+
+   * A module can have no instances.
+   * A module can have no subclasses.
+   * A module is defined by 'module ... end'.
+
+   Actually...  the 'Module' class of 'module' is the superclass of
+the 'Class' class of 'class'.  Got that?  No?  Let's move on.
+
+Module As Collection
+--------------------
+
+There are two typical uses of modules.  One is to collect related
+methods and constants in a central location.  The 'Math' module in
+ruby's standard library plays such a role:
+
+     ruby> Math.sqrt(2)
+        1.41421
+     ruby> Math::PI
+        3.14159
+
+   The '::' operator tells the ruby interpreter which module it should
+consult for the value of a constant (conceivably, some module besides
+Math might mean something else by PI). If we want to refer to the
+methods or constants of a module directly without using '::', we can
+'include' that module:
+
+     ruby> include Math
+        Object
+     ruby> sqrt(2)
+        1.41421
+     ruby> PI
+        3.14159
+
+Module As Mixin
+---------------
+
+Another use of modules is called "mixin".  Some OO programming
+languages, including C++, allow "multiple inheritance", that is,
+inheritance from more than one superclass.  A real-world example of
+multiple inheritance is an alarm clock; you can think of alarm clocks
+as belonging to the class of clocks and also the class of things with
+buzzers.
+
+   Ruby purposely does not implement true multiple inheritance, but
+the "mixin technique" is a good alternative.  Remember that modules
+cannot be instantiated or subclassed; but if we 'include' a module in
+a class definition, its methods are effectively appended, or _mixed
+in_, to the class.
+
+Mixin As Properties
+...................
+
+Mixin can be thought of as a way of asking for whatever particular
+properties we want to have.  For example, if a class has a working
+'each' method, mixing in the standard library's 'Enumerable' module
+gives us 'sort' and 'find' methods for free.
+
+Modules Instead Of Multiple Inheritance
+.......................................
+
+This use of modules gives us the basic functionality of multiple
+inheritance but allows us to represent class relationships with a
+simple tree structure, and so simplifies the language implementation
+considerably (a similar choice was made by the designers of Java).
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Procedure Objects (Procs),  Next: Ruby User's Guide On Variables,  Prev: Ruby User's Guide On Modules,  Up: Ruby User's Guide
+
+2.4.1.17 On Procedure Objects (Procs)
+.....................................
+
+It is often desirable to be able to specify responses to unexpected
+events.  As it turns out, this is most easily done if we can pass
+blocks of code as arguments to other methods, which means we want to
+be able to treat code as if it were data.
+
+   A new procedure object is formed using 'proc':
+
+     ruby> quux = proc {
+         |   puts "QUUXQUUXQUUX!!!"
+         | }
+        #<Proc:0x4017357c>
+
+   Now what 'quux' refers to is an object, and like most objects, it
+has behavior that can be invoked.  Specifically, we can ask it to
+execute, via its 'call' method:
+
+     ruby> quux.call
+     QUUXQUUXQUUX!!!
+        nil
+
+   So, after all that, can 'quux' be used as a method argument?  Sure.
+
+     ruby> def run( p )
+         |   puts "About to call a procedure..."
+         |   p.call
+         |   puts "There: finished."
+         | end
+        nil
+     ruby> run quux
+     About to call a procedure...
+     QUUXQUUXQUUX!!!
+     There: finished.
+        nil
+
+   The 'trap' method lets us assign the response of our choice to any
+system signal.
+
+     ruby> inthandler = proc{ puts "^C was pressed." }
+        #<Proc:0x401730a4>
+     ruby> trap "SIGINT", inthandler
+        #<Proc:0x401735e0>
+
+   Normally pressing <^C> makes the interpreter quit.  Now a message
+is printed and the interpreter continues running, so you don't lose
+the work you were doing.  (You're not trapped in the interpreter
+forever; you can still exit by typing 'exit'.)
+
+Anonymous Procedure Objects
+---------------------------
+
+A final note before we move on to other topics: it's not strictly
+necessary to give a procedure object a name before binding it to a
+signal.  An equivalent anonymous procedure object would look like
+'trap "SIGINT", proc{ puts "^C was pressed." }', or more compactly
+still, ' trap "SIGINT", 'puts "^C was pressed."''.  This abbreviated
+form provides some convenience and readability when you write small
+anonymous procedures.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Variables,  Prev: Ruby User's Guide On Procedure Objects (Procs),  Up: Ruby User's Guide
+
+2.4.1.18 On Variables
+.....................
+
+Ruby has three kinds of variables, one kind of constant and exactly
+two pseudo-variables.  The variables and the constants have no type.
+While untyped variables have some drawbacks, they have many more
+advantages and fit well with ruby's quick and easy philosophy.
+
+No Variable Declarations
+------------------------
+
+Variables must be declared in most languages in order to specify their
+type, modifiability (i.e., whether they are constants), and scope;
+since type is not an issue, and the rest is evident from the variable
+name as you are about to see, we do not need variable declarations in
+ruby.
+
+   The first character of an identifier categorizes it at a glance:
+
+$                                   global variable
+@                                   instance variable
+[a-z] or _                          local variable
+[A-Z]                               constant
+
+Pseudo-Variables
+----------------
+
+The only exceptions to the above are ruby's pseudo-variables: 'self',
+which always refers to the currently executing object, and 'nil',
+which is the meaningless value assigned to uninitialized variables.
+Both are named as if they are local variables, but 'self' is a global
+variable maintained by the interpreter, and 'nil' is really a
+constant.  As these are the only two exceptions, they don't confuse
+things too much.
+
+   You may not assign values to 'self' or 'nil'.  'main', as a value
+of 'self', refers to the top-level object.
 
 
 File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
@@ -4357,6 +4998,8 @@ Index
 * "truthy" values:                       FAQ Syntax.        (line  59)
 * ++ and --:                             FAQ Methods.       (line  15)
 * .. vs. ...:                            FAQ Syntax.        (line 203)
+* :: operator:                           Ruby User's Guide On Modules.
+                                                            (line  27)
 * <eval--EvalWrapper-Constants>, definition: eval Module Code.
                                                             (line   6)
 * <eval--EvalWrapper-Constants>, use:    eval.rb.           (line   8)
@@ -4431,12 +5074,18 @@ Index
 * {ri20min.rb}, definition:              Large Class Definition.
                                                             (line  10)
 * access control:                        To Ruby From Java. (line  36)
+* access control <1>:                    Ruby User's Guide On Access Control.
+                                                            (line   6)
 * access modifier scope:                 Access modifiers are Methods.
                                                             (line   6)
 * access modifiers public, private, protected: Access modifiers are Methods.
                                                             (line   6)
 * Algol and Ruby:                        Simple Examples.   (line  54)
+* anonymous procedure objects:           Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line  56)
 * ArgumentError, after calling super:    FAQ Methods.       (line  39)
+* arguments to a method:                 Ruby User's Guide on Methods.
+                                                            (line  59)
 * arithmetic:                            FAQ Extension Library.
                                                             (line  26)
 * Array:                                 To Ruby From C and C++.
@@ -4492,6 +5141,8 @@ Index
 * buffering:                             Puzzle Program.    (line  84)
 * C library, use:                        FAQ Extension Library.
                                                             (line  15)
+* call method:                           Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line  18)
 * calling method 2 levels up:            FAQ Methods.       (line  42)
 * case conventions, enforced:            To Ruby From C and C++.
                                                             (line 144)
@@ -4504,11 +5155,15 @@ Index
                                                             (line  83)
 * chruby:                                chruby.            (line   6)
 * class definition:                      Defining Methods.  (line  70)
+* class definition <1>:                  Ruby User's Guide on Classes.
+                                                            (line  13)
 * class definition, repeating:           FAQ Classes and Modules.
                                                             (line   9)
 * class instance variable?:              FAQ Classes and Modules.
                                                             (line  15)
 * class keyword:                         Defining Methods.  (line  70)
+* class keyword <1>:                     Ruby User's Guide on Classes.
+                                                            (line  13)
 * class methods, defining, 2 ways:       FAQ Classes and Modules.
                                                             (line  39)
 * class methods?:                        FAQ Classes and Modules.
@@ -4521,8 +5176,12 @@ Index
                                                             (line  12)
 * class vs module:                       FAQ Classes and Modules.
                                                             (line  30)
+* classes:                               Ruby User's Guide on Classes.
+                                                            (line   6)
 * classes, modifying:                    Altering Classes.  (line  19)
 * classes, open:                         Classes are open.  (line   6)
+* CLOS:                                  Ruby User's Guide On Singleton Methods.
+                                                            (line  17)
 * collect:                               Pointers on Iteration.
                                                             (line  17)
 * collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
@@ -4550,12 +5209,16 @@ Index
 * debugger for Ruby:                     FAQ Extension Library.
                                                             (line  12)
 * def:                                   Defining Methods.  (line   6)
+* def keyword:                           Ruby User's Guide on Classes.
+                                                            (line  13)
 * destructive method:                    FAQ Methods.       (line  48)
 * destructive method vs nondestructive method: Ruby User's Guide on Regular Expressions.
                                                             (line  83)
 * developing Ruby:                       Developing Ruby.   (line   6)
 * dictionary:                            Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
+* differential programming:              Ruby User's Guide on Inheritance.
+                                                            (line  67)
 * DLLs:                                  FAQ Syntax.        (line 249)
 * do ... } while:                        FAQ Syntax.        (line 156)
 * do keyword:                            To Ruby From C and C++.
@@ -4565,8 +5228,12 @@ Index
                                                             (line  29)
 * Documentation:                         Documentation.     (line   6)
 * documentation tool:                    To Ruby From Java. (line  23)
+* dot notation:                          Ruby User's Guide on Methods.
+                                                            (line  22)
 * duck typing:                           Large Class Definition.
                                                             (line 123)
+* Dylan:                                 Ruby User's Guide On Singleton Methods.
+                                                            (line  17)
 * dynamicly typed:                       To Ruby From C and C++.
                                                             (line  28)
 * each:                                  Pointers on Iteration.
@@ -4580,8 +5247,12 @@ Index
                                                             (line  36)
 * Eiffel and Ruby:                       Simple Examples.   (line  54)
 * empty string:                          FAQ Syntax.        (line  73)
+* end keyword:                           Ruby User's Guide on Classes.
+                                                            (line  13)
 * ensure clause:                         FAQ Syntax.        (line 265)
 * equivalence vs the same:               To Ruby From Java. (line  59)
+* errors in OO:                          Ruby User's Guide on Methods.
+                                                            (line  51)
 * eval:                                  FAQ Syntax.        (line 115)
 * eval.rb:                               Simple Examples.   (line 102)
 * exception handling:                    FAQ Syntax.        (line 254)
@@ -4648,8 +5319,14 @@ Index
                                                             (line  61)
 * immediate values:                      FAQ Syntax.        (line  46)
 * import:                                To Ruby From Java. (line  34)
+* include a module, mixin:               Ruby User's Guide On Modules.
+                                                            (line  50)
+* include statement:                     Ruby User's Guide On Modules.
+                                                            (line  27)
 * include vs extend:                     FAQ Classes and Modules.
                                                             (line  42)
+* inheritance:                           Ruby User's Guide on Inheritance.
+                                                            (line   6)
 * initialize method:                     Large Class Definition.
                                                             (line  41)
 * initialize, constructor:               To Ruby From Java. (line  52)
@@ -4657,6 +5334,8 @@ Index
                                                             (line  17)
 * insert code into a string:             Defining Methods.  (line  43)
 * installer, third party:                Installers.        (line   6)
+* instance of a class:                   Ruby User's Guide on Classes.
+                                                            (line   6)
 * instance variable:                     Defining Methods.  (line  86)
 * instance variable @:                   Naming conventions.
                                                             (line   9)
@@ -4664,9 +5343,13 @@ Index
 * instance variables, encapsulation:     Defining Methods.  (line 109)
 * instance_methods(false):               FAQ Built-In Libraries.
                                                             (line   9)
+* instantiating a class:                 Ruby User's Guide on Classes.
+                                                            (line  33)
 * interactively use Ruby:                FAQ Extension Library.
                                                             (line   9)
 * interfaces, none, use mixins:          To Ruby From Java. (line  53)
+* invoke method:                         Ruby User's Guide on Methods.
+                                                            (line  22)
 * invoking original method after redefinition: FAQ Methods. (line  45)
 * irb:                                   Interactive Ruby.  (line   6)
 * irb <1>:                               To Ruby From Python.
@@ -4699,6 +5382,12 @@ Index
 * Kernel:                                FAQ Syntax.        (line 149)
 * key, for hash:                         Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
+* keyword def:                           Ruby User's Guide on Classes.
+                                                            (line  13)
+* keyword new:                           Ruby User's Guide on Classes.
+                                                            (line  33)
+* keywords class and end:                Ruby User's Guide on Classes.
+                                                            (line  13)
 * lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
 * lambda method:                         Blocks are Objects.
                                                             (line  19)
@@ -4723,25 +5412,43 @@ Index
 * member variables, access to:           To Ruby From C and C++.
                                                             (line 137)
 * memory management:                     To Ruby From Java. (line  18)
+* messages to objects:                   Ruby User's Guide on Methods.
+                                                            (line   9)
+* method definition:                     Ruby User's Guide on Classes.
+                                                            (line  13)
+* method invocation:                     Ruby User's Guide on Methods.
+                                                            (line  22)
 * method parameters:                     Defining Methods.  (line  33)
+* method redefinition:                   Ruby User's Guide on Redefinition Of Methods.
+                                                            (line   6)
 * method, destructive:                   FAQ Methods.       (line  48)
 * method, invoking:                      FAQ Methods.       (line   9)
 * method, invoking <1>:                  Defining Methods.  (line  26)
+* methods:                               Ruby User's Guide on Methods.
+                                                            (line   6)
 * methods are virtual:                   To Ruby From C and C++.
                                                             (line 132)
 * methods, defining:                     Defining Methods.  (line   6)
 * method_missing method:                 Missing methods.   (line   6)
+* mixin:                                 Ruby User's Guide On Modules.
+                                                            (line  43)
 * mixin example:                         FAQ Classes and Modules.
                                                             (line  36)
+* mixin technique:                       Ruby User's Guide On Modules.
+                                                            (line  50)
 * mixins:                                To Ruby From C and C++.
                                                             (line 142)
 * mixins <1>:                            To Ruby From Java. (line  53)
 * module function?:                      FAQ Classes and Modules.
                                                             (line  27)
+* modules:                               Ruby User's Guide On Modules.
+                                                            (line   6)
 * modules, subclassing?:                 FAQ Classes and Modules.
                                                             (line  33)
 * multiple inheritance:                  To Ruby From C and C++.
                                                             (line 142)
+* multiple inheritance <1>:              Ruby User's Guide On Modules.
+                                                            (line  43)
 * multiple installations, manage using RVM: RVM (``Ruby Version Manager'').
                                                             (line   6)
 * multiple Rubies, command-line tool uru: uru.              (line   6)
@@ -4749,6 +5456,10 @@ Index
                                                             (line 160)
 * negated conditions:                    Ruby User's Guide On Control Structures.
                                                             (line  68)
+* new keyword:                           Ruby User's Guide on Classes.
+                                                            (line  33)
+* NewtonScript:                          Ruby User's Guide On Singleton Methods.
+                                                            (line  17)
 * next:                                  Ruby User's Guide On Control Structures.
                                                             (line  74)
 * nil and false, similariaties and differences: FAQ Syntax. (line  59)
@@ -4777,6 +5488,8 @@ Index
 * parentheses, optional in method calls: To Ruby From Java. (line  38)
 * Patch Writer's Guide:                  Developing Ruby.   (line  73)
 * patching of Ruby:                      Developing Ruby.   (line  38)
+* polymorphism:                          Ruby User's Guide on Methods.
+                                                            (line  37)
 * precedence of or:                      FAQ Syntax.        (line 211)
 * precedence, iterators, different results: FAQ Iterators.  (line  36)
 * predicate method:                      Ruby User's Guide on Regular Expressions.
@@ -4787,12 +5500,30 @@ Index
 * private vs protected:                  FAQ Methods.       (line  30)
 * Proc:                                  Blocks are Objects.
                                                             (line   6)
+* proc:                                  Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line   6)
+* Proc as method argument:               Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line  26)
 * Proc object, passed to iterator:       FAQ Iterators.     (line   9)
+* proc, execute:                         Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line  18)
+* Proc, invoke:                          Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line  18)
 * Proc.new, followed by call:            FAQ Iterators.     (line  87)
+* procedure objects:                     Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line   6)
+* Procs:                                 Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line   6)
 * program output, display using less:    FAQ Built-In Libraries.
                                                             (line  27)
+* prototype-based languages:             Ruby User's Guide On Singleton Methods.
+                                                            (line  17)
+* pseudo-variables self and nil:         Ruby User's Guide On Variables.
+                                                            (line  30)
 * puts:                                  Puzzle Program.    (line  57)
 * Qt:                                    To Ruby From Java. (line  31)
+* raise an error:                        Ruby User's Guide on Methods.
+                                                            (line  51)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
 * range expression:                      Ruby User's Guide On Control Structures.
@@ -4806,6 +5537,8 @@ Index
 * rdoc <2>:                              To Ruby From Python.
                                                             (line  29)
 * read one line from standard input:     Puzzle Program.    (line  39)
+* redefine a method:                     Ruby User's Guide on Redefinition Of Methods.
+                                                            (line   6)
 * redo:                                  Ruby User's Guide On Control Structures.
                                                             (line  74)
 * redo <1>:                              Ruby User's Guide On Iterators.
@@ -4850,6 +5583,10 @@ Index
                                                             (line   6)
 * script code:                           Large Class Definition.
                                                             (line 151)
+* self:                                  Ruby User's Guide on Methods.
+                                                            (line  66)
+* Self:                                  Ruby User's Guide On Singleton Methods.
+                                                            (line  17)
 * self, meaning:                         FAQ Classes and Modules.
                                                             (line  44)
 * self, object reference:                To Ruby From C and C++.
@@ -4861,6 +5598,8 @@ Index
                                                             (line  24)
 * singleton method:                      FAQ Methods.       (line  18)
 * singleton methods:                     Singleton methods. (line   6)
+* singleton methods <1>:                 Ruby User's Guide On Singleton Methods.
+                                                            (line   6)
 * sort:                                  Pointers on Iteration.
                                                             (line  17)
 * source, building:                      Building From Source.
@@ -4888,9 +5627,15 @@ Index
                                                             (line  80)
 * sub vs sub!:                           FAQ Built-In Libraries.
                                                             (line  51)
+* subclass:                              Ruby User's Guide on Inheritance.
+                                                            (line   6)
 * Subversion:                            Developing Ruby.   (line  26)
 * Subversion repository:                 Developing Ruby.   (line  49)
+* super:                                 Ruby User's Guide on Redefinition Of Methods.
+                                                            (line  35)
 * super gives ArgumentError:             FAQ Methods.       (line  39)
+* superclass:                            Ruby User's Guide on Inheritance.
+                                                            (line   6)
 * sygils in Ruby:                        To Ruby From Perl. (line  41)
 * Symbol:                                Symbols are not lightweight Strings.
                                                             (line  26)
@@ -4923,6 +5668,8 @@ Index
 * track Ruby development:                Developing Ruby.   (line  26)
 * trap:                                  FAQ Built-In Libraries.
                                                             (line  62)
+* trap method, and Proc:                 Ruby User's Guide On Procedure Objects (Procs).
+                                                            (line  40)
 * truth values:                          To Ruby From C and C++.
                                                             (line 111)
 * type conversions:                      To Ruby From C and C++.
@@ -4941,6 +5688,8 @@ Index
                                                             (line   9)
 * variable, instance @:                  Naming conventions.
                                                             (line   9)
+* variables, description:                Ruby User's Guide On Variables.
+                                                            (line   6)
 * varible, global $:                     Naming conventions.
                                                             (line   9)
 * version managers:                      Installers.        (line   6)
@@ -4986,149 +5735,158 @@ Program Index
 
 Tag Table:
 Node: Top371
-Node: Preface3646
-Node: Audience3829
-Node: Overview3948
-Node: Conventions4118
-Node: Acknowledgements5038
-Node: Introduction5154
-Node: Documentation5451
-Node: Installing Ruby5860
-Node: Package Management Systems6773
-Node: Homebrew (OS X)7598
-Node: Installers8024
-Node: ruby-build8620
-Node: ruby-install9173
-Node: Managers9788
-Node: chruby10185
-Node: rbenv10444
-Node: RVM (``Ruby Version Manager'')10989
-Node: uru11387
-Node: Building From Source11680
-Node: Releases Page12692
-Node: Branches Page13792
-Node: Issue Tracking15592
-Node: Developing Ruby16076
-Ref: subversion16826
-Ref: MainRubyRepo17978
-Ref: PatchByPatch18306
-Node: Getting Started19103
-Node: Try Ruby!19491
-Node: Official FAQ19821
-Node: FAQ Iterators20898
-Node: FAQ Syntax24837
-Ref: immediate value25982
-Ref: nil vs false26617
-Ref: empty string27231
-Ref: symbol object27584
-Ref: value of symbol28722
-Ref: loop29600
-Ref: post-test loop29826
-Ref: hash literal30252
-Ref: pos val30534
-Ref: \1 and \\130910
-Ref: 2 dots vs 3 dots31318
-Ref: or and31556
-Ref: function pointers32358
-Ref: load vs require32680
-Ref: exception handling33035
-Node: FAQ Methods34032
-Node: FAQ Classes and Modules35705
-Node: FAQ Built-In Libraries36891
-Node: FAQ Extension Library38869
-Node: FAQ Other Features39548
-Node: Ruby Koans40098
-Node: Why’s (Poignant) Guide to Ruby40502
-Node: Ruby in Twenty Minutes40976
-Node: Interactive Ruby41649
-Node: Defining Methods42603
-Node: Altering Classes48107
-Node: Large Class Definition49443
-Ref: ri20min-rb49847
-Ref: MegaGreeter---Initialize-Method50656
-Ref: MegaGreeter---say-hi-Method51378
-Ref: MegaGreeter---say-bye-Method53595
-Ref: MegaGreeter---Main-Script54543
-Node: Run MegaGreeter55075
-Node: Ruby from Other Languages55601
-Node: To Ruby From C and C++56319
-Node: To Ruby From Java63848
-Node: To Ruby From Perl66415
-Node: To Ruby From PHP69374
-Node: To Ruby From Python71551
-Node: Important Language Features75686
-Node: Pointers on Iteration76440
-Node: Everything has a value77236
-Node: Symbols are not lightweight Strings77716
-Node: Everything is an Object79161
-Node: Variable Constants79722
-Node: Naming conventions80115
-Node: Keyword arguments80811
-Node: The universal truth81361
-Node: Access modifiers are Methods82113
-Node: Method access83116
-Node: Classes are open84730
-Node: Funny method names85445
-Node: Singleton methods86247
-Node: Missing methods86874
-Node: Message passing --- not function calls87953
-Node: Blocks are Objects88374
-Node: Operators are syntactic sugar89285
-Node: Learning Ruby90298
-Node: Ruby Essentials90666
-Node: Learn to Program90897
-Node: Manuals91276
-Node: Ruby User's Guide91468
-Node: What Is Ruby?92188
-Node: Simple Examples93177
-Ref: fact-rb93605
-Ref: Simple Examples-Footnote-197358
-Node: Ruby User's Guide on Strings97440
-Node: Puzzle Program98781
-Ref: guess-rb98983
-Node: Ruby User's Guide on Regular Expressions102267
-Ref: regx-rb103358
-Node: Ruby User's Guide On Arrays And Hashes107499
-Node: Ruby User's Guide On Control Structures109436
-Node: Ruby User's Guide On Iterators113954
-Node: Ruby User's Guide On Object-Oriented Thinking117475
-Node: Programming Ruby117687
-Node: Reference Documentation122117
-Node: Editors and IDEs122289
-Node: Further Reading122455
-Node: Utility Programs122587
-Node: eval.rb122766
-Ref: eval-rb122915
-Node: eval Module Code124862
-Ref: eval---EvalWrapper--Constants125017
-Node: eval Indentation Deltas Code125544
-Ref: eval---EvalWrapper--Indentation-Deltas125755
-Node: eval Main Get Line Code126634
-Ref: eval---Main--Get-Line126846
-Node: eval Main Process Line Code127306
-Ref: eval---Main--Process-Line127489
-Node: eval If Not Line Code128130
-Ref: eval---Main--Process-Line-If-Not-Line128316
-Node: eval If Is Line Code128663
-Ref: eval---Main--Process-Line-Is-Line128847
-Ref: eval---Main--Process-Line-Is-Line-Indentation129697
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-130418
-Node: The Makefile131134
-Ref: Makefile131290
-Node: Makefile Variable Definitions132009
-Ref: Makefile---Variable-Definitions132187
-Node: Makefile Default Rule132355
-Ref: Makefile---Default-Rule132905
-Node: Makefile TWJR Rules133144
-Ref: Makefile---TWJR-Rules133303
-Node: Makefile Clean Rules133934
-Ref: Makefile---Clean-Rules134065
-Node: Code Chunk Summaries134529
-Node: File Definitions134914
-Node: Code Chunk Definitions135441
-Node: Code Chunk References137295
-Node: Bibliography139660
-Node: Concept Index139791
-Node: Program Index183427
+Node: Preface4000
+Node: Audience4183
+Node: Overview4302
+Node: Conventions4472
+Node: Acknowledgements5392
+Node: Introduction5508
+Node: Documentation5805
+Node: Installing Ruby6214
+Node: Package Management Systems7127
+Node: Homebrew (OS X)7952
+Node: Installers8378
+Node: ruby-build8974
+Node: ruby-install9527
+Node: Managers10142
+Node: chruby10539
+Node: rbenv10798
+Node: RVM (``Ruby Version Manager'')11343
+Node: uru11741
+Node: Building From Source12034
+Node: Releases Page13046
+Node: Branches Page14146
+Node: Issue Tracking15946
+Node: Developing Ruby16430
+Ref: subversion17180
+Ref: MainRubyRepo18332
+Ref: PatchByPatch18660
+Node: Getting Started19457
+Node: Try Ruby!19845
+Node: Official FAQ20175
+Node: FAQ Iterators21252
+Node: FAQ Syntax25191
+Ref: immediate value26336
+Ref: nil vs false26971
+Ref: empty string27585
+Ref: symbol object27938
+Ref: value of symbol29076
+Ref: loop29954
+Ref: post-test loop30180
+Ref: hash literal30606
+Ref: pos val30888
+Ref: \1 and \\131264
+Ref: 2 dots vs 3 dots31672
+Ref: or and31910
+Ref: function pointers32712
+Ref: load vs require33034
+Ref: exception handling33389
+Node: FAQ Methods34386
+Node: FAQ Classes and Modules36059
+Node: FAQ Built-In Libraries37245
+Node: FAQ Extension Library39223
+Node: FAQ Other Features39902
+Node: Ruby Koans40452
+Node: Why’s (Poignant) Guide to Ruby40856
+Node: Ruby in Twenty Minutes41330
+Node: Interactive Ruby42003
+Node: Defining Methods42957
+Node: Altering Classes48461
+Node: Large Class Definition49797
+Ref: ri20min-rb50201
+Ref: MegaGreeter---Initialize-Method51010
+Ref: MegaGreeter---say-hi-Method51732
+Ref: MegaGreeter---say-bye-Method53949
+Ref: MegaGreeter---Main-Script54897
+Node: Run MegaGreeter55429
+Node: Ruby from Other Languages55955
+Node: To Ruby From C and C++56673
+Node: To Ruby From Java64202
+Node: To Ruby From Perl66769
+Node: To Ruby From PHP69728
+Node: To Ruby From Python71905
+Node: Important Language Features76040
+Node: Pointers on Iteration76794
+Node: Everything has a value77590
+Node: Symbols are not lightweight Strings78070
+Node: Everything is an Object79515
+Node: Variable Constants80076
+Node: Naming conventions80469
+Node: Keyword arguments81165
+Node: The universal truth81715
+Node: Access modifiers are Methods82467
+Node: Method access83470
+Node: Classes are open85084
+Node: Funny method names85799
+Node: Singleton methods86601
+Node: Missing methods87228
+Node: Message passing --- not function calls88307
+Node: Blocks are Objects88728
+Node: Operators are syntactic sugar89639
+Node: Learning Ruby90652
+Node: Ruby Essentials91020
+Node: Learn to Program91251
+Node: Manuals91630
+Node: Ruby User's Guide91822
+Node: What Is Ruby?92896
+Node: Simple Examples93885
+Ref: fact-rb94313
+Ref: Simple Examples-Footnote-198066
+Node: Ruby User's Guide on Strings98148
+Node: Puzzle Program99489
+Ref: guess-rb99691
+Node: Ruby User's Guide on Regular Expressions102975
+Ref: regx-rb104066
+Node: Ruby User's Guide On Arrays And Hashes108207
+Node: Ruby User's Guide On Control Structures110144
+Node: Ruby User's Guide On Iterators114662
+Node: Ruby User's Guide On Object-Oriented Thinking118183
+Node: Ruby User's Guide on Methods121464
+Node: Ruby User's Guide on Classes124729
+Node: Ruby User's Guide on Inheritance126605
+Node: Ruby User's Guide on Redefinition Of Methods128887
+Node: Ruby User's Guide On Access Control130792
+Node: Ruby User's Guide On Singleton Methods134619
+Node: Ruby User's Guide On Modules135626
+Node: Ruby User's Guide On Procedure Objects (Procs)138167
+Node: Ruby User's Guide On Variables140348
+Node: Programming Ruby141977
+Node: Reference Documentation146407
+Node: Editors and IDEs146579
+Node: Further Reading146745
+Node: Utility Programs146877
+Node: eval.rb147056
+Ref: eval-rb147205
+Node: eval Module Code149152
+Ref: eval---EvalWrapper--Constants149307
+Node: eval Indentation Deltas Code149834
+Ref: eval---EvalWrapper--Indentation-Deltas150045
+Node: eval Main Get Line Code150924
+Ref: eval---Main--Get-Line151136
+Node: eval Main Process Line Code151596
+Ref: eval---Main--Process-Line151779
+Node: eval If Not Line Code152420
+Ref: eval---Main--Process-Line-If-Not-Line152606
+Node: eval If Is Line Code152953
+Ref: eval---Main--Process-Line-Is-Line153137
+Ref: eval---Main--Process-Line-Is-Line-Indentation153987
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-154708
+Node: The Makefile155424
+Ref: Makefile155580
+Node: Makefile Variable Definitions156299
+Ref: Makefile---Variable-Definitions156477
+Node: Makefile Default Rule156645
+Ref: Makefile---Default-Rule157195
+Node: Makefile TWJR Rules157434
+Ref: Makefile---TWJR-Rules157593
+Node: Makefile Clean Rules158224
+Ref: Makefile---Clean-Rules158355
+Node: Code Chunk Summaries158819
+Node: File Definitions159204
+Node: Code Chunk Definitions159731
+Node: Code Chunk References161585
+Node: Bibliography163950
+Node: Concept Index164081
+Node: Program Index215682
 
 End Tag Table

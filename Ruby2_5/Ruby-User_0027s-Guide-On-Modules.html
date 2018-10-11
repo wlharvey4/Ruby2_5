@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Modules (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Modules (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Modules (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029.html#Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029" rel="next" title="Ruby User's Guide On Procedure Objects (Procs)">
+<link href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods" rel="prev" title="Ruby User's Guide On Singleton Methods">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Modules"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029.html#Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029" accesskey="n" rel="next">Ruby User's Guide On Procedure Objects (Procs)</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods" accesskey="p" rel="prev">Ruby User's Guide On Singleton Methods</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Modules"></a>
+<h4 class="subsubsection">2.4.1.16 On Modules</h4>
+<a name="index-modules"></a>
+
+<p>Modules in ruby are similar to classes, except:
+</p>
+<ul>
+<li> A module can have no instances.
+</li><li> A module can have no subclasses.
+</li><li> A module is defined by <code>module &hellip; end</code>.
+</li></ul>
+
+<p>Actually... the <code>Module</code> class of <code>module</code> is the superclass of the
+<code>Class</code> class of <code>class</code>.  Got that?  No?  Let&rsquo;s move on.
+</p>
+<a name="Module-As-Collection"></a>
+<h4 class="subheading">Module As Collection</h4>
+
+<p>There are two typical uses of modules.  One is to collect related methods and
+constants in a central location.  The <code>Math</code> module in ruby&rsquo;s standard
+library plays such a role:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; Math.sqrt(2)
+   1.41421
+ruby&gt; Math::PI
+   3.14159
+</pre></div>
+
+<a name="index-_003a_003a-operator"></a>
+<a name="index-include-statement"></a>
+<p>The <code>::</code> operator tells the ruby interpreter which module it should
+consult for the value of a constant (conceivably, some module besides Math
+might mean something else by PI).  If we want to refer to the methods or
+constants of a module directly without using <code>::</code>, we can <code>include</code>
+that module:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; include Math
+   Object
+ruby&gt; sqrt(2)
+   1.41421
+ruby&gt; PI
+   3.14159
+</pre></div>
+
+<a name="Module-As-Mixin"></a>
+<h4 class="subheading">Module As Mixin</h4>
+<a name="index-mixin"></a>
+<a name="index-multiple-inheritance-1"></a>
+
+<p>Another use of modules is called <em>mixin</em>.  Some OO programming languages,
+including C++, allow <em>multiple inheritance</em>, that is, inheritance from more
+than one superclass.  A real-world example of multiple inheritance is an alarm
+clock; you can think of alarm clocks as belonging to the class of clocks and
+also the class of things with buzzers.
+</p>
+<a name="index-mixin-technique"></a>
+<a name="index-include-a-module_002c-mixin"></a>
+<p>Ruby purposely does not implement true multiple inheritance, but the <em>mixin
+technique</em> is a good alternative.  Remember that modules cannot be instantiated
+or subclassed; but if we <code>include</code> a module in a class definition, its
+methods are effectively appended, or <em>mixed in</em>, to the class.
+</p>
+<a name="Mixin-As-Properties"></a>
+<h4 class="subsubheading">Mixin As Properties</h4>
+
+<p>Mixin can be thought of as a way of asking for whatever particular properties
+we want to have.  For example, if a class has a working <code>each</code> method,
+mixing in the standard library&rsquo;s <code>Enumerable</code> module gives us <code>sort</code>
+and <code>find</code> methods for free.
+</p>
+<a name="Modules-Instead-Of-Multiple-Inheritance"></a>
+<h4 class="subsubheading">Modules Instead Of Multiple Inheritance</h4>
+
+<p>This use of modules gives us the basic functionality of multiple inheritance
+but allows us to represent class relationships with a simple tree structure,
+and so simplifies the language implementation considerably (a similar choice
+was made by the designers of Java).
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029.html#Ruby-User_0027s-Guide-On-Procedure-Objects-_0028Procs_0029" accesskey="n" rel="next">Ruby User's Guide On Procedure Objects (Procs)</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods" accesskey="p" rel="prev">Ruby User's Guide On Singleton Methods</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -127,17 +127,16 @@ includes /def/
 <a name="index-while-statement"></a>
 <a name="index-loops-using-while"></a>
 
-<p>Ruby provides convenient ways to construct loops, although you will
-find in the next chapter that learning how to use iterators will make
-it unnecessary to write explicit loops very often.
+<p>Ruby provides convenient ways to construct loops, although you will find in the
+next chapter that learning how to use iterators will make it unnecessary to
+write explicit loops very often.
 </p>
-<p>A <code>while</code> is a repeated <code>if</code>.  We used it in our
-word-guessing puzzle and in the regular expression programs (see the
-previous chapter); there, it took the form &lsquo;<samp>while condition
-... end</samp>&rsquo; surrounding a block of code to be repeated while condition
-was true.  But <code>while</code> and <code>if</code> can as easily be applied to
-individual statements: &lsquo;<samp>puts &quot;It's zero.&quot; if i==0</samp>&rsquo; &rArr;
-&lsquo;<samp>It's zero.</samp>&rsquo; and &lsquo;<samp>puts i+=1 while i&lt;3</samp>&rsquo; &rArr; &lsquo;<samp>1 2
+<p>A <code>while</code> is a repeated <code>if</code>.  We used it in our word-guessing puzzle
+and in the regular expression programs (see the previous chapter); there, it
+took the form &lsquo;<samp>while condition ... end</samp>&rsquo; surrounding a block of code to be
+repeated while condition was true.  But <code>while</code> and <code>if</code> can as
+easily be applied to individual statements: &lsquo;<samp>puts &quot;It's zero.&quot; if i==0</samp>&rsquo;
+&rArr; &lsquo;<samp>It's zero.</samp>&rsquo; and &lsquo;<samp>puts i+=1 while i&lt;3</samp>&rsquo; &rArr; &lsquo;<samp>1 2
 3</samp>&rsquo;.
 </p>
 <a name="Negated-Conditions"></a>
@@ -146,8 +145,8 @@ individual statements: &lsquo;<samp>puts &quot;It's zero.&quot; if i==0</samp>&r
 <a name="index-until"></a>
 <a name="index-negated-conditions"></a>
 
-<p>Sometimes you want to negate a test condition.  An <code>unless</code> is a
-negated <code>if</code>, and an <code>until</code> is a negated <code>while</code>.
+<p>Sometimes you want to negate a test condition.  An <code>unless</code> is a negated
+<code>if</code>, and an <code>until</code> is a negated <code>while</code>.
 </p>
 <a name="Interrupting-A-Loop"></a>
 <h4 class="subheading">Interrupting A Loop</h4>
@@ -165,15 +164,14 @@ inside.
 </li><li> Second, <code>next</code> skips to the beginning of the next iteration of
 the loop (corresponding to C&rsquo;s continue).
 </li><li> Third, ruby has <code>redo</code>, which restarts the current iteration.
-</li><li> The fourth way to get out of a loop from the inside is <code>return</code>.
-An evaluation of <code>return</code> causes escape not only from a loop but
-from the method that contains the loop.  If an argument is given, it
-will be returned from the method call, otherwise <code>nil</code> is
-returned.
+</li><li> The fourth way to get out of a loop from the inside is <code>return</code>.  An
+evaluation of <code>return</code> causes escape not only from a loop but from the
+method that contains the loop.  If an argument is given, it will be returned
+from the method call, otherwise <code>nil</code> is returned.
 </li></ol>
 
-<p>The following is C code illustrating the meanings of <code>break</code>, <code>next</code>, and
-<code>redo</code>:
+<p>The following is C code illustrating the meanings of <code>break</code>, <code>next</code>,
+and <code>redo</code>:
 </p>
 <div class="example">
 <pre class="example">while (condition) {
@@ -196,11 +194,10 @@ label_break:
 <a name="index-loop_002c-for"></a>
 <a name="index-collection_002c-looping-over-elements-using-for"></a>
 
-<p>C programmers will be wondering by now how to make a <code>for</code> loop.
-Ruby&rsquo;s <code>for</code> can serve the same purpose, but adds some
-flexibility.  The loop below runs once for each element in a collection
-(array, hash, numeric sequence, etc.), but doesn&rsquo;t make the programmer
-think about indices:
+<p>C programmers will be wondering by now how to make a <code>for</code> loop.  Ruby&rsquo;s
+<code>for</code> can serve the same purpose, but adds some flexibility.  The loop
+below runs once for each element in a collection (array, hash, numeric
+sequence, etc.), but doesn&rsquo;t make the programmer think about indices:
 </p>
 <div class="example">
 <pre class="example">for elt in collection
@@ -209,8 +206,8 @@ end
 </pre></div>
 
 <a name="index-collection_002c-looping-over-a-range-of-values-using-for"></a>
-<p>The collection can be a range of values (this is what most people mean
-when they talk about a <code>for</code> loop):
+<p>The collection can be a range of values (this is what most people mean when
+they talk about a <code>for</code> loop):
 </p>
 <div class="example">
 <pre class="example">ruby&gt; for num in (4..6)
@@ -228,9 +225,9 @@ when they talk about a <code>for</code> loop):
 <a name="index-each-equivalent-to-for"></a>
 <a name="index-iterator-as-substitute-for-for-loop"></a>
 
-<p>But we&rsquo;re getting ahead of ourselves.  <code>for</code> is really another
-way of writing <code>each</code>, which, it so happens, is our first example
-of an iterator.  The following two forms are equivalent:
+<p>But we&rsquo;re getting ahead of ourselves.  <code>for</code> is really another way of
+writing <code>each</code>, which, it so happens, is our first example of an iterator.
+The following two forms are equivalent:
 </p>
 <div class="example">
 <pre class="example">#  If you're used to C or Java, you might prefer this.
@@ -244,8 +241,8 @@ collection.each {|element|
 }
 </pre></div>
 
-<p>Iterators can often be substituted for conventional loops, and once
-you get used to them, they are generally easier to deal with.
+<p>Iterators can often be substituted for conventional loops, and once you get
+used to them, they are generally easier to deal with.
 </p>
 
 <hr>

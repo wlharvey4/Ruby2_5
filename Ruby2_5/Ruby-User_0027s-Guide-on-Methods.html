@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide on Methods (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide on Methods (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide on Methods (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-on-Classes.html#Ruby-User_0027s-Guide-on-Classes" rel="next" title="Ruby User's Guide on Classes">
+<link href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking" rel="prev" title="Ruby User's Guide On Object-Oriented Thinking">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-on-Methods"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-on-Classes.html#Ruby-User_0027s-Guide-on-Classes" accesskey="n" rel="next">Ruby User's Guide on Classes</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking" accesskey="p" rel="prev">Ruby User's Guide On Object-Oriented Thinking</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Methods"></a>
+<h4 class="subsubsection">2.4.1.10 On Methods</h4>
+<a name="index-methods"></a>
+
+<a name="What-Is-A-Method_003f"></a>
+<h4 class="subheading">What Is A Method?</h4>
+<a name="index-messages-to-objects"></a>
+
+<p>What is a <em>method</em>?  In OO programming, we don&rsquo;t think of operating on data
+directly from outside an object; rather, objects have some understanding of how
+to operate on themselves (when asked nicely to do so).  You might say we pass
+messages to an object, and those messages will generally elicit some kind of an
+action or meaningful reply.  This ought to happen without our necessarily
+knowing or caring how the object really works inside.  The tasks we are allowed
+to ask an object to perform (or equivalently, the messages it understands) are
+that object&rsquo;s methods.
+</p>
+<a name="Invoking-Methods-Of-An-Object"></a>
+<h4 class="subheading">Invoking Methods Of An Object</h4>
+<a name="index-invoke-method"></a>
+<a name="index-method-invocation"></a>
+<a name="index-dot-notation"></a>
+
+<p>In ruby, we invoke a method of an object with dot notation (just as in C++ or
+Java).  The object being talked to is named to the left of the dot.
+&lsquo;<samp>&quot;abcdef&quot;.length</samp>&rsquo;.  Intuitively, this string object is being asked how
+long it is.  Technically, we are invoking the <code>length</code> method of the
+object <code>abcdef</code>.
+</p>
+<p>Other objects may have a slightly different interpretation of length, or none
+at all.  Decisions about how to respond to a message are made on the fly,
+during program execution, and the action taken may change depending on what a
+variable refers to.  What we mean by length can vary depending on what object
+we are talking about.
+</p>
+<a name="Polymorphism"></a>
+<h4 class="subheading">Polymorphism</h4>
+<a name="index-polymorphism"></a>
+
+<p>An array knows something about what it means to be an array.  Pieces of data in
+ruby carry such knowledge with them, so that the demands made on them can
+automatically be satisfied in the various appropriate ways.  This relieves the
+programmer from the burden of memorizing a great many specific function names,
+because a relatively small number of method names, corresponding to concepts
+that we know how to express in natural language, can be applied to different
+kinds of data and the results will be what we expect.  This feature of OO
+programming languages (which, IMHO, Java has done a poor job of exploiting) is
+called <em>polymorphism</em>.
+</p>
+<a name="Errors-Are-Raised"></a>
+<h4 class="subheading">Errors Are Raised</h4>
+<a name="index-errors-in-OO"></a>
+<a name="index-raise-an-error"></a>
+
+<p>When an object receives a message that it does not understand, an error is
+<em>raised</em>: &lsquo;<samp>ERR: (eval):1: undefined method `length' for 5(Fixnum)</samp>&rsquo;.
+So it is necessary to know what methods are acceptable to an object, though we
+need not know how the methods are processed.
+</p>
+<a name="Arguments-To-A-Method"></a>
+<h4 class="subheading">Arguments To A Method</h4>
+<a name="index-arguments-to-a-method"></a>
+
+<p>If arguments are given to a method, they are generally surrounded by
+parentheses, &lsquo;<samp>object.method(arg1, arg2)</samp>&rsquo;, but they can be omitted if doing
+so does not cause ambiguity, &lsquo;<samp>object.method arg1, arg2</samp>&rsquo;.
+</p>
+<a name="The-Special-Variable-self"></a>
+<h4 class="subheading">The Special Variable <code>self</code></h4>
+<a name="index-self"></a>
+
+<p>There is a special variable self in ruby; it refers to whatever object calls a
+method.  This happens so often that for convenience the <code>self.</code> may be
+omitted from method calls from an object to itself:
+&lsquo;<samp>self.method_name(args...)</samp>&rsquo; is the same as &lsquo;<samp>method_name(args...)</samp>&rsquo;.
+</p>
+<p>What we would think of traditionally as a function call is just this
+abbreviated way of writing method invocations by self.  This makes ruby what is
+called a pure object oriented language.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-on-Classes.html#Ruby-User_0027s-Guide-on-Classes" accesskey="n" rel="next">Ruby User's Guide on Classes</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking" accesskey="p" rel="prev">Ruby User's Guide On Object-Oriented Thinking</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

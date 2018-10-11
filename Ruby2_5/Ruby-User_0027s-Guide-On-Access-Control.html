@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Access Control (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Access Control (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Access Control (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods" rel="next" title="Ruby User's Guide On Singleton Methods">
+<link href="Ruby-User_0027s-Guide-on-Redefinition-Of-Methods.html#Ruby-User_0027s-Guide-on-Redefinition-Of-Methods" rel="prev" title="Ruby User's Guide on Redefinition Of Methods">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Access-Control"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods" accesskey="n" rel="next">Ruby User's Guide On Singleton Methods</a>, Previous: <a href="Ruby-User_0027s-Guide-on-Redefinition-Of-Methods.html#Ruby-User_0027s-Guide-on-Redefinition-Of-Methods" accesskey="p" rel="prev">Ruby User's Guide on Redefinition Of Methods</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Access-Control"></a>
+<h4 class="subsubsection">2.4.1.14 On Access Control</h4>
+<a name="index-access-control-1"></a>
+
+<p>Earlier, we said that ruby has no functions, only methods.  However there is
+more than one kind of method.  In this chapter we introduce <em>access
+controls</em>.
+</p>
+<p>Consider what happens when we define a method in the &ldquo;top level&rdquo;, not inside
+a class definition.  We can think of such a method as analogous to a function
+in a more traditional language like C.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; def square(n)
+    |   n * n
+    | end
+   nil
+ruby&gt; square(5)
+   25
+</pre></div>
+   
+<p>Our new method would appear not to belong to any class, but in fact ruby gives
+it to the <code>Object</code> class, which is a superclass of every other class.  As
+a result, any object should now be able to use that method.  That turns out to
+be true, but there&rsquo;s a small catch: it is a <em>private</em> method of every
+class.  We&rsquo;ll discuss some of what this means below, but one consequence is
+that it may be invoked only in function style, as here:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Foo
+    |   def fourth_power_of(x)
+    |     square(x) * square(x)
+    |   end
+    | end
+  nil
+ruby&gt; Foo.new.fourth_power_of 10
+  10000
+</pre></div>
+  
+<p>We are not allowed to explicitly apply the method to an object:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; &quot;fish&quot;.square(5)
+ERR: (eval):1: private method `square' called for &quot;fish&quot;:String
+</pre></div>
+
+<p>This rather cleverly preserves ruby&rsquo;s pure-OO nature (functions are still
+object methods, but the receiver is self implicitly) while providing functions
+that can be written just as in a more traditional language.
+</p>
+<a name="Rationale-For-Private-Methods_003a-Encapsulation"></a>
+<h4 class="subheading">Rationale For Private Methods: Encapsulation</h4>
+
+<p>A common mental discipline in OO programming, which we have hinted at in an
+earlier chapter, concerns the separation of specification and implementation,
+or what tasks an object is supposed to accomplish and how it actually
+accomplishes them.  The internal workings of an object should be kept generally
+hidden from its users; they should only care about what goes in and what comes
+out, and trust the object to know what it is doing internally.  As such it is
+often helpful for classes to have methods that the outside world does not see,
+but which are used internally (and can be improved by the programmer whenever
+desired, without changing the way users see objects of that class).  In the
+trivial example below, think of engine as the invisible inner workings of the
+class.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class Test
+    |   def times_two(a)
+    |     puts &quot;#{a} times two is #{engine(a)}&quot;
+    |   end
+    |   def engine(b)
+    |     b*2
+    |   end
+    |   private:engine  # this hides engine from users
+    | end
+   Test
+ruby&gt; test = Test.new
+   #&lt;Test:0x4017181c&gt;
+ruby&gt; test.engine(6)
+ERR: (eval):1: private method `engine' called for #&lt;Test:0x4017181c&gt;
+ruby&gt; test.times_two(6)
+6 times two is 12.
+   nil
+</pre></div>
+   
+<p>We might have expected <code>test.engine(6)</code> to return 12, but instead we learn
+that <code>engine</code> is inaccessible when we are acting as a user of a
+<code>Test</code> object.  Only other <code>Test</code> methods, such as <code>times_two</code>,
+are allowed to use engine.  We are required to go through the public interface,
+which consists of the <code>times_two</code> method.  The programmer who is in charge
+of this class can change <code>engine</code> freely (here, perhaps by changing
+<code>b*2</code> to <code>b+b</code>, assuming for the sake of argument that it improved
+performance) without affecting how the user interacts with <code>Test</code> objects.
+This example is of course much too simple to be useful; the benefits of access
+controls become more clear only when we begin to create more complicated and
+interesting classes.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods" accesskey="n" rel="next">Ruby User's Guide On Singleton Methods</a>, Previous: <a href="Ruby-User_0027s-Guide-on-Redefinition-Of-Methods.html#Ruby-User_0027s-Guide-on-Redefinition-Of-Methods" accesskey="p" rel="prev">Ruby User's Guide on Redefinition Of Methods</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
