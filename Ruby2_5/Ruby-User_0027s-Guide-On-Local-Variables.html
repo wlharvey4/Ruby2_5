@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Local Variables (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Local Variables (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Local Variables (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants" rel="next" title="Ruby User's Guide On Class Constants">
+<link href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables" rel="prev" title="Ruby User's Guide On Instance Variables">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Local-Variables"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants" accesskey="n" rel="next">Ruby User's Guide On Class Constants</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables" accesskey="p" rel="prev">Ruby User's Guide On Instance Variables</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Local-Variables"></a>
+<h4 class="subsubsection">2.4.1.21 On Local Variables</h4>
+<a name="index-local-variables"></a>
+<a name="index-variable_002c-local"></a>
+
+<p>A local variable has a name starting with a lower case letter or an underscore
+character (<code>_</code>).  Local variables do not, like globals and instance variables,
+have the value <code>nil</code> before initialization.
+</p>
+<p>The first assignment you make to a local variable acts something like a
+declaration.  If you refer to an uninitialized local variable, ruby will report
+an error: &lsquo;<samp>ERR: (eval):1: undefined local variable or method `foo' for
+main(Object)</samp>&rsquo;.
+</p>
+<p>Generally, the scope of a local variable is one of:
+<a name="index-scope-of-local-variable"></a>
+<a name="index-local-variable-scope"></a>
+</p>
+<ul>
+<li> <code>proc{ ... }</code>
+</li><li> <code>loop{ ... }</code>
+</li><li> <code>def ... end</code>
+</li><li> <code>class ... end</code>
+</li><li> <code>module ... end</code>
+</li><li> the entire script (unless one of the above applies)
+</li></ul>
+
+<a name="index-defined_003f-operator"></a>
+<p><code>defined?</code> is an operator which checks whether an identifier is defined.
+It returns a description of the identifier if it is defined, or <code>nil</code>
+otherwise.
+</p>
+<p>Procedure objects that live in the same scope share whatever local variables
+also belong to that scope.  Here, the local variable <code>bar</code> is shared by
+<code>main</code> and the procedure objects <code>p1</code> and <code>p2</code>:
+</p>
+<div class="example">
+<pre class="example">ruby&gt; bar=nil
+   nil
+ruby&gt; p1 = proc{|n| bar=n}
+   #&lt;Proc:0x8deb0&gt;
+ruby&gt; p2 = proc{bar}
+   #&lt;Proc:0x8dce8&gt;
+ruby&gt; p1.call(5)
+   5
+ruby&gt; bar
+   5
+ruby&gt; p2.call
+   5
+</pre></div>
+
+<p>Note that the <code>bar=nil</code> at the beginning cannot be omitted; it ensures
+that the scope of bar will encompass <code>p1</code> and <code>p2</code>.  Otherwise
+<code>p1</code> and <code>p2</code> would each end up with its own local variable bar, and
+calling <code>p2</code> would have resulted in an &lsquo;<samp>undefined local variable or
+method</samp>&rsquo; error.  We could have said <code>bar=0</code> instead, but using <code>nil</code>
+is a courtesy to others who will read your code later.  It indicates fairly
+clearly that you are only establishing scope, because the value being assigned
+is not intended to be meaningful.
+</p>
+<a name="Proc-Objects-Are-Closures"></a>
+<h4 class="subheading"><code>Proc</code> Objects Are Closures</h4>
+<a name="index-closures_002c-proc-objects"></a>
+
+<p>A powerful feature of procedure objects follows from their ability to be passed
+as arguments: shared local variables remain valid even when they are passed out
+of the original scope.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; def box
+    |   contents = nil
+    |   get = proc{contents}
+    |   set = proc{|n| contents = n}
+    |   return get, set
+    | end
+   nil
+ruby&gt; reader, writer = box
+   [#&lt;Proc:0x40170fc0&gt;, #&lt;Proc:0x40170fac&gt;] 
+ruby&gt; reader.call
+   nil
+ruby&gt; writer.call(2)
+   2
+ruby&gt; reader.call
+   2
+</pre></div>
+
+<p>Ruby is particularly smart about scope.  It is evident in our example that the
+<code>contents</code> variable is being shared between the <code>reader</code> and
+<code>writer</code>.  But we can also manufacture multiple <code>reader-writer</code> pairs
+using <code>box</code> as defined above; each pair shares a <code>contents</code> variable,
+and the pairs do not interfere with each other.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; reader_1, writer_1 = box
+   [#&lt;Proc:0x40172820&gt;, #&lt;Proc:0x4017280c&gt;]
+ruby&gt; reader_2, writer_2 = box
+   [#&lt;Proc:0x40172668&gt;, #&lt;Proc:0x40172654&gt;]
+ruby&gt; writer_1.call(99)
+   99
+ruby&gt; reader_1.call
+   99
+ruby&gt; reader_2.call  # nothing is in this box yet
+   nil
+</pre></div>
+
+<p>This kind of programming could be considered a perverse little object-oriented
+framework.  The <code>box</code> method acts something like a class, with <code>get</code>
+and <code>set</code> serving as methods (except those aren&rsquo;t really the method names,
+which could vary with each box instance) and <code>contents</code> being the lone
+instance variable.  Of course, using ruby&rsquo;s legitimate class framework leads to
+much more readable code.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants" accesskey="n" rel="next">Ruby User's Guide On Class Constants</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables" accesskey="p" rel="prev">Ruby User's Guide On Instance Variables</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

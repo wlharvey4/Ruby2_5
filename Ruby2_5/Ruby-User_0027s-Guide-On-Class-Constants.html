@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Class Constants (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Class Constants (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Class Constants (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue.html#Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue" rel="next" title="Ruby User's Guide On Exception Processing And rescue">
+<link href="Ruby-User_0027s-Guide-On-Local-Variables.html#Ruby-User_0027s-Guide-On-Local-Variables" rel="prev" title="Ruby User's Guide On Local Variables">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Class-Constants"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue.html#Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue" accesskey="n" rel="next">Ruby User's Guide On Exception Processing And <code>rescue</code></a>, Previous: <a href="Ruby-User_0027s-Guide-On-Local-Variables.html#Ruby-User_0027s-Guide-On-Local-Variables" accesskey="p" rel="prev">Ruby User's Guide On Local Variables</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Class-Constants"></a>
+<h4 class="subsubsection">2.4.1.22 On Class Constants</h4>
+<a name="index-class-constants"></a>
+<a name="index-constant_002c-class"></a>
+
+<p>A constant has a name starting with an uppercase character.  It should be
+assigned a value at most once.  In the current implementation of ruby,
+reassignment of a constant generates a warning but not an error (the non-ANSI
+version of <code>eval.rb</code> does not report the warning).
+</p>
+<a name="Class-Constants-Accessible-Outside-Class"></a>
+<h4 class="subheading">Class Constants Accessible Outside Class</h4>
+
+<p>Constants may be defined within classes, but unlike instance variables, they
+are accessible outside the class.
+<a name="index-class-constants_002c-access-to"></a>
+</p>
+<div class="example">
+<pre class="example">ruby&gt; class ConstClass
+    |   C1=101
+    |   C2=102
+    |   C3=103
+    |   def show
+    |     puts &quot;#{C1} #{C2} #{C3}&quot;
+    |   end
+    | end
+   nil
+ruby&gt; C1
+ERR: (eval):1: uninitialized constant C1
+ruby&gt; ConstClass::C1
+   101
+ruby&gt; ConstClass.new.show
+101 102 103
+   nil
+</pre></div>
+
+<a name="index-modules_002c-class-constants"></a>
+<a name="index-class-constants-in-modules"></a>
+<p>Constants can also be defined in modules.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; module ConstModule
+    |   C1=101
+    |   C2=102
+    |   C3=103
+    |   def showConstants
+    |     puts &quot;#{C1} #{C2} #{C3}&quot;
+    |   end
+    | end
+   nil
+ruby&gt; C1
+ERR: (eval):1: uninitialized constant C1
+ruby&gt; include ConstModule
+   Object
+ruby&gt; C1
+   101
+ruby&gt; showConstants
+101 102 103
+   nil
+ruby&gt; C1=99  # not really a good idea
+   99
+ruby&gt; C1
+   99
+ruby&gt; ConstModule::C1
+   101
+ruby&gt; ConstModule::C1=99   # .. this was not allowed in earlier versions
+   (eval):1: warning: already initialized constant C1
+   99
+ruby&gt; ConstModule::C1  # &quot;enough rope to shoot yourself in the foot&quot;
+   99
+</pre></div>
+
+
+
+
+
+</body>
+</html>

@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.2d
+@set EDITION 0.2e
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -371,6 +371,12 @@ Ruby User's Guide
 * Ruby User's Guide On Modules::
 * Ruby User's Guide On Procedure Objects (Procs)::
 * Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And @code{rescue}::
+* Ruby User's Guide On Exception Processing and @code{ensure}::
 
 Utility Programs
 
@@ -3643,6 +3649,12 @@ nice overview of many aspects of the Ruby language.
 * Ruby User's Guide On Modules::
 * Ruby User's Guide On Procedure Objects (Procs)::
 * Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And @code{rescue}::
+* Ruby User's Guide On Exception Processing and @code{ensure}::
 @end menu
 
 @node What Is Ruby?
@@ -5230,6 +5242,430 @@ two exceptions, they don't confuse things too much.
 
 You may not assign values to @code{self} or @code{nil}.  @code{main}, as a
 value of @code{self}, refers to the top-level object.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Global Variables
+@subsubsection On Global Variables
+@cindex global variables
+@cindex variables, global
+
+A @dfn{global variable} has a name beginning with @code{$}.  It can be referred
+to from anywhere in a program.  Before initialization, a global variable has the
+special value @code{nil}.
+
+Global variables should be used sparingly.  They are dangerous because they can
+be written to from anywhere.  Overuse of globals can make isolating bugs
+difficult; it also tends to indicate that the design of a program has not been
+carefully thought out.  Whenever you do find it necessary to use a global
+variable, be sure to give it a descriptive name that is unlikely to be
+inadvertently used for something else later (calling it something like $foo as
+above is probably a bad idea).
+
+@subheading Global Variables Can Be Traced
+@cindex global variable, tracing
+@cindex active variable
+@cindex variable, active
+
+One nice feature of a global variable is that it can be traced; you can specify
+a procedure which is invoked whenever the value of the variable is changed.
+
+@example
+ruby> trace_var :$x, proc@{puts "$x is now #@{$x@}"@}
+   nil
+ruby> $x = 5
+$x is now 5
+   5
+@end example
+
+When a global variable has been rigged to work as a trigger to invoke a
+procedure whenever changed, we sometimes call it an @dfn{active variable}.  For
+instance, it might be useful for keeping a GUI display up to date.
+
+@subheading List Of Major System Variables
+
+@multitable @columnfractions .15 .85
+@item
+$!      @tab latest error message
+@item
+$@      @tab location of error
+@item
+$_      @tab string last read by @code{gets}
+	     (has local scope)
+@item
+$.      @tab line number last read by interpreter
+@item
+$&      @tab string last matched by regexp
+@item
+$~      @tab the last regexp match, as an array of subexpressions
+	     (has local scope)
+@item
+$@i{n}  @tab the @i{nth} subexpression in the last match
+             (same as $~[@i{n}])
+@item
+$=      @tab case-insensitivity flag
+@item
+$/      @tab input record separator
+@item
+$\      @tab output record separator
+@item
+$0      @tab the name of the ruby script file
+@item
+$*      @tab the command line arguments
+@item
+$$      @tab interpreter's process ID
+@item
+$?      @tab exit status of last executed child process
+@end multitable
+
+@c _____________________________________
+
+@node Ruby User's Guide On Instance Variables
+@subsubsection On Instance Variables
+@cindex instance variables
+@cindex variable, instance
+
+An instance variable has a name beginning with @code{@@}, and its scope is
+confined to whatever object @code{self} refers to.  Two different objects, even
+if they belong to the same class, are allowed to have different values for
+their instance variables.  From outside the object, instance variables cannot
+be altered or even observed (i.e., ruby's instance variables are never
+@code{public}) except by whatever methods are explicitly provided by the
+programmer.  As with globals, instance variables have the @code{nil} value
+until they are initialized.
+
+@subheading Instance Variables Are Not Declared
+
+Instance variables do not need to be declared.  This indicates a flexible object
+structure; in fact, each instance variable is dynamically appended to an object
+when it is first assigned.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Local Variables
+@subsubsection On Local Variables
+@cindex local variables
+@cindex variable, local
+
+A local variable has a name starting with a lower case letter or an underscore
+character (@code{_}).  Local variables do not, like globals and instance variables,
+have the value @code{nil} before initialization.
+
+The first assignment you make to a local variable acts something like a
+declaration.  If you refer to an uninitialized local variable, ruby will report
+an error: @samp{ERR: (eval):1: undefined local variable or method `foo' for
+main(Object)}.
+
+Generally, the scope of a local variable is one of:
+@cindex scope of local variable
+@cindex local variable scope
+
+@itemize
+@item
+@code{proc@{ ... @}}
+@item
+@code{loop@{ ... @}}
+@item
+@code{def ... end}
+@item
+@code{class ... end}
+@item
+@code{module ... end}
+@item
+the entire script (unless one of the above applies)
+@end itemize
+
+@cindex @code{defined?} operator
+@code{defined?} is an operator which checks whether an identifier is defined.
+It returns a description of the identifier if it is defined, or @code{nil}
+otherwise.
+
+Procedure objects that live in the same scope share whatever local variables
+also belong to that scope.  Here, the local variable @code{bar} is shared by
+@code{main} and the procedure objects @code{p1} and @code{p2}:
+
+@example
+ruby> bar=nil
+   nil
+ruby> p1 = proc@{|n| bar=n@}
+   #<Proc:0x8deb0>
+ruby> p2 = proc@{bar@}
+   #<Proc:0x8dce8>
+ruby> p1.call(5)
+   5
+ruby> bar
+   5
+ruby> p2.call
+   5
+@end example
+
+Note that the @code{bar=nil} at the beginning cannot be omitted; it ensures
+that the scope of bar will encompass @code{p1} and @code{p2}.  Otherwise
+@code{p1} and @code{p2} would each end up with its own local variable bar, and
+calling @code{p2} would have resulted in an @samp{undefined local variable or
+method} error.  We could have said @code{bar=0} instead, but using @code{nil}
+is a courtesy to others who will read your code later.  It indicates fairly
+clearly that you are only establishing scope, because the value being assigned
+is not intended to be meaningful.
+
+@subheading @code{Proc} Objects Are Closures
+@cindex closures, @code{proc} objects
+
+A powerful feature of procedure objects follows from their ability to be passed
+as arguments: shared local variables remain valid even when they are passed out
+of the original scope.
+
+@example
+ruby> def box
+    |   contents = nil
+    |   get = proc@{contents@}
+    |   set = proc@{|n| contents = n@}
+    |   return get, set
+    | end
+   nil
+ruby> reader, writer = box
+   [#<Proc:0x40170fc0>, #<Proc:0x40170fac>] 
+ruby> reader.call
+   nil
+ruby> writer.call(2)
+   2
+ruby> reader.call
+   2
+@end example
+
+Ruby is particularly smart about scope.  It is evident in our example that the
+@code{contents} variable is being shared between the @code{reader} and
+@code{writer}.  But we can also manufacture multiple @code{reader-writer} pairs
+using @code{box} as defined above; each pair shares a @code{contents} variable,
+and the pairs do not interfere with each other.
+
+@example
+ruby> reader_1, writer_1 = box
+   [#<Proc:0x40172820>, #<Proc:0x4017280c>]
+ruby> reader_2, writer_2 = box
+   [#<Proc:0x40172668>, #<Proc:0x40172654>]
+ruby> writer_1.call(99)
+   99
+ruby> reader_1.call
+   99
+ruby> reader_2.call  # nothing is in this box yet
+   nil
+@end example
+
+This kind of programming could be considered a perverse little object-oriented
+framework.  The @code{box} method acts something like a class, with @code{get}
+and @code{set} serving as methods (except those aren't really the method names,
+which could vary with each box instance) and @code{contents} being the lone
+instance variable.  Of course, using ruby's legitimate class framework leads to
+much more readable code.
+
+@c _____________________________________
+
+@node Ruby User's Guide On Class Constants
+@subsubsection On Class Constants
+@cindex class constants
+@cindex constant, class
+
+A constant has a name starting with an uppercase character.  It should be
+assigned a value at most once.  In the current implementation of ruby,
+reassignment of a constant generates a warning but not an error (the non-ANSI
+version of @code{eval.rb} does not report the warning).
+
+@subheading Class Constants Accessible Outside Class
+
+Constants may be defined within classes, but unlike instance variables, they
+are accessible outside the class.
+@cindex class constants, access to
+
+@example
+ruby> class ConstClass
+    |   C1=101
+    |   C2=102
+    |   C3=103
+    |   def show
+    |     puts "#@{C1@} #@{C2@} #@{C3@}"
+    |   end
+    | end
+   nil
+ruby> C1
+ERR: (eval):1: uninitialized constant C1
+ruby> ConstClass::C1
+   101
+ruby> ConstClass.new.show
+101 102 103
+   nil
+@end example
+
+@cindex modules, class constants
+@cindex class constants in modules
+Constants can also be defined in modules.
+
+@example
+ruby> module ConstModule
+    |   C1=101
+    |   C2=102
+    |   C3=103
+    |   def showConstants
+    |     puts "#@{C1@} #@{C2@} #@{C3@}"
+    |   end
+    | end
+   nil
+ruby> C1
+ERR: (eval):1: uninitialized constant C1
+ruby> include ConstModule
+   Object
+ruby> C1
+   101
+ruby> showConstants
+101 102 103
+   nil
+ruby> C1=99  # not really a good idea
+   99
+ruby> C1
+   99
+ruby> ConstModule::C1
+   101
+ruby> ConstModule::C1=99   # .. this was not allowed in earlier versions
+   (eval):1: warning: already initialized constant C1
+   99
+ruby> ConstModule::C1  # "enough rope to shoot yourself in the foot"
+   99
+@end example
+
+@c _____________________________________
+
+@node Ruby User's Guide On Exception Processing And @code{rescue}
+@subsubsection On Exception Processing and @code{rescue}
+@cindex exception processing
+@cindex @code{rescue}
+
+An executing program can run into unexpected problems.  A file that it wants to
+read might not exist; the disk might be full when it wants to save some data;
+the user may provide it with some unsuitable kind of input.
+
+A robust program will handle these situations sensibly and gracefully.  Meeting
+that expectation can be an exasperating task.  C programmers are expected to
+check the result of every system call that could possibly fail, and immediately
+decide what is to be done.
+
+This is such a tiresome practice that programmers can tend to grow careless and
+neglect it, and the result is a program that doesn't handle exceptions well.  On
+the other hand, doing the job right can make programs hard to read, because
+there is so much error handling cluttering up the meaningful code.
+
+@subheading @code{begin} And @code{rescue} Blocks
+
+In ruby, as in many modern languages, we can handle exceptions for blocks of
+code in a compartmentalized way, thus dealing with surprises effectively but
+not unduly burdening either the programmer or anyone else trying to read the
+code later.  The block of code marked with @code{begin} executes until there is
+an exception, which causes control to be transferred to a block of error
+handling code, which is marked with @code{rescue}.  If no exception occurs, the
+@code{rescue} code is not used.  The following method returns the first line of
+a text file, or @code{nil} if there is an exception:
+
+@example
+def first_line( filename )
+  begin
+    file = open("some_file")
+    info = file.gets
+    file.close
+    info  # Last thing evaluated is the return value
+  rescue
+    nil   # Can't read the file? then don't return a string
+  end
+end
+@end example
+
+There will be times when we would like to be able to creatively work around a
+problem.  Here, if the file we want is unavailable, we try to use standard input
+instead:
+
+@example
+begin
+  file = open("some_file")
+rescue
+  file = STDIN
+end
+
+begin
+  # ... process the input ...
+rescue
+  # ... and deal with any other exceptions here.
+end
+@end example
+
+@cindex @code{retry}
+@code{retry} can be used in the @code{rescue} code to start the @code{begin}
+code over again.  It lets us rewrite the previous example a little more
+compactly:
+
+@example
+fname = "some_file"
+begin
+  file = open(fname)
+  # ... process the input ...
+rescue
+  fname = "STDIN"
+  retry
+end
+@end example
+
+@subheading @code{raise}ing Exceptions
+@cindex @code{raise} exception
+@cindex global variable @code{$!}
+@cindex @code{$!}
+
+Every ruby library raises an exception if any error occurs, and you can raise
+exceptions explicitly in your code too.  To raise an exception, use
+@code{raise}.  It takes one argument, which should be a string that describes
+the exception.  The argument is optional but should not be omitted.  It can be
+accessed later via the special global variable @code{$!}.
+
+@example
+ruby> raise "test error"
+   test error
+ruby> begin
+    |   raise "test2"
+    | rescue
+    |   puts "An error occurred: #@{$!@}"
+    | end
+An error occurred: test2
+   nil
+@end example
+
+@c _____________________________________
+
+@node Ruby User's Guide On Exception Processing and @code{ensure}
+@subsubsection On Exception Processing And @code{ensure}
+@cindex exception processing
+@cindex @code{ensure}
+
+There may be cleanup work that is necessary when a method finishes its
+work.  Perhaps an open file should be closed, buffered data should be flushed,
+etc.  If there were always only one exit point for each method, we could
+confidently put our cleanup code in one place and know that it would be
+executed; however, a method might return from several places, or our intended
+cleanup code might be unexpectedly skipped because of an exception.
+
+For this reason we add another keyword to the @code{begin...rescue...end}
+scheme, which is @code{ensure}.  The @code{ensure} code block executes
+regardless of the success or failure of the @code{begin} block.
+
+@example
+file = open("/tmp/some_file", "w")
+begin
+  # ... write to the file ...
+rescue
+  # ... handle the exceptions ...
+ensure
+  file.close   # ... and this always happens.
+end
+@end example
+
+It is possible to use @code{ensure} without @code{rescue}, or vice versa, but
+if they are used together in the same @code{begin...end} block, the @code{rescue} must
+precede the @code{ensure}.
 
 @c .....................................
 

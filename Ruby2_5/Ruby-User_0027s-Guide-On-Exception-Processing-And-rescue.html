@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Exception Processing And rescue (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Exception Processing And rescue (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Exception Processing And rescue (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure" rel="next" title="Ruby User's Guide On Exception Processing and ensure">
+<link href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants" rel="prev" title="Ruby User's Guide On Class Constants">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure" accesskey="n" rel="next">Ruby User's Guide On Exception Processing and <code>ensure</code></a>, Previous: <a href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants" accesskey="p" rel="prev">Ruby User's Guide On Class Constants</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Exception-Processing-and-rescue"></a>
+<h4 class="subsubsection">2.4.1.23 On Exception Processing and <code>rescue</code></h4>
+<a name="index-exception-processing"></a>
+<a name="index-rescue"></a>
+
+<p>An executing program can run into unexpected problems.  A file that it wants to
+read might not exist; the disk might be full when it wants to save some data;
+the user may provide it with some unsuitable kind of input.
+</p>
+<p>A robust program will handle these situations sensibly and gracefully.  Meeting
+that expectation can be an exasperating task.  C programmers are expected to
+check the result of every system call that could possibly fail, and immediately
+decide what is to be done.
+</p>
+<p>This is such a tiresome practice that programmers can tend to grow careless and
+neglect it, and the result is a program that doesn&rsquo;t handle exceptions well.  On
+the other hand, doing the job right can make programs hard to read, because
+there is so much error handling cluttering up the meaningful code.
+</p>
+<a name="begin-And-rescue-Blocks"></a>
+<h4 class="subheading"><code>begin</code> And <code>rescue</code> Blocks</h4>
+
+<p>In ruby, as in many modern languages, we can handle exceptions for blocks of
+code in a compartmentalized way, thus dealing with surprises effectively but
+not unduly burdening either the programmer or anyone else trying to read the
+code later.  The block of code marked with <code>begin</code> executes until there is
+an exception, which causes control to be transferred to a block of error
+handling code, which is marked with <code>rescue</code>.  If no exception occurs, the
+<code>rescue</code> code is not used.  The following method returns the first line of
+a text file, or <code>nil</code> if there is an exception:
+</p>
+<div class="example">
+<pre class="example">def first_line( filename )
+  begin
+    file = open(&quot;some_file&quot;)
+    info = file.gets
+    file.close
+    info  # Last thing evaluated is the return value
+  rescue
+    nil   # Can't read the file? then don't return a string
+  end
+end
+</pre></div>
+
+<p>There will be times when we would like to be able to creatively work around a
+problem.  Here, if the file we want is unavailable, we try to use standard input
+instead:
+</p>
+<div class="example">
+<pre class="example">begin
+  file = open(&quot;some_file&quot;)
+rescue
+  file = STDIN
+end
+
+begin
+  # ... process the input ...
+rescue
+  # ... and deal with any other exceptions here.
+end
+</pre></div>
+
+<a name="index-retry-1"></a>
+<p><code>retry</code> can be used in the <code>rescue</code> code to start the <code>begin</code>
+code over again.  It lets us rewrite the previous example a little more
+compactly:
+</p>
+<div class="example">
+<pre class="example">fname = &quot;some_file&quot;
+begin
+  file = open(fname)
+  # ... process the input ...
+rescue
+  fname = &quot;STDIN&quot;
+  retry
+end
+</pre></div>
+
+<a name="raiseing-Exceptions"></a>
+<h4 class="subheading"><code>raise</code>ing Exceptions</h4>
+<a name="index-raise-exception"></a>
+<a name="index-global-variable-_0024_0021"></a>
+<a name="index-_0024_0021"></a>
+
+<p>Every ruby library raises an exception if any error occurs, and you can raise
+exceptions explicitly in your code too.  To raise an exception, use
+<code>raise</code>.  It takes one argument, which should be a string that describes
+the exception.  The argument is optional but should not be omitted.  It can be
+accessed later via the special global variable <code>$!</code>.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; raise &quot;test error&quot;
+   test error
+ruby&gt; begin
+    |   raise &quot;test2&quot;
+    | rescue
+    |   puts &quot;An error occurred: #{$!}&quot;
+    | end
+An error occurred: test2
+   nil
+</pre></div>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure" accesskey="n" rel="next">Ruby User's Guide On Exception Processing and <code>ensure</code></a>, Previous: <a href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants" accesskey="p" rel="prev">Ruby User's Guide On Class Constants</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

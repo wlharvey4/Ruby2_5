@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Exception Processing and ensure (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Exception Processing and ensure (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Exception Processing and ensure (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Programming-Ruby.html#Programming-Ruby" rel="next" title="Programming Ruby">
+<link href="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue.html#Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue" rel="prev" title="Ruby User's Guide On Exception Processing And rescue">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure"></a>
+<div class="header">
+<p>
+Previous: <a href="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue.html#Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue" accesskey="p" rel="prev">Ruby User's Guide On Exception Processing And <code>rescue</code></a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Exception-Processing-And-ensure"></a>
+<h4 class="subsubsection">2.4.1.24 On Exception Processing And <code>ensure</code></h4>
+<a name="index-exception-processing-1"></a>
+<a name="index-ensure"></a>
+
+<p>There may be cleanup work that is necessary when a method finishes its
+work.  Perhaps an open file should be closed, buffered data should be flushed,
+etc.  If there were always only one exit point for each method, we could
+confidently put our cleanup code in one place and know that it would be
+executed; however, a method might return from several places, or our intended
+cleanup code might be unexpectedly skipped because of an exception.
+</p>
+<p>For this reason we add another keyword to the <code>begin...rescue...end</code>
+scheme, which is <code>ensure</code>.  The <code>ensure</code> code block executes
+regardless of the success or failure of the <code>begin</code> block.
+</p>
+<div class="example">
+<pre class="example">file = open(&quot;/tmp/some_file&quot;, &quot;w&quot;)
+begin
+  # ... write to the file ...
+rescue
+  # ... handle the exceptions ...
+ensure
+  file.close   # ... and this always happens.
+end
+</pre></div>
+
+<p>It is possible to use <code>ensure</code> without <code>rescue</code>, or vice versa, but
+if they are used together in the same <code>begin...end</code> block, the <code>rescue</code> must
+precede the <code>ensure</code>.
+</p>
+
+
+
+
+</body>
+</html>

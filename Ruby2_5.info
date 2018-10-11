@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.2d of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2e of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.2d of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.2e of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -175,6 +175,12 @@ Ruby User's Guide
 * Ruby User's Guide On Modules::
 * Ruby User's Guide On Procedure Objects (Procs)::
 * Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And rescue::
+* Ruby User's Guide On Exception Processing and ensure::
 
 Utility Programs
 
@@ -2890,6 +2896,12 @@ Mark Slagell, is a nice overview of many aspects of the Ruby language.
 * Ruby User's Guide On Modules::
 * Ruby User's Guide On Procedure Objects (Procs)::
 * Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And rescue::
+* Ruby User's Guide On Exception Processing and ensure::
 
 
 File: Ruby2_5.info,  Node: What Is Ruby?,  Next: Simple Examples,  Up: Ruby User's Guide
@@ -4246,7 +4258,7 @@ form provides some convenience and readability when you write small
 anonymous procedures.
 
 
-File: Ruby2_5.info,  Node: Ruby User's Guide On Variables,  Prev: Ruby User's Guide On Procedure Objects (Procs),  Up: Ruby User's Guide
+File: Ruby2_5.info,  Node: Ruby User's Guide On Variables,  Next: Ruby User's Guide On Global Variables,  Prev: Ruby User's Guide On Procedure Objects (Procs),  Up: Ruby User's Guide
 
 2.4.1.18 On Variables
 .....................
@@ -4285,6 +4297,378 @@ things too much.
 
    You may not assign values to 'self' or 'nil'.  'main', as a value
 of 'self', refers to the top-level object.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Global Variables,  Next: Ruby User's Guide On Instance Variables,  Prev: Ruby User's Guide On Variables,  Up: Ruby User's Guide
+
+2.4.1.19 On Global Variables
+............................
+
+A "global variable" has a name beginning with '$'.  It can be referred
+to from anywhere in a program.  Before initialization, a global
+variable has the special value 'nil'.
+
+   Global variables should be used sparingly.  They are dangerous
+because they can be written to from anywhere.  Overuse of globals can
+make isolating bugs difficult; it also tends to indicate that the
+design of a program has not been carefully thought out.  Whenever you
+do find it necessary to use a global variable, be sure to give it a
+descriptive name that is unlikely to be inadvertently used for
+something else later (calling it something like $foo as above is
+probably a bad idea).
+
+Global Variables Can Be Traced
+------------------------------
+
+One nice feature of a global variable is that it can be traced; you
+can specify a procedure which is invoked whenever the value of the
+variable is changed.
+
+     ruby> trace_var :$x, proc{puts "$x is now #{$x}"}
+        nil
+     ruby> $x = 5
+     $x is now 5
+        5
+
+   When a global variable has been rigged to work as a trigger to
+invoke a procedure whenever changed, we sometimes call it an "active
+variable".  For instance, it might be useful for keeping a GUI display
+up to date.
+
+List Of Major System Variables
+------------------------------
+
+$!          latest error message
+$           location of error
+$_          string last read by 'gets' (has local scope)
+$.          line number last read by interpreter
+$&          string last matched by regexp
+$~          the last regexp match, as an array of subexpressions (has
+            local scope)
+$n          the nth subexpression in the last match (same as $~[n])
+$=          case-insensitivity flag
+$/          input record separator
+$\          output record separator
+$0          the name of the ruby script file
+$*          the command line arguments
+$$          interpreter's process ID
+$?          exit status of last executed child process
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Instance Variables,  Next: Ruby User's Guide On Local Variables,  Prev: Ruby User's Guide On Global Variables,  Up: Ruby User's Guide
+
+2.4.1.20 On Instance Variables
+..............................
+
+An instance variable has a name beginning with '@', and its scope is
+confined to whatever object 'self' refers to.  Two different objects,
+even if they belong to the same class, are allowed to have different
+values for their instance variables.  From outside the object,
+instance variables cannot be altered or even observed (i.e., ruby's
+instance variables are never 'public') except by whatever methods are
+explicitly provided by the programmer.  As with globals, instance
+variables have the 'nil' value until they are initialized.
+
+Instance Variables Are Not Declared
+-----------------------------------
+
+Instance variables do not need to be declared.  This indicates a
+flexible object structure; in fact, each instance variable is
+dynamically appended to an object when it is first assigned.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Local Variables,  Next: Ruby User's Guide On Class Constants,  Prev: Ruby User's Guide On Instance Variables,  Up: Ruby User's Guide
+
+2.4.1.21 On Local Variables
+...........................
+
+A local variable has a name starting with a lower case letter or an
+underscore character ('_').  Local variables do not, like globals and
+instance variables, have the value 'nil' before initialization.
+
+   The first assignment you make to a local variable acts something
+like a declaration.  If you refer to an uninitialized local variable,
+ruby will report an error: 'ERR: (eval):1: undefined local variable or
+method `foo' for main(Object)'.
+
+   Generally, the scope of a local variable is one of:
+
+   * 'proc{ ... }'
+   * 'loop{ ... }'
+   * 'def ... end'
+   * 'class ... end'
+   * 'module ... end'
+   * the entire script (unless one of the above applies)
+
+   'defined?' is an operator which checks whether an identifier is
+defined.  It returns a description of the identifier if it is defined,
+or 'nil' otherwise.
+
+   Procedure objects that live in the same scope share whatever local
+variables also belong to that scope.  Here, the local variable 'bar'
+is shared by 'main' and the procedure objects 'p1' and 'p2':
+
+     ruby> bar=nil
+        nil
+     ruby> p1 = proc{|n| bar=n}
+        #<Proc:0x8deb0>
+     ruby> p2 = proc{bar}
+        #<Proc:0x8dce8>
+     ruby> p1.call(5)
+        5
+     ruby> bar
+        5
+     ruby> p2.call
+        5
+
+   Note that the 'bar=nil' at the beginning cannot be omitted; it
+ensures that the scope of bar will encompass 'p1' and 'p2'.  Otherwise
+'p1' and 'p2' would each end up with its own local variable bar, and
+calling 'p2' would have resulted in an 'undefined local variable or
+method' error.  We could have said 'bar=0' instead, but using 'nil' is
+a courtesy to others who will read your code later.  It indicates
+fairly clearly that you are only establishing scope, because the value
+being assigned is not intended to be meaningful.
+
+'Proc' Objects Are Closures
+---------------------------
+
+A powerful feature of procedure objects follows from their ability to
+be passed as arguments: shared local variables remain valid even when
+they are passed out of the original scope.
+
+     ruby> def box
+         |   contents = nil
+         |   get = proc{contents}
+         |   set = proc{|n| contents = n}
+         |   return get, set
+         | end
+        nil
+     ruby> reader, writer = box
+        [#<Proc:0x40170fc0>, #<Proc:0x40170fac>]
+     ruby> reader.call
+        nil
+     ruby> writer.call(2)
+        2
+     ruby> reader.call
+        2
+
+   Ruby is particularly smart about scope.  It is evident in our
+example that the 'contents' variable is being shared between the
+'reader' and 'writer'.  But we can also manufacture multiple
+'reader-writer' pairs using 'box' as defined above; each pair shares a
+'contents' variable, and the pairs do not interfere with each other.
+
+     ruby> reader_1, writer_1 = box
+        [#<Proc:0x40172820>, #<Proc:0x4017280c>]
+     ruby> reader_2, writer_2 = box
+        [#<Proc:0x40172668>, #<Proc:0x40172654>]
+     ruby> writer_1.call(99)
+        99
+     ruby> reader_1.call
+        99
+     ruby> reader_2.call  # nothing is in this box yet
+        nil
+
+   This kind of programming could be considered a perverse little
+object-oriented framework.  The 'box' method acts something like a
+class, with 'get' and 'set' serving as methods (except those aren't
+really the method names, which could vary with each box instance) and
+'contents' being the lone instance variable.  Of course, using ruby's
+legitimate class framework leads to much more readable code.
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Class Constants,  Next: Ruby User's Guide On Exception Processing And rescue,  Prev: Ruby User's Guide On Local Variables,  Up: Ruby User's Guide
+
+2.4.1.22 On Class Constants
+...........................
+
+A constant has a name starting with an uppercase character.  It should
+be assigned a value at most once.  In the current implementation of
+ruby, reassignment of a constant generates a warning but not an error
+(the non-ANSI version of 'eval.rb' does not report the warning).
+
+Class Constants Accessible Outside Class
+----------------------------------------
+
+Constants may be defined within classes, but unlike instance
+variables, they are accessible outside the class.
+
+     ruby> class ConstClass
+         |   C1=101
+         |   C2=102
+         |   C3=103
+         |   def show
+         |     puts "#{C1} #{C2} #{C3}"
+         |   end
+         | end
+        nil
+     ruby> C1
+     ERR: (eval):1: uninitialized constant C1
+     ruby> ConstClass::C1
+        101
+     ruby> ConstClass.new.show
+     101 102 103
+        nil
+
+   Constants can also be defined in modules.
+
+     ruby> module ConstModule
+         |   C1=101
+         |   C2=102
+         |   C3=103
+         |   def showConstants
+         |     puts "#{C1} #{C2} #{C3}"
+         |   end
+         | end
+        nil
+     ruby> C1
+     ERR: (eval):1: uninitialized constant C1
+     ruby> include ConstModule
+        Object
+     ruby> C1
+        101
+     ruby> showConstants
+     101 102 103
+        nil
+     ruby> C1=99  # not really a good idea
+        99
+     ruby> C1
+        99
+     ruby> ConstModule::C1
+        101
+     ruby> ConstModule::C1=99   # .. this was not allowed in earlier versions
+        (eval):1: warning: already initialized constant C1
+        99
+     ruby> ConstModule::C1  # "enough rope to shoot yourself in the foot"
+        99
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Exception Processing And rescue,  Next: Ruby User's Guide On Exception Processing and ensure,  Prev: Ruby User's Guide On Class Constants,  Up: Ruby User's Guide
+
+2.4.1.23 On Exception Processing and 'rescue'
+.............................................
+
+An executing program can run into unexpected problems.  A file that it
+wants to read might not exist; the disk might be full when it wants to
+save some data; the user may provide it with some unsuitable kind of
+input.
+
+   A robust program will handle these situations sensibly and
+gracefully.  Meeting that expectation can be an exasperating task.  C
+programmers are expected to check the result of every system call that
+could possibly fail, and immediately decide what is to be done.
+
+   This is such a tiresome practice that programmers can tend to grow
+careless and neglect it, and the result is a program that doesn't
+handle exceptions well.  On the other hand, doing the job right can
+make programs hard to read, because there is so much error handling
+cluttering up the meaningful code.
+
+'begin' And 'rescue' Blocks
+---------------------------
+
+In ruby, as in many modern languages, we can handle exceptions for
+blocks of code in a compartmentalized way, thus dealing with surprises
+effectively but not unduly burdening either the programmer or anyone
+else trying to read the code later.  The block of code marked with
+'begin' executes until there is an exception, which causes control to
+be transferred to a block of error handling code, which is marked with
+'rescue'.  If no exception occurs, the 'rescue' code is not used.  The
+following method returns the first line of a text file, or 'nil' if
+there is an exception:
+
+     def first_line( filename )
+       begin
+         file = open("some_file")
+         info = file.gets
+         file.close
+         info  # Last thing evaluated is the return value
+       rescue
+         nil   # Can't read the file? then don't return a string
+       end
+     end
+
+   There will be times when we would like to be able to creatively
+work around a problem.  Here, if the file we want is unavailable, we
+try to use standard input instead:
+
+     begin
+       file = open("some_file")
+     rescue
+       file = STDIN
+     end
+
+     begin
+       # ... process the input ...
+     rescue
+       # ... and deal with any other exceptions here.
+     end
+
+   'retry' can be used in the 'rescue' code to start the 'begin' code
+over again.  It lets us rewrite the previous example a little more
+compactly:
+
+     fname = "some_file"
+     begin
+       file = open(fname)
+       # ... process the input ...
+     rescue
+       fname = "STDIN"
+       retry
+     end
+
+'raise'ing Exceptions
+---------------------
+
+Every ruby library raises an exception if any error occurs, and you
+can raise exceptions explicitly in your code too.  To raise an
+exception, use 'raise'.  It takes one argument, which should be a
+string that describes the exception.  The argument is optional but
+should not be omitted.  It can be accessed later via the special
+global variable '$!'.
+
+     ruby> raise "test error"
+        test error
+     ruby> begin
+         |   raise "test2"
+         | rescue
+         |   puts "An error occurred: #{$!}"
+         | end
+     An error occurred: test2
+        nil
+
+
+File: Ruby2_5.info,  Node: Ruby User's Guide On Exception Processing and ensure,  Prev: Ruby User's Guide On Exception Processing And rescue,  Up: Ruby User's Guide
+
+2.4.1.24 On Exception Processing And 'ensure'
+.............................................
+
+There may be cleanup work that is necessary when a method finishes its
+work.  Perhaps an open file should be closed, buffered data should be
+flushed, etc.  If there were always only one exit point for each
+method, we could confidently put our cleanup code in one place and
+know that it would be executed; however, a method might return from
+several places, or our intended cleanup code might be unexpectedly
+skipped because of an exception.
+
+   For this reason we add another keyword to the
+'begin...rescue...end' scheme, which is 'ensure'.  The 'ensure' code
+block executes regardless of the success or failure of the 'begin'
+block.
+
+     file = open("/tmp/some_file", "w")
+     begin
+       # ... write to the file ...
+     rescue
+       # ... handle the exceptions ...
+     ensure
+       file.close   # ... and this always happens.
+     end
+
+   It is possible to use 'ensure' without 'rescue', or vice versa, but
+if they are used together in the same 'begin...end' block, the
+'rescue' must precede the 'ensure'.
 
 
 File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
@@ -4996,6 +5380,8 @@ Index
 * "name".intern:                         FAQ Syntax.        (line  83)
 * "name".to_sym:                         FAQ Syntax.        (line  83)
 * "truthy" values:                       FAQ Syntax.        (line  59)
+* $!:                                    Ruby User's Guide On Exception Processing And rescue.
+                                                            (line  78)
 * ++ and --:                             FAQ Methods.       (line  15)
 * .. vs. ...:                            FAQ Syntax.        (line 203)
 * :: operator:                           Ruby User's Guide On Modules.
@@ -5080,6 +5466,8 @@ Index
                                                             (line   6)
 * access modifiers public, private, protected: Access modifiers are Methods.
                                                             (line   6)
+* active variable:                       Ruby User's Guide On Global Variables.
+                                                            (line  22)
 * Algol and Ruby:                        Simple Examples.   (line  54)
 * anonymous procedure objects:           Ruby User's Guide On Procedure Objects (Procs).
                                                             (line  56)
@@ -5154,6 +5542,12 @@ Index
 * chop!:                                 Ruby User's Guide on Regular Expressions.
                                                             (line  83)
 * chruby:                                chruby.            (line   6)
+* class constants:                       Ruby User's Guide On Class Constants.
+                                                            (line   6)
+* class constants in modules:            Ruby User's Guide On Class Constants.
+                                                            (line  34)
+* class constants, access to:            Ruby User's Guide On Class Constants.
+                                                            (line  15)
 * class definition:                      Defining Methods.  (line  70)
 * class definition <1>:                  Ruby User's Guide on Classes.
                                                             (line  13)
@@ -5182,6 +5576,8 @@ Index
 * classes, open:                         Classes are open.  (line   6)
 * CLOS:                                  Ruby User's Guide On Singleton Methods.
                                                             (line  17)
+* closures, proc objects:                Ruby User's Guide On Local Variables.
+                                                            (line  57)
 * collect:                               Pointers on Iteration.
                                                             (line  17)
 * collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
@@ -5192,6 +5588,8 @@ Index
 * conditional expression, false values:  FAQ Syntax.        (line  73)
 * constant naming convention:            Naming conventions.
                                                             (line   9)
+* constant, class:                       Ruby User's Guide On Class Constants.
+                                                            (line   6)
 * constructor:                           To Ruby From C and C++.
                                                             (line 131)
 * constructor <1>:                       To Ruby From Java. (line  52)
@@ -5211,6 +5609,8 @@ Index
 * def:                                   Defining Methods.  (line   6)
 * def keyword:                           Ruby User's Guide on Classes.
                                                             (line  13)
+* defined? operator:                     Ruby User's Guide On Local Variables.
+                                                            (line  24)
 * destructive method:                    FAQ Methods.       (line  48)
 * destructive method vs nondestructive method: Ruby User's Guide on Regular Expressions.
                                                             (line  83)
@@ -5249,6 +5649,8 @@ Index
 * empty string:                          FAQ Syntax.        (line  73)
 * end keyword:                           Ruby User's Guide on Classes.
                                                             (line  13)
+* ensure:                                Ruby User's Guide On Exception Processing and ensure.
+                                                            (line   6)
 * ensure clause:                         FAQ Syntax.        (line 265)
 * equivalence vs the same:               To Ruby From Java. (line  59)
 * errors in OO:                          Ruby User's Guide on Methods.
@@ -5256,6 +5658,10 @@ Index
 * eval:                                  FAQ Syntax.        (line 115)
 * eval.rb:                               Simple Examples.   (line 102)
 * exception handling:                    FAQ Syntax.        (line 254)
+* exception processing:                  Ruby User's Guide On Exception Processing And rescue.
+                                                            (line   6)
+* exception processing <1>:              Ruby User's Guide On Exception Processing and ensure.
+                                                            (line   6)
 * expression vs statement:               Simple Examples.   (line 123)
 * extension modules:                     To Ruby From C and C++.
                                                             (line  36)
@@ -5300,6 +5706,12 @@ Index
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
 * global variable $:                     Naming conventions.
                                                             (line   9)
+* global variable $!:                    Ruby User's Guide On Exception Processing And rescue.
+                                                            (line  78)
+* global variable, tracing:              Ruby User's Guide On Global Variables.
+                                                            (line  22)
+* global variables:                      Ruby User's Guide On Global Variables.
+                                                            (line   6)
 * green threads vs native threads:       To Ruby From C and C++.
                                                             (line 160)
 * gsub method:                           Ruby User's Guide on Regular Expressions.
@@ -5339,6 +5751,8 @@ Index
 * instance variable:                     Defining Methods.  (line  86)
 * instance variable @:                   Naming conventions.
                                                             (line   9)
+* instance variables:                    Ruby User's Guide On Instance Variables.
+                                                            (line   6)
 * instance variables, accessing:         FAQ Methods.       (line  27)
 * instance variables, encapsulation:     Defining Methods.  (line 109)
 * instance_methods(false):               FAQ Built-In Libraries.
@@ -5394,6 +5808,10 @@ Index
 * line number of input file:             FAQ Built-In Libraries.
                                                             (line  24)
 * load:                                  FAQ Syntax.        (line 245)
+* local variable scope:                  Ruby User's Guide On Local Variables.
+                                                            (line  15)
+* local variables:                       Ruby User's Guide On Local Variables.
+                                                            (line   6)
 * loop:                                  FAQ Syntax.        (line 149)
 * loop interrupts:                       Ruby User's Guide On Control Structures.
                                                             (line  74)
@@ -5443,6 +5861,8 @@ Index
                                                             (line  27)
 * modules:                               Ruby User's Guide On Modules.
                                                             (line   6)
+* modules, class constants:              Ruby User's Guide On Class Constants.
+                                                            (line  34)
 * modules, subclassing?:                 FAQ Classes and Modules.
                                                             (line  33)
 * multiple inheritance:                  To Ruby From C and C++.
@@ -5524,6 +5944,8 @@ Index
 * Qt:                                    To Ruby From Java. (line  31)
 * raise an error:                        Ruby User's Guide on Methods.
                                                             (line  51)
+* raise exception:                       Ruby User's Guide On Exception Processing And rescue.
+                                                            (line  78)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
 * range expression:                      Ruby User's Guide On Control Structures.
@@ -5556,6 +5978,8 @@ Index
 * repository, Subversion:                Developing Ruby.   (line  49)
 * require:                               FAQ Syntax.        (line 245)
 * require <1>:                           To Ruby From Java. (line  34)
+* rescue:                                Ruby User's Guide On Exception Processing And rescue.
+                                                            (line   6)
 * rescue clause:                         FAQ Syntax.        (line 265)
 * respond to message, instance variable: Large Class Definition.
                                                             (line  54)
@@ -5564,6 +5988,8 @@ Index
 * respository, GitHub:                   Developing Ruby.   (line  54)
 * retry:                                 Ruby User's Guide On Iterators.
                                                             (line  58)
+* retry <1>:                             Ruby User's Guide On Exception Processing And rescue.
+                                                            (line  62)
 * return:                                Ruby User's Guide On Control Structures.
                                                             (line  74)
 * return mutliple values:                FAQ Methods.       (line  53)
@@ -5579,6 +6005,8 @@ Index
 * ruby-build plugin:                     ruby-build.        (line   6)
 * Ruby-GNOME2:                           To Ruby From Java. (line  31)
 * RVM version manager:                   Installers.        (line   6)
+* scope of local variable:               Ruby User's Guide On Local Variables.
+                                                            (line  15)
 * scope, access modifiers:               Access modifiers are Methods.
                                                             (line   6)
 * script code:                           Large Class Definition.
@@ -5684,11 +6112,19 @@ Index
 * uru:                                   uru.               (line   6)
 * value, everthing has one:              Everything has a value.
                                                             (line   6)
+* variable, active:                      Ruby User's Guide On Global Variables.
+                                                            (line  22)
 * variable, class @@:                    Naming conventions.
                                                             (line   9)
+* variable, instance:                    Ruby User's Guide On Instance Variables.
+                                                            (line   6)
 * variable, instance @:                  Naming conventions.
                                                             (line   9)
+* variable, local:                       Ruby User's Guide On Local Variables.
+                                                            (line   6)
 * variables, description:                Ruby User's Guide On Variables.
+                                                            (line   6)
+* variables, global:                     Ruby User's Guide On Global Variables.
                                                             (line   6)
 * varible, global $:                     Naming conventions.
                                                             (line   9)
@@ -5735,158 +6171,164 @@ Program Index
 
 Tag Table:
 Node: Top371
-Node: Preface4000
-Node: Audience4183
-Node: Overview4302
-Node: Conventions4472
-Node: Acknowledgements5392
-Node: Introduction5508
-Node: Documentation5805
-Node: Installing Ruby6214
-Node: Package Management Systems7127
-Node: Homebrew (OS X)7952
-Node: Installers8378
-Node: ruby-build8974
-Node: ruby-install9527
-Node: Managers10142
-Node: chruby10539
-Node: rbenv10798
-Node: RVM (``Ruby Version Manager'')11343
-Node: uru11741
-Node: Building From Source12034
-Node: Releases Page13046
-Node: Branches Page14146
-Node: Issue Tracking15946
-Node: Developing Ruby16430
-Ref: subversion17180
-Ref: MainRubyRepo18332
-Ref: PatchByPatch18660
-Node: Getting Started19457
-Node: Try Ruby!19845
-Node: Official FAQ20175
-Node: FAQ Iterators21252
-Node: FAQ Syntax25191
-Ref: immediate value26336
-Ref: nil vs false26971
-Ref: empty string27585
-Ref: symbol object27938
-Ref: value of symbol29076
-Ref: loop29954
-Ref: post-test loop30180
-Ref: hash literal30606
-Ref: pos val30888
-Ref: \1 and \\131264
-Ref: 2 dots vs 3 dots31672
-Ref: or and31910
-Ref: function pointers32712
-Ref: load vs require33034
-Ref: exception handling33389
-Node: FAQ Methods34386
-Node: FAQ Classes and Modules36059
-Node: FAQ Built-In Libraries37245
-Node: FAQ Extension Library39223
-Node: FAQ Other Features39902
-Node: Ruby Koans40452
-Node: Why’s (Poignant) Guide to Ruby40856
-Node: Ruby in Twenty Minutes41330
-Node: Interactive Ruby42003
-Node: Defining Methods42957
-Node: Altering Classes48461
-Node: Large Class Definition49797
-Ref: ri20min-rb50201
-Ref: MegaGreeter---Initialize-Method51010
-Ref: MegaGreeter---say-hi-Method51732
-Ref: MegaGreeter---say-bye-Method53949
-Ref: MegaGreeter---Main-Script54897
-Node: Run MegaGreeter55429
-Node: Ruby from Other Languages55955
-Node: To Ruby From C and C++56673
-Node: To Ruby From Java64202
-Node: To Ruby From Perl66769
-Node: To Ruby From PHP69728
-Node: To Ruby From Python71905
-Node: Important Language Features76040
-Node: Pointers on Iteration76794
-Node: Everything has a value77590
-Node: Symbols are not lightweight Strings78070
-Node: Everything is an Object79515
-Node: Variable Constants80076
-Node: Naming conventions80469
-Node: Keyword arguments81165
-Node: The universal truth81715
-Node: Access modifiers are Methods82467
-Node: Method access83470
-Node: Classes are open85084
-Node: Funny method names85799
-Node: Singleton methods86601
-Node: Missing methods87228
-Node: Message passing --- not function calls88307
-Node: Blocks are Objects88728
-Node: Operators are syntactic sugar89639
-Node: Learning Ruby90652
-Node: Ruby Essentials91020
-Node: Learn to Program91251
-Node: Manuals91630
-Node: Ruby User's Guide91822
-Node: What Is Ruby?92896
-Node: Simple Examples93885
-Ref: fact-rb94313
-Ref: Simple Examples-Footnote-198066
-Node: Ruby User's Guide on Strings98148
-Node: Puzzle Program99489
-Ref: guess-rb99691
-Node: Ruby User's Guide on Regular Expressions102975
-Ref: regx-rb104066
-Node: Ruby User's Guide On Arrays And Hashes108207
-Node: Ruby User's Guide On Control Structures110144
-Node: Ruby User's Guide On Iterators114662
-Node: Ruby User's Guide On Object-Oriented Thinking118183
-Node: Ruby User's Guide on Methods121464
-Node: Ruby User's Guide on Classes124729
-Node: Ruby User's Guide on Inheritance126605
-Node: Ruby User's Guide on Redefinition Of Methods128887
-Node: Ruby User's Guide On Access Control130792
-Node: Ruby User's Guide On Singleton Methods134619
-Node: Ruby User's Guide On Modules135626
-Node: Ruby User's Guide On Procedure Objects (Procs)138167
-Node: Ruby User's Guide On Variables140348
-Node: Programming Ruby141977
-Node: Reference Documentation146407
-Node: Editors and IDEs146579
-Node: Further Reading146745
-Node: Utility Programs146877
-Node: eval.rb147056
-Ref: eval-rb147205
-Node: eval Module Code149152
-Ref: eval---EvalWrapper--Constants149307
-Node: eval Indentation Deltas Code149834
-Ref: eval---EvalWrapper--Indentation-Deltas150045
-Node: eval Main Get Line Code150924
-Ref: eval---Main--Get-Line151136
-Node: eval Main Process Line Code151596
-Ref: eval---Main--Process-Line151779
-Node: eval If Not Line Code152420
-Ref: eval---Main--Process-Line-If-Not-Line152606
-Node: eval If Is Line Code152953
-Ref: eval---Main--Process-Line-Is-Line153137
-Ref: eval---Main--Process-Line-Is-Line-Indentation153987
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-154708
-Node: The Makefile155424
-Ref: Makefile155580
-Node: Makefile Variable Definitions156299
-Ref: Makefile---Variable-Definitions156477
-Node: Makefile Default Rule156645
-Ref: Makefile---Default-Rule157195
-Node: Makefile TWJR Rules157434
-Ref: Makefile---TWJR-Rules157593
-Node: Makefile Clean Rules158224
-Ref: Makefile---Clean-Rules158355
-Node: Code Chunk Summaries158819
-Node: File Definitions159204
-Node: Code Chunk Definitions159731
-Node: Code Chunk References161585
-Node: Bibliography163950
-Node: Concept Index164081
-Node: Program Index215682
+Node: Preface4282
+Node: Audience4465
+Node: Overview4584
+Node: Conventions4754
+Node: Acknowledgements5674
+Node: Introduction5790
+Node: Documentation6087
+Node: Installing Ruby6496
+Node: Package Management Systems7409
+Node: Homebrew (OS X)8234
+Node: Installers8660
+Node: ruby-build9256
+Node: ruby-install9809
+Node: Managers10424
+Node: chruby10821
+Node: rbenv11080
+Node: RVM (``Ruby Version Manager'')11625
+Node: uru12023
+Node: Building From Source12316
+Node: Releases Page13328
+Node: Branches Page14428
+Node: Issue Tracking16228
+Node: Developing Ruby16712
+Ref: subversion17462
+Ref: MainRubyRepo18614
+Ref: PatchByPatch18942
+Node: Getting Started19739
+Node: Try Ruby!20127
+Node: Official FAQ20457
+Node: FAQ Iterators21534
+Node: FAQ Syntax25473
+Ref: immediate value26618
+Ref: nil vs false27253
+Ref: empty string27867
+Ref: symbol object28220
+Ref: value of symbol29358
+Ref: loop30236
+Ref: post-test loop30462
+Ref: hash literal30888
+Ref: pos val31170
+Ref: \1 and \\131546
+Ref: 2 dots vs 3 dots31954
+Ref: or and32192
+Ref: function pointers32994
+Ref: load vs require33316
+Ref: exception handling33671
+Node: FAQ Methods34668
+Node: FAQ Classes and Modules36341
+Node: FAQ Built-In Libraries37527
+Node: FAQ Extension Library39505
+Node: FAQ Other Features40184
+Node: Ruby Koans40734
+Node: Why’s (Poignant) Guide to Ruby41138
+Node: Ruby in Twenty Minutes41612
+Node: Interactive Ruby42285
+Node: Defining Methods43239
+Node: Altering Classes48743
+Node: Large Class Definition50079
+Ref: ri20min-rb50483
+Ref: MegaGreeter---Initialize-Method51292
+Ref: MegaGreeter---say-hi-Method52014
+Ref: MegaGreeter---say-bye-Method54231
+Ref: MegaGreeter---Main-Script55179
+Node: Run MegaGreeter55711
+Node: Ruby from Other Languages56237
+Node: To Ruby From C and C++56955
+Node: To Ruby From Java64484
+Node: To Ruby From Perl67051
+Node: To Ruby From PHP70010
+Node: To Ruby From Python72187
+Node: Important Language Features76322
+Node: Pointers on Iteration77076
+Node: Everything has a value77872
+Node: Symbols are not lightweight Strings78352
+Node: Everything is an Object79797
+Node: Variable Constants80358
+Node: Naming conventions80751
+Node: Keyword arguments81447
+Node: The universal truth81997
+Node: Access modifiers are Methods82749
+Node: Method access83752
+Node: Classes are open85366
+Node: Funny method names86081
+Node: Singleton methods86883
+Node: Missing methods87510
+Node: Message passing --- not function calls88589
+Node: Blocks are Objects89010
+Node: Operators are syntactic sugar89921
+Node: Learning Ruby90934
+Node: Ruby Essentials91302
+Node: Learn to Program91533
+Node: Manuals91912
+Node: Ruby User's Guide92104
+Node: What Is Ruby?93460
+Node: Simple Examples94449
+Ref: fact-rb94877
+Ref: Simple Examples-Footnote-198630
+Node: Ruby User's Guide on Strings98712
+Node: Puzzle Program100053
+Ref: guess-rb100255
+Node: Ruby User's Guide on Regular Expressions103539
+Ref: regx-rb104630
+Node: Ruby User's Guide On Arrays And Hashes108771
+Node: Ruby User's Guide On Control Structures110708
+Node: Ruby User's Guide On Iterators115226
+Node: Ruby User's Guide On Object-Oriented Thinking118747
+Node: Ruby User's Guide on Methods122028
+Node: Ruby User's Guide on Classes125293
+Node: Ruby User's Guide on Inheritance127169
+Node: Ruby User's Guide on Redefinition Of Methods129451
+Node: Ruby User's Guide On Access Control131356
+Node: Ruby User's Guide On Singleton Methods135183
+Node: Ruby User's Guide On Modules136190
+Node: Ruby User's Guide On Procedure Objects (Procs)138731
+Node: Ruby User's Guide On Variables140912
+Node: Ruby User's Guide On Global Variables142587
+Node: Ruby User's Guide On Instance Variables144763
+Node: Ruby User's Guide On Local Variables145808
+Node: Ruby User's Guide On Class Constants149479
+Node: Ruby User's Guide On Exception Processing And rescue151345
+Node: Ruby User's Guide On Exception Processing and ensure154658
+Node: Programming Ruby155935
+Node: Reference Documentation160365
+Node: Editors and IDEs160537
+Node: Further Reading160703
+Node: Utility Programs160835
+Node: eval.rb161014
+Ref: eval-rb161163
+Node: eval Module Code163110
+Ref: eval---EvalWrapper--Constants163265
+Node: eval Indentation Deltas Code163792
+Ref: eval---EvalWrapper--Indentation-Deltas164003
+Node: eval Main Get Line Code164882
+Ref: eval---Main--Get-Line165094
+Node: eval Main Process Line Code165554
+Ref: eval---Main--Process-Line165737
+Node: eval If Not Line Code166378
+Ref: eval---Main--Process-Line-If-Not-Line166564
+Node: eval If Is Line Code166911
+Ref: eval---Main--Process-Line-Is-Line167095
+Ref: eval---Main--Process-Line-Is-Line-Indentation167945
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-168666
+Node: The Makefile169382
+Ref: Makefile169538
+Node: Makefile Variable Definitions170257
+Ref: Makefile---Variable-Definitions170435
+Node: Makefile Default Rule170603
+Ref: Makefile---Default-Rule171153
+Node: Makefile TWJR Rules171392
+Ref: Makefile---TWJR-Rules171551
+Node: Makefile Clean Rules172182
+Ref: Makefile---Clean-Rules172313
+Node: Code Chunk Summaries172777
+Node: File Definitions173162
+Node: Code Chunk Definitions173689
+Node: Code Chunk References175543
+Node: Bibliography177908
+Node: Concept Index178039
+Node: Program Index233679
 
 End Tag Table

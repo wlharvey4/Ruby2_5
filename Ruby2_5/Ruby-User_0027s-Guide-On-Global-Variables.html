@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.2e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ruby User's Guide On Global Variables (Ruby2_5 Information)</title>
+
+<meta name="description" content="Ruby User's Guide On Global Variables (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby User's Guide On Global Variables (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="up" title="Ruby User's Guide">
+<link href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables" rel="next" title="Ruby User's Guide On Instance Variables">
+<link href="Ruby-User_0027s-Guide-On-Variables.html#Ruby-User_0027s-Guide-On-Variables" rel="prev" title="Ruby User's Guide On Variables">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Ruby-User_0027s-Guide-On-Global-Variables"></a>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables" accesskey="n" rel="next">Ruby User's Guide On Instance Variables</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Variables.html#Ruby-User_0027s-Guide-On-Variables" accesskey="p" rel="prev">Ruby User's Guide On Variables</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="On-Global-Variables"></a>
+<h4 class="subsubsection">2.4.1.19 On Global Variables</h4>
+<a name="index-global-variables"></a>
+<a name="index-variables_002c-global"></a>
+
+<p>A <em>global variable</em> has a name beginning with <code>$</code>.  It can be referred
+to from anywhere in a program.  Before initialization, a global variable has the
+special value <code>nil</code>.
+</p>
+<p>Global variables should be used sparingly.  They are dangerous because they can
+be written to from anywhere.  Overuse of globals can make isolating bugs
+difficult; it also tends to indicate that the design of a program has not been
+carefully thought out.  Whenever you do find it necessary to use a global
+variable, be sure to give it a descriptive name that is unlikely to be
+inadvertently used for something else later (calling it something like $foo as
+above is probably a bad idea).
+</p>
+<a name="Global-Variables-Can-Be-Traced"></a>
+<h4 class="subheading">Global Variables Can Be Traced</h4>
+<a name="index-global-variable_002c-tracing"></a>
+<a name="index-active-variable"></a>
+<a name="index-variable_002c-active"></a>
+
+<p>One nice feature of a global variable is that it can be traced; you can specify
+a procedure which is invoked whenever the value of the variable is changed.
+</p>
+<div class="example">
+<pre class="example">ruby&gt; trace_var :$x, proc{puts &quot;$x is now #{$x}&quot;}
+   nil
+ruby&gt; $x = 5
+$x is now 5
+   5
+</pre></div>
+
+<p>When a global variable has been rigged to work as a trigger to invoke a
+procedure whenever changed, we sometimes call it an <em>active variable</em>.  For
+instance, it might be useful for keeping a GUI display up to date.
+</p>
+<a name="List-Of-Major-System-Variables"></a>
+<h4 class="subheading">List Of Major System Variables</h4>
+
+<table>
+<tr><td width="15%">$!</td><td width="85%">latest error message</td></tr>
+<tr><td width="15%">$&nbsp;</td><td width="85%">location of error</td></tr>
+<tr><td width="15%">$_</td><td width="85%">string last read by <code>gets</code>
+	     (has local scope)</td></tr>
+<tr><td width="15%">$.</td><td width="85%">line number last read by interpreter</td></tr>
+<tr><td width="15%">$&amp;</td><td width="85%">string last matched by regexp</td></tr>
+<tr><td width="15%">$~</td><td width="85%">the last regexp match, as an array of subexpressions
+	     (has local scope)</td></tr>
+<tr><td width="15%">$<i>n</i></td><td width="85%">the <i>nth</i> subexpression in the last match
+             (same as $~[<i>n</i>])</td></tr>
+<tr><td width="15%">$=</td><td width="85%">case-insensitivity flag</td></tr>
+<tr><td width="15%">$/</td><td width="85%">input record separator</td></tr>
+<tr><td width="15%">$\</td><td width="85%">output record separator</td></tr>
+<tr><td width="15%">$0</td><td width="85%">the name of the ruby script file</td></tr>
+<tr><td width="15%">$*</td><td width="85%">the command line arguments</td></tr>
+<tr><td width="15%">$$</td><td width="85%">interpreter&rsquo;s process ID</td></tr>
+<tr><td width="15%">$?</td><td width="85%">exit status of last executed child process</td></tr>
+</table>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables" accesskey="n" rel="next">Ruby User's Guide On Instance Variables</a>, Previous: <a href="Ruby-User_0027s-Guide-On-Variables.html#Ruby-User_0027s-Guide-On-Variables" accesskey="p" rel="prev">Ruby User's Guide On Variables</a>, Up: <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="u" rel="up">Ruby User's Guide</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
