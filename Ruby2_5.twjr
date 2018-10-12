@@ -1,4 +1,4 @@
-% Ruby2_5.twjr file.
+% -*- Ruby2_5.twjr       mode: texinfo -*-
 % Uncomment the 1st \input line if you need the MF logo
 % \input mftmac % for Metafont logo
 \input texinfo   @c -*-texinfo-*-
@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3b
+@set EDITION 0.3c
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
