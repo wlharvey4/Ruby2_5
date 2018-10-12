@@ -16,10 +16,10 @@ This is Edition 0.3a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>apiutil.awk END Block (Ruby2_5 Information)</title>
+<title>apiutil.awk ENDFILE Block (Ruby2_5 Information)</title>
 
-<meta name="description" content="apiutil.awk END Block (Ruby2_5 Information)">
-<meta name="keywords" content="apiutil.awk END Block (Ruby2_5 Information)">
+<meta name="description" content="apiutil.awk ENDFILE Block (Ruby2_5 Information)">
+<meta name="keywords" content="apiutil.awk ENDFILE Block (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -27,8 +27,8 @@ This is Edition 0.3a of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="API-Utility.html#API-Utility" rel="up" title="API Utility">
-<link href="The-Makefile.html#The-Makefile" rel="next" title="The Makefile">
-<link href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block" rel="prev" title="apiutil.awk ENDFILE Block">
+<link href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block" rel="next" title="apiutil.awk END Block">
+<link href="apiutil_002eawk-MAIN-Block.html#apiutil_002eawk-MAIN-Block" rel="prev" title="apiutil.awk MAIN Block">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -61,32 +61,26 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="apiutil_002eawk-END-Block"></a>
+<a name="apiutil_002eawk-ENDFILE-Block"></a>
 <div class="header">
 <p>
-Previous: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block" accesskey="p" rel="prev"><samp>apiutil.awk</samp> ENDFILE Block</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block" accesskey="n" rel="next"><samp>apiutil.awk</samp> END Block</a>, Previous: <a href="apiutil_002eawk-MAIN-Block.html#apiutil_002eawk-MAIN-Block" accesskey="p" rel="prev"><samp>apiutil.awk</samp> MAIN Block</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="apiutil_002eawk-END-Block-1"></a>
-<h4 class="appendixsubsec">A.2.5 <samp>apiutil.awk</samp> END Block</h4>
+<a name="apiutil_002eawk-ENDFILE-Block-1"></a>
+<h4 class="appendixsubsec">A.2.4 <samp>apiutil.awk</samp> ENDFILE Block</h4>
 
-<a name="apiutil_002d_002d_002dEND_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dEND-Block_003e_002c-definition"></a>
-<p><span class="roman">&lt;<i>apiutil&mdash;END Block</i>&gt;</span> &equiv;
+<a name="apiutil_002d_002d_002dENDFILE_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dENDFILE-Block_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;ENDFILE Block</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example">END {
-  print &quot;All done&quot;
+<pre class="example">ENDFILE {
+  system(&quot;mv -v FILENAME FILENAME\&quot;.bak\&quot; &amp;&amp; mv -vi FILENAME\&quot;.new\&quot; FILENAME&quot;)
 }
+
 </pre></div>
 
 <p>This chunk is called by <span class="roman">{<samp>apiutil.awk</samp>}</span>; see its first definition at <a href="API-Utility.html#apiutil_002dawk">apiutil-awk</a>.
 </p>
-
-
-
-
-
-
-
 
 
 

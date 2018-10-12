@@ -418,6 +418,7 @@ API Utility
 * @file{apiutil.awk} BEGIN Block::
 * @file{apiutil.awk} BEGNFILE Block::
 * @file{apiutil.awk} MAIN Block::
+* @file{apiutil.awk} ENDFILE Block::
 * @file{apiutil.awk} END Block::
 
 The Makefile
@@ -10820,6 +10821,7 @@ the @file{GAWK} programming language to get refreshed in using it.
 @crindex @r{<@i{apiutil---BEGIN Block}>}, use
 @crindex @r{<@i{apiutil---BEGINFILE Block}>}, use
 @crindex @r{<@i{apiutil---MAIN Block}>}, use
+@crindex @r{<@i{apiutil---ENDFILE Block}>}, use
 @crindex @r{<@i{apiutil---END Block}>}, use
 @cdindex @r{@{@file{apiutil.awk}@}}, definition
 @noindent
@@ -10830,6 +10832,7 @@ the @file{GAWK} programming language to get refreshed in using it.
 @r{<@i{apiutil---BEGIN Block}>}
 @r{<@i{apiutil---BEGINFILE Block}>}
 @r{<@i{apiutil---MAIN Block}>}
+@r{<@i{apiutil---ENDFILE Block}>}
 @r{<@i{apiutil---END Block}>}
 
 @end example
@@ -10844,6 +10847,7 @@ The following table lists called chunk definition points.
 @item @r{<@i{apiutil---BEGIN Block}>} @tab See @ref{apiutil---BEGIN-Block}.
 @item @r{<@i{apiutil---BEGINFILE Block}>} @tab See @ref{apiutil---BEGINFILE-Block}.
 @item @r{<@i{apiutil---END Block}>} @tab See @ref{apiutil---END-Block}.
+@item @r{<@i{apiutil---ENDFILE Block}>} @tab See @ref{apiutil---ENDFILE-Block}.
 @item @r{<@i{apiutil---MAIN Block}>} @tab See @ref{apiutil---MAIN-Block}.
 @end multitable
 @iftex
@@ -10857,6 +10861,7 @@ The following table lists called chunk definition points.
 * @file{apiutil.awk} BEGIN Block::
 * @file{apiutil.awk} BEGNFILE Block::
 * @file{apiutil.awk} MAIN Block::
+* @file{apiutil.awk} ENDFILE Block::
 * @file{apiutil.awk} END Block::
 @end menu
 
@@ -10870,6 +10875,8 @@ The following table lists called chunk definition points.
 @r{<@i{apiutil---BEGIN Block}>} @equiv{}
 @example
 BEGIN @{
+  start = "^@@float Table,table:api-classes-and-modules$"
+  end   = "^@@end table$"
 @}
 @end example
 @iftex
@@ -10895,6 +10902,7 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @r{<@i{apiutil---BEGINFILE Block}>} @equiv{}
 @example
 BEGINFILE @{
+  newfile = FILENAME".new"
 @}
 
 @end example
@@ -10919,6 +10927,13 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @noindent
 @r{<@i{apiutil---MAIN Block}>} @equiv{}
 @example
+@{ print $0 > newfile @}
+$0 ~ start, $0 ~ end @{
+   if ($0 ~ /^[[:alpha:]]/) @{
+     print "@@item "$0 > newfile
+   @} else @{
+     print > newfile
+   @}
 @}
 @end example
 @iftex
@@ -10934,6 +10949,32 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 
 @c .....................................
 
+@node @file{apiutil.awk} ENDFILE Block
+@appendixsubsec @file{apiutil.awk} ENDFILE Block
+
+@need 400
+@anchor{apiutil---ENDFILE-Block}
+@cdindex @r{<@i{apiutil---ENDFILE Block}>}, definition
+@noindent
+@r{<@i{apiutil---ENDFILE Block}>} @equiv{}
+@example
+ENDFILE @{
+  system("mv -v FILENAME FILENAME\".bak\" && mv -vi FILENAME\".new\" FILENAME")
+@}
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@c .....................................
+
 @node @file{apiutil.awk} END Block
 @appendixsubsec @file{apiutil.awk} END Block
 
@@ -10943,7 +10984,9 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @noindent
 @r{<@i{apiutil---END Block}>} @equiv{}
 @example
-
+END @{
+  print "All done"
+@}
 @end example
 @iftex
 @smallfonts @rm
@@ -11217,6 +11260,9 @@ This chunk is defined in
 @item @r{<@i{apiutil---END Block}>}
 This chunk is defined in
 @ref{apiutil---END-Block}.
+@item @r{<@i{apiutil---ENDFILE Block}>}
+This chunk is defined in
+@ref{apiutil---ENDFILE-Block}.
 @item @r{<@i{apiutil---MAIN Block}>}
 This chunk is defined in
 @ref{apiutil---MAIN-Block}.
@@ -11291,6 +11337,10 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
 @item @r{<@i{apiutil---END Block}>}
+
+@noindent
+This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+@item @r{<@i{apiutil---ENDFILE Block}>}
 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.

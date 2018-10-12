@@ -27,7 +27,7 @@ This is Edition 0.3a of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="API-Utility.html#API-Utility" rel="up" title="API Utility">
-<link href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block" rel="next" title="apiutil.awk END Block">
+<link href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block" rel="next" title="apiutil.awk ENDFILE Block">
 <link href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Block" rel="prev" title="apiutil.awk BEGNFILE Block">
 <style type="text/css">
 <!--
@@ -64,7 +64,7 @@ ul.no-bullet {list-style: none}
 <a name="apiutil_002eawk-MAIN-Block"></a>
 <div class="header">
 <p>
-Next: <a href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block" accesskey="n" rel="next"><samp>apiutil.awk</samp> END Block</a>, Previous: <a href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Block" accesskey="p" rel="prev"><samp>apiutil.awk</samp> BEGNFILE Block</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block" accesskey="n" rel="next"><samp>apiutil.awk</samp> ENDFILE Block</a>, Previous: <a href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Block" accesskey="p" rel="prev"><samp>apiutil.awk</samp> BEGNFILE Block</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="apiutil_002eawk-MAIN-Block-1"></a>
@@ -73,7 +73,14 @@ Next: <a href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block" accessk
 <a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example">}
+<pre class="example">{ print $0 &gt; newfile }
+$0 ~ start, $0 ~ end {
+   if ($0 ~ /^[[:alpha:]]/) {
+     print &quot;@item &quot;$0 &gt; newfile
+   } else {
+     print &gt; newfile
+   }
+}
 </pre></div>
 
 <p>This chunk is called by <span class="roman">{<samp>apiutil.awk</samp>}</span>; see its first definition at <a href="API-Utility.html#apiutil_002dawk">apiutil-awk</a>.

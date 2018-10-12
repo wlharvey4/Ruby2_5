@@ -221,6 +221,7 @@ API Utility
 * apiutil.awk BEGIN Block::
 * apiutil.awk BEGNFILE Block::
 * apiutil.awk MAIN Block::
+* apiutil.awk ENDFILE Block::
 * apiutil.awk END Block::
 
 The Makefile
@@ -9631,6 +9632,7 @@ using the 'GAWK' programming language to get refreshed in using it.
      <apiutil--BEGIN Block>
      <apiutil--BEGINFILE Block>
      <apiutil--MAIN Block>
+     <apiutil--ENDFILE Block>
      <apiutil--END Block>
 
 
@@ -9641,6 +9643,8 @@ Chunk name                First definition point
 <apiutil--BEGINFILE       See *note apiutil---BEGINFILE-Block::.
 Block>
 <apiutil--END Block>      See *note apiutil---END-Block::.
+<apiutil--ENDFILE         See *note apiutil---ENDFILE-Block::.
+Block>
 <apiutil--MAIN Block>     See *note apiutil---MAIN-Block::.
 
 * Menu:
@@ -9648,6 +9652,7 @@ Block>
 * apiutil.awk BEGIN Block::
 * apiutil.awk BEGNFILE Block::
 * apiutil.awk MAIN Block::
+* apiutil.awk ENDFILE Block::
 * apiutil.awk END Block::
 
 
@@ -9658,6 +9663,8 @@ A.2.1 'apiutil.awk' BEGIN Block
 
 <apiutil--BEGIN Block> ==
      BEGIN {
+       start = "^@float Table,table:api-classes-and-modules$"
+       end   = "^@end table$"
      }
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
@@ -9671,6 +9678,7 @@ A.2.2 'apiutil.awk' BEGINFILE BLOCK
 
 <apiutil--BEGINFILE Block> ==
      BEGINFILE {
+       newfile = FILENAME".new"
      }
 
 
@@ -9678,25 +9686,49 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
-File: Ruby2_5.info,  Node: apiutil.awk MAIN Block,  Next: apiutil.awk END Block,  Prev: apiutil.awk BEGNFILE Block,  Up: API Utility
+File: Ruby2_5.info,  Node: apiutil.awk MAIN Block,  Next: apiutil.awk ENDFILE Block,  Prev: apiutil.awk BEGNFILE Block,  Up: API Utility
 
 A.2.3 'apiutil.awk' MAIN Block
 ------------------------------
 
 <apiutil--MAIN Block> ==
+     { print $0 > newfile }
+     $0 ~ start, $0 ~ end {
+        if ($0 ~ /^[[:alpha:]]/) {
+          print "@item "$0 > newfile
+        } else {
+          print > newfile
+        }
      }
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
-File: Ruby2_5.info,  Node: apiutil.awk END Block,  Prev: apiutil.awk MAIN Block,  Up: API Utility
+File: Ruby2_5.info,  Node: apiutil.awk ENDFILE Block,  Next: apiutil.awk END Block,  Prev: apiutil.awk MAIN Block,  Up: API Utility
 
-A.2.4 'apiutil.awk' END Block
+A.2.4 'apiutil.awk' ENDFILE Block
+---------------------------------
+
+<apiutil--ENDFILE Block> ==
+     ENDFILE {
+       system("mv -v FILENAME FILENAME\".bak\" && mv -vi FILENAME\".new\" FILENAME")
+     }
+
+
+This chunk is called by {'apiutil.awk'}; see its first definition at
+*note apiutil-awk::.
+
+
+File: Ruby2_5.info,  Node: apiutil.awk END Block,  Prev: apiutil.awk ENDFILE Block,  Up: API Utility
+
+A.2.5 'apiutil.awk' END Block
 -----------------------------
 
 <apiutil--END Block> ==
-
+     END {
+       print "All done"
+     }
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
@@ -9892,6 +9924,8 @@ C.2 Code Chunk Definitions
      This chunk is defined in *note apiutil---BEGINFILE-Block::.
 <apiutil--END Block>
      This chunk is defined in *note apiutil---END-Block::.
+<apiutil--ENDFILE Block>
+     This chunk is defined in *note apiutil---ENDFILE-Block::.
 <apiutil--MAIN Block>
      This chunk is defined in *note apiutil---MAIN-Block::.
 <eval--EvalWrapper-Constants>
@@ -9963,6 +9997,10 @@ C.3 Code Chunk References
      This chunk is called by {'apiutil.awk'}; see its first definition
      at *note apiutil-awk::.
 <apiutil--END Block>
+
+     This chunk is called by {'apiutil.awk'}; see its first definition
+     at *note apiutil-awk::.
+<apiutil--ENDFILE Block>
 
      This chunk is called by {'apiutil.awk'}; see its first definition
      at *note apiutil-awk::.
@@ -10040,6 +10078,9 @@ Index
 * <apiutil--END Block>, definition:      apiutil.awk END Block.
                                                             (line   6)
 * <apiutil--END Block>, use:             API Utility.       (line  11)
+* <apiutil--ENDFILE Block>, definition:  apiutil.awk ENDFILE Block.
+                                                            (line   6)
+* <apiutil--ENDFILE Block>, use:         API Utility.       (line  11)
 * <apiutil--MAIN Block>, definition:     apiutil.awk MAIN Block.
                                                             (line   6)
 * <apiutil--MAIN Block>, use:            API Utility.       (line  11)

@@ -10130,6 +10130,7 @@ the @file{GAWK} programming language to get refreshed in using it.
 @<apiutil---BEGIN Block@>
 @<apiutil---BEGINFILE Block@>
 @<apiutil---MAIN Block@>
+@<apiutil---ENDFILE Block@>
 @<apiutil---END Block@>
 
 @
@@ -10142,6 +10143,8 @@ the @file{GAWK} programming language to get refreshed in using it.
 
 @<apiutil---BEGIN Block@>=
 BEGIN {
+  start = "^@float Table,table:api-classes-and-modules$"
+  end   = "^@end table$"
 }
 @
 
@@ -10153,6 +10156,7 @@ BEGIN {
 
 @<apiutil---BEGINFILE Block@>=
 BEGINFILE {
+  newfile = FILENAME".new"
 }
 
 @
@@ -10163,9 +10167,28 @@ BEGINFILE {
 @appendixsubsec @file{apiutil.awk} MAIN Block
 
 @<apiutil---MAIN Block@>=
+{ print $0 > newfile }
+$0 ~ start, $0 ~ end {
+   if ($0 ~ /^[[:alpha:]]/) {
+     print "@item "$0 > newfile
+   } else {
+     print > newfile
+   }
 }
 @
 
+
+@c .....................................
+
+@node @file{apiutil.awk} ENDFILE Block
+@appendixsubsec @file{apiutil.awk} ENDFILE Block
+
+@<apiutil---ENDFILE Block@>=
+ENDFILE {
+  system("mv -v FILENAME FILENAME\".bak\" && mv -vi FILENAME\".new\" FILENAME")
+}
+
+@
 
 @c .....................................
 
@@ -10173,6 +10196,9 @@ BEGINFILE {
 @appendixsubsec @file{apiutil.awk} END Block
 
 @<apiutil---END Block@>=
+END {
+  print "All done"
+}
 @
 
 
