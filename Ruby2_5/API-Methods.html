@@ -1,0 +1,3838 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.3a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>API Methods (Ruby2_5 Information)</title>
+
+<meta name="description" content="API Methods (Ruby2_5 Information)">
+<meta name="keywords" content="API Methods (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Documentation.html#API-Documentation" rel="up" title="API Documentation">
+<link href="Beginner-Core-Topics.html#Beginner-Core-Topics" rel="next" title="Beginner Core Topics">
+<link href="API-Classes-And-Modules.html#API-Classes-And-Modules" rel="prev" title="API Classes And Modules">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="API-Methods"></a>
+<div class="header">
+<p>
+Previous: <a href="API-Classes-And-Modules.html#API-Classes-And-Modules" accesskey="p" rel="prev">API Classes And Modules</a>, Up: <a href="API-Documentation.html#API-Documentation" accesskey="u" rel="up">API Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="API-Methods-1"></a>
+<h4 class="subsection">3.1.3 API Methods</h4>
+
+<div class="float"><a name="table_003aapi_002dmethods"></a>
+<dl compact="compact">
+<dd><p>=== (SystemCallError)
+</p>
+<p>::DEBUG (Thread)
+</p>
+<p>::DEBUG= (Thread)
+</p>
+<p>::[] (Array)
+</p>
+<p>::[] (Dir)
+</p>
+<p>::[] (ENV)
+</p>
+<p>::[] (Hash)
+</p>
+<p>::[]= (ENV)
+</p>
+<p>::_id2ref (ObjectSpace)
+</p>
+<p>::abort (Process)
+</p>
+<p>::abort_on_exception (Thread)
+</p>
+<p>::abort_on_exception= (Thread)
+</p>
+<p>::absolute_path (File)
+</p>
+<p>::acos (Math)
+</p>
+<p>::acosh (Math)
+</p>
+<p>::add_stress_to_class (GC)
+</p>
+<p>::aliases (Encoding)
+</p>
+<p>::all_symbols (Symbol)
+</p>
+<p>::argv0 (Process)
+</p>
+<p>::asciicompat_encoding (Encoding::Converter)
+</p>
+<p>::asin (Math)
+</p>
+<p>::asinh (Math)
+</p>
+<p>::assoc (ENV)
+</p>
+<p>::at (Time)
+</p>
+<p>::atan (Math)
+</p>
+<p>::atan2 (Math)
+</p>
+<p>::atanh (Math)
+</p>
+<p>::atime (File)
+</p>
+<p>::basename (File)
+</p>
+<p>::binread (IO)
+</p>
+<p>::binwrite (IO)
+</p>
+<p>::birthtime (File)
+</p>
+<p>::blockdev? (File)
+</p>
+<p>::cbrt (Math)
+</p>
+<p>::change_privilege (Process::GID)
+</p>
+<p>::change_privilege (Process::UID)
+</p>
+<p>::chardev? (File)
+</p>
+<p>::chdir (Dir)
+</p>
+<p>::children (Dir)
+</p>
+<p>::chmod (File)
+</p>
+<p>::chown (File)
+</p>
+<p>::chroot (Dir)
+</p>
+<p>::clear (ENV)
+</p>
+<p>::clear (GC::Profiler)
+</p>
+<p>::clock_getres (Process)
+</p>
+<p>::clock_gettime (Process)
+</p>
+<p>::compatible? (Encoding)
+</p>
+<p>::compile (Regexp)
+</p>
+<p>::compile (RubyVM::InstructionSequence)
+</p>
+<p>::compile_file (RubyVM::InstructionSequence)
+</p>
+<p>::compile_option (RubyVM::InstructionSequence)
+</p>
+<p>::compile_option= (RubyVM::InstructionSequence)
+</p>
+<p>::constants (Module)
+</p>
+<p>::copy_stream (IO)
+</p>
+<p>::cos (Math)
+</p>
+<p>::cosh (Math)
+</p>
+<p>::count (GC)
+</p>
+<p>::count_objects (ObjectSpace)
+</p>
+<p>::ctime (File)
+</p>
+<p>::current (Fiber)
+</p>
+<p>::current (Thread)
+</p>
+<p>::daemon (Process)
+</p>
+<p>::default_external (Encoding)
+</p>
+<p>::default_external= (Encoding)
+</p>
+<p>::default_internal (Encoding)
+</p>
+<p>::default_internal= (Encoding)
+</p>
+<p>::define_finalizer (ObjectSpace)
+</p>
+<p>::delete (Dir)
+</p>
+<p>::delete (ENV)
+</p>
+<p>::delete (File)
+</p>
+<p>::delete_if (ENV)
+</p>
+<p>::detach (Process)
+</p>
+<p>::directory? (File)
+</p>
+<p>::dirname (File)
+</p>
+<p>::disable (GC)
+</p>
+<p>::disable (GC::Profiler)
+</p>
+<p>::disasm (RubyVM::InstructionSequence)
+</p>
+<p>::disassemble (RubyVM::InstructionSequence)
+</p>
+<p>::dump (Marshal)
+</p>
+<p>::each (ENV)
+</p>
+<p>::each_child (Dir)
+</p>
+<p>::each_key (ENV)
+</p>
+<p>::each_object (ObjectSpace)
+</p>
+<p>::each_pair (ENV)
+</p>
+<p>::each_value (ENV)
+</p>
+<p>::egid (Process)
+</p>
+<p>::egid= (Process)
+</p>
+<p>::eid (Process::GID)
+</p>
+<p>::eid (Process::UID)
+</p>
+<p>::empty? (Dir)
+</p>
+<p>::empty? (ENV)
+</p>
+<p>::empty? (File)
+</p>
+<p>::enable (GC)
+</p>
+<p>::enable (GC::Profiler)
+</p>
+<p>::enabled? (GC::Profiler)
+</p>
+<p>::entries (Dir)
+</p>
+<p>::erf (Math)
+</p>
+<p>::erfc (Math)
+</p>
+<p>::escape (Regexp)
+</p>
+<p>::euid (Process)
+</p>
+<p>::euid= (Process)
+</p>
+<p>::exception (Exception)
+</p>
+<p>::exclusive (Thread)
+</p>
+<p>::exec (Process)
+</p>
+<p>::executable? (File)
+</p>
+<p>::executable_real? (File)
+</p>
+<p>::exist? (Dir)
+</p>
+<p>::exist? (File)
+</p>
+<p>::exists? (Dir)
+</p>
+<p>::exists? (File)
+</p>
+<p>::exit (Process)
+</p>
+<p>::exit (Thread)
+</p>
+<p>::exit! (Process)
+</p>
+<p>::exp (Math)
+</p>
+<p>::expand_path (File)
+</p>
+<p>::extname (File)
+</p>
+<p>::fetch (ENV)
+</p>
+<p>::file? (File)
+</p>
+<p>::find (Encoding)
+</p>
+<p>::fnmatch (File)
+</p>
+<p>::fnmatch? (File)
+</p>
+<p>::for_fd (IO)
+</p>
+<p>::foreach (Dir)
+</p>
+<p>::foreach (IO)
+</p>
+<p>::fork (Process)
+</p>
+<p>::fork (Thread)
+</p>
+<p>::frexp (Math)
+</p>
+<p>::from_name (Process::GID)
+</p>
+<p>::from_name (Process::UID)
+</p>
+<p>::ftype (File)
+</p>
+<p>::gamma (Math)
+</p>
+<p>::garbage_collect (ObjectSpace)
+</p>
+<p>::getegid (Process::Sys)
+</p>
+<p>::geteuid (Process::Sys)
+</p>
+<p>::getgid (Process::Sys)
+</p>
+<p>::getpgid (Process)
+</p>
+<p>::getpgrp (Process)
+</p>
+<p>::getpriority (Process)
+</p>
+<p>::getrlimit (Process)
+</p>
+<p>::getsid (Process)
+</p>
+<p>::getuid (Process::Sys)
+</p>
+<p>::getwd (Dir)
+</p>
+<p>::gid (Process)
+</p>
+<p>::gid= (Process)
+</p>
+<p>::glob (Dir)
+</p>
+<p>::gm (Time)
+</p>
+<p>::grant_privilege (Process::GID)
+</p>
+<p>::grant_privilege (Process::UID)
+</p>
+<p>::groups (Process)
+</p>
+<p>::groups= (Process)
+</p>
+<p>::grpowned? (File)
+</p>
+<p>::handle_interrupt (Thread)
+</p>
+<p>::has_key? (ENV)
+</p>
+<p>::has_value? (ENV)
+</p>
+<p>::home (Dir)
+</p>
+<p>::hypot (Math)
+</p>
+<p>::identical? (File)
+</p>
+<p>::include? (ENV)
+</p>
+<p>::index (ENV)
+</p>
+<p>::initgroups (Process)
+</p>
+<p>::inspect (ENV)
+</p>
+<p>::invert (ENV)
+</p>
+<p>::issetugid (Process::Sys)
+</p>
+<p>::join (File)
+</p>
+<p>::keep_if (ENV)
+</p>
+<p>::key (ENV)
+</p>
+<p>::key? (ENV)
+</p>
+<p>::keys (ENV)
+</p>
+<p>::kill (Process)
+</p>
+<p>::kill (Thread)
+</p>
+<p>::last_match (Regexp)
+</p>
+<p>::last_status (Process)
+</p>
+<p>::latest_gc_info (GC)
+</p>
+<p>::lchmod (File)
+</p>
+<p>::lchown (File)
+</p>
+<p>::ldexp (Math)
+</p>
+<p>::length (ENV)
+</p>
+<p>::lgamma (Math)
+</p>
+<p>::link (File)
+</p>
+<p>::list (Encoding)
+</p>
+<p>::list (Signal)
+</p>
+<p>::list (Thread)
+</p>
+<p>::load (Marshal)
+</p>
+<p>::load_from_binary (RubyVM::InstructionSequence)
+</p>
+<p>::load_from_binary_extra_data (RubyVM::InstructionSequence)
+</p>
+<p>::local (Time)
+</p>
+<p>::locale_charmap (Encoding)
+</p>
+<p>::log (Math)
+</p>
+<p>::log10 (Math)
+</p>
+<p>::log2 (Math)
+</p>
+<p>::lstat (File)
+</p>
+<p>::lutime (File)
+</p>
+<p>::main (Thread)
+</p>
+<p>::malloc_allocated_size (GC)
+</p>
+<p>::malloc_allocations (GC)
+</p>
+<p>::maxgroups (Process)
+</p>
+<p>::maxgroups= (Process)
+</p>
+<p>::member? (ENV)
+</p>
+<p>::mkdir (Dir)
+</p>
+<p>::mkfifo (File)
+</p>
+<p>::mktime (Time)
+</p>
+<p>::mtime (File)
+</p>
+<p>::name_list (Encoding)
+</p>
+<p>::nesting (Module)
+</p>
+<p>::new (Array)
+</p>
+<p>::new (BasicObject)
+</p>
+<p>::new (Class)
+</p>
+<p>::new (ConditionVariable)
+</p>
+<p>::new (Dir)
+</p>
+<p>::new (Encoding::Converter)
+</p>
+<p>::new (Enumerator)
+</p>
+<p>::new (Enumerator::Lazy)
+</p>
+<p>::new (Exception)
+</p>
+<p>::new (File)
+</p>
+<p>::new (File::Stat)
+</p>
+<p>::new (Hash)
+</p>
+<p>::new (IO)
+</p>
+<p>::new (Module)
+</p>
+<p>::new (Mutex)
+</p>
+<p>::new (NameError)
+</p>
+<p>::new (NoMethodError)
+</p>
+<p>::new (Proc)
+</p>
+<p>::new (Queue)
+</p>
+<p>::new (Random)
+</p>
+<p>::new (Range)
+</p>
+<p>::new (Regexp)
+</p>
+<p>::new (RubyVM::InstructionSequence)
+</p>
+<p>::new (SignalException)
+</p>
+<p>::new (SizedQueue)
+</p>
+<p>::new (String)
+</p>
+<p>::new (Struct)
+</p>
+<p>::new (SyntaxError)
+</p>
+<p>::new (SystemCallError)
+</p>
+<p>::new (SystemExit)
+</p>
+<p>::new (Thread)
+</p>
+<p>::new (Time)
+</p>
+<p>::new (TracePoint)
+</p>
+<p>::new (UncaughtThrowError)
+</p>
+<p>::new_seed (Random)
+</p>
+<p>::now (Time)
+</p>
+<p>::of (RubyVM::InstructionSequence)
+</p>
+<p>::open (Dir)
+</p>
+<p>::open (File)
+</p>
+<p>::open (IO)
+</p>
+<p>::owned? (File)
+</p>
+<p>::pass (Thread)
+</p>
+<p>::path (File)
+</p>
+<p>::pending_interrupt? (Thread)
+</p>
+<p>::pid (Process)
+</p>
+<p>::pipe (IO)
+</p>
+<p>::pipe? (File)
+</p>
+<p>::polar (Complex)
+</p>
+<p>::popen (IO)
+</p>
+<p>::ppid (Process)
+</p>
+<p>::pwd (Dir)
+</p>
+<p>::quote (Regexp)
+</p>
+<p>::rand (Random)
+</p>
+<p>::rassoc (ENV)
+</p>
+<p>::raw_data (GC::Profiler)
+</p>
+<p>::re_exchange (Process::GID)
+</p>
+<p>::re_exchange (Process::UID)
+</p>
+<p>::re_exchangeable? (Process::GID)
+</p>
+<p>::re_exchangeable? (Process::UID)
+</p>
+<p>::read (IO)
+</p>
+<p>::readable? (File)
+</p>
+<p>::readable_real? (File)
+</p>
+<p>::readlines (IO)
+</p>
+<p>::readlink (File)
+</p>
+<p>::realdirpath (File)
+</p>
+<p>::realpath (File)
+</p>
+<p>::rect (Complex)
+</p>
+<p>::rectangular (Complex)
+</p>
+<p>::rehash (ENV)
+</p>
+<p>::reject (ENV)
+</p>
+<p>::reject! (ENV)
+</p>
+<p>::remove_stress_to_class (GC)
+</p>
+<p>::rename (File)
+</p>
+<p>::replace (ENV)
+</p>
+<p>::report (GC::Profiler)
+</p>
+<p>::report_on_exception (Thread)
+</p>
+<p>::report_on_exception= (Thread)
+</p>
+<p>::restore (Marshal)
+</p>
+<p>::result (GC::Profiler)
+</p>
+<p>::rid (Process::GID)
+</p>
+<p>::rid (Process::UID)
+</p>
+<p>::rmdir (Dir)
+</p>
+<p>::search_convpath (Encoding::Converter)
+</p>
+<p>::select (ENV)
+</p>
+<p>::select (IO)
+</p>
+<p>::select! (ENV)
+</p>
+<p>::setegid (Process::Sys)
+</p>
+<p>::seteuid (Process::Sys)
+</p>
+<p>::setgid (Process::Sys)
+</p>
+<p>::setgid? (File)
+</p>
+<p>::setpgid (Process)
+</p>
+<p>::setpgrp (Process)
+</p>
+<p>::setpriority (Process)
+</p>
+<p>::setproctitle (Process)
+</p>
+<p>::setregid (Process::Sys)
+</p>
+<p>::setresgid (Process::Sys)
+</p>
+<p>::setresuid (Process::Sys)
+</p>
+<p>::setreuid (Process::Sys)
+</p>
+<p>::setrgid (Process::Sys)
+</p>
+<p>::setrlimit (Process)
+</p>
+<p>::setruid (Process::Sys)
+</p>
+<p>::setsid (Process)
+</p>
+<p>::setuid (Process::Sys)
+</p>
+<p>::setuid? (File)
+</p>
+<p>::shift (ENV)
+</p>
+<p>::sid_available? (Process::GID)
+</p>
+<p>::sid_available? (Process::UID)
+</p>
+<p>::signame (Signal)
+</p>
+<p>::sin (Math)
+</p>
+<p>::sinh (Math)
+</p>
+<p>::size (ENV)
+</p>
+<p>::size (File)
+</p>
+<p>::size? (File)
+</p>
+<p>::socket? (File)
+</p>
+<p>::spawn (Process)
+</p>
+<p>::split (File)
+</p>
+<p>::sqrt (Integer)
+</p>
+<p>::sqrt (Math)
+</p>
+<p>::srand (Random)
+</p>
+<p>::start (GC)
+</p>
+<p>::start (Thread)
+</p>
+<p>::stat (File)
+</p>
+<p>::stat (GC)
+</p>
+<p>::stat (RubyVM)
+</p>
+<p>::stat (TracePoint)
+</p>
+<p>::sticky? (File)
+</p>
+<p>::stop (Thread)
+</p>
+<p>::store (ENV)
+</p>
+<p>::stress (GC)
+</p>
+<p>::stress= (GC)
+</p>
+<p>::switch (Process::GID)
+</p>
+<p>::switch (Process::UID)
+</p>
+<p>::symlink (File)
+</p>
+<p>::symlink? (File)
+</p>
+<p>::sysopen (IO)
+</p>
+<p>::tan (Math)
+</p>
+<p>::tanh (Math)
+</p>
+<p>::times (Process)
+</p>
+<p>::to_a (ENV)
+</p>
+<p>::to_h (ENV)
+</p>
+<p>::to_hash (ENV)
+</p>
+<p>::to_s (ENV)
+</p>
+<p>::to_tty? (Exception)
+</p>
+<p>::total_time (GC::Profiler)
+</p>
+<p>::trace (TracePoint)
+</p>
+<p>::trap (Signal)
+</p>
+<p>::truncate (File)
+</p>
+<p>::try_convert (Array)
+</p>
+<p>::try_convert (Hash)
+</p>
+<p>::try_convert (IO)
+</p>
+<p>::try_convert (Regexp)
+</p>
+<p>::try_convert (String)
+</p>
+<p>::uid (Process)
+</p>
+<p>::uid= (Process)
+</p>
+<p>::umask (File)
+</p>
+<p>::undefine_finalizer (ObjectSpace)
+</p>
+<p>::union (Regexp)
+</p>
+<p>::unlink (Dir)
+</p>
+<p>::unlink (File)
+</p>
+<p>::update (ENV)
+</p>
+<p>::urandom (Random)
+</p>
+<p>::used_modules (Module)
+</p>
+<p>::utc (Time)
+</p>
+<p>::utime (File)
+</p>
+<p>::value? (ENV)
+</p>
+<p>::values (ENV)
+</p>
+<p>::values_at (ENV)
+</p>
+<p>::verify_internal_consistency (GC)
+</p>
+<p>::wait (Process)
+</p>
+<p>::wait2 (Process)
+</p>
+<p>::waitall (Process)
+</p>
+<p>::waitpid (Process)
+</p>
+<p>::waitpid2 (Process)
+</p>
+<p>::world_readable? (File)
+</p>
+<p>::world_writable? (File)
+</p>
+<p>::writable? (File)
+</p>
+<p>::writable_real? (File)
+</p>
+<p>::write (IO)
+</p>
+<p>::yield (Fiber)
+</p>
+<p>::zero? (File)
+</p>
+<p>#! (BasicObject)
+</p>
+<p>#!= (BasicObject)
+</p>
+<p>#!~ (Object)
+</p>
+<p>#% (Float)
+</p>
+<p>#% (Integer)
+</p>
+<p>#% (Numeric)
+</p>
+<p>#% (String)
+</p>
+<p>#&amp; (Array)
+</p>
+<p>#&amp; (FalseClass)
+</p>
+<p>#&amp; (Integer)
+</p>
+<p>#&amp; (NilClass)
+</p>
+<p>#&amp; (Process::Status)
+</p>
+<p>#&amp; (TrueClass)
+</p>
+<p>#* (Array)
+</p>
+<p>#* (Complex)
+</p>
+<p>#* (Float)
+</p>
+<p>#* (Integer)
+</p>
+<p>#* (Rational)
+</p>
+<p>#* (String)
+</p>
+<p>#** (Complex)
+</p>
+<p>#** (Float)
+</p>
+<p>#** (Integer)
+</p>
+<p>#** (Rational)
+</p>
+<p>#+ (Array)
+</p>
+<p>#+ (Complex)
+</p>
+<p>#+ (Float)
+</p>
+<p>#+ (Integer)
+</p>
+<p>#+ (Rational)
+</p>
+<p>#+ (String)
+</p>
+<p>#+ (Time)
+</p>
+<p>#+&nbsp;(Numeric)
+</p>
+<p>#+&nbsp;(String)
+</p>
+<p>#- (Array)
+</p>
+<p>#- (Complex)
+</p>
+<p>#- (Float)
+</p>
+<p>#- (Integer)
+</p>
+<p>#- (Rational)
+</p>
+<p>#- (Time)
+</p>
+<p>#-&nbsp;(Complex)
+</p>
+<p>#-&nbsp;(Float)
+</p>
+<p>#-&nbsp;(Integer)
+</p>
+<p>#-&nbsp;(Numeric)
+</p>
+<p>#-&nbsp;(Rational)
+</p>
+<p>#-&nbsp;(String)
+</p>
+<p>#/ (Complex)
+</p>
+<p>#/ (Float)
+</p>
+<p>#/ (Integer)
+</p>
+<p>#/ (Rational)
+</p>
+<p>#&lt; (Comparable)
+</p>
+<p>#&lt; (Float)
+</p>
+<p>#&lt; (Hash)
+</p>
+<p>#&lt; (Integer)
+</p>
+<p>#&lt; (Module)
+</p>
+<p>#&lt;&lt; (Array)
+</p>
+<p>#&lt;&lt; (IO)
+</p>
+<p>#&lt;&lt; (Integer)
+</p>
+<p>#&lt;&lt; (Queue)
+</p>
+<p>#&lt;&lt; (SizedQueue)
+</p>
+<p>#&lt;&lt; (String)
+</p>
+<p>#&lt;= (Comparable)
+</p>
+<p>#&lt;= (Float)
+</p>
+<p>#&lt;= (Hash)
+</p>
+<p>#&lt;= (Integer)
+</p>
+<p>#&lt;= (Module)
+</p>
+<p>#&lt;=&gt; (Array)
+</p>
+<p>#&lt;=&gt; (File::Stat)
+</p>
+<p>#&lt;=&gt; (Float)
+</p>
+<p>#&lt;=&gt; (Integer)
+</p>
+<p>#&lt;=&gt; (Module)
+</p>
+<p>#&lt;=&gt; (Numeric)
+</p>
+<p>#&lt;=&gt; (Object)
+</p>
+<p>#&lt;=&gt; (Rational)
+</p>
+<p>#&lt;=&gt; (String)
+</p>
+<p>#&lt;=&gt; (Symbol)
+</p>
+<p>#&lt;=&gt; (Time)
+</p>
+<p>#== (Array)
+</p>
+<p>#== (BasicObject)
+</p>
+<p>#== (Comparable)
+</p>
+<p>#== (Complex)
+</p>
+<p>#== (Encoding::Converter)
+</p>
+<p>#== (Exception)
+</p>
+<p>#== (Float)
+</p>
+<p>#== (Hash)
+</p>
+<p>#== (Integer)
+</p>
+<p>#== (MatchData)
+</p>
+<p>#== (Method)
+</p>
+<p>#== (Module)
+</p>
+<p>#== (Process::Status)
+</p>
+<p>#== (Random)
+</p>
+<p>#== (Range)
+</p>
+<p>#== (Rational)
+</p>
+<p>#== (Regexp)
+</p>
+<p>#== (String)
+</p>
+<p>#== (Struct)
+</p>
+<p>#== (Symbol)
+</p>
+<p>#== (UnboundMethod)
+</p>
+<p>#=== (FalseClass)
+</p>
+<p>#=== (Float)
+</p>
+<p>#=== (Integer)
+</p>
+<p>#=== (Method)
+</p>
+<p>#=== (Module)
+</p>
+<p>#=== (NilClass)
+</p>
+<p>#=== (Object)
+</p>
+<p>#=== (Proc)
+</p>
+<p>#=== (Range)
+</p>
+<p>#=== (Regexp)
+</p>
+<p>#=== (String)
+</p>
+<p>#=== (Symbol)
+</p>
+<p>#=== (TrueClass)
+</p>
+<p>#=~ (Object)
+</p>
+<p>#=~ (Regexp)
+</p>
+<p>#=~ (String)
+</p>
+<p>#=~ (Symbol)
+</p>
+<p>#&gt; (Comparable)
+</p>
+<p>#&gt; (Float)
+</p>
+<p>#&gt; (Hash)
+</p>
+<p>#&gt; (Integer)
+</p>
+<p>#&gt; (Module)
+</p>
+<p>#&gt;= (Comparable)
+</p>
+<p>#&gt;= (Float)
+</p>
+<p>#&gt;= (Hash)
+</p>
+<p>#&gt;= (Integer)
+</p>
+<p>#&gt;= (Module)
+</p>
+<p>#&gt;&gt; (Integer)
+</p>
+<p>#&gt;&gt; (Process::Status)
+</p>
+<p>#Array (Kernel)
+</p>
+<p>#Complex (Kernel)
+</p>
+<p>#Float (Kernel)
+</p>
+<p>#Hash (Kernel)
+</p>
+<p>#Integer (Kernel)
+</p>
+<p>#Rational (Kernel)
+</p>
+<p>#String (Kernel)
+</p>
+<p>#[] (Array)
+</p>
+<p>#[] (Continuation)
+</p>
+<p>#[] (Hash)
+</p>
+<p>#[] (Integer)
+</p>
+<p>#[] (MatchData)
+</p>
+<p>#[] (Method)
+</p>
+<p>#[] (ObjectSpace::WeakMap)
+</p>
+<p>#[] (Proc)
+</p>
+<p>#[] (String)
+</p>
+<p>#[] (Struct)
+</p>
+<p>#[] (Symbol)
+</p>
+<p>#[] (Thread)
+</p>
+<p>#[]= (Array)
+</p>
+<p>#[]= (Hash)
+</p>
+<p>#[]= (ObjectSpace::WeakMap)
+</p>
+<p>#[]= (String)
+</p>
+<p>#[]= (Struct)
+</p>
+<p>#[]= (Thread)
+</p>
+<p>#^ (FalseClass)
+</p>
+<p>#^ (Integer)
+</p>
+<p>#^ (NilClass)
+</p>
+<p>#^ (TrueClass)
+</p>
+<p>#__callee__ (Kernel)
+</p>
+<p>#__dir__ (Kernel)
+</p>
+<p>#__id__ (BasicObject)
+</p>
+<p>#__method__ (Kernel)
+</p>
+<p>#__send__ (BasicObject)
+</p>
+<p>#&lsquo; (Kernel)
+</p>
+<p>#abort (Kernel)
+</p>
+<p>#abort_on_exception (Thread)
+</p>
+<p>#abort_on_exception= (Thread)
+</p>
+<p>#abs (Complex)
+</p>
+<p>#abs (Float)
+</p>
+<p>#abs (Integer)
+</p>
+<p>#abs (Numeric)
+</p>
+<p>#abs (Rational)
+</p>
+<p>#abs2 (Complex)
+</p>
+<p>#abs2 (Numeric)
+</p>
+<p>#absolute_path (RubyVM::InstructionSequence)
+</p>
+<p>#absolute_path (Thread::Backtrace::Location)
+</p>
+<p>#add (ThreadGroup)
+</p>
+<p>#add_trace_func (Thread)
+</p>
+<p>#advise (IO)
+</p>
+<p>#alias_method (Module)
+</p>
+<p>#alive? (Fiber)
+</p>
+<p>#alive? (Thread)
+</p>
+<p>#all? (Enumerable)
+</p>
+<p>#allbits? (Integer)
+</p>
+<p>#allocate (Class)
+</p>
+<p>#ancestors (Module)
+</p>
+<p>#angle (Complex)
+</p>
+<p>#angle (Float)
+</p>
+<p>#angle (Numeric)
+</p>
+<p>#any? (Array)
+</p>
+<p>#any? (Enumerable)
+</p>
+<p>#any? (Hash)
+</p>
+<p>#anybits? (Integer)
+</p>
+<p>#append (Array)
+</p>
+<p>#append_features (Module)
+</p>
+<p>#arg (Complex)
+</p>
+<p>#arg (Float)
+</p>
+<p>#arg (Numeric)
+</p>
+<p>#args (NoMethodError)
+</p>
+<p>#argv (ARGF)
+</p>
+<p>#arity (Method)
+</p>
+<p>#arity (Proc)
+</p>
+<p>#arity (UnboundMethod)
+</p>
+<p>#ascii_compatible? (Encoding)
+</p>
+<p>#ascii_only? (String)
+</p>
+<p>#asctime (Time)
+</p>
+<p>#assoc (Array)
+</p>
+<p>#assoc (Hash)
+</p>
+<p>#at (Array)
+</p>
+<p>#at_exit (Kernel)
+</p>
+<p>#atime (File)
+</p>
+<p>#atime (File::Stat)
+</p>
+<p>#attr (Module)
+</p>
+<p>#attr_accessor (Module)
+</p>
+<p>#attr_reader (Module)
+</p>
+<p>#attr_writer (Module)
+</p>
+<p>#autoclose= (IO)
+</p>
+<p>#autoclose? (IO)
+</p>
+<p>#autoload (Kernel)
+</p>
+<p>#autoload (Module)
+</p>
+<p>#autoload? (Kernel)
+</p>
+<p>#autoload? (Module)
+</p>
+<p>#b (String)
+</p>
+<p>#backtrace (Exception)
+</p>
+<p>#backtrace (Thread)
+</p>
+<p>#backtrace_locations (Exception)
+</p>
+<p>#backtrace_locations (Thread)
+</p>
+<p>#base_label (RubyVM::InstructionSequence)
+</p>
+<p>#base_label (Thread::Backtrace::Location)
+</p>
+<p>#begin (MatchData)
+</p>
+<p>#begin (Range)
+</p>
+<p>#between? (Comparable)
+</p>
+<p>#bind (UnboundMethod)
+</p>
+<p>#binding (Kernel)
+</p>
+<p>#binding (Proc)
+</p>
+<p>#binding (TracePoint)
+</p>
+<p>#binmode (ARGF)
+</p>
+<p>#binmode (IO)
+</p>
+<p>#binmode? (ARGF)
+</p>
+<p>#binmode? (IO)
+</p>
+<p>#birthtime (File)
+</p>
+<p>#birthtime (File::Stat)
+</p>
+<p>#bit_length (Integer)
+</p>
+<p>#blksize (File::Stat)
+</p>
+<p>#block_given? (Kernel)
+</p>
+<p>#blockdev? (File::Stat)
+</p>
+<p>#blockdev? (FileTest)
+</p>
+<p>#blocks (File::Stat)
+</p>
+<p>#broadcast (ConditionVariable)
+</p>
+<p>#bsearch (Array)
+</p>
+<p>#bsearch (Range)
+</p>
+<p>#bsearch_index (Array)
+</p>
+<p>#bytes (ARGF)
+</p>
+<p>#bytes (IO)
+</p>
+<p>#bytes (Random)
+</p>
+<p>#bytes (String)
+</p>
+<p>#bytesize (String)
+</p>
+<p>#byteslice (String)
+</p>
+<p>#call (Continuation)
+</p>
+<p>#call (Method)
+</p>
+<p>#call (Proc)
+</p>
+<p>#callcc (Kernel)
+</p>
+<p>#callee_id (TracePoint)
+</p>
+<p>#caller (Kernel)
+</p>
+<p>#caller_locations (Kernel)
+</p>
+<p>#capitalize (String)
+</p>
+<p>#capitalize (Symbol)
+</p>
+<p>#capitalize! (String)
+</p>
+<p>#captures (MatchData)
+</p>
+<p>#casecmp (String)
+</p>
+<p>#casecmp (Symbol)
+</p>
+<p>#casecmp? (String)
+</p>
+<p>#casecmp? (Symbol)
+</p>
+<p>#casefold? (Regexp)
+</p>
+<p>#catch (Kernel)
+</p>
+<p>#cause (Exception)
+</p>
+<p>#ceil (Float)
+</p>
+<p>#ceil (Integer)
+</p>
+<p>#ceil (Numeric)
+</p>
+<p>#ceil (Rational)
+</p>
+<p>#center (String)
+</p>
+<p>#chardev? (File::Stat)
+</p>
+<p>#chardev? (FileTest)
+</p>
+<p>#chars (ARGF)
+</p>
+<p>#chars (IO)
+</p>
+<p>#chars (String)
+</p>
+<p>#chmod (File)
+</p>
+<p>#chomp (Kernel)
+</p>
+<p>#chomp (String)
+</p>
+<p>#chomp! (String)
+</p>
+<p>#chop (Kernel)
+</p>
+<p>#chop (String)
+</p>
+<p>#chop! (String)
+</p>
+<p>#chown (File)
+</p>
+<p>#chr (Integer)
+</p>
+<p>#chr (String)
+</p>
+<p>#chunk (Enumerable)
+</p>
+<p>#chunk (Enumerator::Lazy)
+</p>
+<p>#chunk_while (Enumerable)
+</p>
+<p>#chunk_while (Enumerator::Lazy)
+</p>
+<p>#clamp (Comparable)
+</p>
+<p>#class (Object)
+</p>
+<p>#class_eval (Module)
+</p>
+<p>#class_exec (Module)
+</p>
+<p>#class_variable_defined? (Module)
+</p>
+<p>#class_variable_get (Module)
+</p>
+<p>#class_variable_set (Module)
+</p>
+<p>#class_variables (Module)
+</p>
+<p>#clear (Array)
+</p>
+<p>#clear (Hash)
+</p>
+<p>#clear (Queue)
+</p>
+<p>#clear (SizedQueue)
+</p>
+<p>#clear (String)
+</p>
+<p>#clone (Method)
+</p>
+<p>#clone (Numeric)
+</p>
+<p>#clone (Object)
+</p>
+<p>#clone (UnboundMethod)
+</p>
+<p>#close (ARGF)
+</p>
+<p>#close (Dir)
+</p>
+<p>#close (IO)
+</p>
+<p>#close (Queue)
+</p>
+<p>#close (SizedQueue)
+</p>
+<p>#close_on_exec= (IO)
+</p>
+<p>#close_on_exec? (IO)
+</p>
+<p>#close_read (IO)
+</p>
+<p>#close_write (IO)
+</p>
+<p>#closed? (ARGF)
+</p>
+<p>#closed? (IO)
+</p>
+<p>#closed? (Queue)
+</p>
+<p>#codepoints (ARGF)
+</p>
+<p>#codepoints (IO)
+</p>
+<p>#codepoints (String)
+</p>
+<p>#coerce (Float)
+</p>
+<p>#coerce (Integer)
+</p>
+<p>#coerce (Numeric)
+</p>
+<p>#collect (Array)
+</p>
+<p>#collect (Enumerable)
+</p>
+<p>#collect (Enumerator::Lazy)
+</p>
+<p>#collect! (Array)
+</p>
+<p>#collect_concat (Enumerable)
+</p>
+<p>#collect_concat (Enumerator::Lazy)
+</p>
+<p>#combination (Array)
+</p>
+<p>#compact (Array)
+</p>
+<p>#compact (Hash)
+</p>
+<p>#compact! (Array)
+</p>
+<p>#compact! (Hash)
+</p>
+<p>#compare_by_identity (Hash)
+</p>
+<p>#compare_by_identity? (Hash)
+</p>
+<p>#concat (Array)
+</p>
+<p>#concat (String)
+</p>
+<p>#conj (Complex)
+</p>
+<p>#conj (Numeric)
+</p>
+<p>#conjugate (Complex)
+</p>
+<p>#conjugate (Numeric)
+</p>
+<p>#const_defined? (Module)
+</p>
+<p>#const_get (Module)
+</p>
+<p>#const_missing (Module)
+</p>
+<p>#const_set (Module)
+</p>
+<p>#constants (Module)
+</p>
+<p>#convert (Encoding::Converter)
+</p>
+<p>#convpath (Encoding::Converter)
+</p>
+<p>#coredump? (Process::Status)
+</p>
+<p>#count (Array)
+</p>
+<p>#count (Enumerable)
+</p>
+<p>#count (String)
+</p>
+<p>#cover? (Range)
+</p>
+<p>#crypt (String)
+</p>
+<p>#ctime (File)
+</p>
+<p>#ctime (File::Stat)
+</p>
+<p>#ctime (Time)
+</p>
+<p>#curry (Method)
+</p>
+<p>#curry (Proc)
+</p>
+<p>#cycle (Array)
+</p>
+<p>#cycle (Enumerable)
+</p>
+<p>#day (Time)
+</p>
+<p>#default (Hash)
+</p>
+<p>#default= (Hash)
+</p>
+<p>#default_proc (Hash)
+</p>
+<p>#default_proc= (Hash)
+</p>
+<p>#define_method (Module)
+</p>
+<p>#define_singleton_method (Object)
+</p>
+<p>#defined_class (TracePoint)
+</p>
+<p>#delete (Array)
+</p>
+<p>#delete (Hash)
+</p>
+<p>#delete (String)
+</p>
+<p>#delete! (String)
+</p>
+<p>#delete_at (Array)
+</p>
+<p>#delete_if (Array)
+</p>
+<p>#delete_if (Hash)
+</p>
+<p>#delete_prefix (String)
+</p>
+<p>#delete_prefix! (String)
+</p>
+<p>#delete_suffix (String)
+</p>
+<p>#delete_suffix! (String)
+</p>
+<p>#denominator (Complex)
+</p>
+<p>#denominator (Float)
+</p>
+<p>#denominator (Integer)
+</p>
+<p>#denominator (Numeric)
+</p>
+<p>#denominator (Rational)
+</p>
+<p>#deprecate_constant (Module)
+</p>
+<p>#deq (Queue)
+</p>
+<p>#deq (SizedQueue)
+</p>
+<p>#destination_encoding (Encoding::Converter)
+</p>
+<p>#destination_encoding (Encoding::InvalidByteSequenceError)
+</p>
+<p>#destination_encoding (Encoding::UndefinedConversionError)
+</p>
+<p>#destination_encoding_name (Encoding::InvalidByteSequenceError)
+</p>
+<p>#destination_encoding_name (Encoding::UndefinedConversionError)
+</p>
+<p>#detect (Enumerable)
+</p>
+<p>#dev (File::Stat)
+</p>
+<p>#dev_major (File::Stat)
+</p>
+<p>#dev_minor (File::Stat)
+</p>
+<p>#dig (Array)
+</p>
+<p>#dig (Hash)
+</p>
+<p>#dig (Struct)
+</p>
+<p>#digits (Integer)
+</p>
+<p>#directory? (File::Stat)
+</p>
+<p>#directory? (FileTest)
+</p>
+<p>#disable (TracePoint)
+</p>
+<p>#disasm (RubyVM::InstructionSequence)
+</p>
+<p>#disassemble (RubyVM::InstructionSequence)
+</p>
+<p>#display (Object)
+</p>
+<p>#div (Integer)
+</p>
+<p>#div (Numeric)
+</p>
+<p>#divmod (Float)
+</p>
+<p>#divmod (Integer)
+</p>
+<p>#divmod (Numeric)
+</p>
+<p>#downcase (String)
+</p>
+<p>#downcase (Symbol)
+</p>
+<p>#downcase! (String)
+</p>
+<p>#downto (Integer)
+</p>
+<p>#drop (Array)
+</p>
+<p>#drop (Enumerable)
+</p>
+<p>#drop (Enumerator::Lazy)
+</p>
+<p>#drop_while (Array)
+</p>
+<p>#drop_while (Enumerable)
+</p>
+<p>#drop_while (Enumerator::Lazy)
+</p>
+<p>#dst? (Time)
+</p>
+<p>#dummy? (Encoding)
+</p>
+<p>#dump (String)
+</p>
+<p>#dup (Numeric)
+</p>
+<p>#dup (Object)
+</p>
+<p>#each (ARGF)
+</p>
+<p>#each (Array)
+</p>
+<p>#each (Dir)
+</p>
+<p>#each (Enumerator)
+</p>
+<p>#each (Hash)
+</p>
+<p>#each (IO)
+</p>
+<p>#each (ObjectSpace::WeakMap)
+</p>
+<p>#each (Range)
+</p>
+<p>#each (Struct)
+</p>
+<p>#each_byte (ARGF)
+</p>
+<p>#each_byte (IO)
+</p>
+<p>#each_byte (String)
+</p>
+<p>#each_char (ARGF)
+</p>
+<p>#each_char (IO)
+</p>
+<p>#each_char (String)
+</p>
+<p>#each_child (RubyVM::InstructionSequence)
+</p>
+<p>#each_codepoint (ARGF)
+</p>
+<p>#each_codepoint (IO)
+</p>
+<p>#each_codepoint (String)
+</p>
+<p>#each_cons (Enumerable)
+</p>
+<p>#each_entry (Enumerable)
+</p>
+<p>#each_grapheme_cluster (String)
+</p>
+<p>#each_index (Array)
+</p>
+<p>#each_key (Hash)
+</p>
+<p>#each_key (ObjectSpace::WeakMap)
+</p>
+<p>#each_line (ARGF)
+</p>
+<p>#each_line (IO)
+</p>
+<p>#each_line (String)
+</p>
+<p>#each_pair (Hash)
+</p>
+<p>#each_pair (ObjectSpace::WeakMap)
+</p>
+<p>#each_pair (Struct)
+</p>
+<p>#each_slice (Enumerable)
+</p>
+<p>#each_value (Hash)
+</p>
+<p>#each_value (ObjectSpace::WeakMap)
+</p>
+<p>#each_with_index (Enumerable)
+</p>
+<p>#each_with_index (Enumerator)
+</p>
+<p>#each_with_object (Enumerable)
+</p>
+<p>#each_with_object (Enumerator)
+</p>
+<p>#empty? (Array)
+</p>
+<p>#empty? (FileTest)
+</p>
+<p>#empty? (Hash)
+</p>
+<p>#empty? (Queue)
+</p>
+<p>#empty? (SizedQueue)
+</p>
+<p>#empty? (String)
+</p>
+<p>#empty? (Symbol)
+</p>
+<p>#enable (TracePoint)
+</p>
+<p>#enabled? (TracePoint)
+</p>
+<p>#enclose (ThreadGroup)
+</p>
+<p>#enclosed? (ThreadGroup)
+</p>
+<p>#encode (String)
+</p>
+<p>#encode! (String)
+</p>
+<p>#encoding (Regexp)
+</p>
+<p>#encoding (String)
+</p>
+<p>#encoding (Symbol)
+</p>
+<p>#end (MatchData)
+</p>
+<p>#end (Range)
+</p>
+<p>#end_with? (String)
+</p>
+<p>#enq (Queue)
+</p>
+<p>#enq (SizedQueue)
+</p>
+<p>#entries (Enumerable)
+</p>
+<p>#enum_for (Enumerator::Lazy)
+</p>
+<p>#enum_for (Object)
+</p>
+<p>#eof (ARGF)
+</p>
+<p>#eof (IO)
+</p>
+<p>#eof? (ARGF)
+</p>
+<p>#eof? (IO)
+</p>
+<p>#eql? (Array)
+</p>
+<p>#eql? (Float)
+</p>
+<p>#eql? (Hash)
+</p>
+<p>#eql? (MatchData)
+</p>
+<p>#eql? (Method)
+</p>
+<p>#eql? (Numeric)
+</p>
+<p>#eql? (Object)
+</p>
+<p>#eql? (Range)
+</p>
+<p>#eql? (Regexp)
+</p>
+<p>#eql? (String)
+</p>
+<p>#eql? (Struct)
+</p>
+<p>#eql? (Time)
+</p>
+<p>#eql? (UnboundMethod)
+</p>
+<p>#equal? (BasicObject)
+</p>
+<p>#errno (SystemCallError)
+</p>
+<p>#error_bytes (Encoding::InvalidByteSequenceError)
+</p>
+<p>#error_char (Encoding::UndefinedConversionError)
+</p>
+<p>#eval (Binding)
+</p>
+<p>#eval (Kernel)
+</p>
+<p>#eval (RubyVM::InstructionSequence)
+</p>
+<p>#even? (Integer)
+</p>
+<p>#event (TracePoint)
+</p>
+<p>#exception (Exception)
+</p>
+<p>#exclude_end? (Range)
+</p>
+<p>#exec (Kernel)
+</p>
+<p>#executable? (File::Stat)
+</p>
+<p>#executable? (FileTest)
+</p>
+<p>#executable_real? (File::Stat)
+</p>
+<p>#executable_real? (FileTest)
+</p>
+<p>#exist? (FileTest)
+</p>
+<p>#exists? (FileTest)
+</p>
+<p>#exit (Kernel)
+</p>
+<p>#exit (Thread)
+</p>
+<p>#exit! (Kernel)
+</p>
+<p>#exit_value (LocalJumpError)
+</p>
+<p>#exited? (Process::Status)
+</p>
+<p>#exitstatus (Process::Status)
+</p>
+<p>#extend (Object)
+</p>
+<p>#extend_object (Module)
+</p>
+<p>#extended (Module)
+</p>
+<p>#external_encoding (ARGF)
+</p>
+<p>#external_encoding (IO)
+</p>
+<p>#fail (Kernel)
+</p>
+<p>#fcntl (IO)
+</p>
+<p>#fdatasync (IO)
+</p>
+<p>#fdiv (Complex)
+</p>
+<p>#fdiv (Float)
+</p>
+<p>#fdiv (Integer)
+</p>
+<p>#fdiv (Numeric)
+</p>
+<p>#fdiv (Rational)
+</p>
+<p>#feed (Enumerator)
+</p>
+<p>#fetch (Array)
+</p>
+<p>#fetch (Hash)
+</p>
+<p>#fetch (Thread)
+</p>
+<p>#fetch_values (Hash)
+</p>
+<p>#file (ARGF)
+</p>
+<p>#file? (File::Stat)
+</p>
+<p>#file? (FileTest)
+</p>
+<p>#filename (ARGF)
+</p>
+<p>#fileno (ARGF)
+</p>
+<p>#fileno (Dir)
+</p>
+<p>#fileno (IO)
+</p>
+<p>#fill (Array)
+</p>
+<p>#finalize (ObjectSpace::WeakMap)
+</p>
+<p>#find (Enumerable)
+</p>
+<p>#find_all (Enumerable)
+</p>
+<p>#find_all (Enumerator::Lazy)
+</p>
+<p>#find_index (Array)
+</p>
+<p>#find_index (Enumerable)
+</p>
+<p>#finish (Encoding::Converter)
+</p>
+<p>#finite? (Complex)
+</p>
+<p>#finite? (Float)
+</p>
+<p>#finite? (Numeric)
+</p>
+<p>#first (Array)
+</p>
+<p>#first (Enumerable)
+</p>
+<p>#first (Range)
+</p>
+<p>#first_lineno (RubyVM::InstructionSequence)
+</p>
+<p>#fixed_encoding? (Regexp)
+</p>
+<p>#flat_map (Enumerable)
+</p>
+<p>#flat_map (Enumerator::Lazy)
+</p>
+<p>#flatten (Array)
+</p>
+<p>#flatten (Hash)
+</p>
+<p>#flatten! (Array)
+</p>
+<p>#flock (File)
+</p>
+<p>#floor (Float)
+</p>
+<p>#floor (Integer)
+</p>
+<p>#floor (Numeric)
+</p>
+<p>#floor (Rational)
+</p>
+<p>#flush (IO)
+</p>
+<p>#force_encoding (String)
+</p>
+<p>#fork (Kernel)
+</p>
+<p>#format (Kernel)
+</p>
+<p>#freeze (Module)
+</p>
+<p>#freeze (Object)
+</p>
+<p>#freeze (String)
+</p>
+<p>#friday? (Time)
+</p>
+<p>#frozen? (Array)
+</p>
+<p>#frozen? (Object)
+</p>
+<p>#fsync (IO)
+</p>
+<p>#ftype (File::Stat)
+</p>
+<p>#full_message (Exception)
+</p>
+<p>#garbage_collect (GC)
+</p>
+<p>#gcd (Integer)
+</p>
+<p>#gcdlcm (Integer)
+</p>
+<p>#getbyte (ARGF)
+</p>
+<p>#getbyte (IO)
+</p>
+<p>#getbyte (String)
+</p>
+<p>#getc (ARGF)
+</p>
+<p>#getc (IO)
+</p>
+<p>#getgm (Time)
+</p>
+<p>#getlocal (Time)
+</p>
+<p>#gets (ARGF)
+</p>
+<p>#gets (IO)
+</p>
+<p>#gets (Kernel)
+</p>
+<p>#getutc (Time)
+</p>
+<p>#gid (File::Stat)
+</p>
+<p>#global_variables (Kernel)
+</p>
+<p>#gmt? (Time)
+</p>
+<p>#gmt_offset (Time)
+</p>
+<p>#gmtime (Time)
+</p>
+<p>#gmtoff (Time)
+</p>
+<p>#grapheme_clusters (String)
+</p>
+<p>#grep (Enumerable)
+</p>
+<p>#grep (Enumerator::Lazy)
+</p>
+<p>#grep_v (Enumerable)
+</p>
+<p>#grep_v (Enumerator::Lazy)
+</p>
+<p>#group (Thread)
+</p>
+<p>#group_by (Enumerable)
+</p>
+<p>#grpowned? (File::Stat)
+</p>
+<p>#grpowned? (FileTest)
+</p>
+<p>#gsub (Kernel)
+</p>
+<p>#gsub (String)
+</p>
+<p>#gsub! (String)
+</p>
+<p>#has_key? (Hash)
+</p>
+<p>#has_value? (Hash)
+</p>
+<p>#hash (Array)
+</p>
+<p>#hash (Float)
+</p>
+<p>#hash (Hash)
+</p>
+<p>#hash (MatchData)
+</p>
+<p>#hash (Method)
+</p>
+<p>#hash (Proc)
+</p>
+<p>#hash (Range)
+</p>
+<p>#hash (Regexp)
+</p>
+<p>#hash (String)
+</p>
+<p>#hash (Struct)
+</p>
+<p>#hash (Time)
+</p>
+<p>#hash (UnboundMethod)
+</p>
+<p>#hex (String)
+</p>
+<p>#hour (Time)
+</p>
+<p>#i (Numeric)
+</p>
+<p>#id2name (Symbol)
+</p>
+<p>#identical? (FileTest)
+</p>
+<p>#imag (Complex)
+</p>
+<p>#imag (Numeric)
+</p>
+<p>#imaginary (Complex)
+</p>
+<p>#imaginary (Numeric)
+</p>
+<p>#include (Module)
+</p>
+<p>#include? (Array)
+</p>
+<p>#include? (Enumerable)
+</p>
+<p>#include? (Hash)
+</p>
+<p>#include? (Module)
+</p>
+<p>#include? (ObjectSpace::WeakMap)
+</p>
+<p>#include? (Range)
+</p>
+<p>#include? (String)
+</p>
+<p>#included (Module)
+</p>
+<p>#included_modules (Module)
+</p>
+<p>#incomplete_input? (Encoding::InvalidByteSequenceError)
+</p>
+<p>#index (Array)
+</p>
+<p>#index (String)
+</p>
+<p>#infinite? (Complex)
+</p>
+<p>#infinite? (Float)
+</p>
+<p>#infinite? (Numeric)
+</p>
+<p>#inherited (Class)
+</p>
+<p>#initialize_copy (Array)
+</p>
+<p>#initialize_copy (String)
+</p>
+<p>#inject (Enumerable)
+</p>
+<p>#ino (File::Stat)
+</p>
+<p>#inplace_mode (ARGF)
+</p>
+<p>#inplace_mode= (ARGF)
+</p>
+<p>#insert (Array)
+</p>
+<p>#insert (String)
+</p>
+<p>#insert_output (Encoding::Converter)
+</p>
+<p>#inspect (ARGF)
+</p>
+<p>#inspect (Array)
+</p>
+<p>#inspect (Complex)
+</p>
+<p>#inspect (Dir)
+</p>
+<p>#inspect (Encoding)
+</p>
+<p>#inspect (Encoding::Converter)
+</p>
+<p>#inspect (Enumerator)
+</p>
+<p>#inspect (Exception)
+</p>
+<p>#inspect (FalseClass)
+</p>
+<p>#inspect (Fiber)
+</p>
+<p>#inspect (File::Stat)
+</p>
+<p>#inspect (Float)
+</p>
+<p>#inspect (Hash)
+</p>
+<p>#inspect (IO)
+</p>
+<p>#inspect (Integer)
+</p>
+<p>#inspect (MatchData)
+</p>
+<p>#inspect (Method)
+</p>
+<p>#inspect (Module)
+</p>
+<p>#inspect (NilClass)
+</p>
+<p>#inspect (Object)
+</p>
+<p>#inspect (ObjectSpace::WeakMap)
+</p>
+<p>#inspect (Proc)
+</p>
+<p>#inspect (Process::Status)
+</p>
+<p>#inspect (Range)
+</p>
+<p>#inspect (Rational)
+</p>
+<p>#inspect (Regexp)
+</p>
+<p>#inspect (RubyVM::InstructionSequence)
+</p>
+<p>#inspect (String)
+</p>
+<p>#inspect (Struct)
+</p>
+<p>#inspect (Symbol)
+</p>
+<p>#inspect (Thread)
+</p>
+<p>#inspect (Thread::Backtrace::Location)
+</p>
+<p>#inspect (Time)
+</p>
+<p>#inspect (TracePoint)
+</p>
+<p>#inspect (TrueClass)
+</p>
+<p>#inspect (UnboundMethod)
+</p>
+<p>#instance_eval (BasicObject)
+</p>
+<p>#instance_exec (BasicObject)
+</p>
+<p>#instance_method (Module)
+</p>
+<p>#instance_methods (Module)
+</p>
+<p>#instance_of? (Object)
+</p>
+<p>#instance_variable_defined? (Object)
+</p>
+<p>#instance_variable_get (Object)
+</p>
+<p>#instance_variable_set (Object)
+</p>
+<p>#instance_variables (Object)
+</p>
+<p>#integer? (Integer)
+</p>
+<p>#integer? (Numeric)
+</p>
+<p>#intern (String)
+</p>
+<p>#intern (Symbol)
+</p>
+<p>#internal_encoding (ARGF)
+</p>
+<p>#internal_encoding (IO)
+</p>
+<p>#invert (Hash)
+</p>
+<p>#ioctl (IO)
+</p>
+<p>#is_a? (Object)
+</p>
+<p>#isatty (IO)
+</p>
+<p>#isdst (Time)
+</p>
+<p>#iterator? (Kernel)
+</p>
+<p>#itself (Object)
+</p>
+<p>#join (Array)
+</p>
+<p>#join (Thread)
+</p>
+<p>#keep_if (Array)
+</p>
+<p>#keep_if (Hash)
+</p>
+<p>#key (Hash)
+</p>
+<p>#key (KeyError)
+</p>
+<p>#key? (Hash)
+</p>
+<p>#key? (ObjectSpace::WeakMap)
+</p>
+<p>#key? (Thread)
+</p>
+<p>#keys (Hash)
+</p>
+<p>#keys (ObjectSpace::WeakMap)
+</p>
+<p>#keys (Thread)
+</p>
+<p>#kill (Thread)
+</p>
+<p>#kind_of? (Object)
+</p>
+<p>#label (RubyVM::InstructionSequence)
+</p>
+<p>#label (Thread::Backtrace::Location)
+</p>
+<p>#lambda (Kernel)
+</p>
+<p>#lambda? (Proc)
+</p>
+<p>#last (Array)
+</p>
+<p>#last (Range)
+</p>
+<p>#last_error (Encoding::Converter)
+</p>
+<p>#lazy (Enumerable)
+</p>
+<p>#lazy (Enumerator::Lazy)
+</p>
+<p>#lcm (Integer)
+</p>
+<p>#length (Array)
+</p>
+<p>#length (Hash)
+</p>
+<p>#length (MatchData)
+</p>
+<p>#length (ObjectSpace::WeakMap)
+</p>
+<p>#length (Queue)
+</p>
+<p>#length (SizedQueue)
+</p>
+<p>#length (String)
+</p>
+<p>#length (Struct)
+</p>
+<p>#length (Symbol)
+</p>
+<p>#lineno (ARGF)
+</p>
+<p>#lineno (IO)
+</p>
+<p>#lineno (Thread::Backtrace::Location)
+</p>
+<p>#lineno (TracePoint)
+</p>
+<p>#lineno= (ARGF)
+</p>
+<p>#lineno= (IO)
+</p>
+<p>#lines (ARGF)
+</p>
+<p>#lines (IO)
+</p>
+<p>#lines (String)
+</p>
+<p>#list (ThreadGroup)
+</p>
+<p>#ljust (String)
+</p>
+<p>#load (Kernel)
+</p>
+<p>#local_variable_defined? (Binding)
+</p>
+<p>#local_variable_get (Binding)
+</p>
+<p>#local_variable_set (Binding)
+</p>
+<p>#local_variables (Binding)
+</p>
+<p>#local_variables (Kernel)
+</p>
+<p>#local_variables (NameError)
+</p>
+<p>#localtime (Time)
+</p>
+<p>#lock (Mutex)
+</p>
+<p>#locked? (Mutex)
+</p>
+<p>#loop (Kernel)
+</p>
+<p>#lstat (File)
+</p>
+<p>#lstrip (String)
+</p>
+<p>#lstrip! (String)
+</p>
+<p>#magnitude (Complex)
+</p>
+<p>#magnitude (Float)
+</p>
+<p>#magnitude (Integer)
+</p>
+<p>#magnitude (Numeric)
+</p>
+<p>#magnitude (Rational)
+</p>
+<p>#map (Array)
+</p>
+<p>#map (Enumerable)
+</p>
+<p>#map (Enumerator::Lazy)
+</p>
+<p>#map! (Array)
+</p>
+<p>#match (Regexp)
+</p>
+<p>#match (String)
+</p>
+<p>#match (Symbol)
+</p>
+<p>#match? (Regexp)
+</p>
+<p>#match? (String)
+</p>
+<p>#match? (Symbol)
+</p>
+<p>#max (Array)
+</p>
+<p>#max (Enumerable)
+</p>
+<p>#max (Range)
+</p>
+<p>#max (SizedQueue)
+</p>
+<p>#max= (SizedQueue)
+</p>
+<p>#max_by (Enumerable)
+</p>
+<p>#mday (Time)
+</p>
+<p>#member? (Enumerable)
+</p>
+<p>#member? (Hash)
+</p>
+<p>#member? (ObjectSpace::WeakMap)
+</p>
+<p>#member? (Range)
+</p>
+<p>#members (Struct)
+</p>
+<p>#merge (Hash)
+</p>
+<p>#merge! (Hash)
+</p>
+<p>#message (Exception)
+</p>
+<p>#method (Object)
+</p>
+<p>#method_added (Module)
+</p>
+<p>#method_defined? (Module)
+</p>
+<p>#method_id (TracePoint)
+</p>
+<p>#method_missing (BasicObject)
+</p>
+<p>#method_removed (Module)
+</p>
+<p>#method_undefined (Module)
+</p>
+<p>#methods (Object)
+</p>
+<p>#min (Array)
+</p>
+<p>#min (Enumerable)
+</p>
+<p>#min (Range)
+</p>
+<p>#min (Time)
+</p>
+<p>#min_by (Enumerable)
+</p>
+<p>#minmax (Enumerable)
+</p>
+<p>#minmax_by (Enumerable)
+</p>
+<p>#mode (File::Stat)
+</p>
+<p>#module_eval (Module)
+</p>
+<p>#module_exec (Module)
+</p>
+<p>#module_function (Module)
+</p>
+<p>#modulo (Float)
+</p>
+<p>#modulo (Integer)
+</p>
+<p>#modulo (Numeric)
+</p>
+<p>#mon (Time)
+</p>
+<p>#monday? (Time)
+</p>
+<p>#month (Time)
+</p>
+<p>#mtime (File)
+</p>
+<p>#mtime (File::Stat)
+</p>
+<p>#name (Encoding)
+</p>
+<p>#name (Method)
+</p>
+<p>#name (Module)
+</p>
+<p>#name (NameError)
+</p>
+<p>#name (Thread)
+</p>
+<p>#name (UnboundMethod)
+</p>
+<p>#name= (Thread)
+</p>
+<p>#named_captures (MatchData)
+</p>
+<p>#named_captures (Regexp)
+</p>
+<p>#names (Encoding)
+</p>
+<p>#names (MatchData)
+</p>
+<p>#names (Regexp)
+</p>
+<p>#nan? (Float)
+</p>
+<p>#negative? (Float)
+</p>
+<p>#negative? (Numeric)
+</p>
+<p>#negative? (Rational)
+</p>
+<p>#new (Class)
+</p>
+<p>#next (Enumerator)
+</p>
+<p>#next (Integer)
+</p>
+<p>#next (String)
+</p>
+<p>#next (Symbol)
+</p>
+<p>#next! (String)
+</p>
+<p>#next_float (Float)
+</p>
+<p>#next_values (Enumerator)
+</p>
+<p>#nil? (NilClass)
+</p>
+<p>#nil? (Object)
+</p>
+<p>#nlink (File::Stat)
+</p>
+<p>#nobits? (Integer)
+</p>
+<p>#none? (Enumerable)
+</p>
+<p>#nonzero? (Numeric)
+</p>
+<p>#nsec (Time)
+</p>
+<p>#num_waiting (Queue)
+</p>
+<p>#num_waiting (SizedQueue)
+</p>
+<p>#numerator (Complex)
+</p>
+<p>#numerator (Float)
+</p>
+<p>#numerator (Integer)
+</p>
+<p>#numerator (Numeric)
+</p>
+<p>#numerator (Rational)
+</p>
+<p>#object_id (Object)
+</p>
+<p>#oct (String)
+</p>
+<p>#odd? (Integer)
+</p>
+<p>#offset (MatchData)
+</p>
+<p>#one? (Enumerable)
+</p>
+<p>#open (Kernel)
+</p>
+<p>#options (Regexp)
+</p>
+<p>#ord (Integer)
+</p>
+<p>#ord (String)
+</p>
+<p>#original_name (Method)
+</p>
+<p>#original_name (UnboundMethod)
+</p>
+<p>#owned? (File::Stat)
+</p>
+<p>#owned? (FileTest)
+</p>
+<p>#owned? (Mutex)
+</p>
+<p>#owner (Method)
+</p>
+<p>#owner (UnboundMethod)
+</p>
+<p>#p (Kernel)
+</p>
+<p>#pack (Array)
+</p>
+<p>#parameters (Method)
+</p>
+<p>#parameters (Proc)
+</p>
+<p>#parameters (UnboundMethod)
+</p>
+<p>#partition (Enumerable)
+</p>
+<p>#partition (String)
+</p>
+<p>#path (ARGF)
+</p>
+<p>#path (Dir)
+</p>
+<p>#path (File)
+</p>
+<p>#path (RubyVM::InstructionSequence)
+</p>
+<p>#path (Thread::Backtrace::Location)
+</p>
+<p>#path (TracePoint)
+</p>
+<p>#peek (Enumerator)
+</p>
+<p>#peek_values (Enumerator)
+</p>
+<p>#pending_interrupt? (Thread)
+</p>
+<p>#permutation (Array)
+</p>
+<p>#phase (Complex)
+</p>
+<p>#phase (Float)
+</p>
+<p>#phase (Numeric)
+</p>
+<p>#pid (IO)
+</p>
+<p>#pid (Process::Status)
+</p>
+<p>#pid (Process::Waiter)
+</p>
+<p>#pipe? (File::Stat)
+</p>
+<p>#pipe? (FileTest)
+</p>
+<p>#polar (Complex)
+</p>
+<p>#polar (Numeric)
+</p>
+<p>#pop (Array)
+</p>
+<p>#pop (Queue)
+</p>
+<p>#pop (SizedQueue)
+</p>
+<p>#pos (ARGF)
+</p>
+<p>#pos (Dir)
+</p>
+<p>#pos (IO)
+</p>
+<p>#pos= (ARGF)
+</p>
+<p>#pos= (Dir)
+</p>
+<p>#pos= (IO)
+</p>
+<p>#positive? (Float)
+</p>
+<p>#positive? (Numeric)
+</p>
+<p>#positive? (Rational)
+</p>
+<p>#post_match (MatchData)
+</p>
+<p>#pow (Integer)
+</p>
+<p>#pre_match (MatchData)
+</p>
+<p>#pread (IO)
+</p>
+<p>#pred (Integer)
+</p>
+<p>#prepend (Array)
+</p>
+<p>#prepend (Module)
+</p>
+<p>#prepend (String)
+</p>
+<p>#prepend_features (Module)
+</p>
+<p>#prepended (Module)
+</p>
+<p>#prev_float (Float)
+</p>
+<p>#primitive_convert (Encoding::Converter)
+</p>
+<p>#primitive_errinfo (Encoding::Converter)
+</p>
+<p>#print (ARGF)
+</p>
+<p>#print (IO)
+</p>
+<p>#print (Kernel)
+</p>
+<p>#printf (ARGF)
+</p>
+<p>#printf (IO)
+</p>
+<p>#printf (Kernel)
+</p>
+<p>#priority (Thread)
+</p>
+<p>#priority= (Thread)
+</p>
+<p>#private (Module)
+</p>
+<p>#private_call? (NoMethodError)
+</p>
+<p>#private_class_method (Module)
+</p>
+<p>#private_constant (Module)
+</p>
+<p>#private_instance_methods (Module)
+</p>
+<p>#private_method_defined? (Module)
+</p>
+<p>#private_methods (Object)
+</p>
+<p>#proc (Kernel)
+</p>
+<p>#product (Array)
+</p>
+<p>#protected (Module)
+</p>
+<p>#protected_instance_methods (Module)
+</p>
+<p>#protected_method_defined? (Module)
+</p>
+<p>#protected_methods (Object)
+</p>
+<p>#public (Module)
+</p>
+<p>#public_class_method (Module)
+</p>
+<p>#public_constant (Module)
+</p>
+<p>#public_instance_method (Module)
+</p>
+<p>#public_instance_methods (Module)
+</p>
+<p>#public_method (Object)
+</p>
+<p>#public_method_defined? (Module)
+</p>
+<p>#public_methods (Object)
+</p>
+<p>#public_send (Object)
+</p>
+<p>#push (Array)
+</p>
+<p>#push (Queue)
+</p>
+<p>#push (SizedQueue)
+</p>
+<p>#putback (Encoding::Converter)
+</p>
+<p>#putc (ARGF)
+</p>
+<p>#putc (IO)
+</p>
+<p>#putc (Kernel)
+</p>
+<p>#puts (ARGF)
+</p>
+<p>#puts (IO)
+</p>
+<p>#puts (Kernel)
+</p>
+<p>#pwrite (IO)
+</p>
+<p>#quo (Complex)
+</p>
+<p>#quo (Float)
+</p>
+<p>#quo (Numeric)
+</p>
+<p>#quo (Rational)
+</p>
+<p>#raise (Kernel)
+</p>
+<p>#raise (Thread)
+</p>
+<p>#raised_exception (TracePoint)
+</p>
+<p>#rand (Kernel)
+</p>
+<p>#rand (Random)
+</p>
+<p>#rand (Random::Formatter)
+</p>
+<p>#random_number (Random::Formatter)
+</p>
+<p>#rassoc (Array)
+</p>
+<p>#rassoc (Hash)
+</p>
+<p>#rationalize (Complex)
+</p>
+<p>#rationalize (Float)
+</p>
+<p>#rationalize (Integer)
+</p>
+<p>#rationalize (NilClass)
+</p>
+<p>#rationalize (Rational)
+</p>
+<p>#rdev (File::Stat)
+</p>
+<p>#rdev_major (File::Stat)
+</p>
+<p>#rdev_minor (File::Stat)
+</p>
+<p>#read (ARGF)
+</p>
+<p>#read (Dir)
+</p>
+<p>#read (IO)
+</p>
+<p>#read_nonblock (ARGF)
+</p>
+<p>#read_nonblock (IO)
+</p>
+<p>#readable? (File::Stat)
+</p>
+<p>#readable? (FileTest)
+</p>
+<p>#readable_real? (File::Stat)
+</p>
+<p>#readable_real? (FileTest)
+</p>
+<p>#readagain_bytes (Encoding::InvalidByteSequenceError)
+</p>
+<p>#readbyte (ARGF)
+</p>
+<p>#readbyte (IO)
+</p>
+<p>#readchar (ARGF)
+</p>
+<p>#readchar (IO)
+</p>
+<p>#readline (ARGF)
+</p>
+<p>#readline (IO)
+</p>
+<p>#readline (Kernel)
+</p>
+<p>#readlines (ARGF)
+</p>
+<p>#readlines (IO)
+</p>
+<p>#readlines (Kernel)
+</p>
+<p>#readpartial (ARGF)
+</p>
+<p>#readpartial (IO)
+</p>
+<p>#real (Complex)
+</p>
+<p>#real (Numeric)
+</p>
+<p>#real? (Complex)
+</p>
+<p>#real? (Numeric)
+</p>
+<p>#reason (LocalJumpError)
+</p>
+<p>#receiver (Binding)
+</p>
+<p>#receiver (KeyError)
+</p>
+<p>#receiver (Method)
+</p>
+<p>#receiver (NameError)
+</p>
+<p>#rect (Complex)
+</p>
+<p>#rect (Numeric)
+</p>
+<p>#rectangular (Complex)
+</p>
+<p>#rectangular (Numeric)
+</p>
+<p>#reduce (Enumerable)
+</p>
+<p>#refine (Module)
+</p>
+<p>#regexp (MatchData)
+</p>
+<p>#rehash (Hash)
+</p>
+<p>#reject (Array)
+</p>
+<p>#reject (Enumerable)
+</p>
+<p>#reject (Enumerator::Lazy)
+</p>
+<p>#reject (Hash)
+</p>
+<p>#reject! (Array)
+</p>
+<p>#reject! (Hash)
+</p>
+<p>#remainder (Integer)
+</p>
+<p>#remainder (Numeric)
+</p>
+<p>#remove_class_variable (Module)
+</p>
+<p>#remove_const (Module)
+</p>
+<p>#remove_instance_variable (Object)
+</p>
+<p>#remove_method (Module)
+</p>
+<p>#reopen (IO)
+</p>
+<p>#repeated_combination (Array)
+</p>
+<p>#repeated_permutation (Array)
+</p>
+<p>#replace (Array)
+</p>
+<p>#replace (Hash)
+</p>
+<p>#replace (String)
+</p>
+<p>#replacement (Encoding::Converter)
+</p>
+<p>#replacement= (Encoding::Converter)
+</p>
+<p>#replicate (Encoding)
+</p>
+<p>#report_on_exception (Thread)
+</p>
+<p>#report_on_exception= (Thread)
+</p>
+<p>#require (Kernel)
+</p>
+<p>#require_relative (Kernel)
+</p>
+<p>#respond_to? (Object)
+</p>
+<p>#respond_to_missing? (Object)
+</p>
+<p>#result (StopIteration)
+</p>
+<p>#resume (Fiber)
+</p>
+<p>#return_value (TracePoint)
+</p>
+<p>#reverse (Array)
+</p>
+<p>#reverse (String)
+</p>
+<p>#reverse! (Array)
+</p>
+<p>#reverse! (String)
+</p>
+<p>#reverse_each (Array)
+</p>
+<p>#reverse_each (Enumerable)
+</p>
+<p>#rewind (ARGF)
+</p>
+<p>#rewind (Dir)
+</p>
+<p>#rewind (Enumerator)
+</p>
+<p>#rewind (IO)
+</p>
+<p>#rindex (Array)
+</p>
+<p>#rindex (String)
+</p>
+<p>#rjust (String)
+</p>
+<p>#rotate (Array)
+</p>
+<p>#rotate! (Array)
+</p>
+<p>#round (Float)
+</p>
+<p>#round (Integer)
+</p>
+<p>#round (Numeric)
+</p>
+<p>#round (Rational)
+</p>
+<p>#round (Time)
+</p>
+<p>#rpartition (String)
+</p>
+<p>#rstrip (String)
+</p>
+<p>#rstrip! (String)
+</p>
+<p>#run (Thread)
+</p>
+<p>#safe_level (Thread)
+</p>
+<p>#sample (Array)
+</p>
+<p>#saturday? (Time)
+</p>
+<p>#scan (String)
+</p>
+<p>#scrub (String)
+</p>
+<p>#scrub! (String)
+</p>
+<p>#sec (Time)
+</p>
+<p>#seed (Random)
+</p>
+<p>#seek (ARGF)
+</p>
+<p>#seek (Dir)
+</p>
+<p>#seek (IO)
+</p>
+<p>#select (Array)
+</p>
+<p>#select (Enumerable)
+</p>
+<p>#select (Enumerator::Lazy)
+</p>
+<p>#select (Hash)
+</p>
+<p>#select (Kernel)
+</p>
+<p>#select (Struct)
+</p>
+<p>#select! (Array)
+</p>
+<p>#select! (Hash)
+</p>
+<p>#self (TracePoint)
+</p>
+<p>#send (Object)
+</p>
+<p>#set_backtrace (Exception)
+</p>
+<p>#set_encoding (ARGF)
+</p>
+<p>#set_encoding (IO)
+</p>
+<p>#set_trace_func (Kernel)
+</p>
+<p>#set_trace_func (Thread)
+</p>
+<p>#setbyte (String)
+</p>
+<p>#setgid? (File::Stat)
+</p>
+<p>#setgid? (FileTest)
+</p>
+<p>#setuid? (File::Stat)
+</p>
+<p>#setuid? (FileTest)
+</p>
+<p>#shift (Array)
+</p>
+<p>#shift (Hash)
+</p>
+<p>#shift (Queue)
+</p>
+<p>#shift (SizedQueue)
+</p>
+<p>#shuffle (Array)
+</p>
+<p>#shuffle! (Array)
+</p>
+<p>#signal (ConditionVariable)
+</p>
+<p>#signaled? (Process::Status)
+</p>
+<p>#signo (SignalException)
+</p>
+<p>#singleton_class (Object)
+</p>
+<p>#singleton_class? (Module)
+</p>
+<p>#singleton_method (Object)
+</p>
+<p>#singleton_method_added (BasicObject)
+</p>
+<p>#singleton_method_removed (BasicObject)
+</p>
+<p>#singleton_method_undefined (BasicObject)
+</p>
+<p>#singleton_methods (Object)
+</p>
+<p>#size (Array)
+</p>
+<p>#size (Enumerator)
+</p>
+<p>#size (File)
+</p>
+<p>#size (File::Stat)
+</p>
+<p>#size (FileTest)
+</p>
+<p>#size (Hash)
+</p>
+<p>#size (Integer)
+</p>
+<p>#size (MatchData)
+</p>
+<p>#size (ObjectSpace::WeakMap)
+</p>
+<p>#size (Queue)
+</p>
+<p>#size (Range)
+</p>
+<p>#size (SizedQueue)
+</p>
+<p>#size (String)
+</p>
+<p>#size (Struct)
+</p>
+<p>#size (Symbol)
+</p>
+<p>#size? (File::Stat)
+</p>
+<p>#size? (FileTest)
+</p>
+<p>#skip (ARGF)
+</p>
+<p>#sleep (Kernel)
+</p>
+<p>#sleep (Mutex)
+</p>
+<p>#slice (Array)
+</p>
+<p>#slice (Hash)
+</p>
+<p>#slice (String)
+</p>
+<p>#slice (Symbol)
+</p>
+<p>#slice! (Array)
+</p>
+<p>#slice! (String)
+</p>
+<p>#slice_after (Enumerable)
+</p>
+<p>#slice_after (Enumerator::Lazy)
+</p>
+<p>#slice_before (Enumerable)
+</p>
+<p>#slice_before (Enumerator::Lazy)
+</p>
+<p>#slice_when (Enumerable)
+</p>
+<p>#slice_when (Enumerator::Lazy)
+</p>
+<p>#socket? (File::Stat)
+</p>
+<p>#socket? (FileTest)
+</p>
+<p>#sort (Array)
+</p>
+<p>#sort (Enumerable)
+</p>
+<p>#sort! (Array)
+</p>
+<p>#sort_by (Enumerable)
+</p>
+<p>#sort_by! (Array)
+</p>
+<p>#source (Regexp)
+</p>
+<p>#source_encoding (Encoding::Converter)
+</p>
+<p>#source_encoding (Encoding::InvalidByteSequenceError)
+</p>
+<p>#source_encoding (Encoding::UndefinedConversionError)
+</p>
+<p>#source_encoding_name (Encoding::InvalidByteSequenceError)
+</p>
+<p>#source_encoding_name (Encoding::UndefinedConversionError)
+</p>
+<p>#source_location (Method)
+</p>
+<p>#source_location (Proc)
+</p>
+<p>#source_location (UnboundMethod)
+</p>
+<p>#spawn (Kernel)
+</p>
+<p>#split (String)
+</p>
+<p>#sprintf (Kernel)
+</p>
+<p>#squeeze (String)
+</p>
+<p>#squeeze! (String)
+</p>
+<p>#srand (Kernel)
+</p>
+<p>#start_with? (String)
+</p>
+<p>#stat (IO)
+</p>
+<p>#status (SystemExit)
+</p>
+<p>#status (Thread)
+</p>
+<p>#step (Numeric)
+</p>
+<p>#step (Range)
+</p>
+<p>#sticky? (File::Stat)
+</p>
+<p>#sticky? (FileTest)
+</p>
+<p>#stop? (Thread)
+</p>
+<p>#stopped? (Process::Status)
+</p>
+<p>#stopsig (Process::Status)
+</p>
+<p>#store (Hash)
+</p>
+<p>#strftime (Time)
+</p>
+<p>#string (MatchData)
+</p>
+<p>#strip (String)
+</p>
+<p>#strip! (String)
+</p>
+<p>#sub (Kernel)
+</p>
+<p>#sub (String)
+</p>
+<p>#sub! (String)
+</p>
+<p>#subsec (Time)
+</p>
+<p>#succ (Integer)
+</p>
+<p>#succ (String)
+</p>
+<p>#succ (Symbol)
+</p>
+<p>#succ (Time)
+</p>
+<p>#succ! (String)
+</p>
+<p>#success? (Process::Status)
+</p>
+<p>#success? (SystemExit)
+</p>
+<p>#sum (Array)
+</p>
+<p>#sum (Enumerable)
+</p>
+<p>#sum (String)
+</p>
+<p>#sunday? (Time)
+</p>
+<p>#super_method (Method)
+</p>
+<p>#super_method (UnboundMethod)
+</p>
+<p>#superclass (Class)
+</p>
+<p>#swapcase (String)
+</p>
+<p>#swapcase (Symbol)
+</p>
+<p>#swapcase! (String)
+</p>
+<p>#symlink? (File::Stat)
+</p>
+<p>#symlink? (FileTest)
+</p>
+<p>#sync (IO)
+</p>
+<p>#sync= (IO)
+</p>
+<p>#synchronize (Mutex)
+</p>
+<p>#syscall (Kernel)
+</p>
+<p>#sysread (IO)
+</p>
+<p>#sysseek (IO)
+</p>
+<p>#system (Kernel)
+</p>
+<p>#syswrite (IO)
+</p>
+<p>#tag (UncaughtThrowError)
+</p>
+<p>#taint (Object)
+</p>
+<p>#tainted? (Object)
+</p>
+<p>#take (Array)
+</p>
+<p>#take (Enumerable)
+</p>
+<p>#take (Enumerator::Lazy)
+</p>
+<p>#take_while (Array)
+</p>
+<p>#take_while (Enumerable)
+</p>
+<p>#take_while (Enumerator::Lazy)
+</p>
+<p>#tap (Object)
+</p>
+<p>#tell (ARGF)
+</p>
+<p>#tell (Dir)
+</p>
+<p>#tell (IO)
+</p>
+<p>#terminate (Thread)
+</p>
+<p>#termsig (Process::Status)
+</p>
+<p>#test (Kernel)
+</p>
+<p>#thread_variable? (Thread)
+</p>
+<p>#thread_variable_get (Thread)
+</p>
+<p>#thread_variable_set (Thread)
+</p>
+<p>#thread_variables (Thread)
+</p>
+<p>#throw (Kernel)
+</p>
+<p>#thursday? (Time)
+</p>
+<p>#times (Integer)
+</p>
+<p>#to_a (ARGF)
+</p>
+<p>#to_a (Array)
+</p>
+<p>#to_a (Enumerable)
+</p>
+<p>#to_a (Hash)
+</p>
+<p>#to_a (MatchData)
+</p>
+<p>#to_a (NilClass)
+</p>
+<p>#to_a (RubyVM::InstructionSequence)
+</p>
+<p>#to_a (Struct)
+</p>
+<p>#to_a (Time)
+</p>
+<p>#to_ary (Array)
+</p>
+<p>#to_binary (RubyVM::InstructionSequence)
+</p>
+<p>#to_c (Complex)
+</p>
+<p>#to_c (NilClass)
+</p>
+<p>#to_c (Numeric)
+</p>
+<p>#to_c (String)
+</p>
+<p>#to_enum (Enumerator::Lazy)
+</p>
+<p>#to_enum (Object)
+</p>
+<p>#to_f (Complex)
+</p>
+<p>#to_f (Float)
+</p>
+<p>#to_f (Integer)
+</p>
+<p>#to_f (NilClass)
+</p>
+<p>#to_f (Rational)
+</p>
+<p>#to_f (String)
+</p>
+<p>#to_f (Time)
+</p>
+<p>#to_h (Array)
+</p>
+<p>#to_h (Enumerable)
+</p>
+<p>#to_h (Hash)
+</p>
+<p>#to_h (NilClass)
+</p>
+<p>#to_h (Struct)
+</p>
+<p>#to_hash (Hash)
+</p>
+<p>#to_i (ARGF)
+</p>
+<p>#to_i (Complex)
+</p>
+<p>#to_i (Float)
+</p>
+<p>#to_i (IO)
+</p>
+<p>#to_i (Integer)
+</p>
+<p>#to_i (NilClass)
+</p>
+<p>#to_i (Process::Status)
+</p>
+<p>#to_i (Rational)
+</p>
+<p>#to_i (String)
+</p>
+<p>#to_i (Time)
+</p>
+<p>#to_int (Float)
+</p>
+<p>#to_int (Integer)
+</p>
+<p>#to_int (Numeric)
+</p>
+<p>#to_io (ARGF)
+</p>
+<p>#to_io (IO)
+</p>
+<p>#to_path (Dir)
+</p>
+<p>#to_path (File)
+</p>
+<p>#to_proc (Hash)
+</p>
+<p>#to_proc (Method)
+</p>
+<p>#to_proc (Proc)
+</p>
+<p>#to_proc (Symbol)
+</p>
+<p>#to_r (Complex)
+</p>
+<p>#to_r (Float)
+</p>
+<p>#to_r (Integer)
+</p>
+<p>#to_r (NilClass)
+</p>
+<p>#to_r (Rational)
+</p>
+<p>#to_r (String)
+</p>
+<p>#to_r (Time)
+</p>
+<p>#to_s (ARGF)
+</p>
+<p>#to_s (Array)
+</p>
+<p>#to_s (Complex)
+</p>
+<p>#to_s (Encoding)
+</p>
+<p>#to_s (Exception)
+</p>
+<p>#to_s (FalseClass)
+</p>
+<p>#to_s (Fiber)
+</p>
+<p>#to_s (Float)
+</p>
+<p>#to_s (Hash)
+</p>
+<p>#to_s (Integer)
+</p>
+<p>#to_s (MatchData)
+</p>
+<p>#to_s (Method)
+</p>
+<p>#to_s (Module)
+</p>
+<p>#to_s (NilClass)
+</p>
+<p>#to_s (Object)
+</p>
+<p>#to_s (Proc)
+</p>
+<p>#to_s (Process::Status)
+</p>
+<p>#to_s (Range)
+</p>
+<p>#to_s (Rational)
+</p>
+<p>#to_s (Regexp)
+</p>
+<p>#to_s (String)
+</p>
+<p>#to_s (Struct)
+</p>
+<p>#to_s (Symbol)
+</p>
+<p>#to_s (Thread)
+</p>
+<p>#to_s (Thread::Backtrace::Location)
+</p>
+<p>#to_s (Time)
+</p>
+<p>#to_s (TrueClass)
+</p>
+<p>#to_s (UnboundMethod)
+</p>
+<p>#to_s (UncaughtThrowError)
+</p>
+<p>#to_str (String)
+</p>
+<p>#to_sym (String)
+</p>
+<p>#to_sym (Symbol)
+</p>
+<p>#to_write_io (ARGF)
+</p>
+<p>#tr (String)
+</p>
+<p>#tr! (String)
+</p>
+<p>#tr_s (String)
+</p>
+<p>#tr_s! (String)
+</p>
+<p>#trace_points (RubyVM::InstructionSequence)
+</p>
+<p>#trace_var (Kernel)
+</p>
+<p>#transfer (Fiber)
+</p>
+<p>#transform_keys (Hash)
+</p>
+<p>#transform_keys! (Hash)
+</p>
+<p>#transform_values (Hash)
+</p>
+<p>#transform_values! (Hash)
+</p>
+<p>#transpose (Array)
+</p>
+<p>#trap (Kernel)
+</p>
+<p>#truncate (File)
+</p>
+<p>#truncate (Float)
+</p>
+<p>#truncate (Integer)
+</p>
+<p>#truncate (Numeric)
+</p>
+<p>#truncate (Rational)
+</p>
+<p>#trust (Object)
+</p>
+<p>#try_lock (Mutex)
+</p>
+<p>#tty? (IO)
+</p>
+<p>#tuesday? (Time)
+</p>
+<p>#tv_nsec (Time)
+</p>
+<p>#tv_sec (Time)
+</p>
+<p>#tv_usec (Time)
+</p>
+<p>#uid (File::Stat)
+</p>
+<p>#unbind (Method)
+</p>
+<p>#undef_method (Module)
+</p>
+<p>#undump (String)
+</p>
+<p>#ungetbyte (IO)
+</p>
+<p>#ungetc (IO)
+</p>
+<p>#unicode_normalize (String)
+</p>
+<p>#unicode_normalize! (String)
+</p>
+<p>#unicode_normalized? (String)
+</p>
+<p>#uniq (Array)
+</p>
+<p>#uniq (Enumerable)
+</p>
+<p>#uniq (Enumerator::Lazy)
+</p>
+<p>#uniq! (Array)
+</p>
+<p>#unlock (Mutex)
+</p>
+<p>#unpack (String)
+</p>
+<p>#unpack1 (String)
+</p>
+<p>#unshift (Array)
+</p>
+<p>#untaint (Object)
+</p>
+<p>#untrace_var (Kernel)
+</p>
+<p>#untrust (Object)
+</p>
+<p>#untrusted? (Object)
+</p>
+<p>#upcase (String)
+</p>
+<p>#upcase (Symbol)
+</p>
+<p>#upcase! (String)
+</p>
+<p>#update (Hash)
+</p>
+<p>#upto (Integer)
+</p>
+<p>#upto (String)
+</p>
+<p>#usec (Time)
+</p>
+<p>#using (Module)
+</p>
+<p>#utc (Time)
+</p>
+<p>#utc? (Time)
+</p>
+<p>#utc_offset (Time)
+</p>
+<p>#valid_encoding? (String)
+</p>
+<p>#value (Thread)
+</p>
+<p>#value (UncaughtThrowError)
+</p>
+<p>#value? (Hash)
+</p>
+<p>#values (Hash)
+</p>
+<p>#values (ObjectSpace::WeakMap)
+</p>
+<p>#values (Struct)
+</p>
+<p>#values_at (Array)
+</p>
+<p>#values_at (Hash)
+</p>
+<p>#values_at (MatchData)
+</p>
+<p>#values_at (Struct)
+</p>
+<p>#wait (ConditionVariable)
+</p>
+<p>#wakeup (Thread)
+</p>
+<p>#warn (Kernel)
+</p>
+<p>#warn (Warning)
+</p>
+<p>#wday (Time)
+</p>
+<p>#wednesday? (Time)
+</p>
+<p>#with_index (Enumerator)
+</p>
+<p>#with_object (Enumerator)
+</p>
+<p>#world_readable? (File::Stat)
+</p>
+<p>#world_readable? (FileTest)
+</p>
+<p>#world_writable? (File::Stat)
+</p>
+<p>#world_writable? (FileTest)
+</p>
+<p>#writable? (File::Stat)
+</p>
+<p>#writable? (FileTest)
+</p>
+<p>#writable_real? (File::Stat)
+</p>
+<p>#writable_real? (FileTest)
+</p>
+<p>#write (ARGF)
+</p>
+<p>#write (IO)
+</p>
+<p>#write (Warning::buffer)
+</p>
+<p>#write_nonblock (IO)
+</p>
+<p>#yday (Time)
+</p>
+<p>#year (Time)
+</p>
+<p>#yield (Proc)
+</p>
+<p>#yield_self (Object)
+</p>
+<p>#zero? (File::Stat)
+</p>
+<p>#zero? (FileTest)
+</p>
+<p>#zero? (Float)
+</p>
+<p>#zero? (Numeric)
+</p>
+<p>#zip (Array)
+</p>
+<p>#zip (Enumerable)
+</p>
+<p>#zip (Enumerator::Lazy)
+</p>
+<p>#zone (Time)
+</p>
+<p>#| (Array)
+</p>
+<p>#| (FalseClass)
+</p>
+<p>#| (Integer)
+</p>
+<p>#| (NilClass)
+</p>
+<p>#| (TrueClass)
+</p>
+<p>#~ (Complex)
+</p>
+<p>#~ (Integer)
+</p>
+<p>#~ (Regexp)
+</p></dd>
+</dl>
+
+<div class="float-caption"><p><strong>Table 3.3: </strong>List of API Methods</p></div></div>
+
+
+
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="API-Classes-And-Modules.html#API-Classes-And-Modules" accesskey="p" rel="prev">API Classes And Modules</a>, Up: <a href="API-Documentation.html#API-Documentation" accesskey="u" rel="up">API Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
