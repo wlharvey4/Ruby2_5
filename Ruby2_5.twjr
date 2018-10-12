@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3a
+@set EDITION 0.3b
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -3379,6 +3379,7 @@ hello world
 good-bye world
 @end example
 
+@anchor{RubyEval}
 @subsubheading Ruby Evaluation Program --- @file{eval.rb}
 @cindex @file{eval.rb}
 
@@ -9891,7 +9892,7 @@ Cfatal
 @appendixsec Ruby Eval Utility
 @pindex eval.rb
 
-@xref{}
+@xref{RubyEval}
 
 @url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
 
@@ -10190,7 +10191,7 @@ $0 ~ start, $0 ~ end {
 
 @<apiutil---ENDFILE Block@>=
 ENDFILE {
-  system("mv -v FILENAME FILENAME\".bak\" && mv -vi FILENAME\".new\" FILENAME")
+  system("mv -v "FILENAME" "FILENAME.bak && mv -vi "FILENAME".new "FILENAME)
 }
 
 @

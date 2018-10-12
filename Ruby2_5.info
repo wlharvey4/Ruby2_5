@@ -10,12 +10,12 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3b of 'Ruby 2.5 Information and Documentation'.
 
 
 Indirect:
 Ruby2_5.info-1: 371
-Ruby2_5.info-2: 313906
+Ruby2_5.info-2: 313911
 
 Tag Table:
 (Indirect)
@@ -116,6 +116,7 @@ Node: Ruby User's Guide92688
 Node: Ruby User's Guide On What Ruby IS94229
 Node: Ruby User's Guide On Simple Examples95263
 Ref: fact-rb95738
+Ref: RubyEval98293
 Ref: Ruby User's Guide On Simple Examples-Footnote-199501
 Node: Ruby User's Guide on Strings99583
 Node: Ruby User's Guide On Puzzle Program100966
@@ -165,49 +166,49 @@ Node: Standard Library Reference228503
 Node: List of Tables228754
 Node: Utility Programs229388
 Node: Ruby Eval Utility229594
-Ref: eval-rb229802
-Node: eval Module Code231749
-Ref: eval---EvalWrapper--Constants231914
-Node: eval Indentation Deltas Code232441
-Ref: eval---EvalWrapper--Indentation-Deltas232662
-Node: eval Main Get Line Code233541
-Ref: eval---Main--Get-Line233763
-Node: eval Main Process Line Code234223
-Ref: eval---Main--Process-Line234416
-Node: eval If Not Line Code235057
-Ref: eval---Main--Process-Line-If-Not-Line235243
-Node: eval If Is Line Code235590
-Ref: eval---Main--Process-Line-Is-Line235774
-Ref: eval---Main--Process-Line-Is-Line-Indentation236624
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-237345
-Node: API Utility238061
-Ref: apiutil-awk238463
-Node: apiutil.awk BEGIN Block239313
-Ref: apiutil---BEGIN-Block239485
-Node: apiutil.awk BEGNFILE Block239734
-Ref: apiutil---BEGINFILE-Block239945
-Node: apiutil.awk MAIN Block240124
-Ref: apiutil---MAIN-Block240327
-Node: apiutil.awk ENDFILE Block240743
-Ref: apiutil---ENDFILE-Block240947
-Node: apiutil.awk END Block241175
-Ref: apiutil---END-Block241340
-Node: The Makefile241498
-Ref: Makefile241654
-Node: Makefile Variable Definitions242373
-Ref: Makefile---Variable-Definitions242551
-Node: Makefile Default Rule242719
-Ref: Makefile---Default-Rule243269
-Node: Makefile TWJR Rules243508
-Ref: Makefile---TWJR-Rules243667
-Node: Makefile Clean Rules244298
-Ref: Makefile---Clean-Rules244429
-Node: Code Chunk Summaries244906
-Node: File Definitions245291
-Node: Code Chunk Definitions245885
-Node: Code Chunk References248165
-Node: Bibliography251153
-Node: Concept Index251284
-Node: Program Index313906
+Ref: eval-rb229810
+Node: eval Module Code231757
+Ref: eval---EvalWrapper--Constants231922
+Node: eval Indentation Deltas Code232449
+Ref: eval---EvalWrapper--Indentation-Deltas232670
+Node: eval Main Get Line Code233549
+Ref: eval---Main--Get-Line233771
+Node: eval Main Process Line Code234231
+Ref: eval---Main--Process-Line234424
+Node: eval If Not Line Code235065
+Ref: eval---Main--Process-Line-If-Not-Line235251
+Node: eval If Is Line Code235598
+Ref: eval---Main--Process-Line-Is-Line235782
+Ref: eval---Main--Process-Line-Is-Line-Indentation236632
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-237353
+Node: API Utility238069
+Ref: apiutil-awk238471
+Node: apiutil.awk BEGIN Block239321
+Ref: apiutil---BEGIN-Block239493
+Node: apiutil.awk BEGNFILE Block239742
+Ref: apiutil---BEGINFILE-Block239953
+Node: apiutil.awk MAIN Block240132
+Ref: apiutil---MAIN-Block240335
+Node: apiutil.awk ENDFILE Block240751
+Ref: apiutil---ENDFILE-Block240955
+Node: apiutil.awk END Block241180
+Ref: apiutil---END-Block241345
+Node: The Makefile241503
+Ref: Makefile241659
+Node: Makefile Variable Definitions242378
+Ref: Makefile---Variable-Definitions242556
+Node: Makefile Default Rule242724
+Ref: Makefile---Default-Rule243274
+Node: Makefile TWJR Rules243513
+Ref: Makefile---TWJR-Rules243672
+Node: Makefile Clean Rules244303
+Ref: Makefile---Clean-Rules244434
+Node: Code Chunk Summaries244911
+Node: File Definitions245296
+Node: Code Chunk Definitions245890
+Node: Code Chunk References248170
+Node: Bibliography251158
+Node: Concept Index251289
+Node: Program Index313911
 
 End Tag Table
