@@ -75,7 +75,10 @@ Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block"
 </p><div class="example">
 <pre class="example">started == 0 { print $0 &gt; newfile }
 $0 ~ start, $0 ~ end {
-   if (started == 0) { started = 1 }
+   if (started == 0) {
+     started = 1
+     next
+   }
    if ($0 ~ /^[[:alpha:]]/) {
      print &quot;@item &quot;$0 &gt; newfile
    } else {

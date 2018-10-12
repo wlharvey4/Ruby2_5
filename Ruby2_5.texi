@@ -10931,7 +10931,10 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @example
 started == 0 @{ print $0 > newfile @}
 $0 ~ start, $0 ~ end @{
-   if (started == 0) @{ started = 1 @}
+   if (started == 0) @{
+     started = 1
+     next
+   @}
    if ($0 ~ /^[[:alpha:]]/) @{
      print "@@item "$0 > newfile
    @} else @{
