@@ -73,12 +73,16 @@ Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block"
 <a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example">{ print $0 &gt; newfile }
+<pre class="example">started == 0 { print $0 &gt; newfile }
 $0 ~ start, $0 ~ end {
+   if (started == 0) { started = 1 }
    if ($0 ~ /^[[:alpha:]]/) {
      print &quot;@item &quot;$0 &gt; newfile
    } else {
      print &gt; newfile
+   }
+   if ($0 ~ end) {
+     started = 0
    }
 }
 </pre></div>

@@ -9665,6 +9665,7 @@ A.2.1 'apiutil.awk' BEGIN Block
      BEGIN {
        start = "^@float Table,table:api-classes-and-modules$"
        end   = "^@end table$"
+       started = 0
      }
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
@@ -9692,12 +9693,16 @@ A.2.3 'apiutil.awk' MAIN Block
 ------------------------------
 
 <apiutil--MAIN Block> ==
-     { print $0 > newfile }
+     started == 0 { print $0 > newfile }
      $0 ~ start, $0 ~ end {
+        if (started == 0) { started = 1 }
         if ($0 ~ /^[[:alpha:]]/) {
           print "@item "$0 > newfile
         } else {
           print > newfile
+        }
+        if ($0 ~ end) {
+          started = 0
         }
      }
 
@@ -9847,13 +9852,13 @@ B.4 Clean Rules
          rm -f *~ \#*\#
 
      distclean : clean
-         rm -f *.{aux,log,toc,cp,cps,pg,pgs}
+         rm -f *.{aux,log,toc,cp,cps,pg,pgs,bak,new}
 
-     veryclean : clean
+     veryclean : distclean
          for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
 
      worldclean : veryclean
-         rm -fr $(FILE).{texi,info,pdf} $(FILE)/
+         rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
 
 
 This chunk is called by {'Makefile'}; see its first definition at

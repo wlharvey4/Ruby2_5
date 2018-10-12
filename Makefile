@@ -36,11 +36,11 @@ clean :
 	rm -f *~ \#*\#
 
 distclean : clean
-	rm -f *.{aux,log,toc,cp,cps,pg,pgs}
+	rm -f *.{aux,log,toc,cp,cps,pg,pgs,bak,new}
 
-veryclean : clean
+veryclean : distclean
 	for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
 
 worldclean : veryclean
-	rm -fr $(FILE).{texi,info,pdf} $(FILE)/
+	rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
 
