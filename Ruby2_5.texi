@@ -10965,7 +10965,7 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @r{<@i{apiutil---ENDFILE Block}>} @equiv{}
 @example
 ENDFILE @{
-  system("mv -v "FILENAME" "FILENAME.bak && mv -vi "FILENAME".new "FILENAME)
+  system("mv -v "FILENAME" "FILENAME".bak && mv -vi "FILENAME".new "FILENAME)
 @}
 
 @end example

@@ -9717,7 +9717,7 @@ A.2.4 'apiutil.awk' ENDFILE Block
 
 <apiutil--ENDFILE Block> ==
      ENDFILE {
-       system("mv -v "FILENAME" "FILENAME.bak && mv -vi "FILENAME".new "FILENAME)
+       system("mv -v "FILENAME" "FILENAME".bak && mv -vi "FILENAME".new "FILENAME)
      }
 
 

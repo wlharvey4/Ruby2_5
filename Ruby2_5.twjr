@@ -10191,7 +10191,7 @@ $0 ~ start, $0 ~ end {
 
 @<apiutil---ENDFILE Block@>=
 ENDFILE {
-  system("mv -v "FILENAME" "FILENAME.bak && mv -vi "FILENAME".new "FILENAME)
+  system("mv -v "FILENAME" "FILENAME".bak && mv -vi "FILENAME".new "FILENAME)
 }
 
 @
