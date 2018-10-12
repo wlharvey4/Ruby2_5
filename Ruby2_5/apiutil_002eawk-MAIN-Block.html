@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3c of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3d of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -79,7 +79,16 @@ $0 ~ start, $0 ~ end {
      started = 1
      next
    }
-   if ($0 ~ /^[[:alpha:]]/) {
+   if ($0 ~ /^@table/) {
+     print $0 &gt; newfile
+     next
+   }
+   if ($0 ~ end) {
+     print &quot;\n&quot;$0 &gt; newfile
+     started = 0
+     next
+   }
+   if ($0 ~ /^[^\n]/) {
      print &quot;@item &quot;$0 &gt; newfile
    } else {
      print &gt; newfile

@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3d of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3d of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -9663,7 +9663,7 @@ A.2.1 'apiutil.awk' BEGIN Block
 
 <apiutil--BEGIN Block> ==
      BEGIN {
-       start = "^@float Table,table:api-classes-and-modules$"
+       start = "^@float Table,table:api-.*$"
        end   = "^@end table$"
        started = 0
      }
@@ -9699,7 +9699,16 @@ A.2.3 'apiutil.awk' MAIN Block
           started = 1
           next
         }
-        if ($0 ~ /^[[:alpha:]]/) {
+        if ($0 ~ /^@table/) {
+          print $0 > newfile
+          next
+        }
+        if ($0 ~ end) {
+          print "\n"$0 > newfile
+          started = 0
+          next
+        }
+        if ($0 ~ /^[^\n]/) {
           print "@item "$0 > newfile
         } else {
           print > newfile

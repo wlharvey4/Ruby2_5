@@ -1,4 +1,4 @@
-% -*- Ruby2_5.twjr       mode: texinfo -*-
+% -*- mode: texinfo -*-
 % Uncomment the 1st \input line if you need the MF logo
 % \input mftmac % for Metafont logo
 \input texinfo   @c -*-texinfo-*-
@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3c
+@set EDITION 0.3d
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -10144,7 +10144,7 @@ the @file{GAWK} programming language to get refreshed in using it.
 
 @<apiutil---BEGIN Block@>=
 BEGIN {
-  start = "^@float Table,table:api-classes-and-modules$"
+  start = "^@float Table,table:api-.*$"
   end   = "^@end table$"
   started = 0
 }
@@ -10175,7 +10175,16 @@ $0 ~ start, $0 ~ end {
      started = 1
      next
    }
-   if ($0 ~ /^[[:alpha:]]/) {
+   if ($0 ~ /^@table/) {
+     print $0 > newfile
+     next
+   }
+   if ($0 ~ end) {
+     print "\n"$0 > newfile
+     started = 0
+     next
+   }
+   if ($0 ~ /^[^\n]/) {
      print "@item "$0 > newfile
    } else {
      print > newfile

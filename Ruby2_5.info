@@ -10,12 +10,12 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3c of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3d of 'Ruby 2.5 Information and Documentation'.
 
 
 Indirect:
 Ruby2_5.info-1: 371
-Ruby2_5.info-2: 313945
+Ruby2_5.info-2: 314110
 
 Tag Table:
 (Indirect)
@@ -185,30 +185,30 @@ Node: API Utility238069
 Ref: apiutil-awk238471
 Node: apiutil.awk BEGIN Block239321
 Ref: apiutil---BEGIN-Block239493
-Node: apiutil.awk BEGNFILE Block239742
-Ref: apiutil---BEGINFILE-Block239953
-Node: apiutil.awk MAIN Block240132
-Ref: apiutil---MAIN-Block240335
-Node: apiutil.awk ENDFILE Block240784
-Ref: apiutil---ENDFILE-Block240988
-Node: apiutil.awk END Block241214
-Ref: apiutil---END-Block241379
-Node: The Makefile241537
-Ref: Makefile241693
-Node: Makefile Variable Definitions242412
-Ref: Makefile---Variable-Definitions242590
-Node: Makefile Default Rule242758
-Ref: Makefile---Default-Rule243308
-Node: Makefile TWJR Rules243547
-Ref: Makefile---TWJR-Rules243706
-Node: Makefile Clean Rules244337
-Ref: Makefile---Clean-Rules244468
-Node: Code Chunk Summaries244945
-Node: File Definitions245330
-Node: Code Chunk Definitions245924
-Node: Code Chunk References248204
-Node: Bibliography251192
-Node: Concept Index251323
-Node: Program Index313945
+Node: apiutil.awk BEGNFILE Block239725
+Ref: apiutil---BEGINFILE-Block239936
+Node: apiutil.awk MAIN Block240115
+Ref: apiutil---MAIN-Block240318
+Node: apiutil.awk ENDFILE Block240949
+Ref: apiutil---ENDFILE-Block241153
+Node: apiutil.awk END Block241379
+Ref: apiutil---END-Block241544
+Node: The Makefile241702
+Ref: Makefile241858
+Node: Makefile Variable Definitions242577
+Ref: Makefile---Variable-Definitions242755
+Node: Makefile Default Rule242923
+Ref: Makefile---Default-Rule243473
+Node: Makefile TWJR Rules243712
+Ref: Makefile---TWJR-Rules243871
+Node: Makefile Clean Rules244502
+Ref: Makefile---Clean-Rules244633
+Node: Code Chunk Summaries245110
+Node: File Definitions245495
+Node: Code Chunk Definitions246089
+Node: Code Chunk References248369
+Node: Bibliography251357
+Node: Concept Index251488
+Node: Program Index314110
 
 End Tag Table
