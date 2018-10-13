@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3f of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3g of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -27,7 +27,7 @@ This is Edition 0.3f of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="The-Makefile.html#The-Makefile" rel="up" title="The Makefile">
-<link href="Makefile-TWJR-Rules.html#Makefile-TWJR-Rules" rel="next" title="Makefile TWJR Rules">
+<link href="Makefile-TWJR-Targets.html#Makefile-TWJR-Targets" rel="next" title="Makefile TWJR Targets">
 <link href="Makefile-Variable-Definitions.html#Makefile-Variable-Definitions" rel="prev" title="Makefile Variable Definitions">
 <style type="text/css">
 <!--
@@ -64,7 +64,7 @@ ul.no-bullet {list-style: none}
 <a name="Makefile-Default-Rule"></a>
 <div class="header">
 <p>
-Next: <a href="Makefile-TWJR-Rules.html#Makefile-TWJR-Rules" accesskey="n" rel="next">Makefile TWJR Rules</a>, Previous: <a href="Makefile-Variable-Definitions.html#Makefile-Variable-Definitions" accesskey="p" rel="prev">Makefile Variable Definitions</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Makefile-TWJR-Targets.html#Makefile-TWJR-Targets" accesskey="n" rel="next">Makefile TWJR Targets</a>, Previous: <a href="Makefile-Variable-Definitions.html#Makefile-Variable-Definitions" accesskey="p" rel="prev">Makefile Variable Definitions</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="Default-Rule"></a>
@@ -78,14 +78,14 @@ run both <code>jrtangle</code> and <code>jrweave</code>, while the target
 the <samp>.twjr</samp> file.  Thereafter, you can update the <samp>.texi</samp> file and
 run the <code>default</code>.
 </p>
-<a name="Makefile_002d_002d_002dDefault_002dRule"></a><a name="index-_003cMakefile_002d_002d_002dDefault-Rule_003e_002c-definition"></a>
-<p><span class="roman">&lt;<i>Makefile&mdash;Default Rule</i>&gt;</span> &equiv;
+<a name="Makefile_002d_002d_002dDefault_002dTarget"></a><a name="index-_003cMakefile_002d_002d_002dDefault-Target_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>Makefile&mdash;Default Target</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example"># DEFAULT RULE
-##############
-.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
-.PHONY : twjr tangle weave texi pdf html
-default : PDF HTML
+<pre class="example"># DEFAULT Target
+################
+.PHONY : default TWJR TANGLE WEAVE TEXI INFO PDF HTML
+.PHONY : twjr tangle weave texi info pdf html
+default : INFO PDF HTML
 
 </pre></div>
 

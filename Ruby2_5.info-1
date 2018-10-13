@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3f of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3g of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3f of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3g of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -235,9 +235,9 @@ The Makefile
 
 * Makefile Variable Definitions::
 * Makefile Default Rule::
-* Makefile TWJR Rules::
+* Makefile TWJR Targets::
 * Makefile Utility Targets::
-* Makefile Clean Rules::
+* Makefile Clean Targets::
 
 Code Chunk Summaries
 
@@ -9923,22 +9923,24 @@ Appendix C The Makefile
 
      <Makefile--Variable Definitions>
 
-     <Makefile--Default Rule>
+     <Makefile--Default Target>
 
-     <Makefile--TWJR Rules>
+     <Makefile--TWJR Targets>
 
      <Makefile--Utility Targets>
 
-     <Makefile--Clean Rules>
+     <Makefile--Clean Targets>
 
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
 -------------------------------------------------------------------------
-<Makefile--Clean Rules>   See *note Makefile---Clean-Rules::.
-<Makefile--Default        See *note Makefile---Default-Rule::.
-Rule>
-<Makefile--TWJR Rules>    See *note Makefile---TWJR-Rules::.
+<Makefile--Clean          See *note Makefile---Clean-Targets::.
+Targets>
+<Makefile--Default        See *note Makefile---Default-Target::.
+Target>
+<Makefile--TWJR           See *note Makefile---TWJR-Targets::.
+Targets>
 <Makefile--Utility        See *note Makefile---Utility-Targets-1::.
 Targets>
 <Makefile--Variable       See *note Makefile---Variable-Definitions::.
@@ -9948,9 +9950,9 @@ Definitions>
 
 * Makefile Variable Definitions::
 * Makefile Default Rule::
-* Makefile TWJR Rules::
+* Makefile TWJR Targets::
 * Makefile Utility Targets::
-* Makefile Clean Rules::
+* Makefile Clean Targets::
 
 
 File: Ruby2_5.info,  Node: Makefile Variable Definitions,  Next: Makefile Default Rule,  Up: The Makefile
@@ -9969,7 +9971,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Rules,  Prev: Makefile Variable Definitions,  Up: The Makefile
+File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Targets,  Prev: Makefile Variable Definitions,  Up: The Makefile
 
 C.2 Default Rule
 ================
@@ -9981,26 +9983,26 @@ first.  Therefore, the target 'TWJR' will run both 'jrtangle' and
 just 'jrweave' on the '.twjr' file.  Thereafter, you can update the
 '.texi' file and run the 'default'.
 
-<Makefile--Default Rule> ==
-     # DEFAULT RULE
-     ##############
-     .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
-     .PHONY : twjr tangle weave texi pdf html
-     default : PDF HTML
+<Makefile--Default Target> ==
+     # DEFAULT Target
+     ################
+     .PHONY : default TWJR TANGLE WEAVE TEXI INFO PDF HTML
+     .PHONY : twjr tangle weave texi info pdf html
+     default : INFO PDF HTML
 
 
 This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: Makefile TWJR Rules,  Next: Makefile Utility Targets,  Prev: Makefile Default Rule,  Up: The Makefile
+File: Ruby2_5.info,  Node: Makefile TWJR Targets,  Next: Makefile Utility Targets,  Prev: Makefile Default Rule,  Up: The Makefile
 
-C.3 TWJR Rules
-==============
+C.3 TWJR Targets
+================
 
-<Makefile--TWJR Rules> ==
-     # TWJR RULES
-     ############
+<Makefile--TWJR Targets> ==
+     # TWJR TARGETS
+     ##############
      TWJR : twjr
      twjr : tangle weave
 
@@ -10012,27 +10014,37 @@ C.3 TWJR Rules
      weave : TEXI
      TEXI  : texi
      texi  : $(FILE).texi
-
      $(FILE).texi : $(FILE).twjr
          jrweave $(FILE).twjr > $(FILE).texi
+
+     INFO : info
+     info : $(FILE).info
+     $(FILE).info : $(FILE).texi
+         makeinfo $(FILE).texi
+     openinfo : INFO
+         emacs $(FILE).info
 
      PDF : pdf
      pdf : $(FILE).pdf
      $(FILE).pdf : $(FILE).texi
-         pdftexi2dvi $(FILE).texi
-         make distclean
+         texi2dvi --dvipdf $(FILE).texi
+         make veryclean
+     openpdf : PDF
+         open $(FILE).pdf
 
      HTML : html
      html : $(FILE)/
      $(FILE)/ : $(FILE).texi
          makeinfo --html $(FILE).texi
+     openhtml : HTML
+         open Ruby2_5/index.html
 
 
 This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: Makefile Utility Targets,  Next: Makefile Clean Rules,  Prev: Makefile TWJR Rules,  Up: The Makefile
+File: Ruby2_5.info,  Node: Makefile Utility Targets,  Next: Makefile Clean Targets,  Prev: Makefile TWJR Targets,  Up: The Makefile
 
 C.4 Utility Targets
 ===================
@@ -10047,25 +10059,31 @@ This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: Makefile Clean Rules,  Prev: Makefile Utility Targets,  Up: The Makefile
+File: Ruby2_5.info,  Node: Makefile Clean Targets,  Prev: Makefile Utility Targets,  Up: The Makefile
 
-C.5 Clean Rules
-===============
+C.5 Clean Targets
+=================
 
-<Makefile--Clean Rules> ==
-     # CLEAN RULES
-     #############
-     .PHONY : clean distclean veryclean worldclean
+<Makefile--Clean Targets> ==
+     # CLEAN TARGETS
+     ###############
+     .PHONY : clean veryclean dirclean distclean worldclean
      clean :
          rm -f *~ \#*\#
 
-     distclean : clean
-         rm -f *.{aux,log,toc,cp,cps,pg,pgs,bak,new}
+     # leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
+     veryclean : clean
+         rm -f *.{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new}
 
-     veryclean : distclean
-         for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+     # leave .twjr, .texi, .info, html, .pdf
+     dirclean : veryclean
+         rm -fr src/ bin/ *.{rb,sh}
 
-     worldclean : veryclean
+     # remove everything except .twjr, .texi, and Makefile
+     distclean : dirclean
+         for file in *; do [[ $$file =~ twjr|texi|Makefile ]] && : || rm -vrf $$file ; done;
+
+     worldclean : distclean
          rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
 
 
@@ -10117,12 +10135,12 @@ File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,
 D.2 Code Chunk Definitions
 ==========================
 
-<Makefile--Clean Rules>
-     This chunk is defined in *note Makefile---Clean-Rules::.
-<Makefile--Default Rule>
-     This chunk is defined in *note Makefile---Default-Rule::.
-<Makefile--TWJR Rules>
-     This chunk is defined in *note Makefile---TWJR-Rules::.
+<Makefile--Clean Targets>
+     This chunk is defined in *note Makefile---Clean-Targets::.
+<Makefile--Default Target>
+     This chunk is defined in *note Makefile---Default-Target::.
+<Makefile--TWJR Targets>
+     This chunk is defined in *note Makefile---TWJR-Targets::.
 <Makefile--Utility Targets>
      Multiple definitions occur in *note
      Makefile---Utility-Targets-1::, and *note
@@ -10176,15 +10194,15 @@ File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,
 D.3 Code Chunk References
 =========================
 
-<Makefile--Clean Rules>
+<Makefile--Clean Targets>
 
      This chunk is called by {'Makefile'}; see its first definition at
      *note Makefile::.
-<Makefile--Default Rule>
+<Makefile--Default Target>
 
      This chunk is called by {'Makefile'}; see its first definition at
      *note Makefile::.
-<Makefile--TWJR Rules>
+<Makefile--TWJR Targets>
 
      This chunk is called by {'Makefile'}; see its first definition at
      *note Makefile::.
@@ -10337,15 +10355,15 @@ Index
 * <eval--Main-Process Line>, definition: eval Main Process Line Code.
                                                             (line   6)
 * <eval--Main-Process Line>, use:        Ruby Eval Utility. (line  10)
-* <Makefile--Clean Rules>, definition:   Makefile Clean Rules.
+* <Makefile--Clean Targets>, definition: Makefile Clean Targets.
                                                             (line   6)
-* <Makefile--Clean Rules>, use:          The Makefile.      (line   6)
-* <Makefile--Default Rule>, definition:  Makefile Default Rule.
+* <Makefile--Clean Targets>, use:        The Makefile.      (line   6)
+* <Makefile--Default Target>, definition: Makefile Default Rule.
                                                             (line  13)
-* <Makefile--Default Rule>, use:         The Makefile.      (line   6)
-* <Makefile--TWJR Rules>, definition:    Makefile TWJR Rules.
+* <Makefile--Default Target>, use:       The Makefile.      (line   6)
+* <Makefile--TWJR Targets>, definition:  Makefile TWJR Targets.
                                                             (line   6)
-* <Makefile--TWJR Rules>, use:           The Makefile.      (line   6)
+* <Makefile--TWJR Targets>, use:         The Makefile.      (line   6)
 * <Makefile--Utility Targets>, definition: apiutil Makefile Target.
                                                             (line  12)
 * <Makefile--Utility Targets>, definition <1>: Makefile Utility Targets.

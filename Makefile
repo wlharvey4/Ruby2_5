@@ -7,15 +7,15 @@ FILE := Ruby2_5
 SHELL := /bin/bash
 
 
-# DEFAULT RULE
+# DEFAULT Target
+################
+.PHONY : default TWJR TANGLE WEAVE TEXI INFO PDF HTML
+.PHONY : twjr tangle weave texi info pdf html
+default : INFO PDF HTML
+
+
+# TWJR TARGETS
 ##############
-.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
-.PHONY : twjr tangle weave texi pdf html
-default : PDF HTML
-
-
-# TWJR RULES
-############
 TWJR : twjr
 twjr : tangle weave
 
@@ -27,20 +27,30 @@ WEAVE : weave
 weave : TEXI
 TEXI  : texi
 texi  : $(FILE).texi
-
 $(FILE).texi : $(FILE).twjr
 	jrweave $(FILE).twjr > $(FILE).texi
+
+INFO : info
+info : $(FILE).info
+$(FILE).info : $(FILE).texi
+	makeinfo $(FILE).texi
+openinfo : INFO
+	emacs $(FILE).info
 
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-	pdftexi2dvi $(FILE).texi
-	make distclean
-	
+	texi2dvi --dvipdf $(FILE).texi
+	make veryclean
+openpdf : PDF
+	open $(FILE).pdf
+
 HTML : html
 html : $(FILE)/
 $(FILE)/ : $(FILE).texi
 	makeinfo --html $(FILE).texi
+openhtml : HTML
+	open Ruby2_5/index.html
 
 
 # apiutil.awk
@@ -52,19 +62,25 @@ apiutil :
 # UTILITY TARGETS
 #################
 
-# CLEAN RULES
-#############
-.PHONY : clean distclean veryclean worldclean
+# CLEAN TARGETS
+###############
+.PHONY : clean veryclean dirclean distclean worldclean
 clean :
 	rm -f *~ \#*\#
 
-distclean : clean
-	rm -f *.{aux,log,toc,cp,cps,pg,pgs,bak,new}
+# leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
+veryclean : clean
+	rm -f *.{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new}
 
-veryclean : distclean
-	for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+# leave .twjr, .texi, .info, html, .pdf
+dirclean : veryclean
+	rm -fr src/ bin/ *.{rb,sh}
 
-worldclean : veryclean
+# remove everything except .twjr, .texi, and Makefile
+distclean : dirclean
+	for file in *; do [[ $$file =~ twjr|texi|Makefile ]] && : || rm -vrf $$file ; done;
+
+worldclean : distclean
 	rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
 
 

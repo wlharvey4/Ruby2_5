@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3f
+@set EDITION 0.3g
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -432,9 +432,9 @@ The Makefile
 
 * Makefile Variable Definitions::
 * Makefile Default Rule::
-* Makefile TWJR Rules::
+* Makefile TWJR Targets::
 * Makefile Utility Targets::
-* Makefile Clean Rules::
+* Makefile Clean Targets::
 
 Code Chunk Summaries
 
@@ -11241,10 +11241,10 @@ setpath.sh}.
 @need 400
 @anchor{Makefile}
 @crindex @r{<@i{Makefile---Variable Definitions}>}, use
-@crindex @r{<@i{Makefile---Default Rule}>}, use
-@crindex @r{<@i{Makefile---TWJR Rules}>}, use
+@crindex @r{<@i{Makefile---Default Target}>}, use
+@crindex @r{<@i{Makefile---TWJR Targets}>}, use
 @crindex @r{<@i{Makefile---Utility Targets}>}, use
-@crindex @r{<@i{Makefile---Clean Rules}>}, use
+@crindex @r{<@i{Makefile---Clean Targets}>}, use
 @cdindex @r{@{@file{Makefile}@}}, definition
 @noindent
 @r{@{@file{Makefile}@}} @equiv{}
@@ -11254,13 +11254,13 @@ setpath.sh}.
 
 @r{<@i{Makefile---Variable Definitions}>}
 
-@r{<@i{Makefile---Default Rule}>}
+@r{<@i{Makefile---Default Target}>}
 
-@r{<@i{Makefile---TWJR Rules}>}
+@r{<@i{Makefile---TWJR Targets}>}
 
 @r{<@i{Makefile---Utility Targets}>}
 
-@r{<@i{Makefile---Clean Rules}>}
+@r{<@i{Makefile---Clean Targets}>}
 
 @end example
 @iftex
@@ -11271,9 +11271,9 @@ setpath.sh}.
 The following table lists called chunk definition points.
 @multitable @columnfractions .35 .65
 @headitem Chunk name @tab First definition point
-@item @r{<@i{Makefile---Clean Rules}>} @tab See @ref{Makefile---Clean-Rules}.
-@item @r{<@i{Makefile---Default Rule}>} @tab See @ref{Makefile---Default-Rule}.
-@item @r{<@i{Makefile---TWJR Rules}>} @tab See @ref{Makefile---TWJR-Rules}.
+@item @r{<@i{Makefile---Clean Targets}>} @tab See @ref{Makefile---Clean-Targets}.
+@item @r{<@i{Makefile---Default Target}>} @tab See @ref{Makefile---Default-Target}.
+@item @r{<@i{Makefile---TWJR Targets}>} @tab See @ref{Makefile---TWJR-Targets}.
 @item @r{<@i{Makefile---Utility Targets}>} @tab See @ref{Makefile---Utility-Targets-1}.
 @item @r{<@i{Makefile---Variable Definitions}>} @tab See @ref{Makefile---Variable-Definitions}.
 @end multitable
@@ -11289,9 +11289,9 @@ The following table lists called chunk definition points.
 @menu
 * Makefile Variable Definitions::
 * Makefile Default Rule::
-* Makefile TWJR Rules::
+* Makefile TWJR Targets::
 * Makefile Utility Targets::
-* Makefile Clean Rules::
+* Makefile Clean Targets::
 @end menu
 
 @node Makefile Variable Definitions
@@ -11336,16 +11336,16 @@ the @file{.twjr} file.  Thereafter, you can update the @file{.texi} file and
 run the @code{default}.
 
 @need 400
-@anchor{Makefile---Default-Rule}
-@cdindex @r{<@i{Makefile---Default Rule}>}, definition
+@anchor{Makefile---Default-Target}
+@cdindex @r{<@i{Makefile---Default Target}>}, definition
 @noindent
-@r{<@i{Makefile---Default Rule}>} @equiv{}
+@r{<@i{Makefile---Default Target}>} @equiv{}
 @example
-# DEFAULT RULE
-##############
-.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
-.PHONY : twjr tangle weave texi pdf html
-default : PDF HTML
+# DEFAULT Target
+################
+.PHONY : default TWJR TANGLE WEAVE TEXI INFO PDF HTML
+.PHONY : twjr tangle weave texi info pdf html
+default : INFO PDF HTML
 
 @end example
 @iftex
@@ -11363,17 +11363,17 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 
 @c -----------------------------------------------------------------------------
 
-@node Makefile TWJR Rules
-@appendixsec TWJR Rules
+@node Makefile TWJR Targets
+@appendixsec TWJR Targets
 
 @need 400
-@anchor{Makefile---TWJR-Rules}
-@cdindex @r{<@i{Makefile---TWJR Rules}>}, definition
+@anchor{Makefile---TWJR-Targets}
+@cdindex @r{<@i{Makefile---TWJR Targets}>}, definition
 @noindent
-@r{<@i{Makefile---TWJR Rules}>} @equiv{}
+@r{<@i{Makefile---TWJR Targets}>} @equiv{}
 @example
-# TWJR RULES
-############
+# TWJR TARGETS
+##############
 TWJR : twjr
 twjr : tangle weave
 
@@ -11385,20 +11385,30 @@ WEAVE : weave
 weave : TEXI
 TEXI  : texi
 texi  : $(FILE).texi
-
 $(FILE).texi : $(FILE).twjr
     jrweave $(FILE).twjr > $(FILE).texi
+
+INFO : info
+info : $(FILE).info
+$(FILE).info : $(FILE).texi
+    makeinfo $(FILE).texi
+openinfo : INFO
+    emacs $(FILE).info
 
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-    pdftexi2dvi $(FILE).texi
-    make distclean
-    
+    texi2dvi --dvipdf $(FILE).texi
+    make veryclean
+openpdf : PDF
+    open $(FILE).pdf
+
 HTML : html
 html : $(FILE)/
 $(FILE)/ : $(FILE).texi
     makeinfo --html $(FILE).texi
+openhtml : HTML
+    open Ruby2_5/index.html
 
 @end example
 @iftex
@@ -11444,30 +11454,37 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 
 
 
+
 @c -----------------------------------------------------------------------------
 
-@node Makefile Clean Rules
-@appendixsec Clean Rules
+@node Makefile Clean Targets
+@appendixsec Clean Targets
 
 @need 400
-@anchor{Makefile---Clean-Rules}
-@cdindex @r{<@i{Makefile---Clean Rules}>}, definition
+@anchor{Makefile---Clean-Targets}
+@cdindex @r{<@i{Makefile---Clean Targets}>}, definition
 @noindent
-@r{<@i{Makefile---Clean Rules}>} @equiv{}
+@r{<@i{Makefile---Clean Targets}>} @equiv{}
 @example
-# CLEAN RULES
-#############
-.PHONY : clean distclean veryclean worldclean
+# CLEAN TARGETS
+###############
+.PHONY : clean veryclean dirclean distclean worldclean
 clean :
     rm -f *~ \#*\#
 
-distclean : clean
-    rm -f *.@{aux,log,toc,cp,cps,pg,pgs,bak,new@}
+# leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
+veryclean : clean
+    rm -f *.@{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new@}
 
-veryclean : distclean
-    for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+# leave .twjr, .texi, .info, html, .pdf
+dirclean : veryclean
+    rm -fr src/ bin/ *.@{rb,sh@}
 
-worldclean : veryclean
+# remove everything except .twjr, .texi, and Makefile
+distclean : dirclean
+    for file in *; do [[ $$file =~ twjr|texi|Makefile ]] && : || rm -vrf $$file ; done;
+
+worldclean : distclean
     rm -fr $(FILE).@{texi,info*,pdf@} $(FILE)/
 
 @end example
@@ -11546,15 +11563,15 @@ This chunk is defined in
 @appendixsec Code Chunk Definitions
 
 @table @asis
-@item @r{<@i{Makefile---Clean Rules}>}
+@item @r{<@i{Makefile---Clean Targets}>}
 This chunk is defined in
-@ref{Makefile---Clean-Rules}.
-@item @r{<@i{Makefile---Default Rule}>}
+@ref{Makefile---Clean-Targets}.
+@item @r{<@i{Makefile---Default Target}>}
 This chunk is defined in
-@ref{Makefile---Default-Rule}.
-@item @r{<@i{Makefile---TWJR Rules}>}
+@ref{Makefile---Default-Target}.
+@item @r{<@i{Makefile---TWJR Targets}>}
 This chunk is defined in
-@ref{Makefile---TWJR-Rules}.
+@ref{Makefile---TWJR-Targets}.
 @item @r{<@i{Makefile---Utility Targets}>}
 Multiple definitions occur in
 @ref{Makefile---Utility-Targets-1},
@@ -11626,15 +11643,15 @@ This chunk is defined in
 @appendixsec Code Chunk References
 
 @table @asis
-@item @r{<@i{Makefile---Clean Rules}>}
+@item @r{<@i{Makefile---Clean Targets}>}
 
 @noindent
 This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
-@item @r{<@i{Makefile---Default Rule}>}
+@item @r{<@i{Makefile---Default Target}>}
 
 @noindent
 This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
-@item @r{<@i{Makefile---TWJR Rules}>}
+@item @r{<@i{Makefile---TWJR Targets}>}
 
 @noindent
 This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.

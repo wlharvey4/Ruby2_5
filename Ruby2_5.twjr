@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3f
+@set EDITION 0.3g
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -10409,13 +10409,13 @@ setpath.sh}.
 
 @<Makefile---Variable Definitions@>
 
-@<Makefile---Default Rule@>
+@<Makefile---Default Target@>
 
-@<Makefile---TWJR Rules@>
+@<Makefile---TWJR Targets@>
 
 @<Makefile---Utility Targets@>
 
-@<Makefile---Clean Rules@>
+@<Makefile---Clean Targets@>
 
 @
 
@@ -10451,12 +10451,12 @@ run both @command{jrtangle} and @command{jrweave}, while the target
 the @file{.twjr} file.  Thereafter, you can update the @file{.texi} file and
 run the @code{default}.
 
-@<Makefile---Default Rule@>=
-# DEFAULT RULE
-##############
-.PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
-.PHONY : twjr tangle weave texi pdf html
-default : PDF HTML
+@<Makefile---Default Target@>=
+# DEFAULT Target
+################
+.PHONY : default TWJR TANGLE WEAVE TEXI INFO PDF HTML
+.PHONY : twjr tangle weave texi info pdf html
+default : INFO PDF HTML
 
 @
 
@@ -10465,12 +10465,12 @@ default : PDF HTML
 
 @c -----------------------------------------------------------------------------
 
-@node Makefile TWJR Rules
-@appendixsec TWJR Rules
+@node Makefile TWJR Targets
+@appendixsec TWJR Targets
 
-@<Makefile---TWJR Rules@>=
-# TWJR RULES
-############
+@<Makefile---TWJR Targets@>=
+# TWJR TARGETS
+##############
 TWJR : twjr
 twjr : tangle weave
 
@@ -10482,20 +10482,30 @@ WEAVE : weave
 weave : TEXI
 TEXI  : texi
 texi  : $(FILE).texi
-
 $(FILE).texi : $(FILE).twjr
 	jrweave $(FILE).twjr > $(FILE).texi
+
+INFO : info
+info : $(FILE).info
+$(FILE).info : $(FILE).texi
+	makeinfo $(FILE).texi
+openinfo : INFO
+	emacs $(FILE).info
 
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-	pdftexi2dvi $(FILE).texi
-	make distclean
-	
+	texi2dvi --dvipdf $(FILE).texi
+	make veryclean
+openpdf : PDF
+	open $(FILE).pdf
+
 HTML : html
 html : $(FILE)/
 $(FILE)/ : $(FILE).texi
 	makeinfo --html $(FILE).texi
+openhtml : HTML
+	open Ruby2_5/index.html
 
 @
 
@@ -10514,25 +10524,32 @@ $(FILE)/ : $(FILE).texi
 
 
 
+
 @c -----------------------------------------------------------------------------
 
-@node Makefile Clean Rules
-@appendixsec Clean Rules
+@node Makefile Clean Targets
+@appendixsec Clean Targets
 
-@<Makefile---Clean Rules@>=
-# CLEAN RULES
-#############
-.PHONY : clean distclean veryclean worldclean
+@<Makefile---Clean Targets@>=
+# CLEAN TARGETS
+###############
+.PHONY : clean veryclean dirclean distclean worldclean
 clean :
 	rm -f *~ \#*\#
 
-distclean : clean
-	rm -f *.{aux,log,toc,cp,cps,pg,pgs,bak,new}
+# leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
+veryclean : clean
+	rm -f *.{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new}
 
-veryclean : distclean
-	for file in *; do [[ $$file =~ $(FILE)|Makefile ]] && : || rm -vrf $$file ; done;
+# leave .twjr, .texi, .info, html, .pdf
+dirclean : veryclean
+	rm -fr src/ bin/ *.{rb,sh}
 
-worldclean : veryclean
+# remove everything except .twjr, .texi, and Makefile
+distclean : dirclean
+	for file in *; do [[ $$file =~ twjr|texi|Makefile ]] && : || rm -vrf $$file ; done;
+
+worldclean : distclean
 	rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
 
 @

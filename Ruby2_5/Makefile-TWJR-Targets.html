@@ -12,14 +12,14 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3f of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3g of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Makefile Clean Rules (Ruby2_5 Information)</title>
+<title>Makefile TWJR Targets (Ruby2_5 Information)</title>
 
-<meta name="description" content="Makefile Clean Rules (Ruby2_5 Information)">
-<meta name="keywords" content="Makefile Clean Rules (Ruby2_5 Information)">
+<meta name="description" content="Makefile TWJR Targets (Ruby2_5 Information)">
+<meta name="keywords" content="Makefile TWJR Targets (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -27,8 +27,8 @@ This is Edition 0.3f of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="The-Makefile.html#The-Makefile" rel="up" title="The Makefile">
-<link href="Code-Chunk-Summaries.html#Code-Chunk-Summaries" rel="next" title="Code Chunk Summaries">
-<link href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" rel="prev" title="Makefile Utility Targets">
+<link href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" rel="next" title="Makefile Utility Targets">
+<link href="Makefile-Default-Rule.html#Makefile-Default-Rule" rel="prev" title="Makefile Default Rule">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -61,41 +61,60 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Makefile-Clean-Rules"></a>
+<a name="Makefile-TWJR-Targets"></a>
 <div class="header">
 <p>
-Previous: <a href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" accesskey="p" rel="prev">Makefile Utility Targets</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" accesskey="n" rel="next">Makefile Utility Targets</a>, Previous: <a href="Makefile-Default-Rule.html#Makefile-Default-Rule" accesskey="p" rel="prev">Makefile Default Rule</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Clean-Rules"></a>
-<h3 class="appendixsec">C.5 Clean Rules</h3>
+<a name="TWJR-Targets"></a>
+<h3 class="appendixsec">C.3 TWJR Targets</h3>
 
-<a name="Makefile_002d_002d_002dClean_002dRules"></a><a name="index-_003cMakefile_002d_002d_002dClean-Rules_003e_002c-definition"></a>
-<p><span class="roman">&lt;<i>Makefile&mdash;Clean Rules</i>&gt;</span> &equiv;
+<a name="Makefile_002d_002d_002dTWJR_002dTargets"></a><a name="index-_003cMakefile_002d_002d_002dTWJR-Targets_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>Makefile&mdash;TWJR Targets</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example"># CLEAN RULES
-#############
-.PHONY : clean distclean veryclean worldclean
-clean :
-    rm -f *~ \#*\#
+<pre class="example"># TWJR TARGETS
+##############
+TWJR : twjr
+twjr : tangle weave
 
-distclean : clean
-    rm -f *.{aux,log,toc,cp,cps,pg,pgs,bak,new}
+TANGLE : tangle
+tangle : $(FILE).twjr
+    jrtangle $(FILE).twjr
 
-veryclean : distclean
-    for file in *; do [[ $$file =~ $(FILE)|Makefile ]] &amp;&amp; : || rm -vrf $$file ; done;
+WEAVE : weave
+weave : TEXI
+TEXI  : texi
+texi  : $(FILE).texi
+$(FILE).texi : $(FILE).twjr
+    jrweave $(FILE).twjr &gt; $(FILE).texi
 
-worldclean : veryclean
-    rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
+INFO : info
+info : $(FILE).info
+$(FILE).info : $(FILE).texi
+    makeinfo $(FILE).texi
+openinfo : INFO
+    emacs $(FILE).info
+
+PDF : pdf
+pdf : $(FILE).pdf
+$(FILE).pdf : $(FILE).texi
+    texi2dvi --dvipdf $(FILE).texi
+    make veryclean
+openpdf : PDF
+    open $(FILE).pdf
+
+HTML : html
+html : $(FILE)/
+$(FILE)/ : $(FILE).texi
+    makeinfo --html $(FILE).texi
+openhtml : HTML
+    open Ruby2_5/index.html
 
 </pre></div>
 
 <p>This chunk is called by <span class="roman">{<samp>Makefile</samp>}</span>; see its first definition at <a href="The-Makefile.html#Makefile">Makefile</a>.
 </p>
-
-
-
-
 
 
 
