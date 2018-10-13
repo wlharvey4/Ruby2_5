@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3e
+@set EDITION 0.3f
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -5807,7 +5807,7 @@ have taken days.
 
 @float Table,table:api-classes-and-modules
 @table @code
-ARGF
+CARGF
 
 CArgumentError
 
@@ -6067,7 +6067,7 @@ Cfatal
 
 @float Table,table:api-methods
 @table @code
-=== (SystemCallError)
+::=== (SystemCallError)
 
 ::DEBUG (Thread)
 
@@ -10121,9 +10121,10 @@ end # if
 @appendixsec API Utility
 
 The purpose of this little utility is to assist with the construction of the
-API tables; that is, it will help insert @code{@@item} labels, and purhaps
+API tables; that is, it will help insert @code{@@item} labels, and perhaps
 assist with constructing @acronym{URL}'s if I am lucky.  I am writing it using
-the @file{GAWK} programming language to get refreshed in using it.
+the @file{GAWK} programming language to refresh my knowledge of @file{AWK} (and
+get to know @file{GAWK}'s extra features).
 
 @(apiutil.awk@)=
 #! /usr/bin/env gawk -f
@@ -10142,11 +10143,23 @@ the @file{GAWK} programming language to get refreshed in using it.
 @node @file{apiutil.awk} BEGIN Block
 @appendixsubsec @file{apiutil.awk} BEGIN Block
 
+The variable @code{start} holds a regular expression string that targets
+the two tables I want to process.
+
+When parsing the lines of text obtained from copying the library page, the
+initial letters and symbols can be translated into meaningful words using
+the hash @code{classmethod}.
+
 @<apiutil---BEGIN Block@>=
 BEGIN {
   start = "^@float Table,table:api-.*$"
   end   = "^@end table$"
   started = 0
+
+  classmethod["C"]  = "Class"
+  classmethod["M"]  = "Module"
+  classmethod["::"] = "Class Method"
+  classmethod["#"]  = "Instance Method"
 }
 @
 
@@ -10155,6 +10168,8 @@ BEGIN {
 
 @node @file{apiutil.awk} BEGNFILE Block
 @appendixsubsec @file{apiutil.awk} BEGINFILE BLOCK
+
+This will allow this filename to be changed a little more easily.
 
 @<apiutil---BEGINFILE Block@>=
 BEGINFILE {
@@ -10168,29 +10183,81 @@ BEGINFILE {
 @node @file{apiutil.awk} MAIN Block
 @appendixsubsec @file{apiutil.awk} MAIN Block
 
+The @code{MAIN} block basically finds the beginning and ending of the tables I
+am parsing, and passes everything else through unchanged.  It uses the flag
+@code{started} to pass through the beginning and ending lines basically
+unchanged as well.
+
+The real work is done on lines that are in the middle of the tables.  There is
+first a regular expression check to make sure something is on the line because
+some lines are empty and are just ignored; plus, it passes over lines with @@
+commands.  After it finds a non-empty line, @file{GAWK} parses it into the
+array @code{arr} using the function @code{match}, and then it prints the parsed
+elements.
+
+@code{arr[1]} is used by both tables to produce either a @code{C} or an
+@code{M}, meaning @code{Class} or @code{Module} (from the @code{Class} table),
+or a @code{::} or @code{#} (from the @code{Method} table) meaning class method
+or instance method.  These are used by the @code{classmethod} hash to produce a
+more meaningful description.
+
+@code{arr[2]} is used to hold the substantive name of the element.
+
+@code{arr[3]} is ignored, as it wraps whatever is in parentheses) (i.e., it
+``removes'' the parentheses).
+
+@code{arr[4]} contains the class for which a method is associated (from the
+@code{Method} table).
+
+Once the parsing has been completed, the parts are printed with appropriate
+commands surrounding them, i.e., @code{@@item} or @code{@@code}, etc.
+
 @<apiutil---MAIN Block@>=
+# pass through whatever is not in a target table
 started == 0 { print $0 > newfile }
+
+# process whatever is inside a target table;
+# turn on the 'started' flag the first time it is entered
+# plus ignore the first line (which is @float)
 $0 ~ start, $0 ~ end {
    if (started == 0) {
      started = 1
      next
    }
+
+   # ignore the @table line
    if ($0 ~ /^@table/) {
      print $0 > newfile
      next
    }
+
+   # at the end of a table, add an empty line for better style
+   # and turn off the 'started' flag
    if ($0 ~ end) {
      print "\n"$0 > newfile
      started = 0
      next
    }
-   if ($0 ~ /^[^\n]/) {
-     print "@item "$0 > newfile
+
+   # main work is done here
+   # parse a table row and print some formatted table rows
+   if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
+
+     # the parsing uses parenthesized sections to place information
+     # into the array 'arr'
+     cm = match($0, /([CM]|[:#]+)?([^(]+)(\(([^)]+))?/, arr)
+
+     print "@item "arr[2] > newfile
+
+     # arr[4] is a parenthesized Class associated with a method
+     if (length(arr[4]) > 0) {
+       arr[4] = "@file{"arr[4]"} "
+     }
+
+     print (arr[4])(classmethod[arr[1]]) > newfile
+
    } else {
      print > newfile
-   }
-   if ($0 ~ end) {
-     started = 0
    }
 }
 @

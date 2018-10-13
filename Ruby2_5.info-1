@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3f of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3f of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -5281,7 +5281,7 @@ File: Ruby2_5.info,  Node: API Classes And Modules,  Next: API Methods,  Prev: A
 3.1.2 API Classes And Modules
 -----------------------------
 
-     ARGF
+     CARGF
 
      CArgumentError
 
@@ -5539,7 +5539,7 @@ File: Ruby2_5.info,  Node: API Methods,  Prev: API Classes And Modules,  Up: API
 3.1.3 API Methods
 -----------------
 
-     === (SystemCallError)
+     ::=== (SystemCallError)
 
      ::DEBUG (Thread)
 
@@ -9631,8 +9631,9 @@ A.2 API Utility
 
 The purpose of this little utility is to assist with the construction
 of the API tables; that is, it will help insert '@item' labels, and
-purhaps assist with constructing URL's if I am lucky.  I am writing it
-using the 'GAWK' programming language to get refreshed in using it.
+perhaps assist with constructing URL's if I am lucky.  I am writing it
+using the 'GAWK' programming language to refresh my knowledge of 'AWK'
+(and get to know 'GAWK''s extra features).
 
 {'apiutil.awk'} ==
      #! /usr/bin/env gawk -f
@@ -9670,11 +9671,23 @@ File: Ruby2_5.info,  Node: apiutil.awk BEGIN Block,  Next: apiutil.awk BEGNFILE 
 A.2.1 'apiutil.awk' BEGIN Block
 -------------------------------
 
+The variable 'start' holds a regular expression string that targets
+the two tables I want to process.
+
+   When parsing the lines of text obtained from copying the library
+page, the initial letters and symbols can be translated into
+meaningful words using the hash 'classmethod'.
+
 <apiutil--BEGIN Block> ==
      BEGIN {
        start = "^@float Table,table:api-.*$"
        end   = "^@end table$"
        started = 0
+
+       classmethod["C"]  = "Class"
+       classmethod["M"]  = "Module"
+       classmethod["::"] = "Class Method"
+       classmethod["#"]  = "Instance Method"
      }
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
@@ -9685,6 +9698,8 @@ File: Ruby2_5.info,  Node: apiutil.awk BEGNFILE Block,  Next: apiutil.awk MAIN B
 
 A.2.2 'apiutil.awk' BEGINFILE BLOCK
 -----------------------------------
+
+This will allow this filename to be changed a little more easily.
 
 <apiutil--BEGINFILE Block> ==
      BEGINFILE {
@@ -9701,29 +9716,81 @@ File: Ruby2_5.info,  Node: apiutil.awk MAIN Block,  Next: apiutil.awk ENDFILE Bl
 A.2.3 'apiutil.awk' MAIN Block
 ------------------------------
 
+The 'MAIN' block basically finds the beginning and ending of the
+tables I am parsing, and passes everything else through unchanged.  It
+uses the flag 'started' to pass through the beginning and ending lines
+basically unchanged as well.
+
+   The real work is done on lines that are in the middle of the
+tables.  There is first a regular expression check to make sure
+something is on the line because some lines are empty and are just
+ignored; plus, it passes over lines with @ commands.  After it finds a
+non-empty line, 'GAWK' parses it into the array 'arr' using the
+function 'match', and then it prints the parsed elements.
+
+   'arr[1]' is used by both tables to produce either a 'C' or an 'M',
+meaning 'Class' or 'Module' (from the 'Class' table), or a '::' or '#'
+(from the 'Method' table) meaning class method or instance method.
+These are used by the 'classmethod' hash to produce a more meaningful
+description.
+
+   'arr[2]' is used to hold the substantive name of the element.
+
+   'arr[3]' is ignored, as it wraps whatever is in parentheses) (i.e.,
+it "removes" the parentheses).
+
+   'arr[4]' contains the class for which a method is associated (from
+the 'Method' table).
+
+   Once the parsing has been completed, the parts are printed with
+appropriate commands surrounding them, i.e., '@item' or '@code', etc.
+
 <apiutil--MAIN Block> ==
+     # pass through whatever is not in a target table
      started == 0 { print $0 > newfile }
+
+     # process whatever is inside a target table;
+     # turn on the 'started' flag the first time it is entered
+     # plus ignore the first line (which is @float)
      $0 ~ start, $0 ~ end {
         if (started == 0) {
           started = 1
           next
         }
+
+        # ignore the @table line
         if ($0 ~ /^@table/) {
           print $0 > newfile
           next
         }
+
+        # at the end of a table, add an empty line for better style
+        # and turn off the 'started' flag
         if ($0 ~ end) {
           print "\n"$0 > newfile
           started = 0
           next
         }
-        if ($0 ~ /^[^\n]/) {
-          print "@item "$0 > newfile
+
+        # main work is done here
+        # parse a table row and print some formatted table rows
+        if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
+
+          # the parsing uses parenthesized sections to place information
+          # into the array 'arr'
+          cm = match($0, /([CM]|[:#]+)?([^(]+)(\(([^)]+))?/, arr)
+
+          print "@item "arr[2] > newfile
+
+          # arr[4] is a parenthesized Class associated with a method
+          if (length(arr[4]) > 0) {
+            arr[4] = "@file{"arr[4]"} "
+          }
+
+          print (arr[4])(classmethod[arr[1]]) > newfile
+
         } else {
           print > newfile
-        }
-        if ($0 ~ end) {
-          started = 0
         }
      }
 
@@ -10227,20 +10294,20 @@ Index
 * :: operator:                           Ruby User's Guide On Modules.
                                                             (line  27)
 * <apiutil--BEGIN Block>, definition:    apiutil.awk BEGIN Block.
-                                                            (line   6)
-* <apiutil--BEGIN Block>, use:           API Utility.       (line  11)
+                                                            (line  13)
+* <apiutil--BEGIN Block>, use:           API Utility.       (line  12)
 * <apiutil--BEGINFILE Block>, definition: apiutil.awk BEGNFILE Block.
-                                                            (line   6)
-* <apiutil--BEGINFILE Block>, use:       API Utility.       (line  11)
+                                                            (line   8)
+* <apiutil--BEGINFILE Block>, use:       API Utility.       (line  12)
 * <apiutil--END Block>, definition:      apiutil.awk END Block.
                                                             (line   6)
-* <apiutil--END Block>, use:             API Utility.       (line  11)
+* <apiutil--END Block>, use:             API Utility.       (line  12)
 * <apiutil--ENDFILE Block>, definition:  apiutil.awk ENDFILE Block.
                                                             (line   6)
-* <apiutil--ENDFILE Block>, use:         API Utility.       (line  11)
+* <apiutil--ENDFILE Block>, use:         API Utility.       (line  12)
 * <apiutil--MAIN Block>, definition:     apiutil.awk MAIN Block.
-                                                            (line   6)
-* <apiutil--MAIN Block>, use:            API Utility.       (line  11)
+                                                            (line  35)
+* <apiutil--MAIN Block>, use:            API Utility.       (line  12)
 * <eval--EvalWrapper-Constants>, definition: eval Module Code.
                                                             (line   6)
 * <eval--EvalWrapper-Constants>, use:    Ruby Eval Utility. (line  10)
@@ -10312,7 +10379,7 @@ Index
                                                             (line  54)
 * __FILE__ special variable:             Large Class Definition.
                                                             (line 151)
-* {apiutil.awk}, definition:             API Utility.       (line  11)
+* {apiutil.awk}, definition:             API Utility.       (line  12)
 * {eval.rb}, definition:                 Ruby Eval Utility. (line  10)
 * {fact.rb}, definition:                 Ruby User's Guide On Simple Examples.
                                                             (line  17)

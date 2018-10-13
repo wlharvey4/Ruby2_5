@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3e of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3f of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -70,31 +70,83 @@ Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block"
 <a name="apiutil_002eawk-MAIN-Block-1"></a>
 <h4 class="appendixsubsec">A.2.3 <samp>apiutil.awk</samp> MAIN Block</h4>
 
+<p>The <code>MAIN</code> block basically finds the beginning and ending of the tables I
+am parsing, and passes everything else through unchanged.  It uses the flag
+<code>started</code> to pass through the beginning and ending lines basically
+unchanged as well.
+</p>
+<p>The real work is done on lines that are in the middle of the tables.  There is
+first a regular expression check to make sure something is on the line because
+some lines are empty and are just ignored; plus, it passes over lines with @
+commands.  After it finds a non-empty line, <samp>GAWK</samp> parses it into the
+array <code>arr</code> using the function <code>match</code>, and then it prints the parsed
+elements.
+</p>
+<p><code>arr[1]</code> is used by both tables to produce either a <code>C</code> or an
+<code>M</code>, meaning <code>Class</code> or <code>Module</code> (from the <code>Class</code> table),
+or a <code>::</code> or <code>#</code> (from the <code>Method</code> table) meaning class method
+or instance method.  These are used by the <code>classmethod</code> hash to produce a
+more meaningful description.
+</p>
+<p><code>arr[2]</code> is used to hold the substantive name of the element.
+</p>
+<p><code>arr[3]</code> is ignored, as it wraps whatever is in parentheses) (i.e., it
+&ldquo;removes&rdquo; the parentheses).
+</p>
+<p><code>arr[4]</code> contains the class for which a method is associated (from the
+<code>Method</code> table).
+</p>
+<p>Once the parsing has been completed, the parts are printed with appropriate
+commands surrounding them, i.e., <code>@item</code> or <code>@code</code>, etc.
+</p>
 <a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example">started == 0 { print $0 &gt; newfile }
+<pre class="example"># pass through whatever is not in a target table
+started == 0 { print $0 &gt; newfile }
+
+# process whatever is inside a target table;
+# turn on the 'started' flag the first time it is entered
+# plus ignore the first line (which is @float)
 $0 ~ start, $0 ~ end {
    if (started == 0) {
      started = 1
      next
    }
+
+   # ignore the @table line
    if ($0 ~ /^@table/) {
      print $0 &gt; newfile
      next
    }
+
+   # at the end of a table, add an empty line for better style
+   # and turn off the 'started' flag
    if ($0 ~ end) {
      print &quot;\n&quot;$0 &gt; newfile
      started = 0
      next
    }
-   if ($0 ~ /^[^\n]/) {
-     print &quot;@item &quot;$0 &gt; newfile
+
+   # main work is done here
+   # parse a table row and print some formatted table rows
+   if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
+
+     # the parsing uses parenthesized sections to place information
+     # into the array 'arr'
+     cm = match($0, /([CM]|[:#]+)?([^(]+)(\(([^)]+))?/, arr)
+
+     print &quot;@item &quot;arr[2] &gt; newfile
+
+     # arr[4] is a parenthesized Class associated with a method
+     if (length(arr[4]) &gt; 0) {
+       arr[4] = &quot;@file{&quot;arr[4]&quot;} &quot;
+     }
+
+     print (arr[4])(classmethod[arr[1]]) &gt; newfile
+
    } else {
      print &gt; newfile
-   }
-   if ($0 ~ end) {
-     started = 0
    }
 }
 </pre></div>
@@ -103,6 +155,11 @@ $0 ~ start, $0 ~ end {
 </p>
 
 
+<hr>
+<div class="header">
+<p>
+Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block" accesskey="n" rel="next"><samp>apiutil.awk</samp> ENDFILE Block</a>, Previous: <a href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Block" accesskey="p" rel="prev"><samp>apiutil.awk</samp> BEGNFILE Block</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 

@@ -10,12 +10,12 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3f of 'Ruby 2.5 Information and Documentation'.
 
 
 Indirect:
 Ruby2_5.info-1: 371
-Ruby2_5.info-2: 318476
+Ruby2_5.info-2: 321164
 
 Tag Table:
 (Indirect)
@@ -158,65 +158,65 @@ Node: API Files175676
 Ref: table:api175805
 Node: API Classes And Modules177561
 Ref: table:api-classes-and-modules177738
-Node: API Methods180263
-Ref: table:api-methods180398
-Node: Beginner Core Topics227967
-Ref: table:core-topics228116
-Node: Standard Library Reference228660
-Node: List of Tables228911
-Node: Utility Programs229545
-Node: Ruby Eval Utility229768
-Ref: eval-rb229984
-Node: eval Module Code231931
-Ref: eval---EvalWrapper--Constants232096
-Node: eval Indentation Deltas Code232623
-Ref: eval---EvalWrapper--Indentation-Deltas232844
-Node: eval Main Get Line Code233723
-Ref: eval---Main--Get-Line233945
-Node: eval Main Process Line Code234405
-Ref: eval---Main--Process-Line234598
-Node: eval If Not Line Code235239
-Ref: eval---Main--Process-Line-If-Not-Line235425
-Node: eval If Is Line Code235772
-Ref: eval---Main--Process-Line-Is-Line235956
-Ref: eval---Main--Process-Line-Is-Line-Indentation236806
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-237527
-Node: API Utility238243
-Ref: apiutil-awk238645
-Node: apiutil.awk BEGIN Block239523
-Ref: apiutil---BEGIN-Block239695
-Node: apiutil.awk BEGNFILE Block239927
-Ref: apiutil---BEGINFILE-Block240138
-Node: apiutil.awk MAIN Block240317
-Ref: apiutil---MAIN-Block240520
-Node: apiutil.awk ENDFILE Block241151
-Ref: apiutil---ENDFILE-Block241355
-Node: apiutil.awk END Block241581
-Ref: apiutil---END-Block241778
-Node: apiutil Makefile Target241936
-Ref: Makefile---Utility-Targets-1242387
-Node: Initial Setup and Post Create242687
-Node: Initial Setup243045
-Ref: setpath-sh243838
-Node: Post Create243958
-Node: The Makefile244503
-Ref: Makefile244672
-Node: Makefile Variable Definitions245592
-Ref: Makefile---Variable-Definitions245770
-Node: Makefile Default Rule245994
-Ref: Makefile---Default-Rule246544
-Node: Makefile TWJR Rules246823
-Ref: Makefile---TWJR-Rules246986
-Node: Makefile Utility Targets247653
-Ref: Makefile---Utility-Targets-2247825
-Node: Makefile Clean Rules248058
-Ref: Makefile---Clean-Rules248194
-Node: Code Chunk Summaries248709
-Node: File Definitions249094
-Node: Code Chunk Definitions249753
-Node: Code Chunk References252187
-Node: Bibliography255298
-Node: Concept Index255429
-Node: Program Index318476
+Node: API Methods180264
+Ref: table:api-methods180399
+Node: Beginner Core Topics227970
+Ref: table:core-topics228119
+Node: Standard Library Reference228663
+Node: List of Tables228914
+Node: Utility Programs229548
+Node: Ruby Eval Utility229771
+Ref: eval-rb229987
+Node: eval Module Code231934
+Ref: eval---EvalWrapper--Constants232099
+Node: eval Indentation Deltas Code232626
+Ref: eval---EvalWrapper--Indentation-Deltas232847
+Node: eval Main Get Line Code233726
+Ref: eval---Main--Get-Line233948
+Node: eval Main Process Line Code234408
+Ref: eval---Main--Process-Line234601
+Node: eval If Not Line Code235242
+Ref: eval---Main--Process-Line-If-Not-Line235428
+Node: eval If Is Line Code235775
+Ref: eval---Main--Process-Line-Is-Line235959
+Ref: eval---Main--Process-Line-Is-Line-Indentation236809
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-237530
+Node: API Utility238246
+Ref: apiutil-awk238694
+Node: apiutil.awk BEGIN Block239572
+Ref: apiutil---BEGIN-Block240024
+Node: apiutil.awk BEGNFILE Block240415
+Ref: apiutil---BEGINFILE-Block240693
+Node: apiutil.awk MAIN Block240872
+Ref: apiutil---MAIN-Block242392
+Node: apiutil.awk ENDFILE Block243839
+Ref: apiutil---ENDFILE-Block244043
+Node: apiutil.awk END Block244269
+Ref: apiutil---END-Block244466
+Node: apiutil Makefile Target244624
+Ref: Makefile---Utility-Targets-1245075
+Node: Initial Setup and Post Create245375
+Node: Initial Setup245733
+Ref: setpath-sh246526
+Node: Post Create246646
+Node: The Makefile247191
+Ref: Makefile247360
+Node: Makefile Variable Definitions248280
+Ref: Makefile---Variable-Definitions248458
+Node: Makefile Default Rule248682
+Ref: Makefile---Default-Rule249232
+Node: Makefile TWJR Rules249511
+Ref: Makefile---TWJR-Rules249674
+Node: Makefile Utility Targets250341
+Ref: Makefile---Utility-Targets-2250513
+Node: Makefile Clean Rules250746
+Ref: Makefile---Clean-Rules250882
+Node: Code Chunk Summaries251397
+Node: File Definitions251782
+Node: Code Chunk Definitions252441
+Node: Code Chunk References254875
+Node: Bibliography257986
+Node: Concept Index258117
+Node: Program Index321164
 
 End Tag Table
