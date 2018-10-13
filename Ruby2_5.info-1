@@ -40,6 +40,7 @@ General Public License, version 3.
 * Standard Library Reference::
 * List of Tables::
 * Utility Programs::
+* Initial Setup and Post Create::
 * The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
@@ -203,7 +204,6 @@ Utility Programs
 
 * Ruby Eval Utility::
 * API Utility::
-* apiutil.awk Makefile Target::
 
 Ruby Eval Utility
 
@@ -224,6 +224,12 @@ API Utility
 * apiutil.awk MAIN Block::
 * apiutil.awk ENDFILE Block::
 * apiutil.awk END Block::
+* apiutil Makefile Target::
+
+Initial Setup and Post Create
+
+* Initial Setup::
+* Post Create::
 
 The Makefile
 
@@ -9326,7 +9332,7 @@ List of Tables
 * Table 3.4: table:core-topics.          Table of Core Topics
 
 
-File: Ruby2_5.info,  Node: Utility Programs,  Next: The Makefile,  Prev: List of Tables,  Up: Top
+File: Ruby2_5.info,  Node: Utility Programs,  Next: Initial Setup and Post Create,  Prev: List of Tables,  Up: Top
 
 Appendix A Utility Programs
 ***************************
@@ -9335,7 +9341,6 @@ Appendix A Utility Programs
 
 * Ruby Eval Utility::
 * API Utility::
-* apiutil.awk Makefile Target::
 
 
 File: Ruby2_5.info,  Node: Ruby Eval Utility,  Next: API Utility,  Up: Utility Programs
@@ -9619,7 +9624,7 @@ This chunk is called by <eval--Main-Process Line-Is Line>; see its
 first definition at *note eval---Main--Process-Line-Is-Line::.
 
 
-File: Ruby2_5.info,  Node: API Utility,  Next: apiutil.awk Makefile Target,  Prev: Ruby Eval Utility,  Up: Utility Programs
+File: Ruby2_5.info,  Node: API Utility,  Prev: Ruby Eval Utility,  Up: Utility Programs
 
 A.2 API Utility
 ===============
@@ -9657,6 +9662,7 @@ Block>
 * apiutil.awk MAIN Block::
 * apiutil.awk ENDFILE Block::
 * apiutil.awk END Block::
+* apiutil Makefile Target::
 
 
 File: Ruby2_5.info,  Node: apiutil.awk BEGIN Block,  Next: apiutil.awk BEGNFILE Block,  Up: API Utility
@@ -9740,7 +9746,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
-File: Ruby2_5.info,  Node: apiutil.awk END Block,  Prev: apiutil.awk ENDFILE Block,  Up: API Utility
+File: Ruby2_5.info,  Node: apiutil.awk END Block,  Next: apiutil Makefile Target,  Prev: apiutil.awk ENDFILE Block,  Up: API Utility
 
 A.2.5 'apiutil.awk' END Block
 -----------------------------
@@ -9754,18 +9760,23 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
-File: Ruby2_5.info,  Node: apiutil.awk Makefile Target,  Prev: API Utility,  Up: Utility Programs
+File: Ruby2_5.info,  Node: apiutil Makefile Target,  Prev: apiutil.awk END Block,  Up: API Utility
 
-A.3 'apiutil.awk' Makefile Target
-=================================
+A.2.6 apiutil Makefile Target
+-----------------------------
+
+Add a target for running 'apiutil.awk' in the Makefile.  Note that the
+directory './bin' is created in the '@initial_setup' environment
+(*note Initial Setup::) and is made executable by a '@post_create'
+command (*note Post Create::), both of which were added by the
+'TexiwebJR' program.
 
 <Makefile--Utility Targets> ==
      # apiutil.awk
      #############
      .PHONY : apiutil
      apiutil :
-
-         ./apiutil.awk Ruby2_5.twjr
+         bin/apiutil.awk Ruby2_5.twjr
 
 
 This chunk is also defined in *note Makefile---Utility-Targets-2::.
@@ -9774,9 +9785,69 @@ This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Utility Programs,  Up: Top
+File: Ruby2_5.info,  Node: Initial Setup and Post Create,  Next: The Makefile,  Prev: Utility Programs,  Up: Top
 
-Appendix B The Makefile
+Appendix B Initial Setup and Post Create
+****************************************
+
+TexiwebJr has a couple of new utility commands for working with files:
+
+   * '@initial_setup'
+   * '@post_create'
+
+* Menu:
+
+* Initial Setup::
+* Post Create::
+
+
+File: Ruby2_5.info,  Node: Initial Setup,  Next: Post Create,  Up: Initial Setup and Post Create
+
+B.1 Initial Setup
+=================
+
+TexiwebJR added a new command '@initial_setup' that executes some
+commands in the shell prior to 'jrtangle' or 'jrweave' processing a
+file.  This can be used to create directories into which the command
+'@post_create' can move specified files (*note Post Create::).
+
+   Since these commands do not show up in a woven document, I have
+placed them into a little '@example' environment here:
+
+     @initial_setup
+     mkdir -p src
+     mkdir -p bin
+     @end initial_setup
+
+   Set up some directories into which files can be moved, and add a
+little shell script to add './bin' to 'PATH' (but it can only be run
+from the command line as 'source setpath.sh').
+
+{'setpath.sh'} ==
+     #! /usr/bin/env bash
+     # setpath.sh USAGE 'source setpath.sh'
+
+     export PATH=./bin:$PATH
+
+
+
+File: Ruby2_5.info,  Node: Post Create,  Prev: Initial Setup,  Up: Initial Setup and Post Create
+
+B.2 Post Create
+===============
+
+Make 'apiutil.awk' executable and move it into 'bin'.  It can be run
+either by executing the 'make' target 'apiutil' (as 'make apiutil') or
+by running the command from the './bin' directory.  Note that there is
+a little shell script that will add './bin' to the 'path' environment
+variable, which must be run "by hand" as 'source setpath.sh'.
+
+     @post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
+
+
+File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Initial Setup and Post Create,  Up: Top
+
+Appendix C The Makefile
 ***********************
 
 {'Makefile'} ==
@@ -9817,7 +9888,7 @@ Definitions>
 
 File: Ruby2_5.info,  Node: Makefile Variable Definitions,  Next: Makefile Default Rule,  Up: The Makefile
 
-B.1 Makefile Variable Definitions
+C.1 Makefile Variable Definitions
 =================================
 
 <Makefile--Variable Definitions> ==
@@ -9833,7 +9904,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Rules,  Prev: Makefile Variable Definitions,  Up: The Makefile
 
-B.2 Default Rule
+C.2 Default Rule
 ================
 
 The 'default' rule is to create a PDF document and all HTML files.
@@ -9857,7 +9928,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile TWJR Rules,  Next: Makefile Utility Targets,  Prev: Makefile Default Rule,  Up: The Makefile
 
-B.3 TWJR Rules
+C.3 TWJR Rules
 ==============
 
 <Makefile--TWJR Rules> ==
@@ -9896,7 +9967,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Utility Targets,  Next: Makefile Clean Rules,  Prev: Makefile TWJR Rules,  Up: The Makefile
 
-B.4 Utility Targets
+C.4 Utility Targets
 ===================
 
 <Makefile--Utility Targets> +==
@@ -9911,7 +9982,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Clean Rules,  Prev: Makefile Utility Targets,  Up: The Makefile
 
-B.5 Clean Rules
+C.5 Clean Rules
 ===============
 
 <Makefile--Clean Rules> ==
@@ -9937,7 +10008,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: The Makefile,  Up: Top
 
-Appendix C Code Chunk Summaries
+Appendix D Code Chunk Summaries
 *******************************
 
 This major node presents alphabetical lists of all the file
@@ -9953,7 +10024,7 @@ references.
 
 File: Ruby2_5.info,  Node: File Definitions,  Next: Code Chunk Definitions,  Up: Code Chunk Summaries
 
-C.1 Source File Definitions
+D.1 Source File Definitions
 ===========================
 
 {'Makefile'}
@@ -9970,11 +10041,13 @@ C.1 Source File Definitions
      This chunk is defined in *note regx-rb::.
 {'ri20min.rb'}
      This chunk is defined in *note ri20min-rb::.
+{'setpath.sh'}
+     This chunk is defined in *note setpath-sh::.
 
 
 File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,  Prev: File Definitions,  Up: Code Chunk Summaries
 
-C.2 Code Chunk Definitions
+D.2 Code Chunk Definitions
 ==========================
 
 <Makefile--Clean Rules>
@@ -10033,7 +10106,7 @@ C.2 Code Chunk Definitions
 
 File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,  Up: Code Chunk Summaries
 
-C.3 Code Chunk References
+D.3 Code Chunk References
 =========================
 
 <Makefile--Clean Rules>
@@ -10206,8 +10279,8 @@ Index
 * <Makefile--TWJR Rules>, definition:    Makefile TWJR Rules.
                                                             (line   6)
 * <Makefile--TWJR Rules>, use:           The Makefile.      (line   6)
-* <Makefile--Utility Targets>, definition: apiutil.awk Makefile Target.
-                                                            (line   6)
+* <Makefile--Utility Targets>, definition: apiutil Makefile Target.
+                                                            (line  12)
 * <Makefile--Utility Targets>, definition <1>: Makefile Utility Targets.
                                                             (line   6)
 * <Makefile--Utility Targets>, use:      The Makefile.      (line   6)
@@ -10250,6 +10323,7 @@ Index
                                                             (line  31)
 * {ri20min.rb}, definition:              Large Class Definition.
                                                             (line  10)
+* {setpath.sh}, definition:              Initial Setup.     (line  23)
 * access control:                        To Ruby From Java. (line  36)
 * access control <1>:                    Ruby User's Guide On Access Control.
                                                             (line   6)

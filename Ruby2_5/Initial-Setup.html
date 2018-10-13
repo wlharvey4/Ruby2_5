@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.3e of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Initial Setup (Ruby2_5 Information)</title>
+
+<meta name="description" content="Initial Setup (Ruby2_5 Information)">
+<meta name="keywords" content="Initial Setup (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" rel="up" title="Initial Setup and Post Create">
+<link href="Post-Create.html#Post-Create" rel="next" title="Post Create">
+<link href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" rel="prev" title="Initial Setup and Post Create">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Initial-Setup"></a>
+<div class="header">
+<p>
+Next: <a href="Post-Create.html#Post-Create" accesskey="n" rel="next">Post Create</a>, Up: <a href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" accesskey="u" rel="up">Initial Setup and Post Create</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Initial-Setup-1"></a>
+<h3 class="appendixsec">B.1 Initial Setup</h3>
+
+<p>TexiwebJR added a new command <code>@initial_setup</code> that executes some
+commands in the shell prior to <code>jrtangle</code> or <code>jrweave</code>
+processing a file.  This can be used to create directories into which the
+command <code>@post_create</code> can move specified files (see section <a href="Post-Create.html#Post-Create">Post Create</a>).
+</p>
+<p>Since these commands do not show up in a woven document, I have placed them
+into a little <code>@example</code> environment here:
+</p>
+<div class="example">
+<pre class="example">@initial_setup
+mkdir -p src
+mkdir -p bin
+@end initial_setup
+</pre></div>
+
+
+<p>Set up some directories into which files can be moved, and add a little shell
+script to add <samp>./bin</samp> to <code>PATH</code> (but it can only be run from the
+command line as <kbd>source setpath.sh</kbd>).
+</p>
+<a name="setpath_002dsh"></a><a name="index-_007bsetpath_002esh_007d_002c-definition"></a>
+<p><span class="roman">{<samp>setpath.sh</samp>}</span> &equiv;
+</p><div class="example">
+<pre class="example">#! /usr/bin/env bash
+# setpath.sh USAGE 'source setpath.sh'
+
+export PATH=./bin:$PATH
+
+</pre></div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

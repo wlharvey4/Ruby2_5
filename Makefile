@@ -47,7 +47,7 @@ $(FILE)/ : $(FILE).texi
 #############
 .PHONY : apiutil
 apiutil : 
-	./apiutil.awk Ruby2_5.twjr
+	bin/apiutil.awk Ruby2_5.twjr
 
 # UTILITY TARGETS
 #################

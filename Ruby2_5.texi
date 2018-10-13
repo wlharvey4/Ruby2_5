@@ -236,6 +236,7 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Standard Library Reference::
 * List of Tables::
 * Utility Programs::
+* Initial Setup and Post Create::
 * The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
@@ -400,7 +401,6 @@ Utility Programs
 
 * Ruby Eval Utility::
 * API Utility::
-* @file{apiutil.awk} Makefile Target::
 
 Ruby Eval Utility
 
@@ -421,6 +421,12 @@ API Utility
 * @file{apiutil.awk} MAIN Block::
 * @file{apiutil.awk} ENDFILE Block::
 * @file{apiutil.awk} END Block::
+* apiutil Makefile Target::
+
+Initial Setup and Post Create
+
+* Initial Setup::
+* Post Create::
 
 The Makefile
 
@@ -10412,7 +10418,6 @@ Cfatal
 @menu
 * Ruby Eval Utility::
 * API Utility::
-* @file{apiutil.awk} Makefile Target::
 @end menu
 
 @node Ruby Eval Utility
@@ -10867,6 +10872,7 @@ The following table lists called chunk definition points.
 * @file{apiutil.awk} MAIN Block::
 * @file{apiutil.awk} ENDFILE Block::
 * @file{apiutil.awk} END Block::
+* apiutil Makefile Target::
 @end menu
 
 @node @file{apiutil.awk} BEGIN Block
@@ -11019,8 +11025,19 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @textfonts @rm
 @end iftex
 
-@node @file{apiutil.awk} Makefile Target
-@appendixsec @file{apiutil.awk} Makefile Target
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node apiutil Makefile Target
+@appendixsubsec apiutil Makefile Target
+
+Add a target for running @file{apiutil.awk} in the Makefile.  Note that the
+directory @file{./bin} is created in the @code{@@initial_setup} environment
+(@pxref{Initial Setup}) and is made executable by a @code{@@post_create}
+command (@pxref{Post Create}), both of which were added by the @file{TexiwebJR}
+program.
 
 @need 400
 @anchor{Makefile---Utility-Targets-1}
@@ -11032,8 +11049,7 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 #############
 .PHONY : apiutil
 apiutil : 
-
-    ./apiutil.awk Ruby2_5.twjr
+    bin/apiutil.awk Ruby2_5.twjr
 
 @end example
 @iftex
@@ -11049,6 +11065,97 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @iftex
 @textfonts @rm
 @end iftex
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node Initial Setup and Post Create
+@appendix Initial Setup and Post Create
+
+TexiwebJr has a couple of new utility commands for working with files:
+
+@itemize
+@item
+@code{@@initial_setup}
+@item
+@code{@@post_create}
+@end itemize
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@menu
+* Initial Setup::
+* Post Create::
+@end menu
+
+@node Initial Setup
+@appendixsec Initial Setup
+
+TexiwebJR added a new command @command{@@initial_setup} that executes some
+commands in the shell prior to @command{jrtangle} or @command{jrweave}
+processing a file.  This can be used to create directories into which the
+command @command{@@post_create} can move specified files (@pxref{Post Create}).
+
+Since these commands do not show up in a woven document, I have placed them
+into a little @command{@@example} environment here:
+
+@example
+@@initial_setup
+mkdir -p src
+mkdir -p bin
+@@end initial_setup
+@end example
+
+
+Set up some directories into which files can be moved, and add a little shell
+script to add @file{./bin} to @env{PATH} (but it can only be run from the
+command line as @kbd{source setpath.sh}).
+
+@need 400
+@anchor{setpath-sh}
+@cdindex @r{@{@file{setpath.sh}@}}, definition
+@noindent
+@r{@{@file{setpath.sh}@}} @equiv{}
+@example
+#! /usr/bin/env bash
+# setpath.sh USAGE 'source setpath.sh'
+
+export PATH=./bin:$PATH
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+@iftex
+@textfonts @rm
+@end iftex
+
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Post Create
+@appendixsec Post Create
+
+Make @file{apiutil.awk} executable and move it into @file{bin}.  It can be run
+either by executing the @command{make} target @samp{apiutil} (as @samp{make
+apiutil}) or by running the command from the @file{./bin} directory.  Note that
+there is a little shell script that will add @file{./bin} to the @env{path}
+environment variable, which must be run ``by hand'' as @samp{source
+setpath.sh}.
+
+@example
+@@post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
+@end example
 
 
 
@@ -11358,6 +11465,9 @@ This chunk is defined in
 @item @r{@{@file{ri20min.rb}@}}
 This chunk is defined in
 @ref{ri20min-rb}.
+@item @r{@{@file{setpath.sh}@}}
+This chunk is defined in
+@ref{setpath-sh}.
 @end table
 
 

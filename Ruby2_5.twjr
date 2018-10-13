@@ -10219,20 +10219,109 @@ END {
 }
 @
 
-@node @file{apiutil.awk} Makefile Target
-@appendixsec @file{apiutil.awk} Makefile Target
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node apiutil Makefile Target
+@appendixsubsec apiutil Makefile Target
+
+Add a target for running @file{apiutil.awk} in the Makefile.  Note that the
+directory @file{./bin} is created in the @code{@@initial_setup} environment
+(@pxref{Initial Setup}) and is made executable by a @code{@@post_create}
+command (@pxref{Post Create}), both of which were added by the @file{TexiwebJR}
+program.
 
 @<Makefile---Utility Targets@>=
 # apiutil.awk
 #############
 .PHONY : apiutil
 apiutil : 
-
-	./apiutil.awk Ruby2_5.twjr
+	bin/apiutil.awk Ruby2_5.twjr
 
 @
 
-@post_create apiutil.awk cx apiutil.awk
+
+
+
+
+
+@c *****************************************************************************
+
+@node Initial Setup and Post Create
+@appendix Initial Setup and Post Create
+
+TexiwebJr has a couple of new utility commands for working with files:
+
+@itemize
+@item
+@code{@@initial_setup}
+@item
+@code{@@post_create}
+@end itemize
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Initial Setup
+@appendixsec Initial Setup
+
+TexiwebJR added a new command @command{@@initial_setup} that executes some
+commands in the shell prior to @command{jrtangle} or @command{jrweave}
+processing a file.  This can be used to create directories into which the
+command @command{@@post_create} can move specified files (@pxref{Post Create}).
+
+Since these commands do not show up in a woven document, I have placed them
+into a little @command{@@example} environment here:
+
+@example
+@@initial_setup
+mkdir -p src
+mkdir -p bin
+@@end initial_setup
+@end example
+
+
+Set up some directories into which files can be moved, and add a little shell
+script to add @file{./bin} to @env{PATH} (but it can only be run from the
+command line as @kbd{source setpath.sh}).
+
+@(setpath.sh@)=
+#! /usr/bin/env bash
+# setpath.sh USAGE 'source setpath.sh'
+
+export PATH=./bin:$PATH
+
+@
+
+@initial_setup
+mkdir -p src
+mkdir -p bin
+@end initial_setup
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Post Create
+@appendixsec Post Create
+
+Make @file{apiutil.awk} executable and move it into @file{bin}.  It can be run
+either by executing the @command{make} target @samp{apiutil} (as @samp{make
+apiutil}) or by running the command from the @file{./bin} directory.  Note that
+there is a little shell script that will add @file{./bin} to the @env{path}
+environment variable, which must be run ``by hand'' as @samp{source
+setpath.sh}.
+
+@example
+@@post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
+@end example
+
+@post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
 
 
 
