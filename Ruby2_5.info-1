@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3d of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3e of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3d of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3e of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -203,6 +203,7 @@ Utility Programs
 
 * Ruby Eval Utility::
 * API Utility::
+* apiutil.awk Makefile Target::
 
 Ruby Eval Utility
 
@@ -229,6 +230,7 @@ The Makefile
 * Makefile Variable Definitions::
 * Makefile Default Rule::
 * Makefile TWJR Rules::
+* Makefile Utility Targets::
 * Makefile Clean Rules::
 
 Code Chunk Summaries
@@ -9333,6 +9335,7 @@ Appendix A Utility Programs
 
 * Ruby Eval Utility::
 * API Utility::
+* apiutil.awk Makefile Target::
 
 
 File: Ruby2_5.info,  Node: Ruby Eval Utility,  Next: API Utility,  Up: Utility Programs
@@ -9616,7 +9619,7 @@ This chunk is called by <eval--Main-Process Line-Is Line>; see its
 first definition at *note eval---Main--Process-Line-Is-Line::.
 
 
-File: Ruby2_5.info,  Node: API Utility,  Prev: Ruby Eval Utility,  Up: Utility Programs
+File: Ruby2_5.info,  Node: API Utility,  Next: apiutil.awk Makefile Target,  Prev: Ruby Eval Utility,  Up: Utility Programs
 
 A.2 API Utility
 ===============
@@ -9751,16 +9754,45 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
+File: Ruby2_5.info,  Node: apiutil.awk Makefile Target,  Prev: API Utility,  Up: Utility Programs
+
+A.3 'apiutil.awk' Makefile Target
+=================================
+
+<Makefile--Utility Targets> ==
+     # apiutil.awk
+     #############
+     .PHONY : apiutil
+     apiutil :
+
+         ./apiutil.awk Ruby2_5.twjr
+
+
+This chunk is also defined in *note Makefile---Utility-Targets-2::.
+
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
+
+
 File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Utility Programs,  Up: Top
 
 Appendix B The Makefile
 ***********************
 
 {'Makefile'} ==
+     # MAKEFILE FILE CHUNKS
+     ######################
+
      <Makefile--Variable Definitions>
+
      <Makefile--Default Rule>
+
      <Makefile--TWJR Rules>
+
+     <Makefile--Utility Targets>
+
      <Makefile--Clean Rules>
+
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
@@ -9769,6 +9801,8 @@ Chunk name                First definition point
 <Makefile--Default        See *note Makefile---Default-Rule::.
 Rule>
 <Makefile--TWJR Rules>    See *note Makefile---TWJR-Rules::.
+<Makefile--Utility        See *note Makefile---Utility-Targets-1::.
+Targets>
 <Makefile--Variable       See *note Makefile---Variable-Definitions::.
 Definitions>
 
@@ -9777,6 +9811,7 @@ Definitions>
 * Makefile Variable Definitions::
 * Makefile Default Rule::
 * Makefile TWJR Rules::
+* Makefile Utility Targets::
 * Makefile Clean Rules::
 
 
@@ -9786,6 +9821,8 @@ B.1 Makefile Variable Definitions
 =================================
 
 <Makefile--Variable Definitions> ==
+     # VARIABLE DEFINITIONS
+     ######################
      FILE := Ruby2_5
      SHELL := /bin/bash
 
@@ -9807,6 +9844,8 @@ just 'jrweave' on the '.twjr' file.  Thereafter, you can update the
 '.texi' file and run the 'default'.
 
 <Makefile--Default Rule> ==
+     # DEFAULT RULE
+     ##############
      .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
      .PHONY : twjr tangle weave texi pdf html
      default : PDF HTML
@@ -9816,12 +9855,14 @@ This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: Makefile TWJR Rules,  Next: Makefile Clean Rules,  Prev: Makefile Default Rule,  Up: The Makefile
+File: Ruby2_5.info,  Node: Makefile TWJR Rules,  Next: Makefile Utility Targets,  Prev: Makefile Default Rule,  Up: The Makefile
 
 B.3 TWJR Rules
 ==============
 
 <Makefile--TWJR Rules> ==
+     # TWJR RULES
+     ############
      TWJR : twjr
      twjr : tangle weave
 
@@ -9853,12 +9894,29 @@ This chunk is called by {'Makefile'}; see its first definition at
 *note Makefile::.
 
 
-File: Ruby2_5.info,  Node: Makefile Clean Rules,  Prev: Makefile TWJR Rules,  Up: The Makefile
+File: Ruby2_5.info,  Node: Makefile Utility Targets,  Next: Makefile Clean Rules,  Prev: Makefile TWJR Rules,  Up: The Makefile
 
-B.4 Clean Rules
+B.4 Utility Targets
+===================
+
+<Makefile--Utility Targets> +==
+     # UTILITY TARGETS
+     #################
+
+This chunk is also defined in *note Makefile---Utility-Targets-1::.
+
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
+
+
+File: Ruby2_5.info,  Node: Makefile Clean Rules,  Prev: Makefile Utility Targets,  Up: The Makefile
+
+B.5 Clean Rules
 ===============
 
 <Makefile--Clean Rules> ==
+     # CLEAN RULES
+     #############
      .PHONY : clean distclean veryclean worldclean
      clean :
          rm -f *~ \#*\#
@@ -9925,6 +9983,11 @@ C.2 Code Chunk Definitions
      This chunk is defined in *note Makefile---Default-Rule::.
 <Makefile--TWJR Rules>
      This chunk is defined in *note Makefile---TWJR-Rules::.
+<Makefile--Utility Targets>
+     Multiple definitions occur in *note
+     Makefile---Utility-Targets-1::, and *note
+     Makefile---Utility-Targets-2::.
+
 <Makefile--Variable Definitions>
      This chunk is defined in *note Makefile---Variable-Definitions::.
 <MegaGreeter--Initialize Method>
@@ -9982,6 +10045,10 @@ C.3 Code Chunk References
      This chunk is called by {'Makefile'}; see its first definition at
      *note Makefile::.
 <Makefile--TWJR Rules>
+
+     This chunk is called by {'Makefile'}; see its first definition at
+     *note Makefile::.
+<Makefile--Utility Targets>
 
      This chunk is called by {'Makefile'}; see its first definition at
      *note Makefile::.
@@ -10139,6 +10206,11 @@ Index
 * <Makefile--TWJR Rules>, definition:    Makefile TWJR Rules.
                                                             (line   6)
 * <Makefile--TWJR Rules>, use:           The Makefile.      (line   6)
+* <Makefile--Utility Targets>, definition: apiutil.awk Makefile Target.
+                                                            (line   6)
+* <Makefile--Utility Targets>, definition <1>: Makefile Utility Targets.
+                                                            (line   6)
+* <Makefile--Utility Targets>, use:      The Makefile.      (line   6)
 * <Makefile--Variable Definitions>, definition: Makefile Variable Definitions.
                                                             (line   6)
 * <Makefile--Variable Definitions>, use: The Makefile.      (line   6)

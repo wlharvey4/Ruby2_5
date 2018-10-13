@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3d of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3e of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -27,7 +27,7 @@ This is Edition 0.3d of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="The-Makefile.html#The-Makefile" rel="up" title="The Makefile">
-<link href="Makefile-Clean-Rules.html#Makefile-Clean-Rules" rel="next" title="Makefile Clean Rules">
+<link href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" rel="next" title="Makefile Utility Targets">
 <link href="Makefile-Default-Rule.html#Makefile-Default-Rule" rel="prev" title="Makefile Default Rule">
 <style type="text/css">
 <!--
@@ -64,7 +64,7 @@ ul.no-bullet {list-style: none}
 <a name="Makefile-TWJR-Rules"></a>
 <div class="header">
 <p>
-Next: <a href="Makefile-Clean-Rules.html#Makefile-Clean-Rules" accesskey="n" rel="next">Makefile Clean Rules</a>, Previous: <a href="Makefile-Default-Rule.html#Makefile-Default-Rule" accesskey="p" rel="prev">Makefile Default Rule</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" accesskey="n" rel="next">Makefile Utility Targets</a>, Previous: <a href="Makefile-Default-Rule.html#Makefile-Default-Rule" accesskey="p" rel="prev">Makefile Default Rule</a>, Up: <a href="The-Makefile.html#The-Makefile" accesskey="u" rel="up">The Makefile</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="TWJR-Rules"></a>
@@ -73,7 +73,9 @@ Next: <a href="Makefile-Clean-Rules.html#Makefile-Clean-Rules" accesskey="n" rel
 <a name="Makefile_002d_002d_002dTWJR_002dRules"></a><a name="index-_003cMakefile_002d_002d_002dTWJR-Rules_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>Makefile&mdash;TWJR Rules</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example">TWJR : twjr
+<pre class="example"># TWJR RULES
+############
+TWJR : twjr
 twjr : tangle weave
 
 TANGLE : tangle
@@ -103,6 +105,10 @@ $(FILE)/ : $(FILE).texi
 
 <p>This chunk is called by <span class="roman">{<samp>Makefile</samp>}</span>; see its first definition at <a href="The-Makefile.html#Makefile">Makefile</a>.
 </p>
+
+
+
+
 
 
 

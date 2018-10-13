@@ -1,10 +1,21 @@
+# MAKEFILE FILE CHUNKS
+######################
+
+# VARIABLE DEFINITIONS
+######################
 FILE := Ruby2_5
 SHELL := /bin/bash
 
+
+# DEFAULT RULE
+##############
 .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
 .PHONY : twjr tangle weave texi pdf html
 default : PDF HTML
 
+
+# TWJR RULES
+############
 TWJR : twjr
 twjr : tangle weave
 
@@ -31,6 +42,18 @@ html : $(FILE)/
 $(FILE)/ : $(FILE).texi
 	makeinfo --html $(FILE).texi
 
+
+# apiutil.awk
+#############
+.PHONY : apiutil
+apiutil : 
+	./apiutil.awk Ruby2_5.twjr
+
+# UTILITY TARGETS
+#################
+
+# CLEAN RULES
+#############
 .PHONY : clean distclean veryclean worldclean
 clean :
 	rm -f *~ \#*\#
@@ -43,4 +66,5 @@ veryclean : distclean
 
 worldclean : veryclean
 	rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
+
 

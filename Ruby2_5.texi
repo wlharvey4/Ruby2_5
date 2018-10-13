@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3d
+@set EDITION 0.3e
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -400,6 +400,7 @@ Utility Programs
 
 * Ruby Eval Utility::
 * API Utility::
+* @file{apiutil.awk} Makefile Target::
 
 Ruby Eval Utility
 
@@ -426,6 +427,7 @@ The Makefile
 * Makefile Variable Definitions::
 * Makefile Default Rule::
 * Makefile TWJR Rules::
+* Makefile Utility Targets::
 * Makefile Clean Rules::
 
 Code Chunk Summaries
@@ -10410,6 +10412,7 @@ Cfatal
 @menu
 * Ruby Eval Utility::
 * API Utility::
+* @file{apiutil.awk} Makefile Target::
 @end menu
 
 @node Ruby Eval Utility
@@ -11016,6 +11019,38 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @textfonts @rm
 @end iftex
 
+@node @file{apiutil.awk} Makefile Target
+@appendixsec @file{apiutil.awk} Makefile Target
+
+@need 400
+@anchor{Makefile---Utility-Targets-1}
+@cdindex @r{<@i{Makefile---Utility Targets}>}, definition
+@noindent
+@r{<@i{Makefile---Utility Targets}>} @equiv{}
+@example
+# apiutil.awk
+#############
+.PHONY : apiutil
+apiutil : 
+
+    ./apiutil.awk Ruby2_5.twjr
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{Makefile---Utility-Targets-2}.
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@iftex
+@textfonts @rm
+@end iftex
+
+
 
 
 
@@ -11034,15 +11069,25 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @crindex @r{<@i{Makefile---Variable Definitions}>}, use
 @crindex @r{<@i{Makefile---Default Rule}>}, use
 @crindex @r{<@i{Makefile---TWJR Rules}>}, use
+@crindex @r{<@i{Makefile---Utility Targets}>}, use
 @crindex @r{<@i{Makefile---Clean Rules}>}, use
 @cdindex @r{@{@file{Makefile}@}}, definition
 @noindent
 @r{@{@file{Makefile}@}} @equiv{}
 @example
+# MAKEFILE FILE CHUNKS
+######################
+
 @r{<@i{Makefile---Variable Definitions}>}
+
 @r{<@i{Makefile---Default Rule}>}
+
 @r{<@i{Makefile---TWJR Rules}>}
+
+@r{<@i{Makefile---Utility Targets}>}
+
 @r{<@i{Makefile---Clean Rules}>}
+
 @end example
 @iftex
 @smallfonts @rm
@@ -11055,16 +11100,23 @@ The following table lists called chunk definition points.
 @item @r{<@i{Makefile---Clean Rules}>} @tab See @ref{Makefile---Clean-Rules}.
 @item @r{<@i{Makefile---Default Rule}>} @tab See @ref{Makefile---Default-Rule}.
 @item @r{<@i{Makefile---TWJR Rules}>} @tab See @ref{Makefile---TWJR-Rules}.
+@item @r{<@i{Makefile---Utility Targets}>} @tab See @ref{Makefile---Utility-Targets-1}.
 @item @r{<@i{Makefile---Variable Definitions}>} @tab See @ref{Makefile---Variable-Definitions}.
 @end multitable
 @iftex
 @textfonts @rm
 @end iftex
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @menu
 * Makefile Variable Definitions::
 * Makefile Default Rule::
 * Makefile TWJR Rules::
+* Makefile Utility Targets::
 * Makefile Clean Rules::
 @end menu
 
@@ -11077,6 +11129,8 @@ The following table lists called chunk definition points.
 @noindent
 @r{<@i{Makefile---Variable Definitions}>} @equiv{}
 @example
+# VARIABLE DEFINITIONS
+######################
 FILE := Ruby2_5
 SHELL := /bin/bash
 
@@ -11090,6 +11144,11 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @iftex
 @textfonts @rm
 @end iftex
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Makefile Default Rule
 @appendixsec Default Rule
@@ -11108,6 +11167,8 @@ run the @code{default}.
 @noindent
 @r{<@i{Makefile---Default Rule}>} @equiv{}
 @example
+# DEFAULT RULE
+##############
 .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
 .PHONY : twjr tangle weave texi pdf html
 default : PDF HTML
@@ -11123,6 +11184,11 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @textfonts @rm
 @end iftex
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Makefile TWJR Rules
 @appendixsec TWJR Rules
 
@@ -11132,6 +11198,8 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @noindent
 @r{<@i{Makefile---TWJR Rules}>} @equiv{}
 @example
+# TWJR RULES
+############
 TWJR : twjr
 twjr : tangle weave
 
@@ -11169,6 +11237,41 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @textfonts @rm
 @end iftex
 
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Makefile Utility Targets
+@appendixsec Utility Targets
+
+@need 400
+@anchor{Makefile---Utility-Targets-2}
+@cdindex @r{<@i{Makefile---Utility Targets}>}, definition
+@noindent
+@r{<@i{Makefile---Utility Targets}>} +@equiv{}
+@example
+# UTILITY TARGETS
+#################
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{Makefile---Utility-Targets-1}.
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@iftex
+@textfonts @rm
+@end iftex
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Makefile Clean Rules
 @appendixsec Clean Rules
 
@@ -11178,6 +11281,8 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @noindent
 @r{<@i{Makefile---Clean Rules}>} @equiv{}
 @example
+# CLEAN RULES
+#############
 .PHONY : clean distclean veryclean worldclean
 clean :
     rm -f *~ \#*\#
@@ -11202,11 +11307,25 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @textfonts @rm
 @end iftex
 
+
+
+
+
+
+
+
+@c *****************************************************************************
+
 @node Code Chunk Summaries
 @appendix Code Chunk Summaries
 
 This @value{APPENDIX} presents alphabetical lists of all the file definitions,
 the code chunk definitions, and the code chunk references.
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @menu
 * File Definitions::
@@ -11241,6 +11360,11 @@ This chunk is defined in
 @ref{ri20min-rb}.
 @end table
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Code Chunk Definitions
 @appendixsec Code Chunk Definitions
 
@@ -11254,6 +11378,12 @@ This chunk is defined in
 @item @r{<@i{Makefile---TWJR Rules}>}
 This chunk is defined in
 @ref{Makefile---TWJR-Rules}.
+@item @r{<@i{Makefile---Utility Targets}>}
+Multiple definitions occur in
+@ref{Makefile---Utility-Targets-1},
+and
+@ref{Makefile---Utility-Targets-2}.
+
 @item @r{<@i{Makefile---Variable Definitions}>}
 This chunk is defined in
 @ref{Makefile---Variable-Definitions}.
@@ -11310,6 +11440,11 @@ This chunk is defined in
 @ref{eval---Main--Process-Line-Is-Line-Worth-Evaluating-}.
 @end table
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Code Chunk References
 @appendixsec Code Chunk References
 
@@ -11323,6 +11458,10 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 @noindent
 This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
 @item @r{<@i{Makefile---TWJR Rules}>}
+
+@noindent
+This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
+@item @r{<@i{Makefile---Utility Targets}>}
 
 @noindent
 This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @ref{Makefile}.
@@ -11400,8 +11539,26 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its first definition at @ref{eval---Main--Process-Line-Is-Line}.
 @end table
 
+
+
+
+
+
+
+
+@c *****************************************************************************
+
 @node Bibliography
 @unnumbered Bibliography
+
+
+
+
+
+
+
+
+@c *****************************************************************************
 
 @node Concept Index
 @unnumbered Index
@@ -11409,6 +11566,16 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 @printindex cp
 
 @page
+
+
+
+
+
+
+
+
+
+@c *****************************************************************************
 
 @node Program Index
 @unnumbered Program Index

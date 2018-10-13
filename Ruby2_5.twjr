@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3d
+@set EDITION 0.3e
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -10219,6 +10219,21 @@ END {
 }
 @
 
+@node @file{apiutil.awk} Makefile Target
+@appendixsec @file{apiutil.awk} Makefile Target
+
+@<Makefile---Utility Targets@>=
+# apiutil.awk
+#############
+.PHONY : apiutil
+apiutil : 
+
+	./apiutil.awk Ruby2_5.twjr
+
+@
+
+@post_create apiutil.awk cx apiutil.awk
+
 
 
 
@@ -10233,20 +10248,41 @@ END {
 @pindex Makefile
 
 @(Makefile@)=
+# MAKEFILE FILE CHUNKS
+######################
+
 @<Makefile---Variable Definitions@>
+
 @<Makefile---Default Rule@>
+
 @<Makefile---TWJR Rules@>
+
+@<Makefile---Utility Targets@>
+
 @<Makefile---Clean Rules@>
+
 @
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Makefile Variable Definitions
 @appendixsec Makefile Variable Definitions
 
 @<Makefile---Variable Definitions@>=
+# VARIABLE DEFINITIONS
+######################
 FILE := Ruby2_5
 SHELL := /bin/bash
 
 @
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Makefile Default Rule
 @appendixsec Default Rule
@@ -10260,16 +10296,25 @@ the @file{.twjr} file.  Thereafter, you can update the @file{.texi} file and
 run the @code{default}.
 
 @<Makefile---Default Rule@>=
+# DEFAULT RULE
+##############
 .PHONY : default TWJR TANGLE WEAVE TEXI PDF HTML
 .PHONY : twjr tangle weave texi pdf html
 default : PDF HTML
 
 @
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Makefile TWJR Rules
 @appendixsec TWJR Rules
 
 @<Makefile---TWJR Rules@>=
+# TWJR RULES
+############
 TWJR : twjr
 twjr : tangle weave
 
@@ -10298,10 +10343,29 @@ $(FILE)/ : $(FILE).texi
 
 @
 
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Makefile Utility Targets
+@appendixsec Utility Targets
+
+@<Makefile---Utility Targets@>=
+# UTILITY TARGETS
+#################
+@
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Makefile Clean Rules
 @appendixsec Clean Rules
 
 @<Makefile---Clean Rules@>=
+# CLEAN RULES
+#############
 .PHONY : clean distclean veryclean worldclean
 clean :
 	rm -f *~ \#*\#
@@ -10317,29 +10381,71 @@ worldclean : veryclean
 
 @
 
+
+
+
+
+
+
+
+@c *****************************************************************************
+
 @node Code Chunk Summaries
 @appendix Code Chunk Summaries
 
 This @value{APPENDIX} presents alphabetical lists of all the file definitions,
 the code chunk definitions, and the code chunk references.
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node File Definitions
 @appendixsec Source File Definitions
 
 @print_file_defs
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Code Chunk Definitions
 @appendixsec Code Chunk Definitions
 
 @print_code_defs
 
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Code Chunk References
 @appendixsec Code Chunk References
 
 @print_code_refs
 
+
+
+
+
+
+
+
+@c *****************************************************************************
+
 @node Bibliography
 @unnumbered Bibliography
+
+
+
+
+
+
+
+
+@c *****************************************************************************
 
 @node Concept Index
 @unnumbered Index
@@ -10347,6 +10453,16 @@ the code chunk definitions, and the code chunk references.
 @printindex cp
 
 @page
+
+
+
+
+
+
+
+
+
+@c *****************************************************************************
 
 @node Program Index
 @unnumbered Program Index
