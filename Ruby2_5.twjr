@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3i
+@set EDITION 0.3j
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -10187,6 +10187,7 @@ started == 0 { print > newfile }
 ########################
 
 @<apiutil---MAIN Block--Ord Function Defn@>
+@<apiutil---MAIN Block--Convert Symbols Function Defn@>
 
 ##################
 # END MAIN BLOCK #
@@ -10374,18 +10375,24 @@ itemurl = (baseurl)
 
 @subsubheading Processing the @code{arr} Array
 
-The additional parts of the array @code{arr} will be added to
-@code{itemurl} to create a complete and linkable URL into Ruby's core
-library pages.
+The additional parts of the array @code{arr} will be added to @code{itemurl} to
+create a complete and linkable URL into Ruby's core library pages.
 
 The code now continues processing the @code{arr} array parts.  If
-@code{arr[4])} exists, then the code is currently processing the
-@code{Method} table, and since the parts are different than the
-@code{Class} table, it must differentiate between them.
+@code{arr[4])} exists, then the code is currently processing the @code{Method}
+table, and since the parts are different than the @code{Class} table, it must
+differentiate between them.
 
-@code{arr[4]} will be empty for a @code{Class} table element, and so
-it can be reformatted somewhat for a @code{Method} table element by
-placing its contents inside a @code{@@code} format.
+@code{arr[4]} will be empty for a @code{Class} table element, and so it can be
+reformatted somewhat for a @code{Method} table element by placing its contents
+inside a @code{@@code} format.
+
+The @code{Method} links require most symbols to be hexadecimal equivalents of
+their ASCII code number.  Therefore, I made a function called
+@code{convertsymbols()} that will iterate over a method name and convert any
+symbols (with the exception of the underscore) into hexadecimal ASCII,
+separated by dashes.  When this name is inserted into the URL, it links
+directly to the proper method inside the class documentation.
 
 @<apiutil---MAIN Block--Main Loop-Inside_Processing@>=
 if (length(arr[4]) > 0) {
@@ -10393,8 +10400,9 @@ if (length(arr[4]) > 0) {
   #process the Method table
   method = arr[2]
   class  = arr[4]
+  methwsymbols = convertsymbols(method)
 
-  itemurl = "@item @url{"(itemurl)(class)".html#method"(methid[arr[1]])(method)"}"
+  itemurl = "@item @url{"(itemurl)(class)".html#method"(methid[arr[1]])(methwsymbols)"}"
   detail  = "@code{"(class)(arr[1])(method)"} ("(classmethod[arr[1]])")"
 
 } else {
@@ -10502,6 +10510,81 @@ function chr(c) {
 }
 
 @
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node @command{convertsymbols()} Function Definition
+@appendixsubsec @command{convertsymbols()} Function Definition
+
+This function, @command{convertsymbols()}, takes a method name and converts all
+symbols in the following ranges into their hexadecimal equivalents:
+
+@itemize
+@item
+ASCII 0x20 (@key{SP}) and ASCII 0x2f (@kbd{/})
+@item
+ASCII 0x3a (@kbd{:}) and ASCII 0x40 (@kbd{@@})
+@item
+ASCII 0x5b (@kbd{[}) and ASCII 0x5e (@kbd{^})
+@item
+ASCII 0x7b (@kbd{@{}) and ASCII 0x7e (@kbd{~})
+@end itemize
+
+@<apiutil---MAIN Block--Convert Symbols Function Defn@>=
+# the 'convertsymbol()' function: given a method name, convert symbols
+# into hexadecimal separated by dashes
+#
+function convertsymbols(meth,\
+  converted, low1, high1, low2, high2, low3, high3, low4, high4, c, f, i, o) {
+
+  # ASCII ranges to look for
+  low1  = 0x20 # SP
+  high1 = 0x2f # /
+  low2  = 0x3a # :
+  high2 = 0x40 # @
+  low3  = 0x5b # [
+  high3 = 0x5e # ^ (leave _ alone)
+  low4  = 0x7b # {
+  high4 = 0x7e # ~
+
+  # this flag places dashes between symbols
+  dash = 0
+  f[1] = "-"
+
+  # this will hold the converted name
+  converted = ""
+
+  # iterate over the characters in 'meth', converting the symbols
+  for (i = 1; i <= length(meth); i++) {
+    c = substr(meth, i, 1)
+
+    # this is a decimal number internally, but is converted to hexadecimal
+    # by the "%x" format string
+    o = ord(c)
+
+    if ( (o >= low1 && o <= high1) ||
+         (o >= low2 && o <= high2) ||
+         (o >= low3 && o <= high3) ||
+         (o >= low4 && o <= high4) ) {
+
+      # do not place a dash if a symbol is the first character
+      converted = (converted)(sprintf("%s%X", f[dash], o))
+
+    } else {
+      converted = (converted)(c)
+    }
+
+    if (dash == 0) { dash = 1 }
+  }
+
+  return converted
+}
+
+@
+
 
 
 

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.3j of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>convertsymbols() Function Definition (Ruby2_5 Information)</title>
+
+<meta name="description" content="convertsymbols() Function Definition (Ruby2_5 Information)">
+<meta name="keywords" content="convertsymbols() Function Definition (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Utility.html#API-Utility" rel="up" title="API Utility">
+<link href="apiutil-Makefile-Target.html#apiutil-Makefile-Target" rel="next" title="apiutil Makefile Target">
+<link href="apiutil-Ord-Function.html#apiutil-Ord-Function" rel="prev" title="apiutil Ord Function">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="convertsymbols_0028_0029-Function-Definition"></a>
+<div class="header">
+<p>
+Next: <a href="apiutil-Makefile-Target.html#apiutil-Makefile-Target" accesskey="n" rel="next">apiutil Makefile Target</a>, Previous: <a href="apiutil-Ord-Function.html#apiutil-Ord-Function" accesskey="p" rel="prev"><samp>apiutil</samp> Ord Function</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="convertsymbols_0028_0029-Function-Definition-1"></a>
+<h4 class="appendixsubsec">A.2.7 <code>convertsymbols()</code> Function Definition</h4>
+
+<p>This function, <code>convertsymbols()</code>, takes a method name and converts all
+symbols in the following ranges into their hexadecimal equivalents:
+</p>
+<ul>
+<li> ASCII 0x20 (<tt class="key">SP</tt>) and ASCII 0x2f (<kbd>/</kbd>)
+</li><li> ASCII 0x3a (<kbd>:</kbd>) and ASCII 0x40 (<kbd>@</kbd>)
+</li><li> ASCII 0x5b (<kbd>[</kbd>) and ASCII 0x5e (<kbd>^</kbd>)
+</li><li> ASCII 0x7b (<kbd>{</kbd>) and ASCII 0x7e (<kbd>~</kbd>)
+</li></ul>
+
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dConvert_002dSymbols_002dFunction_002dDefn"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dConvert-Symbols-Function-Defn_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Convert Symbols Function Defn</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example"># the 'convertsymbol()' function: given a method name, convert symbols
+# into hexadecimal separated by dashes
+#
+function convertsymbols(meth,\
+  converted, low1, high1, low2, high2, low3, high3, low4, high4, c, f, i, o) {
+
+  # ASCII ranges to look for
+  low1  = 0x20 # SP
+  high1 = 0x2f # /
+  low2  = 0x3a # :
+  high2 = 0x40 # @
+  low3  = 0x5b # [
+  high3 = 0x5e # ^ (leave _ alone)
+  low4  = 0x7b # {
+  high4 = 0x7e # ~
+
+  # this flag places dashes between symbols
+  dash = 0
+  f[1] = &quot;-&quot;
+
+  # this will hold the converted name
+  converted = &quot;&quot;
+
+  # iterate over the characters in 'meth', converting the symbols
+  for (i = 1; i &lt;= length(meth); i++) {
+    c = substr(meth, i, 1)
+
+    # this is a decimal number internally, but is converted to hexadecimal
+    # by the &quot;%x&quot; format string
+    o = ord(c)
+
+    if ( (o &gt;= low1 &amp;&amp; o &lt;= high1) ||
+         (o &gt;= low2 &amp;&amp; o &lt;= high2) ||
+         (o &gt;= low3 &amp;&amp; o &lt;= high3) ||
+         (o &gt;= low4 &amp;&amp; o &lt;= high4) ) {
+
+      # do not place a dash if a symbol is the first character
+      converted = (converted)(sprintf(&quot;%s%X&quot;, f[dash], o))
+
+    } else {
+      converted = (converted)(c)
+    }
+
+    if (dash == 0) { dash = 1 }
+  }
+
+  return converted
+}
+
+</pre></div>
+
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span>; see its first definition at <a href="apiutil_002eawk-MAIN-Block.html#apiutil_002d_002d_002dMAIN_002dBlock">apiutil---MAIN-Block</a>.
+</p>
+
+
+
+
+
+
+
+</body>
+</html>

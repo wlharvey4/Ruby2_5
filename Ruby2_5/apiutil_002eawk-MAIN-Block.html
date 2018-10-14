@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3i of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3j of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -72,6 +72,7 @@ Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block"
 
 <a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_003e_002c-use"></a>
 <a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dOrd-Function-Defn_003e_002c-use"></a>
+<a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dConvert-Symbols-Function-Defn_003e_002c-use"></a>
 <a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
@@ -90,6 +91,7 @@ started == 0 { print &gt; newfile }
 ########################
 
 <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Ord Function Defn</i>&gt;</span>
+<span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Convert Symbols Function Defn</i>&gt;</span>
 
 ##################
 # END MAIN BLOCK #
@@ -102,6 +104,7 @@ started == 0 { print &gt; newfile }
 <p>The following table lists called chunk definition points.
 </p><table>
 <thead><tr><th width="35%">Chunk name</th><th width="65%">First definition point</th></tr></thead>
+<tr><td width="35%"><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Convert Symbols Function Defn</i>&gt;</span></td><td width="65%">See <a href="convertsymbols_0028_0029-Function-Definition.html#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dConvert_002dSymbols_002dFunction_002dDefn">apiutil---MAIN-Block--Convert-Symbols-Function-Defn</a>.</td></tr>
 <tr><td width="35%"><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span></td><td width="65%">See <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop">apiutil---MAIN-Block--Main-Loop</a>.</td></tr>
 <tr><td width="35%"><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Ord Function Defn</i>&gt;</span></td><td width="65%">See <a href="apiutil-Ord-Function.html#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dOrd_002dFunction_002dDefn_002d1">apiutil---MAIN-Block--Ord-Function-Defn-1</a>.</td></tr>
 </table>
@@ -368,18 +371,24 @@ in the BEGIN block:
 <a name="Processing-the-arr-Array"></a>
 <h4 class="subsubheading">Processing the <code>arr</code> Array</h4>
 
-<p>The additional parts of the array <code>arr</code> will be added to
-<code>itemurl</code> to create a complete and linkable URL into Ruby&rsquo;s core
-library pages.
+<p>The additional parts of the array <code>arr</code> will be added to <code>itemurl</code> to
+create a complete and linkable URL into Ruby&rsquo;s core library pages.
 </p>
 <p>The code now continues processing the <code>arr</code> array parts.  If
-<code>arr[4])</code> exists, then the code is currently processing the
-<code>Method</code> table, and since the parts are different than the
-<code>Class</code> table, it must differentiate between them.
+<code>arr[4])</code> exists, then the code is currently processing the <code>Method</code>
+table, and since the parts are different than the <code>Class</code> table, it must
+differentiate between them.
 </p>
-<p><code>arr[4]</code> will be empty for a <code>Class</code> table element, and so
-it can be reformatted somewhat for a <code>Method</code> table element by
-placing its contents inside a <code>@code</code> format.
+<p><code>arr[4]</code> will be empty for a <code>Class</code> table element, and so it can be
+reformatted somewhat for a <code>Method</code> table element by placing its contents
+inside a <code>@code</code> format.
+</p>
+<p>The <code>Method</code> links require most symbols to be hexadecimal equivalents of
+their ASCII code number.  Therefore, I made a function called
+<code>convertsymbols()</code> that will iterate over a method name and convert any
+symbols (with the exception of the underscore) into hexadecimal ASCII,
+separated by dashes.  When this name is inserted into the URL, it links
+directly to the proper method inside the class documentation.
 </p>
 <a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d3"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_005fProcessing_003e_002c-definition-2"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span> +&equiv;
@@ -389,8 +398,9 @@ placing its contents inside a <code>@code</code> format.
   #process the Method table
   method = arr[2]
   class  = arr[4]
+  methwsymbols = convertsymbols(method)
 
-  itemurl = &quot;@item @url{&quot;(itemurl)(class)&quot;.html#method&quot;(methid[arr[1]])(method)&quot;}&quot;
+  itemurl = &quot;@item @url{&quot;(itemurl)(class)&quot;.html#method&quot;(methid[arr[1]])(methwsymbols)&quot;}&quot;
   detail  = &quot;@code{&quot;(class)(arr[1])(method)&quot;} (&quot;(classmethod[arr[1]])&quot;)&quot;
 
 } else {
