@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3g
+@set EDITION 0.3h
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -10901,6 +10901,10 @@ BEGIN @{
   classmethod["M"]  = "Module"
   classmethod["::"] = "Class Method"
   classmethod["#"]  = "Instance Method"
+  methid["::"] = "c-"
+  methid["#"]  = "i-"
+
+  baseurl = "http://ruby-doc.org/core-2.5.1/"
 @}
 @end example
 @iftex
@@ -11008,21 +11012,28 @@ $0 ~ start, $0 ~ end @{
      next
    @}
 
+   gsub(/@@/, /@@@@/)
+
    # main work is done here
    # parse a table row and print some formatted table rows
    if ($0 ~ /^[CM]?[[:graph:]]+.*$/) @{
 
      # the parsing uses parenthesized sections to place information
      # into the array 'arr'
-     cm = match($0, /([CM]|[:#]+)?([^(]+)(\(([^)]+))?/, arr)
+     cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
+     #print "1-"(arr[1])"-2-"(arr[2])"-3-"(arr[3])"-4-"(arr[4])"|"
 
-     print "@@item "arr[2] > newfile
+     itemurl = (baseurl)
 
-     # arr[4] is a parenthesized Class associated with a method
+     # arr[4] is the Class associated with the Method
      if (length(arr[4]) > 0) @{
-       arr[4] = "@@file@{"arr[4]"@} "
+       itemurl = (itemurl)(arr[4])".html#method-"(methid[arr[1]])(arr[2])
+       arr[4] = "@@code@{"(arr[4])(arr[1])(arr[2])"@}    "
+     @} else @{
+       itemurl = (itemurl)(arr[2])".html"
      @}
 
+     print "@@item @@url@{"itemurl","(arr[2])"@}" > newfile
      print (arr[4])(classmethod[arr[1]]) > newfile
 
    @} else @{

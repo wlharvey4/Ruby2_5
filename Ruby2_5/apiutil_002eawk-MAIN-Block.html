@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3g of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3h of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -128,21 +128,28 @@ $0 ~ start, $0 ~ end {
      next
    }
 
+   gsub(/@/, /@@/)
+
    # main work is done here
    # parse a table row and print some formatted table rows
    if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
 
      # the parsing uses parenthesized sections to place information
      # into the array 'arr'
-     cm = match($0, /([CM]|[:#]+)?([^(]+)(\(([^)]+))?/, arr)
+     cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
+     #print &quot;1-&quot;(arr[1])&quot;-2-&quot;(arr[2])&quot;-3-&quot;(arr[3])&quot;-4-&quot;(arr[4])&quot;|&quot;
 
-     print &quot;@item &quot;arr[2] &gt; newfile
+     itemurl = (baseurl)
 
-     # arr[4] is a parenthesized Class associated with a method
+     # arr[4] is the Class associated with the Method
      if (length(arr[4]) &gt; 0) {
-       arr[4] = &quot;@file{&quot;arr[4]&quot;} &quot;
+       itemurl = (itemurl)(arr[4])&quot;.html#method-&quot;(methid[arr[1]])(arr[2])
+       arr[4] = &quot;@code{&quot;(arr[4])(arr[1])(arr[2])&quot;}    &quot;
+     } else {
+       itemurl = (itemurl)(arr[2])&quot;.html&quot;
      }
 
+     print &quot;@item @url{&quot;itemurl&quot;,&quot;(arr[2])&quot;}&quot; &gt; newfile
      print (arr[4])(classmethod[arr[1]]) &gt; newfile
 
    } else {

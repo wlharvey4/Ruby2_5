@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3g of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3h of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -29,7 +29,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3g of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3h of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -9688,6 +9688,10 @@ meaningful words using the hash 'classmethod'.
        classmethod["M"]  = "Module"
        classmethod["::"] = "Class Method"
        classmethod["#"]  = "Instance Method"
+       methid["::"] = "c-"
+       methid["#"]  = "i-"
+
+       baseurl = "http://ruby-doc.org/core-2.5.1/"
      }
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
@@ -9772,21 +9776,28 @@ appropriate commands surrounding them, i.e., '@item' or '@code', etc.
           next
         }
 
+        gsub(/@/, /@@/)
+
         # main work is done here
         # parse a table row and print some formatted table rows
         if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
 
           # the parsing uses parenthesized sections to place information
           # into the array 'arr'
-          cm = match($0, /([CM]|[:#]+)?([^(]+)(\(([^)]+))?/, arr)
+          cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
+          #print "1-"(arr[1])"-2-"(arr[2])"-3-"(arr[3])"-4-"(arr[4])"|"
 
-          print "@item "arr[2] > newfile
+          itemurl = (baseurl)
 
-          # arr[4] is a parenthesized Class associated with a method
+          # arr[4] is the Class associated with the Method
           if (length(arr[4]) > 0) {
-            arr[4] = "@file{"arr[4]"} "
+            itemurl = (itemurl)(arr[4])".html#method-"(methid[arr[1]])(arr[2])
+            arr[4] = "@code{"(arr[4])(arr[1])(arr[2])"}    "
+          } else {
+            itemurl = (itemurl)(arr[2])".html"
           }
 
+          print "@item @url{"itemurl","(arr[2])"}" > newfile
           print (arr[4])(classmethod[arr[1]]) > newfile
 
         } else {

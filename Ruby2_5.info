@@ -10,12 +10,12 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.3g of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.3h of 'Ruby 2.5 Information and Documentation'.
 
 
 Indirect:
 Ruby2_5.info-1: 371
-Ruby2_5.info-2: 321785
+Ruby2_5.info-2: 322199
 
 Tag Table:
 (Indirect)
@@ -185,38 +185,38 @@ Node: API Utility238250
 Ref: apiutil-awk238698
 Node: apiutil.awk BEGIN Block239576
 Ref: apiutil---BEGIN-Block240028
-Node: apiutil.awk BEGNFILE Block240419
-Ref: apiutil---BEGINFILE-Block240697
-Node: apiutil.awk MAIN Block240876
-Ref: apiutil---MAIN-Block242396
-Node: apiutil.awk ENDFILE Block243843
-Ref: apiutil---ENDFILE-Block244047
-Node: apiutil.awk END Block244273
-Ref: apiutil---END-Block244470
-Node: apiutil Makefile Target244628
-Ref: Makefile---Utility-Targets-1245079
-Node: Initial Setup and Post Create245379
-Node: Initial Setup245737
-Ref: setpath-sh246530
-Node: Post Create246650
-Node: The Makefile247195
-Ref: Makefile247364
-Node: Makefile Variable Definitions248320
-Ref: Makefile---Variable-Definitions248498
-Node: Makefile Default Rule248722
-Ref: Makefile---Default-Target249274
-Node: Makefile TWJR Targets249574
-Ref: Makefile---TWJR-Targets249743
-Node: Makefile Utility Targets250676
-Ref: Makefile---Utility-Targets-2250852
-Node: Makefile Clean Targets251085
-Ref: Makefile---Clean-Targets251227
-Node: Code Chunk Summaries251995
-Node: File Definitions252380
-Node: Code Chunk Definitions253039
-Node: Code Chunk References255485
-Node: Bibliography258602
-Node: Concept Index258733
-Node: Program Index321785
+Node: apiutil.awk BEGNFILE Block240525
+Ref: apiutil---BEGINFILE-Block240803
+Node: apiutil.awk MAIN Block240982
+Ref: apiutil---MAIN-Block242502
+Node: apiutil.awk ENDFILE Block244257
+Ref: apiutil---ENDFILE-Block244461
+Node: apiutil.awk END Block244687
+Ref: apiutil---END-Block244884
+Node: apiutil Makefile Target245042
+Ref: Makefile---Utility-Targets-1245493
+Node: Initial Setup and Post Create245793
+Node: Initial Setup246151
+Ref: setpath-sh246944
+Node: Post Create247064
+Node: The Makefile247609
+Ref: Makefile247778
+Node: Makefile Variable Definitions248734
+Ref: Makefile---Variable-Definitions248912
+Node: Makefile Default Rule249136
+Ref: Makefile---Default-Target249688
+Node: Makefile TWJR Targets249988
+Ref: Makefile---TWJR-Targets250157
+Node: Makefile Utility Targets251090
+Ref: Makefile---Utility-Targets-2251266
+Node: Makefile Clean Targets251499
+Ref: Makefile---Clean-Targets251641
+Node: Code Chunk Summaries252409
+Node: File Definitions252794
+Node: Code Chunk Definitions253453
+Node: Code Chunk References255899
+Node: Bibliography259016
+Node: Concept Index259147
+Node: Program Index322199
 
 End Tag Table
