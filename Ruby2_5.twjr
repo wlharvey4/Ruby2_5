@@ -10639,11 +10639,11 @@ openpdf : PDF
 	open $(FILE).pdf
 
 HTML : html
-html : $(FILE)/
-$(FILE)/ : $(FILE).texi
+html : $(FILE)/index.html
+$(FILE)/index.html : $(FILE).texi
 	makeinfo --html $(FILE).texi
 openhtml : HTML
-	open Ruby2_5/index.html
+	open $(FILE)/index.html
 
 @
 
