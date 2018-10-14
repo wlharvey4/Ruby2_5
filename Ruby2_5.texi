@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3h
+@set EDITION 0.3i
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -10879,33 +10879,17 @@ The following table lists called chunk definition points.
 @node @file{apiutil.awk} BEGIN Block
 @appendixsubsec @file{apiutil.awk} BEGIN Block
 
-The variable @code{start} holds a regular expression string that targets
-the two tables I want to process.
-
-When parsing the lines of text obtained from copying the library page, the
-initial letters and symbols can be translated into meaningful words using
-the hash @code{classmethod}.
-
 @need 400
 @anchor{apiutil---BEGIN-Block}
+@crindex @r{<@i{apiutil---BEGIN--Variable Defns}>}, use
 @cdindex @r{<@i{apiutil---BEGIN Block}>}, definition
 @noindent
 @r{<@i{apiutil---BEGIN Block}>} @equiv{}
 @example
 BEGIN @{
-  start = "^@@float Table,table:api-.*$"
-  end   = "^@@end table$"
-  started = 0
-
-  classmethod["C"]  = "Class"
-  classmethod["M"]  = "Module"
-  classmethod["::"] = "Class Method"
-  classmethod["#"]  = "Instance Method"
-  methid["::"] = "c-"
-  methid["#"]  = "i-"
-
-  baseurl = "http://ruby-doc.org/core-2.5.1/"
+  @r{<@i{apiutil---BEGIN--Variable Defns}>}
 @}
+
 @end example
 @iftex
 @smallfonts @rm
@@ -10913,6 +10897,10 @@ BEGIN @{
 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+
+@noindent
+The called chunk @r{<@i{apiutil---BEGIN--Variable Defns}>} is first defined at
+@ref{apiutil---BEGIN--Variable-Defns-1}.
 @iftex
 @textfonts @rm
 @end iftex
@@ -10951,95 +10939,17 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @node @file{apiutil.awk} MAIN Block
 @appendixsubsec @file{apiutil.awk} MAIN Block
 
-The @code{MAIN} block basically finds the beginning and ending of the tables I
-am parsing, and passes everything else through unchanged.  It uses the flag
-@code{started} to pass through the beginning and ending lines basically
-unchanged as well.
-
-The real work is done on lines that are in the middle of the tables.  There is
-first a regular expression check to make sure something is on the line because
-some lines are empty and are just ignored; plus, it passes over lines with @@
-commands.  After it finds a non-empty line, @file{GAWK} parses it into the
-array @code{arr} using the function @code{match}, and then it prints the parsed
-elements.
-
-@code{arr[1]} is used by both tables to produce either a @code{C} or an
-@code{M}, meaning @code{Class} or @code{Module} (from the @code{Class} table),
-or a @code{::} or @code{#} (from the @code{Method} table) meaning class method
-or instance method.  These are used by the @code{classmethod} hash to produce a
-more meaningful description.
-
-@code{arr[2]} is used to hold the substantive name of the element.
-
-@code{arr[3]} is ignored, as it wraps whatever is in parentheses) (i.e., it
-``removes'' the parentheses).
-
-@code{arr[4]} contains the class for which a method is associated (from the
-@code{Method} table).
-
-Once the parsing has been completed, the parts are printed with appropriate
-commands surrounding them, i.e., @code{@@item} or @code{@@code}, etc.
-
 @need 400
 @anchor{apiutil---MAIN-Block}
+@crindex @r{<@i{apiutil---MAIN Block--Main Loop}>}, use
 @cdindex @r{<@i{apiutil---MAIN Block}>}, definition
 @noindent
 @r{<@i{apiutil---MAIN Block}>} @equiv{}
 @example
 # pass through whatever is not in a target table
-started == 0 @{ print $0 > newfile @}
+started == 0 @{ print > newfile @}
 
-# process whatever is inside a target table;
-# turn on the 'started' flag the first time it is entered
-# plus ignore the first line (which is @@float)
-$0 ~ start, $0 ~ end @{
-   if (started == 0) @{
-     started = 1
-     next
-   @}
-
-   # ignore the @@table line
-   if ($0 ~ /^@@table/) @{
-     print $0 > newfile
-     next
-   @}
-
-   # at the end of a table, add an empty line for better style
-   # and turn off the 'started' flag
-   if ($0 ~ end) @{
-     print "\n"$0 > newfile
-     started = 0
-     next
-   @}
-
-   gsub(/@@/, /@@@@/)
-
-   # main work is done here
-   # parse a table row and print some formatted table rows
-   if ($0 ~ /^[CM]?[[:graph:]]+.*$/) @{
-
-     # the parsing uses parenthesized sections to place information
-     # into the array 'arr'
-     cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
-     #print "1-"(arr[1])"-2-"(arr[2])"-3-"(arr[3])"-4-"(arr[4])"|"
-
-     itemurl = (baseurl)
-
-     # arr[4] is the Class associated with the Method
-     if (length(arr[4]) > 0) @{
-       itemurl = (itemurl)(arr[4])".html#method-"(methid[arr[1]])(arr[2])
-       arr[4] = "@@code@{"(arr[4])(arr[1])(arr[2])"@}    "
-     @} else @{
-       itemurl = (itemurl)(arr[2])".html"
-     @}
-
-     print "@@item @@url@{"itemurl","(arr[2])"@}" > newfile
-     print (arr[4])(classmethod[arr[1]]) > newfile
-
-   @} else @{
-     print > newfile
-   @}
-@}
+@r{<@i{apiutil---MAIN Block--Main Loop}>}
 @end example
 @iftex
 @smallfonts @rm
@@ -11047,10 +10957,455 @@ $0 ~ start, $0 ~ end @{
 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+
+@noindent
+The called chunk @r{<@i{apiutil---MAIN Block--Main Loop}>} is first defined at
+@ref{apiutil---MAIN-Block--Main-Loop}.
 @iftex
 @textfonts @rm
 @end iftex
 
+@subheading Main Loop Variable Definitions
+
+I will define the main loop variables first.  The variables @code{start} and
+@code{end} hold regular expression strings that target the two tables I want to
+process.  The variable @code{started} flags whether the code is inside a table
+(1) or not (0).
+
+@need 400
+@anchor{apiutil---BEGIN--Variable-Defns-1}
+@cdindex @r{<@i{apiutil---BEGIN--Variable Defns}>}, definition
+@noindent
+@r{<@i{apiutil---BEGIN--Variable Defns}>} @equiv{}
+@example
+start = "^@@float Table,table:api-.*$"
+end   = "^@@end table$"
+started = 0
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---BEGIN--Variable-Defns-2},
+@ref{apiutil---BEGIN--Variable-Defns-3}, and
+@ref{apiutil---BEGIN--Variable-Defns-4}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Main Outer Loop Definitions
+
+The @code{MAIN} block does two things: passes over unchanged whatever is not
+inside a target table, and processes the contents of a target table.  It uses
+the flag @code{started} to pass through the beginning and ending lines
+basically unchanged as well@footnote{In fact one line is added at the end of
+the table to account for better style}.
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop}
+@crindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}, use
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop}>} @equiv{}
+@example
+# process whatever is in between the 'start' and 'end' of a table
+$0 ~ start, $0 ~ end @{
+
+  # Upon first entering a table, set the 'started' flag true (1)
+  if (started == 0) @{
+    started = 1
+    next
+  @}
+
+  @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}
+@}
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block}>}; see its first definition at @ref{apiutil---MAIN-Block}.
+
+@noindent
+The called chunk @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>} is first defined at
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Preliminary and Post Processing of the Inside of a Table
+
+Once inside the main loop, do some preliminary processing and checking.  Make
+sure @code{@@} signs are properly escaped, and ignore the @code{@@table} line.
+Also check for the end of the table, add a newline, and reset the
+@code{started} flag.
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop-Inside-1}
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop-Inside}>} @equiv{}
+@example
+# ignore the @@table line
+if ($0 ~ /^@@table/) @{
+  print $0 > newfile
+  next
+@}
+
+# at the end of a table, add an empty line for better style
+# and turn off the 'started' flag
+if ($0 ~ end) @{
+  print "\n"$0 > newfile
+  started = 0
+  next
+@}
+
+# make sure any special symbols are properly escaped
+gsub(/@@/, /@@@@/)
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-2}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Main Processing Loop Definition
+
+The real work is done on lines that are in the middle of the tables.  There is
+first a regular expression check to make sure something that is not a
+@file{Texinfo} command (which begin with @code{@@}) is on the line because some
+lines are empty and are just ignored;
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop-Inside-2}
+@crindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}, use
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop-Inside}>} +@equiv{}
+@example
+# process lines with content
+if ($0 ~ /^[CM]?[[:graph:]]+.*$/) @{
+
+  @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}
+  # ignore empty lines
+@} else @{
+  print > newfile
+@}
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop}.
+
+@noindent
+The called chunk @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>} is first defined at
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-1}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Inside the Main Processing Loop
+
+After it finds a non-empty, non-command line, @file{GAWK} parses it into the
+array @code{arr} using the function @code{match}.  This regexp is fairly busy.
+There are many parentheses because several parts of the regexp are optional,
+requiring an extra set around the optional parts, and extra parentheses are
+required to strip away a parenthesized word (ironically).  The optional
+sections are marked by question marks (@kbd{?}s).
+
+The first part of each line contains a marker indicating what kind of element
+the thing is.  In the @code{Classes} table, the marker is either a @code{C} or
+an @code{M}.  In the @code{Methods} table, the marker is either a pair of colons
+(@kbd{::}) or a hash (@kbd{#}).
+
+@subsubheading Explanation of the main regexp
+
+The main entry from either table is obtained by grabbing everything that is not
+a right parenthesis (@kbd{(}) or a space.  In the @code{Class} table, this is
+everything on the line.  In the @code{Method} table, this is everything up
+until the parenthesized class name in which the method is defined.  Likewise,
+this parenthesized class is obtained by grabbing everything up until the
+closing parenthesis.
+
+Finally, each parsed parenthesized regexp is inserted into the array @code{arr}
+and available for use after the parsing.
+
+@enumerate
+@item
+@code{arr[1]}: Identification of either @code{class} or @code{method}; it will contain
+one of @kbd{C}, @kbd{M}, @kbd{::}, or @kbd{#}.
+@item
+@code{arr[2]}: Main entry; it will contain the name of a class (for the @code{Class}
+table, or the name of a method (for the @code{Method} table).
+@item
+@code{arr[3]}: ignored parenthesized class (optional)
+@item
+@code{arr[4]}: a method's @code{class} (optional); it will contain the name of the
+class within which a method is defined.
+@end enumerate
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop-Inside-Processing-1}
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>} @equiv{}
+@example
+cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
+
+# for debugging
+# print "1-"(arr[1])"-2-"(arr[2])"-3-"(arr[3])"-4-"(arr[4])"|"
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-2},
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-3}, and
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-4}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Variable Definitions
+
+When parsing the lines of text obtained from copying the library page, the
+initial letters and symbols can be translated into meaningful words using
+the hash @code{classmethod}.
+
+@need 400
+@anchor{apiutil---BEGIN--Variable-Defns-2}
+@cdindex @r{<@i{apiutil---BEGIN--Variable Defns}>}, definition
+@noindent
+@r{<@i{apiutil---BEGIN--Variable Defns}>} +@equiv{}
+@example
+classmethod["C"]  = "Class"
+classmethod["M"]  = "Module"
+classmethod["::"] = "Class Method"
+classmethod["#"]  = "Instance Method"
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---BEGIN--Variable-Defns-1},
+@ref{apiutil---BEGIN--Variable-Defns-3}, and
+@ref{apiutil---BEGIN--Variable-Defns-4}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+Additionally, a method's designator can be used to help form URL's pointing
+to the method definition.
+
+@need 400
+@anchor{apiutil---BEGIN--Variable-Defns-3}
+@cdindex @r{<@i{apiutil---BEGIN--Variable Defns}>}, definition
+@noindent
+@r{<@i{apiutil---BEGIN--Variable Defns}>} +@equiv{}
+@example
+methid["::"] = "-c-"
+methid["#"]  = "-i-"
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---BEGIN--Variable-Defns-1},
+@ref{apiutil---BEGIN--Variable-Defns-2}, and
+@ref{apiutil---BEGIN--Variable-Defns-4}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading Stitching Together the Parts
+
+Once the parsing has been completed, the parts are stitched together
+and printed with appropriate commands surrounding them, i.e.,
+@code{@@item} or @code{@@code}, etc.
+
+The variable @code{itemurl} will be used to stitch together the URL that
+will be the main @code{@@item} content; it begins with the base url as defined
+in the BEGIN block:
+
+@need 400
+@anchor{apiutil---BEGIN--Variable-Defns-4}
+@cdindex @r{<@i{apiutil---BEGIN--Variable Defns}>}, definition
+@noindent
+@r{<@i{apiutil---BEGIN--Variable Defns}>} +@equiv{}
+@example
+baseurl = "http://ruby-doc.org/core-2.5.1/"
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---BEGIN--Variable-Defns-1},
+@ref{apiutil---BEGIN--Variable-Defns-2}, and
+@ref{apiutil---BEGIN--Variable-Defns-3}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@code{baseurl} starts the @code{itemurl} definition:
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop-Inside-Processing-2}
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>} +@equiv{}
+@example
+itemurl = (baseurl)
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-1},
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-3}, and
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-4}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subsubheading Processing the @code{arr} Array
+
+The additional parts of the array @code{arr} will be added to
+@code{itemurl} to create a complete and linkable URL into Ruby's core
+library pages.
+
+The code now continues processing the @code{arr} array parts.  If
+@code{arr[4])} exists, then the code is currently processing the
+@code{Method} table, and since the parts are different than the
+@code{Class} table, it must differentiate between them.
+
+@code{arr[4]} will be empty for a @code{Class} table element, and so
+it can be reformatted somewhat for a @code{Method} table element by
+placing its contents inside a @code{@@code} format.
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop-Inside-Processing-3}
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>} +@equiv{}
+@example
+if (length(arr[4]) > 0) @{
+
+  #process the Method table
+  method = arr[2]
+  class  = arr[4]
+
+  itemurl = "@@item @@url@{"(itemurl)(class)".html#method"(methid[arr[1]])(method)"@}"
+  detail  = "@@code@{"(class)(arr[1])(method)"@} ("(classmethod[arr[1]])")"
+
+@} else @{
+  # process the Class table
+  class = arr[2]
+
+  itemurl = "@@item @@url@{"(itemurl)(class)".html,"(arr[2])"@}"
+  detail  = (classmethod[arr[1]])
+@}
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-1},
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-2}, and
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-4}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subsubheading Printing the Table Items
+
+The code is printing a @code{@@table} element, and it contains both
+an @code{@@item} column and a detail column.
+
+@need 400
+@anchor{apiutil---MAIN-Block--Main-Loop-Inside-Processing-4}
+@cdindex @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>} +@equiv{}
+@example
+print itemurl > newfile
+print detail  > newfile
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-1},
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-2}, and
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-3}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+@iftex
+@textfonts @rm
+@end iftex
 
 @c .....................................
 
@@ -11607,6 +11962,14 @@ This chunk is defined in
 @item @r{<@i{apiutil---BEGIN Block}>}
 This chunk is defined in
 @ref{apiutil---BEGIN-Block}.
+@item @r{<@i{apiutil---BEGIN--Variable Defns}>}
+Multiple definitions occur in
+@ref{apiutil---BEGIN--Variable-Defns-1},
+@ref{apiutil---BEGIN--Variable-Defns-2},
+@ref{apiutil---BEGIN--Variable-Defns-3},
+and
+@ref{apiutil---BEGIN--Variable-Defns-4}.
+
 @item @r{<@i{apiutil---BEGINFILE Block}>}
 This chunk is defined in
 @ref{apiutil---BEGINFILE-Block}.
@@ -11619,6 +11982,23 @@ This chunk is defined in
 @item @r{<@i{apiutil---MAIN Block}>}
 This chunk is defined in
 @ref{apiutil---MAIN-Block}.
+@item @r{<@i{apiutil---MAIN Block--Main Loop}>}
+This chunk is defined in
+@ref{apiutil---MAIN-Block--Main-Loop}.
+@item @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}
+Multiple definitions occur in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-1},
+and
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-2}.
+
+@item @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}
+Multiple definitions occur in
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-1},
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-2},
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-3},
+and
+@ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-4}.
+
 @item @r{<@i{eval---EvalWrapper--Constants}>}
 This chunk is defined in
 @ref{eval---EvalWrapper--Constants}.
@@ -11694,6 +12074,10 @@ This chunk is called by @r{@{@file{ri20min.rb}@}}; see its first definition at @
 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+@item @r{<@i{apiutil---BEGIN--Variable Defns}>}
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
 @item @r{<@i{apiutil---BEGINFILE Block}>}
 
 @noindent
@@ -11710,6 +12094,18 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+@item @r{<@i{apiutil---MAIN Block--Main Loop}>}
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block}>}; see its first definition at @ref{apiutil---MAIN-Block}.
+@item @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop}.
+@item @r{<@i{apiutil---MAIN Block--Main Loop-Inside_Processing}>}
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
 @item @r{<@i{eval---EvalWrapper--Constants}>}
 
 @noindent

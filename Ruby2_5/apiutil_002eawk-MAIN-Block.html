@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3h of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3i of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -70,98 +70,355 @@ Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block"
 <a name="apiutil_002eawk-MAIN-Block-1"></a>
 <h4 class="appendixsubsec">A.2.3 <samp>apiutil.awk</samp> MAIN Block</h4>
 
-<p>The <code>MAIN</code> block basically finds the beginning and ending of the tables I
-am parsing, and passes everything else through unchanged.  It uses the flag
-<code>started</code> to pass through the beginning and ending lines basically
-unchanged as well.
-</p>
-<p>The real work is done on lines that are in the middle of the tables.  There is
-first a regular expression check to make sure something is on the line because
-some lines are empty and are just ignored; plus, it passes over lines with @
-commands.  After it finds a non-empty line, <samp>GAWK</samp> parses it into the
-array <code>arr</code> using the function <code>match</code>, and then it prints the parsed
-elements.
-</p>
-<p><code>arr[1]</code> is used by both tables to produce either a <code>C</code> or an
-<code>M</code>, meaning <code>Class</code> or <code>Module</code> (from the <code>Class</code> table),
-or a <code>::</code> or <code>#</code> (from the <code>Method</code> table) meaning class method
-or instance method.  These are used by the <code>classmethod</code> hash to produce a
-more meaningful description.
-</p>
-<p><code>arr[2]</code> is used to hold the substantive name of the element.
-</p>
-<p><code>arr[3]</code> is ignored, as it wraps whatever is in parentheses) (i.e., it
-&ldquo;removes&rdquo; the parentheses).
-</p>
-<p><code>arr[4]</code> contains the class for which a method is associated (from the
-<code>Method</code> table).
-</p>
-<p>Once the parsing has been completed, the parts are printed with appropriate
-commands surrounding them, i.e., <code>@item</code> or <code>@code</code>, etc.
-</p>
-<a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_003e_002c-use"></a>
+<a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
 <pre class="example"># pass through whatever is not in a target table
-started == 0 { print $0 &gt; newfile }
+started == 0 { print &gt; newfile }
 
-# process whatever is inside a target table;
-# turn on the 'started' flag the first time it is entered
-# plus ignore the first line (which is @float)
-$0 ~ start, $0 ~ end {
-   if (started == 0) {
-     started = 1
-     next
-   }
-
-   # ignore the @table line
-   if ($0 ~ /^@table/) {
-     print $0 &gt; newfile
-     next
-   }
-
-   # at the end of a table, add an empty line for better style
-   # and turn off the 'started' flag
-   if ($0 ~ end) {
-     print &quot;\n&quot;$0 &gt; newfile
-     started = 0
-     next
-   }
-
-   gsub(/@/, /@@/)
-
-   # main work is done here
-   # parse a table row and print some formatted table rows
-   if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
-
-     # the parsing uses parenthesized sections to place information
-     # into the array 'arr'
-     cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
-     #print &quot;1-&quot;(arr[1])&quot;-2-&quot;(arr[2])&quot;-3-&quot;(arr[3])&quot;-4-&quot;(arr[4])&quot;|&quot;
-
-     itemurl = (baseurl)
-
-     # arr[4] is the Class associated with the Method
-     if (length(arr[4]) &gt; 0) {
-       itemurl = (itemurl)(arr[4])&quot;.html#method-&quot;(methid[arr[1]])(arr[2])
-       arr[4] = &quot;@code{&quot;(arr[4])(arr[1])(arr[2])&quot;}    &quot;
-     } else {
-       itemurl = (itemurl)(arr[2])&quot;.html&quot;
-     }
-
-     print &quot;@item @url{&quot;itemurl&quot;,&quot;(arr[2])&quot;}&quot; &gt; newfile
-     print (arr[4])(classmethod[arr[1]]) &gt; newfile
-
-   } else {
-     print &gt; newfile
-   }
-}
+<span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span>
 </pre></div>
 
 <p>This chunk is called by <span class="roman">{<samp>apiutil.awk</samp>}</span>; see its first definition at <a href="API-Utility.html#apiutil_002dawk">apiutil-awk</a>.
 </p>
+<p>The called chunk <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span> is first defined at
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop">apiutil---MAIN-Block--Main-Loop</a>.
+</p>
+<a name="Main-Loop-Variable-Definitions"></a>
+<h4 class="subheading">Main Loop Variable Definitions</h4>
 
+<p>I will define the main loop variables first.  The variables <code>start</code> and
+<code>end</code> hold regular expression strings that target the two tables I want to
+process.  The variable <code>started</code> flags whether the code is inside a table
+(1) or not (0).
+</p>
+<a name="apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d1"></a><a name="index-_003capiutil_002d_002d_002dBEGIN_002d_002dVariable-Defns_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;BEGIN&ndash;Variable Defns</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">start = &quot;^@float Table,table:api-.*$&quot;
+end   = &quot;^@end table$&quot;
+started = 0
 
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d2">apiutil---BEGIN--Variable-Defns-2</a>,
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d3">apiutil---BEGIN--Variable-Defns-3</a>, and
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d4">apiutil---BEGIN--Variable-Defns-4</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;BEGIN Block</i>&gt;</span>; see its first definition at <a href="apiutil_002eawk-BEGIN-Block.html#apiutil_002d_002d_002dBEGIN_002dBlock">apiutil---BEGIN-Block</a>.
+</p>
+<a name="Main-Outer-Loop-Definitions"></a>
+<h4 class="subheading">Main Outer Loop Definitions</h4>
+
+<p>The <code>MAIN</code> block does two things: passes over unchanged whatever is not
+inside a target table, and processes the contents of a target table.  It uses
+the flag <code>started</code> to pass through the beginning and ending lines
+basically unchanged as well<a name="DOCF2" href="#FOOT2"><sup>2</sup></a>.
+</p>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_003e_002c-use"></a>
+<a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example"># process whatever is in between the 'start' and 'end' of a table
+$0 ~ start, $0 ~ end {
+
+  # Upon first entering a table, set the 'started' flag true (1)
+  if (started == 0) {
+    started = 1
+    next
+  }
+
+  <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span>
+}
+
+</pre></div>
+
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock">apiutil---MAIN-Block</a>.
+</p>
+<p>The called chunk <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span> is first defined at
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1">apiutil---MAIN-Block--Main-Loop-Inside-1</a>.
+</p>
+<a name="Preliminary-and-Post-Processing-of-the-Inside-of-a-Table"></a>
+<h4 class="subheading">Preliminary and Post Processing of the Inside of a Table</h4>
+
+<p>Once inside the main loop, do some preliminary processing and checking.  Make
+sure <code>@</code> signs are properly escaped, and ignore the <code>@table</code> line.
+Also check for the end of the table, add a newline, and reset the
+<code>started</code> flag.
+</p>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example"># ignore the @table line
+if ($0 ~ /^@table/) {
+  print $0 &gt; newfile
+  next
+}
+
+# at the end of a table, add an empty line for better style
+# and turn off the 'started' flag
+if ($0 ~ end) {
+  print &quot;\n&quot;$0 &gt; newfile
+  started = 0
+  next
+}
+
+# make sure any special symbols are properly escaped
+gsub(/@/, /@@/)
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d2">apiutil---MAIN-Block--Main-Loop-Inside-2</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop">apiutil---MAIN-Block--Main-Loop</a>.
+</p>
+<a name="Main-Processing-Loop-Definition"></a>
+<h4 class="subheading">Main Processing Loop Definition</h4>
+
+<p>The real work is done on lines that are in the middle of the tables.  There is
+first a regular expression check to make sure something that is not a
+<samp>Texinfo</samp> command (which begin with <code>@</code>) is on the line because some
+lines are empty and are just ignored;
+</p>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d2"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_005fProcessing_003e_002c-use"></a>
+<a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_003e_002c-definition-1"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example"># process lines with content
+if ($0 ~ /^[CM]?[[:graph:]]+.*$/) {
+
+  <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span>
+  # ignore empty lines
+} else {
+  print &gt; newfile
+}
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1">apiutil---MAIN-Block--Main-Loop-Inside-1</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop">apiutil---MAIN-Block--Main-Loop</a>.
+</p>
+<p>The called chunk <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span> is first defined at
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d1">apiutil---MAIN-Block--Main-Loop-Inside-Processing-1</a>.
+</p>
+<a name="Inside-the-Main-Processing-Loop"></a>
+<h4 class="subheading">Inside the Main Processing Loop</h4>
+
+<p>After it finds a non-empty, non-command line, <samp>GAWK</samp> parses it into the
+array <code>arr</code> using the function <code>match</code>.  This regexp is fairly busy.
+There are many parentheses because several parts of the regexp are optional,
+requiring an extra set around the optional parts, and extra parentheses are
+required to strip away a parenthesized word (ironically).  The optional
+sections are marked by question marks (<kbd>?</kbd>s).
+</p>
+<p>The first part of each line contains a marker indicating what kind of element
+the thing is.  In the <code>Classes</code> table, the marker is either a <code>C</code> or
+an <code>M</code>.  In the <code>Methods</code> table, the marker is either a pair of colons
+(<kbd>::</kbd>) or a hash (<kbd>#</kbd>).
+</p>
+<a name="Explanation-of-the-main-regexp"></a>
+<h4 class="subsubheading">Explanation of the main regexp</h4>
+
+<p>The main entry from either table is obtained by grabbing everything that is not
+a right parenthesis (<kbd>(</kbd>) or a space.  In the <code>Class</code> table, this is
+everything on the line.  In the <code>Method</code> table, this is everything up
+until the parenthesized class name in which the method is defined.  Likewise,
+this parenthesized class is obtained by grabbing everything up until the
+closing parenthesis.
+</p>
+<p>Finally, each parsed parenthesized regexp is inserted into the array <code>arr</code>
+and available for use after the parsing.
+</p>
+<ol>
+<li> <code>arr[1]</code>: Identification of either <code>class</code> or <code>method</code>; it will contain
+one of <kbd>C</kbd>, <kbd>M</kbd>, <kbd>::</kbd>, or <kbd>#</kbd>.
+</li><li> <code>arr[2]</code>: Main entry; it will contain the name of a class (for the <code>Class</code>
+table, or the name of a method (for the <code>Method</code> table).
+</li><li> <code>arr[3]</code>: ignored parenthesized class (optional)
+</li><li> <code>arr[4]</code>: a method&rsquo;s <code>class</code> (optional); it will contain the name of the
+class within which a method is defined.
+</li></ol>
+
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d1"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_005fProcessing_003e_002c-definition"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span> &equiv;
+</p><div class="example">
+<pre class="example">cm = match($0, /([CM]|[:#]+)?([^( ]+)(\s\(([^)]+)\))?/, arr)
+
+# for debugging
+# print &quot;1-&quot;(arr[1])&quot;-2-&quot;(arr[2])&quot;-3-&quot;(arr[3])&quot;-4-&quot;(arr[4])&quot;|&quot;
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d2">apiutil---MAIN-Block--Main-Loop-Inside-Processing-2</a>,
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d3">apiutil---MAIN-Block--Main-Loop-Inside-Processing-3</a>, and
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d4">apiutil---MAIN-Block--Main-Loop-Inside-Processing-4</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1">apiutil---MAIN-Block--Main-Loop-Inside-1</a>.
+</p>
+<a name="Variable-Definitions"></a>
+<h4 class="subheading">Variable Definitions</h4>
+
+<p>When parsing the lines of text obtained from copying the library page, the
+initial letters and symbols can be translated into meaningful words using
+the hash <code>classmethod</code>.
+</p>
+<a name="apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d2"></a><a name="index-_003capiutil_002d_002d_002dBEGIN_002d_002dVariable-Defns_003e_002c-definition-1"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;BEGIN&ndash;Variable Defns</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example">classmethod[&quot;C&quot;]  = &quot;Class&quot;
+classmethod[&quot;M&quot;]  = &quot;Module&quot;
+classmethod[&quot;::&quot;] = &quot;Class Method&quot;
+classmethod[&quot;#&quot;]  = &quot;Instance Method&quot;
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d1">apiutil---BEGIN--Variable-Defns-1</a>,
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d3">apiutil---BEGIN--Variable-Defns-3</a>, and
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d4">apiutil---BEGIN--Variable-Defns-4</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;BEGIN Block</i>&gt;</span>; see its first definition at <a href="apiutil_002eawk-BEGIN-Block.html#apiutil_002d_002d_002dBEGIN_002dBlock">apiutil---BEGIN-Block</a>.
+</p>
+<p>Additionally, a method&rsquo;s designator can be used to help form URL&rsquo;s pointing
+to the method definition.
+</p>
+<a name="apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d3"></a><a name="index-_003capiutil_002d_002d_002dBEGIN_002d_002dVariable-Defns_003e_002c-definition-2"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;BEGIN&ndash;Variable Defns</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example">methid[&quot;::&quot;] = &quot;-c-&quot;
+methid[&quot;#&quot;]  = &quot;-i-&quot;
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d1">apiutil---BEGIN--Variable-Defns-1</a>,
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d2">apiutil---BEGIN--Variable-Defns-2</a>, and
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d4">apiutil---BEGIN--Variable-Defns-4</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;BEGIN Block</i>&gt;</span>; see its first definition at <a href="apiutil_002eawk-BEGIN-Block.html#apiutil_002d_002d_002dBEGIN_002dBlock">apiutil---BEGIN-Block</a>.
+</p>
+<a name="Stitching-Together-the-Parts"></a>
+<h4 class="subheading">Stitching Together the Parts</h4>
+
+<p>Once the parsing has been completed, the parts are stitched together
+and printed with appropriate commands surrounding them, i.e.,
+<code>@item</code> or <code>@code</code>, etc.
+</p>
+<p>The variable <code>itemurl</code> will be used to stitch together the URL that
+will be the main <code>@item</code> content; it begins with the base url as defined
+in the BEGIN block:
+</p>
+<a name="apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d4"></a><a name="index-_003capiutil_002d_002d_002dBEGIN_002d_002dVariable-Defns_003e_002c-definition-3"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;BEGIN&ndash;Variable Defns</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example">baseurl = &quot;http://ruby-doc.org/core-2.5.1/&quot;
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d1">apiutil---BEGIN--Variable-Defns-1</a>,
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d2">apiutil---BEGIN--Variable-Defns-2</a>, and
+<a href="#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d3">apiutil---BEGIN--Variable-Defns-3</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;BEGIN Block</i>&gt;</span>; see its first definition at <a href="apiutil_002eawk-BEGIN-Block.html#apiutil_002d_002d_002dBEGIN_002dBlock">apiutil---BEGIN-Block</a>.
+</p>
+<p><code>baseurl</code> starts the <code>itemurl</code> definition:
+</p>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d2"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_005fProcessing_003e_002c-definition-1"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example">itemurl = (baseurl)
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d1">apiutil---MAIN-Block--Main-Loop-Inside-Processing-1</a>,
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d3">apiutil---MAIN-Block--Main-Loop-Inside-Processing-3</a>, and
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d4">apiutil---MAIN-Block--Main-Loop-Inside-Processing-4</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1">apiutil---MAIN-Block--Main-Loop-Inside-1</a>.
+</p>
+<a name="Processing-the-arr-Array"></a>
+<h4 class="subsubheading">Processing the <code>arr</code> Array</h4>
+
+<p>The additional parts of the array <code>arr</code> will be added to
+<code>itemurl</code> to create a complete and linkable URL into Ruby&rsquo;s core
+library pages.
+</p>
+<p>The code now continues processing the <code>arr</code> array parts.  If
+<code>arr[4])</code> exists, then the code is currently processing the
+<code>Method</code> table, and since the parts are different than the
+<code>Class</code> table, it must differentiate between them.
+</p>
+<p><code>arr[4]</code> will be empty for a <code>Class</code> table element, and so
+it can be reformatted somewhat for a <code>Method</code> table element by
+placing its contents inside a <code>@code</code> format.
+</p>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d3"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_005fProcessing_003e_002c-definition-2"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example">if (length(arr[4]) &gt; 0) {
+
+  #process the Method table
+  method = arr[2]
+  class  = arr[4]
+
+  itemurl = &quot;@item @url{&quot;(itemurl)(class)&quot;.html#method&quot;(methid[arr[1]])(method)&quot;}&quot;
+  detail  = &quot;@code{&quot;(class)(arr[1])(method)&quot;} (&quot;(classmethod[arr[1]])&quot;)&quot;
+
+} else {
+  # process the Class table
+  class = arr[2]
+
+  itemurl = &quot;@item @url{&quot;(itemurl)(class)&quot;.html,&quot;(arr[2])&quot;}&quot;
+  detail  = (classmethod[arr[1]])
+}
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d1">apiutil---MAIN-Block--Main-Loop-Inside-Processing-1</a>,
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d2">apiutil---MAIN-Block--Main-Loop-Inside-Processing-2</a>, and
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d4">apiutil---MAIN-Block--Main-Loop-Inside-Processing-4</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1">apiutil---MAIN-Block--Main-Loop-Inside-1</a>.
+</p>
+<a name="Printing-the-Table-Items"></a>
+<h4 class="subsubheading">Printing the Table Items</h4>
+
+<p>The code is printing a <code>@table</code> element, and it contains both
+an <code>@item</code> column and a detail column.
+</p>
+<a name="apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d4"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_002dInside_005fProcessing_003e_002c-definition-3"></a>
+<p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside_Processing</i>&gt;</span> +&equiv;
+</p><div class="example">
+<pre class="example">print itemurl &gt; newfile
+print detail  &gt; newfile
+
+</pre></div>
+
+<p>This chunk is also defined in
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d1">apiutil---MAIN-Block--Main-Loop-Inside-Processing-1</a>,
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d2">apiutil---MAIN-Block--Main-Loop-Inside-Processing-2</a>, and
+<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002dProcessing_002d3">apiutil---MAIN-Block--Main-Loop-Inside-Processing-3</a>.
+</p>
+<p>This chunk is called by <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop-Inside</i>&gt;</span>; see its first definition at <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop_002dInside_002d1">apiutil---MAIN-Block--Main-Loop-Inside-1</a>.
+</p>
+
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h3><a name="FOOT2" href="#DOCF2">(2)</a></h3>
+<p>In fact one line is added at the end of
+the table to account for better style</p>
+</div>
 <hr>
 <div class="header">
 <p>

@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.3h of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.3i of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -70,33 +70,20 @@ Next: <a href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Bloc
 <a name="apiutil_002eawk-BEGIN-Block-1"></a>
 <h4 class="appendixsubsec">A.2.1 <samp>apiutil.awk</samp> BEGIN Block</h4>
 
-<p>The variable <code>start</code> holds a regular expression string that targets
-the two tables I want to process.
-</p>
-<p>When parsing the lines of text obtained from copying the library page, the
-initial letters and symbols can be translated into meaningful words using
-the hash <code>classmethod</code>.
-</p>
-<a name="apiutil_002d_002d_002dBEGIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dBEGIN-Block_003e_002c-definition"></a>
+<a name="apiutil_002d_002d_002dBEGIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dBEGIN_002d_002dVariable-Defns_003e_002c-use"></a>
+<a name="index-_003capiutil_002d_002d_002dBEGIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;BEGIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
 <pre class="example">BEGIN {
-  start = &quot;^@float Table,table:api-.*$&quot;
-  end   = &quot;^@end table$&quot;
-  started = 0
-
-  classmethod[&quot;C&quot;]  = &quot;Class&quot;
-  classmethod[&quot;M&quot;]  = &quot;Module&quot;
-  classmethod[&quot;::&quot;] = &quot;Class Method&quot;
-  classmethod[&quot;#&quot;]  = &quot;Instance Method&quot;
-  methid[&quot;::&quot;] = &quot;c-&quot;
-  methid[&quot;#&quot;]  = &quot;i-&quot;
-
-  baseurl = &quot;http://ruby-doc.org/core-2.5.1/&quot;
+  <span class="roman">&lt;<i>apiutil&mdash;BEGIN&ndash;Variable Defns</i>&gt;</span>
 }
+
 </pre></div>
 
 <p>This chunk is called by <span class="roman">{<samp>apiutil.awk</samp>}</span>; see its first definition at <a href="API-Utility.html#apiutil_002dawk">apiutil-awk</a>.
+</p>
+<p>The called chunk <span class="roman">&lt;<i>apiutil&mdash;BEGIN&ndash;Variable Defns</i>&gt;</span> is first defined at
+<a href="apiutil_002eawk-MAIN-Block.html#apiutil_002d_002d_002dBEGIN_002d_002dVariable_002dDefns_002d1">apiutil---BEGIN--Variable-Defns-1</a>.
 </p>
 
 
