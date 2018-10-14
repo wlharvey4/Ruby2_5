@@ -242,6 +242,208 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Bibliography::
 * Concept Index::
 * Program Index::
+
+@detailmenu
+ --- The Detailed Node Listing ---
+
+Preface
+
+* Audience::
+* Overview::
+* Conventions::
+* Acknowledgements::
+
+Documentation
+
+* Installing Ruby::
+* Developing Ruby::
+* Getting Started::
+* Manuals::
+* Editors and IDEs::
+* Further Reading::
+
+Installation Methods
+
+* Package Management Systems::
+* Installers::
+* Managers::
+* Building From Source::
+
+Package Management Systems
+
+* Homebrew (OS X)::
+
+Installers
+
+* ruby-build::
+* ruby-install::
+
+Managers
+
+* chruby::
+* rbenv::
+* RVM (``Ruby Version Manager'')::
+* uru::
+
+Building From Source
+
+* Releases Page::
+* Branches Page::
+* Issue Tracking::
+
+Getting Started
+
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Important Language Features::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+
+Official FAQ
+
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
+
+Ruby in Twenty Minutes
+
+* Interactive Ruby::
+* Defining Methods::
+* Altering Classes::
+* Large Class Definition::
+* Run MegaGreeter::
+
+Ruby from Other Languages
+
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+
+Important Language Features
+
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+
+Manuals
+
+* Ruby User's Guide::
+* Ruby Programming Wikibook::
+* Programming Ruby::
+
+Ruby User's Guide
+
+* Ruby User's Guide On What Ruby IS::
+* Ruby User's Guide On Simple Examples::
+* Ruby User's Guide on Strings::
+* Ruby User's Guide On Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
+* Ruby User's Guide On Control Structures::
+* Ruby User's Guide On Iterators::
+* Ruby User's Guide On Object-Oriented Thinking::
+* Ruby User's Guide on Methods::
+* Ruby User's Guide on Classes::
+* Ruby User's Guide on Inheritance::
+* Ruby User's Guide on Redefinition Of Methods::
+* Ruby User's Guide On Access Control::
+* Ruby User's Guide On Singleton Methods::
+* Ruby User's Guide On Modules::
+* Ruby User's Guide On Procedure Objects::
+* Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And @code{rescue}::
+* Ruby User's Guide On Exception Processing and @code{ensure}::
+* Ruby User's Guide On Accessors::
+* Ruby User's Guide On Object Initialization::
+* Ruby User's Guide On Nuts And Bolts::
+
+Ruby Core Reference
+
+* API Documentation::
+* Beginner Core Topics::
+
+API Documentation
+
+* API Files::
+* API Classes And Modules::
+* API Methods::
+
+Utility Programs
+
+* Ruby Eval Utility::
+* API Utility::
+
+Ruby Eval Utility
+
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+
+@file{eval.rb} Main Process Line Code
+
+* eval If Not Line Code::
+* eval If Is Line Code::
+
+API Utility
+
+* @file{apiutil.awk} BEGIN Block::
+* @file{apiutil.awk} BEGNFILE Block::
+* @file{apiutil.awk} MAIN Block::
+* @file{apiutil.awk} ENDFILE Block::
+* @file{apiutil.awk} END Block::
+* @file{apiutil} Ord Function::
+* apiutil Makefile Target::
+
+Initial Setup and Post Create
+
+* Initial Setup::
+* Post Create::
+
+The Makefile
+
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Targets::
+* Makefile Utility Targets::
+* Makefile Clean Targets::
+
+Code Chunk Summaries
+
+* File Definitions::
+* Code Chunk Definitions::
+* Code Chunk References::
+
+@end detailmenu
 @end menu
 
 @c @summarycontents
@@ -255,6 +457,13 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 @unnumbered Preface
 
 Text here.
+
+@menu
+* Audience::
+* Overview::
+* Conventions::
+* Acknowledgements::
+@end menu
 
 @node Audience
 @unnumberedsec Intended Audience
@@ -341,6 +550,15 @@ in handy when you feel like coding in Ruby.
 
 @c -----------------------------------------------------------------------------
 
+@menu
+* Installing Ruby::
+* Developing Ruby::
+* Getting Started::
+* Manuals::
+* Editors and IDEs::
+* Further Reading::
+@end menu
+
 @node Installing Ruby
 @section Installing Ruby
 
@@ -370,6 +588,13 @@ different needs and platforms.
 
 @c .....................................
 
+@menu
+* Package Management Systems::
+* Installers::
+* Managers::
+* Building From Source::
+@end menu
+
 @node Package Management Systems
 @subsection Package Management Systems
 
@@ -387,6 +612,10 @@ use the correct package name, or use the tools described further below
 instead.
 
 @c _____________________________________
+
+@menu
+* Homebrew (OS X)::
+@end menu
 
 @node Homebrew (OS X)
 @subsubsection Homebrew (OS X)
@@ -423,6 +652,11 @@ different Rubies.  If you are planning to use RVM as a version manager
 you do not need a separate installer, it comes with its own.
 
 @c _____________________________________
+
+@menu
+* ruby-build::
+* ruby-install::
+@end menu
 
 @node ruby-build
 @subsubsection @command{ruby-build}
@@ -469,6 +703,13 @@ various advantages but are not officially supported.  Their respective
 communities are very helpful, however.
 
 @c _____________________________________
+
+@menu
+* chruby::
+* rbenv::
+* RVM (``Ruby Version Manager'')::
+* uru::
+@end menu
 
 @node chruby
 @subsubsection chruby
@@ -556,6 +797,12 @@ your environment.  It’s also a good solution in the event that there are no
 other premade packages for your platform.
 
 @c _____________________________________
+
+@menu
+* Releases Page::
+* Branches Page::
+* Issue Tracking::
+@end menu
 
 @node Releases Page
 @subsubsection Releases Page
@@ -800,6 +1047,19 @@ Patch}
 
 @c .....................................
 
+@menu
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Important Language Features::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+@end menu
+
 @node Try Ruby!
 @subsection Try Ruby!
 
@@ -855,6 +1115,16 @@ Other features
 @end itemize
 
 @c _____________________________________
+
+@menu
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
+@end menu
 
 @node FAQ Iterators
 @subsubsection FAQ Iterators
@@ -1607,6 +1877,14 @@ before you get started.)
 
 @c _____________________________________
 
+@menu
+* Interactive Ruby::
+* Defining Methods::
+* Altering Classes::
+* Large Class Definition::
+* Run MegaGreeter::
+@end menu
+
 @node Interactive Ruby
 @subsubsection Interactive Ruby
 @cindex @command{irb}
@@ -2166,6 +2444,14 @@ to Ruby.  The second section tackles the major language features and how they
 might compare to what you’re already familiar with.
 
 @c _____________________________________
+
+@menu
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+@end menu
 
 @node To Ruby From C and C++
 @subsubsection To Ruby From C and C++
@@ -2802,6 +3088,26 @@ learning Ruby.
 
 @c _____________________________________
 
+@menu
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+@end menu
+
 @node Pointers on Iteration
 @subsubsection Pointers on Iteration
 @cindex iteration
@@ -3343,6 +3649,12 @@ know how to program, start here.
 
 @c .....................................
 
+@menu
+* Ruby User's Guide::
+* Ruby Programming Wikibook::
+* Programming Ruby::
+@end menu
+
 @node Ruby User's Guide
 @subsection Ruby User's Guide
 
@@ -3353,6 +3665,36 @@ nice overview of many aspects of the Ruby language.
 @url{http://www.rubyist.net/~slagell/ruby/, Ruby User's Guide}
 
 @c _____________________________________
+
+@menu
+* Ruby User's Guide On What Ruby IS::
+* Ruby User's Guide On Simple Examples::
+* Ruby User's Guide on Strings::
+* Ruby User's Guide On Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
+* Ruby User's Guide On Control Structures::
+* Ruby User's Guide On Iterators::
+* Ruby User's Guide On Object-Oriented Thinking::
+* Ruby User's Guide on Methods::
+* Ruby User's Guide on Classes::
+* Ruby User's Guide on Inheritance::
+* Ruby User's Guide on Redefinition Of Methods::
+* Ruby User's Guide On Access Control::
+* Ruby User's Guide On Singleton Methods::
+* Ruby User's Guide On Modules::
+* Ruby User's Guide On Procedure Objects::
+* Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And @code{rescue}::
+* Ruby User's Guide On Exception Processing and @code{ensure}::
+* Ruby User's Guide On Accessors::
+* Ruby User's Guide On Object Initialization::
+* Ruby User's Guide On Nuts And Bolts::
+@end menu
 
 @node Ruby User's Guide On What Ruby IS
 @subsubsection On What Ruby Is
@@ -5915,11 +6257,22 @@ have taken days.
 
 @c -----------------------------------------------------------------------------
 
+@menu
+* API Documentation::
+* Beginner Core Topics::
+@end menu
+
 @node API Documentation
 @section API Documentation
 
 
 @c .....................................
+
+@menu
+* API Files::
+* API Classes And Modules::
+* API Methods::
+@end menu
 
 @node API Files
 @subsection API Files
@@ -10063,6 +10416,11 @@ Cfatal
 
 @c -----------------------------------------------------------------------------
 
+@menu
+* Ruby Eval Utility::
+* API Utility::
+@end menu
+
 @node Ruby Eval Utility
 @appendixsec Ruby Eval Utility
 @pindex eval.rb
@@ -10143,6 +10501,13 @@ The following table lists called chunk definition points.
 
 
 @c .....................................
+
+@menu
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+@end menu
 
 @node eval Module Code
 @appendixsubsec @file{eval.rb} Module Code
@@ -10296,6 +10661,11 @@ The following table lists called chunk definition points.
 @end iftex
 
 @c _____________________________________
+
+@menu
+* eval If Not Line Code::
+* eval If Is Line Code::
+@end menu
 
 @node eval If Not Line Code
 @appendixsubsubsec @file{eval.rb} If Not Line Code
@@ -10498,18 +10868,30 @@ The following table lists called chunk definition points.
 
 @c .....................................
 
+@menu
+* @file{apiutil.awk} BEGIN Block::
+* @file{apiutil.awk} BEGNFILE Block::
+* @file{apiutil.awk} MAIN Block::
+* @file{apiutil.awk} ENDFILE Block::
+* @file{apiutil.awk} END Block::
+* @file{apiutil} Ord Function::
+* apiutil Makefile Target::
+@end menu
+
 @node @file{apiutil.awk} BEGIN Block
 @appendixsubsec @file{apiutil.awk} BEGIN Block
 
 @need 400
 @anchor{apiutil---BEGIN-Block}
 @crindex @r{<@i{apiutil---BEGIN--Variable Defns}>}, use
+@crindex @r{<@i{apiutil---BEGIN--Ord Function Init}>}, use
 @cdindex @r{<@i{apiutil---BEGIN Block}>}, definition
 @noindent
 @r{<@i{apiutil---BEGIN Block}>} @equiv{}
 @example
 BEGIN @{
   @r{<@i{apiutil---BEGIN--Variable Defns}>}
+  @r{<@i{apiutil---BEGIN--Ord Function Init}>}
 @}
 
 @end example
@@ -10521,8 +10903,12 @@ BEGIN @{
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
 
 @noindent
-The called chunk @r{<@i{apiutil---BEGIN--Variable Defns}>} is first defined at
-@ref{apiutil---BEGIN--Variable-Defns-1}.
+The following table lists called chunk definition points.
+@multitable @columnfractions .35 .65
+@headitem Chunk name @tab First definition point
+@item @r{<@i{apiutil---BEGIN--Ord Function Init}>} @tab See @ref{apiutil---BEGIN--Ord-Function-Init}.
+@item @r{<@i{apiutil---BEGIN--Variable Defns}>} @tab See @ref{apiutil---BEGIN--Variable-Defns-1}.
+@end multitable
 @iftex
 @textfonts @rm
 @end iftex
@@ -10564,14 +10950,31 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @need 400
 @anchor{apiutil---MAIN-Block}
 @crindex @r{<@i{apiutil---MAIN Block--Main Loop}>}, use
+@crindex @r{<@i{apiutil---MAIN Block--Ord Function Defn}>}, use
 @cdindex @r{<@i{apiutil---MAIN Block}>}, definition
 @noindent
 @r{<@i{apiutil---MAIN Block}>} @equiv{}
 @example
+##############
+# MAIN BLOCK #
+##############
+
 # pass through whatever is not in a target table
 started == 0 @{ print > newfile @}
 
 @r{<@i{apiutil---MAIN Block--Main Loop}>}
+
+
+########################
+# FUNCTION DEFINITIONS #
+########################
+
+@r{<@i{apiutil---MAIN Block--Ord Function Defn}>}
+
+##################
+# END MAIN BLOCK #
+# ################
+
 @end example
 @iftex
 @smallfonts @rm
@@ -10581,8 +10984,12 @@ started == 0 @{ print > newfile @}
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
 
 @noindent
-The called chunk @r{<@i{apiutil---MAIN Block--Main Loop}>} is first defined at
-@ref{apiutil---MAIN-Block--Main-Loop}.
+The following table lists called chunk definition points.
+@multitable @columnfractions .35 .65
+@headitem Chunk name @tab First definition point
+@item @r{<@i{apiutil---MAIN Block--Main Loop}>} @tab See @ref{apiutil---MAIN-Block--Main-Loop}.
+@item @r{<@i{apiutil---MAIN Block--Ord Function Defn}>} @tab See @ref{apiutil---MAIN-Block--Ord-Function-Defn-1}.
+@end multitable
 @iftex
 @textfonts @rm
 @end iftex
@@ -11085,6 +11492,116 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 
 @c -----------------------------------------------------------------------------
 
+@node @file{apiutil} Ord Function
+@appendixsubsec @file{apiutil} Ord Function
+
+I need to turn symbols (like @kbd{=} and @kbd{+}) into their hexadecimal
+numbers inside @code{Method} URL links.  I found this @command{ord} function in
+@file{GAWK}'s documentation.  @xref{Ordinal Functions,,,gawk,GAWK}.  It
+consists of an initialization segment, in which a hash of symbols and their
+corresponding ASCII codes is assembled, and a function that, given either an
+@code{ord} number or a @code{char} symbol, returns the opposite.  I will put
+the initialization code into the @code{BEGIN} segment, and the function
+definition into the @code{MAIN} block.
+
+@subheading The @command{ord} Function Initialization Segments
+
+The @code{_ord_init()} initialization function is called from the BEGIN
+block, but is defined at the bottom of the MAIN block along with the
+other @code{ord} functions.
+
+@need 400
+@anchor{apiutil---BEGIN--Ord-Function-Init}
+@cdindex @r{<@i{apiutil---BEGIN--Ord Function Init}>}, definition
+@noindent
+@r{<@i{apiutil---BEGIN--Ord Function Init}>} @equiv{}
+@example
+# initialize the _ord_ and _chr_ function's ASCII symbol table
+_ord_init()
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@need 400
+@anchor{apiutil---MAIN-Block--Ord-Function-Defn-1}
+@cdindex @r{<@i{apiutil---MAIN Block--Ord Function Defn}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Ord Function Defn}>} @equiv{}
+@example
+# initialize the ASCII symbol table
+#
+function _ord_init(       low, high, i, t) @{
+  low = 0
+  high = 127
+  for (i = low; i <= high; i++) @{
+    t = sprintf("%c", i)
+    _ord_[t] = i
+  @}
+@}
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Ord-Function-Defn-2}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block}>}; see its first definition at @ref{apiutil---MAIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+@subheading The @command{ord()} and @command{chr()} Function Definitions
+
+@need 400
+@anchor{apiutil---MAIN-Block--Ord-Function-Defn-2}
+@cdindex @r{<@i{apiutil---MAIN Block--Ord Function Defn}>}, definition
+@noindent
+@r{<@i{apiutil---MAIN Block--Ord Function Defn}>} +@equiv{}
+@example
+# the 'ord()' function: given a symbol, return its ASCII number
+#
+function ord(str,       c) @{
+  c = substr(str, 1, 1)
+  return _ord_[c]
+@}
+
+# the 'chr()' function: given an ASCII number, return its symbol
+#
+function chr(c) @{
+  return sprintf("%c", c + 0)
+@}
+
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+
+@noindent
+This chunk is also defined in
+@ref{apiutil---MAIN-Block--Ord-Function-Defn-1}.
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block}>}; see its first definition at @ref{apiutil---MAIN-Block}.
+@iftex
+@textfonts @rm
+@end iftex
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node apiutil Makefile Target
 @appendixsubsec apiutil Makefile Target
 
@@ -11144,6 +11661,11 @@ TexiwebJr has a couple of new utility commands for working with files:
 
 
 @c -----------------------------------------------------------------------------
+
+@menu
+* Initial Setup::
+* Post Create::
+@end menu
 
 @node Initial Setup
 @appendixsec Initial Setup
@@ -11268,6 +11790,14 @@ The following table lists called chunk definition points.
 
 
 @c -----------------------------------------------------------------------------
+
+@menu
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Targets::
+* Makefile Utility Targets::
+* Makefile Clean Targets::
+@end menu
 
 @node Makefile Variable Definitions
 @appendixsec Makefile Variable Definitions
@@ -11493,6 +12023,12 @@ the code chunk definitions, and the code chunk references.
 
 @c -----------------------------------------------------------------------------
 
+@menu
+* File Definitions::
+* Code Chunk Definitions::
+* Code Chunk References::
+@end menu
+
 @node File Definitions
 @appendixsec Source File Definitions
 
@@ -11565,6 +12101,9 @@ This chunk is defined in
 @item @r{<@i{apiutil---BEGIN Block}>}
 This chunk is defined in
 @ref{apiutil---BEGIN-Block}.
+@item @r{<@i{apiutil---BEGIN--Ord Function Init}>}
+This chunk is defined in
+@ref{apiutil---BEGIN--Ord-Function-Init}.
 @item @r{<@i{apiutil---BEGIN--Variable Defns}>}
 Multiple definitions occur in
 @ref{apiutil---BEGIN--Variable-Defns-1},
@@ -11601,6 +12140,12 @@ Multiple definitions occur in
 @ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-3},
 and
 @ref{apiutil---MAIN-Block--Main-Loop-Inside-Processing-4}.
+
+@item @r{<@i{apiutil---MAIN Block--Ord Function Defn}>}
+Multiple definitions occur in
+@ref{apiutil---MAIN-Block--Ord-Function-Defn-1},
+and
+@ref{apiutil---MAIN-Block--Ord-Function-Defn-2}.
 
 @item @r{<@i{eval---EvalWrapper--Constants}>}
 This chunk is defined in
@@ -11677,6 +12222,10 @@ This chunk is called by @r{@{@file{ri20min.rb}@}}; see its first definition at @
 
 @noindent
 This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at @ref{apiutil-awk}.
+@item @r{<@i{apiutil---BEGIN--Ord Function Init}>}
+
+@noindent
+This chunk is called by @r{<@i{apiutil---BEGIN Block}>}; see its first definition at @ref{apiutil---BEGIN-Block}.
 @item @r{<@i{apiutil---BEGIN--Variable Defns}>}
 
 @noindent
@@ -11709,6 +12258,10 @@ This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop}>}; see its first
 
 @noindent
 This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see its first definition at @ref{apiutil---MAIN-Block--Main-Loop-Inside-1}.
+@item @r{<@i{apiutil---MAIN Block--Ord Function Defn}>}
+
+@noindent
+This chunk is called by @r{<@i{apiutil---MAIN Block}>}; see its first definition at @ref{apiutil---MAIN-Block}.
 @item @r{<@i{eval---EvalWrapper--Constants}>}
 
 @noindent

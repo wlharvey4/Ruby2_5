@@ -47,6 +47,206 @@ General Public License, version 3.
 * Concept Index::
 * Program Index::
 
+ -- The Detailed Node Listing --
+
+Preface
+
+* Audience::
+* Overview::
+* Conventions::
+* Acknowledgements::
+
+Documentation
+
+* Installing Ruby::
+* Developing Ruby::
+* Getting Started::
+* Manuals::
+* Editors and IDEs::
+* Further Reading::
+
+Installation Methods
+
+* Package Management Systems::
+* Installers::
+* Managers::
+* Building From Source::
+
+Package Management Systems
+
+* Homebrew (OS X)::
+
+Installers
+
+* ruby-build::
+* ruby-install::
+
+Managers
+
+* chruby::
+* rbenv::
+* RVM (``Ruby Version Manager'')::
+* uru::
+
+Building From Source
+
+* Releases Page::
+* Branches Page::
+* Issue Tracking::
+
+Getting Started
+
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Important Language Features::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+
+Official FAQ
+
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
+
+Ruby in Twenty Minutes
+
+* Interactive Ruby::
+* Defining Methods::
+* Altering Classes::
+* Large Class Definition::
+* Run MegaGreeter::
+
+Ruby from Other Languages
+
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+
+Important Language Features
+
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+
+Manuals
+
+* Ruby User's Guide::
+* Ruby Programming Wikibook::
+* Programming Ruby::
+
+Ruby User's Guide
+
+* Ruby User's Guide On What Ruby IS::
+* Ruby User's Guide On Simple Examples::
+* Ruby User's Guide on Strings::
+* Ruby User's Guide On Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
+* Ruby User's Guide On Control Structures::
+* Ruby User's Guide On Iterators::
+* Ruby User's Guide On Object-Oriented Thinking::
+* Ruby User's Guide on Methods::
+* Ruby User's Guide on Classes::
+* Ruby User's Guide on Inheritance::
+* Ruby User's Guide on Redefinition Of Methods::
+* Ruby User's Guide On Access Control::
+* Ruby User's Guide On Singleton Methods::
+* Ruby User's Guide On Modules::
+* Ruby User's Guide On Procedure Objects::
+* Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And rescue::
+* Ruby User's Guide On Exception Processing and ensure::
+* Ruby User's Guide On Accessors::
+* Ruby User's Guide On Object Initialization::
+* Ruby User's Guide On Nuts And Bolts::
+
+Ruby Core Reference
+
+* API Documentation::
+* Beginner Core Topics::
+
+API Documentation
+
+* API Files::
+* API Classes And Modules::
+* API Methods::
+
+Utility Programs
+
+* Ruby Eval Utility::
+* API Utility::
+
+Ruby Eval Utility
+
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+
+'eval.rb' Main Process Line Code
+
+* eval If Not Line Code::
+* eval If Is Line Code::
+
+API Utility
+
+* apiutil.awk BEGIN Block::
+* apiutil.awk BEGNFILE Block::
+* apiutil.awk MAIN Block::
+* apiutil.awk ENDFILE Block::
+* apiutil.awk END Block::
+* apiutil Ord Function::
+* apiutil Makefile Target::
+
+Initial Setup and Post Create
+
+* Initial Setup::
+* Post Create::
+
+The Makefile
+
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Targets::
+* Makefile Utility Targets::
+* Makefile Clean Targets::
+
+Code Chunk Summaries
+
+* File Definitions::
+* Code Chunk Definitions::
+* Code Chunk References::
+
+
 
 File: Ruby2_5.info,  Node: Preface,  Next: Introduction,  Prev: Top,  Up: Top
 
@@ -9418,6 +9618,7 @@ Block>
 * apiutil.awk MAIN Block::
 * apiutil.awk ENDFILE Block::
 * apiutil.awk END Block::
+* apiutil Ord Function::
 * apiutil Makefile Target::
 
 
@@ -9429,14 +9630,20 @@ A.2.1 'apiutil.awk' BEGIN Block
 <apiutil--BEGIN Block> ==
      BEGIN {
        <apiutil--BEGIN-Variable Defns>
+       <apiutil--BEGIN-Ord Function Init>
      }
 
 
 This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
-The called chunk <apiutil--BEGIN-Variable Defns> is first defined at
-*note apiutil---BEGIN--Variable-Defns-1::.
+The following table lists called chunk definition points.
+Chunk name                First definition point
+--------------------------------------------------------------------------
+<apiutil--BEGIN-Ord       See
+Function Init>            *note apiutil---BEGIN--Ord-Function-Init::.
+<apiutil--BEGIN-Variable  See
+Defns>                    *note apiutil---BEGIN--Variable-Defns-1::.
 
 
 File: Ruby2_5.info,  Node: apiutil.awk BEGNFILE Block,  Next: apiutil.awk MAIN Block,  Prev: apiutil.awk BEGIN Block,  Up: API Utility
@@ -9462,16 +9669,38 @@ A.2.3 'apiutil.awk' MAIN Block
 ------------------------------
 
 <apiutil--MAIN Block> ==
+     ##############
+     # MAIN BLOCK #
+     ##############
+
      # pass through whatever is not in a target table
      started == 0 { print > newfile }
 
      <apiutil--MAIN Block-Main Loop>
 
+
+     ########################
+     # FUNCTION DEFINITIONS #
+     ########################
+
+     <apiutil--MAIN Block-Ord Function Defn>
+
+     ##################
+     # END MAIN BLOCK #
+     # ################
+
+
 This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
-The called chunk <apiutil--MAIN Block-Main Loop> is first defined at
-*note apiutil---MAIN-Block--Main-Loop::.
+The following table lists called chunk definition points.
+Chunk name                First definition point
+--------------------------------------------------------------------------
+<apiutil--MAIN            See *note apiutil---MAIN-Block--Main-Loop::.
+Block-Main Loop>
+<apiutil--MAIN            See
+Block-Ord Function        *note apiutil---MAIN-Block--Ord-Function-Defn-1::.
+Defn>
 
 Main Loop Variable Definitions
 ------------------------------
@@ -9790,7 +10019,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
-File: Ruby2_5.info,  Node: apiutil.awk END Block,  Next: apiutil Makefile Target,  Prev: apiutil.awk ENDFILE Block,  Up: API Utility
+File: Ruby2_5.info,  Node: apiutil.awk END Block,  Next: apiutil Ord Function,  Prev: apiutil.awk ENDFILE Block,  Up: API Utility
 
 A.2.5 'apiutil.awk' END Block
 -----------------------------
@@ -9804,9 +10033,82 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 *note apiutil-awk::.
 
 
-File: Ruby2_5.info,  Node: apiutil Makefile Target,  Prev: apiutil.awk END Block,  Up: API Utility
+File: Ruby2_5.info,  Node: apiutil Ord Function,  Next: apiutil Makefile Target,  Prev: apiutil.awk END Block,  Up: API Utility
 
-A.2.6 apiutil Makefile Target
+A.2.6 'apiutil' Ord Function
+----------------------------
+
+I need to turn symbols (like '=' and '+') into their hexadecimal numbers
+inside 'Method' URL links.  I found this 'ord' function in 'GAWK''s
+documentation.  *Note (gawk)Ordinal Functions::.  It consists of an
+initialization segment, in which a hash of symbols and their
+corresponding ASCII codes is assembled, and a function that, given
+either an 'ord' number or a 'char' symbol, returns the opposite.  I will
+put the initialization code into the 'BEGIN' segment, and the function
+definition into the 'MAIN' block.
+
+The 'ord' Function Initialization Segments
+------------------------------------------
+
+The '_ord_init()' initialization function is called from the BEGIN
+block, but is defined at the bottom of the MAIN block along with the
+other 'ord' functions.
+
+<apiutil--BEGIN-Ord Function Init> ==
+     # initialize the _ord_ and _chr_ function's ASCII symbol table
+     _ord_init()
+
+
+This chunk is called by <apiutil--BEGIN Block>; see its first definition
+at *note apiutil---BEGIN-Block::.
+
+<apiutil--MAIN Block-Ord Function Defn> ==
+     # initialize the ASCII symbol table
+     #
+     function _ord_init(       low, high, i, t) {
+       low = 0
+       high = 127
+       for (i = low; i <= high; i++) {
+         t = sprintf("%c", i)
+         _ord_[t] = i
+       }
+     }
+
+
+This chunk is also defined in *note
+apiutil---MAIN-Block--Ord-Function-Defn-2::.
+
+This chunk is called by <apiutil--MAIN Block>; see its first definition
+at *note apiutil---MAIN-Block::.
+
+The 'ord()' and 'chr()' Function Definitions
+--------------------------------------------
+
+<apiutil--MAIN Block-Ord Function Defn> +==
+     # the 'ord()' function: given a symbol, return its ASCII number
+     #
+     function ord(str,       c) {
+       c = substr(str, 1, 1)
+       return _ord_[c]
+     }
+
+     # the 'chr()' function: given an ASCII number, return its symbol
+     #
+     function chr(c) {
+       return sprintf("%c", c + 0)
+     }
+
+
+This chunk is also defined in *note
+apiutil---MAIN-Block--Ord-Function-Defn-1::.
+
+This chunk is called by <apiutil--MAIN Block>; see its first definition
+at *note apiutil---MAIN-Block::.
+
+
+File: Ruby2_5.info,  Node: apiutil Makefile Target,  Prev: apiutil Ord Function,  Up: API Utility
+
+A.2.7 apiutil Makefile Target
 -----------------------------
 
 Add a target for running 'apiutil.awk' in the Makefile.  Note that the
@@ -10133,6 +10435,9 @@ D.2 Code Chunk Definitions
      This chunk is defined in *note MegaGreeter---say-hi-Method::.
 <apiutil--BEGIN Block>
      This chunk is defined in *note apiutil---BEGIN-Block::.
+<apiutil--BEGIN-Ord Function Init>
+     This chunk is defined in *note
+     apiutil---BEGIN--Ord-Function-Init::.
 <apiutil--BEGIN-Variable Defns>
      Multiple definitions occur in *note
      apiutil---BEGIN--Variable-Defns-1::, *note
@@ -10161,6 +10466,11 @@ D.2 Code Chunk Definitions
      apiutil---MAIN-Block--Main-Loop-Inside-Processing-2::, *note
      apiutil---MAIN-Block--Main-Loop-Inside-Processing-3::, and *note
      apiutil---MAIN-Block--Main-Loop-Inside-Processing-4::.
+
+<apiutil--MAIN Block-Ord Function Defn>
+     Multiple definitions occur in *note
+     apiutil---MAIN-Block--Ord-Function-Defn-1::, and *note
+     apiutil---MAIN-Block--Ord-Function-Defn-2::.
 
 <eval--EvalWrapper-Constants>
      This chunk is defined in *note eval---EvalWrapper--Constants::.
@@ -10229,6 +10539,10 @@ D.3 Code Chunk References
 
      This chunk is called by {'apiutil.awk'}; see its first definition
      at *note apiutil-awk::.
+<apiutil--BEGIN-Ord Function Init>
+
+     This chunk is called by <apiutil--BEGIN Block>; see its first
+     definition at *note apiutil---BEGIN-Block::.
 <apiutil--BEGIN-Variable Defns>
 
      This chunk is called by <apiutil--BEGIN Block>; see its first
@@ -10262,6 +10576,10 @@ D.3 Code Chunk References
      This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see
      its first definition at *note
      apiutil---MAIN-Block--Main-Loop-Inside-1::.
+<apiutil--MAIN Block-Ord Function Defn>
+
+     This chunk is called by <apiutil--MAIN Block>; see its first
+     definition at *note apiutil---MAIN-Block::.
 <eval--EvalWrapper-Constants>
 
      This chunk is called by {'eval.rb'}; see its first definition at
@@ -10324,14 +10642,18 @@ Index
 * <apiutil--BEGIN Block>, definition:    apiutil.awk BEGIN Block.
                                                               (line   6)
 * <apiutil--BEGIN Block>, use:           API Utility.         (line  12)
+* <apiutil--BEGIN-Ord Function Init>, definition: apiutil Ord Function.
+                                                              (line  22)
+* <apiutil--BEGIN-Ord Function Init>, use: apiutil.awk BEGIN Block.
+                                                              (line   6)
 * <apiutil--BEGIN-Variable Defns>, definition: apiutil.awk MAIN Block.
-                                                              (line  26)
+                                                              (line  48)
 * <apiutil--BEGIN-Variable Defns>, definition <1>: apiutil.awk MAIN Block.
-                                                              (line 188)
+                                                              (line 210)
 * <apiutil--BEGIN-Variable Defns>, definition <2>: apiutil.awk MAIN Block.
-                                                              (line 205)
+                                                              (line 227)
 * <apiutil--BEGIN-Variable Defns>, definition <3>: apiutil.awk MAIN Block.
-                                                              (line 228)
+                                                              (line 250)
 * <apiutil--BEGIN-Variable Defns>, use:  apiutil.awk BEGIN Block.
                                                               (line   6)
 * <apiutil--BEGINFILE Block>, definition: apiutil.awk BEGNFILE Block.
@@ -10344,24 +10666,30 @@ Index
                                                               (line   6)
 * <apiutil--ENDFILE Block>, use:         API Utility.         (line  12)
 * <apiutil--MAIN Block-Main Loop-Inside>, definition: apiutil.awk MAIN Block.
-                                                              (line  75)
+                                                              (line  97)
 * <apiutil--MAIN Block-Main Loop-Inside>, definition <1>: apiutil.awk MAIN Block.
-                                                              (line 108)
+                                                              (line 130)
 * <apiutil--MAIN Block-Main Loop-Inside>, use: apiutil.awk MAIN Block.
-                                                              (line  47)
+                                                              (line  69)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition: apiutil.awk MAIN Block.
-                                                              (line 166)
+                                                              (line 188)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition <1>: apiutil.awk MAIN Block.
-                                                              (line 241)
+                                                              (line 263)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition <2>: apiutil.awk MAIN Block.
-                                                              (line 268)
+                                                              (line 290)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition <3>: apiutil.awk MAIN Block.
-                                                              (line 301)
+                                                              (line 323)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, use: apiutil.awk MAIN Block.
-                                                              (line 108)
+                                                              (line 130)
 * <apiutil--MAIN Block-Main Loop>, definition: apiutil.awk MAIN Block.
-                                                              (line  47)
+                                                              (line  69)
 * <apiutil--MAIN Block-Main Loop>, use:  apiutil.awk MAIN Block.
+                                                              (line   6)
+* <apiutil--MAIN Block-Ord Function Defn>, definition: apiutil Ord Function.
+                                                              (line  30)
+* <apiutil--MAIN Block-Ord Function Defn>, definition <1>: apiutil Ord Function.
+                                                              (line  52)
+* <apiutil--MAIN Block-Ord Function Defn>, use: apiutil.awk MAIN Block.
                                                               (line   6)
 * <apiutil--MAIN Block>, definition:     apiutil.awk MAIN Block.
                                                               (line   6)

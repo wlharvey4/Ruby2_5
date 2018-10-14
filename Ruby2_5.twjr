@@ -10146,6 +10146,7 @@ get to know @file{GAWK}'s extra features).
 @<apiutil---BEGIN Block@>=
 BEGIN {
   @<apiutil---BEGIN--Variable Defns@>
+  @<apiutil---BEGIN--Ord Function Init@>
 }
 
 @
@@ -10171,10 +10172,26 @@ BEGINFILE {
 @appendixsubsec @file{apiutil.awk} MAIN Block
 
 @<apiutil---MAIN Block@>=
+##############
+# MAIN BLOCK #
+##############
+
 # pass through whatever is not in a target table
 started == 0 { print > newfile }
 
 @<apiutil---MAIN Block--Main Loop@>
+
+
+########################
+# FUNCTION DEFINITIONS #
+########################
+
+@<apiutil---MAIN Block--Ord Function Defn@>
+
+##################
+# END MAIN BLOCK #
+# ################
+
 @
 
 @subheading Main Loop Variable Definitions
@@ -10424,6 +10441,67 @@ END {
 }
 @
 
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node @file{apiutil} Ord Function
+@appendixsubsec @file{apiutil} Ord Function
+
+I need to turn symbols (like @kbd{=} and @kbd{+}) into their hexadecimal
+numbers inside @code{Method} URL links.  I found this @command{ord} function in
+@file{GAWK}'s documentation.  @xref{Ordinal Functions,,,gawk,GAWK}.  It
+consists of an initialization segment, in which a hash of symbols and their
+corresponding ASCII codes is assembled, and a function that, given either an
+@code{ord} number or a @code{char} symbol, returns the opposite.  I will put
+the initialization code into the @code{BEGIN} segment, and the function
+definition into the @code{MAIN} block.
+
+@subheading The @command{ord} Function Initialization Segments
+
+The @code{_ord_init()} initialization function is called from the BEGIN
+block, but is defined at the bottom of the MAIN block along with the
+other @code{ord} functions.
+
+@<apiutil---BEGIN--Ord Function Init@>=
+# initialize the _ord_ and _chr_ function's ASCII symbol table
+_ord_init()
+
+@
+
+@<apiutil---MAIN Block--Ord Function Defn@>=
+
+# initialize the ASCII symbol table
+#
+function _ord_init(       low, high, i, t) {
+  low = 0
+  high = 127
+  for (i = low; i <= high; i++) {
+    t = sprintf("%c", i)
+    _ord_[t] = i
+  }
+}
+
+@
+
+@subheading The @command{ord()} and @command{chr()} Function Definitions
+
+@<apiutil---MAIN Block--Ord Function Defn@>=
+# the 'ord()' function: given a symbol, return its ASCII number
+#
+function ord(str,       c) {
+  c = substr(str, 1, 1)
+  return _ord_[c]
+}
+
+# the 'chr()' function: given an ASCII number, return its symbol
+#
+function chr(c) {
+  return sprintf("%c", c + 0)
+}
+
+@
 
 
 

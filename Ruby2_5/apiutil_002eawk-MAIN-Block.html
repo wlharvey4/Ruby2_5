@@ -71,20 +71,41 @@ Next: <a href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block"
 <h4 class="appendixsubsec">A.2.3 <samp>apiutil.awk</samp> MAIN Block</h4>
 
 <a name="apiutil_002d_002d_002dMAIN_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dMain-Loop_003e_002c-use"></a>
+<a name="index-_003capiutil_002d_002d_002dMAIN-Block_002d_002dOrd-Function-Defn_003e_002c-use"></a>
 <a name="index-_003capiutil_002d_002d_002dMAIN-Block_003e_002c-definition"></a>
 <p><span class="roman">&lt;<i>apiutil&mdash;MAIN Block</i>&gt;</span> &equiv;
 </p><div class="example">
-<pre class="example"># pass through whatever is not in a target table
+<pre class="example">##############
+# MAIN BLOCK #
+##############
+
+# pass through whatever is not in a target table
 started == 0 { print &gt; newfile }
 
 <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span>
+
+
+########################
+# FUNCTION DEFINITIONS #
+########################
+
+<span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Ord Function Defn</i>&gt;</span>
+
+##################
+# END MAIN BLOCK #
+# ################
+
 </pre></div>
 
 <p>This chunk is called by <span class="roman">{<samp>apiutil.awk</samp>}</span>; see its first definition at <a href="API-Utility.html#apiutil_002dawk">apiutil-awk</a>.
 </p>
-<p>The called chunk <span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span> is first defined at
-<a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop">apiutil---MAIN-Block--Main-Loop</a>.
-</p>
+<p>The following table lists called chunk definition points.
+</p><table>
+<thead><tr><th width="35%">Chunk name</th><th width="65%">First definition point</th></tr></thead>
+<tr><td width="35%"><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Main Loop</i>&gt;</span></td><td width="65%">See <a href="#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dMain_002dLoop">apiutil---MAIN-Block--Main-Loop</a>.</td></tr>
+<tr><td width="35%"><span class="roman">&lt;<i>apiutil&mdash;MAIN Block&ndash;Ord Function Defn</i>&gt;</span></td><td width="65%">See <a href="apiutil-Ord-Function.html#apiutil_002d_002d_002dMAIN_002dBlock_002d_002dOrd_002dFunction_002dDefn_002d1">apiutil---MAIN-Block--Ord-Function-Defn-1</a>.</td></tr>
+</table>
+
 <a name="Main-Loop-Variable-Definitions"></a>
 <h4 class="subheading">Main Loop Variable Definitions</h4>
 
