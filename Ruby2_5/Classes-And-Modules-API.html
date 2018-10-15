@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.4b of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Classes And Modules API (Ruby2_5 Information)</title>
+
+<meta name="description" content="Classes And Modules API (Ruby2_5 Information)">
+<meta name="keywords" content="Classes And Modules API (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="API-Documentation.html#API-Documentation" rel="up" title="API Documentation">
+<link href="Methods-API.html#Methods-API" rel="next" title="Methods API">
+<link href="Files-API.html#Files-API" rel="prev" title="Files API">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Classes-And-Modules-API"></a>
+<div class="header">
+<p>
+Next: <a href="Methods-API.html#Methods-API" accesskey="n" rel="next">Methods API</a>, Previous: <a href="Files-API.html#Files-API" accesskey="p" rel="prev">Files API</a>, Up: <a href="API-Documentation.html#API-Documentation" accesskey="u" rel="up">API Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Classes-And-Modules-API-1"></a>
+<h4 class="subsection">3.1.2 Classes And Modules API</h4>
+<a name="index-API_002c-classes-and-modules"></a>
+<a name="index-classes-api"></a>
+<a name="index-modules-api"></a>
+
+<div class="float"><a name="table_003aapi_002dclasses_002dand_002dmodules"></a>
+<dl compact="compact">
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ARGF.html">ARGF</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ArgumentError.html">ArgumentError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Array.html">Array</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/BasicObject.html">BasicObject</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Binding.html">Binding</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Class.html">Class</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ClosedQueueError.html">ClosedQueueError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Comparable.html">Comparable</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Complex.html">Complex</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Complex::compatible.html">Complex::compatible</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ConditionVariable.html">ConditionVariable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Continuation.html">Continuation</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Data.html">Data</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Dir.html">Dir</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ENV.html">ENV</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/EOFError.html">EOFError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Encoding.html">Encoding</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Encoding::CompatibilityError.html">Encoding::CompatibilityError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Encoding::Converter.html">Encoding::Converter</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Encoding::ConverterNotFoundError.html">Encoding::ConverterNotFoundError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Encoding::InvalidByteSequenceError.html">Encoding::InvalidByteSequenceError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Encoding::UndefinedConversionError.html">Encoding::UndefinedConversionError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/EncodingError.html">EncodingError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Enumerable.html">Enumerable</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Enumerator.html">Enumerator</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Enumerator::Generator.html">Enumerator::Generator</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Enumerator::Lazy.html">Enumerator::Lazy</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Enumerator::Yielder.html">Enumerator::Yielder</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Errno.html">Errno</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Exception.html">Exception</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/FalseClass.html">FalseClass</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Fiber.html">Fiber</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/FiberError.html">FiberError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/File.html">File</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/File::Constants.html">File::Constants</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/File::Stat.html">File::Stat</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/FileTest.html">FileTest</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Float.html">Float</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/FloatDomainError.html">FloatDomainError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/FrozenError.html">FrozenError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/GC.html">GC</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/GC::Profiler.html">GC::Profiler</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Hash.html">Hash</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO.html">IO</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::EAGAINWaitReadable.html">IO::EAGAINWaitReadable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::EAGAINWaitWritable.html">IO::EAGAINWaitWritable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::EINPROGRESSWaitReadable.html">IO::EINPROGRESSWaitReadable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::EINPROGRESSWaitWritable.html">IO::EINPROGRESSWaitWritable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::EWOULDBLOCKWaitReadable.html">IO::EWOULDBLOCKWaitReadable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::EWOULDBLOCKWaitWritable.html">IO::EWOULDBLOCKWaitWritable</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::WaitReadable.html">IO::WaitReadable</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IO::WaitWritable.html">IO::WaitWritable</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IOError.html">IOError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/IndexError.html">IndexError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Integer.html">Integer</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Interrupt.html">Interrupt</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Kernel.html">Kernel</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/KeyError.html">KeyError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/LoadError.html">LoadError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/LocalJumpError.html">LocalJumpError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Marshal.html">Marshal</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/MatchData.html">MatchData</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Math.html">Math</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Math::DomainError.html">Math::DomainError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Method.html">Method</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Module.html">Module</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Mutex.html">Mutex</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/NameError.html">NameError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/NilClass.html">NilClass</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/NoMemoryError.html">NoMemoryError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/NoMethodError.html">NoMethodError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/NotImplementedError.html">NotImplementedError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Numeric.html">Numeric</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Object.html">Object</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ObjectSpace.html">ObjectSpace</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ObjectSpace::WeakMap.html">ObjectSpace::WeakMap</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Proc.html">Proc</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Process.html">Process</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Process::GID.html">Process::GID</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Process::Status.html">Process::Status</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Process::Sys.html">Process::Sys</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Process::UID.html">Process::UID</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Process::Waiter.html">Process::Waiter</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Queue.html">Queue</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Random.html">Random</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Random::Formatter.html">Random::Formatter</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Range.html">Range</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/RangeError.html">RangeError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Rational.html">Rational</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Rational::compatible.html">Rational::compatible</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Regexp.html">Regexp</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/RegexpError.html">RegexpError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/RubyVM.html">RubyVM</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/RubyVM::InstructionSequence.html">RubyVM::InstructionSequence</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/RuntimeError.html">RuntimeError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ScriptError.html">ScriptError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SecurityError.html">SecurityError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Signal.html">Signal</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SignalException.html">SignalException</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SizedQueue.html">SizedQueue</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/StandardError.html">StandardError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/StopIteration.html">StopIteration</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/String.html">String</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Struct.html">Struct</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Symbol.html">Symbol</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SyntaxError.html">SyntaxError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SystemCallError.html">SystemCallError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SystemExit.html">SystemExit</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/SystemStackError.html">SystemStackError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Thread.html">Thread</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Thread::Backtrace.html">Thread::Backtrace</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Thread::Backtrace::Location.html">Thread::Backtrace::Location</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ThreadError.html">ThreadError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ThreadGroup.html">ThreadGroup</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Time.html">Time</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/TracePoint.html">TracePoint</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/TrueClass.html">TrueClass</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/TypeError.html">TypeError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/UnboundMethod.html">UnboundMethod</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/UncaughtThrowError.html">UncaughtThrowError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/UnicodeNormalize.html">UnicodeNormalize</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Warning.html">Warning</a></code></dt>
+<dd><p>Module
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/Warning::buffer.html">Warning::buffer</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/ZeroDivisionError.html">ZeroDivisionError</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+<dt><code><a href="http://ruby-doc.org/core-2.5.1/fatal.html">fatal</a></code></dt>
+<dd><p>Class
+</p>
+</dd>
+</dl>
+
+<div class="float-caption"><p><strong>Table 3.2: </strong>List of Classes and Modules</p></div></div>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Methods-API.html#Methods-API" accesskey="n" rel="next">Methods API</a>, Previous: <a href="Files-API.html#Files-API" accesskey="p" rel="prev">Files API</a>, Up: <a href="API-Documentation.html#API-Documentation" accesskey="u" rel="up">API Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

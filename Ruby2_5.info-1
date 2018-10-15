@@ -36,8 +36,7 @@ General Public License, version 3.
 * Preface::
 * Introduction::
 * Documentation::
-* Core Reference::
-* Standard Library Reference::
+* Ruby-Doc::
 * List of Tables::
 * Utility Programs::
 * Initial Setup and Post Create::
@@ -195,16 +194,16 @@ Ruby User's Guide
 * Ruby User's Guide On Object Initialization::
 * Ruby User's Guide On Nuts And Bolts::
 
-Ruby Core Reference
+Ruby-Doc
 
 * API Documentation::
 * Beginner Core Topics::
 
 API Documentation
 
-* API Files::
-* API Classes And Modules::
-* API Methods::
+* Files API::
+* Classes And Modules API::
+* Methods API::
 
 Utility Programs
 
@@ -327,7 +326,7 @@ simplicity and productivity.  It has an elegant syntax that is natural
 to read and easy to write.
 
 
-File: Ruby2_5.info,  Node: Documentation,  Next: Core Reference,  Prev: Introduction,  Up: Top
+File: Ruby2_5.info,  Node: Documentation,  Next: Ruby-Doc,  Prev: Introduction,  Up: Top
 
 2 Documentation
 ***************
@@ -2958,6 +2957,8 @@ or 'nil' if the variable is not defined in the current context.
 Predefined Global Variables
 ---------------------------
 
+*Note Globals::
+
 '$@'    The location of latest error
         
 '$_'    The string last read by gets
@@ -5309,12 +5310,32 @@ File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Docume
 ===================
 
 
-File: Ruby2_5.info,  Node: Core Reference,  Next: Standard Library Reference,  Prev: Documentation,  Up: Top
+File: Ruby2_5.info,  Node: Ruby-Doc,  Next: List of Tables,  Prev: Documentation,  Up: Top
 
-3 Ruby Core Reference
-*********************
+3 Ruby-Doc
+**********
 
-Ruby Core Reference (http://ruby-doc.org/core-2.5.1/)
+Help and documentation for the Ruby programming language.
+
+   * Ruby-Doc Core Reference Home (http://ruby-doc.org/)
+
+   * Core API (http://ruby-doc.org/core)
+
+     These are the API documents for the base classes and modules in
+     the current stable release of Ruby 2.5.
+
+   * Standard Library API (http://ruby-doc.org/stdlib/)
+
+     These are the API documents for the standard library classes and
+     modules in version 2.5
+
+   * Getting Started (http://ruby-doc.org/gettingstarted)
+
+     A collection of resources for those just starting out with Ruby.
+
+   * Ruby-Doc Downloads (http://ruby-doc.org/downloads/)
+
+   * The Ruby Specification Project (https://github.com/ruby/rubyspec)
 
 * Menu:
 
@@ -5322,74 +5343,97 @@ Ruby Core Reference (http://ruby-doc.org/core-2.5.1/)
 * Beginner Core Topics::
 
 
-File: Ruby2_5.info,  Node: API Documentation,  Next: Beginner Core Topics,  Up: Core Reference
+File: Ruby2_5.info,  Node: API Documentation,  Next: Beginner Core Topics,  Up: Ruby-Doc
 
 3.1 API Documentation
 =====================
 
+This is the API documentation for Ruby 2.5.1.
+
 * Menu:
 
-* API Files::
-* API Classes And Modules::
-* API Methods::
+* Files API::
+* Classes And Modules API::
+* Methods API::
 
 
-File: Ruby2_5.info,  Node: API Files,  Next: API Classes And Modules,  Up: API Documentation
+File: Ruby2_5.info,  Node: Files API,  Next: Classes And Modules API,  Up: API Documentation
 
-3.1.1 API Files
+3.1.1 Files API
 ---------------
 
 Grammar
      <http://ruby-doc.org/core-2.5.1/_lib/racc/rdoc/grammar_en_rdoc.html>
+
 Contributing
      <http://ruby-doc.org/core-2.5.1/doc/contributing_rdoc.html>
+
 DTrace Probes
      <http://ruby-doc.org/core-2.5.1/doc/dtrace_probes_rdoc.html>
+
 Extension
      <http://ruby-doc.org/core-2.5.1/doc/extension_rdoc.html>
+
 Globals
      <http://ruby-doc.org/core-2.5.1/doc/globals_rdoc.html>
+
 Keywords
      <http://ruby-doc.org/core-2.5.1/doc/keywords_rdoc.html>
+
 Marshall
      <http://ruby-doc.org/core-2.5.1/doc/marshal_rdoc.html>
+
 RegExp
      <http://ruby-doc.org/core-2.5.1/doc/regexp_rdoc.html>
+
 Security
      <http://ruby-doc.org/core-2.5.1/doc/security_rdoc.html>
+
 Standard Library
      <http://ruby-doc.org/core-2.5.1/doc/standard_library_rdoc.html>
+
 Syntax
      <http://ruby-doc.org/core-2.5.1/doc/syntax_rdoc.html>
+
 Assignment
      <http://ruby-doc.org/core-2.5.1/doc/syntax/assignment_rdoc.html>
+
 Calling Methods
      <http://ruby-doc.org/core-2.5.1/doc/syntax/calling_methods_rdoc.html>
+
 Control Expressions
      <http://ruby-doc.org/core-2.5.1/doc/syntax/control_expressions_rdoc.html>
+
 Exceptions
      <http://ruby-doc.org/core-2.5.1/doc/syntax/exceptions_rdoc.html>
+
 Literals
      <http://ruby-doc.org/core-2.5.1/doc/syntax/literals_rdoc.html>
+
 Methods
      <http://ruby-doc.org/core-2.5.1/doc/syntax/methods_rdoc.html>
+
 Miscellaneous
      <http://ruby-doc.org/core-2.5.1/doc/syntax/miscellaneous_rdoc.html>
+
 Modules and Classes
      <http://ruby-doc.org/core-2.5.1/doc/syntax/modules_and_classes_rdoc.html>
+
 Precedence
      <http://ruby-doc.org/core-2.5.1/doc/syntax/precedence_rdoc.html>
+
 Refinements
      <http://ruby-doc.org/core-2.5.1/doc/syntax/refinements_rdoc.html>
+
 README
      <http://ruby-doc.org/core-2.5.1/sample/drb/README_rdoc.html>
 
 Table 3.1: Core API
 
 
-File: Ruby2_5.info,  Node: API Classes And Modules,  Next: API Methods,  Prev: API Files,  Up: API Documentation
+File: Ruby2_5.info,  Node: Classes And Modules API,  Next: Methods API,  Prev: Files API,  Up: API Documentation
 
-3.1.2 API Classes And Modules
+3.1.2 Classes And Modules API
 -----------------------------
 
 'ARGF (http://ruby-doc.org/core-2.5.1/ARGF.html)'
@@ -5770,9 +5814,9 @@ File: Ruby2_5.info,  Node: API Classes And Modules,  Next: API Methods,  Prev: A
 Table 3.2: List of Classes and Modules
 
 
-File: Ruby2_5.info,  Node: API Methods,  Prev: API Classes And Modules,  Up: API Documentation
+File: Ruby2_5.info,  Node: Methods API,  Prev: Classes And Modules API,  Up: API Documentation
 
-3.1.3 API Methods
+3.1.3 Methods API
 -----------------
 
 '=== (http://ruby-doc.org/core-2.5.1/SystemCallError.html#method-c-3D-3D-3D)'

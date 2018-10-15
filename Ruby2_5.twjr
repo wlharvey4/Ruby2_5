@@ -3257,6 +3257,8 @@ defined? $x
 @subheading Predefined Global Variables
 @cindex global variables, predefined
 
+@xref{Globals}
+
 @multitable @columnfractions .1 .9
 @item @code{$@@} @tab The location of latest error
 
@@ -5843,16 +5845,58 @@ have taken days.
 
 @c *****************************************************************************
 
-@node Core Reference
-@chapter Ruby Core Reference
+@node Ruby-Doc
+@chapter Ruby-Doc
+@cindex Ruby-Doc
+@cindex Ruby Documentation
+@cindex Core API
 @cindex core reference
+@cindex Standard Library API
+@cindex Standard Library reference
+@cindex standard library
 @cindex reference, core
+@cindex reference, standard library
+@cindex standard lib
+@cindex core
 
-@url{http://ruby-doc.org/core-2.5.1/, Ruby Core Reference}
+Help and documentation for the Ruby programming language.
 
 
+@itemize
 
+@item
+@url{http://ruby-doc.org/, Ruby-Doc Core Reference Home}
 
+@item
+@url{http://ruby-doc.org/core, Core API}
+@cindex core api
+
+These are the API documents for the base classes and modules in the current
+stable release of Ruby 2.5.
+
+@item
+@url{http://ruby-doc.org/stdlib/, Standard Library API}
+@cindex standard library api
+
+These are the API documents for the standard library classes and modules in
+version 2.5
+
+@item
+@url{http://ruby-doc.org/gettingstarted, Getting Started}
+@cindex getting started
+@cindex resources, getting started
+
+A collection of resources for those just starting out with Ruby.
+
+@item
+@url{http://ruby-doc.org/downloads/, Ruby-Doc Downloads}
+@cindex downloads, ruby-doc resources
+
+@item
+@url{https://github.com/ruby/rubyspec, The Ruby Specification Project}
+@cindex specificationm, ruby
+
+@end itemize
 
 
 
@@ -5861,59 +5905,94 @@ have taken days.
 
 @node API Documentation
 @section API Documentation
+@cindex Ruby 2.5.1. API
 
+This is the API documentation for Ruby 2.5.1.
 
 @c .....................................
 
-@node API Files
-@subsection API Files
+@node Files API
+@subsection Files API
+@cindex api, files
+@cindex files api
 
 @float Table,table:api
 @table @b
 @item Grammar
 @url{http://ruby-doc.org/core-2.5.1/_lib/racc/rdoc/grammar_en_rdoc.html}
+
 @item Contributing
 @url{http://ruby-doc.org/core-2.5.1/doc/contributing_rdoc.html}
+
 @item DTrace Probes
 @url{http://ruby-doc.org/core-2.5.1/doc/dtrace_probes_rdoc.html}
+
 @item Extension
 @url{http://ruby-doc.org/core-2.5.1/doc/extension_rdoc.html}
+@anchor{Globals}
+
 @item Globals
 @url{http://ruby-doc.org/core-2.5.1/doc/globals_rdoc.html}
+@cindex globals
+
 @item Keywords
 @url{http://ruby-doc.org/core-2.5.1/doc/keywords_rdoc.html}
+@cindex keywords
+
 @item Marshall
 @url{http://ruby-doc.org/core-2.5.1/doc/marshal_rdoc.html}
+
 @item RegExp
 @url{http://ruby-doc.org/core-2.5.1/doc/regexp_rdoc.html}
+
 @item Security
 @url{http://ruby-doc.org/core-2.5.1/doc/security_rdoc.html}
+
 @item Standard Library
 @url{http://ruby-doc.org/core-2.5.1/doc/standard_library_rdoc.html}
+@cindex standard library
+
 @item Syntax
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax_rdoc.html}
+@cindex syntax
+
 @item Assignment
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/assignment_rdoc.html}
+
 @item Calling Methods
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/calling_methods_rdoc.html}
+@cindex methods, calling
+
 @item Control Expressions
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/control_expressions_rdoc.html}
+
 @item Exceptions
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/exceptions_rdoc.html}
+@cindex exceptions
+
 @item Literals
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/literals_rdoc.html}
+
 @item Methods
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/methods_rdoc.html}
+@cindex methods api
+
 @item Miscellaneous
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/miscellaneous_rdoc.html}
+
 @item Modules and Classes
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/modules_and_classes_rdoc.html}
+
 @item Precedence
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/precedence_rdoc.html}
+@cindex precedence
+
 @item Refinements
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/refinements_rdoc.html}
+
 @item README
 @url{http://ruby-doc.org/core-2.5.1/sample/drb/README_rdoc.html}
+
 @end table
 @caption{Core API}
 @end float
@@ -5921,8 +6000,11 @@ have taken days.
 
 @c .....................................
 
-@node API Classes And Modules
-@subsection API Classes And Modules
+@node Classes And Modules API
+@subsection Classes And Modules API
+@cindex API, classes and modules
+@cindex classes api
+@cindex modules api
 
 @float Table,table:api-classes-and-modules
 @table @code
@@ -6307,8 +6389,8 @@ Class
 
 @c .....................................
 
-@node API Methods
-@subsection API Methods
+@node Methods API
+@subsection Methods API
 
 @float Table,table:api-methods
 @table @code
@@ -11961,18 +12043,6 @@ Class
 @caption{Table of Core Topics}
 @end float
 
-
-
-
-
-@c *****************************************************************************
-
-@node Standard Library Reference
-@chapter Ruby Standard Library Reference
-@cindex standar library reference
-@cindex reference, standard library
-
-@url{http://ruby-doc.org/stdlib-2.5.1/, Ruby Standard Library Reference}
 
 
 

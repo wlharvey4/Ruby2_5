@@ -13,7 +13,7 @@ General Public License, version 3.
    This is Edition 0.4b of 'Ruby 2.5 Information and Documentation'.
 
 
-File: Ruby2_5.info,  Node: Beginner Core Topics,  Prev: API Documentation,  Up: Core Reference
+File: Ruby2_5.info,  Node: Beginner Core Topics,  Prev: API Documentation,  Up: Ruby-Doc
 
 3.2 Beginner Core Topics
 ========================
@@ -34,15 +34,7 @@ Operator Precedence
 Table 3.4: Table of Core Topics
 
 
-File: Ruby2_5.info,  Node: Standard Library Reference,  Next: List of Tables,  Prev: Core Reference,  Up: Top
-
-4 Ruby Standard Library Reference
-*********************************
-
-Ruby Standard Library Reference (http://ruby-doc.org/stdlib-2.5.1/)
-
-
-File: Ruby2_5.info,  Node: List of Tables,  Next: Utility Programs,  Prev: Standard Library Reference,  Up: Top
+File: Ruby2_5.info,  Node: List of Tables,  Next: Utility Programs,  Prev: Ruby-Doc,  Up: Top
 
 List of Tables
 **************
@@ -1679,6 +1671,9 @@ Index
                                                             (line  54)
 * anonymous procedure objects:           Ruby User's Guide On Procedure Objects.
                                                             (line  56)
+* API, classes and modules:              Classes And Modules API.
+                                                            (line   6)
+* api, files:                            Files API.         (line   6)
 * argument lists, variable length:       Ruby User's Guide On Object Initialization.
                                                             (line  65)
 * argument values, setting default values: Ruby User's Guide On Object Initialization.
@@ -1791,6 +1786,8 @@ Index
                                                             (line  30)
 * classes:                               Ruby User's Guide on Classes.
                                                             (line   6)
+* classes api:                           Classes And Modules API.
+                                                            (line   6)
 * classes, modifying:                    Altering Classes.  (line  19)
 * classes, open:                         Classes are open.  (line   6)
 * CLOS:                                  Ruby User's Guide On Singleton Methods.
@@ -1830,7 +1827,10 @@ Index
                                                             (line  58)
 * conventions, naming:                   Naming conventions.
                                                             (line   6)
-* core reference:                        Core Reference.    (line   6)
+* core:                                  Ruby-Doc.          (line   6)
+* Core API:                              Ruby-Doc.          (line   6)
+* core api:                              Ruby-Doc.          (line  10)
+* core reference:                        Ruby-Doc.          (line   6)
 * dangerous, destructive methods:        FAQ Methods.       (line  51)
 * debugger for Ruby:                     FAQ Extension Library.
                                                             (line  12)
@@ -1861,6 +1861,7 @@ Index
 * documentation tool:                    To Ruby From Java. (line  23)
 * dot notation:                          Ruby User's Guide on Methods.
                                                             (line  22)
+* downloads, ruby-doc resources:         Ruby-Doc.          (line  24)
 * duck typing:                           Large Class Definition.
                                                             (line 123)
 * Dylan:                                 Ruby User's Guide On Singleton Methods.
@@ -1895,6 +1896,7 @@ Index
                                                             (line   6)
 * exception processing <1>:              Ruby User's Guide On Exception Processing and ensure.
                                                             (line   6)
+* exceptions:                            Files API.         (line  49)
 * expression vs statement:               Ruby User's Guide On Simple Examples.
                                                             (line 124)
 * extension modules:                     To Ruby From C and C++.
@@ -1913,6 +1915,7 @@ Index
                                                             (line  24)
 * file, process and update contents:     FAQ Built-In Libraries.
                                                             (line  18)
+* files api:                             Files API.         (line   6)
 * files, closing:                        FAQ Built-In Libraries.
                                                             (line  33)
 * files, counting words:                 FAQ Built-In Libraries.
@@ -1939,6 +1942,7 @@ Index
 * garbage collector:                     To Ruby From Java. (line  18)
 * gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
                                                             (line   6)
+* getting started:                       Ruby-Doc.          (line  20)
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
 * global variable $:                     Naming conventions.
                                                             (line   9)
@@ -1949,6 +1953,7 @@ Index
 * global variables:                      Ruby User's Guide On Global Variables.
                                                             (line   6)
 * global variables, predefined:          Variable Scope.    (line  38)
+* globals:                               Files API.         (line  19)
 * green threads vs native threads:       To Ruby From C and C++.
                                                             (line 160)
 * gsub method:                           Ruby User's Guide on Regular Expressions.
@@ -2052,6 +2057,7 @@ Index
                                                             (line  13)
 * keyword new:                           Ruby User's Guide on Classes.
                                                             (line  33)
+* keywords:                              Files API.         (line  22)
 * keywords class and end:                Ruby User's Guide on Classes.
                                                             (line  13)
 * lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
@@ -2100,8 +2106,10 @@ Index
 * method, invoking <1>:                  Defining Methods.  (line  26)
 * methods:                               Ruby User's Guide on Methods.
                                                             (line   6)
+* methods api:                           Files API.         (line  55)
 * methods are virtual:                   To Ruby From C and C++.
                                                             (line 132)
+* methods, calling:                      Files API.         (line  44)
 * methods, defining:                     Defining Methods.  (line   6)
 * method_missing method:                 Missing methods.   (line   6)
 * mixin:                                 Ruby User's Guide On Modules.
@@ -2116,6 +2124,8 @@ Index
 * module function?:                      FAQ Classes and Modules.
                                                             (line  27)
 * modules:                               Ruby User's Guide On Modules.
+                                                            (line   6)
+* modules api:                           Classes And Modules API.
                                                             (line   6)
 * modules, class constants:              Ruby User's Guide On Class Constants.
                                                             (line  34)
@@ -2168,6 +2178,7 @@ Index
 * patching of Ruby:                      Developing Ruby.   (line  38)
 * polymorphism:                          Ruby User's Guide on Methods.
                                                             (line  37)
+* precedence:                            Files API.         (line  64)
 * precedence of or:                      FAQ Syntax.        (line 211)
 * precedence, iterators, different results: FAQ Iterators.  (line  36)
 * predicate method:                      Ruby User's Guide on Regular Expressions.
@@ -2227,9 +2238,8 @@ Index
                                                             (line  74)
 * redo <1>:                              Ruby User's Guide On Iterators.
                                                             (line  58)
-* reference, core:                       Core Reference.    (line   6)
-* reference, standard library:           Standard Library Reference.
-                                                            (line   6)
+* reference, core:                       Ruby-Doc.          (line   6)
+* reference, standard library:           Ruby-Doc.          (line   6)
 * reflection:                            Ruby User's Guide On Object Initialization.
                                                             (line  65)
 * regexes:                               To Ruby From Perl. (line  17)
@@ -2250,6 +2260,7 @@ Index
 * rescue:                                Ruby User's Guide On Exception Processing And rescue.
                                                             (line   6)
 * rescue clause:                         FAQ Syntax.        (line 265)
+* resources, getting started:            Ruby-Doc.          (line  20)
 * respond to message, instance variable: Large Class Definition.
                                                             (line  54)
 * respond_to? method:                    Large Class Definition.
@@ -2267,13 +2278,16 @@ Index
 * ri:                                    Pointers on Iteration.
                                                             (line  24)
 * Rubies, switch between:                Installers.        (line   6)
+* Ruby 2.5.1. API:                       API Documentation. (line   6)
 * Ruby core:                             Developing Ruby.   (line  16)
 * Ruby Core mailing list:                Developing Ruby.   (line  62)
 * Ruby development, tracking:            Developing Ruby.   (line  26)
+* Ruby Documentation:                    Ruby-Doc.          (line   6)
 * Ruby Tk:                               To Ruby From Java. (line  31)
 * Ruby, what it is:                      Ruby User's Guide On What Ruby IS.
                                                             (line   7)
 * ruby-build plugin:                     ruby-build.        (line   6)
+* Ruby-Doc:                              Ruby-Doc.          (line   6)
 * Ruby-GNOME2:                           To Ruby From Java. (line  31)
 * RVM version manager:                   Installers.        (line   6)
 * scope of local variable:               Ruby User's Guide On Local Variables.
@@ -2305,12 +2319,17 @@ Index
                                                             (line  17)
 * source, building:                      Building From Source.
                                                             (line   6)
+* specificationm, ruby:                  Ruby-Doc.          (line  27)
 * split:                                 Ruby User's Guide On Arrays And Hashes.
                                                             (line  29)
-* standar library reference:             Standard Library Reference.
-                                                            (line   6)
 * standard input object STDIN:           Ruby User's Guide On Puzzle Program.
                                                             (line  39)
+* standard lib:                          Ruby-Doc.          (line   6)
+* standard library:                      Ruby-Doc.          (line   6)
+* standard library <1>:                  Files API.         (line  34)
+* Standard Library API:                  Ruby-Doc.          (line   6)
+* standard library api:                  Ruby-Doc.          (line  15)
+* Standard Library reference:            Ruby-Doc.          (line   6)
 * statement delimiters:                  Ruby User's Guide On Nuts And Bolts.
                                                             (line   9)
 * statement vs expression:               Ruby User's Guide On Simple Examples.
@@ -2358,6 +2377,7 @@ Index
 * symbols as enumeration values:         FAQ Syntax.        (line 105)
 * symbols as hash keys:                  FAQ Syntax.        (line  99)
 * symbols, unique constants:             FAQ Syntax.        (line 105)
+* syntax:                                Files API.         (line  37)
 * tabs, expand into spaces:              FAQ Built-In Libraries.
                                                             (line  45)
 * Tcl/Tk, use:                           FAQ Extension Library.
