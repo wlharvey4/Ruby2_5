@@ -40,8 +40,7 @@ openinfo : INFO
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-	pdftexi2dvi $(FILE).texi
-	make veryclean
+	pdftexi2dvi --build=tidy --build-dir=build --quiet $(FILE).texi
 openpdf : PDF
 	open $(FILE).pdf
 
@@ -66,15 +65,16 @@ apiutil :
 ###############
 .PHONY : clean veryclean dirclean distclean worldclean
 clean :
-	rm -f *~ \#*\#
+	rm -vf *~ .*~ \#*\#
 
-# leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
-veryclean : clean
-	rm -f *.{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new}
+# clean tex detritus
+texclean : clean
+	rm -vf *.{dvi,aux,log,toc,cp,cps,pg,pgs}
 
-# leave .twjr, .texi, .info, html, .pdf
-dirclean : veryclean
-	rm -fr src/ bin/ *.{rb,sh}
+# remove all dirs except HTML; remove *.{rb,sh} files from toplevel
+dirclean : clean
+	for file in *; do [ -d $$file ] && [ $${file##$(FILE)*} ] && rm -vfr $$file; done;\
+	rm -vf *.{rb,sh}
 
 # remove everything except .twjr, .texi, and Makefile
 distclean : dirclean

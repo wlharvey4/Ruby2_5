@@ -77,15 +77,16 @@ Previous: <a href="Makefile-Utility-Targets.html#Makefile-Utility-Targets" acces
 ###############
 .PHONY : clean veryclean dirclean distclean worldclean
 clean :
-    rm -f *~ \#*\#
+    rm -vf *~ .*~ \#*\#
 
-# leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
-veryclean : clean
-    rm -f *.{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new}
+# clean tex detritus
+texclean : clean
+    rm -vf *.{dvi,aux,log,toc,cp,cps,pg,pgs}
 
-# leave .twjr, .texi, .info, html, .pdf
-dirclean : veryclean
-    rm -fr src/ bin/ *.{rb,sh}
+# remove all dirs except HTML; remove *.{rb,sh} files from toplevel
+dirclean : clean
+    for file in *; do [ -d $$file ] &amp;&amp; [ $${file##$(FILE)*} ] &amp;&amp; rm -vfr $$file; done;\
+    rm -vf *.{rb,sh}
 
 # remove everything except .twjr, .texi, and Makefile
 distclean : dirclean

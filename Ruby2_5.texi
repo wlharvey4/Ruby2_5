@@ -3981,6 +3981,7 @@ puts fact(ARGV[0].to_i)
 @textfonts @rm
 @end iftex
 
+
 @subsubheading Command Line Arguments ---  In Array @var{ARGV}
 @cindex command line arguments in @code{ARGV}
 @cindex @code{to_i} method
@@ -4179,6 +4180,7 @@ puts "The word was ", secret, "."
 @textfonts @rm
 @end iftex
 
+
 @subheading New Control Structure @code{while}
 @cindex @code{while}
 
@@ -4316,6 +4318,7 @@ end
 @iftex
 @textfonts @rm
 @end iftex
+
 
 @subheading Explication of @file{regx.rb}
 
@@ -14321,8 +14324,7 @@ openinfo : INFO
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-    pdftexi2dvi $(FILE).texi
-    make veryclean
+    pdftexi2dvi --build=tidy --build-dir=build --quiet $(FILE).texi
 openpdf : PDF
     open $(FILE).pdf
 
@@ -14393,15 +14395,16 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 ###############
 .PHONY : clean veryclean dirclean distclean worldclean
 clean :
-    rm -f *~ \#*\#
+    rm -vf *~ .*~ \#*\#
 
-# leave .twjr, .texi, info, html, .pdf, .rb, .sh, src/, bin/
-veryclean : clean
-    rm -f *.@{dvi,aux,log,toc,cp,cps,pg,pgs,bak,new@}
+# clean tex detritus
+texclean : clean
+    rm -vf *.@{dvi,aux,log,toc,cp,cps,pg,pgs@}
 
-# leave .twjr, .texi, .info, html, .pdf
-dirclean : veryclean
-    rm -fr src/ bin/ *.@{rb,sh@}
+# remove all dirs except HTML; remove *.@{rb,sh@} files from toplevel
+dirclean : clean
+    for file in *; do [ -d $$file ] && [ $$@{file##$(FILE)*@} ] && rm -vfr $$file; done;\
+    rm -vf *.@{rb,sh@}
 
 # remove everything except .twjr, .texi, and Makefile
 distclean : dirclean
