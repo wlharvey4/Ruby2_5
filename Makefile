@@ -40,7 +40,7 @@ openinfo : INFO
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-	texi2dvi --dvipdf $(FILE).texi
+	pdftexi2dvi $(FILE).texi
 	make veryclean
 openpdf : PDF
 	open $(FILE).pdf

@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.3j
+@set EDITION 0.3k
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -11387,9 +11387,10 @@ if (length(arr[4]) > 0) @{
   #process the Method table
   method = arr[2]
   class  = arr[4]
+  gsub(/::/, "/", class)
   methwsymbols = convertsymbols(method)
 
-  itemurl = "@@item @@url@{"(itemurl)(class)".html#method"(methid[arr[1]])(methwsymbols)"@}"
+  itemurl = "@@item @@url@{"(itemurl)(class)".html#method"(methid[arr[1]])(methwsymbols)","(method)"@}"
   detail  = "@@code@{"(class)(arr[1])(method)"@} ("(classmethod[arr[1]])")"
 
 @} else @{
@@ -12004,7 +12005,7 @@ openinfo : INFO
 PDF : pdf
 pdf : $(FILE).pdf
 $(FILE).pdf : $(FILE).texi
-    texi2dvi --dvipdf $(FILE).texi
+    pdftexi2dvi $(FILE).texi
     make veryclean
 openpdf : PDF
     open $(FILE).pdf
