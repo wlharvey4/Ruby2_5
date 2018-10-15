@@ -12197,8 +12197,20 @@ Here are some utility programs that I either found or created.
 
 @url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
 
+@cindex @command{rbeval}
+@quotation
+@b{NOTE:} This program's original name is @file{eval.rb}.  However, there is a
+name conflict with @file{eval}.  In order to allow this program to be run as an
+executable while sitting in the @file{bin} directory, I need to change its name
+to soemthing other than @file{eval}.  Of course, @file{eval.rb} would work, but
+I would like a simple name without an extension.  Therefore, I am using
+@command{rbeval} as a compromise.  This is handled by @code{@@post_create} when
+creating an executable in the @file{bin} directory.  The original file will be
+moved into @file{src} with its original @file{eval.rb} intact.
+@end quotation
+
 @(eval.rb@)=
-#!/usr/local/bin/ruby
+#! /usr/local/bin/ruby
 
 #######################################################
 #
@@ -12415,6 +12427,19 @@ end # if
 @
 
 
+@c .....................................
+
+@node @file{eval.rb} Post Create
+@appendixsubsec @file{eval.rb} Post Create
+@cindex @code{@@post_create} @file{eval.rb}
+
+The following line is executed after @command{jrtangle} runs.
+
+@verbatim
+ @post_create eval.rb chmod +x eval.rb && mv eval.rb src && ln src/eval.rb bin/rbeval
+@end verbatim
+
+@post_create eval.rb chmod -v +x eval.rb && mv -vf eval.rb src && ln -vf src/eval.rb bin/rbeval
 
 
 @c -----------------------------------------------------------------------------
@@ -12991,11 +13016,11 @@ there is a little shell script that will add @file{./bin} to the @env{path}
 environment variable, which must be run ``by hand'' as @samp{source
 setpath.sh}.
 
-@example
-@@post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
-@end example
+@verbatim
+ @post_create apiutil.awk chmod -v +x apiutil.awk && mv apiutil.awk src && ln -vf src/apiutil.awk bin/apiutil
+@end verbatim
 
-@post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
+@post_create apiutil.awk chmod -v +x apiutil.awk && mv apiutil.awk src && ln -vf src/apiutil.awk bin/apiutil
 
 
 

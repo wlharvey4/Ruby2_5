@@ -75,6 +75,18 @@ Next: <a href="API-Utility.html#API-Utility" accesskey="n" rel="next">API Utilit
 </p>
 <p><a href="http://www.rubyist.net/~slagell/ruby/eval.txt"><samp>eval.rb</samp></a>
 </p>
+<a name="index-rbeval"></a>
+<blockquote>
+<p><b>NOTE:</b> This program&rsquo;s original name is <samp>eval.rb</samp>.  However, there is a
+name conflict with <samp>eval</samp>.  In order to allow this program to be run as an
+executable while sitting in the <samp>bin</samp> directory, I need to change its name
+to soemthing other than <samp>eval</samp>.  Of course, <samp>eval.rb</samp> would work, but
+I would like a simple name without an extension.  Therefore, I am using
+<code>rbeval</code> as a compromise.  This is handled by <code>@post_create</code> when
+creating an executable in the <samp>bin</samp> directory.  The original file will be
+moved into <samp>src</samp> with its original <samp>eval.rb</samp> intact.
+</p></blockquote>
+
 <a name="eval_002drb"></a><a name="index-_003ceval_002d_002d_002dEvalWrapper_002d_002dConstants_003e_002c-use"></a>
 <a name="index-_003ceval_002d_002d_002dEvalWrapper_002d_002dIndentation-Deltas_003e_002c-use"></a>
 <a name="index-_003ceval_002d_002d_002dMain_002d_002dGet-Line_003e_002c-use"></a>
@@ -82,7 +94,7 @@ Next: <a href="API-Utility.html#API-Utility" accesskey="n" rel="next">API Utilit
 <a name="index-_007beval_002erb_007d_002c-definition"></a>
 <p><span class="roman">{<samp>eval.rb</samp>}</span> &equiv;
 </p><div class="example">
-<pre class="example">#!/usr/local/bin/ruby
+<pre class="example">#! /usr/local/bin/ruby
 
 #######################################################
 #
@@ -146,8 +158,15 @@ end # module
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code" accesskey="4">eval Main Process Line Code</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
+<tr><td align="left" valign="top">&bull; <a href="eval_002erb-Post-Create.html#eval_002erb-Post-Create" accesskey="5"><samp>eval.rb</samp> Post Create</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
 </table>
 
+<hr>
+<div class="header">
+<p>
+Next: <a href="API-Utility.html#API-Utility" accesskey="n" rel="next">API Utility</a>, Up: <a href="Utility-Programs.html#Utility-Programs" accesskey="u" rel="up">Utility Programs</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 
