@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.4b
+@set EDITION 0.4c
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -232,8 +232,8 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Preface::
 * Introduction::
 * Documentation::
-* Ruby-Doc::
 * List of Tables::
+* Ruby-Doc::
 * Utility Programs::
 * Initial Setup and Post Create::
 * The Makefile::
@@ -394,13 +394,13 @@ Ruby User's Guide
 Ruby-Doc
 
 * API Documentation::
-* Beginner Core Topics::
 
 API Documentation
 
 * Files API::
 * Classes And Modules API::
 * Methods API::
+* Beginner Core Topics::
 
 Utility Programs
 
@@ -455,6 +455,15 @@ Code Chunk Summaries
 @c @summarycontents
 @contents
 
+
+
+
+
+
+
+
+@c *****************************************************************************
+
 @c Add these to the menu if they ever get included.
 @c @node Foreword
 @c @unnumbered Foreword
@@ -463,6 +472,11 @@ Code Chunk Summaries
 @unnumbered Preface
 
 Text here.
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @menu
 * Audience::
@@ -477,10 +491,19 @@ Text here.
 Text here.
 
 
+
+
+@c -----------------------------------------------------------------------------
+
 @node Overview
 @unnumberedsec What Is Covered
 
 Text and chapter by chapter description here.
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Conventions
 @unnumberedsec Typographical Conventions
@@ -489,21 +512,20 @@ Text and chapter by chapter description here.
 
 @cindex Texinfo document formatting language
 This @value{DOCUMENT} is written in an enhanced version of
-@uref{http://www.gnu.org/software/texinfo/, Texinfo},
-the GNU documentation formatting language.
-A single Texinfo source file is used to produce both the printed and online
-versions of a program's documentation.
+@uref{http://www.gnu.org/software/texinfo/, Texinfo}, the GNU documentation
+formatting language.  A single Texinfo source file is used to produce both the
+printed and online versions of a program's documentation.
 @ifnotinfo
-Because of this, the typographical conventions
-are slightly different than in other books you may have read.
+Because of this, the typographical conventions are slightly different than in
+other books you may have read.
 @end ifnotinfo
 
-Examples you would type at the command-line are preceded by the common
-shell primary and secondary prompts, @samp{$} and @samp{>}.  Input that
-you type is shown @kbd{like this}.  Output from the command is preceded
-by the glyph ``@print{}''.  This typically represents the command's
-standard output.  Error messages, and other output on the command's
-standard error, are preceded by the glyph ``@error{}''.  For example:
+Examples you would type at the command-line are preceded by the common shell
+primary and secondary prompts, @samp{$} and @samp{>}.  Input that you type is
+shown @kbd{like this}.  Output from the command is preceded by the glyph
+``@print{}''.  This typically represents the command's standard output.  Error
+messages, and other output on the command's standard error, are preceded by the
+glyph ``@error{}''.  For example:
 
 @example
 $ @kbd{echo hi on stdout}
@@ -514,26 +536,39 @@ $ @kbd{echo hello on stderr 1>&2}
 
 @ifnotinfo
 In the text, command names appear in @code{this font}, while code segments
-appear in the same font and quoted, @samp{like this}.  Options look
-like this: @option{-f}.  Some things are emphasized @emph{like this},
-and if a point needs to be made strongly, it is done @strong{like this}.
-The first occurrence of a new term is usually its @dfn{definition} and
-appears in the same font as the previous occurrence of ``definition''
-in this sentence.  Finally, file names are indicated like this:
-@file{/path/to/our/file}.
+appear in the same font and quoted, @samp{like this}.  Options look like this:
+@option{-f}.  Some things are emphasized @emph{like this}, and if a point needs
+to be made strongly, it is done @strong{like this}.  The first occurrence of a
+new term is usually its @dfn{definition} and appears in the same font as the
+previous occurrence of ``definition'' in this sentence.  Finally, file names
+are indicated like this: @file{/path/to/our/file}.
 @end ifnotinfo
+
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Acknowledgements
 @unnumberedsec Acknowledgements
+
+
+
+
+
+
+
+
+@c *****************************************************************************
 
 @node Introduction
 @chapter Introduction
 
 Ruby is @dots{}
 
-A dynamic, open source programming language with a focus on simplicity
-and productivity.  It has an elegant syntax that is natural to read and
-easy to write.
+A dynamic, open source programming language with a focus on simplicity and
+productivity.  It has an elegant syntax that is natural to read and easy to
+write.
 
 
 
@@ -551,7 +586,7 @@ easy to write.
 Here you will find pointers to manuals, tutorials and references that will come
 in handy when you feel like coding in Ruby.
 
-
+@ref{Ruby-Doc}
 
 
 @c -----------------------------------------------------------------------------
@@ -574,25 +609,25 @@ There are several ways to install Ruby:
 
 @itemize
 @item
-@b{Package Manager}: When you are on a UNIX-like operating system,
-using your system’s package manager is the easiest way of getting
-started. However, the packaged Ruby version usually is not the newest
-one.
+@b{Package Manager}: When you are on a UNIX-like operating system, using your
+system’s package manager is the easiest way of getting started. However, the
+packaged Ruby version usually is not the newest one.
 @item
 @b{Installers}: can be used to install a specific or multiple Ruby
 versions. There is also an installer for Windows.
 @item
-@b{Managers} help you to switch between multiple Ruby installations on
-your system.
+@b{Managers} help you to switch between multiple Ruby installations on your
+system.
 @item
 @b{Source}: And finally, you can also build Ruby from source.
 @end itemize
 
-The following overview lists available installation methods for
-different needs and platforms.
+The following overview lists available installation methods for different needs
+and platforms.
 
 
 @c .....................................
+
 
 @menu
 * Package Management Systems::
@@ -618,6 +653,7 @@ use the correct package name, or use the tools described further below
 instead.
 
 @c _____________________________________
+
 
 @menu
 * Homebrew (OS X)::
@@ -658,6 +694,7 @@ different Rubies.  If you are planning to use RVM as a version manager
 you do not need a separate installer, it comes with its own.
 
 @c _____________________________________
+
 
 @menu
 * ruby-build::
@@ -709,6 +746,7 @@ various advantages but are not officially supported.  Their respective
 communities are very helpful, however.
 
 @c _____________________________________
+
 
 @menu
 * chruby::
@@ -803,6 +841,7 @@ your environment.  It’s also a good solution in the event that there are no
 other premade packages for your platform.
 
 @c _____________________________________
+
 
 @menu
 * Releases Page::
@@ -1053,6 +1092,7 @@ Patch}
 
 @c .....................................
 
+
 @menu
 * Try Ruby!::
 * Official FAQ::
@@ -1121,6 +1161,7 @@ Other features
 @end itemize
 
 @c _____________________________________
+
 
 @menu
 * FAQ Iterators::
@@ -1883,6 +1924,7 @@ before you get started.)
 
 @c _____________________________________
 
+
 @menu
 * Interactive Ruby::
 * Defining Methods::
@@ -2450,6 +2492,7 @@ to Ruby.  The second section tackles the major language features and how they
 might compare to what you’re already familiar with.
 
 @c _____________________________________
+
 
 @menu
 * To Ruby From C and C++::
@@ -3094,6 +3137,7 @@ learning Ruby.
 
 @c _____________________________________
 
+
 @menu
 * Pointers on Iteration::
 * Everything has a value::
@@ -3628,6 +3672,7 @@ to follow [sic] guide to learning Ruby.
 
 @c _____________________________________
 
+
 @menu
 * Interactive Ruby Execution::
 * Block Ruby Comments::
@@ -3782,6 +3827,7 @@ know how to program, start here.
 
 @c .....................................
 
+
 @menu
 * Ruby User's Guide::
 * Ruby Programming Wikibook::
@@ -3798,6 +3844,7 @@ nice overview of many aspects of the Ruby language.
 @url{http://www.rubyist.net/~slagell/ruby/, Ruby User's Guide}
 
 @c _____________________________________
+
 
 @menu
 * Ruby User's Guide On What Ruby IS::
@@ -6372,10 +6419,39 @@ have taken days.
 
 
 
+
+
+
+
+@c *****************************************************************************
+
+@node List of Tables
+@unnumbered List of Tables
+
+@listoffloats Table
+
+
+
+
+
+
+
+
+@c *****************************************************************************
+@c APPENDICES
+@c *****************************************************************************
+
+
+
+
+
+
+
+
 @c *****************************************************************************
 
 @node Ruby-Doc
-@chapter Ruby-Doc
+@appendix Ruby-Doc
 @cindex Ruby-Doc
 @cindex Ruby Documentation
 @cindex Core API
@@ -6389,7 +6465,6 @@ have taken days.
 @cindex core
 
 Help and documentation for the Ruby programming language.
-
 
 @itemize
 
@@ -6432,31 +6507,46 @@ A collection of resources for those just starting out with Ruby.
 
 @c -----------------------------------------------------------------------------
 
+
 @menu
 * API Documentation::
-* Beginner Core Topics::
 @end menu
 
 @node API Documentation
-@section API Documentation
+@appendixsec API Documentation
 @cindex Ruby 2.5.1. API
 
 This is the API documentation for Ruby 2.5.1.
 
-@c .....................................
+@ref{Files API}
+
+@ref{Classes And Modules API}
+
+@ref{Methods API}
+
+@iftex
+@page
+@end iftex
+
+@c _____________________________________
+
 
 @menu
 * Files API::
 * Classes And Modules API::
 * Methods API::
+* Beginner Core Topics::
 @end menu
 
 @node Files API
-@subsection Files API
+@appendixsubsec Files API
 @cindex api, files
 @cindex files api
 
+@ifnottex
 @float Table,table:api
+@end ifnottex
+
 @table @b
 @item Grammar
 @url{http://ruby-doc.org/core-2.5.1/_lib/racc/rdoc/grammar_en_rdoc.html}
@@ -6534,19 +6624,29 @@ This is the API documentation for Ruby 2.5.1.
 @url{http://ruby-doc.org/core-2.5.1/sample/drb/README_rdoc.html}
 
 @end table
+
+@ifnottex
 @caption{Core API}
 @end float
+@end  ifnottex
+
+@iftex
+@page
+@end iftex
 
 
 @c .....................................
 
 @node Classes And Modules API
-@subsection Classes And Modules API
+@appendixsubsec Classes And Modules API
 @cindex API, classes and modules
 @cindex classes api
 @cindex modules api
 
+@ifnottex
 @float Table,table:api-classes-and-modules
+@end ifnottex
+
 @table @code
 @item @url{http://ruby-doc.org/core-2.5.1/ARGF.html,ARGF}
 Class
@@ -6575,7 +6675,7 @@ Module
 @item @url{http://ruby-doc.org/core-2.5.1/Complex.html,Complex}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Complex::compatible.html,Complex::compatible}
+@item @url{http://ruby-doc.org/core-2.5.1/Complex/compatible.html,Complex::compatible}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/ConditionVariable.html,ConditionVariable}
@@ -6599,19 +6699,19 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/Encoding.html,Encoding}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Encoding::CompatibilityError.html,Encoding::CompatibilityError}
+@item @url{http://ruby-doc.org/core-2.5.1/Encoding/CompatibilityError.html,Encoding::CompatibilityError}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Encoding::Converter.html,Encoding::Converter}
+@item @url{http://ruby-doc.org/core-2.5.1/Encoding/Converter.html,Encoding::Converter}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Encoding::ConverterNotFoundError.html,Encoding::ConverterNotFoundError}
+@item @url{http://ruby-doc.org/core-2.5.1/Encoding/ConverterNotFoundError.html,Encoding::ConverterNotFoundError}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Encoding::InvalidByteSequenceError.html,Encoding::InvalidByteSequenceError}
+@item @url{http://ruby-doc.org/core-2.5.1/Encoding/InvalidByteSequenceError.html,Encoding::InvalidByteSequenceError}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Encoding::UndefinedConversionError.html,Encoding::UndefinedConversionError}
+@item @url{http://ruby-doc.org/core-2.5.1/Encoding/UndefinedConversionError.html,Encoding::UndefinedConversionError}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/EncodingError.html,EncodingError}
@@ -6623,13 +6723,13 @@ Module
 @item @url{http://ruby-doc.org/core-2.5.1/Enumerator.html,Enumerator}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Enumerator::Generator.html,Enumerator::Generator}
+@item @url{http://ruby-doc.org/core-2.5.1/Enumerator/Generator.html,Enumerator::Generator}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Enumerator::Lazy.html,Enumerator::Lazy}
+@item @url{http://ruby-doc.org/core-2.5.1/Enumerator/Lazy.html,Enumerator::Lazy}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Enumerator::Yielder.html,Enumerator::Yielder}
+@item @url{http://ruby-doc.org/core-2.5.1/Enumerator/Yielder.html,Enumerator::Yielder}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/Errno.html,Errno}
@@ -6650,10 +6750,10 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/File.html,File}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/File::Constants.html,File::Constants}
+@item @url{http://ruby-doc.org/core-2.5.1/File/Constants.html,File::Constants}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/File::Stat.html,File::Stat}
+@item @url{http://ruby-doc.org/core-2.5.1/File/Stat.html,File::Stat}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/FileTest.html,FileTest}
@@ -6671,7 +6771,7 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/GC.html,GC}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/GC::Profiler.html,GC::Profiler}
+@item @url{http://ruby-doc.org/core-2.5.1/GC/Profiler.html,GC::Profiler}
 Module
 
 @item @url{http://ruby-doc.org/core-2.5.1/Hash.html,Hash}
@@ -6680,28 +6780,28 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/IO.html,IO}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::EAGAINWaitReadable.html,IO::EAGAINWaitReadable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/EAGAINWaitReadable.html,IO::EAGAINWaitReadable}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::EAGAINWaitWritable.html,IO::EAGAINWaitWritable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/EAGAINWaitWritable.html,IO::EAGAINWaitWritable}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::EINPROGRESSWaitReadable.html,IO::EINPROGRESSWaitReadable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/EINPROGRESSWaitReadable.html,IO::EINPROGRESSWaitReadable}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::EINPROGRESSWaitWritable.html,IO::EINPROGRESSWaitWritable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/EINPROGRESSWaitWritable.html,IO::EINPROGRESSWaitWritable}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::EWOULDBLOCKWaitReadable.html,IO::EWOULDBLOCKWaitReadable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/EWOULDBLOCKWaitReadable.html,IO::EWOULDBLOCKWaitReadable}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::EWOULDBLOCKWaitWritable.html,IO::EWOULDBLOCKWaitWritable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/EWOULDBLOCKWaitWritable.html,IO::EWOULDBLOCKWaitWritable}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::WaitReadable.html,IO::WaitReadable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/WaitReadable.html,IO::WaitReadable}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/IO::WaitWritable.html,IO::WaitWritable}
+@item @url{http://ruby-doc.org/core-2.5.1/IO/WaitWritable.html,IO::WaitWritable}
 Module
 
 @item @url{http://ruby-doc.org/core-2.5.1/IOError.html,IOError}
@@ -6737,7 +6837,7 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/Math.html,Math}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/Math::DomainError.html,Math::DomainError}
+@item @url{http://ruby-doc.org/core-2.5.1/Math/DomainError.html,Math::DomainError}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/Method.html,Method}
@@ -6773,7 +6873,7 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/ObjectSpace.html,ObjectSpace}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/ObjectSpace::WeakMap.html,ObjectSpace::WeakMap}
+@item @url{http://ruby-doc.org/core-2.5.1/ObjectSpace/WeakMap.html,ObjectSpace::WeakMap}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/Proc.html,Proc}
@@ -6782,19 +6882,19 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/Process.html,Process}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/Process::GID.html,Process::GID}
+@item @url{http://ruby-doc.org/core-2.5.1/Process/GID.html,Process::GID}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/Process::Status.html,Process::Status}
+@item @url{http://ruby-doc.org/core-2.5.1/Process/Status.html,Process::Status}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Process::Sys.html,Process::Sys}
+@item @url{http://ruby-doc.org/core-2.5.1/Process/Sys.html,Process::Sys}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/Process::UID.html,Process::UID}
+@item @url{http://ruby-doc.org/core-2.5.1/Process/UID.html,Process::UID}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/Process::Waiter.html,Process::Waiter}
+@item @url{http://ruby-doc.org/core-2.5.1/Process/Waiter.html,Process::Waiter}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/Queue.html,Queue}
@@ -6803,7 +6903,7 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/Random.html,Random}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Random::Formatter.html,Random::Formatter}
+@item @url{http://ruby-doc.org/core-2.5.1/Random/Formatter.html,Random::Formatter}
 Module
 
 @item @url{http://ruby-doc.org/core-2.5.1/Range.html,Range}
@@ -6815,7 +6915,7 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/Rational.html,Rational}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Rational::compatible.html,Rational::compatible}
+@item @url{http://ruby-doc.org/core-2.5.1/Rational/compatible.html,Rational::compatible}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/Regexp.html,Regexp}
@@ -6827,7 +6927,7 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/RubyVM.html,RubyVM}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/RubyVM::InstructionSequence.html,RubyVM::InstructionSequence}
+@item @url{http://ruby-doc.org/core-2.5.1/RubyVM/InstructionSequence.html,RubyVM::InstructionSequence}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/RuntimeError.html,RuntimeError}
@@ -6878,10 +6978,10 @@ Class
 @item @url{http://ruby-doc.org/core-2.5.1/Thread.html,Thread}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Thread::Backtrace.html,Thread::Backtrace}
+@item @url{http://ruby-doc.org/core-2.5.1/Thread/Backtrace.html,Thread::Backtrace}
 Class
 
-@item @url{http://ruby-doc.org/core-2.5.1/Thread::Backtrace::Location.html,Thread::Backtrace::Location}
+@item @url{http://ruby-doc.org/core-2.5.1/Thread/Backtrace/Location.html,Thread::Backtrace::Location}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/ThreadError.html,ThreadError}
@@ -6914,7 +7014,7 @@ Module
 @item @url{http://ruby-doc.org/core-2.5.1/Warning.html,Warning}
 Module
 
-@item @url{http://ruby-doc.org/core-2.5.1/Warning::buffer.html,Warning::buffer}
+@item @url{http://ruby-doc.org/core-2.5.1/Warning/buffer.html,Warning::buffer}
 Class
 
 @item @url{http://ruby-doc.org/core-2.5.1/ZeroDivisionError.html,ZeroDivisionError}
@@ -6924,15 +7024,27 @@ Class
 Class
 
 @end table
+
+@ifnottex
 @caption{List of Classes and Modules}
 @end float
+@end ifnottex
+
+@iftex
+@page
+@end iftex
+
 
 @c .....................................
 
 @node Methods API
-@subsection Methods API
+@appendixsubsec Methods API
+@cindex methods api
 
+@ifnottex
 @float Table,table:api-methods
+@end ifnottex
+
 @table @code
 @item @url{http://ruby-doc.org/core-2.5.1/SystemCallError.html#method-c-3D-3D-3D,===}
 @code{SystemCallError::===} (Class Method)
@@ -12551,21 +12663,26 @@ Class
 @code{Regexp#~} (Instance Method)
 
 @end table
+
+@ifnottex
 @caption{List of API Methods}
 @end float
+@end ifnottex
+
+@iftex
+@page
+@end iftex
 
 
-
-
-
-
-
-@c -----------------------------------------------------------------------------
+@c .....................................
 
 @node Beginner Core Topics
-@section Beginner Core Topics
+@appendixsubsec Beginner Core Topics
 
+@ifnottex
 @float Table,table:core-topics
+@end ifnottex
+
 @table @b
 @item Syntax
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax_rdoc.html}
@@ -12580,8 +12697,14 @@ Class
 @item Operator Precedence
 @url{http://ruby-doc.org/core-2.5.1/doc/syntax/precedence_rdoc.html}
 @end table
+@ifnottex
 @caption{Table of Core Topics}
 @end float
+@end ifnottex
+
+@iftex
+@page
+@end iftex
 
 
 
@@ -12590,26 +12713,13 @@ Class
 
 
 
-@c *****************************************************************************
-
-@node List of Tables
-@unnumbered List of Tables
-
-@listoffloats Table
-
-
-
-
-
-
-
-
-@c *****************************************************************************
-@c APPENDICES
 @c *****************************************************************************
 
 @node Utility Programs
 @appendix Utility Programs
+@cindex utility programs
+
+Here are some utility programs that I either found or created.
 
 
 
@@ -12824,6 +12934,7 @@ This chunk is called by @r{@{@file{eval.rb}@}}; see its first definition at @ref
 @iftex
 @textfonts @rm
 @end iftex
+
 
 @c .....................................
 
@@ -13142,6 +13253,7 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @iftex
 @textfonts @rm
 @end iftex
+
 
 @c .....................................
 
@@ -13648,6 +13760,7 @@ This chunk is called by @r{<@i{apiutil---MAIN Block--Main Loop-Inside}>}; see it
 @textfonts @rm
 @end iftex
 
+
 @c .....................................
 
 @node @file{apiutil.awk} ENDFILE Block
@@ -13673,6 +13786,7 @@ This chunk is called by @r{@{@file{apiutil.awk}@}}; see its first definition at 
 @iftex
 @textfonts @rm
 @end iftex
+
 
 @c .....................................
 
@@ -13944,6 +14058,8 @@ This chunk is called by @r{@{@file{Makefile}@}}; see its first definition at @re
 
 
 
+
+
 @c *****************************************************************************
 
 @node Initial Setup and Post Create
@@ -14091,6 +14207,7 @@ The following table lists called chunk definition points.
 
 
 @c -----------------------------------------------------------------------------
+
 
 @menu
 * Makefile Variable Definitions::
@@ -14323,6 +14440,7 @@ the code chunk definitions, and the code chunk references.
 
 
 @c -----------------------------------------------------------------------------
+
 
 @menu
 * File Definitions::
