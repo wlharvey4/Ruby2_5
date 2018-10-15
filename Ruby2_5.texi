@@ -413,6 +413,7 @@ Ruby Eval Utility
 * eval Indentation Deltas Code::
 * eval Main Get Line Code::
 * eval Main Process Line Code::
+* @file{eval.rb} Post Create::
 
 @file{eval.rb} Main Process Line Code
 
@@ -12742,6 +12743,18 @@ Here are some utility programs that I either found or created.
 
 @url{http://www.rubyist.net/~slagell/ruby/eval.txt, @file{eval.rb}}
 
+@cindex @command{rbeval}
+@quotation
+@b{NOTE:} This program's original name is @file{eval.rb}.  However, there is a
+name conflict with @file{eval}.  In order to allow this program to be run as an
+executable while sitting in the @file{bin} directory, I need to change its name
+to soemthing other than @file{eval}.  Of course, @file{eval.rb} would work, but
+I would like a simple name without an extension.  Therefore, I am using
+@command{rbeval} as a compromise.  This is handled by @code{@@post_create} when
+creating an executable in the @file{bin} directory.  The original file will be
+moved into @file{src} with its original @file{eval.rb} intact.
+@end quotation
+
 @need 400
 @anchor{eval-rb}
 @crindex @r{<@i{eval---EvalWrapper--Constants}>}, use
@@ -12752,7 +12765,7 @@ Here are some utility programs that I either found or created.
 @noindent
 @r{@{@file{eval.rb}@}} @equiv{}
 @example
-#!/usr/local/bin/ruby
+#! /usr/local/bin/ruby
 
 #######################################################
 #
@@ -12820,6 +12833,7 @@ The following table lists called chunk definition points.
 * eval Indentation Deltas Code::
 * eval Main Get Line Code::
 * eval Main Process Line Code::
+* @file{eval.rb} Post Create::
 @end menu
 
 @node eval Module Code
@@ -13127,6 +13141,18 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 @textfonts @rm
 @end iftex
 
+
+@c .....................................
+
+@node @file{eval.rb} Post Create
+@appendixsubsec @file{eval.rb} Post Create
+@cindex @code{@@post_create} @file{eval.rb}
+
+The following line is executed after @command{jrtangle} runs.
+
+@verbatim
+ @post_create eval.rb chmod +x eval.rb && mv eval.rb src && ln src/eval.rb bin/rbeval
+@end verbatim
 
 
 
@@ -14145,9 +14171,9 @@ there is a little shell script that will add @file{./bin} to the @env{path}
 environment variable, which must be run ``by hand'' as @samp{source
 setpath.sh}.
 
-@example
-@@post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
-@end example
+@verbatim
+ @post_create apiutil.awk chmod -v +x apiutil.awk && mv apiutil.awk src && ln -vf src/apiutil.awk bin/apiutil
+@end verbatim
 
 
 
