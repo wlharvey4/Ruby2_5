@@ -23,7 +23,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.4a
+@set EDITION 0.4b
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -3168,6 +3168,125 @@ and in search of a solid introduction to Ruby’s concepts and constructs.
 @subsection Ruby Essentials
 
 @url{http://www.techotopia.com/index.php/Ruby_Essentials, Ruby Essentials}
+
+Ruby Essentials is a free on-line book designed to provide a concise and easy
+to follow [sic] guide to learning Ruby.
+
+@c _____________________________________
+
+@node Interactive Ruby Execution
+@subsubsection Interactive Ruby Execution
+@cindex @command{irb} tool
+@cindex Interactive Ruby (IRB)
+
+Interactive Ruby code is entered using the @command{irb} tool.
+
+Once irb is installed, launch it as follows:
+
+@example
+$ irb
+irb(main):001:0>
+@end example
+
+Now, we can begin to execute Ruby code:
+
+@example
+irb(main):001:0> puts 'Hello Ruby'
+Hello Ruby
+=> nil
+irb(main):002:0>
+@end example
+
+@c _____________________________________
+
+@node Block Ruby Comments
+@subsubsection Block Ruby Commenets
+@cindex comment block markers
+@cindex block ruby comments
+@cindex @code{=begin}
+@cindex @code{=end}
+@cindex comments, multi-line
+
+Multiple lines of text or code can be defined as comments using the Ruby
+@code{=begin} and @code{=end} comment markers.  These are known as the @dfn{comment
+block markers}.
+
+@c _____________________________________
+
+@node Variable Scope
+@subsubsection Variable Scope
+@cindex variable scope
+@cindex scope, variables
+@cindex variables, 4 types
+@cindex constant
+
+@dfn{Scope} defines where in a program a variable is accessible.  Ruby has four
+types of variable scope, plus one constant type.  Each variable type is
+declared by using a special character at the start of the variable name as
+outlined in the following table.
+
+@multitable @columnfractions .25 .25
+@item local @tab [a-z] or _
+@item global @tab @code{$}
+@item instance @tab @code{@@}
+@item class @tab @code{@@@@}
+@item constant @tab [A-Z]
+@end multitable
+
+@subheading Detecting The Scope Of A Variable
+@cindex scope, determine programmatically
+@cindex @code{defined?} method
+
+Sometimes you need to find out the scope programmatically.  A useful technique
+to find out the scope of a variable is to use the @code{defined?}  method.
+@code{defined?}  will return the scope of the variable referenced, or
+@code{nil} if the variable is not defined in the current context.
+
+@example
+x = 10
+=> 10
+defined? x
+=> "local-variable"
+
+$x = 10
+=> 10
+defined? $x
+=> "global-variable"
+@end example
+
+@subheading Predefined Global Variables
+@cindex global variables, predefined
+
+@multitable @columnfractions .1 .9
+@item @code{$@@} @tab The location of latest error
+
+@item @code{$_} @tab The string last read by gets
+
+@item @code{$.} @tab The line number last read by interpreter
+
+@item @code{$&} @tab The string last matched by regexp
+
+@item @code{$~} @tab The last regexp match, as an array of subexpressions
+
+@item @code{$n} @tab The nth subexpression in the last match (same as $~[n])
+
+@item @code{$=} @tab The case-insensitivity flag
+
+@item @code{$/} @tab The input record separator
+
+@item @code{$\} @tab The output record separator
+
+@item @code{$0} @tab The name of the ruby script file currently executing
+
+@item @code{$*} @tab The command line arguments used to invoke the script
+
+@item @code{$$} @tab The Ruby interpreter's process ID
+
+@item @code{$?} @tab The exit status of last executed child process
+
+@end multitable
+
+
 
 
 @c .....................................

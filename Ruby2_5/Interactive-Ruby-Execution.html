@@ -16,19 +16,19 @@ This is Edition 0.4b of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>apiutil.awk BEGNFILE Block (Ruby2_5 Information)</title>
+<title>Interactive Ruby Execution (Ruby2_5 Information)</title>
 
-<meta name="description" content="apiutil.awk BEGNFILE Block (Ruby2_5 Information)">
-<meta name="keywords" content="apiutil.awk BEGNFILE Block (Ruby2_5 Information)">
+<meta name="description" content="Interactive Ruby Execution (Ruby2_5 Information)">
+<meta name="keywords" content="Interactive Ruby Execution (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="API-Utility.html#API-Utility" rel="up" title="API Utility">
-<link href="apiutil_002eawk-MAIN-Block.html#apiutil_002eawk-MAIN-Block" rel="next" title="apiutil.awk MAIN Block">
-<link href="apiutil_002eawk-BEGIN-Block.html#apiutil_002eawk-BEGIN-Block" rel="prev" title="apiutil.awk BEGIN Block">
+<link href="Ruby-Essentials.html#Ruby-Essentials" rel="up" title="Ruby Essentials">
+<link href="Block-Ruby-Comments.html#Block-Ruby-Comments" rel="next" title="Block Ruby Comments">
+<link href="Ruby-Essentials.html#Ruby-Essentials" rel="prev" title="Ruby Essentials">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -61,28 +61,35 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="apiutil_002eawk-BEGNFILE-Block"></a>
+<a name="Interactive-Ruby-Execution"></a>
 <div class="header">
 <p>
-Next: <a href="apiutil_002eawk-MAIN-Block.html#apiutil_002eawk-MAIN-Block" accesskey="n" rel="next"><samp>apiutil.awk</samp> MAIN Block</a>, Previous: <a href="apiutil_002eawk-BEGIN-Block.html#apiutil_002eawk-BEGIN-Block" accesskey="p" rel="prev"><samp>apiutil.awk</samp> BEGIN Block</a>, Up: <a href="API-Utility.html#API-Utility" accesskey="u" rel="up">API Utility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Block-Ruby-Comments.html#Block-Ruby-Comments" accesskey="n" rel="next">Block Ruby Comments</a>, Up: <a href="Ruby-Essentials.html#Ruby-Essentials" accesskey="u" rel="up">Ruby Essentials</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="apiutil_002eawk-BEGINFILE-BLOCK"></a>
-<h4 class="appendixsubsec">A.2.2 <samp>apiutil.awk</samp> BEGINFILE BLOCK</h4>
+<a name="Interactive-Ruby-Execution-1"></a>
+<h4 class="subsubsection">2.3.9.1 Interactive Ruby Execution</h4>
+<a name="index-irb-tool"></a>
+<a name="index-Interactive-Ruby-_0028IRB_0029"></a>
 
-<p>This will allow this filename to be changed a little more easily.
+<p>Interactive Ruby code is entered using the <code>irb</code> tool.
 </p>
-<a name="apiutil_002d_002d_002dBEGINFILE_002dBlock"></a><a name="index-_003capiutil_002d_002d_002dBEGINFILE-Block_003e_002c-definition"></a>
-<p><span class="roman">&lt;<i>apiutil&mdash;BEGINFILE Block</i>&gt;</span> &equiv;
-</p><div class="example">
-<pre class="example">BEGINFILE {
-  newfile = FILENAME&quot;.new&quot;
-}
-
+<p>Once irb is installed, launch it as follows:
+</p>
+<div class="example">
+<pre class="example">$ irb
+irb(main):001:0&gt;
 </pre></div>
 
-<p>This chunk is called by <span class="roman">{<samp>apiutil.awk</samp>}</span>; see its first definition at <a href="API-Utility.html#apiutil_002dawk">apiutil-awk</a>.
+<p>Now, we can begin to execute Ruby code:
 </p>
+<div class="example">
+<pre class="example">irb(main):001:0&gt; puts 'Hello Ruby'
+Hello Ruby
+=&gt; nil
+irb(main):002:0&gt;
+</pre></div>
+
 
 
 

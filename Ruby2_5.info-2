@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.4a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.4b of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Beginner Core Topics,  Prev: API Documentation,  Up: Core Reference
@@ -49,12 +49,12 @@ List of Tables
 
 * Menu:
 
-* Table 2.1: table:variable-identifiers. List of Variable Identifiers
+* Table 2.1: table:variable-identifiers. List of Variable ...
 * Table 2.2: table:global-variables.     List of Major System ...
 * Table 2.3: table:accessor-shortcuts.   List of Accessor Shortcuts
 * Table 3.1: table:api.                  Core API
 * Table 3.2: table:api-classes-and-modules.
-                                         List of Classes and Modules
+                                         List of Classes and ...
 * Table 3.3: table:api-methods.          List of API Methods
 * Table 3.4: table:core-topics.          Table of Core Topics
 
@@ -125,7 +125,7 @@ A.1 Ruby Eval Utility
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <eval--EvalWrapper-Constants>See *note eval---EvalWrapper--Constants::.
 <eval--EvalWrapper-IndentationSee
 Deltas>                   *note eval---EvalWrapper--Indentation-Deltas::.
@@ -239,7 +239,7 @@ eval-rb::.
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <eval--Main-Process       See
 Line-If Not Line>         *note eval---Main--Process-Line-If-Not-Line::.
 <eval--Main-Process       See
@@ -289,7 +289,7 @@ definition at *note eval---Main--Process-Line::.
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <eval--Main-Process       See
 Line-Is                   *note eval---Main--Process-Line-Is-Line-Indentation::.
 Line_Indentation>
@@ -319,8 +319,8 @@ Evaluating?>
 
      end # begin
 
-This chunk is called by <eval--Main-Process Line-Is Line>; see its first
-definition at *note eval---Main--Process-Line-Is-Line::.
+This chunk is called by <eval--Main-Process Line-Is Line>; see its
+first definition at *note eval---Main--Process-Line-Is-Line::.
 
 ### Something Worth Evaluating? ###
 -----------------------------------
@@ -347,8 +347,8 @@ definition at *note eval---Main--Process-Line-Is-Line::.
 
      end # if
 
-This chunk is called by <eval--Main-Process Line-Is Line>; see its first
-definition at *note eval---Main--Process-Line-Is-Line::.
+This chunk is called by <eval--Main-Process Line-Is Line>; see its
+first definition at *note eval---Main--Process-Line-Is-Line::.
 
 
 File: Ruby2_5.info,  Node: API Utility,  Prev: Ruby Eval Utility,  Up: Utility Programs
@@ -356,11 +356,11 @@ File: Ruby2_5.info,  Node: API Utility,  Prev: Ruby Eval Utility,  Up: Utility P
 A.2 API Utility
 ===============
 
-The purpose of this little utility is to assist with the construction of
-the API tables; that is, it will help insert '@item' labels, and perhaps
-assist with constructing URL's if I am lucky.  I am writing it using the
-'GAWK' programming language to refresh my knowledge of 'AWK' (and get to
-know 'GAWK''s extra features).
+The purpose of this little utility is to assist with the construction
+of the API tables; that is, it will help insert '@item' labels, and
+perhaps assist with constructing URL's if I am lucky.  I am writing it
+using the 'GAWK' programming language to refresh my knowledge of 'AWK'
+(and get to know 'GAWK''s extra features).
 
 {'apiutil.awk'} ==
      #! /usr/bin/env gawk -f
@@ -374,7 +374,7 @@ know 'GAWK''s extra features).
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <apiutil--BEGIN Block>    See *note apiutil---BEGIN-Block::.
 <apiutil--BEGINFILE       See *note apiutil---BEGINFILE-Block::.
 Block>
@@ -412,7 +412,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <apiutil--BEGIN-Ord       See
 Function Init>            *note apiutil---BEGIN--Ord-Function-Init::.
 <apiutil--BEGIN-Variable  See
@@ -469,7 +469,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <apiutil--MAIN            See
 Block-Convert Symbols     *note apiutil---MAIN-Block--Convert-Symbols-Function-Defn::.
 Function Defn>
@@ -482,10 +482,10 @@ Defn>
 Main Loop Variable Definitions
 ------------------------------
 
-I will define the main loop variables first.  The variables 'start' and
-'end' hold regular expression strings that target the two tables I want
-to process.  The variable 'started' flags whether the code is inside a
-table (1) or not (0).
+I will define the main loop variables first.  The variables 'start'
+and 'end' hold regular expression strings that target the two tables I
+want to process.  The variable 'started' flags whether the code is
+inside a table (1) or not (0).
 
 <apiutil--BEGIN-Variable Defns> ==
      start = "^@float Table,table:api-.*$"
@@ -493,20 +493,21 @@ table (1) or not (0).
      started = 0
 
 
-This chunk is also defined in *note apiutil---BEGIN--Variable-Defns-2::,
-*note apiutil---BEGIN--Variable-Defns-3::, and *note
+This chunk is also defined in *note
+apiutil---BEGIN--Variable-Defns-2::, *note
+apiutil---BEGIN--Variable-Defns-3::, and *note
 apiutil---BEGIN--Variable-Defns-4::.
 
-This chunk is called by <apiutil--BEGIN Block>; see its first definition
-at *note apiutil---BEGIN-Block::.
+This chunk is called by <apiutil--BEGIN Block>; see its first
+definition at *note apiutil---BEGIN-Block::.
 
 Main Outer Loop Definitions
 ---------------------------
 
-The 'MAIN' block does two things: passes over unchanged whatever is not
-inside a target table, and processes the contents of a target table.  It
-uses the flag 'started' to pass through the beginning and ending lines
-basically unchanged as well(1).
+The 'MAIN' block does two things: passes over unchanged whatever is
+not inside a target table, and processes the contents of a target
+table.  It uses the flag 'started' to pass through the beginning and
+ending lines basically unchanged as well(1).
 
 <apiutil--MAIN Block-Main Loop> ==
      # process whatever is in between the 'start' and 'end' of a table
@@ -522,19 +523,19 @@ basically unchanged as well(1).
      }
 
 
-This chunk is called by <apiutil--MAIN Block>; see its first definition
-at *note apiutil---MAIN-Block::.
+This chunk is called by <apiutil--MAIN Block>; see its first
+definition at *note apiutil---MAIN-Block::.
 
-The called chunk <apiutil--MAIN Block-Main Loop-Inside> is first defined
-at *note apiutil---MAIN-Block--Main-Loop-Inside-1::.
+The called chunk <apiutil--MAIN Block-Main Loop-Inside> is first
+defined at *note apiutil---MAIN-Block--Main-Loop-Inside-1::.
 
 Preliminary and Post Processing of the Inside of a Table
 --------------------------------------------------------
 
-Once inside the main loop, do some preliminary processing and checking.
-Make sure '@' signs are properly escaped, and ignore the '@table' line.
-Also check for the end of the table, add a newline, and reset the
-'started' flag.
+Once inside the main loop, do some preliminary processing and
+checking.  Make sure '@' signs are properly escaped, and ignore the
+'@table' line.  Also check for the end of the table, add a newline,
+and reset the 'started' flag.
 
 <apiutil--MAIN Block-Main Loop-Inside> ==
      # ignore the @table line
@@ -565,9 +566,9 @@ Main Processing Loop Definition
 -------------------------------
 
 The real work is done on lines that are in the middle of the tables.
-There is first a regular expression check to make sure something that is
-not a 'Texinfo' command (which begin with '@') is on the line because
-some lines are empty and are just ignored;
+There is first a regular expression check to make sure something that
+is not a 'Texinfo' command (which begin with '@') is on the line
+because some lines are empty and are just ignored;
 
 <apiutil--MAIN Block-Main Loop-Inside> +==
      # process lines with content
@@ -593,36 +594,37 @@ apiutil---MAIN-Block--Main-Loop-Inside-Processing-1::.
 Inside the Main Processing Loop
 -------------------------------
 
-After it finds a non-empty, non-command line, 'GAWK' parses it into the
-array 'arr' using the function 'match'.  This regexp is fairly busy.
-There are many parentheses because several parts of the regexp are
-optional, requiring an extra set around the optional parts, and extra
-parentheses are required to strip away a parenthesized word
+After it finds a non-empty, non-command line, 'GAWK' parses it into
+the array 'arr' using the function 'match'.  This regexp is fairly
+busy.  There are many parentheses because several parts of the regexp
+are optional, requiring an extra set around the optional parts, and
+extra parentheses are required to strip away a parenthesized word
 (ironically).  The optional sections are marked by question marks
 ('?'s).
 
-   The first part of each line contains a marker indicating what kind of
-element the thing is.  In the 'Classes' table, the marker is either a
-'C' or an 'M'.  In the 'Methods' table, the marker is either a pair of
-colons ('::') or a hash ('#').
+   The first part of each line contains a marker indicating what kind
+of element the thing is.  In the 'Classes' table, the marker is either
+a 'C' or an 'M'.  In the 'Methods' table, the marker is either a pair
+of colons ('::') or a hash ('#').
 
 Explanation of the main regexp
 ..............................
 
-The main entry from either table is obtained by grabbing everything that
-is not a right parenthesis ('(') or a space.  In the 'Class' table, this
-is everything on the line.  In the 'Method' table, this is everything up
-until the parenthesized class name in which the method is defined.
-Likewise, this parenthesized class is obtained by grabbing everything up
-until the closing parenthesis.
+The main entry from either table is obtained by grabbing everything
+that is not a right parenthesis ('(') or a space.  In the 'Class'
+table, this is everything on the line.  In the 'Method' table, this is
+everything up until the parenthesized class name in which the method
+is defined.  Likewise, this parenthesized class is obtained by
+grabbing everything up until the closing parenthesis.
 
-   Finally, each parsed parenthesized regexp is inserted into the array
-'arr' and available for use after the parsing.
+   Finally, each parsed parenthesized regexp is inserted into the
+array 'arr' and available for use after the parsing.
 
   1. 'arr[1]': Identification of either 'class' or 'method'; it will
      contain one of 'C', 'M', '::', or '#'.
-  2. 'arr[2]': Main entry; it will contain the name of a class (for the
-     'Class' table, or the name of a method (for the 'Method' table).
+  2. 'arr[2]': Main entry; it will contain the name of a class (for
+     the 'Class' table, or the name of a method (for the 'Method'
+     table).
   3. 'arr[3]': ignored parenthesized class (optional)
   4. 'arr[4]': a method's 'class' (optional); it will contain the name
      of the class within which a method is defined.
@@ -639,15 +641,16 @@ apiutil---MAIN-Block--Main-Loop-Inside-Processing-2::, *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-3::, and *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-4::.
 
-This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see its
-first definition at *note apiutil---MAIN-Block--Main-Loop-Inside-1::.
+This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see
+its first definition at *note
+apiutil---MAIN-Block--Main-Loop-Inside-1::.
 
 Variable Definitions
 --------------------
 
 When parsing the lines of text obtained from copying the library page,
-the initial letters and symbols can be translated into meaningful words
-using the hash 'classmethod'.
+the initial letters and symbols can be translated into meaningful
+words using the hash 'classmethod'.
 
 <apiutil--BEGIN-Variable Defns> +==
      classmethod["C"]  = "Class"
@@ -656,12 +659,13 @@ using the hash 'classmethod'.
      classmethod["#"]  = "Instance Method"
 
 
-This chunk is also defined in *note apiutil---BEGIN--Variable-Defns-1::,
-*note apiutil---BEGIN--Variable-Defns-3::, and *note
+This chunk is also defined in *note
+apiutil---BEGIN--Variable-Defns-1::, *note
+apiutil---BEGIN--Variable-Defns-3::, and *note
 apiutil---BEGIN--Variable-Defns-4::.
 
-This chunk is called by <apiutil--BEGIN Block>; see its first definition
-at *note apiutil---BEGIN-Block::.
+This chunk is called by <apiutil--BEGIN Block>; see its first
+definition at *note apiutil---BEGIN-Block::.
 
    Additionally, a method's designator can be used to help form URL's
 pointing to the method definition.
@@ -671,34 +675,36 @@ pointing to the method definition.
      methid["#"]  = "-i-"
 
 
-This chunk is also defined in *note apiutil---BEGIN--Variable-Defns-1::,
-*note apiutil---BEGIN--Variable-Defns-2::, and *note
+This chunk is also defined in *note
+apiutil---BEGIN--Variable-Defns-1::, *note
+apiutil---BEGIN--Variable-Defns-2::, and *note
 apiutil---BEGIN--Variable-Defns-4::.
 
-This chunk is called by <apiutil--BEGIN Block>; see its first definition
-at *note apiutil---BEGIN-Block::.
+This chunk is called by <apiutil--BEGIN Block>; see its first
+definition at *note apiutil---BEGIN-Block::.
 
 Stitching Together the Parts
 ----------------------------
 
-Once the parsing has been completed, the parts are stitched together and
-printed with appropriate commands surrounding them, i.e., '@item' or
-'@code', etc.
+Once the parsing has been completed, the parts are stitched together
+and printed with appropriate commands surrounding them, i.e., '@item'
+or '@code', etc.
 
    The variable 'itemurl' will be used to stitch together the URL that
-will be the main '@item' content; it begins with the base url as defined
-in the BEGIN block:
+will be the main '@item' content; it begins with the base url as
+defined in the BEGIN block:
 
 <apiutil--BEGIN-Variable Defns> +==
      baseurl = "http://ruby-doc.org/core-2.5.1/"
 
 
-This chunk is also defined in *note apiutil---BEGIN--Variable-Defns-1::,
-*note apiutil---BEGIN--Variable-Defns-2::, and *note
+This chunk is also defined in *note
+apiutil---BEGIN--Variable-Defns-1::, *note
+apiutil---BEGIN--Variable-Defns-2::, and *note
 apiutil---BEGIN--Variable-Defns-3::.
 
-This chunk is called by <apiutil--BEGIN Block>; see its first definition
-at *note apiutil---BEGIN-Block::.
+This chunk is called by <apiutil--BEGIN Block>; see its first
+definition at *note apiutil---BEGIN-Block::.
 
    'baseurl' starts the 'itemurl' definition:
 
@@ -711,8 +717,9 @@ apiutil---MAIN-Block--Main-Loop-Inside-Processing-1::, *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-3::, and *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-4::.
 
-This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see its
-first definition at *note apiutil---MAIN-Block--Main-Loop-Inside-1::.
+This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see
+its first definition at *note
+apiutil---MAIN-Block--Main-Loop-Inside-1::.
 
 Processing the 'arr' Array
 ..........................
@@ -722,19 +729,20 @@ create a complete and linkable URL into Ruby's core library pages.
 
    The code now continues processing the 'arr' array parts.  If
 'arr[4])' exists, then the code is currently processing the 'Method'
-table, and since the parts are different than the 'Class' table, it must
-differentiate between them.
+table, and since the parts are different than the 'Class' table, it
+must differentiate between them.
 
-   'arr[4]' will be empty for a 'Class' table element, and so it can be
-reformatted somewhat for a 'Method' table element by placing its
+   'arr[4]' will be empty for a 'Class' table element, and so it can
+be reformatted somewhat for a 'Method' table element by placing its
 contents inside a '@code' format.
 
-   The 'Method' links require most symbols to be hexadecimal equivalents
-of their ASCII code number.  Therefore, I made a function called
-'convertsymbols()' that will iterate over a method name and convert any
-symbols (with the exception of the underscore) into hexadecimal ASCII,
-separated by dashes.  When this name is inserted into the URL, it links
-directly to the proper method inside the class documentation.
+   The 'Method' links require most symbols to be hexadecimal
+equivalents of their ASCII code number.  Therefore, I made a function
+called 'convertsymbols()' that will iterate over a method name and
+convert any symbols (with the exception of the underscore) into
+hexadecimal ASCII, separated by dashes.  When this name is inserted
+into the URL, it links directly to the proper method inside the class
+documentation.
 
 <apiutil--MAIN Block-Main Loop-Inside_Processing> +==
      if (length(arr[4]) > 0) {
@@ -762,14 +770,15 @@ apiutil---MAIN-Block--Main-Loop-Inside-Processing-1::, *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-2::, and *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-4::.
 
-This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see its
-first definition at *note apiutil---MAIN-Block--Main-Loop-Inside-1::.
+This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see
+its first definition at *note
+apiutil---MAIN-Block--Main-Loop-Inside-1::.
 
 Printing the Table Items
 ........................
 
-The code is printing a '@table' element, and it contains both an '@item'
-column and a detail column.
+The code is printing a '@table' element, and it contains both an
+'@item' column and a detail column.
 
 <apiutil--MAIN Block-Main Loop-Inside_Processing> +==
      print itemurl > newfile
@@ -781,13 +790,14 @@ apiutil---MAIN-Block--Main-Loop-Inside-Processing-1::, *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-2::, and *note
 apiutil---MAIN-Block--Main-Loop-Inside-Processing-3::.
 
-This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see its
-first definition at *note apiutil---MAIN-Block--Main-Loop-Inside-1::.
+This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see
+its first definition at *note
+apiutil---MAIN-Block--Main-Loop-Inside-1::.
 
    ---------- Footnotes ----------
 
-   (1) In fact one line is added at the end of the table to account for
-better style
+   (1) In fact one line is added at the end of the table to account
+for better style
 
 
 File: Ruby2_5.info,  Node: apiutil.awk ENDFILE Block,  Next: apiutil.awk END Block,  Prev: apiutil.awk MAIN Block,  Up: API Utility
@@ -824,14 +834,14 @@ File: Ruby2_5.info,  Node: apiutil Ord Function,  Next: convertsymbols() Functio
 A.2.6 'apiutil' Ord Function
 ----------------------------
 
-I need to turn symbols (like '=' and '+') into their hexadecimal numbers
-inside 'Method' URL links.  I found this 'ord' function in 'GAWK''s
-documentation.  *Note (gawk)Ordinal Functions::.  It consists of an
-initialization segment, in which a hash of symbols and their
+I need to turn symbols (like '=' and '+') into their hexadecimal
+numbers inside 'Method' URL links.  I found this 'ord' function in
+'GAWK''s documentation.  *Note (gawk)Ordinal Functions::.  It consists
+of an initialization segment, in which a hash of symbols and their
 corresponding ASCII codes is assembled, and a function that, given
-either an 'ord' number or a 'char' symbol, returns the opposite.  I will
-put the initialization code into the 'BEGIN' segment, and the function
-definition into the 'MAIN' block.
+either an 'ord' number or a 'char' symbol, returns the opposite.  I
+will put the initialization code into the 'BEGIN' segment, and the
+function definition into the 'MAIN' block.
 
 The 'ord' Function Initialization Segments
 ------------------------------------------
@@ -845,8 +855,8 @@ other 'ord' functions.
      _ord_init()
 
 
-This chunk is called by <apiutil--BEGIN Block>; see its first definition
-at *note apiutil---BEGIN-Block::.
+This chunk is called by <apiutil--BEGIN Block>; see its first
+definition at *note apiutil---BEGIN-Block::.
 
 <apiutil--MAIN Block-Ord Function Defn> ==
      # initialize the ASCII symbol table
@@ -864,8 +874,8 @@ at *note apiutil---BEGIN-Block::.
 This chunk is also defined in *note
 apiutil---MAIN-Block--Ord-Function-Defn-2::.
 
-This chunk is called by <apiutil--MAIN Block>; see its first definition
-at *note apiutil---MAIN-Block::.
+This chunk is called by <apiutil--MAIN Block>; see its first
+definition at *note apiutil---MAIN-Block::.
 
 The 'ord()' and 'chr()' Function Definitions
 --------------------------------------------
@@ -888,8 +898,8 @@ The 'ord()' and 'chr()' Function Definitions
 This chunk is also defined in *note
 apiutil---MAIN-Block--Ord-Function-Defn-1::.
 
-This chunk is called by <apiutil--MAIN Block>; see its first definition
-at *note apiutil---MAIN-Block::.
+This chunk is called by <apiutil--MAIN Block>; see its first
+definition at *note apiutil---MAIN-Block::.
 
 
 File: Ruby2_5.info,  Node: convertsymbols() Function Definition,  Next: apiutil Makefile Target,  Prev: apiutil Ord Function,  Up: API Utility
@@ -897,8 +907,9 @@ File: Ruby2_5.info,  Node: convertsymbols() Function Definition,  Next: apiutil 
 A.2.7 'convertsymbols()' Function Definition
 --------------------------------------------
 
-This function, 'convertsymbols()', takes a method name and converts all
-symbols in the following ranges into their hexadecimal equivalents:
+This function, 'convertsymbols()', takes a method name and converts
+all symbols in the following ranges into their hexadecimal
+equivalents:
 
    * ASCII 0x20 (<SP>) and ASCII 0x2f ('/')
    * ASCII 0x3a (':') and ASCII 0x40 ('@')
@@ -956,8 +967,8 @@ symbols in the following ranges into their hexadecimal equivalents:
      }
 
 
-This chunk is called by <apiutil--MAIN Block>; see its first definition
-at *note apiutil---MAIN-Block::.
+This chunk is called by <apiutil--MAIN Block>; see its first
+definition at *note apiutil---MAIN-Block::.
 
 
 File: Ruby2_5.info,  Node: apiutil Makefile Target,  Prev: convertsymbols() Function Definition,  Up: API Utility
@@ -966,10 +977,10 @@ A.2.8 apiutil Makefile Target
 -----------------------------
 
 Add a target for running 'apiutil.awk' in the Makefile.  Note that the
-directory './bin' is created in the '@initial_setup' environment (*note
-Initial Setup::) and is made executable by a '@post_create' command
-(*note Post Create::), both of which were added by the 'TexiwebJR'
-program.
+directory './bin' is created in the '@initial_setup' environment
+(*note Initial Setup::) and is made executable by a '@post_create'
+command (*note Post Create::), both of which were added by the
+'TexiwebJR' program.
 
 <Makefile--Utility Targets> ==
      # apiutil.awk
@@ -981,8 +992,8 @@ program.
 
 This chunk is also defined in *note Makefile---Utility-Targets-2::.
 
-This chunk is called by {'Makefile'}; see its first definition at *note
-Makefile::.
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Initial Setup and Post Create,  Next: The Makefile,  Prev: Utility Programs,  Up: Top
@@ -1038,8 +1049,8 @@ B.2 Post Create
 
 Make 'apiutil.awk' executable and move it into 'bin'.  It can be run
 either by executing the 'make' target 'apiutil' (as 'make apiutil') or
-by running the command from the './bin' directory.  Note that there is a
-little shell script that will add './bin' to the 'path' environment
+by running the command from the './bin' directory.  Note that there is
+a little shell script that will add './bin' to the 'path' environment
 variable, which must be run "by hand" as 'source setpath.sh'.
 
      @post_create apiutil.awk cx apiutil.awk && mv apiutil.awk bin
@@ -1067,7 +1078,7 @@ Appendix C The Makefile
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <Makefile--Clean          See *note Makefile---Clean-Targets::.
 Targets>
 <Makefile--Default        See *note Makefile---Default-Target::.
@@ -1100,8 +1111,8 @@ C.1 Makefile Variable Definitions
      SHELL := /bin/bash
 
 
-This chunk is called by {'Makefile'}; see its first definition at *note
-Makefile::.
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Targets,  Prev: Makefile Variable Definitions,  Up: The Makefile
@@ -1109,12 +1120,12 @@ File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Targets, 
 C.2 Default Rule
 ================
 
-The 'default' rule is to create a PDF document and all HTML files.  This
-assumes that the TEXI file has been generated and updated by hand first.
-Therefore, the target 'TWJR' will run both 'jrtangle' and 'jrweave',
-while the target 'WEAVE' or alternatively 'TEXI' will run just 'jrweave'
-on the '.twjr' file.  Thereafter, you can update the '.texi' file and
-run the 'default'.
+The 'default' rule is to create a PDF document and all HTML files.
+This assumes that the TEXI file has been generated and updated by hand
+first.  Therefore, the target 'TWJR' will run both 'jrtangle' and
+'jrweave', while the target 'WEAVE' or alternatively 'TEXI' will run
+just 'jrweave' on the '.twjr' file.  Thereafter, you can update the
+'.texi' file and run the 'default'.
 
 <Makefile--Default Target> ==
      # DEFAULT Target
@@ -1124,8 +1135,8 @@ run the 'default'.
      default : INFO PDF HTML
 
 
-This chunk is called by {'Makefile'}; see its first definition at *note
-Makefile::.
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Makefile TWJR Targets,  Next: Makefile Utility Targets,  Prev: Makefile Default Rule,  Up: The Makefile
@@ -1173,8 +1184,8 @@ C.3 TWJR Targets
          open $(FILE)/index.html
 
 
-This chunk is called by {'Makefile'}; see its first definition at *note
-Makefile::.
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Makefile Utility Targets,  Next: Makefile Clean Targets,  Prev: Makefile TWJR Targets,  Up: The Makefile
@@ -1188,8 +1199,8 @@ C.4 Utility Targets
 
 This chunk is also defined in *note Makefile---Utility-Targets-1::.
 
-This chunk is called by {'Makefile'}; see its first definition at *note
-Makefile::.
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Makefile Clean Targets,  Prev: Makefile Utility Targets,  Up: The Makefile
@@ -1220,8 +1231,8 @@ C.5 Clean Targets
          rm -fr $(FILE).{texi,info*,pdf} $(FILE)/
 
 
-This chunk is called by {'Makefile'}; see its first definition at *note
-Makefile::.
+This chunk is called by {'Makefile'}; see its first definition at
+*note Makefile::.
 
 
 File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: The Makefile,  Up: Top
@@ -1229,8 +1240,9 @@ File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: The
 Appendix D Code Chunk Summaries
 *******************************
 
-This major node presents alphabetical lists of all the file definitions,
-the code chunk definitions, and the code chunk references.
+This major node presents alphabetical lists of all the file
+definitions, the code chunk definitions, and the code chunk
+references.
 
 * Menu:
 
@@ -1274,8 +1286,9 @@ D.2 Code Chunk Definitions
 <Makefile--TWJR Targets>
      This chunk is defined in *note Makefile---TWJR-Targets::.
 <Makefile--Utility Targets>
-     Multiple definitions occur in *note Makefile---Utility-Targets-1::,
-     and *note Makefile---Utility-Targets-2::.
+     Multiple definitions occur in *note
+     Makefile---Utility-Targets-1::, and *note
+     Makefile---Utility-Targets-2::.
 
 <Makefile--Variable Definitions>
      This chunk is defined in *note Makefile---Variable-Definitions::.
@@ -1342,7 +1355,8 @@ D.2 Code Chunk Definitions
      This chunk is defined in *note
      eval---Main--Process-Line-If-Not-Line::.
 <eval--Main-Process Line-Is Line>
-     This chunk is defined in *note eval---Main--Process-Line-Is-Line::.
+     This chunk is defined in *note
+     eval---Main--Process-Line-Is-Line::.
 <eval--Main-Process Line-Is Line_Indentation>
      This chunk is defined in *note
      eval---Main--Process-Line-Is-Line-Indentation::.
@@ -1378,20 +1392,20 @@ D.3 Code Chunk References
      *note Makefile::.
 <MegaGreeter--Initialize Method>
 
-     This chunk is called by {'ri20min.rb'}; see its first definition at
-     *note ri20min-rb::.
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
 <MegaGreeter--Main Script>
 
-     This chunk is called by {'ri20min.rb'}; see its first definition at
-     *note ri20min-rb::.
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
 <MegaGreeter--say_bye Method>
 
-     This chunk is called by {'ri20min.rb'}; see its first definition at
-     *note ri20min-rb::.
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
 <MegaGreeter--say_hi Method>
 
-     This chunk is called by {'ri20min.rb'}; see its first definition at
-     *note ri20min-rb::.
+     This chunk is called by {'ri20min.rb'}; see its first definition
+     at *note ri20min-rb::.
 <apiutil--BEGIN Block>
 
      This chunk is called by {'apiutil.awk'}; see its first definition
@@ -1434,8 +1448,8 @@ D.3 Code Chunk References
      first definition at *note apiutil---MAIN-Block--Main-Loop::.
 <apiutil--MAIN Block-Main Loop-Inside_Processing>
 
-     This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>; see
-     its first definition at *note
+     This chunk is called by <apiutil--MAIN Block-Main Loop-Inside>;
+     see its first definition at *note
      apiutil---MAIN-Block--Main-Loop-Inside-1::.
 <apiutil--MAIN Block-Ord Function Defn>
 
@@ -1467,12 +1481,14 @@ D.3 Code Chunk References
      definition at *note eval---Main--Process-Line::.
 <eval--Main-Process Line-Is Line_Indentation>
 
-     This chunk is called by <eval--Main-Process Line-Is Line>; see its
-     first definition at *note eval---Main--Process-Line-Is-Line::.
+     This chunk is called by <eval--Main-Process Line-Is Line>; see
+     its first definition at *note
+     eval---Main--Process-Line-Is-Line::.
 <eval--Main-Process Line-Is Line_Worth Evaluating?>
 
-     This chunk is called by <eval--Main-Process Line-Is Line>; see its
-     first definition at *note eval---Main--Process-Line-Is-Line::.
+     This chunk is called by <eval--Main-Process Line-Is Line>; see
+     its first definition at *note
+     eval---Main--Process-Line-Is-Line::.
 
 
 File: Ruby2_5.info,  Node: Bibliography,  Next: Concept Index,  Prev: Code Chunk Summaries,  Up: Top
@@ -1489,901 +1505,942 @@ Index
  [index ]
 * Menu:
 
-* "#symbol":                             FAQ Syntax.          (line 115)
-* "falsey" values:                       FAQ Syntax.          (line  59)
-* "name".intern:                         FAQ Syntax.          (line  83)
-* "name".to_sym:                         FAQ Syntax.          (line  83)
-* "truthy" values:                       FAQ Syntax.          (line  59)
+* "#symbol":                             FAQ Syntax.        (line 115)
+* "falsey" values:                       FAQ Syntax.        (line  59)
+* "name".intern:                         FAQ Syntax.        (line  83)
+* "name".to_sym:                         FAQ Syntax.        (line  83)
+* "truthy" values:                       FAQ Syntax.        (line  59)
 * $!:                                    Ruby User's Guide On Exception Processing And rescue.
-                                                              (line  78)
-* ++ and --:                             FAQ Methods.         (line  15)
-* .. vs. ...:                            FAQ Syntax.          (line 202)
+                                                            (line  78)
+* ++ and --:                             FAQ Methods.       (line  15)
+* .. vs. ...:                            FAQ Syntax.        (line 203)
 * :: operator:                           Ruby User's Guide On Modules.
-                                                              (line  27)
+                                                            (line  27)
 * <apiutil--BEGIN Block>, definition:    apiutil.awk BEGIN Block.
-                                                              (line   6)
-* <apiutil--BEGIN Block>, use:           API Utility.         (line  12)
+                                                            (line   6)
+* <apiutil--BEGIN Block>, use:           API Utility.       (line  12)
 * <apiutil--BEGIN-Ord Function Init>, definition: apiutil Ord Function.
-                                                              (line  22)
+                                                            (line  22)
 * <apiutil--BEGIN-Ord Function Init>, use: apiutil.awk BEGIN Block.
-                                                              (line   6)
+                                                            (line   6)
 * <apiutil--BEGIN-Variable Defns>, definition: apiutil.awk MAIN Block.
-                                                              (line  52)
+                                                            (line  52)
 * <apiutil--BEGIN-Variable Defns>, definition <1>: apiutil.awk MAIN Block.
-                                                              (line 214)
+                                                            (line 217)
 * <apiutil--BEGIN-Variable Defns>, definition <2>: apiutil.awk MAIN Block.
-                                                              (line 231)
+                                                            (line 235)
 * <apiutil--BEGIN-Variable Defns>, definition <3>: apiutil.awk MAIN Block.
-                                                              (line 254)
+                                                            (line 259)
 * <apiutil--BEGIN-Variable Defns>, use:  apiutil.awk BEGIN Block.
-                                                              (line   6)
+                                                            (line   6)
 * <apiutil--BEGINFILE Block>, definition: apiutil.awk BEGNFILE Block.
-                                                              (line   8)
-* <apiutil--BEGINFILE Block>, use:       API Utility.         (line  12)
+                                                            (line   8)
+* <apiutil--BEGINFILE Block>, use:       API Utility.       (line  12)
 * <apiutil--END Block>, definition:      apiutil.awk END Block.
-                                                              (line   6)
-* <apiutil--END Block>, use:             API Utility.         (line  12)
+                                                            (line   6)
+* <apiutil--END Block>, use:             API Utility.       (line  12)
 * <apiutil--ENDFILE Block>, definition:  apiutil.awk ENDFILE Block.
-                                                              (line   6)
-* <apiutil--ENDFILE Block>, use:         API Utility.         (line  12)
+                                                            (line   6)
+* <apiutil--ENDFILE Block>, use:         API Utility.       (line  12)
 * <apiutil--MAIN Block-Convert Symbols Function Defn>, definition: convertsymbols() Function Definition.
-                                                              (line  14)
+                                                            (line  15)
 * <apiutil--MAIN Block-Convert Symbols Function Defn>, use: apiutil.awk MAIN Block.
-                                                              (line   6)
+                                                            (line   6)
 * <apiutil--MAIN Block-Main Loop-Inside>, definition: apiutil.awk MAIN Block.
-                                                              (line 101)
+                                                            (line 102)
 * <apiutil--MAIN Block-Main Loop-Inside>, definition <1>: apiutil.awk MAIN Block.
-                                                              (line 134)
+                                                            (line 135)
 * <apiutil--MAIN Block-Main Loop-Inside>, use: apiutil.awk MAIN Block.
-                                                              (line  73)
+                                                            (line  74)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition: apiutil.awk MAIN Block.
-                                                              (line 192)
+                                                            (line 194)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition <1>: apiutil.awk MAIN Block.
-                                                              (line 267)
+                                                            (line 273)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition <2>: apiutil.awk MAIN Block.
-                                                              (line 301)
+                                                            (line 309)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, definition <3>: apiutil.awk MAIN Block.
-                                                              (line 336)
+                                                            (line 345)
 * <apiutil--MAIN Block-Main Loop-Inside_Processing>, use: apiutil.awk MAIN Block.
-                                                              (line 134)
+                                                            (line 135)
 * <apiutil--MAIN Block-Main Loop>, definition: apiutil.awk MAIN Block.
-                                                              (line  73)
+                                                            (line  74)
 * <apiutil--MAIN Block-Main Loop>, use:  apiutil.awk MAIN Block.
-                                                              (line   6)
+                                                            (line   6)
 * <apiutil--MAIN Block-Ord Function Defn>, definition: apiutil Ord Function.
-                                                              (line  30)
+                                                            (line  30)
 * <apiutil--MAIN Block-Ord Function Defn>, definition <1>: apiutil Ord Function.
-                                                              (line  52)
+                                                            (line  52)
 * <apiutil--MAIN Block-Ord Function Defn>, use: apiutil.awk MAIN Block.
-                                                              (line   6)
+                                                            (line   6)
 * <apiutil--MAIN Block>, definition:     apiutil.awk MAIN Block.
-                                                              (line   6)
-* <apiutil--MAIN Block>, use:            API Utility.         (line  12)
+                                                            (line   6)
+* <apiutil--MAIN Block>, use:            API Utility.       (line  12)
 * <eval--EvalWrapper-Constants>, definition: eval Module Code.
-                                                              (line   6)
-* <eval--EvalWrapper-Constants>, use:    Ruby Eval Utility.   (line  10)
+                                                            (line   6)
+* <eval--EvalWrapper-Constants>, use:    Ruby Eval Utility. (line  10)
 * <eval--EvalWrapper-Indentation Deltas>, definition: eval Indentation Deltas Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--EvalWrapper-Indentation Deltas>, use: Ruby Eval Utility.
-                                                              (line  10)
+                                                            (line  10)
 * <eval--Main-Get Line>, definition:     eval Main Get Line Code.
-                                                              (line   6)
-* <eval--Main-Get Line>, use:            Ruby Eval Utility.   (line  10)
+                                                            (line   6)
+* <eval--Main-Get Line>, use:            Ruby Eval Utility. (line  10)
 * <eval--Main-Process Line-If Not Line>, definition: eval If Not Line Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--Main-Process Line-If Not Line>, use: eval Main Process Line Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--Main-Process Line-Is Line>, definition: eval If Is Line Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--Main-Process Line-Is Line>, use: eval Main Process Line Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--Main-Process Line-Is Line_Indentation>, definition: eval If Is Line Code.
-                                                              (line  34)
+                                                            (line  34)
 * <eval--Main-Process Line-Is Line_Indentation>, use: eval If Is Line Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--Main-Process Line-Is Line_Worth Evaluating?>, definition: eval If Is Line Code.
-                                                              (line  59)
+                                                            (line  59)
 * <eval--Main-Process Line-Is Line_Worth Evaluating?>, use: eval If Is Line Code.
-                                                              (line   6)
+                                                            (line   6)
 * <eval--Main-Process Line>, definition: eval Main Process Line Code.
-                                                              (line   6)
-* <eval--Main-Process Line>, use:        Ruby Eval Utility.   (line  10)
+                                                            (line   6)
+* <eval--Main-Process Line>, use:        Ruby Eval Utility. (line  10)
 * <Makefile--Clean Targets>, definition: Makefile Clean Targets.
-                                                              (line   6)
-* <Makefile--Clean Targets>, use:        The Makefile.        (line   6)
+                                                            (line   6)
+* <Makefile--Clean Targets>, use:        The Makefile.      (line   6)
 * <Makefile--Default Target>, definition: Makefile Default Rule.
-                                                              (line  13)
-* <Makefile--Default Target>, use:       The Makefile.        (line   6)
+                                                            (line  13)
+* <Makefile--Default Target>, use:       The Makefile.      (line   6)
 * <Makefile--TWJR Targets>, definition:  Makefile TWJR Targets.
-                                                              (line   6)
-* <Makefile--TWJR Targets>, use:         The Makefile.        (line   6)
+                                                            (line   6)
+* <Makefile--TWJR Targets>, use:         The Makefile.      (line   6)
 * <Makefile--Utility Targets>, definition: apiutil Makefile Target.
-                                                              (line  12)
+                                                            (line  12)
 * <Makefile--Utility Targets>, definition <1>: Makefile Utility Targets.
-                                                              (line   6)
-* <Makefile--Utility Targets>, use:      The Makefile.        (line   6)
+                                                            (line   6)
+* <Makefile--Utility Targets>, use:      The Makefile.      (line   6)
 * <Makefile--Variable Definitions>, definition: Makefile Variable Definitions.
-                                                              (line   6)
-* <Makefile--Variable Definitions>, use: The Makefile.        (line   6)
+                                                            (line   6)
+* <Makefile--Variable Definitions>, use: The Makefile.      (line   6)
 * <MegaGreeter--Initialize Method>, definition: Large Class Definition.
-                                                              (line  41)
+                                                            (line  41)
 * <MegaGreeter--Initialize Method>, use: Large Class Definition.
-                                                              (line  10)
+                                                            (line  10)
 * <MegaGreeter--Main Script>, definition: Large Class Definition.
-                                                              (line 161)
+                                                            (line 162)
 * <MegaGreeter--Main Script>, use:       Large Class Definition.
-                                                              (line  10)
+                                                            (line  10)
 * <MegaGreeter--say_bye Method>, definition: Large Class Definition.
-                                                              (line 131)
+                                                            (line 131)
 * <MegaGreeter--say_bye Method>, use:    Large Class Definition.
-                                                              (line  10)
+                                                            (line  10)
 * <MegaGreeter--say_hi Method>, definition: Large Class Definition.
-                                                              (line  63)
+                                                            (line  63)
 * <MegaGreeter--say_hi Method>, use:     Large Class Definition.
-                                                              (line  10)
-* == vs equals():                        To Ruby From Java.   (line  56)
+                                                            (line  10)
+* == vs equals():                        To Ruby From Java. (line  59)
 * ===:                                   Ruby User's Guide On Control Structures.
-                                                              (line  33)
+                                                            (line  33)
+* =begin:                                Block Ruby Comments.
+                                                            (line   6)
+* =end:                                  Block Ruby Comments.
+                                                            (line   6)
 * =~ matching operator:                  Ruby User's Guide on Regular Expressions.
-                                                              (line 129)
+                                                            (line 130)
 * \Z:                                    FAQ Built-In Libraries.
-                                                              (line  54)
+                                                            (line  54)
 * __FILE__ special variable:             Large Class Definition.
-                                                              (line 151)
-* {apiutil.awk}, definition:             API Utility.         (line  12)
-* {eval.rb}, definition:                 Ruby Eval Utility.   (line  10)
+                                                            (line 151)
+* {apiutil.awk}, definition:             API Utility.       (line  12)
+* {eval.rb}, definition:                 Ruby Eval Utility. (line  10)
 * {fact.rb}, definition:                 Ruby User's Guide On Simple Examples.
-                                                              (line  17)
+                                                            (line  17)
 * {guess.rb}, definition:                Ruby User's Guide On Puzzle Program.
-                                                              (line   6)
-* {Makefile}, definition:                The Makefile.        (line   6)
+                                                            (line   6)
+* {Makefile}, definition:                The Makefile.      (line   6)
 * {regx.rb}, definition:                 Ruby User's Guide on Regular Expressions.
-                                                              (line  31)
+                                                            (line  31)
 * {ri20min.rb}, definition:              Large Class Definition.
-                                                              (line  10)
-* {setpath.sh}, definition:              Initial Setup.       (line  23)
-* access control:                        To Ruby From Java.   (line  35)
+                                                            (line  10)
+* {setpath.sh}, definition:              Initial Setup.     (line  23)
+* access control:                        To Ruby From Java. (line  36)
 * access control <1>:                    Ruby User's Guide On Access Control.
-                                                              (line   6)
+                                                            (line   6)
 * access modifier scope:                 Access modifiers are Methods.
-                                                              (line   6)
+                                                            (line   6)
 * access modifiers public, private, protected: Access modifiers are Methods.
-                                                              (line   6)
+                                                            (line   6)
 * accessors:                             Ruby User's Guide On Accessors.
-                                                              (line   6)
+                                                            (line   6)
 * accessors, using shortcuts:            Ruby User's Guide On Accessors.
-                                                              (line  92)
+                                                            (line  92)
 * active variable:                       Ruby User's Guide On Global Variables.
-                                                              (line  21)
+                                                            (line  22)
 * Algol and Ruby:                        Ruby User's Guide On Simple Examples.
-                                                              (line  54)
+                                                            (line  54)
 * anonymous procedure objects:           Ruby User's Guide On Procedure Objects.
-                                                              (line  56)
+                                                            (line  56)
 * argument lists, variable length:       Ruby User's Guide On Object Initialization.
-                                                              (line  64)
+                                                            (line  65)
 * argument values, setting default values: Ruby User's Guide On Object Initialization.
-                                                              (line  16)
-* ArgumentError, after calling super:    FAQ Methods.         (line  39)
+                                                            (line  16)
+* ArgumentError, after calling super:    FAQ Methods.       (line  39)
 * arguments to a method:                 Ruby User's Guide on Methods.
-                                                              (line  58)
+                                                            (line  59)
 * arithmetic:                            FAQ Extension Library.
-                                                              (line  26)
+                                                            (line  26)
 * Array:                                 To Ruby From C and C++.
-                                                              (line 151)
+                                                            (line 155)
 * array literals in brackets:            To Ruby From C and C++.
-                                                              (line 113)
+                                                            (line 114)
 * array, converting to and from string:  Ruby User's Guide On Arrays And Hashes.
-                                                              (line  29)
+                                                            (line  29)
 * array, creating:                       Ruby User's Guide On Arrays And Hashes.
-                                                              (line   9)
+                                                            (line   9)
 * array, referring to elements:          Ruby User's Guide On Arrays And Hashes.
-                                                              (line  23)
-* array, sum elements in:                FAQ Other Features.  (line  18)
+                                                            (line  23)
+* array, sum elements in:                FAQ Other Features.
+                                                            (line  18)
 * arrays:                                Ruby User's Guide On Arrays And Hashes.
-                                                              (line   6)
+                                                            (line   6)
 * arrays are dynamic and mutable:        To Ruby From C and C++.
-                                                              (line 115)
+                                                            (line 116)
 * arrays, adding:                        To Ruby From C and C++.
-                                                              (line 118)
+                                                            (line 119)
 * arrays, concatenating:                 Ruby User's Guide On Arrays And Hashes.
-                                                              (line  16)
+                                                            (line  16)
 * arrays, repeating:                     Ruby User's Guide On Arrays And Hashes.
-                                                              (line  16)
+                                                            (line  16)
 * associative array:                     Ruby User's Guide On Arrays And Hashes.
-                                                              (line  36)
+                                                            (line  36)
 * attribute accessors:                   Ruby User's Guide On Accessors.
-                                                              (line   6)
+                                                            (line   6)
 * attributes:                            To Ruby From C and C++.
-                                                              (line 133)
+                                                            (line 137)
 * attributes <1>:                        Ruby User's Guide On Accessors.
-                                                              (line   6)
-* attr_accessor :name:                   Altering Classes.    (line   9)
-* attr_accessor, methods defined:        Altering Classes.    (line  41)
-* binary Ruby extension modules:         FAQ Syntax.          (line 248)
-* binding of { ... }:                    FAQ Iterators.       (line  36)
-* binding.local_variable_get(:symbol):   FAQ Syntax.          (line 126)
+                                                            (line   6)
+* attr_accessor :name:                   Altering Classes.  (line   9)
+* attr_accessor, methods defined:        Altering Classes.  (line  41)
+* binary Ruby extension modules:         FAQ Syntax.        (line 249)
+* binding of { ... }:                    FAQ Iterators.     (line  36)
+* binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
 * block:                                 Large Class Definition.
-                                                              (line  85)
+                                                            (line  85)
 * block <1>:                             To Ruby From C and C++.
-                                                              (line 106)
+                                                            (line 106)
 * block for iterator:                    To Ruby From C and C++.
-                                                              (line 150)
-* block object, passed to iterator:      FAQ Iterators.       (line   9)
-* block, used in an iterator:            FAQ Iterators.       (line  56)
-* blocks:                                Blocks are Objects.  (line   6)
-* block_given?:                          FAQ Iterators.       (line 110)
-* boolean context:                       FAQ Syntax.          (line  59)
+                                                            (line 154)
+* block object, passed to iterator:      FAQ Iterators.     (line   9)
+* block ruby comments:                   Block Ruby Comments.
+                                                            (line   6)
+* block, used in an iterator:            FAQ Iterators.     (line  56)
+* blocks:                                Blocks are Objects.
+                                                            (line   6)
+* block_given?:                          FAQ Iterators.     (line 112)
+* boolean context:                       FAQ Syntax.        (line  59)
 * braces, none:                          To Ruby From C and C++.
-                                                              (line 101)
-* branches page:                         Branches Page.       (line   6)
+                                                            (line 101)
+* branches page:                         Branches Page.     (line   6)
 * break:                                 Ruby User's Guide On Control Structures.
-                                                              (line  73)
+                                                            (line  74)
 * break statement:                       Ruby User's Guide on Regular Expressions.
-                                                              (line  54)
+                                                            (line  54)
 * buffering:                             Ruby User's Guide On Puzzle Program.
-                                                              (line  81)
+                                                            (line  84)
 * C library, use:                        FAQ Extension Library.
-                                                              (line  15)
+                                                            (line  15)
 * call method:                           Ruby User's Guide On Procedure Objects.
-                                                              (line  18)
-* calling method 2 levels up:            FAQ Methods.         (line  42)
+                                                            (line  18)
+* calling method 2 levels up:            FAQ Methods.       (line  42)
 * case conventions, enforced:            To Ruby From C and C++.
-                                                              (line 140)
+                                                            (line 144)
 * cast:                                  To Ruby From C and C++.
-                                                              (line 145)
-* casting, none:                         To Ruby From Java.   (line  46)
+                                                            (line 149)
+* casting, none:                         To Ruby From Java. (line  49)
 * chop:                                  Ruby User's Guide on Regular Expressions.
-                                                              (line  83)
+                                                            (line  83)
 * chop!:                                 Ruby User's Guide on Regular Expressions.
-                                                              (line  83)
-* chruby:                                chruby.              (line   6)
+                                                            (line  83)
+* chruby:                                chruby.            (line   6)
 * class constants:                       Ruby User's Guide On Class Constants.
-                                                              (line   6)
+                                                            (line   6)
 * class constants in modules:            Ruby User's Guide On Class Constants.
-                                                              (line  34)
+                                                            (line  34)
 * class constants, access to:            Ruby User's Guide On Class Constants.
-                                                              (line  15)
-* class definition:                      Defining Methods.    (line  70)
+                                                            (line  15)
+* class definition:                      Defining Methods.  (line  70)
 * class definition <1>:                  Ruby User's Guide on Classes.
-                                                              (line  13)
+                                                            (line  13)
 * class definition, repeating:           FAQ Classes and Modules.
-                                                              (line   9)
+                                                            (line   9)
 * class instance variable?:              FAQ Classes and Modules.
-                                                              (line  15)
-* class keyword:                         Defining Methods.    (line  70)
+                                                            (line  15)
+* class keyword:                         Defining Methods.  (line  70)
 * class keyword <1>:                     Ruby User's Guide on Classes.
-                                                              (line  13)
+                                                            (line  13)
 * class methods, defining, 2 ways:       FAQ Classes and Modules.
-                                                              (line  39)
+                                                            (line  39)
 * class methods?:                        FAQ Classes and Modules.
-                                                              (line  21)
-* class variable @@:                     Naming conventions.  (line   9)
+                                                            (line  21)
+* class variable @@:                     Naming conventions.
+                                                            (line   9)
 * class variables vs class instance variables: FAQ Classes and Modules.
-                                                              (line  18)
+                                                            (line  18)
 * class variables?:                      FAQ Classes and Modules.
-                                                              (line  12)
+                                                            (line  12)
 * class vs module:                       FAQ Classes and Modules.
-                                                              (line  30)
+                                                            (line  30)
 * classes:                               Ruby User's Guide on Classes.
-                                                              (line   6)
-* classes, modifying:                    Altering Classes.    (line  19)
-* classes, open:                         Classes are open.    (line   6)
+                                                            (line   6)
+* classes, modifying:                    Altering Classes.  (line  19)
+* classes, open:                         Classes are open.  (line   6)
 * CLOS:                                  Ruby User's Guide On Singleton Methods.
-                                                              (line  17)
+                                                            (line  17)
 * closures, proc objects:                Ruby User's Guide On Local Variables.
-                                                              (line  57)
+                                                            (line  57)
 * collect:                               Pointers on Iteration.
-                                                              (line  17)
+                                                            (line  17)
 * collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
-                                                              (line 112)
+                                                            (line 114)
 * collection, looping over elements using for: Ruby User's Guide On Control Structures.
-                                                              (line 103)
+                                                            (line 104)
 * command line arguments in ARGV:        Ruby User's Guide On Simple Examples.
-                                                              (line  35)
+                                                            (line  35)
+* comment block markers:                 Block Ruby Comments.
+                                                            (line   6)
 * comments:                              Ruby User's Guide On Nuts And Bolts.
-                                                              (line  20)
-* conditional expression, false values:  FAQ Syntax.          (line  73)
-* constant naming convention:            Naming conventions.  (line   9)
+                                                            (line  21)
+* comments, multi-line:                  Block Ruby Comments.
+                                                            (line   6)
+* conditional expression, false values:  FAQ Syntax.        (line  73)
+* constant:                              Variable Scope.    (line   6)
+* constant naming convention:            Naming conventions.
+                                                            (line   9)
 * constant, class:                       Ruby User's Guide On Class Constants.
-                                                              (line   6)
+                                                            (line   6)
 * constructor:                           To Ruby From C and C++.
-                                                              (line 129)
-* constructor <1>:                       To Ruby From Java.   (line  49)
+                                                            (line 131)
+* constructor <1>:                       To Ruby From Java. (line  52)
 * container types:                       To Ruby From C and C++.
-                                                              (line 151)
-* continuations, using:                  FAQ Other Features.  (line  20)
+                                                            (line 155)
+* continuations, using:                  FAQ Other Features.
+                                                            (line  20)
 * control structures:                    Ruby User's Guide On Control Structures.
-                                                              (line   6)
+                                                            (line   6)
 * control structures retry and redo:     Ruby User's Guide On Iterators.
-                                                              (line  57)
-* conventions, naming:                   Naming conventions.  (line   6)
-* core reference:                        Core Reference.      (line   6)
-* dangerous, destructive methods:        FAQ Methods.         (line  51)
+                                                            (line  58)
+* conventions, naming:                   Naming conventions.
+                                                            (line   6)
+* core reference:                        Core Reference.    (line   6)
+* dangerous, destructive methods:        FAQ Methods.       (line  51)
 * debugger for Ruby:                     FAQ Extension Library.
-                                                              (line  12)
-* def:                                   Defining Methods.    (line   6)
+                                                            (line  12)
+* def:                                   Defining Methods.  (line   6)
 * def keyword:                           Ruby User's Guide on Classes.
-                                                              (line  13)
+                                                            (line  13)
 * default argument values:               Ruby User's Guide On Object Initialization.
-                                                              (line  16)
+                                                            (line  16)
+* defined? method:                       Variable Scope.    (line  20)
 * defined? operator:                     Ruby User's Guide On Local Variables.
-                                                              (line  24)
-* destructive method:                    FAQ Methods.         (line  48)
+                                                            (line  24)
+* destructive method:                    FAQ Methods.       (line  48)
 * destructive method vs nondestructive method: Ruby User's Guide on Regular Expressions.
-                                                              (line  83)
-* developing Ruby:                       Developing Ruby.     (line   6)
+                                                            (line  83)
+* developing Ruby:                       Developing Ruby.   (line   6)
 * dictionary:                            Ruby User's Guide On Arrays And Hashes.
-                                                              (line  36)
+                                                            (line  36)
 * differential programming:              Ruby User's Guide on Inheritance.
-                                                              (line  66)
-* DLLs:                                  FAQ Syntax.          (line 248)
-* do ... } while:                        FAQ Syntax.          (line 155)
+                                                            (line  67)
+* DLLs:                                  FAQ Syntax.        (line 249)
+* do ... } while:                        FAQ Syntax.        (line 156)
 * do keyword:                            To Ruby From C and C++.
-                                                              (line 103)
-* doc tools:                             To Ruby From Perl.   (line  30)
-* doc tools <1>:                         To Ruby From Python. (line  29)
-* Documentation:                         Documentation.       (line   6)
-* documentation tool:                    To Ruby From Java.   (line  22)
+                                                            (line 103)
+* doc tools:                             To Ruby From Perl. (line  30)
+* doc tools <1>:                         To Ruby From Python.
+                                                            (line  29)
+* Documentation:                         Documentation.     (line   6)
+* documentation tool:                    To Ruby From Java. (line  23)
 * dot notation:                          Ruby User's Guide on Methods.
-                                                              (line  22)
+                                                            (line  22)
 * duck typing:                           Large Class Definition.
-                                                              (line 123)
+                                                            (line 123)
 * Dylan:                                 Ruby User's Guide On Singleton Methods.
-                                                              (line  17)
+                                                            (line  17)
 * dynamicly typed:                       To Ruby From C and C++.
-                                                              (line  28)
+                                                            (line  28)
 * each:                                  Pointers on Iteration.
-                                                              (line  17)
+                                                            (line  17)
 * each equivalent to for:                Ruby User's Guide On Control Structures.
-                                                              (line 126)
-* each method of iterator:               FAQ Iterators.       (line  25)
+                                                            (line 128)
+* each method of iterator:               FAQ Iterators.     (line  25)
 * each_byte:                             Ruby User's Guide On Iterators.
-                                                              (line  25)
+                                                            (line  26)
 * each_line:                             Ruby User's Guide On Iterators.
-                                                              (line  35)
+                                                            (line  36)
 * Eiffel and Ruby:                       Ruby User's Guide On Simple Examples.
-                                                              (line  54)
-* empty string:                          FAQ Syntax.          (line  73)
+                                                            (line  54)
+* empty string:                          FAQ Syntax.        (line  73)
 * end keyword:                           Ruby User's Guide on Classes.
-                                                              (line  13)
+                                                            (line  13)
 * ensure:                                Ruby User's Guide On Exception Processing and ensure.
-                                                              (line   6)
-* ensure clause:                         FAQ Syntax.          (line 264)
-* equivalence vs the same:               To Ruby From Java.   (line  56)
+                                                            (line   6)
+* ensure clause:                         FAQ Syntax.        (line 265)
+* equivalence vs the same:               To Ruby From Java. (line  59)
 * errors in OO:                          Ruby User's Guide on Methods.
-                                                              (line  50)
-* eval:                                  FAQ Syntax.          (line 115)
+                                                            (line  51)
+* eval:                                  FAQ Syntax.        (line 115)
 * eval.rb:                               Ruby User's Guide On Simple Examples.
-                                                              (line 102)
-* exception handling:                    FAQ Syntax.          (line 253)
+                                                            (line 102)
+* exception handling:                    FAQ Syntax.        (line 254)
 * exception processing:                  Ruby User's Guide On Exception Processing And rescue.
-                                                              (line   6)
+                                                            (line   6)
 * exception processing <1>:              Ruby User's Guide On Exception Processing and ensure.
-                                                              (line   6)
+                                                            (line   6)
 * expression vs statement:               Ruby User's Guide On Simple Examples.
-                                                              (line 124)
+                                                            (line 124)
 * extension modules:                     To Ruby From C and C++.
-                                                              (line  36)
+                                                            (line  36)
 * factorial in Ruby:                     Ruby User's Guide On Simple Examples.
-                                                              (line   9)
-* false and nil:                         FAQ Syntax.          (line  59)
-* FalseClass:                            FAQ Syntax.          (line  64)
+                                                            (line   9)
+* false and nil:                         FAQ Syntax.        (line  59)
+* FalseClass:                            FAQ Syntax.        (line  64)
 * File object, no reference:             FAQ Built-In Libraries.
-                                                              (line  30)
+                                                            (line  30)
 * file, copy:                            FAQ Built-In Libraries.
-                                                              (line  21)
-* file, count lines in:                  FAQ Other Features.  (line  12)
+                                                            (line  21)
+* file, count lines in:                  FAQ Other Features.
+                                                            (line  12)
 * file, line number:                     FAQ Built-In Libraries.
-                                                              (line  24)
+                                                            (line  24)
 * file, process and update contents:     FAQ Built-In Libraries.
-                                                              (line  18)
+                                                            (line  18)
 * files, closing:                        FAQ Built-In Libraries.
-                                                              (line  33)
+                                                            (line  33)
 * files, counting words:                 FAQ Built-In Libraries.
-                                                              (line  39)
+                                                            (line  39)
 * files, reading vs modifying:           FAQ Built-In Libraries.
-                                                              (line  15)
+                                                            (line  15)
 * files, sorting by modification time:   FAQ Built-In Libraries.
-                                                              (line  36)
+                                                            (line  36)
 * find:                                  Pointers on Iteration.
-                                                              (line  17)
+                                                            (line  17)
 * flush standard output:                 Ruby User's Guide On Puzzle Program.
-                                                              (line  81)
+                                                            (line  84)
 * for equivalent to each:                Ruby User's Guide On Control Structures.
-                                                              (line 126)
+                                                            (line 128)
 * for loop:                              Ruby User's Guide On Control Structures.
-                                                              (line 103)
+                                                            (line 104)
 * for statement:                         Ruby User's Guide On Control Structures.
-                                                              (line 103)
+                                                            (line 104)
 * fork vs thread:                        FAQ Built-In Libraries.
-                                                              (line  57)
-* function pointers:                     FAQ Syntax.          (line 236)
-* function-like methods, where from?:    FAQ Methods.         (line  24)
-* FXRuby:                                To Ruby From Java.   (line  30)
-* garbage collector:                     To Ruby From Java.   (line  17)
+                                                            (line  57)
+* function pointers:                     FAQ Syntax.        (line 237)
+* function-like methods, where from?:    FAQ Methods.       (line  24)
+* FXRuby:                                To Ruby From Java. (line  31)
+* garbage collector:                     To Ruby From Java. (line  18)
 * gemsets, manage different using RVM:   RVM (``Ruby Version Manager'').
-                                                              (line   6)
-* GitHub, ruby repository:               Developing Ruby.     (line  54)
-* global variable $:                     Naming conventions.  (line   9)
+                                                            (line   6)
+* GitHub, ruby repository:               Developing Ruby.   (line  54)
+* global variable $:                     Naming conventions.
+                                                            (line   9)
 * global variable $!:                    Ruby User's Guide On Exception Processing And rescue.
-                                                              (line  78)
+                                                            (line  78)
 * global variable, tracing:              Ruby User's Guide On Global Variables.
-                                                              (line  21)
+                                                            (line  22)
 * global variables:                      Ruby User's Guide On Global Variables.
-                                                              (line   6)
+                                                            (line   6)
+* global variables, predefined:          Variable Scope.    (line  38)
 * green threads vs native threads:       To Ruby From C and C++.
-                                                              (line 156)
+                                                            (line 160)
 * gsub method:                           Ruby User's Guide on Regular Expressions.
-                                                              (line 113)
+                                                            (line 113)
 * gtk+:                                  FAQ Extension Library.
-                                                              (line  24)
+                                                            (line  24)
 * guess.chop!:                           Ruby User's Guide On Puzzle Program.
-                                                              (line  47)
-* GUI toolkits:                          To Ruby From Java.   (line  30)
+                                                            (line  49)
+* GUI toolkits:                          To Ruby From Java. (line  31)
 * Hash:                                  To Ruby From C and C++.
-                                                              (line 151)
+                                                            (line 155)
 * hash:                                  Ruby User's Guide On Arrays And Hashes.
-                                                              (line  36)
+                                                            (line  36)
 * heap:                                  To Ruby From C and C++.
-                                                              (line  89)
-* identifier with capital letter, method?: FAQ Methods.       (line  36)
+                                                            (line  89)
+* identifier with capital letter, method?: FAQ Methods.     (line  36)
 * if modifier:                           Ruby User's Guide on Regular Expressions.
-                                                              (line  61)
-* immediate values:                      FAQ Syntax.          (line  46)
-* import:                                To Ruby From Java.   (line  33)
+                                                            (line  61)
+* immediate values:                      FAQ Syntax.        (line  46)
+* import:                                To Ruby From Java. (line  34)
 * include:                               Ruby User's Guide On Nuts And Bolts.
-                                                              (line 117)
+                                                            (line 119)
 * include a module, mixin:               Ruby User's Guide On Modules.
-                                                              (line  50)
+                                                            (line  50)
 * include statement:                     Ruby User's Guide On Modules.
-                                                              (line  27)
+                                                            (line  27)
 * include vs extend:                     FAQ Classes and Modules.
-                                                              (line  42)
+                                                            (line  42)
 * inheritance:                           Ruby User's Guide on Inheritance.
-                                                              (line   6)
+                                                            (line   6)
 * initialization of objects:             Ruby User's Guide On Object Initialization.
-                                                              (line   6)
+                                                            (line   6)
 * initialize method:                     Large Class Definition.
-                                                              (line  41)
+                                                            (line  41)
 * initialize method <1>:                 Ruby User's Guide On Object Initialization.
-                                                              (line   6)
-* initialize, constructor:               To Ruby From Java.   (line  49)
+                                                            (line   6)
+* initialize, constructor:               To Ruby From Java. (line  52)
 * inject:                                Pointers on Iteration.
-                                                              (line  17)
-* insert code into a string:             Defining Methods.    (line  43)
+                                                            (line  17)
+* insert code into a string:             Defining Methods.  (line  43)
 * inspect method:                        Ruby User's Guide On Accessors.
-                                                              (line  59)
-* installer, third party:                Installers.          (line   6)
+                                                            (line  59)
+* installer, third party:                Installers.        (line   6)
 * instance of a class:                   Ruby User's Guide on Classes.
-                                                              (line   6)
+                                                            (line   6)
 * instance variabes, as attributes:      Ruby User's Guide On Accessors.
-                                                              (line   6)
-* instance variable:                     Defining Methods.    (line  86)
-* instance variable @:                   Naming conventions.  (line   9)
+                                                            (line   6)
+* instance variable:                     Defining Methods.  (line  86)
+* instance variable @:                   Naming conventions.
+                                                            (line   9)
 * instance variables:                    Ruby User's Guide On Instance Variables.
-                                                              (line   6)
-* instance variables, accessing:         FAQ Methods.         (line  27)
-* instance variables, encapsulation:     Defining Methods.    (line 109)
+                                                            (line   6)
+* instance variables, accessing:         FAQ Methods.       (line  27)
+* instance variables, encapsulation:     Defining Methods.  (line 109)
 * instance_methods(false):               FAQ Built-In Libraries.
-                                                              (line   9)
+                                                            (line   9)
 * instantiating a class:                 Ruby User's Guide on Classes.
-                                                              (line  33)
+                                                            (line  33)
+* Interactive Ruby (IRB):                Interactive Ruby Execution.
+                                                            (line   6)
 * interactively use Ruby:                FAQ Extension Library.
-                                                              (line   9)
-* interfaces, none, use mixins:          To Ruby From Java.   (line  50)
+                                                            (line   9)
+* interfaces, none, use mixins:          To Ruby From Java. (line  53)
 * invoke method:                         Ruby User's Guide on Methods.
-                                                              (line  22)
-* invoking original method after redefinition: FAQ Methods.   (line  45)
-* irb:                                   Interactive Ruby.    (line   6)
-* irb <1>:                               To Ruby From Python. (line  13)
-* issue tracker:                         Developing Ruby.     (line  62)
-* issue tracking:                        Issue Tracking.      (line   6)
+                                                            (line  22)
+* invoking original method after redefinition: FAQ Methods. (line  45)
+* irb:                                   Interactive Ruby.  (line   6)
+* irb <1>:                               To Ruby From Python.
+                                                            (line  13)
+* irb tool:                              Interactive Ruby Execution.
+                                                            (line   6)
+* issue tracker:                         Developing Ruby.   (line  62)
+* issue tracking:                        Issue Tracking.    (line   6)
 * iteration:                             To Ruby From C and C++.
-                                                              (line 150)
+                                                            (line 154)
 * iteration <1>:                         Pointers on Iteration.
-                                                              (line   6)
+                                                            (line   6)
 * iterator:                              Large Class Definition.
-                                                              (line  85)
+                                                            (line  85)
 * iterator as substitute for for loop:   Ruby User's Guide On Control Structures.
-                                                              (line 126)
+                                                            (line 128)
 * iterator method:                       To Ruby From C and C++.
-                                                              (line 150)
-* iterator, block:                       FAQ Iterators.       (line  56)
+                                                            (line 154)
+* iterator, block:                       FAQ Iterators.     (line  56)
 * iterator, defining:                    Ruby User's Guide On Iterators.
-                                                              (line  16)
-* iterators:                             FAQ Iterators.       (line   6)
+                                                            (line  17)
+* iterators:                             FAQ Iterators.     (line   6)
 * iterators of String class:             Ruby User's Guide On Iterators.
-                                                              (line  23)
+                                                            (line  24)
 * iterators, Ruby User's Guide:          Ruby User's Guide On Iterators.
-                                                              (line   6)
-* javadoc:                               To Ruby From Java.   (line  22)
+                                                            (line   6)
+* javadoc:                               To Ruby From Java. (line  23)
 * join:                                  Ruby User's Guide On Arrays And Hashes.
-                                                              (line  29)
+                                                            (line  29)
 * join method, respond to:               Large Class Definition.
-                                                              (line 116)
-* Kernel:                                FAQ Syntax.          (line 148)
+                                                            (line 116)
+* Kernel:                                FAQ Syntax.        (line 149)
 * key, for hash:                         Ruby User's Guide On Arrays And Hashes.
-                                                              (line  36)
+                                                            (line  36)
 * keyword def:                           Ruby User's Guide on Classes.
-                                                              (line  13)
+                                                            (line  13)
 * keyword new:                           Ruby User's Guide on Classes.
-                                                              (line  33)
+                                                            (line  33)
 * keywords class and end:                Ruby User's Guide on Classes.
-                                                              (line  13)
-* lambda as a synonym of Proc:           FAQ Iterators.       (line  87)
-* lambda method:                         Blocks are Objects.  (line  19)
+                                                            (line  13)
+* lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
+* lambda method:                         Blocks are Objects.
+                                                            (line  19)
 * line number of input file:             FAQ Built-In Libraries.
-                                                              (line  24)
-* load:                                  FAQ Syntax.          (line 244)
+                                                            (line  24)
+* load:                                  FAQ Syntax.        (line 245)
 * load <1>:                              Ruby User's Guide On Nuts And Bolts.
-                                                              (line 117)
+                                                            (line 119)
 * local variable scope:                  Ruby User's Guide On Local Variables.
-                                                              (line  15)
+                                                            (line  15)
 * local variables:                       Ruby User's Guide On Local Variables.
-                                                              (line   6)
-* loop:                                  FAQ Syntax.          (line 148)
+                                                            (line   6)
+* loop:                                  FAQ Syntax.        (line 149)
 * loop interrupts:                       Ruby User's Guide On Control Structures.
-                                                              (line  73)
+                                                            (line  74)
 * loop, for:                             Ruby User's Guide On Control Structures.
-                                                              (line 103)
+                                                            (line 104)
 * loops using while:                     Ruby User's Guide On Control Structures.
-                                                              (line  53)
-* mailing lists:                         Developing Ruby.     (line  62)
-* manage Rubies using chruby:            chruby.              (line   6)
+                                                            (line  53)
+* mailing lists:                         Developing Ruby.   (line  62)
+* manage Rubies using chruby:            chruby.            (line   6)
 * Marshal:                               FAQ Built-In Libraries.
-                                                              (line  60)
-* MatchData#begin and MatchData#end:     FAQ Other Features.  (line  15)
+                                                            (line  60)
+* MatchData#begin and MatchData#end:     FAQ Other Features.
+                                                            (line  15)
 * matching operator:                     Ruby User's Guide on Regular Expressions.
-                                                              (line 129)
+                                                            (line 130)
 * member variables, access to:           To Ruby From C and C++.
-                                                              (line 133)
-* memory management:                     To Ruby From Java.   (line  17)
+                                                            (line 137)
+* memory management:                     To Ruby From Java. (line  18)
 * messages to objects:                   Ruby User's Guide on Methods.
-                                                              (line   9)
+                                                            (line   9)
 * method definition:                     Ruby User's Guide on Classes.
-                                                              (line  13)
+                                                            (line  13)
 * method invocation:                     Ruby User's Guide on Methods.
-                                                              (line  22)
+                                                            (line  22)
 * method overloading:                    Ruby User's Guide On Object Initialization.
-                                                              (line  64)
-* method parameters:                     Defining Methods.    (line  33)
+                                                            (line  65)
+* method parameters:                     Defining Methods.  (line  33)
 * method redefinition:                   Ruby User's Guide on Redefinition Of Methods.
-                                                              (line   6)
-* method, destructive:                   FAQ Methods.         (line  48)
-* method, invoking:                      FAQ Methods.         (line   9)
-* method, invoking <1>:                  Defining Methods.    (line  26)
+                                                            (line   6)
+* method, destructive:                   FAQ Methods.       (line  48)
+* method, invoking:                      FAQ Methods.       (line   9)
+* method, invoking <1>:                  Defining Methods.  (line  26)
 * methods:                               Ruby User's Guide on Methods.
-                                                              (line   6)
+                                                            (line   6)
 * methods are virtual:                   To Ruby From C and C++.
-                                                              (line 129)
-* methods, defining:                     Defining Methods.    (line   6)
-* method_missing method:                 Missing methods.     (line   6)
+                                                            (line 132)
+* methods, defining:                     Defining Methods.  (line   6)
+* method_missing method:                 Missing methods.   (line   6)
 * mixin:                                 Ruby User's Guide On Modules.
-                                                              (line  43)
+                                                            (line  43)
 * mixin example:                         FAQ Classes and Modules.
-                                                              (line  36)
+                                                            (line  36)
 * mixin technique:                       Ruby User's Guide On Modules.
-                                                              (line  50)
+                                                            (line  50)
 * mixins:                                To Ruby From C and C++.
-                                                              (line 138)
-* mixins <1>:                            To Ruby From Java.   (line  50)
+                                                            (line 142)
+* mixins <1>:                            To Ruby From Java. (line  53)
 * module function?:                      FAQ Classes and Modules.
-                                                              (line  27)
+                                                            (line  27)
 * modules:                               Ruby User's Guide On Modules.
-                                                              (line   6)
+                                                            (line   6)
 * modules, class constants:              Ruby User's Guide On Class Constants.
-                                                              (line  34)
+                                                            (line  34)
 * modules, subclassing?:                 FAQ Classes and Modules.
-                                                              (line  33)
+                                                            (line  33)
 * multiple inheritance:                  To Ruby From C and C++.
-                                                              (line 138)
+                                                            (line 142)
 * multiple inheritance <1>:              Ruby User's Guide On Modules.
-                                                              (line  43)
+                                                            (line  43)
 * multiple installations, manage using RVM: RVM (``Ruby Version Manager'').
-                                                              (line   6)
-* multiple Rubies, command-line tool uru: uru.                (line   6)
+                                                            (line   6)
+* multiple Rubies, command-line tool uru: uru.              (line   6)
 * multithreading:                        To Ruby From C and C++.
-                                                              (line 156)
+                                                            (line 160)
 * negated conditions:                    Ruby User's Guide On Control Structures.
-                                                              (line  67)
+                                                            (line  68)
 * new keyword:                           Ruby User's Guide on Classes.
-                                                              (line  33)
+                                                            (line  33)
 * NewtonScript:                          Ruby User's Guide On Singleton Methods.
-                                                              (line  17)
+                                                            (line  17)
 * next:                                  Ruby User's Guide On Control Structures.
-                                                              (line  73)
-* nil and false, similariaties and differences: FAQ Syntax.   (line  59)
-* nil vs null:                           To Ruby From Java.   (line  52)
-* NilClass:                              FAQ Syntax.          (line  64)
-* null vs nil:                           To Ruby From Java.   (line  52)
+                                                            (line  74)
+* nil and false, similariaties and differences: FAQ Syntax. (line  59)
+* nil vs null:                           To Ruby From Java. (line  55)
+* NilClass:                              FAQ Syntax.        (line  64)
+* null vs nil:                           To Ruby From Java. (line  55)
 * object reference is self:              To Ruby From C and C++.
-                                                              (line 134)
-* Object#instance_methods:               Defining Methods.    (line 116)
-* Object#respond_to?:                    Defining Methods.    (line 145)
-* object, create from class definition:  Defining Methods.    (line  95)
-* objects, everything including numbers: To Ruby From Java.   (line  37)
+                                                            (line 138)
+* Object#instance_methods:               Defining Methods.  (line 116)
+* Object#respond_to?:                    Defining Methods.  (line 146)
+* object, create from class definition:  Defining Methods.  (line  95)
+* objects, everything including numbers: To Ruby From Java. (line  40)
 * objects, strongly and dynamically typed: To Ruby From C and C++.
-                                                              (line 127)
-* objects, strongly typed:               To Ruby From Java.   (line  18)
+                                                            (line 129)
+* objects, strongly typed:               To Ruby From Java. (line  19)
 * object_id methods:                     Symbols are not lightweight Strings.
-                                                              (line  20)
-* operators?:                            FAQ Methods.         (line  12)
+                                                            (line  21)
+* operators?:                            FAQ Methods.       (line  12)
 * p method:                              Ruby User's Guide On Accessors.
-                                                              (line  78)
-* parameters, methods:                   Defining Methods.    (line  33)
+                                                            (line  78)
+* parameters, methods:                   Defining Methods.  (line  33)
 * parentheses, none for condition expressions: To Ruby From C and C++.
-                                                              (line  98)
-* parentheses, optional:                 Defining Methods.    (line  26)
-* parentheses, optional <1>:             Defining Methods.    (line  60)
+                                                            (line  98)
+* parentheses, optional:                 Defining Methods.  (line  26)
+* parentheses, optional <1>:             Defining Methods.  (line  60)
 * parentheses, optional for method calls: To Ruby From C and C++.
-                                                              (line  99)
-* parentheses, optional in method calls: To Ruby From Java.   (line  37)
-* Patch Writer's Guide:                  Developing Ruby.     (line  72)
-* patching of Ruby:                      Developing Ruby.     (line  38)
+                                                            (line 100)
+* parentheses, optional in method calls: To Ruby From Java. (line  38)
+* Patch Writer's Guide:                  Developing Ruby.   (line  73)
+* patching of Ruby:                      Developing Ruby.   (line  38)
 * polymorphism:                          Ruby User's Guide on Methods.
-                                                              (line  37)
-* precedence of or:                      FAQ Syntax.          (line 210)
-* precedence, iterators, different results: FAQ Iterators.    (line  36)
+                                                            (line  37)
+* precedence of or:                      FAQ Syntax.        (line 211)
+* precedence, iterators, different results: FAQ Iterators.  (line  36)
 * predicate method:                      Ruby User's Guide on Regular Expressions.
-                                                              (line 106)
+                                                            (line 106)
 * predicate method naming convention:    Ruby User's Guide on Regular Expressions.
-                                                              (line 106)
-* predicate methods:                     FAQ Syntax.          (line  68)
-* private vs protected:                  FAQ Methods.         (line  30)
-* Proc:                                  Blocks are Objects.  (line   6)
+                                                            (line 106)
+* predicate methods:                     FAQ Syntax.        (line  68)
+* private vs protected:                  FAQ Methods.       (line  30)
+* Proc:                                  Blocks are Objects.
+                                                            (line   6)
 * proc:                                  Ruby User's Guide On Procedure Objects.
-                                                              (line   6)
+                                                            (line   6)
 * Proc as method argument:               Ruby User's Guide On Procedure Objects.
-                                                              (line  26)
-* Proc object, passed to iterator:       FAQ Iterators.       (line   9)
+                                                            (line  26)
+* Proc object, passed to iterator:       FAQ Iterators.     (line   9)
 * proc, execute:                         Ruby User's Guide On Procedure Objects.
-                                                              (line  18)
+                                                            (line  18)
 * Proc, invoke:                          Ruby User's Guide On Procedure Objects.
-                                                              (line  18)
-* Proc.new, followed by call:            FAQ Iterators.       (line  87)
+                                                            (line  18)
+* Proc.new, followed by call:            FAQ Iterators.     (line  87)
 * procedure objects:                     Ruby User's Guide On Procedure Objects.
-                                                              (line   6)
+                                                            (line   6)
 * Procs:                                 Ruby User's Guide On Procedure Objects.
-                                                              (line   6)
+                                                            (line   6)
 * program output, display using less:    FAQ Built-In Libraries.
-                                                              (line  27)
+                                                            (line  27)
 * prototype-based languages:             Ruby User's Guide On Singleton Methods.
-                                                              (line  17)
+                                                            (line  17)
 * pseudo-variables self and nil:         Ruby User's Guide On Variables.
-                                                              (line  31)
+                                                            (line  32)
 * puts:                                  Ruby User's Guide On Puzzle Program.
-                                                              (line  55)
-* Qt:                                    To Ruby From Java.   (line  30)
+                                                            (line  57)
+* Qt:                                    To Ruby From Java. (line  31)
 * raise an error:                        Ruby User's Guide on Methods.
-                                                              (line  50)
+                                                            (line  51)
 * raise exception:                       Ruby User's Guide On Exception Processing And rescue.
-                                                              (line  78)
+                                                            (line  78)
 * random number seeds:                   FAQ Built-In Libraries.
-                                                              (line  12)
+                                                            (line  12)
 * range expression:                      Ruby User's Guide On Control Structures.
-                                                              (line  26)
-* range operators .. vs ...:             FAQ Syntax.          (line 202)
-* rbenv:                                 rbenv.               (line   6)
-* rbenv version manager:                 ruby-build.          (line   6)
-* RDoc:                                  To Ruby From Java.   (line  22)
-* rdoc:                                  To Ruby From Java.   (line  22)
-* rdoc <1>:                              To Ruby From Perl.   (line  30)
-* rdoc <2>:                              To Ruby From Python. (line  29)
+                                                            (line  26)
+* range operators .. vs ...:             FAQ Syntax.        (line 203)
+* rbenv:                                 rbenv.             (line   6)
+* rbenv version manager:                 ruby-build.        (line   6)
+* RDoc:                                  To Ruby From Java. (line  23)
+* rdoc:                                  To Ruby From Java. (line  23)
+* rdoc <1>:                              To Ruby From Perl. (line  30)
+* rdoc <2>:                              To Ruby From Python.
+                                                            (line  29)
 * read one line from standard input:     Ruby User's Guide On Puzzle Program.
-                                                              (line  38)
+                                                            (line  39)
 * reader accessor:                       Ruby User's Guide On Accessors.
-                                                              (line   6)
+                                                            (line   6)
 * redefine a method:                     Ruby User's Guide on Redefinition Of Methods.
-                                                              (line   6)
+                                                            (line   6)
 * redo:                                  Ruby User's Guide On Control Structures.
-                                                              (line  73)
+                                                            (line  74)
 * redo <1>:                              Ruby User's Guide On Iterators.
-                                                              (line  57)
-* reference, core:                       Core Reference.      (line   6)
+                                                            (line  58)
+* reference, core:                       Core Reference.    (line   6)
 * reference, standard library:           Standard Library Reference.
-                                                              (line   6)
+                                                            (line   6)
 * reflection:                            Ruby User's Guide On Object Initialization.
-                                                              (line  64)
-* regexes:                               To Ruby From Perl.   (line  17)
+                                                            (line  65)
+* regexes:                               To Ruby From Perl. (line  17)
 * regular expression, escaping a backslash: FAQ Built-In Libraries.
-                                                              (line  48)
+                                                            (line  48)
 * regular expressions:                   Ruby User's Guide on Regular Expressions.
-                                                              (line   6)
+                                                            (line   6)
 * regular expressions at work:           Ruby User's Guide on Regular Expressions.
-                                                              (line 113)
+                                                            (line 113)
 * relationship operator ===:             Ruby User's Guide On Control Structures.
-                                                              (line  33)
-* releases:                              Releases Page.       (line   6)
-* repository, Subversion:                Developing Ruby.     (line  49)
-* require:                               FAQ Syntax.          (line 244)
-* require <1>:                           To Ruby From Java.   (line  33)
+                                                            (line  33)
+* releases:                              Releases Page.     (line   6)
+* repository, Subversion:                Developing Ruby.   (line  49)
+* require:                               FAQ Syntax.        (line 245)
+* require <1>:                           To Ruby From Java. (line  34)
 * require <2>:                           Ruby User's Guide On Nuts And Bolts.
-                                                              (line 117)
+                                                            (line 119)
 * rescue:                                Ruby User's Guide On Exception Processing And rescue.
-                                                              (line   6)
-* rescue clause:                         FAQ Syntax.          (line 264)
+                                                            (line   6)
+* rescue clause:                         FAQ Syntax.        (line 265)
 * respond to message, instance variable: Large Class Definition.
-                                                              (line  54)
+                                                            (line  54)
 * respond_to? method:                    Large Class Definition.
-                                                              (line  54)
-* respository, GitHub:                   Developing Ruby.     (line  54)
+                                                            (line  54)
+* respository, GitHub:                   Developing Ruby.   (line  54)
 * retry:                                 Ruby User's Guide On Iterators.
-                                                              (line  57)
+                                                            (line  58)
 * retry <1>:                             Ruby User's Guide On Exception Processing And rescue.
-                                                              (line  62)
+                                                            (line  62)
 * return:                                Ruby User's Guide On Control Structures.
-                                                              (line  73)
-* return mutliple values:                FAQ Methods.         (line  53)
+                                                            (line  74)
+* return mutliple values:                FAQ Methods.       (line  53)
 * return statement unnecessary:          Ruby User's Guide On Simple Examples.
-                                                              (line  54)
+                                                            (line  54)
 * ri:                                    Pointers on Iteration.
-                                                              (line  24)
-* Rubies, switch between:                Installers.          (line   6)
-* Ruby core:                             Developing Ruby.     (line  16)
-* Ruby Core mailing list:                Developing Ruby.     (line  62)
-* Ruby development, tracking:            Developing Ruby.     (line  26)
-* Ruby Tk:                               To Ruby From Java.   (line  30)
+                                                            (line  24)
+* Rubies, switch between:                Installers.        (line   6)
+* Ruby core:                             Developing Ruby.   (line  16)
+* Ruby Core mailing list:                Developing Ruby.   (line  62)
+* Ruby development, tracking:            Developing Ruby.   (line  26)
+* Ruby Tk:                               To Ruby From Java. (line  31)
 * Ruby, what it is:                      Ruby User's Guide On What Ruby IS.
-                                                              (line   7)
-* ruby-build plugin:                     ruby-build.          (line   6)
-* Ruby-GNOME2:                           To Ruby From Java.   (line  30)
-* RVM version manager:                   Installers.          (line   6)
+                                                            (line   7)
+* ruby-build plugin:                     ruby-build.        (line   6)
+* Ruby-GNOME2:                           To Ruby From Java. (line  31)
+* RVM version manager:                   Installers.        (line   6)
 * scope of local variable:               Ruby User's Guide On Local Variables.
-                                                              (line  15)
+                                                            (line  15)
 * scope, access modifiers:               Access modifiers are Methods.
-                                                              (line   6)
+                                                            (line   6)
+* scope, determine programmatically:     Variable Scope.    (line  20)
+* scope, variables:                      Variable Scope.    (line   6)
 * script code:                           Large Class Definition.
-                                                              (line 151)
+                                                            (line 151)
 * self:                                  Ruby User's Guide on Methods.
-                                                              (line  65)
+                                                            (line  66)
 * Self:                                  Ruby User's Guide On Singleton Methods.
-                                                              (line  17)
+                                                            (line  17)
 * self, meaning:                         FAQ Classes and Modules.
-                                                              (line  44)
+                                                            (line  44)
 * self, object reference:                To Ruby From C and C++.
-                                                              (line 134)
-* send:                                  FAQ Syntax.          (line 128)
-* shared libraries:                      FAQ Syntax.          (line 248)
-* simple functions?:                     FAQ Methods.         (line  21)
+                                                            (line 138)
+* send:                                  FAQ Syntax.        (line 129)
+* shared libraries:                      FAQ Syntax.        (line 249)
+* simple functions?:                     FAQ Methods.       (line  21)
 * singleton class?:                      FAQ Classes and Modules.
-                                                              (line  24)
-* singleton method:                      FAQ Methods.         (line  18)
-* singleton methods:                     Singleton methods.   (line   6)
+                                                            (line  24)
+* singleton method:                      FAQ Methods.       (line  18)
+* singleton methods:                     Singleton methods. (line   6)
 * singleton methods <1>:                 Ruby User's Guide On Singleton Methods.
-                                                              (line   6)
+                                                            (line   6)
 * sort:                                  Pointers on Iteration.
-                                                              (line  17)
+                                                            (line  17)
 * source, building:                      Building From Source.
-                                                              (line   6)
+                                                            (line   6)
 * split:                                 Ruby User's Guide On Arrays And Hashes.
-                                                              (line  29)
+                                                            (line  29)
 * standar library reference:             Standard Library Reference.
-                                                              (line   6)
+                                                            (line   6)
 * standard input object STDIN:           Ruby User's Guide On Puzzle Program.
-                                                              (line  38)
+                                                            (line  39)
 * statement delimiters:                  Ruby User's Guide On Nuts And Bolts.
-                                                              (line   9)
+                                                            (line   9)
 * statement vs expression:               Ruby User's Guide On Simple Examples.
-                                                              (line 124)
-* static checking, none:                 To Ruby From Java.   (line  38)
+                                                            (line 124)
+* static checking, none:                 To Ruby From Java. (line  41)
 * statically typed:                      To Ruby From C and C++.
-                                                              (line  28)
+                                                            (line  28)
 * STDIN:                                 Ruby User's Guide On Puzzle Program.
-                                                              (line  38)
+                                                            (line  39)
 * STDIN.gets:                            Ruby User's Guide On Puzzle Program.
-                                                              (line  38)
+                                                            (line  39)
 * string + and *:                        Ruby User's Guide on Strings.
-                                                              (line  19)
+                                                            (line  20)
 * String or Symbol:                      Symbols are not lightweight Strings.
-                                                              (line  32)
+                                                            (line  34)
 * Strings:                               Ruby User's Guide on Strings.
-                                                              (line   6)
+                                                            (line   6)
 * strings, quoting syntax and semantics: Ruby User's Guide on Strings.
-                                                              (line   9)
+                                                            (line   9)
 * strings, sort alphabetically:          FAQ Built-In Libraries.
-                                                              (line  42)
+                                                            (line  42)
 * strongly typed objects:                To Ruby From C and C++.
-                                                              (line  80)
+                                                            (line  80)
 * sub vs sub!:                           FAQ Built-In Libraries.
-                                                              (line  51)
+                                                            (line  51)
 * subclass:                              Ruby User's Guide on Inheritance.
-                                                              (line   6)
-* Subversion:                            Developing Ruby.     (line  26)
-* Subversion repository:                 Developing Ruby.     (line  49)
+                                                            (line   6)
+* Subversion:                            Developing Ruby.   (line  26)
+* Subversion repository:                 Developing Ruby.   (line  49)
 * super:                                 Ruby User's Guide on Redefinition Of Methods.
-                                                              (line  35)
-* super gives ArgumentError:             FAQ Methods.         (line  39)
+                                                            (line  35)
+* super gives ArgumentError:             FAQ Methods.       (line  39)
 * superclass:                            Ruby User's Guide on Inheritance.
-                                                              (line   6)
-* sygils in Ruby:                        To Ruby From Perl.   (line  41)
+                                                            (line   6)
+* sygils in Ruby:                        To Ruby From Perl. (line  41)
 * Symbol:                                Symbols are not lightweight Strings.
-                                                              (line  24)
-* Symbol object:                         FAQ Syntax.          (line  83)
+                                                            (line  26)
+* Symbol object:                         FAQ Syntax.        (line  83)
 * Symbol or String:                      Symbols are not lightweight Strings.
-                                                              (line  32)
-* symbol, access value of:               FAQ Syntax.          (line 115)
-* symbol.to_s:                           FAQ Syntax.          (line 115)
+                                                            (line  34)
+* symbol, access value of:               FAQ Syntax.        (line 115)
+* symbol.to_s:                           FAQ Syntax.        (line 115)
 * symbols:                               Symbols are not lightweight Strings.
-                                                              (line   6)
-* symbols as enumeration values:         FAQ Syntax.          (line 105)
-* symbols as hash keys:                  FAQ Syntax.          (line  99)
-* symbols, unique constants:             FAQ Syntax.          (line 105)
+                                                            (line   6)
+* symbols as enumeration values:         FAQ Syntax.        (line 105)
+* symbols as hash keys:                  FAQ Syntax.        (line  99)
+* symbols, unique constants:             FAQ Syntax.        (line 105)
 * tabs, expand into spaces:              FAQ Built-In Libraries.
-                                                              (line  45)
+                                                            (line  45)
 * Tcl/Tk, use:                           FAQ Extension Library.
-                                                              (line  18)
+                                                            (line  18)
 * templates:                             To Ruby From C and C++.
-                                                              (line 145)
-* ternary operator:                      FAQ Other Features.  (line   9)
-* Texinfo document formatting language:  Conventions.         (line   6)
+                                                            (line 149)
+* ternary operator:                      FAQ Other Features.
+                                                            (line   9)
+* Texinfo document formatting language:  Conventions.       (line   6)
 * thread vs fork:                        FAQ Built-In Libraries.
-                                                              (line  57)
+                                                            (line  57)
 * threads, native vs green:              To Ruby From C and C++.
-                                                              (line 156)
+                                                            (line 160)
 * Tk, won't work:                        FAQ Extension Library.
-                                                              (line  21)
+                                                            (line  21)
 * to_i method:                           Ruby User's Guide On Simple Examples.
-                                                              (line  35)
+                                                            (line  35)
 * to_s method:                           Ruby User's Guide On Accessors.
-                                                              (line  78)
-* track Ruby development:                Developing Ruby.     (line  26)
+                                                            (line  78)
+* track Ruby development:                Developing Ruby.   (line  26)
 * trap:                                  FAQ Built-In Libraries.
-                                                              (line  62)
+                                                            (line  62)
 * trap method, and Proc:                 Ruby User's Guide On Procedure Objects.
-                                                              (line  40)
+                                                            (line  40)
 * truth values:                          To Ruby From C and C++.
-                                                              (line 110)
+                                                            (line 111)
 * type conversions:                      To Ruby From C and C++.
-                                                              (line 153)
-* type declarations, none:               To Ruby From Java.   (line  43)
+                                                            (line 157)
+* type declarations, none:               To Ruby From Java. (line  46)
 * unit testing lib:                      To Ruby From C and C++.
-                                                              (line 157)
+                                                            (line 161)
 * unless:                                Ruby User's Guide On Control Structures.
-                                                              (line  67)
+                                                            (line  68)
 * until:                                 Ruby User's Guide On Control Structures.
-                                                              (line  67)
-* uru:                                   uru.                 (line   6)
+                                                            (line  68)
+* uru:                                   uru.               (line   6)
 * value, everthing has one:              Everything has a value.
-                                                              (line   6)
+                                                            (line   6)
+* variable scope:                        Variable Scope.    (line   6)
 * variable, active:                      Ruby User's Guide On Global Variables.
-                                                              (line  21)
-* variable, class @@:                    Naming conventions.  (line   9)
+                                                            (line  22)
+* variable, class @@:                    Naming conventions.
+                                                            (line   9)
 * variable, instance:                    Ruby User's Guide On Instance Variables.
-                                                              (line   6)
-* variable, instance @:                  Naming conventions.  (line   9)
+                                                            (line   6)
+* variable, instance @:                  Naming conventions.
+                                                            (line   9)
 * variable, local:                       Ruby User's Guide On Local Variables.
-                                                              (line   6)
+                                                            (line   6)
 * variable-length argument lists:        Ruby User's Guide On Object Initialization.
-                                                              (line  64)
+                                                            (line  65)
+* variables, 4 types:                    Variable Scope.    (line   6)
 * variables, description:                Ruby User's Guide On Variables.
-                                                              (line   6)
+                                                            (line   6)
 * variables, global:                     Ruby User's Guide On Global Variables.
-                                                              (line   6)
-* varible, global $:                     Naming conventions.  (line   9)
-* version managers:                      Installers.          (line   6)
-* versions, multiple installations using rbenv: rbenv.        (line   6)
-* versions, switch between using chruby: chruby.              (line   6)
-* versions,multiple:                     Installers.          (line   6)
-* visibility features:                   To Ruby From Java.   (line  19)
-* visibility, changing:                  FAQ Methods.         (line  33)
+                                                            (line   6)
+* varible, global $:                     Naming conventions.
+                                                            (line   9)
+* version managers:                      Installers.        (line   6)
+* versions, multiple installations using rbenv: rbenv.      (line   6)
+* versions, switch between using chruby: chruby.            (line   6)
+* versions,multiple:                     Installers.        (line   6)
+* visibility features:                   To Ruby From Java. (line  20)
+* visibility, changing:                  FAQ Methods.       (line  33)
 * while:                                 Ruby User's Guide On Puzzle Program.
-                                                              (line  27)
+                                                            (line  27)
 * while statement:                       Ruby User's Guide On Control Structures.
-                                                              (line  53)
+                                                            (line  53)
 * writer accessor:                       Ruby User's Guide On Accessors.
-                                                              (line   6)
-* WxRuby:                                To Ruby From Java.   (line  30)
+                                                            (line   6)
+* WxRuby:                                To Ruby From Java. (line  31)
 * xforms:                                FAQ Extension Library.
-                                                              (line  24)
-* XML vs YAML:                           To Ruby From Java.   (line  51)
-* YAML vs XML:                           To Ruby From Java.   (line  51)
+                                                            (line  24)
+* XML vs YAML:                           To Ruby From Java. (line  54)
+* YAML vs XML:                           To Ruby From Java. (line  54)
 * yield:                                 Large Class Definition.
-                                                              (line  85)
-* yield <1>:                             Blocks are Objects.  (line   6)
+                                                            (line  85)
+* yield <1>:                             Blocks are Objects.
+                                                            (line   6)
 * yield <2>:                             Ruby User's Guide On Iterators.
-                                                              (line  64)
-* yield control structor, or statement:  FAQ Iterators.       (line  56)
-* yield control structure in iterator:   FAQ Iterators.       (line  61)
+                                                            (line  65)
+* yield control structor, or statement:  FAQ Iterators.     (line  56)
+* yield control structure in iterator:   FAQ Iterators.     (line  61)
 
 
 File: Ruby2_5.info,  Node: Program Index,  Prev: Concept Index,  Up: Top
@@ -2394,12 +2451,12 @@ Program Index
  [index ]
 * Menu:
 
-* eval.rb:                               Ruby Eval Utility.    (line  6)
+* eval.rb:                               Ruby Eval Utility.  (line  6)
 * fact.rb:                               Ruby User's Guide On Simple Examples.
-                                                               (line  9)
+                                                             (line  9)
 * guess.rb:                              Ruby User's Guide On Puzzle Program.
-                                                               (line  6)
-* Makefile:                              The Makefile.         (line  6)
+                                                             (line  6)
+* Makefile:                              The Makefile.       (line  6)
 * regx.rb:                               Ruby User's Guide on Regular Expressions.
-                                                               (line 31)
+                                                             (line 31)
 
