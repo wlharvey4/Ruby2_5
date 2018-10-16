@@ -12,7 +12,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.4c of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.4d of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -108,7 +108,7 @@ All Rights Reserved.
 the conditions of the GNU General Public License, version 3.
 </p><br>
 <br>
-<p>This is Edition 0.4c of <cite>Ruby 2.5 Information and Documentation</cite>.
+<p>This is Edition 0.4d of <cite>Ruby 2.5 Information and Documentation</cite>.
 </p>
 
 <table class="menu" border="0" cellspacing="0">
@@ -122,13 +122,15 @@ the conditions of the GNU General Public License, version 3.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Ruby_002dDoc.html#Ruby_002dDoc" accesskey="5">Ruby-Doc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Utility-Programs.html#Utility-Programs" accesskey="6">Utility Programs</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="RDoc.html#RDoc" accesskey="6">RDoc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" accesskey="7">Initial Setup and Post Create</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Utility-Programs.html#Utility-Programs" accesskey="7">Utility Programs</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="The-Makefile.html#The-Makefile" accesskey="8">The Makefile</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" accesskey="8">Initial Setup and Post Create</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Code-Chunk-Summaries.html#Code-Chunk-Summaries" accesskey="9">Code Chunk Summaries</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="The-Makefile.html#The-Makefile" accesskey="9">The Makefile</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Code-Chunk-Summaries.html#Code-Chunk-Summaries">Code Chunk Summaries</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Bibliography.html#Bibliography">Bibliography</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -420,6 +422,20 @@ API Documentation
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
 
+RDoc &mdash; Ruby Documentation System
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Generating-Documention.html#Generating-Documention">Generating Documention</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Writing-Documentation.html#Writing-Documentation">Writing Documentation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
+Documentation Coverage Report
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Markup-Directives.html#Markup-Directives">Markup Directives</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
 Utility Programs
 
 </pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Ruby-Eval-Utility.html#Ruby-Eval-Utility">Ruby Eval Utility</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
@@ -655,50 +671,58 @@ Code Chunk Summaries
       <li><a name="toc-Beginner-Core-Topics-1" href="Beginner-Core-Topics.html#Beginner-Core-Topics">A.1.4 Beginner Core Topics</a></li>
     </ul></li>
   </ul></li>
-  <li><a name="toc-Utility-Programs-1" href="Utility-Programs.html#Utility-Programs">Appendix B Utility Programs</a>
+  <li><a name="toc-RDoc-_002d_002d_002d-Ruby-Documentation-System" href="RDoc.html#RDoc">Appendix B RDoc &mdash; Ruby Documentation System</a>
   <ul class="no-bullet">
-    <li><a name="toc-Ruby-Eval-Utility-1" href="Ruby-Eval-Utility.html#Ruby-Eval-Utility">B.1 Ruby Eval Utility</a>
+    <li><a name="toc-Generating-Documentation-with-RDoc" href="Generating-Documention.html#Generating-Documention">B.1 Generating Documentation with RDoc</a></li>
+    <li><a name="toc-Writing-Documentation-for-RDoc" href="Writing-Documentation.html#Writing-Documentation">B.2 Writing Documentation for RDoc</a>
     <ul class="no-bullet">
-      <li><a name="toc-eval_002erb-Module-Code" href="eval-Module-Code.html#eval-Module-Code">B.1.1 <samp>eval.rb</samp> Module Code</a></li>
-      <li><a name="toc-eval_002erb-Indentation-Deltas-Code" href="eval-Indentation-Deltas-Code.html#eval-Indentation-Deltas-Code">B.1.2 <samp>eval.rb</samp> Indentation Deltas Code</a></li>
-      <li><a name="toc-eval_002erb-Main-Get-Line-Code" href="eval-Main-Get-Line-Code.html#eval-Main-Get-Line-Code">B.1.3 <samp>eval.rb</samp> Main Get Line Code</a></li>
-      <li><a name="toc-eval_002erb-Main-Process-Line-Code" href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code">B.1.4 <samp>eval.rb</samp> Main Process Line Code</a>
+      <li><a name="toc-Markup-Directives-1" href="Markup-Directives.html#Markup-Directives">B.2.1 Markup Directives</a></li>
+    </ul></li>
+  </ul></li>
+  <li><a name="toc-Utility-Programs-1" href="Utility-Programs.html#Utility-Programs">Appendix C Utility Programs</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Ruby-Eval-Utility-1" href="Ruby-Eval-Utility.html#Ruby-Eval-Utility">C.1 Ruby Eval Utility</a>
+    <ul class="no-bullet">
+      <li><a name="toc-eval_002erb-Module-Code" href="eval-Module-Code.html#eval-Module-Code">C.1.1 <samp>eval.rb</samp> Module Code</a></li>
+      <li><a name="toc-eval_002erb-Indentation-Deltas-Code" href="eval-Indentation-Deltas-Code.html#eval-Indentation-Deltas-Code">C.1.2 <samp>eval.rb</samp> Indentation Deltas Code</a></li>
+      <li><a name="toc-eval_002erb-Main-Get-Line-Code" href="eval-Main-Get-Line-Code.html#eval-Main-Get-Line-Code">C.1.3 <samp>eval.rb</samp> Main Get Line Code</a></li>
+      <li><a name="toc-eval_002erb-Main-Process-Line-Code" href="eval-Main-Process-Line-Code.html#eval-Main-Process-Line-Code">C.1.4 <samp>eval.rb</samp> Main Process Line Code</a>
       <ul class="no-bullet">
-        <li><a name="toc-eval_002erb-If-Not-Line-Code" href="eval-If-Not-Line-Code.html#eval-If-Not-Line-Code">B.1.4.1 <samp>eval.rb</samp> If Not Line Code</a></li>
-        <li><a name="toc-eval_002erb-If-Is-Line-Code" href="eval-If-Is-Line-Code.html#eval-If-Is-Line-Code">B.1.4.2 <samp>eval.rb</samp> If Is Line Code</a></li>
+        <li><a name="toc-eval_002erb-If-Not-Line-Code" href="eval-If-Not-Line-Code.html#eval-If-Not-Line-Code">C.1.4.1 <samp>eval.rb</samp> If Not Line Code</a></li>
+        <li><a name="toc-eval_002erb-If-Is-Line-Code" href="eval-If-Is-Line-Code.html#eval-If-Is-Line-Code">C.1.4.2 <samp>eval.rb</samp> If Is Line Code</a></li>
       </ul></li>
-      <li><a name="toc-eval_002erb-Post-Create-1" href="eval_002erb-Post-Create.html#eval_002erb-Post-Create">B.1.5 <samp>eval.rb</samp> Post Create</a></li>
+      <li><a name="toc-eval_002erb-Post-Create-1" href="eval_002erb-Post-Create.html#eval_002erb-Post-Create">C.1.5 <samp>eval.rb</samp> Post Create</a></li>
     </ul></li>
-    <li><a name="toc-API-Utility-1" href="API-Utility.html#API-Utility">B.2 API Utility</a>
+    <li><a name="toc-API-Utility-1" href="API-Utility.html#API-Utility">C.2 API Utility</a>
     <ul class="no-bullet">
-      <li><a name="toc-apiutil_002eawk-BEGIN-Block-1" href="apiutil_002eawk-BEGIN-Block.html#apiutil_002eawk-BEGIN-Block">B.2.1 <samp>apiutil.awk</samp> BEGIN Block</a></li>
-      <li><a name="toc-apiutil_002eawk-BEGINFILE-BLOCK" href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Block">B.2.2 <samp>apiutil.awk</samp> BEGINFILE BLOCK</a></li>
-      <li><a name="toc-apiutil_002eawk-MAIN-Block-1" href="apiutil_002eawk-MAIN-Block.html#apiutil_002eawk-MAIN-Block">B.2.3 <samp>apiutil.awk</samp> MAIN Block</a></li>
-      <li><a name="toc-apiutil_002eawk-ENDFILE-Block-1" href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block">B.2.4 <samp>apiutil.awk</samp> ENDFILE Block</a></li>
-      <li><a name="toc-apiutil_002eawk-END-Block-1" href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block">B.2.5 <samp>apiutil.awk</samp> END Block</a></li>
-      <li><a name="toc-apiutil-Ord-Function-1" href="apiutil-Ord-Function.html#apiutil-Ord-Function">B.2.6 <samp>apiutil</samp> Ord Function</a></li>
-      <li><a name="toc-convertsymbols_0028_0029-Function-Definition-1" href="convertsymbols_0028_0029-Function-Definition.html#convertsymbols_0028_0029-Function-Definition">B.2.7 <code>convertsymbols()</code> Function Definition</a></li>
-      <li><a name="toc-apiutil-Makefile-Target-1" href="apiutil-Makefile-Target.html#apiutil-Makefile-Target">B.2.8 apiutil Makefile Target</a></li>
+      <li><a name="toc-apiutil_002eawk-BEGIN-Block-1" href="apiutil_002eawk-BEGIN-Block.html#apiutil_002eawk-BEGIN-Block">C.2.1 <samp>apiutil.awk</samp> BEGIN Block</a></li>
+      <li><a name="toc-apiutil_002eawk-BEGINFILE-BLOCK" href="apiutil_002eawk-BEGNFILE-Block.html#apiutil_002eawk-BEGNFILE-Block">C.2.2 <samp>apiutil.awk</samp> BEGINFILE BLOCK</a></li>
+      <li><a name="toc-apiutil_002eawk-MAIN-Block-1" href="apiutil_002eawk-MAIN-Block.html#apiutil_002eawk-MAIN-Block">C.2.3 <samp>apiutil.awk</samp> MAIN Block</a></li>
+      <li><a name="toc-apiutil_002eawk-ENDFILE-Block-1" href="apiutil_002eawk-ENDFILE-Block.html#apiutil_002eawk-ENDFILE-Block">C.2.4 <samp>apiutil.awk</samp> ENDFILE Block</a></li>
+      <li><a name="toc-apiutil_002eawk-END-Block-1" href="apiutil_002eawk-END-Block.html#apiutil_002eawk-END-Block">C.2.5 <samp>apiutil.awk</samp> END Block</a></li>
+      <li><a name="toc-apiutil-Ord-Function-1" href="apiutil-Ord-Function.html#apiutil-Ord-Function">C.2.6 <samp>apiutil</samp> Ord Function</a></li>
+      <li><a name="toc-convertsymbols_0028_0029-Function-Definition-1" href="convertsymbols_0028_0029-Function-Definition.html#convertsymbols_0028_0029-Function-Definition">C.2.7 <code>convertsymbols()</code> Function Definition</a></li>
+      <li><a name="toc-apiutil-Makefile-Target-1" href="apiutil-Makefile-Target.html#apiutil-Makefile-Target">C.2.8 apiutil Makefile Target</a></li>
     </ul></li>
   </ul></li>
-  <li><a name="toc-Initial-Setup-and-Post-Create-1" href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create">Appendix C Initial Setup and Post Create</a>
+  <li><a name="toc-Initial-Setup-and-Post-Create-1" href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create">Appendix D Initial Setup and Post Create</a>
   <ul class="no-bullet">
-    <li><a name="toc-Initial-Setup-1" href="Initial-Setup.html#Initial-Setup">C.1 Initial Setup</a></li>
-    <li><a name="toc-Post-Create-1" href="Post-Create.html#Post-Create">C.2 Post Create</a></li>
+    <li><a name="toc-Initial-Setup-1" href="Initial-Setup.html#Initial-Setup">D.1 Initial Setup</a></li>
+    <li><a name="toc-Post-Create-1" href="Post-Create.html#Post-Create">D.2 Post Create</a></li>
   </ul></li>
-  <li><a name="toc-The-Makefile-1" href="The-Makefile.html#The-Makefile">Appendix D The Makefile</a>
+  <li><a name="toc-The-Makefile-1" href="The-Makefile.html#The-Makefile">Appendix E The Makefile</a>
   <ul class="no-bullet">
-    <li><a name="toc-Makefile-Variable-Definitions-1" href="Makefile-Variable-Definitions.html#Makefile-Variable-Definitions">D.1 Makefile Variable Definitions</a></li>
-    <li><a name="toc-Default-Rule" href="Makefile-Default-Rule.html#Makefile-Default-Rule">D.2 Default Rule</a></li>
-    <li><a name="toc-TWJR-Targets" href="Makefile-TWJR-Targets.html#Makefile-TWJR-Targets">D.3 TWJR Targets</a></li>
-    <li><a name="toc-Utility-Targets" href="Makefile-Utility-Targets.html#Makefile-Utility-Targets">D.4 Utility Targets</a></li>
-    <li><a name="toc-Clean-Targets" href="Makefile-Clean-Targets.html#Makefile-Clean-Targets">D.5 Clean Targets</a></li>
+    <li><a name="toc-Makefile-Variable-Definitions-1" href="Makefile-Variable-Definitions.html#Makefile-Variable-Definitions">E.1 Makefile Variable Definitions</a></li>
+    <li><a name="toc-Default-Rule" href="Makefile-Default-Rule.html#Makefile-Default-Rule">E.2 Default Rule</a></li>
+    <li><a name="toc-TWJR-Targets" href="Makefile-TWJR-Targets.html#Makefile-TWJR-Targets">E.3 TWJR Targets</a></li>
+    <li><a name="toc-Utility-Targets" href="Makefile-Utility-Targets.html#Makefile-Utility-Targets">E.4 Utility Targets</a></li>
+    <li><a name="toc-Clean-Targets" href="Makefile-Clean-Targets.html#Makefile-Clean-Targets">E.5 Clean Targets</a></li>
   </ul></li>
-  <li><a name="toc-Code-Chunk-Summaries-1" href="Code-Chunk-Summaries.html#Code-Chunk-Summaries">Appendix E Code Chunk Summaries</a>
+  <li><a name="toc-Code-Chunk-Summaries-1" href="Code-Chunk-Summaries.html#Code-Chunk-Summaries">Appendix F Code Chunk Summaries</a>
   <ul class="no-bullet">
-    <li><a name="toc-Source-File-Definitions" href="File-Definitions.html#File-Definitions">E.1 Source File Definitions</a></li>
-    <li><a name="toc-Code-Chunk-Definitions-1" href="Code-Chunk-Definitions.html#Code-Chunk-Definitions">E.2 Code Chunk Definitions</a></li>
-    <li><a name="toc-Code-Chunk-References-1" href="Code-Chunk-References.html#Code-Chunk-References">E.3 Code Chunk References</a></li>
+    <li><a name="toc-Source-File-Definitions" href="File-Definitions.html#File-Definitions">F.1 Source File Definitions</a></li>
+    <li><a name="toc-Code-Chunk-Definitions-1" href="Code-Chunk-Definitions.html#Code-Chunk-Definitions">F.2 Code Chunk Definitions</a></li>
+    <li><a name="toc-Code-Chunk-References-1" href="Code-Chunk-References.html#Code-Chunk-References">F.3 Code Chunk References</a></li>
   </ul></li>
   <li><a name="toc-Bibliography-1" href="Bibliography.html#Bibliography">Bibliography</a></li>
   <li><a name="toc-Index" href="Concept-Index.html#Concept-Index">Index</a></li>

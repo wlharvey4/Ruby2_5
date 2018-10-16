@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.4d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Writing Documentation (Ruby2_5 Information)</title>
+
+<meta name="description" content="Writing Documentation (Ruby2_5 Information)">
+<meta name="keywords" content="Writing Documentation (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="RDoc.html#RDoc" rel="up" title="RDoc">
+<link href="Markup-Directives.html#Markup-Directives" rel="next" title="Markup Directives">
+<link href="Generating-Documention.html#Generating-Documention" rel="prev" title="Generating Documention">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Writing-Documentation"></a>
+<div class="header">
+<p>
+Previous: <a href="Generating-Documention.html#Generating-Documention" accesskey="p" rel="prev">Generating Documention</a>, Up: <a href="RDoc.html#RDoc" accesskey="u" rel="up">RDoc</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Writing-Documentation-for-RDoc"></a>
+<h3 class="appendixsec">B.2 Writing Documentation for RDoc</h3>
+<a name="index-writing-documentation"></a>
+
+<p>To write documentation for RDoc place a comment above the class, module,
+method, constant, or attribute you want documented:
+</p>
+<div class="example">
+<pre class="example">##
+# This class represents an arbitrary shape by a series of points.
+
+class Shape
+
+  ##
+  # Creates a new shape described by a +polyline+.
+  #
+  # If the +polyline+ does not end at the same point it started at the
+  # first pointed is copied and placed at the end of the line.
+  #
+  # An ArgumentError is raised if the line crosses itself, but shapes may
+  # be concave.
+
+  def initialize polyline
+    # ...
+  end
+
+end
+</pre></div>
+
+<p>The default comment markup format is the <samp>RDoc::Markup</samp> format.
+<samp>TomDoc</samp>, <samp>Markdown</samp> and <samp>RD</samp> format comments are also
+supported.
+</p>
+<a name="Directives"></a>
+<h4 class="subheading">Directives</h4>
+
+<p>Comments can contain directives that tell RDoc information that it cannot
+otherwise discover through parsing.  See <samp>RDoc::Markup@Directives</samp> to
+control what is or is not documented, to define method arguments or to break up
+methods in a class by topic.  See <samp>RDoc::Parser::Ruby</samp> for directives used
+to teach RDoc about metaprogrammed methods.
+</p>
+<a name="Documentation-Coverage-Report"></a>
+<h4 class="subheading">Documentation Coverage Report</h4>
+
+<p>To determine how well your project is documented run <code>rdoc -C lib</code> to
+get a documentation coverage report.  <code>rdoc -C1 lib</code> includes parameter
+names in the documentation coverage report.
+</p>
+
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Markup-Directives.html#Markup-Directives" accesskey="1">Markup Directives</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+
+
+
+</body>
+</html>

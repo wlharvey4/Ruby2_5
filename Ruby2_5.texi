@@ -41,7 +41,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.4c
+@set EDITION 0.4d
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -234,6 +234,7 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Documentation::
 * List of Tables::
 * Ruby-Doc::
+* RDoc::
 * Utility Programs::
 * Initial Setup and Post Create::
 * The Makefile::
@@ -401,6 +402,15 @@ API Documentation
 * Classes And Modules API::
 * Methods API::
 * Beginner Core Topics::
+
+RDoc --- Ruby Documentation System
+
+* Generating Documention::
+* Writing Documentation::
+
+Documentation Coverage Report
+
+* Markup Directives::
 
 Utility Programs
 
@@ -12709,6 +12719,193 @@ Class
 @iftex
 @page
 @end iftex
+
+
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node RDoc
+@appendix RDoc --- Ruby Documentation System
+@cindex RDoc
+@cindex @command{rdoc}
+@cindex @command{ri}
+
+RDoc produces HTML and command-line documentation for Ruby projects.  RDoc
+includes the @command{rdoc} and @command{ri} tools for generating and
+displaying documentation from the command-line.
+
+@url{https://github.com/ruby/rdoc, RDoc Github Home}
+
+@url{https://ruby.github.io/rdoc/, RDoc Documentation}
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@menu
+* Generating Documention::
+* Writing Documentation::
+@end menu
+
+@node Generating Documention
+@appendixsec Generating Documentation with RDoc
+@cindex generating documentation
+@cindex @command{rdoc}
+
+Create documentation using the @command{rdoc} command:
+
+@example
+$ rdoc --help
+$ rdoc [options] [names...]
+@end example
+
+A typical use might be to generate documentation for a package of Ruby source.
+The command @command{rdoc} generates documentation for all the Ruby and C
+source files in and below the current directory.  These will be stored in a
+documentation tree starting in the subdirectory @file{doc}.
+
+You can make this slightly more useful for your readers by having the index
+page contain the documentation for the primary file.
+
+@example
+$ rdoc --main README.rdoc
+@end example
+
+@subheading To generate documentation programmatically:
+
+@example
+gem 'rdoc'
+require 'rdoc/rdoc'
+
+options = RDoc::Options.new
+# see RDoc::Options
+
+rdoc = RDoc::RDoc.new
+rdoc.document options
+# see RDoc::RDoc
+@end example
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Writing Documentation
+@appendixsec Writing Documentation for RDoc
+@cindex writing documentation
+
+To write documentation for RDoc place a comment above the class, module,
+method, constant, or attribute you want documented:
+
+@example
+##
+# This class represents an arbitrary shape by a series of points.
+
+class Shape
+
+  ##
+  # Creates a new shape described by a +polyline+.
+  #
+  # If the +polyline+ does not end at the same point it started at the
+  # first pointed is copied and placed at the end of the line.
+  #
+  # An ArgumentError is raised if the line crosses itself, but shapes may
+  # be concave.
+
+  def initialize polyline
+    # ...
+  end
+
+end
+@end example
+
+The default comment markup format is the @file{RDoc::Markup} format.
+@file{TomDoc}, @file{Markdown} and @file{RD} format comments are also
+supported.
+
+@subheading Directives
+
+Comments can contain directives that tell RDoc information that it cannot
+otherwise discover through parsing.  See @file{RDoc::Markup@@Directives} to
+control what is or is not documented, to define method arguments or to break up
+methods in a class by topic.  See @file{RDoc::Parser::Ruby} for directives used
+to teach RDoc about metaprogrammed methods.
+
+@subheading Documentation Coverage Report
+
+To determine how well your project is documented run @command{rdoc -C lib} to
+get a documentation coverage report.  @command{rdoc -C1 lib} includes parameter
+names in the documentation coverage report.
+
+
+@c .....................................
+
+@menu
+* Markup Directives::
+@end menu
+
+@node Markup Directives
+@appendixsubsec Markup Directives
+@cindex markup directives
+
+@dfn{Directives} are keywords surrounded by @kbd{:} characters.
+
+@subheading Controlling what is documented
+
+@table @code
+
+@item :nodoc: / :nodoc: all
+This directive prevents documentation for the element from being generated.  For
+classes and modules, methods, aliases, constants, and attributes directly
+within the affected class or module also will be omitted.  By default, though,
+modules and classes within that class or module will be documented.  This is
+turned off by adding the all modifier.
+
+@end table
+
+@subheading Method arguments
+
+@table @code
+@item :arg: or :args: @i{parameters}
+Overrides the default argument handling with exactly these parameters.
+
+@end table
+
+@subheading Sections
+
+Sections allow you to group methods in a class into sensible containers.  If you
+use the sections 'Public', 'Internal' and 'Deprecated' (the three allowed
+method statuses from TomDoc) the sections will be displayed in that order
+placing the most useful methods at the top.  Otherwise, sections will be
+displayed in alphabetical order.
+
+@table @code
+@item :category: @i{section}
+Adds this item to the named section overriding the current section.  Use this to
+group methods by section in RDoc output while maintaining a sensible ordering
+(like alphabetical).
+
+@end table
+
+@subheading Other directives
+
+@table @code
+@item :markup: @i{type}
+Overrides the default markup type for this comment with the specified markup
+type.  For Ruby files, if the first comment contains this directive it is
+applied automatically to all comments in the file.
+
+Unless you are converting between markup formats you should use a
+@file{.rdoc_options} file to specify the default documentation format for your
+entire project.  See Saved Options at @file{RDoc::Options} for instructions.
+
+@end table
 
 
 
