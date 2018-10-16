@@ -1,29 +1,100 @@
 % -*- mode: texinfo -*-
-% Uncomment the 1st \input line if you need the MF logo
+
 % \input mftmac % for Metafont logo
+% Uncomment the 1st \input line if you need the MF logo
 \input texinfo   @c -*-texinfo-*-
+
 @c %**start of header (This is for running Texinfo on a region.)
 @setfilename Ruby2_5.info
 @settitle Ruby2_5 Information
 @c %**end of header (This is for running Texinfo on a region.)
 
+
+
+
+
+
+
+
 @c Change how xref titles are quoted.
 @dquotexrefs
 @c And let braces in index entries work.
 @allowindexbraces
+
+@c some special symbols
+@ifnottex
+@macro ii{text}
+@i{\text\}
+@end macro
+@end ifnottex
+
 @ifclear FORPRINT
 @pdflinkcolor
 @urllinkcolor
 @hideurls
 @end ifclear
 
+@c merge the function and variable indexes into the concept index
+@c do so without the code font, and in the index entries do the
+@c font management ourselves.  Also merge in the chunk definition
+@c and reference entries, which jrweave creates for us.
+@ifnothtml
+@synindex fn cp
+@synindex vr cp
+@synindex cd cp
+@synindex cr cp
+@end ifnothtml
+
+@c Uncomment this if you want the metafont logo.
+@ignore
+@ifnottex
+@macro MF{}
+@sc{METAFONT}
+@end macro
+@end ifnottex
+@end ignore
+
+
+
+
+
+
+
+
+@c =============================================================================
+@c FINAL RELEASE
+@c =============================================================================
+
+@c If "finalout" is commented out, the printed output will show
+@c black boxes that mark lines that are too long.  Thus, it is
+@c unwise to comment it out when running a master in case there are
+@c overfulls which are deemed okay.
+@iftex
+@c @finalout
+@end iftex
+
+@c Uncomment this for the release.  Leaving it off saves paper
+@c during editing and review.
+@c @setchapternewpage odd
+@c /////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+@c =============================================================================
+@c EDITION
+@c =============================================================================
 
 @c The following information should be updated here only!
 @c This sets the edition of the document.
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.4d
+@set EDITION 0.4e
+@set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
 @set SHORTTITLE Ruby 2.5 Info
@@ -57,44 +128,19 @@
 @set SECTION section
 @set SUBSECTION subsection
 @end ifdocbook
+@c /////////////////////////////////////////////////////////////////////////////
 
-@c some special symbols
-@ifnottex
-@macro ii{text}
-@i{\text\}
-@end macro
-@end ifnottex
 
-@c Uncomment this if you want the metafont logo.
-@ignore
-@ifnottex
-@macro MF{}
-@sc{METAFONT}
-@end macro
-@end ifnottex
-@end ignore
 
-@c merge the function and variable indexes into the concept index
-@c do so without the code font, and in the index entries do the
-@c font management ourselves.  Also merge in the chunk definition
-@c and reference entries, which jrweave creates for us.
-@ifnothtml
-@synindex fn cp
-@synindex vr cp
-@synindex cd cp
-@synindex cr cp
-@end ifnothtml
 
-@c If "finalout" is commented out, the printed output will show
-@c black boxes that mark lines that are too long.  Thus, it is
-@c unwise to comment it out when running a master in case there are
-@c overfulls which are deemed okay.
 
-@iftex
-@c @finalout
-@end iftex
 
+
+
+@c =============================================================================
 @copying
+@c =============================================================================
+
 @docbook
 <para>Published by:</para>
 
@@ -122,15 +168,22 @@ the conditions of the GNU General Public License, version 3.
 @sp 2
 This is Edition @value{EDITION} of @cite{@value{TITLE}}.
 @end copying
+@c /////////////////////////////////////////////////////////////////////////////
 
-@c Uncomment this for the release.  Leaving it off saves paper
-@c during editing and review.
-@c @setchapternewpage odd
+
+
+
+
+
+
+
+@c =============================================================================
+@titlepage
+@c =============================================================================
 
 @c Uncomment this if it's ever printed as a real book(let).
 @c @shorttitlepage @value{SHORTTITLE}
 
-@titlepage
 @title @value{TITLE}
 @subtitle @value{UPDATE-MONTH}
 @author wlharvey4
@@ -153,8 +206,14 @@ URL: @url{http://www.example.com/} @*
 @insertcopying
 @end ifnotdocbook
 @end titlepage
+@c /////////////////////////////////////////////////////////////////////////////
 
-@set DRAFT @i{DRAFT}
+
+
+
+
+
+
 
 @iftex
 @headings off
@@ -165,20 +224,22 @@ URL: @url{http://www.example.com/} @*
 @ifnottex
 @ifnotdocbook
 @ifnotxml
+
+@c *****************************************************************************
 @node Top
 @top General Introduction
-@c Preface node should come right after the Top
-@c node, in `unnumbered' sections, then the introductory chapter.
-@c Licensing nodes are appendices, they're not central to TexiWebJr.
+@c *****************************************************************************
 
-This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
+From The Top: This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 
 @insertcopying
 @end ifnotxml
 @end ifnotdocbook
 @end ifnottex
 
+@c =============================================================================
 @menu
+@c =============================================================================
 
 @detailmenu
  --- The Detailed Node Listing ---
@@ -186,8 +247,10 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 @end detailmenu
 @end menu
 
+@c =============================================================================
 @c @summarycontents
 @contents
+@c /////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -198,6 +261,10 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 
 @c *****************************************************************************
 
+@c Preface node should come right after the Top
+@c node, in `unnumbered' sections, then the introductory chapter.
+@c Licensing nodes are appendices, they're not central to TexiWebJr.
+
 @c Add these to the menu if they ever get included.
 @c @node Foreword
 @c @unnumbered Foreword
@@ -205,7 +272,7 @@ This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 @node Preface
 @unnumbered Preface
 
-Text here.
+@emph{Think think think think @dots{}}
 
 
 
@@ -215,7 +282,13 @@ Text here.
 @node Audience
 @unnumberedsec Intended Audience
 
-Text here.
+@quotation
+@sansserif{The combination of the power of a pure object-oriented language with
+the convenience of a scripting language makes Ruby a favorite tool of
+intelligent, forward-thinking programmers.}
+@end quotation
+@cite{Programming Ruby}, by @i{Dave Thomas} and @ii{Chad Fowler} and
+@emph{Andy Hunt}
 
 
 
