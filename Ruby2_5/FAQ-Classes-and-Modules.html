@@ -70,60 +70,114 @@ Next: <a href="FAQ-Built_002dIn-Libraries.html#FAQ-Built_002dIn-Libraries" acces
 <hr>
 <a name="FAQ-Classes-and-Modules-1"></a>
 <h4 class="subsubsection">2.3.2.4 FAQ Classes and Modules</h4>
+<a name="index-classes-and-methods-faq"></a>
 
+<a name="index-class-definition_002c-repeating"></a>
 <a name="Can-a-class-definition-be-repeated_003f"></a>
 <h4 class="subheading">Can a class definition be repeated?</h4>
-<a name="index-class-definition_002c-repeating"></a>
 
+<a name="index-class-variables_003f"></a>
 <a name="Are-there-class-variables_003f"></a>
 <h4 class="subheading">Are there class variables?</h4>
-<a name="index-class-variables_003f"></a>
 
+<a name="index-class-instance-variable_003f"></a>
 <a name="What-is-a-class-instance-variable_003f"></a>
 <h4 class="subheading">What is a class instance variable?</h4>
-<a name="index-class-instance-variable_003f"></a>
 
+<a name="index-class-variables-vs-class-instance-variables"></a>
 <a name="What-is-the-difference-between-class-variables-and-class-instance-variables_003f"></a>
 <h4 class="subheading">What is the difference between class variables and class instance variables?</h4>
-<a name="index-class-variables-vs-class-instance-variables"></a>
 
+<a name="index-class-methods"></a>
+<a name="index-methods_002c-class"></a>
 <a name="Does-Ruby-have-class-methods_003f"></a>
 <h4 class="subheading">Does Ruby have class methods?</h4>
-<a name="index-class-methods_003f"></a>
+<a name="index-singleton-method-1"></a>
+<a name="index-metaclass"></a>
+<a name="class_002dmethod"></a><p>A singleton method of a class object is called a
+<em>class method</em> (see <a href="FAQ-Methods.html#singleton_002dmethod">Singleton Method</a>).  (Actually,
+the class method is defined in the metaclass, but that is pretty much
+transparent).
+</p>
+<p>Another way of looking at it is to say that <em>a class method is a method
+whose receiver is a class.</em>
+</p>
+<p>It all comes down to the fact that you can call class methods without having to
+have instances of that class (objects) as the receiver.
+</p>
+<div class="example">
+<pre class="example">class Foo
+  def self.test
+    &quot;this is foo&quot;
+  end
+end
 
+# It is invoked this way.
+
+Foo.test  # =&gt; &quot;this is foo&quot;
+</pre></div>
+
+<p>In this example, <code>Foo.test</code> is a class method.
+</p>
+<p>Instance methods which are defined in class <samp>Class</samp> can be used as class
+methods for every(!) class.
+</p>
+<a name="index-singleton-class_003f"></a>
 <a name="What-is-a-singleton-class_003f"></a>
 <h4 class="subheading">What is a singleton class?</h4>
-<a name="index-singleton-class_003f"></a>
 
+<a name="index-module-function_003f"></a>
 <a name="What-is-a-module-function_003f"></a>
 <h4 class="subheading">What is a module function?</h4>
-<a name="index-module-function_003f"></a>
 
+<a name="index-class-vs-module"></a>
 <a name="What-is-the-difference-between-a-class-and-a-module_003f"></a>
 <h4 class="subheading">What is the difference between a class and a module?</h4>
-<a name="index-class-vs-module"></a>
 
+<a name="index-modules_002c-subclassing_003f"></a>
 <a name="Can-you-subclass-modules_003f"></a>
 <h4 class="subheading">Can you subclass modules?</h4>
-<a name="index-modules_002c-subclassing_003f"></a>
 
+<a name="index-mixin-example"></a>
 <a name="Give-me-an-example-of-a-mixin"></a>
 <h4 class="subheading">Give me an example of a mixin</h4>
-<a name="index-mixin-example"></a>
 
+<a name="index-class-methods_002c-defining_002c-2-ways"></a>
 <a name="Why-are-there-two-ways-of-defining-class-methods_003f"></a>
 <h4 class="subheading">Why are there two ways of defining class methods?</h4>
-<a name="index-class-methods_002c-defining_002c-2-ways"></a>
 
+<p>You can define a class method in the class definition, and you can define a
+class method at the top level.
+</p>
+<div class="example">
+<pre class="example">class Demo
+  def self.class_method
+  end
+end
+
+def Demo.another_class_method
+end
+</pre></div>
+
+<p>There is only one significant difference between the two.  In the class
+definition you can refer to the classâs constants directly, as the constants
+are within scope.  At the top level, you have to use the <code>Class::CONST</code>
+notation.
+</p>
+<a name="index-include-vs-extend"></a>
 <a name="What-is-the-difference-between-include-and-extend_003f"></a>
 <h4 class="subheading">What is the difference between include and extend?</h4>
-<a name="index-include-vs-extend"></a>
 
+<a name="index-self_002c-meaning"></a>
 <a name="What-does-self-mean_003f"></a>
 <h4 class="subheading">What does <code>self</code> mean?</h4>
-<a name="index-self_002c-meaning"></a>
 
 
+<hr>
+<div class="header">
+<p>
+Next: <a href="FAQ-Built_002dIn-Libraries.html#FAQ-Built_002dIn-Libraries" accesskey="n" rel="next">FAQ Built-In Libraries</a>, Previous: <a href="FAQ-Methods.html#FAQ-Methods" accesskey="p" rel="prev">FAQ Methods</a>, Up: <a href="Official-FAQ.html#Official-FAQ" accesskey="u" rel="up">Official FAQ</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
 
 
 

@@ -1286,6 +1286,28 @@ Where are '++' and '--' ?
 What is a singleton method?
 ---------------------------
 
+A "singleton method" is an instance method associated with one
+specific object.  You create a singleton method by including the
+object in the definition:
+
+     class Foo; end
+
+     foo = Foo.new
+     bar = Foo.new
+
+     def foo.hello
+       puts "Hello"
+     end
+
+     foo.hello
+     =>Hello
+
+     bar.hello
+     => prog.rb:11:in `<main>': undefined method `hello' for
+     #<Foo:0x000000010f5a40> (NoMethodError)
+
+   *Note class-method::.
+
 All these objects are fine, but does Ruby have any simple functions?
 --------------------------------------------------------------------
 
@@ -1343,6 +1365,32 @@ What is the difference between class variables and class instance variables?
 Does Ruby have class methods?
 -----------------------------
 
+A singleton method of a class object is called a "class method" (*note
+Singleton Method: singleton-method.).  (Actually, the class method is
+defined in the metaclass, but that is pretty much transparent).
+
+   Another way of looking at it is to say that _a class method is a
+method whose receiver is a class._
+
+   It all comes down to the fact that you can call class methods
+without having to have instances of that class (objects) as the
+receiver.
+
+     class Foo
+       def self.test
+         "this is foo"
+       end
+     end
+
+     # It is invoked this way.
+
+     Foo.test  # => "this is foo"
+
+   In this example, 'Foo.test' is a class method.
+
+   Instance methods which are defined in class 'Class' can be used as
+class methods for every(!)  class.
+
 What is a singleton class?
 --------------------------
 
@@ -1360,6 +1408,22 @@ Give me an example of a mixin
 
 Why are there two ways of defining class methods?
 -------------------------------------------------
+
+You can define a class method in the class definition, and you can
+define a class method at the top level.
+
+     class Demo
+       def self.class_method
+       end
+     end
+
+     def Demo.another_class_method
+     end
+
+   There is only one significant difference between the two.  In the
+class definition you can refer to the class’s constants directly, as
+the constants are within scope.  At the top level, you have to use the
+'Class::CONST' notation.
 
 What is the difference between include and extend?
 --------------------------------------------------

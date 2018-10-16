@@ -1427,8 +1427,33 @@ so its type can be determined using @code{$!.type}).
 @subheading Where are @code{++} and @code{--} ?
 @cindex @code{++} and @code{--}
 
-@subheading What is a singleton method?
 @cindex singleton method
+@anchor{singleton-method}
+@subheading What is a singleton method?
+
+A @dfn{singleton method} is an instance method associated with one specific
+object.  You create a singleton method by including the object in the
+definition:
+
+@example
+class Foo; end
+
+foo = Foo.new
+bar = Foo.new
+
+def foo.hello
+  puts "Hello"
+end
+
+foo.hello
+@result{}Hello
+
+bar.hello
+@result{} prog.rb:11:in `<main>': undefined method `hello' for
+#<Foo:0x000000010f5a40> (NoMethodError)
+@end example
+
+@xref{class-method}.
 
 @subheading All these objects are fine, but does Ruby have any simple functions?
 @cindex simple functions?
@@ -1472,45 +1497,94 @@ so its type can be determined using @code{$!.type}).
 
 @node FAQ Classes and Modules
 @subsubsection FAQ Classes and Modules
+@cindex classes and methods faq
 
-@subheading Can a class definition be repeated?
 @cindex class definition, repeating
+@subheading Can a class definition be repeated?
 
-@subheading Are there class variables?
 @cindex class variables?
+@subheading Are there class variables?
 
-@subheading What is a class instance variable?
 @cindex class instance variable?
+@subheading What is a class instance variable?
 
-@subheading What is the difference between class variables and class instance variables?
 @cindex class variables vs class instance variables
+@subheading What is the difference between class variables and class instance variables?
 
+@cindex class methods
+@cindex methods, class
 @subheading Does Ruby have class methods?
-@cindex class methods?
+@cindex singleton method
+@cindex metaclass
+@anchor{class-method} A singleton method of a class object is called a
+@dfn{class method} (@pxref{singleton-method, Singleton Method}).  (Actually,
+the class method is defined in the metaclass, but that is pretty much
+transparent).
 
-@subheading What is a singleton class?
+Another way of looking at it is to say that @emph{a class method is a method
+whose receiver is a class.}
+
+It all comes down to the fact that you can call class methods without having to
+have instances of that class (objects) as the receiver.
+
+@example
+class Foo
+  def self.test
+    "this is foo"
+  end
+end
+
+# It is invoked this way.
+
+Foo.test  # => "this is foo"
+@end example
+
+In this example, @code{Foo.test} is a class method.
+
+Instance methods which are defined in class @file{Class} can be used as class
+methods for every(!) class.
+
 @cindex singleton class?
+@subheading What is a singleton class?
 
-@subheading What is a module function?
 @cindex module function?
+@subheading What is a module function?
 
-@subheading What is the difference between a class and a module?
 @cindex class vs module
+@subheading What is the difference between a class and a module?
 
-@subheading Can you subclass modules?
 @cindex modules, subclassing?
+@subheading Can you subclass modules?
 
-@subheading Give me an example of a mixin
 @cindex mixin example
+@subheading Give me an example of a mixin
 
-@subheading Why are there two ways of defining class methods?
 @cindex class methods, defining, 2 ways
+@subheading Why are there two ways of defining class methods?
 
-@subheading What is the difference between include and extend?
+You can define a class method in the class definition, and you can define a
+class method at the top level.
+
+@example
+class Demo
+  def self.class_method
+  end
+end
+
+def Demo.another_class_method
+end
+@end example
+
+There is only one significant difference between the two.  In the class
+definition you can refer to the class’s constants directly, as the constants
+are within scope.  At the top level, you have to use the @code{Class::CONST}
+notation.
+
 @cindex @code{include} vs @code{extend}
+@subheading What is the difference between include and extend?
 
-@subheading What does @code{self} mean?
 @cindex @code{self}, meaning
+@subheading What does @code{self} mean?
 
 @c _____________________________________
 
