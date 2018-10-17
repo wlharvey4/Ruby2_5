@@ -11,6 +11,8 @@
 @c %**start of header (This is for running Texinfo on a region.)
 @setfilename Ruby2_5.info
 @settitle Ruby2_5 Information
+@include my-bib-macros.texi
+@mybibusetable{Bibliography}
 @c %**end of header (This is for running Texinfo on a region.)
 
 @c Extra indices added by jrweave
@@ -111,7 +113,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.4e
+@set EDITION 0.5a
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -292,14 +294,14 @@ From The Top: This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Preface::
 * Introduction::
 * Documentation::
-* List of Tables::
 * Ruby-Doc::
 * RDoc::
 * Utility Programs::
 * Initial Setup and Post Create::
 * The Makefile::
 * Code Chunk Summaries::
-* Bibliography::
+* @mybibnode{}::
+* List of Tables::
 * Concept Index::
 * Program Index::
 
@@ -524,7 +526,7 @@ Code Chunk Summaries
 @end menu
 
 @c =============================================================================
-@c @summarycontents
+@summarycontents
 @contents
 @c /////////////////////////////////////////////////////////////////////////////
 
@@ -3980,7 +3982,7 @@ know how to program, start here.
 @node Manuals
 @section Manuals
 
-
+Manuals
 
 @c .....................................
 
@@ -6572,23 +6574,9 @@ have taken days.
 @node Further Reading
 @section Further Reading
 
+@cite{Programming Ruby}, by Marek Hulan, et al., contains succinct advanced
+information about Ruby.  @mybibcite{ProgrammingRuby}
 
-
-
-
-
-
-
-
-
-
-
-@c *****************************************************************************
-
-@node List of Tables
-@unnumbered List of Tables
-
-@listoffloats Table
 
 
 
@@ -15103,8 +15091,30 @@ This chunk is called by @r{<@i{eval---Main--Process Line-Is Line}>}; see its fir
 
 @c *****************************************************************************
 
-@node Bibliography
+@node @mybibnode{}
 @unnumbered Bibliography
+
+@table @cite
+@mybibitem{ProgrammingRuby}
+Marek Hulan, Marek Jalen, Ivan Necas, @cite{Programming Ruby}, @i{Version 0.2}, September
+25, 2017.
+
+@end table
+
+
+
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node List of Tables
+@unnumbered List of Tables
+
+@listoffloats Table
 
 
 

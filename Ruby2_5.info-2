@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.4e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.5a of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Beginner Core Topics,  Prev: Methods API,  Up: API Documentation
@@ -1651,13 +1651,35 @@ F.3 Code Chunk References
      eval---Main--Process-Line-Is-Line::.
 
 
-File: Ruby2_5.info,  Node: Bibliography,  Next: Concept Index,  Prev: Code Chunk Summaries,  Up: Top
+File: Ruby2_5.info,  Node: Bibliography,  Next: List of Tables,  Prev: Code Chunk Summaries,  Up: Top
 
 Bibliography
 ************
 
+'ProgrammingRuby --'
+
+     Marek Hulan, Marek Jalen, Ivan Necas, 'Programming Ruby', Version
+     0.2, September 25, 2017.
+
 
-File: Ruby2_5.info,  Node: Concept Index,  Next: Program Index,  Prev: Bibliography,  Up: Top
+File: Ruby2_5.info,  Node: List of Tables,  Next: Concept Index,  Prev: Bibliography,  Up: Top
+
+List of Tables
+**************
+
+* Menu:
+
+* Table 2.1: table:variable-identifiers. List of Variable ...
+* Table 2.2: table:global-variables.     List of Major System ...
+* Table 2.3: table:accessor-shortcuts.   List of Accessor Shortcuts
+* Table A.1: table:api.                  Core API
+* Table A.2: table:api-classes-and-modules.
+                                         List of Classes and ...
+* Table A.3: table:api-methods.          List of API Methods
+* Table A.4: table:core-topics.          Table of Core Topics
+
+
+File: Ruby2_5.info,  Node: Concept Index,  Next: Program Index,  Prev: List of Tables,  Up: Top
 
 Index
 *****

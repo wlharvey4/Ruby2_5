@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.4e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.5a of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -30,14 +30,13 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.4e of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.5a of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
 * Preface::
 * Introduction::
 * Documentation::
-* List of Tables::
 * Ruby-Doc::
 * RDoc::
 * Utility Programs::
@@ -45,6 +44,7 @@ General Public License, version 3.
 * The Makefile::
 * Code Chunk Summaries::
 * Bibliography::
+* List of Tables::
 * Concept Index::
 * Program Index::
 
@@ -341,7 +341,7 @@ simplicity and productivity.  It has an elegant syntax that is natural
 to read and easy to write.
 
 
-File: Ruby2_5.info,  Node: Documentation,  Next: List of Tables,  Prev: Introduction,  Up: Top
+File: Ruby2_5.info,  Node: Documentation,  Next: Ruby-Doc,  Prev: Introduction,  Up: Top
 
 2 Documentation
 ***************
@@ -3086,6 +3086,8 @@ File: Ruby2_5.info,  Node: Manuals,  Next: Editors and IDEs,  Prev: Getting Star
 2.4 Manuals
 ===========
 
+Manuals
+
 * Menu:
 
 * Ruby User's Guide::
@@ -5390,25 +5392,12 @@ File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Docume
 2.6 Further Reading
 ===================
 
-
-File: Ruby2_5.info,  Node: List of Tables,  Next: Ruby-Doc,  Prev: Documentation,  Up: Top
-
-List of Tables
-**************
-
-* Menu:
-
-* Table 2.1: table:variable-identifiers. List of Variable ...
-* Table 2.2: table:global-variables.     List of Major System ...
-* Table 2.3: table:accessor-shortcuts.   List of Accessor Shortcuts
-* Table A.1: table:api.                  Core API
-* Table A.2: table:api-classes-and-modules.
-                                         List of Classes and ...
-* Table A.3: table:api-methods.          List of API Methods
-* Table A.4: table:core-topics.          Table of Core Topics
+'Programming Ruby', by Marek Hulan, et al., contains succinct advanced
+information about Ruby.  (See item 'ProgrammingRuby' in *note
+Bibliography: ProgrammingRuby.)
 
 
-File: Ruby2_5.info,  Node: Ruby-Doc,  Next: RDoc,  Prev: List of Tables,  Up: Top
+File: Ruby2_5.info,  Node: Ruby-Doc,  Next: RDoc,  Prev: Documentation,  Up: Top
 
 Appendix A Ruby-Doc
 *******************

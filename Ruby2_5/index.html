@@ -13,7 +13,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.4e of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -129,6 +129,49 @@ ul.no-bullet {list-style: none}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <a name="Top"></a>
 <div class="header">
 <p>
@@ -151,7 +194,7 @@ All Rights Reserved.
 the conditions of the GNU General Public License, version 3.
 </p><br>
 <br>
-<p>This is Edition 0.4e of <cite>Ruby 2.5 Information and Documentation</cite>.
+<p>This is Edition 0.5a of <cite>Ruby 2.5 Information and Documentation</cite>.
 </p>
 
 <table class="menu" border="0" cellspacing="0">
@@ -161,21 +204,21 @@ the conditions of the GNU General Public License, version 3.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Documentation.html#Documentation" accesskey="3">Documentation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="List-of-Tables.html#List-of-Tables" accesskey="4">List of Tables</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Ruby_002dDoc.html#Ruby_002dDoc" accesskey="4">Ruby-Doc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Ruby_002dDoc.html#Ruby_002dDoc" accesskey="5">Ruby-Doc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="RDoc.html#RDoc" accesskey="5">RDoc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="RDoc.html#RDoc" accesskey="6">RDoc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Utility-Programs.html#Utility-Programs" accesskey="6">Utility Programs</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Utility-Programs.html#Utility-Programs" accesskey="7">Utility Programs</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" accesskey="7">Initial Setup and Post Create</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Initial-Setup-and-Post-Create.html#Initial-Setup-and-Post-Create" accesskey="8">Initial Setup and Post Create</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="The-Makefile.html#The-Makefile" accesskey="8">The Makefile</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="The-Makefile.html#The-Makefile" accesskey="9">The Makefile</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Code-Chunk-Summaries.html#Code-Chunk-Summaries">Code Chunk Summaries</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Code-Chunk-Summaries.html#Code-Chunk-Summaries" accesskey="9">Code Chunk Summaries</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Bibliography.html#Bibliography">Bibliography</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="List-of-Tables.html#List-of-Tables">List of Tables</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Concept-Index.html#Concept-Index">Concept Index</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -563,6 +606,27 @@ Code Chunk Summaries
 
 </pre></th></tr></table>
 
+<a name="SEC_Overview"></a>
+<h2 class="shortcontents-heading">Short Table of Contents</h2>
+
+<div class="shortcontents">
+<ul class="no-bullet">
+<li><a name="stoc-Preface-1" href="#toc-Preface-1">Preface</a></li>
+<li><a name="stoc-Introduction-1" href="#toc-Introduction-1">1 Introduction</a></li>
+<li><a name="stoc-Documentation-1" href="#toc-Documentation-1">2 Documentation</a></li>
+<li><a name="stoc-Ruby_002dDoc-1" href="#toc-Ruby_002dDoc-1">Appendix A Ruby-Doc</a></li>
+<li><a name="stoc-RDoc-_002d_002d_002d-Ruby-Documentation-System" href="#toc-RDoc-_002d_002d_002d-Ruby-Documentation-System">Appendix B RDoc &mdash; Ruby Documentation System</a></li>
+<li><a name="stoc-Utility-Programs-1" href="#toc-Utility-Programs-1">Appendix C Utility Programs</a></li>
+<li><a name="stoc-Initial-Setup-and-Post-Create-1" href="#toc-Initial-Setup-and-Post-Create-1">Appendix D Initial Setup and Post Create</a></li>
+<li><a name="stoc-The-Makefile-1" href="#toc-The-Makefile-1">Appendix E The Makefile</a></li>
+<li><a name="stoc-Code-Chunk-Summaries-1" href="#toc-Code-Chunk-Summaries-1">Appendix F Code Chunk Summaries</a></li>
+<li><a name="stoc-Bibliography-1" href="#toc-Bibliography-1">Bibliography</a></li>
+<li><a name="stoc-List-of-Tables-1" href="#toc-List-of-Tables-1">List of Tables</a></li>
+<li><a name="stoc-Index" href="#toc-Index">Index</a></li>
+<li><a name="stoc-Program-Index-1" href="#toc-Program-Index-1">Program Index</a></li>
+</ul>
+</div>
+
 <a name="SEC_Contents"></a>
 <h2 class="contents-heading">Table of Contents</h2>
 
@@ -703,7 +767,6 @@ Code Chunk Summaries
     <li><a name="toc-Editors-and-IDEs-1" href="Editors-and-IDEs.html#Editors-and-IDEs">2.5 Editors and IDEs</a></li>
     <li><a name="toc-Further-Reading-1" href="Further-Reading.html#Further-Reading">2.6 Further Reading</a></li>
   </ul></li>
-  <li><a name="toc-List-of-Tables-1" href="List-of-Tables.html#List-of-Tables">List of Tables</a></li>
   <li><a name="toc-Ruby_002dDoc-1" href="Ruby_002dDoc.html#Ruby_002dDoc">Appendix A Ruby-Doc</a>
   <ul class="no-bullet">
     <li><a name="toc-API-Documentation-1" href="API-Documentation.html#API-Documentation">A.1 API Documentation</a>
@@ -768,6 +831,7 @@ Code Chunk Summaries
     <li><a name="toc-Code-Chunk-References-1" href="Code-Chunk-References.html#Code-Chunk-References">F.3 Code Chunk References</a></li>
   </ul></li>
   <li><a name="toc-Bibliography-1" href="Bibliography.html#Bibliography">Bibliography</a></li>
+  <li><a name="toc-List-of-Tables-1" href="List-of-Tables.html#List-of-Tables">List of Tables</a></li>
   <li><a name="toc-Index" href="Concept-Index.html#Concept-Index">Index</a></li>
   <li><a name="toc-Program-Index-1" href="Program-Index.html#Program-Index">Program Index</a></li>
 </ul>
