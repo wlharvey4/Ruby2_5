@@ -1088,39 +1088,17 @@ Issues}
 @cindex Ruby Documentation
 @cindex @command{rdoc}
 
-@itemize
+@command{ri} (Ruby Index) and RDoc (Ruby Documentation) are a closely related
+pair of tools for providing documentation about Ruby programs.  @command{ri}
+and @command{rdoc} are standalone programs; you run them from the command line.
+The Ruby @command{ri} tool is used to view the Ruby documentation off-line.
+@dfn{RDoc} produces HTML and online documentation for Ruby projects.  The RDoc
+system includes the command-line tools @command{rdoc} and @command{ri} for
+generating and displaying online documentation.
 
-@item
-Ruby Index --- @command{ri}
-
-@item
-Ruby Documentation (RDoc) System --- @command{rdoc}
-
-@itemize
-@item
 @url{https://github.com/ruby/rdoc, RDoc}
 
-@item
 @url{http://ruby.github.io/rdoc, @command{rdoc}}
-
-@end itemize
-@end itemize
-
-@quotation
-@dfn{RDoc} produces HTML and online documentation for Ruby projects.  RDoc includes
-the @command{rdoc} and @command{ri} tools for generating and displaying online
-documentation.
-
-The Ruby @command{ri} tool is used to view the Ruby documentation off-line.
-
-@end quotation
-
-@command{ri} (Ruby Index) and RDoc (Ruby Documentation) are a closely related
-pair of tools for providing documentation about Ruby programs.  @command{ri} is
-a command-line tool; the RDoc system includes the command-line tool
-@command{rdoc}.  @command{ri} and @command{rdoc} are standalone programs; you
-run them from the command line.
-
 
 @c .....................................
 
