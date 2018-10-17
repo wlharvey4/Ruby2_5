@@ -17,19 +17,19 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Manuals (Ruby2_5 Information)</title>
+<title>Ruby Debugger (Ruby2_5 Information)</title>
 
-<meta name="description" content="Manuals (Ruby2_5 Information)">
-<meta name="keywords" content="Manuals (Ruby2_5 Information)">
+<meta name="description" content="Ruby Debugger (Ruby2_5 Information)">
+<meta name="keywords" content="Ruby Debugger (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Documentation.html#Documentation" rel="up" title="Documentation">
-<link href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" rel="next" title="Ruby User's Guide">
-<link href="Learn-to-Program.html#Learn-to-Program" rel="prev" title="Learn to Program">
+<link href="Help-Tools.html#Help-Tools" rel="up" title="Help Tools">
+<link href="Developing-Ruby.html#Developing-Ruby" rel="next" title="Developing Ruby">
+<link href="ri.html#ri" rel="prev" title="ri">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -62,27 +62,34 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Manuals"></a>
+<a name="Ruby-Debugger"></a>
 <div class="header">
 <p>
-Next: <a href="Editors-and-IDEs.html#Editors-and-IDEs" accesskey="n" rel="next">Editors and IDEs</a>, Previous: <a href="Getting-Started.html#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="Documentation.html#Documentation" accesskey="u" rel="up">Documentation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Previous: <a href="ri.html#ri" accesskey="p" rel="prev">ri</a>, Up: <a href="Help-Tools.html#Help-Tools" accesskey="u" rel="up">Help Tools</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Manuals-1"></a>
-<h3 class="section">2.5 Manuals</h3>
+<a name="The-Ruby-Debugger"></a>
+<h4 class="subsection">2.2.3 The Ruby Debugger</h4>
+<a name="index-debugger"></a>
 
-<p>Manuals
+<p>The Ruby debugger is a library loaded into Ruby at run-time. This is done as follows:
+</p>
+<div class="example">
+<pre class="example">ruby -r debug [
+            options
+            ] [
+            programfile
+            ] [
+            arguments
+            ]
+</pre></div>
+
+<p>The debugger can do all the usual sorts of things you would expect it to, such
+as set breakpoints, step into and over code, print out the call stack, etc.
 </p>
 
 
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide" accesskey="1">Ruby User's Guide</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Ruby-Programming-Wikibook.html#Ruby-Programming-Wikibook" accesskey="2">Ruby Programming Wikibook</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Programming-Ruby.html#Programming-Ruby" accesskey="3">Programming Ruby</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
+
 
 
 

@@ -34,10 +34,10 @@ Operator Precedence
 Table A.4: Table of Core Topics
 
 
-File: Ruby2_5.info,  Node: RDoc,  Next: Utility Programs,  Prev: Ruby-Doc,  Up: Top
+File: Ruby2_5.info,  Node: Ruby Documentation --- RDoc,  Next: Utility Programs,  Prev: Ruby-Doc,  Up: Top
 
-Appendix B RDoc -- Ruby Documentation System
-********************************************
+Appendix B The Ruby Documentation System -- RDoc
+************************************************
 
 RDoc produces HTML and command-line documentation for Ruby projects.
 RDoc includes the 'rdoc' and 'ri' tools for generating and displaying
@@ -53,7 +53,7 @@ documentation from the command-line.
 * Writing Documentation::
 
 
-File: Ruby2_5.info,  Node: Generating Documention,  Next: Writing Documentation,  Up: RDoc
+File: Ruby2_5.info,  Node: Generating Documention,  Next: Writing Documentation,  Up: Ruby Documentation --- RDoc
 
 B.1 Generating Documentation with RDoc
 ======================================
@@ -88,7 +88,7 @@ To generate documentation programmatically:
      # see RDoc::RDoc
 
 
-File: Ruby2_5.info,  Node: Writing Documentation,  Prev: Generating Documention,  Up: RDoc
+File: Ruby2_5.info,  Node: Writing Documentation,  Prev: Generating Documention,  Up: Ruby Documentation --- RDoc
 
 B.2 Writing Documentation for RDoc
 ==================================
@@ -196,7 +196,7 @@ Other directives
      for instructions.
 
 
-File: Ruby2_5.info,  Node: Utility Programs,  Next: Initial Setup and Post Create,  Prev: RDoc,  Up: Top
+File: Ruby2_5.info,  Node: Utility Programs,  Next: Initial Setup and Post Create,  Prev: Ruby Documentation --- RDoc,  Up: Top
 
 Appendix C Utility Programs
 ***************************
@@ -2026,6 +2026,7 @@ Index
 * core api:                              Ruby-Doc.          (line  10)
 * core reference:                        Ruby-Doc.          (line   6)
 * dangerous, destructive methods:        FAQ Methods.       (line  73)
+* debugger:                              Ruby Debugger.     (line   6)
 * debugger for Ruby:                     FAQ Extension Library.
                                                             (line  12)
 * def:                                   Defining Methods.  (line   6)
@@ -2165,6 +2166,7 @@ Index
                                                             (line  36)
 * heap:                                  To Ruby From C and C++.
                                                             (line  89)
+* help tools:                            Help Tools.        (line   6)
 * identifier with capital letter, method?: FAQ Methods.     (line  58)
 * if modifier:                           Ruby User's Guide on Regular Expressions.
                                                             (line  61)
@@ -2426,14 +2428,19 @@ Index
 * rbenv:                                 rbenv.             (line   6)
 * rbenv version manager:                 ruby-build.        (line   6)
 * rbeval:                                Ruby Eval Utility. (line  10)
-* RDoc:                                  To Ruby From Java. (line  23)
-* rdoc:                                  To Ruby From Java. (line  23)
-* rdoc <1>:                              To Ruby From Perl. (line  30)
-* rdoc <2>:                              To Ruby From Python.
-                                                            (line  29)
+* RDoc:                                  Help Tools.        (line   6)
+* rdoc:                                  Help Tools.        (line   6)
 * RDoc <1>:                              RDoc.              (line   6)
-* rdoc <3>:                              RDoc.              (line   6)
-* rdoc <4>:                              Generating Documention.
+* RDoc <2>:                              To Ruby From Java. (line  23)
+* rdoc <1>:                              To Ruby From Java. (line  23)
+* rdoc <2>:                              To Ruby From Perl. (line  30)
+* rdoc <3>:                              To Ruby From Python.
+                                                            (line  29)
+* RDoc <3>:                              Ruby Documentation --- RDoc.
+                                                            (line   6)
+* rdoc <4>:                              Ruby Documentation --- RDoc.
+                                                            (line   6)
+* rdoc <5>:                              Generating Documention.
                                                             (line   6)
 * read one line from standard input:     Ruby User's Guide On Puzzle Program.
                                                             (line  39)
@@ -2482,15 +2489,23 @@ Index
 * return mutliple values:                FAQ Methods.       (line  75)
 * return statement unnecessary:          Ruby User's Guide On Simple Examples.
                                                             (line  54)
-* ri:                                    Pointers on Iteration.
+* ri:                                    Help Tools.        (line   6)
+* ri <1>:                                ri.                (line   6)
+* ri <2>:                                Pointers on Iteration.
                                                             (line  24)
-* ri <1>:                                RDoc.              (line   6)
+* ri <3>:                                Ruby Documentation --- RDoc.
+                                                            (line   6)
 * Rubies, switch between:                Installers.        (line   6)
 * Ruby 2.5.1. API:                       API Documentation. (line   6)
 * Ruby core:                             Developing Ruby.   (line  16)
 * Ruby Core mailing list:                Developing Ruby.   (line  62)
 * Ruby development, tracking:            Developing Ruby.   (line  26)
-* Ruby Documentation:                    Ruby-Doc.          (line   6)
+* Ruby Documentation:                    Help Tools.        (line   6)
+* Ruby Documentation <1>:                Ruby-Doc.          (line   6)
+* Ruby Index:                            Help Tools.        (line   6)
+* Ruby Index ri:                         ri.                (line   6)
+* Ruby Interactive:                      Help Tools.        (line   6)
+* Ruby Interactive <1>:                  ri.                (line   6)
 * Ruby Tk:                               To Ruby From Java. (line  31)
 * Ruby, what it is:                      Ruby User's Guide On What Ruby IS.
                                                             (line   7)
@@ -2603,6 +2618,7 @@ Index
                                                             (line 160)
 * Tk, won't work:                        FAQ Extension Library.
                                                             (line  21)
+* tools, help:                           Help Tools.        (line   6)
 * to_i method:                           Ruby User's Guide On Simple Examples.
                                                             (line  35)
 * to_s method:                           Ruby User's Guide On Accessors.

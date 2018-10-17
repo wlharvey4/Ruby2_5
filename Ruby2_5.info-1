@@ -18,8 +18,8 @@ File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
 General Introduction
 ********************
 
-From The Top: This file documents Ruby 2.5,
-<https://www.ruby-lang.org>
+From The Top: This file documents Ruby 2.5, Ruby-Lang
+(https://www.ruby-lang.org) and Ruby-Github (https://github.com/ruby).
 
    Copyright (C) 2018
 wlharvey4
@@ -38,7 +38,7 @@ General Public License, version 3.
 * Introduction::
 * Documentation::
 * Ruby-Doc::
-* RDoc::
+* Ruby Documentation --- RDoc::
 * Utility Programs::
 * Initial Setup and Post Create::
 * The Makefile::
@@ -60,6 +60,7 @@ Preface
 Documentation
 
 * Installing Ruby::
+* Help Tools::
 * Developing Ruby::
 * Getting Started::
 * Manuals::
@@ -94,6 +95,12 @@ Building From Source
 * Releases Page::
 * Branches Page::
 * Issue Tracking::
+
+Ruby Help Tools
+
+* RDoc::
+* ri::
+* Ruby Debugger::
 
 Getting Started
 
@@ -207,7 +214,7 @@ API Documentation
 * Methods API::
 * Beginner Core Topics::
 
-RDoc -- Ruby Documentation System
+The Ruby Documentation System -- RDoc
 
 * Generating Documention::
 * Writing Documentation::
@@ -354,6 +361,7 @@ will come in handy when you feel like coding in Ruby.
 * Menu:
 
 * Installing Ruby::
+* Help Tools::
 * Developing Ruby::
 * Getting Started::
 * Manuals::
@@ -361,7 +369,7 @@ will come in handy when you feel like coding in Ruby.
 * Further Reading::
 
 
-File: Ruby2_5.info,  Node: Installing Ruby,  Next: Developing Ruby,  Up: Documentation
+File: Ruby2_5.info,  Node: Installing Ruby,  Next: Help Tools,  Up: Documentation
 
 2.1 Installing Ruby
 ===================
@@ -712,9 +720,125 @@ Ruby Trunk (https://bugs.ruby-lang.org/projects/ruby-trunk)
 (https://bugs.ruby-lang.org/projects/ruby-trunk/issues?set_filter=1)
 
 
-File: Ruby2_5.info,  Node: Developing Ruby,  Next: Getting Started,  Prev: Installing Ruby,  Up: Documentation
+File: Ruby2_5.info,  Node: Help Tools,  Next: Developing Ruby,  Prev: Installing Ruby,  Up: Documentation
 
-2.2 Developing Ruby
+2.2 Ruby Help Tools
+===================
+
+   * Ruby Index -- 'ri'
+
+   * Ruby Documentation (RDoc) System -- 'rdoc'
+
+        * RDoc (https://github.com/ruby/rdoc)
+
+        * 'rdoc' (http://ruby.github.io/rdoc)
+
+     "RDoc" produces HTML and online documentation for Ruby projects.
+     RDoc includes the 'rdoc' and 'ri' tools for generating and
+     displaying online documentation.
+
+     The Ruby 'ri' tool is used to view the Ruby documentation
+     off-line.
+
+   'ri' (Ruby Index) and RDoc (Ruby Documentation) are a closely
+related pair of tools for providing documentation about Ruby programs.
+'ri' is a command-line tool; the RDoc system includes the command-line
+tool 'rdoc'.  'ri' and 'rdoc' are standalone programs; you run them
+from the command line.
+
+* Menu:
+
+* RDoc::
+* ri::
+* Ruby Debugger::
+
+
+File: Ruby2_5.info,  Node: RDoc,  Next: ri,  Up: Help Tools
+
+2.2.1 RDoc
+----------
+
+RDoc is a documentation system.  If you put comments in your program
+files (Ruby or C) in the prescribed RDoc format, 'rdoc' scans your
+files, extracts the comments, organizes them intelligently (indexed
+according to what they comment on), and creates nicely formatted
+documentation from them.  You can see RDoc markup in many of the C
+files in the Ruby source tree and many of the Ruby files in the Ruby
+installation.
+
+
+File: Ruby2_5.info,  Node: ri,  Next: Ruby Debugger,  Prev: RDoc,  Up: Help Tools
+
+2.2.2 'ri' Help System
+----------------------
+
+     The name stands for Ruby Interactive (not to be confused with
+     Interactive Ruby).
+
+   The Ruby 'ri' tool is used to view the Ruby documentation off-line.
+Open a command window and invoke 'ri' followed by the name of a Ruby
+class, module or method.  'ri' will display documentation for you.
+You may specify a method name without a qualifying class or module
+name, but this will just show you a list of all methods by that name
+(unless the method is unique).  Normally, you can separate a class or
+module name from a method name with a period.  If a class defines a
+class method and an instance method by the same name, you must instead
+use '::' to refer to a class method or '#' to refer to the instance
+method.  Here are some example invocations of 'ri':
+
+     ri Array
+     ri Array.sort
+     ri Hash#each
+     ri Math::sqrt
+
+   'ri' dovetails with RDoc: It gives you a way to view the
+information that RDoc has extracted and organized.  Specifically
+(although not exclusively, if you customize it), 'ri' is configured to
+display the RDoc information from the Ruby source files.  Thus on any
+system that has Ruby fully installed, you can get detailed information
+about Ruby with a simple command-line invocation of 'ri'.  Some more
+information is available here:
+
+Classes
+-------
+
+To see a list of all the classes for which 'ri' has documentation,
+type the following: 'ri -c'.  Then try accessing the documentation for
+a sample class: 'ri Hash'.  Next, try viewing the documentation for a
+given method, for example, one from the 'Array' class, rather than
+'Hash', just to give as much variety as possible: 'ri 'Array#<<''.
+You will sometimes need to quote the method name, in this case '<<',
+to avoid the shell interpreting certain metacharacters.
+
+   In one of your shell's start-up files, you may care to alias 'ri'
+to 'ri -f ansi', which will ensure you get a nice coloured display (as
+in the example above) when displaying documentation.
+
+
+File: Ruby2_5.info,  Node: Ruby Debugger,  Prev: ri,  Up: Help Tools
+
+2.2.3 The Ruby Debugger
+-----------------------
+
+The Ruby debugger is a library loaded into Ruby at run-time.  This is
+done as follows:
+
+     ruby -r debug [
+                 options
+                 ] [
+                 programfile
+                 ] [
+                 arguments
+                 ]
+
+   The debugger can do all the usual sorts of things you would expect
+it to, such as set breakpoints, step into and over code, print out the
+call stack, etc.
+
+
+File: Ruby2_5.info,  Node: Developing Ruby,  Next: Getting Started,  Prev: Help Tools,  Up: Documentation
+
+2.3 Developing Ruby
 ===================
 
 Ruby Core (https://www.ruby-lang.org/en/community/ruby-core/)
@@ -792,7 +916,7 @@ considered.
 
 File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Developing Ruby,  Up: Documentation
 
-2.3 Getting Started
+2.4 Getting Started
 ===================
 
 * Menu:
@@ -811,7 +935,7 @@ File: Ruby2_5.info,  Node: Getting Started,  Next: Manuals,  Prev: Developing Ru
 
 File: Ruby2_5.info,  Node: Try Ruby!,  Next: Official FAQ,  Up: Getting Started
 
-2.3.1 Try Ruby!
+2.4.1 Try Ruby!
 ---------------
 
 Try Ruby!  (https://ruby.github.io/TryRuby/)
@@ -823,7 +947,7 @@ get a feeling of the language.
 
 File: Ruby2_5.info,  Node: Official FAQ,  Next: Ruby Koans,  Prev: Try Ruby!,  Up: Getting Started
 
-2.3.2 Official FAQ
+2.4.2 Official FAQ
 ------------------
 
 The official frequently asked questions.
@@ -864,7 +988,7 @@ FAQ into the site and for a major overhaul of the content.
 
 File: Ruby2_5.info,  Node: FAQ Iterators,  Next: FAQ Syntax,  Up: Official FAQ
 
-2.3.2.1 FAQ Iterators
+2.4.2.1 FAQ Iterators
 .....................
 
 What is an iterator?
@@ -991,7 +1115,7 @@ See <http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/5252>
 
 File: Ruby2_5.info,  Node: FAQ Syntax,  Next: FAQ Methods,  Prev: FAQ Iterators,  Up: Official FAQ
 
-2.3.2.2 FAQ Syntax
+2.4.2.2 FAQ Syntax
 ..................
 
 List of FAQ items:
@@ -1271,7 +1395,7 @@ so its type can be determined using '$!.type').
 
 File: Ruby2_5.info,  Node: FAQ Methods,  Next: FAQ Classes and Modules,  Prev: FAQ Syntax,  Up: Official FAQ
 
-2.3.2.3 FAQ Methods
+2.4.2.3 FAQ Methods
 ...................
 
 How does Ruby choose which method to invoke?
@@ -1347,7 +1471,7 @@ Can I return multiple values from a method?
 
 File: Ruby2_5.info,  Node: FAQ Classes and Modules,  Next: FAQ Built-In Libraries,  Prev: FAQ Methods,  Up: Official FAQ
 
-2.3.2.4 FAQ Classes and Modules
+2.4.2.4 FAQ Classes and Modules
 ...............................
 
 Can a class definition be repeated?
@@ -1434,7 +1558,7 @@ What does 'self' mean?
 
 File: Ruby2_5.info,  Node: FAQ Built-In Libraries,  Next: FAQ Extension Library,  Prev: FAQ Classes and Modules,  Up: Official FAQ
 
-2.3.2.5 FAQ Built-In Libraries
+2.4.2.5 FAQ Built-In Libraries
 ..............................
 
 What does 'instance_methods(false)' return?
@@ -1497,7 +1621,7 @@ How can I use 'trap'?
 
 File: Ruby2_5.info,  Node: FAQ Extension Library,  Next: FAQ Other Features,  Prev: FAQ Built-In Libraries,  Up: Official FAQ
 
-2.3.2.6 FAQ Extension Library
+2.4.2.6 FAQ Extension Library
 .............................
 
 How can I use Ruby interactively?
@@ -1524,7 +1648,7 @@ How can I do date arithmetic?
 
 File: Ruby2_5.info,  Node: FAQ Other Features,  Prev: FAQ Extension Library,  Up: Official FAQ
 
-2.3.2.7 FAQ Other Features
+2.4.2.7 FAQ Other Features
 ..........................
 
 What does a ? b : c mean?
@@ -1545,7 +1669,7 @@ How can I use continuations?
 
 File: Ruby2_5.info,  Node: Ruby Koans,  Next: Why’s (Poignant) Guide to Ruby,  Prev: Official FAQ,  Up: Getting Started
 
-2.3.3 Ruby Koans
+2.4.3 Ruby Koans
 ----------------
 
 Ruby Koans (http://rubykoans.com/)
@@ -1558,7 +1682,7 @@ culture.
 
 File: Ruby2_5.info,  Node: Why’s (Poignant) Guide to Ruby,  Next: Ruby in Twenty Minutes,  Prev: Ruby Koans,  Up: Getting Started
 
-2.3.4 Why’s (Poignant) Guide to Ruby
+2.4.4 Why’s (Poignant) Guide to Ruby
 ------------------------------------
 
 Why's Guide to Ruby (http://mislav.uniqpath.com/poignant-guide/)
@@ -1570,7 +1694,7 @@ lucky stiff', this guide remains a classic for Ruby learners.
 
 File: Ruby2_5.info,  Node: Ruby in Twenty Minutes,  Next: Ruby from Other Languages,  Prev: Why’s (Poignant) Guide to Ruby,  Up: Getting Started
 
-2.3.5 Ruby in Twenty Minutes
+2.4.5 Ruby in Twenty Minutes
 ----------------------------
 
 Ruby in Twenty Minutes
@@ -1592,7 +1716,7 @@ Ruby on your computer install it before you get started.)
 
 File: Ruby2_5.info,  Node: Interactive Ruby,  Next: Defining Methods,  Up: Ruby in Twenty Minutes
 
-2.3.5.1 Interactive Ruby
+2.4.5.1 Interactive Ruby
 ........................
 
 Ruby comes with a program that will show the results of any Ruby
@@ -1624,7 +1748,7 @@ absolutely-positively-nothing value.
 
 File: Ruby2_5.info,  Node: Defining Methods,  Next: Altering Classes,  Prev: Interactive Ruby,  Up: Ruby in Twenty Minutes
 
-2.3.5.2 Defining Methods
+2.4.5.2 Defining Methods
 ........................
 
 Define a method:
@@ -1783,7 +1907,7 @@ doesn't know 'name'.
 
 File: Ruby2_5.info,  Node: Altering Classes,  Next: Large Class Definition,  Prev: Defining Methods,  Up: Ruby in Twenty Minutes
 
-2.3.5.3 Altering Classes
+2.4.5.3 Altering Classes
 ........................
 
 But what if you want to be able to view or change the name?  Ruby
@@ -1826,7 +1950,7 @@ the value, and 'name=' to set it.
 
 File: Ruby2_5.info,  Node: Large Class Definition,  Next: Run MegaGreeter,  Prev: Altering Classes,  Up: Ruby in Twenty Minutes
 
-2.3.5.4 Large Class Definition
+2.4.5.4 Large Class Definition
 ..............................
 
 What if we had some kind of MegaGreeter that could either greet the
@@ -2013,7 +2137,7 @@ This chunk is called by {'ri20min.rb'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Run MegaGreeter,  Prev: Large Class Definition,  Up: Ruby in Twenty Minutes
 
-2.3.5.5 Run MegaGreeter
+2.4.5.5 Run MegaGreeter
 .......................
 
 Run the program 'ri20min.rb' as 'ruby ri20min.rb'.  The output should
@@ -2035,7 +2159,7 @@ be:
 
 File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Important Language Features,  Prev: Ruby in Twenty Minutes,  Up: Getting Started
 
-2.3.6 Ruby from Other Languages
+2.4.6 Ruby from Other Languages
 -------------------------------
 
 Ruby from Other Languages
@@ -2058,7 +2182,7 @@ with.
 
 File: Ruby2_5.info,  Node: To Ruby From C and C++,  Next: To Ruby From Java,  Up: Ruby from Other Languages
 
-2.3.6.1 To Ruby From C and C++
+2.4.6.1 To Ruby From C and C++
 ..............................
 
 Everything Is Differerent
@@ -2221,7 +2345,7 @@ Differences from C++
 
 File: Ruby2_5.info,  Node: To Ruby From Java,  Next: To Ruby From Perl,  Prev: To Ruby From C and C++,  Up: Ruby from Other Languages
 
-2.3.6.2 To Ruby From Java
+2.4.6.2 To Ruby From Java
 .........................
 
 Ruby is Less Verbose
@@ -2282,7 +2406,7 @@ Differences From Java
 
 File: Ruby2_5.info,  Node: To Ruby From Perl,  Next: To Ruby From PHP,  Prev: To Ruby From Java,  Up: Ruby from Other Languages
 
-2.3.6.3 To Ruby From Perl
+2.4.6.3 To Ruby From Perl
 .........................
 
 Perl is awesome.  Perl's docs are awesome.  The Perl community is --
@@ -2346,7 +2470,7 @@ Differences From Perl
 
 File: Ruby2_5.info,  Node: To Ruby From PHP,  Next: To Ruby From Python,  Prev: To Ruby From Perl,  Up: Ruby from Other Languages
 
-2.3.6.4 To Ruby From PHP
+2.4.6.4 To Ruby From PHP
 ........................
 
 PHP is in widespread use for web applications, but if you want to use
@@ -2398,7 +2522,7 @@ Differences From PHP
 
 File: Ruby2_5.info,  Node: To Ruby From Python,  Prev: To Ruby From PHP,  Up: Ruby from Other Languages
 
-2.3.6.5 To Ruby From Python
+2.4.6.5 To Ruby From Python
 ...........................
 
 Python is another very nice general purpose programming language.
@@ -2483,7 +2607,7 @@ Differences From Python
 
 File: Ruby2_5.info,  Node: Important Language Features,  Next: Learning Ruby,  Prev: Ruby from Other Languages,  Up: Getting Started
 
-2.3.7 Important Language Features
+2.4.7 Important Language Features
 ---------------------------------
 
 Here are some pointers and hints on major Ruby features you'll see
@@ -2512,7 +2636,7 @@ while learning Ruby.
 
 File: Ruby2_5.info,  Node: Pointers on Iteration,  Next: Everything has a value,  Up: Important Language Features
 
-2.3.7.1 Pointers on Iteration
+2.4.7.1 Pointers on Iteration
 .............................
 
 Two Ruby features that are a bit unlike what you may have seen before,
@@ -2538,7 +2662,7 @@ i in aList: ...'), with Ruby you'll very often instead see:
 
 File: Ruby2_5.info,  Node: Everything has a value,  Next: Symbols are not lightweight Strings,  Prev: Pointers on Iteration,  Up: Important Language Features
 
-2.3.7.2 Everything has a value
+2.4.7.2 Everything has a value
 ..............................
 
 There’s no difference between an expression and a statement.
@@ -2557,7 +2681,7 @@ possible:
 
 File: Ruby2_5.info,  Node: Symbols are not lightweight Strings,  Next: Everything is an Object,  Prev: Everything has a value,  Up: Important Language Features
 
-2.3.7.3 Symbols are not lightweight Strings
+2.4.7.3 Symbols are not lightweight Strings
 ...........................................
 
 Many Ruby newbies struggle with understanding what Symbols are, and
@@ -2593,7 +2717,7 @@ or the contents (in the example above, '“george”').
 
 File: Ruby2_5.info,  Node: Everything is an Object,  Next: Variable Constants,  Prev: Symbols are not lightweight Strings,  Up: Important Language Features
 
-2.3.7.4 Everything is an Object
+2.4.7.4 Everything is an Object
 ...............................
 
      ``Everything is an object'' isn't just hyperbole.  Even classes and integers are
@@ -2610,7 +2734,7 @@ File: Ruby2_5.info,  Node: Everything is an Object,  Next: Variable Constants,  
 
 File: Ruby2_5.info,  Node: Variable Constants,  Next: Naming conventions,  Prev: Everything is an Object,  Up: Important Language Features
 
-2.3.7.5 Variable Constants
+2.4.7.5 Variable Constants
 ..........................
 
 Constants are not really constant.  If you modify an already
@@ -2620,7 +2744,7 @@ program.  That isn't to say you should redefine constants, though.
 
 File: Ruby2_5.info,  Node: Naming conventions,  Next: Keyword arguments,  Prev: Variable Constants,  Up: Important Language Features
 
-2.3.7.6 Naming conventions
+2.4.7.6 Naming conventions
 ..........................
 
 Ruby enforces some naming conventions.  If an identifier starts with a
@@ -2641,7 +2765,7 @@ This can lead to confusion, as the example below shows:
 
 File: Ruby2_5.info,  Node: Keyword arguments,  Next: The universal truth,  Prev: Naming conventions,  Up: Important Language Features
 
-2.3.7.7 Keyword arguments
+2.4.7.7 Keyword arguments
 .........................
 
 Like in Python, since Ruby 2.0 methods can be defined using keyword
@@ -2659,7 +2783,7 @@ arguments:
 
 File: Ruby2_5.info,  Node: The universal truth,  Next: Access modifiers are Methods,  Prev: Keyword arguments,  Up: Important Language Features
 
-2.3.7.8 The universal truth
+2.4.7.8 The universal truth
 ...........................
 
 In Ruby, everything except 'nil' and 'false' is considered true.  In
@@ -2687,7 +2811,7 @@ following Python code (the example applies to other languages, too):
 
 File: Ruby2_5.info,  Node: Access modifiers are Methods,  Next: Method access,  Prev: The universal truth,  Up: Important Language Features
 
-2.3.7.9 Access modifiers are Methods
+2.4.7.9 Access modifiers are Methods
 ....................................
 
 Access modifiers apply until the end of scope.
@@ -2725,7 +2849,7 @@ Symbol to one of them, that method’s visibility is altered.
 
 File: Ruby2_5.info,  Node: Method access,  Next: Classes are open,  Prev: Access modifiers are Methods,  Up: Important Language Features
 
-2.3.7.10 Method access
+2.4.7.10 Method access
 ......................
 
 In Java, 'public' means a method is accessible by anyone.  'protected'
@@ -2780,7 +2904,7 @@ also with another instance as its receiver.  Here is an example
 
 File: Ruby2_5.info,  Node: Classes are open,  Next: Funny method names,  Prev: Method access,  Up: Important Language Features
 
-2.3.7.11 Classes are open
+2.4.7.11 Classes are open
 .........................
 
 Ruby classes are open.  You can open them up, add to them, and change
@@ -2802,7 +2926,7 @@ for dealing with time on 'Fixnum'.  Watch:
 
 File: Ruby2_5.info,  Node: Funny method names,  Next: Singleton methods,  Prev: Classes are open,  Up: Important Language Features
 
-2.3.7.12 Funny method names
+2.4.7.12 Funny method names
 ...........................
 
 In Ruby, methods are allowed to end with question marks or exclamation
@@ -2818,7 +2942,7 @@ sense to have a method like that that doesn't modify self.
 
 File: Ruby2_5.info,  Node: Singleton methods,  Next: Missing methods,  Prev: Funny method names,  Up: Important Language Features
 
-2.3.7.13 Singleton methods
+2.4.7.13 Singleton methods
 ..........................
 
 "Singleton methods" are per-object methods.  They are only available
@@ -2845,7 +2969,7 @@ on the Object you defined it on.
 
 File: Ruby2_5.info,  Node: Missing methods,  Next: Message passing --- not function calls,  Prev: Singleton methods,  Up: Important Language Features
 
-2.3.7.14 Missing methods
+2.4.7.14 Missing methods
 ........................
 
 Ruby doesn't give up if it can't find a method that responds to a
@@ -2872,7 +2996,7 @@ free to handle the message in any way that is appropriate.
 
 File: Ruby2_5.info,  Node: Message passing --- not function calls,  Next: Blocks are Objects,  Prev: Missing methods,  Up: Important Language Features
 
-2.3.7.15 Message passing, not function calls
+2.4.7.15 Message passing, not function calls
 ............................................
 
 A method call is really a "message" to another object:
@@ -2887,7 +3011,7 @@ A method call is really a "message" to another object:
 
 File: Ruby2_5.info,  Node: Blocks are Objects,  Next: Operators are syntactic sugar,  Prev: Message passing --- not function calls,  Up: Important Language Features
 
-2.3.7.16 Blocks are Objects
+2.4.7.16 Blocks are Objects
 ...........................
 
 Blocks (closures, really) are heavily used by the standard library.
@@ -2913,7 +3037,7 @@ appending a special argument to the argument list, like so:
 
 File: Ruby2_5.info,  Node: Operators are syntactic sugar,  Prev: Blocks are Objects,  Up: Important Language Features
 
-2.3.7.17 Operators are syntactic sugar
+2.4.7.17 Operators are syntactic sugar
 ......................................
 
 Most operators in Ruby are just syntactic sugar (with some precedence
@@ -2944,7 +3068,7 @@ redefined.
 
 File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Important Language Features,  Up: Getting Started
 
-2.3.8 Learning Ruby
+2.4.8 Learning Ruby
 -------------------
 
 Learning Ruby (http://rubylearning.com/)
@@ -2956,7 +3080,7 @@ and constructs.
 
 File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Learning Ruby,  Up: Getting Started
 
-2.3.9 Ruby Essentials
+2.4.9 Ruby Essentials
 ---------------------
 
 Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
@@ -2973,7 +3097,7 @@ concise and easy to follow [sic] guide to learning Ruby.
 
 File: Ruby2_5.info,  Node: Interactive Ruby Execution,  Next: Block Ruby Comments,  Up: Ruby Essentials
 
-2.3.9.1 Interactive Ruby Execution
+2.4.9.1 Interactive Ruby Execution
 ..................................
 
 Interactive Ruby code is entered using the 'irb' tool.
@@ -2993,7 +3117,7 @@ Interactive Ruby code is entered using the 'irb' tool.
 
 File: Ruby2_5.info,  Node: Block Ruby Comments,  Next: Variable Scope,  Prev: Interactive Ruby Execution,  Up: Ruby Essentials
 
-2.3.9.2 Block Ruby Commenets
+2.4.9.2 Block Ruby Commenets
 ............................
 
 Multiple lines of text or code can be defined as comments using the
@@ -3003,7 +3127,7 @@ Ruby '=begin' and '=end' comment markers.  These are known as the
 
 File: Ruby2_5.info,  Node: Variable Scope,  Prev: Block Ruby Comments,  Up: Ruby Essentials
 
-2.3.9.3 Variable Scope
+2.4.9.3 Variable Scope
 ......................
 
 "Scope" defines where in a program a variable is accessible.  Ruby has
@@ -3070,7 +3194,7 @@ Predefined Global Variables
 
 File: Ruby2_5.info,  Node: Learn to Program,  Prev: Ruby Essentials,  Up: Getting Started
 
-2.3.10 Learn to Program
+2.4.10 Learn to Program
 -----------------------
 
 Learn to Program (http://pine.fm/LearnToProgram/)
@@ -3083,7 +3207,7 @@ If you don’t know how to program, start here.
 
 File: Ruby2_5.info,  Node: Manuals,  Next: Editors and IDEs,  Prev: Getting Started,  Up: Documentation
 
-2.4 Manuals
+2.5 Manuals
 ===========
 
 Manuals
@@ -3097,7 +3221,7 @@ Manuals
 
 File: Ruby2_5.info,  Node: Ruby User's Guide,  Next: Ruby Programming Wikibook,  Up: Manuals
 
-2.4.1 Ruby User's Guide
+2.5.1 Ruby User's Guide
 -----------------------
 
 Translated from the original Japanese version written by Yukihiro
@@ -3139,7 +3263,7 @@ Mark Slagell, is a nice overview of many aspects of the Ruby language.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On What Ruby IS,  Next: Ruby User's Guide On Simple Examples,  Up: Ruby User's Guide
 
-2.4.1.1 On What Ruby Is
+2.5.1.1 On What Ruby Is
 .......................
 
 Ruby is "an interpreted scripting language for quick and easy
@@ -3172,7 +3296,7 @@ also:
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Simple Examples,  Next: Ruby User's Guide on Strings,  Prev: Ruby User's Guide On What Ruby IS,  Up: Ruby User's Guide
 
-2.4.1.2 On Simple Examples
+2.5.1.2 On Simple Examples
 ..........................
 
 Factorial in Ruby
@@ -3309,7 +3433,7 @@ perl does.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Strings,  Next: Ruby User's Guide On Puzzle Program,  Prev: Ruby User's Guide On Simple Examples,  Up: Ruby User's Guide
 
-2.4.1.3 On Strings
+2.5.1.3 On Strings
 ..................
 
 Quoting Strings
@@ -3357,7 +3481,7 @@ Testing for equality:
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Puzzle Program,  Next: Ruby User's Guide on Regular Expressions,  Prev: Ruby User's Guide on Strings,  Up: Ruby User's Guide
 
-2.4.1.4 On Puzzle Program
+2.5.1.4 On Puzzle Program
 .........................
 
 {'guess.rb'} ==
@@ -3451,7 +3575,7 @@ now."  '04 print "guess? "; STDOUT.flush'.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Regular Expressions,  Next: Ruby User's Guide On Arrays And Hashes,  Prev: Ruby User's Guide On Puzzle Program,  Up: Ruby User's Guide
 
-2.4.1.5 Regular Expressions
+2.5.1.5 Regular Expressions
 ...........................
 
      ruby> def chab(s)   # "contains hex in angle brackets"
@@ -3590,7 +3714,7 @@ the pattern did not match.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Arrays And Hashes,  Next: Ruby User's Guide On Control Structures,  Prev: Ruby User's Guide on Regular Expressions,  Up: Ruby User's Guide
 
-2.4.1.6 On Arrays And Hashes
+2.5.1.6 On Arrays And Hashes
 ............................
 
 Creating An Array
@@ -3653,7 +3777,7 @@ in an array.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Control Structures,  Next: Ruby User's Guide On Iterators,  Prev: Ruby User's Guide On Arrays And Hashes,  Up: Ruby User's Guide
 
-2.4.1.7 On Control Structures
+2.5.1.7 On Control Structures
 .............................
 
 The 'case' Statement
@@ -3798,7 +3922,7 @@ you get used to them, they are generally easier to deal with.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Iterators,  Next: Ruby User's Guide On Object-Oriented Thinking,  Prev: Ruby User's Guide On Control Structures,  Up: Ruby User's Guide
 
-2.4.1.8 Ruby User's Guide On Iterators
+2.5.1.8 Ruby User's Guide On Iterators
 ......................................
 
 Iterators are not an original concept with ruby.  They are in common
@@ -3906,7 +4030,7 @@ classes are.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Object-Oriented Thinking,  Next: Ruby User's Guide on Methods,  Prev: Ruby User's Guide On Iterators,  Up: Ruby User's Guide
 
-2.4.1.9 On Object-Oriented Thinking
+2.5.1.9 On Object-Oriented Thinking
 ...................................
 
 Ruby claims to be an object oriented scripting language; but what
@@ -3967,7 +4091,7 @@ from there we'll move on to the "factories" (classes).
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Methods,  Next: Ruby User's Guide on Classes,  Prev: Ruby User's Guide On Object-Oriented Thinking,  Up: Ruby User's Guide
 
-2.4.1.10 On Methods
+2.5.1.10 On Methods
 ...................
 
 What Is A Method?
@@ -4042,7 +4166,7 @@ makes ruby what is called a pure object oriented language.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Classes,  Next: Ruby User's Guide on Inheritance,  Prev: Ruby User's Guide on Methods,  Up: Ruby User's Guide
 
-2.4.1.11 On Classes
+2.5.1.11 On Classes
 ...................
 
 In OO programming terminology, a category of objects like "dog" is
@@ -4096,7 +4220,7 @@ experience the pleasure of its conversation; we can't merely ask the
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Inheritance,  Next: Ruby User's Guide on Redefinition Of Methods,  Prev: Ruby User's Guide on Classes,  Up: Ruby User's Guide
 
-2.4.1.12 On Inheritance
+2.5.1.12 On Inheritance
 .......................
 
 Our classification of objects in everyday life is naturally
@@ -4169,7 +4293,7 @@ benefits of object-oriented programming.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Redefinition Of Methods,  Next: Ruby User's Guide On Access Control,  Prev: Ruby User's Guide on Inheritance,  Up: Ruby User's Guide
 
-2.4.1.13 On Redefinition of Methods
+2.5.1.13 On Redefinition of Methods
 ...................................
 
 In a subclass, we can change the behavior of the instances by
@@ -4242,7 +4366,7 @@ sometimes said that there are two kinds of people ...
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Access Control,  Next: Ruby User's Guide On Singleton Methods,  Prev: Ruby User's Guide on Redefinition Of Methods,  Up: Ruby User's Guide
 
-2.4.1.14 On Access Control
+2.5.1.14 On Access Control
 ..........................
 
 Earlier, we said that ruby has no functions, only methods.  However
@@ -4336,7 +4460,7 @@ begin to create more complicated and interesting classes.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Singleton Methods,  Next: Ruby User's Guide On Modules,  Prev: Ruby User's Guide On Access Control,  Up: Ruby User's Guide
 
-2.4.1.15 On Singleton Methods
+2.5.1.15 On Singleton Methods
 .............................
 
 The behavior of an instance is determined by its class, but there may
@@ -4358,7 +4482,7 @@ have singleton methods only.  These are sometimes called
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Modules,  Next: Ruby User's Guide On Procedure Objects,  Prev: Ruby User's Guide On Singleton Methods,  Up: Ruby User's Guide
 
-2.4.1.16 On Modules
+2.5.1.16 On Modules
 ...................
 
 Modules in ruby are similar to classes, except:
@@ -4430,7 +4554,7 @@ considerably (a similar choice was made by the designers of Java).
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Procedure Objects,  Next: Ruby User's Guide On Variables,  Prev: Ruby User's Guide On Modules,  Up: Ruby User's Guide
 
-2.4.1.17 On Procedure Objects (Procs)
+2.5.1.17 On Procedure Objects (Procs)
 .....................................
 
 It is often desirable to be able to specify responses to unexpected
@@ -4494,7 +4618,7 @@ anonymous procedures.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Variables,  Next: Ruby User's Guide On Global Variables,  Prev: Ruby User's Guide On Procedure Objects,  Up: Ruby User's Guide
 
-2.4.1.18 On Variables
+2.5.1.18 On Variables
 .....................
 
 Ruby has three kinds of variables, one kind of constant and exactly
@@ -4537,7 +4661,7 @@ of 'self', refers to the top-level object.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Global Variables,  Next: Ruby User's Guide On Instance Variables,  Prev: Ruby User's Guide On Variables,  Up: Ruby User's Guide
 
-2.4.1.19 On Global Variables
+2.5.1.19 On Global Variables
 ............................
 
 A "global variable" has a name beginning with '$'.  It can be referred
@@ -4595,7 +4719,7 @@ Table 2.2: List of Major System Variables
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Instance Variables,  Next: Ruby User's Guide On Local Variables,  Prev: Ruby User's Guide On Global Variables,  Up: Ruby User's Guide
 
-2.4.1.20 On Instance Variables
+2.5.1.20 On Instance Variables
 ..............................
 
 An instance variable has a name beginning with '@', and its scope is
@@ -4617,7 +4741,7 @@ dynamically appended to an object when it is first assigned.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Local Variables,  Next: Ruby User's Guide On Class Constants,  Prev: Ruby User's Guide On Instance Variables,  Up: Ruby User's Guide
 
-2.4.1.21 On Local Variables
+2.5.1.21 On Local Variables
 ...........................
 
 A local variable has a name starting with a lower case letter or an
@@ -4718,7 +4842,7 @@ legitimate class framework leads to much more readable code.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Class Constants,  Next: Ruby User's Guide On Exception Processing And rescue,  Prev: Ruby User's Guide On Local Variables,  Up: Ruby User's Guide
 
-2.4.1.22 On Class Constants
+2.5.1.22 On Class Constants
 ...........................
 
 A constant has a name starting with an uppercase character.  It should
@@ -4784,7 +4908,7 @@ variables, they are accessible outside the class.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Exception Processing And rescue,  Next: Ruby User's Guide On Exception Processing and ensure,  Prev: Ruby User's Guide On Class Constants,  Up: Ruby User's Guide
 
-2.4.1.23 On Exception Processing and 'rescue'
+2.5.1.23 On Exception Processing and 'rescue'
 .............................................
 
 An executing program can run into unexpected problems.  A file that it
@@ -4879,7 +5003,7 @@ global variable '$!'.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Exception Processing and ensure,  Next: Ruby User's Guide On Accessors,  Prev: Ruby User's Guide On Exception Processing And rescue,  Up: Ruby User's Guide
 
-2.4.1.24 On Exception Processing And 'ensure'
+2.5.1.24 On Exception Processing And 'ensure'
 .............................................
 
 There may be cleanup work that is necessary when a method finishes its
@@ -4911,7 +5035,7 @@ if they are used together in the same 'begin...end' block, the
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Accessors,  Next: Ruby User's Guide On Object Initialization,  Prev: Ruby User's Guide On Exception Processing and ensure,  Up: Ruby User's Guide
 
-2.4.1.25 On Accessors
+2.5.1.25 On Accessors
 .....................
 
 We briefly discussed instance variables in an earlier chapter, but
@@ -5064,7 +5188,7 @@ chapter.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Object Initialization,  Next: Ruby User's Guide On Nuts And Bolts,  Prev: Ruby User's Guide On Accessors,  Up: Ruby User's Guide
 
-2.4.1.26 On Object Initialization
+2.5.1.26 On Object Initialization
 .................................
 
 Our 'Fruit' class from the previous chapter had two instance
@@ -5134,7 +5258,7 @@ together effectively allow method overloading.
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Nuts And Bolts,  Prev: Ruby User's Guide On Object Initialization,  Up: Ruby User's Guide
 
-2.4.1.27 On Nuts And Bolts
+2.5.1.27 On Nuts And Bolts
 ..........................
 
 Statement Delimiters
@@ -5266,7 +5390,7 @@ User's Guide On Modules::.  You will also find the 'load' and
 
 File: Ruby2_5.info,  Node: Ruby Programming Wikibook,  Next: Programming Ruby,  Prev: Ruby User's Guide,  Up: Manuals
 
-2.4.2 Ruby Programming Wikibook
+2.5.2 Ruby Programming Wikibook
 -------------------------------
 
 Ruby Programming Wikibook
@@ -5278,7 +5402,7 @@ thorough language reference.
 
 File: Ruby2_5.info,  Node: Programming Ruby,  Prev: Ruby Programming Wikibook,  Up: Manuals
 
-2.4.3 Programming Ruby
+2.5.3 Programming Ruby
 ----------------------
 
 The Programmatic Programmer's Guide
@@ -5383,13 +5507,13 @@ us write code in hours that would otherwise have taken days.
 
 File: Ruby2_5.info,  Node: Editors and IDEs,  Next: Further Reading,  Prev: Manuals,  Up: Documentation
 
-2.5 Editors and IDEs
+2.6 Editors and IDEs
 ====================
 
 
 File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Documentation
 
-2.6 Further Reading
+2.7 Further Reading
 ===================
 
 'Programming Ruby', by Marek Hulan, et al., contains succinct advanced
@@ -5397,7 +5521,7 @@ information about Ruby.  (See item 'ProgrammingRuby' in *note
 Bibliography: ProgrammingRuby.)
 
 
-File: Ruby2_5.info,  Node: Ruby-Doc,  Next: RDoc,  Prev: Documentation,  Up: Top
+File: Ruby2_5.info,  Node: Ruby-Doc,  Next: Ruby Documentation --- RDoc,  Prev: Documentation,  Up: Top
 
 Appendix A Ruby-Doc
 *******************

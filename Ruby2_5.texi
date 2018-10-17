@@ -282,7 +282,8 @@ URL: @url{http://www.example.com/} @*
 @top General Introduction
 @c *****************************************************************************
 
-From The Top: This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
+From The Top: This file documents Ruby 2.5, @url{https://www.ruby-lang.org, Ruby-Lang}
+and @url{https://github.com/ruby, Ruby-Github}.
 
 @insertcopying
 @end ifnotxml
@@ -295,7 +296,7 @@ From The Top: This file documents Ruby 2.5, @url{https://www.ruby-lang.org}
 * Introduction::
 * Documentation::
 * Ruby-Doc::
-* RDoc::
+* Ruby Documentation --- RDoc::
 * Utility Programs::
 * Initial Setup and Post Create::
 * The Makefile::
@@ -318,6 +319,7 @@ Preface
 Documentation
 
 * Installing Ruby::
+* Help Tools::
 * Developing Ruby::
 * Getting Started::
 * Manuals::
@@ -352,6 +354,12 @@ Building From Source
 * Releases Page::
 * Branches Page::
 * Issue Tracking::
+
+Ruby Help Tools
+
+* RDoc::
+* ri::
+* Ruby Debugger::
 
 Getting Started
 
@@ -465,7 +473,7 @@ API Documentation
 * Methods API::
 * Beginner Core Topics::
 
-RDoc --- Ruby Documentation System
+The Ruby Documentation System --- RDoc
 
 * Generating Documention::
 * Writing Documentation::
@@ -678,6 +686,7 @@ in handy when you feel like coding in Ruby.
 
 @menu
 * Installing Ruby::
+* Help Tools::
 * Developing Ruby::
 * Getting Started::
 * Manuals::
@@ -1062,6 +1071,149 @@ EOL date: 2018-03-31@*
 
 @url{https://bugs.ruby-lang.org/projects/ruby-trunk/issues?set_filter=1, All
 Issues}
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Help Tools
+@section Ruby Help Tools
+@cindex help tools
+@cindex tools, help
+@cindex Ruby Interactive
+@cindex Ruby Index
+@cindex @command{ri}
+@cindex RDoc
+@cindex Ruby Documentation
+@cindex @command{rdoc}
+
+@itemize
+
+@item
+Ruby Index --- @command{ri}
+
+@item
+Ruby Documentation (RDoc) System --- @command{rdoc}
+
+@itemize
+@item
+@url{https://github.com/ruby/rdoc, RDoc}
+
+@item
+@url{http://ruby.github.io/rdoc, @command{rdoc}}
+
+@end itemize
+@end itemize
+
+@quotation
+@dfn{RDoc} produces HTML and online documentation for Ruby projects.  RDoc includes
+the @command{rdoc} and @command{ri} tools for generating and displaying online
+documentation.
+
+The Ruby @command{ri} tool is used to view the Ruby documentation off-line.
+
+@end quotation
+
+@command{ri} (Ruby Index) and RDoc (Ruby Documentation) are a closely related
+pair of tools for providing documentation about Ruby programs.  @command{ri} is
+a command-line tool; the RDoc system includes the command-line tool
+@command{rdoc}.  @command{ri} and @command{rdoc} are standalone programs; you
+run them from the command line.
+
+
+@c .....................................
+
+@menu
+* RDoc::
+* ri::
+* Ruby Debugger::
+@end menu
+
+@node RDoc
+@subsection RDoc
+@cindex RDoc
+
+RDoc is a documentation system.  If you put comments in your program files
+(Ruby or C) in the prescribed RDoc format, @command{rdoc} scans your files,
+extracts the comments, organizes them intelligently (indexed according to what
+they comment on), and creates nicely formatted documentation from them.  You can
+see RDoc markup in many of the C files in the Ruby source tree and many of the
+Ruby files in the Ruby installation.
+
+
+@c .....................................
+
+@node ri
+@subsection @command{ri} Help System
+@cindex @command{ri}
+@cindex Ruby Index @command{ri}
+@cindex Ruby Interactive
+
+@quotation
+The name stands for Ruby Interactive (not to be confused with Interactive Ruby).
+@end quotation
+
+The Ruby @command{ri} tool is used to view the Ruby documentation off-line.
+Open a command window and invoke @command{ri} followed by the name of a Ruby
+class, module or method.  @command{ri} will display documentation for you.  You
+may specify a method name without a qualifying class or module name, but this
+will just show you a list of all methods by that name (unless the method is
+unique).  Normally, you can separate a class or module name from a method name
+with a period.  If a class defines a class method and an instance method by the
+same name, you must instead use @code{::} to refer to a class method or
+@code{#} to refer to the instance method.  Here are some example invocations of
+@command{ri}:
+
+@example
+ri Array  
+ri Array.sort  
+ri Hash#each  
+ri Math::sqrt
+@end example
+
+@command{ri} dovetails with RDoc: It gives you a way to view the information
+that RDoc has extracted and organized.  Specifically (although not exclusively,
+if you customize it), @command{ri} is configured to display the RDoc
+information from the Ruby source files.  Thus on any system that has Ruby fully
+installed, you can get detailed information about Ruby with a simple
+command-line invocation of @command{ri}.  Some more information is available here:
+
+@subheading Classes
+
+To see a list of all the classes for which @command{ri} has documentation, type
+the following: @kbd{ri -c}.  Then try accessing the documentation for a sample
+class: @kbd{ri Hash}.  Next, try viewing the documentation for a given method,
+for example, one from the @file{Array} class, rather than @file{Hash}, just to
+give as much variety as possible: @kbd{ri 'Array#<<'}.  You will sometimes need
+to quote the method name, in this case @kbd{<<}, to avoid the shell
+interpreting certain metacharacters.
+
+In one of your shell's start-up files, you may care to alias @command{ri} to
+@samp{ri -f ansi}, which will ensure you get a nice coloured display (as in the
+example above) when displaying documentation.
+
+
+@c .....................................
+
+@node Ruby Debugger
+@subsection The Ruby Debugger
+@cindex debugger
+
+The Ruby debugger is a library loaded into Ruby at run-time. This is done as follows:
+
+@example
+ruby -r debug [
+            options
+            ] [
+            programfile
+            ] [
+            arguments
+            ]
+@end example
+
+The debugger can do all the usual sorts of things you would expect it to, such
+as set breakpoints, step into and over code, print out the call stack, etc.
 
 
 
@@ -12863,8 +13015,8 @@ Class
 
 @c *****************************************************************************
 
-@node RDoc
-@appendix RDoc --- Ruby Documentation System
+@node Ruby Documentation --- RDoc
+@appendix The Ruby Documentation System --- RDoc
 @cindex RDoc
 @cindex @command{rdoc}
 @cindex @command{ri}

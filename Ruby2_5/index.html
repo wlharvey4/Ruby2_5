@@ -181,7 +181,8 @@ Next: <a href="Preface.html#Preface" accesskey="n" rel="next">Preface</a>, Up: <
 <a name="General-Introduction"></a>
 <h1 class="top">General Introduction</h1>
 
-<p>From The Top: This file documents Ruby 2.5, <a href="https://www.ruby-lang.org">https://www.ruby-lang.org</a>
+<p>From The Top: This file documents Ruby 2.5, <a href="https://www.ruby-lang.org">Ruby-Lang</a>
+and <a href="https://github.com/ruby">Ruby-Github</a>.
 </p>
 
 
@@ -206,7 +207,7 @@ the conditions of the GNU General Public License, version 3.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Ruby_002dDoc.html#Ruby_002dDoc" accesskey="4">Ruby-Doc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="RDoc.html#RDoc" accesskey="5">RDoc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Ruby-Documentation-_002d_002d_002d-RDoc.html#Ruby-Documentation-_002d_002d_002d-RDoc" accesskey="5">Ruby Documentation --- RDoc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Utility-Programs.html#Utility-Programs" accesskey="6">Utility Programs</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -243,6 +244,8 @@ Preface
 Documentation
 
 </pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Installing-Ruby.html#Installing-Ruby">Installing Ruby</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Help-Tools.html#Help-Tools">Help Tools</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Developing-Ruby.html#Developing-Ruby">Developing Ruby</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -301,6 +304,16 @@ Building From Source
 <tr><td align="left" valign="top">&bull; <a href="Branches-Page.html#Branches-Page">Branches Page</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="Issue-Tracking.html#Issue-Tracking">Issue Tracking</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+
+Ruby Help Tools
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="RDoc.html#RDoc">RDoc</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="ri.html#ri">ri</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Ruby-Debugger.html#Ruby-Debugger">Ruby Debugger</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
 
@@ -508,7 +521,7 @@ API Documentation
 </td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
 
-RDoc &mdash; Ruby Documentation System
+The Ruby Documentation System &mdash; RDoc
 
 </pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Generating-Documention.html#Generating-Documention">Generating Documention</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
@@ -615,7 +628,7 @@ Code Chunk Summaries
 <li><a name="stoc-Introduction-1" href="#toc-Introduction-1">1 Introduction</a></li>
 <li><a name="stoc-Documentation-1" href="#toc-Documentation-1">2 Documentation</a></li>
 <li><a name="stoc-Ruby_002dDoc-1" href="#toc-Ruby_002dDoc-1">Appendix A Ruby-Doc</a></li>
-<li><a name="stoc-RDoc-_002d_002d_002d-Ruby-Documentation-System" href="#toc-RDoc-_002d_002d_002d-Ruby-Documentation-System">Appendix B RDoc &mdash; Ruby Documentation System</a></li>
+<li><a name="stoc-The-Ruby-Documentation-System-_002d_002d_002d-RDoc" href="#toc-The-Ruby-Documentation-System-_002d_002d_002d-RDoc">Appendix B The Ruby Documentation System &mdash; RDoc</a></li>
 <li><a name="stoc-Utility-Programs-1" href="#toc-Utility-Programs-1">Appendix C Utility Programs</a></li>
 <li><a name="stoc-Initial-Setup-and-Post-Create-1" href="#toc-Initial-Setup-and-Post-Create-1">Appendix D Initial Setup and Post Create</a></li>
 <li><a name="stoc-The-Makefile-1" href="#toc-The-Makefile-1">Appendix E The Makefile</a></li>
@@ -668,104 +681,110 @@ Code Chunk Summaries
         <li><a name="toc-Ruby-Issue-Tracking-System" href="Issue-Tracking.html#Issue-Tracking">2.1.4.3 Ruby Issue Tracking System</a></li>
       </ul></li>
     </ul></li>
-    <li><a name="toc-Developing-Ruby-1" href="Developing-Ruby.html#Developing-Ruby">2.2 Developing Ruby</a></li>
-    <li><a name="toc-Getting-Started-1" href="Getting-Started.html#Getting-Started">2.3 Getting Started</a>
+    <li><a name="toc-Ruby-Help-Tools" href="Help-Tools.html#Help-Tools">2.2 Ruby Help Tools</a>
     <ul class="no-bullet">
-      <li><a name="toc-Try-Ruby_0021-1" href="Try-Ruby_0021.html#Try-Ruby_0021">2.3.1 Try Ruby!</a></li>
-      <li><a name="toc-Official-FAQ-1" href="Official-FAQ.html#Official-FAQ">2.3.2 Official FAQ</a>
-      <ul class="no-bullet">
-        <li><a name="toc-FAQ-Iterators-1" href="FAQ-Iterators.html#FAQ-Iterators">2.3.2.1 FAQ Iterators</a></li>
-        <li><a name="toc-FAQ-Syntax-1" href="FAQ-Syntax.html#FAQ-Syntax">2.3.2.2 FAQ Syntax</a></li>
-        <li><a name="toc-FAQ-Methods-1" href="FAQ-Methods.html#FAQ-Methods">2.3.2.3 FAQ Methods</a></li>
-        <li><a name="toc-FAQ-Classes-and-Modules-1" href="FAQ-Classes-and-Modules.html#FAQ-Classes-and-Modules">2.3.2.4 FAQ Classes and Modules</a></li>
-        <li><a name="toc-FAQ-Built_002dIn-Libraries-1" href="FAQ-Built_002dIn-Libraries.html#FAQ-Built_002dIn-Libraries">2.3.2.5 FAQ Built-In Libraries</a></li>
-        <li><a name="toc-FAQ-Extension-Library-1" href="FAQ-Extension-Library.html#FAQ-Extension-Library">2.3.2.6 FAQ Extension Library</a></li>
-        <li><a name="toc-FAQ-Other-Features-1" href="FAQ-Other-Features.html#FAQ-Other-Features">2.3.2.7 FAQ Other Features</a></li>
-      </ul></li>
-      <li><a name="toc-Ruby-Koans-1" href="Ruby-Koans.html#Ruby-Koans">2.3.3 Ruby Koans</a></li>
-      <li><a name="toc-Whyas-_0028Poignant_0029-Guide-to-Ruby" href="Whyas-_0028Poignant_0029-Guide-to-Ruby.html#Why_00e2_0080_0099s-_0028Poignant_0029-Guide-to-Ruby">2.3.4 Whyâs (Poignant) Guide to Ruby</a></li>
-      <li><a name="toc-Ruby-in-Twenty-Minutes-1" href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes">2.3.5 Ruby in Twenty Minutes</a>
-      <ul class="no-bullet">
-        <li><a name="toc-Interactive-Ruby-1" href="Interactive-Ruby.html#Interactive-Ruby">2.3.5.1 Interactive Ruby</a></li>
-        <li><a name="toc-Defining-Methods-1" href="Defining-Methods.html#Defining-Methods">2.3.5.2 Defining Methods</a></li>
-        <li><a name="toc-Altering-Classes-1" href="Altering-Classes.html#Altering-Classes">2.3.5.3 Altering Classes</a></li>
-        <li><a name="toc-Large-Class-Definition-1" href="Large-Class-Definition.html#Large-Class-Definition">2.3.5.4 Large Class Definition</a></li>
-        <li><a name="toc-Run-MegaGreeter-1" href="Run-MegaGreeter.html#Run-MegaGreeter">2.3.5.5 Run MegaGreeter</a></li>
-      </ul></li>
-      <li><a name="toc-Ruby-from-Other-Languages-1" href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages">2.3.6 Ruby from Other Languages</a>
-      <ul class="no-bullet">
-        <li><a name="toc-To-Ruby-From-C-and-C_002b_002b-1" href="To-Ruby-From-C-and-C_002b_002b.html#To-Ruby-From-C-and-C_002b_002b">2.3.6.1 To Ruby From C and C++</a></li>
-        <li><a name="toc-To-Ruby-From-Java-1" href="To-Ruby-From-Java.html#To-Ruby-From-Java">2.3.6.2 To Ruby From Java</a></li>
-        <li><a name="toc-To-Ruby-From-Perl-1" href="To-Ruby-From-Perl.html#To-Ruby-From-Perl">2.3.6.3 To Ruby From Perl</a></li>
-        <li><a name="toc-To-Ruby-From-PHP-1" href="To-Ruby-From-PHP.html#To-Ruby-From-PHP">2.3.6.4 To Ruby From PHP</a></li>
-        <li><a name="toc-To-Ruby-From-Python-1" href="To-Ruby-From-Python.html#To-Ruby-From-Python">2.3.6.5 To Ruby From Python</a></li>
-      </ul></li>
-      <li><a name="toc-Important-Language-Features-1" href="Important-Language-Features.html#Important-Language-Features">2.3.7 Important Language Features</a>
-      <ul class="no-bullet">
-        <li><a name="toc-Pointers-on-Iteration-1" href="Pointers-on-Iteration.html#Pointers-on-Iteration">2.3.7.1 Pointers on Iteration</a></li>
-        <li><a name="toc-Everything-has-a-value-1" href="Everything-has-a-value.html#Everything-has-a-value">2.3.7.2 Everything has a value</a></li>
-        <li><a name="toc-Symbols-are-not-lightweight-Strings-1" href="Symbols-are-not-lightweight-Strings.html#Symbols-are-not-lightweight-Strings">2.3.7.3 Symbols are not lightweight Strings</a></li>
-        <li><a name="toc-Everything-is-an-Object-1" href="Everything-is-an-Object.html#Everything-is-an-Object">2.3.7.4 Everything is an Object</a></li>
-        <li><a name="toc-Variable-Constants-1" href="Variable-Constants.html#Variable-Constants">2.3.7.5 Variable Constants</a></li>
-        <li><a name="toc-Naming-conventions-1" href="Naming-conventions.html#Naming-conventions">2.3.7.6 Naming conventions</a></li>
-        <li><a name="toc-Keyword-arguments-1" href="Keyword-arguments.html#Keyword-arguments">2.3.7.7 Keyword arguments</a></li>
-        <li><a name="toc-The-universal-truth-1" href="The-universal-truth.html#The-universal-truth">2.3.7.8 The universal truth</a></li>
-        <li><a name="toc-Access-modifiers-are-Methods-1" href="Access-modifiers-are-Methods.html#Access-modifiers-are-Methods">2.3.7.9 Access modifiers are Methods</a></li>
-        <li><a name="toc-Method-access-1" href="Method-access.html#Method-access">2.3.7.10 Method access</a></li>
-        <li><a name="toc-Classes-are-open-1" href="Classes-are-open.html#Classes-are-open">2.3.7.11 Classes are open</a></li>
-        <li><a name="toc-Funny-method-names-1" href="Funny-method-names.html#Funny-method-names">2.3.7.12 Funny method names</a></li>
-        <li><a name="toc-Singleton-methods-1" href="Singleton-methods.html#Singleton-methods">2.3.7.13 Singleton methods</a></li>
-        <li><a name="toc-Missing-methods-1" href="Missing-methods.html#Missing-methods">2.3.7.14 Missing methods</a></li>
-        <li><a name="toc-Message-passing_002c-not-function-calls" href="Message-passing-_002d_002d_002d-not-function-calls.html#Message-passing-_002d_002d_002d-not-function-calls">2.3.7.15 Message passing, not function calls</a></li>
-        <li><a name="toc-Blocks-are-Objects-1" href="Blocks-are-Objects.html#Blocks-are-Objects">2.3.7.16 Blocks are Objects</a></li>
-        <li><a name="toc-Operators-are-syntactic-sugar-1" href="Operators-are-syntactic-sugar.html#Operators-are-syntactic-sugar">2.3.7.17 Operators are syntactic sugar</a></li>
-      </ul></li>
-      <li><a name="toc-Learning-Ruby-1" href="Learning-Ruby.html#Learning-Ruby">2.3.8 Learning Ruby</a></li>
-      <li><a name="toc-Ruby-Essentials-1" href="Ruby-Essentials.html#Ruby-Essentials">2.3.9 Ruby Essentials</a>
-      <ul class="no-bullet">
-        <li><a name="toc-Interactive-Ruby-Execution-1" href="Interactive-Ruby-Execution.html#Interactive-Ruby-Execution">2.3.9.1 Interactive Ruby Execution</a></li>
-        <li><a name="toc-Block-Ruby-Commenets" href="Block-Ruby-Comments.html#Block-Ruby-Comments">2.3.9.2 Block Ruby Commenets</a></li>
-        <li><a name="toc-Variable-Scope-1" href="Variable-Scope.html#Variable-Scope">2.3.9.3 Variable Scope</a></li>
-      </ul></li>
-      <li><a name="toc-Learn-to-Program-1" href="Learn-to-Program.html#Learn-to-Program">2.3.10 Learn to Program</a></li>
+      <li><a name="toc-RDoc-1" href="RDoc.html#RDoc">2.2.1 RDoc</a></li>
+      <li><a name="toc-ri-Help-System" href="ri.html#ri">2.2.2 <code>ri</code> Help System</a></li>
+      <li><a name="toc-The-Ruby-Debugger" href="Ruby-Debugger.html#Ruby-Debugger">2.2.3 The Ruby Debugger</a></li>
     </ul></li>
-    <li><a name="toc-Manuals-1" href="Manuals.html#Manuals">2.4 Manuals</a>
+    <li><a name="toc-Developing-Ruby-1" href="Developing-Ruby.html#Developing-Ruby">2.3 Developing Ruby</a></li>
+    <li><a name="toc-Getting-Started-1" href="Getting-Started.html#Getting-Started">2.4 Getting Started</a>
     <ul class="no-bullet">
-      <li><a name="toc-Ruby-User_0027s-Guide-1" href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide">2.4.1 Ruby User&rsquo;s Guide</a>
+      <li><a name="toc-Try-Ruby_0021-1" href="Try-Ruby_0021.html#Try-Ruby_0021">2.4.1 Try Ruby!</a></li>
+      <li><a name="toc-Official-FAQ-1" href="Official-FAQ.html#Official-FAQ">2.4.2 Official FAQ</a>
       <ul class="no-bullet">
-        <li><a name="toc-On-What-Ruby-Is" href="Ruby-User_0027s-Guide-On-What-Ruby-IS.html#Ruby-User_0027s-Guide-On-What-Ruby-IS">2.4.1.1 On What Ruby Is</a></li>
-        <li><a name="toc-On-Simple-Examples" href="Ruby-User_0027s-Guide-On-Simple-Examples.html#Ruby-User_0027s-Guide-On-Simple-Examples">2.4.1.2 On Simple Examples</a></li>
-        <li><a name="toc-On-Strings" href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings">2.4.1.3 On Strings</a></li>
-        <li><a name="toc-On-Puzzle-Program" href="Ruby-User_0027s-Guide-On-Puzzle-Program.html#Ruby-User_0027s-Guide-On-Puzzle-Program">2.4.1.4 On Puzzle Program</a></li>
-        <li><a name="toc-Regular-Expressions" href="Ruby-User_0027s-Guide-on-Regular-Expressions.html#Ruby-User_0027s-Guide-on-Regular-Expressions">2.4.1.5 Regular Expressions</a></li>
-        <li><a name="toc-On-Arrays-And-Hashes" href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes">2.4.1.6 On Arrays And Hashes</a></li>
-        <li><a name="toc-On-Control-Structures" href="Ruby-User_0027s-Guide-On-Control-Structures.html#Ruby-User_0027s-Guide-On-Control-Structures">2.4.1.7 On Control Structures</a></li>
-        <li><a name="toc-Ruby-User_0027s-Guide-On-Iterators-1" href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators">2.4.1.8 Ruby User&rsquo;s Guide On Iterators</a></li>
-        <li><a name="toc-On-Object_002dOriented-Thinking" href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking">2.4.1.9 On Object-Oriented Thinking</a></li>
-        <li><a name="toc-On-Methods" href="Ruby-User_0027s-Guide-on-Methods.html#Ruby-User_0027s-Guide-on-Methods">2.4.1.10 On Methods</a></li>
-        <li><a name="toc-On-Classes" href="Ruby-User_0027s-Guide-on-Classes.html#Ruby-User_0027s-Guide-on-Classes">2.4.1.11 On Classes</a></li>
-        <li><a name="toc-On-Inheritance" href="Ruby-User_0027s-Guide-on-Inheritance.html#Ruby-User_0027s-Guide-on-Inheritance">2.4.1.12 On Inheritance</a></li>
-        <li><a name="toc-On-Redefinition-of-Methods" href="Ruby-User_0027s-Guide-on-Redefinition-Of-Methods.html#Ruby-User_0027s-Guide-on-Redefinition-Of-Methods">2.4.1.13 On Redefinition of Methods</a></li>
-        <li><a name="toc-On-Access-Control" href="Ruby-User_0027s-Guide-On-Access-Control.html#Ruby-User_0027s-Guide-On-Access-Control">2.4.1.14 On Access Control</a></li>
-        <li><a name="toc-On-Singleton-Methods" href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods">2.4.1.15 On Singleton Methods</a></li>
-        <li><a name="toc-On-Modules" href="Ruby-User_0027s-Guide-On-Modules.html#Ruby-User_0027s-Guide-On-Modules">2.4.1.16 On Modules</a></li>
-        <li><a name="toc-On-Procedure-Objects-_0028Procs_0029" href="Ruby-User_0027s-Guide-On-Procedure-Objects.html#Ruby-User_0027s-Guide-On-Procedure-Objects">2.4.1.17 On Procedure Objects (Procs)</a></li>
-        <li><a name="toc-On-Variables" href="Ruby-User_0027s-Guide-On-Variables.html#Ruby-User_0027s-Guide-On-Variables">2.4.1.18 On Variables</a></li>
-        <li><a name="toc-On-Global-Variables" href="Ruby-User_0027s-Guide-On-Global-Variables.html#Ruby-User_0027s-Guide-On-Global-Variables">2.4.1.19 On Global Variables</a></li>
-        <li><a name="toc-On-Instance-Variables" href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables">2.4.1.20 On Instance Variables</a></li>
-        <li><a name="toc-On-Local-Variables" href="Ruby-User_0027s-Guide-On-Local-Variables.html#Ruby-User_0027s-Guide-On-Local-Variables">2.4.1.21 On Local Variables</a></li>
-        <li><a name="toc-On-Class-Constants" href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants">2.4.1.22 On Class Constants</a></li>
-        <li><a name="toc-On-Exception-Processing-and-rescue" href="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue.html#Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue">2.4.1.23 On Exception Processing and <code>rescue</code></a></li>
-        <li><a name="toc-On-Exception-Processing-And-ensure" href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure">2.4.1.24 On Exception Processing And <code>ensure</code></a></li>
-        <li><a name="toc-On-Accessors" href="Ruby-User_0027s-Guide-On-Accessors.html#Ruby-User_0027s-Guide-On-Accessors">2.4.1.25 On Accessors</a></li>
-        <li><a name="toc-On-Object-Initialization" href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization">2.4.1.26 On Object Initialization</a></li>
-        <li><a name="toc-On-Nuts-And-Bolts" href="Ruby-User_0027s-Guide-On-Nuts-And-Bolts.html#Ruby-User_0027s-Guide-On-Nuts-And-Bolts">2.4.1.27 On Nuts And Bolts</a></li>
+        <li><a name="toc-FAQ-Iterators-1" href="FAQ-Iterators.html#FAQ-Iterators">2.4.2.1 FAQ Iterators</a></li>
+        <li><a name="toc-FAQ-Syntax-1" href="FAQ-Syntax.html#FAQ-Syntax">2.4.2.2 FAQ Syntax</a></li>
+        <li><a name="toc-FAQ-Methods-1" href="FAQ-Methods.html#FAQ-Methods">2.4.2.3 FAQ Methods</a></li>
+        <li><a name="toc-FAQ-Classes-and-Modules-1" href="FAQ-Classes-and-Modules.html#FAQ-Classes-and-Modules">2.4.2.4 FAQ Classes and Modules</a></li>
+        <li><a name="toc-FAQ-Built_002dIn-Libraries-1" href="FAQ-Built_002dIn-Libraries.html#FAQ-Built_002dIn-Libraries">2.4.2.5 FAQ Built-In Libraries</a></li>
+        <li><a name="toc-FAQ-Extension-Library-1" href="FAQ-Extension-Library.html#FAQ-Extension-Library">2.4.2.6 FAQ Extension Library</a></li>
+        <li><a name="toc-FAQ-Other-Features-1" href="FAQ-Other-Features.html#FAQ-Other-Features">2.4.2.7 FAQ Other Features</a></li>
       </ul></li>
-      <li><a name="toc-Ruby-Programming-Wikibook-1" href="Ruby-Programming-Wikibook.html#Ruby-Programming-Wikibook">2.4.2 Ruby Programming Wikibook</a></li>
-      <li><a name="toc-Programming-Ruby-1" href="Programming-Ruby.html#Programming-Ruby">2.4.3 Programming Ruby</a></li>
+      <li><a name="toc-Ruby-Koans-1" href="Ruby-Koans.html#Ruby-Koans">2.4.3 Ruby Koans</a></li>
+      <li><a name="toc-Whyas-_0028Poignant_0029-Guide-to-Ruby" href="Whyas-_0028Poignant_0029-Guide-to-Ruby.html#Why_00e2_0080_0099s-_0028Poignant_0029-Guide-to-Ruby">2.4.4 Whyâs (Poignant) Guide to Ruby</a></li>
+      <li><a name="toc-Ruby-in-Twenty-Minutes-1" href="Ruby-in-Twenty-Minutes.html#Ruby-in-Twenty-Minutes">2.4.5 Ruby in Twenty Minutes</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Interactive-Ruby-1" href="Interactive-Ruby.html#Interactive-Ruby">2.4.5.1 Interactive Ruby</a></li>
+        <li><a name="toc-Defining-Methods-1" href="Defining-Methods.html#Defining-Methods">2.4.5.2 Defining Methods</a></li>
+        <li><a name="toc-Altering-Classes-1" href="Altering-Classes.html#Altering-Classes">2.4.5.3 Altering Classes</a></li>
+        <li><a name="toc-Large-Class-Definition-1" href="Large-Class-Definition.html#Large-Class-Definition">2.4.5.4 Large Class Definition</a></li>
+        <li><a name="toc-Run-MegaGreeter-1" href="Run-MegaGreeter.html#Run-MegaGreeter">2.4.5.5 Run MegaGreeter</a></li>
+      </ul></li>
+      <li><a name="toc-Ruby-from-Other-Languages-1" href="Ruby-from-Other-Languages.html#Ruby-from-Other-Languages">2.4.6 Ruby from Other Languages</a>
+      <ul class="no-bullet">
+        <li><a name="toc-To-Ruby-From-C-and-C_002b_002b-1" href="To-Ruby-From-C-and-C_002b_002b.html#To-Ruby-From-C-and-C_002b_002b">2.4.6.1 To Ruby From C and C++</a></li>
+        <li><a name="toc-To-Ruby-From-Java-1" href="To-Ruby-From-Java.html#To-Ruby-From-Java">2.4.6.2 To Ruby From Java</a></li>
+        <li><a name="toc-To-Ruby-From-Perl-1" href="To-Ruby-From-Perl.html#To-Ruby-From-Perl">2.4.6.3 To Ruby From Perl</a></li>
+        <li><a name="toc-To-Ruby-From-PHP-1" href="To-Ruby-From-PHP.html#To-Ruby-From-PHP">2.4.6.4 To Ruby From PHP</a></li>
+        <li><a name="toc-To-Ruby-From-Python-1" href="To-Ruby-From-Python.html#To-Ruby-From-Python">2.4.6.5 To Ruby From Python</a></li>
+      </ul></li>
+      <li><a name="toc-Important-Language-Features-1" href="Important-Language-Features.html#Important-Language-Features">2.4.7 Important Language Features</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Pointers-on-Iteration-1" href="Pointers-on-Iteration.html#Pointers-on-Iteration">2.4.7.1 Pointers on Iteration</a></li>
+        <li><a name="toc-Everything-has-a-value-1" href="Everything-has-a-value.html#Everything-has-a-value">2.4.7.2 Everything has a value</a></li>
+        <li><a name="toc-Symbols-are-not-lightweight-Strings-1" href="Symbols-are-not-lightweight-Strings.html#Symbols-are-not-lightweight-Strings">2.4.7.3 Symbols are not lightweight Strings</a></li>
+        <li><a name="toc-Everything-is-an-Object-1" href="Everything-is-an-Object.html#Everything-is-an-Object">2.4.7.4 Everything is an Object</a></li>
+        <li><a name="toc-Variable-Constants-1" href="Variable-Constants.html#Variable-Constants">2.4.7.5 Variable Constants</a></li>
+        <li><a name="toc-Naming-conventions-1" href="Naming-conventions.html#Naming-conventions">2.4.7.6 Naming conventions</a></li>
+        <li><a name="toc-Keyword-arguments-1" href="Keyword-arguments.html#Keyword-arguments">2.4.7.7 Keyword arguments</a></li>
+        <li><a name="toc-The-universal-truth-1" href="The-universal-truth.html#The-universal-truth">2.4.7.8 The universal truth</a></li>
+        <li><a name="toc-Access-modifiers-are-Methods-1" href="Access-modifiers-are-Methods.html#Access-modifiers-are-Methods">2.4.7.9 Access modifiers are Methods</a></li>
+        <li><a name="toc-Method-access-1" href="Method-access.html#Method-access">2.4.7.10 Method access</a></li>
+        <li><a name="toc-Classes-are-open-1" href="Classes-are-open.html#Classes-are-open">2.4.7.11 Classes are open</a></li>
+        <li><a name="toc-Funny-method-names-1" href="Funny-method-names.html#Funny-method-names">2.4.7.12 Funny method names</a></li>
+        <li><a name="toc-Singleton-methods-1" href="Singleton-methods.html#Singleton-methods">2.4.7.13 Singleton methods</a></li>
+        <li><a name="toc-Missing-methods-1" href="Missing-methods.html#Missing-methods">2.4.7.14 Missing methods</a></li>
+        <li><a name="toc-Message-passing_002c-not-function-calls" href="Message-passing-_002d_002d_002d-not-function-calls.html#Message-passing-_002d_002d_002d-not-function-calls">2.4.7.15 Message passing, not function calls</a></li>
+        <li><a name="toc-Blocks-are-Objects-1" href="Blocks-are-Objects.html#Blocks-are-Objects">2.4.7.16 Blocks are Objects</a></li>
+        <li><a name="toc-Operators-are-syntactic-sugar-1" href="Operators-are-syntactic-sugar.html#Operators-are-syntactic-sugar">2.4.7.17 Operators are syntactic sugar</a></li>
+      </ul></li>
+      <li><a name="toc-Learning-Ruby-1" href="Learning-Ruby.html#Learning-Ruby">2.4.8 Learning Ruby</a></li>
+      <li><a name="toc-Ruby-Essentials-1" href="Ruby-Essentials.html#Ruby-Essentials">2.4.9 Ruby Essentials</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Interactive-Ruby-Execution-1" href="Interactive-Ruby-Execution.html#Interactive-Ruby-Execution">2.4.9.1 Interactive Ruby Execution</a></li>
+        <li><a name="toc-Block-Ruby-Commenets" href="Block-Ruby-Comments.html#Block-Ruby-Comments">2.4.9.2 Block Ruby Commenets</a></li>
+        <li><a name="toc-Variable-Scope-1" href="Variable-Scope.html#Variable-Scope">2.4.9.3 Variable Scope</a></li>
+      </ul></li>
+      <li><a name="toc-Learn-to-Program-1" href="Learn-to-Program.html#Learn-to-Program">2.4.10 Learn to Program</a></li>
     </ul></li>
-    <li><a name="toc-Editors-and-IDEs-1" href="Editors-and-IDEs.html#Editors-and-IDEs">2.5 Editors and IDEs</a></li>
-    <li><a name="toc-Further-Reading-1" href="Further-Reading.html#Further-Reading">2.6 Further Reading</a></li>
+    <li><a name="toc-Manuals-1" href="Manuals.html#Manuals">2.5 Manuals</a>
+    <ul class="no-bullet">
+      <li><a name="toc-Ruby-User_0027s-Guide-1" href="Ruby-User_0027s-Guide.html#Ruby-User_0027s-Guide">2.5.1 Ruby User&rsquo;s Guide</a>
+      <ul class="no-bullet">
+        <li><a name="toc-On-What-Ruby-Is" href="Ruby-User_0027s-Guide-On-What-Ruby-IS.html#Ruby-User_0027s-Guide-On-What-Ruby-IS">2.5.1.1 On What Ruby Is</a></li>
+        <li><a name="toc-On-Simple-Examples" href="Ruby-User_0027s-Guide-On-Simple-Examples.html#Ruby-User_0027s-Guide-On-Simple-Examples">2.5.1.2 On Simple Examples</a></li>
+        <li><a name="toc-On-Strings" href="Ruby-User_0027s-Guide-on-Strings.html#Ruby-User_0027s-Guide-on-Strings">2.5.1.3 On Strings</a></li>
+        <li><a name="toc-On-Puzzle-Program" href="Ruby-User_0027s-Guide-On-Puzzle-Program.html#Ruby-User_0027s-Guide-On-Puzzle-Program">2.5.1.4 On Puzzle Program</a></li>
+        <li><a name="toc-Regular-Expressions" href="Ruby-User_0027s-Guide-on-Regular-Expressions.html#Ruby-User_0027s-Guide-on-Regular-Expressions">2.5.1.5 Regular Expressions</a></li>
+        <li><a name="toc-On-Arrays-And-Hashes" href="Ruby-User_0027s-Guide-On-Arrays-And-Hashes.html#Ruby-User_0027s-Guide-On-Arrays-And-Hashes">2.5.1.6 On Arrays And Hashes</a></li>
+        <li><a name="toc-On-Control-Structures" href="Ruby-User_0027s-Guide-On-Control-Structures.html#Ruby-User_0027s-Guide-On-Control-Structures">2.5.1.7 On Control Structures</a></li>
+        <li><a name="toc-Ruby-User_0027s-Guide-On-Iterators-1" href="Ruby-User_0027s-Guide-On-Iterators.html#Ruby-User_0027s-Guide-On-Iterators">2.5.1.8 Ruby User&rsquo;s Guide On Iterators</a></li>
+        <li><a name="toc-On-Object_002dOriented-Thinking" href="Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking.html#Ruby-User_0027s-Guide-On-Object_002dOriented-Thinking">2.5.1.9 On Object-Oriented Thinking</a></li>
+        <li><a name="toc-On-Methods" href="Ruby-User_0027s-Guide-on-Methods.html#Ruby-User_0027s-Guide-on-Methods">2.5.1.10 On Methods</a></li>
+        <li><a name="toc-On-Classes" href="Ruby-User_0027s-Guide-on-Classes.html#Ruby-User_0027s-Guide-on-Classes">2.5.1.11 On Classes</a></li>
+        <li><a name="toc-On-Inheritance" href="Ruby-User_0027s-Guide-on-Inheritance.html#Ruby-User_0027s-Guide-on-Inheritance">2.5.1.12 On Inheritance</a></li>
+        <li><a name="toc-On-Redefinition-of-Methods" href="Ruby-User_0027s-Guide-on-Redefinition-Of-Methods.html#Ruby-User_0027s-Guide-on-Redefinition-Of-Methods">2.5.1.13 On Redefinition of Methods</a></li>
+        <li><a name="toc-On-Access-Control" href="Ruby-User_0027s-Guide-On-Access-Control.html#Ruby-User_0027s-Guide-On-Access-Control">2.5.1.14 On Access Control</a></li>
+        <li><a name="toc-On-Singleton-Methods" href="Ruby-User_0027s-Guide-On-Singleton-Methods.html#Ruby-User_0027s-Guide-On-Singleton-Methods">2.5.1.15 On Singleton Methods</a></li>
+        <li><a name="toc-On-Modules" href="Ruby-User_0027s-Guide-On-Modules.html#Ruby-User_0027s-Guide-On-Modules">2.5.1.16 On Modules</a></li>
+        <li><a name="toc-On-Procedure-Objects-_0028Procs_0029" href="Ruby-User_0027s-Guide-On-Procedure-Objects.html#Ruby-User_0027s-Guide-On-Procedure-Objects">2.5.1.17 On Procedure Objects (Procs)</a></li>
+        <li><a name="toc-On-Variables" href="Ruby-User_0027s-Guide-On-Variables.html#Ruby-User_0027s-Guide-On-Variables">2.5.1.18 On Variables</a></li>
+        <li><a name="toc-On-Global-Variables" href="Ruby-User_0027s-Guide-On-Global-Variables.html#Ruby-User_0027s-Guide-On-Global-Variables">2.5.1.19 On Global Variables</a></li>
+        <li><a name="toc-On-Instance-Variables" href="Ruby-User_0027s-Guide-On-Instance-Variables.html#Ruby-User_0027s-Guide-On-Instance-Variables">2.5.1.20 On Instance Variables</a></li>
+        <li><a name="toc-On-Local-Variables" href="Ruby-User_0027s-Guide-On-Local-Variables.html#Ruby-User_0027s-Guide-On-Local-Variables">2.5.1.21 On Local Variables</a></li>
+        <li><a name="toc-On-Class-Constants" href="Ruby-User_0027s-Guide-On-Class-Constants.html#Ruby-User_0027s-Guide-On-Class-Constants">2.5.1.22 On Class Constants</a></li>
+        <li><a name="toc-On-Exception-Processing-and-rescue" href="Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue.html#Ruby-User_0027s-Guide-On-Exception-Processing-And-rescue">2.5.1.23 On Exception Processing and <code>rescue</code></a></li>
+        <li><a name="toc-On-Exception-Processing-And-ensure" href="Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure.html#Ruby-User_0027s-Guide-On-Exception-Processing-and-ensure">2.5.1.24 On Exception Processing And <code>ensure</code></a></li>
+        <li><a name="toc-On-Accessors" href="Ruby-User_0027s-Guide-On-Accessors.html#Ruby-User_0027s-Guide-On-Accessors">2.5.1.25 On Accessors</a></li>
+        <li><a name="toc-On-Object-Initialization" href="Ruby-User_0027s-Guide-On-Object-Initialization.html#Ruby-User_0027s-Guide-On-Object-Initialization">2.5.1.26 On Object Initialization</a></li>
+        <li><a name="toc-On-Nuts-And-Bolts" href="Ruby-User_0027s-Guide-On-Nuts-And-Bolts.html#Ruby-User_0027s-Guide-On-Nuts-And-Bolts">2.5.1.27 On Nuts And Bolts</a></li>
+      </ul></li>
+      <li><a name="toc-Ruby-Programming-Wikibook-1" href="Ruby-Programming-Wikibook.html#Ruby-Programming-Wikibook">2.5.2 Ruby Programming Wikibook</a></li>
+      <li><a name="toc-Programming-Ruby-1" href="Programming-Ruby.html#Programming-Ruby">2.5.3 Programming Ruby</a></li>
+    </ul></li>
+    <li><a name="toc-Editors-and-IDEs-1" href="Editors-and-IDEs.html#Editors-and-IDEs">2.6 Editors and IDEs</a></li>
+    <li><a name="toc-Further-Reading-1" href="Further-Reading.html#Further-Reading">2.7 Further Reading</a></li>
   </ul></li>
   <li><a name="toc-Ruby_002dDoc-1" href="Ruby_002dDoc.html#Ruby_002dDoc">Appendix A Ruby-Doc</a>
   <ul class="no-bullet">
@@ -777,7 +796,7 @@ Code Chunk Summaries
       <li><a name="toc-Beginner-Core-Topics-1" href="Beginner-Core-Topics.html#Beginner-Core-Topics">A.1.4 Beginner Core Topics</a></li>
     </ul></li>
   </ul></li>
-  <li><a name="toc-RDoc-_002d_002d_002d-Ruby-Documentation-System" href="RDoc.html#RDoc">Appendix B RDoc &mdash; Ruby Documentation System</a>
+  <li><a name="toc-The-Ruby-Documentation-System-_002d_002d_002d-RDoc" href="Ruby-Documentation-_002d_002d_002d-RDoc.html#Ruby-Documentation-_002d_002d_002d-RDoc">Appendix B The Ruby Documentation System &mdash; RDoc</a>
   <ul class="no-bullet">
     <li><a name="toc-Generating-Documentation-with-RDoc" href="Generating-Documention.html#Generating-Documention">B.1 Generating Documentation with RDoc</a></li>
     <li><a name="toc-Writing-Documentation-for-RDoc" href="Writing-Documentation.html#Writing-Documentation">B.2 Writing Documentation for RDoc</a>
