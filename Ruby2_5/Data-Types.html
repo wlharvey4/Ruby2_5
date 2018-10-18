@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Data Types (Ruby2_5 Information)</title>
+
+<meta name="description" content="Data Types (Ruby2_5 Information)">
+<meta name="keywords" content="Data Types (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-Basics.html#Ruby-Basics" rel="up" title="Ruby Basics">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="next" title="Advanced Ruby">
+<link href="Language-Conventions.html#Language-Conventions" rel="prev" title="Language Conventions">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Data-Types"></a>
+<div class="header">
+<p>
+Previous: <a href="Language-Conventions.html#Language-Conventions" accesskey="p" rel="prev">Language Conventions</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Data-Types-1"></a>
+<h4 class="appendixsubsubsec">B.1.1.2 Data Types</h4>
+<a name="index-data-types"></a>
+
+<p>In Ruby everything is an object, including arrays or numbers.  However there are
+special syntax shorthands to create instances of special classes.
+</p>
+<a name="Strings"></a>
+<h4 class="subheading">Strings</h4>
+<a name="index-string-class_002c-creating"></a>
+
+<p>String are create by quoting the characters.
+</p>
+<a name="Numbers"></a>
+<h4 class="subheading">Numbers</h4>
+<a name="index-number-classes"></a>
+
+<p>Ruby has two basic number classes <samp>Fixnum</samp> and <samp>Float</samp>.
+</p>
+<a name="Empty-Value-nil"></a>
+<h4 class="subheading">Empty Value <code>nil</code></h4>
+<a name="index-nil"></a>
+<a name="index-empty-value"></a>
+<a name="index-boolean-false"></a>
+<a name="index-false"></a>
+
+<p>Special value that represents &ldquo;nothing&rdquo; is <code>nil</code>.
+</p>
+<p>In a boolean expression, <code>nil</code> is considered <code>false</code>, i.e. itâs only
+of two possible values that are not considered <code>true</code>.
+</p>
+<a name="Boolean"></a>
+<h4 class="subheading">Boolean</h4>
+<a name="index-boolean-type"></a>
+
+<p>There is either <code>true</code> or <code>false</code>.
+</p>
+<a name="Arrays"></a>
+<h4 class="subheading">Arrays</h4>
+<a name="index-array-type"></a>
+
+<p>An <em>Array</em> is an ordered sequence of values.  There are no restrictions on
+what types can be in a single array.
+</p>
+<div class="example">
+<pre class="example">[&quot;a&quot;, 1, true] # =&gt; [&quot;a&quot;, 1, true]
+</pre></div>
+
+
+<a name="Hashes-1"></a>
+<h4 class="subheading">Hashes</h4>
+<a name="index-hash-type"></a>
+
+<p>A <em>Hash</em> is a structure that maps keys to a values.
+</p>
+<div class="example">
+<pre class="example">{&quot;a&quot; =&gt; true, &quot;b&quot;: false} # =&gt; {&quot;a&quot;=&gt;true, :b=&gt;false}
+</pre></div>
+
+<a name="Hash-Styles"></a>
+<h4 class="subsubheading">Hash Styles</h4>
+<a name="index-rocket-style-hash"></a>
+<a name="index-json-style-hash"></a>
+<a name="index-hash-styles"></a>
+<p>There are two approaches how to write the mapping, either <em>rocket</em> style:
+&lsquo;<samp>key =&gt; value</samp>&rsquo; or <em>json</em> style: &lsquo;<samp>key: value</samp>&rsquo;.
+</p>
+<a name="Rocket-Style-Preferred"></a>
+<h4 class="subsubheading"><code>Rocket</code> Style Preferred</h4>
+
+<p>However with the <code>json</code> style the value is converted to symbol, so in case
+you need to use String or some other type, or get the name of the key from a
+variable, you need to use the <code>rocket</code> style.  Several well-known coding
+guidelines recommend (and enforce) using <code>rockets</code> everywhere.
+</p>
+<a name="Symbols"></a>
+<h4 class="subheading">Symbols</h4>
+<a name="index-symbol-type"></a>
+
+<p><em>Symbol</em> is a keyword.  It always maps to the same object instance.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Language-Conventions.html#Language-Conventions" accesskey="p" rel="prev">Language Conventions</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

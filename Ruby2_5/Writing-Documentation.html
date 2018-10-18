@@ -27,9 +27,9 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Ruby-Documentation-_002d_002d_002d-RDoc.html#Ruby-Documentation-_002d_002d_002d-RDoc" rel="up" title="Ruby Documentation --- RDoc">
-<link href="Markup-Directives.html#Markup-Directives" rel="next" title="Markup Directives">
-<link href="Generating-Documention.html#Generating-Documention" rel="prev" title="Generating Documention">
+<link href="RDoc.html#RDoc" rel="up" title="RDoc">
+<link href="Generating-Documention.html#Generating-Documention" rel="next" title="Generating Documention">
+<link href="RDoc.html#RDoc" rel="prev" title="RDoc">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -65,11 +65,11 @@ ul.no-bullet {list-style: none}
 <a name="Writing-Documentation"></a>
 <div class="header">
 <p>
-Previous: <a href="Generating-Documention.html#Generating-Documention" accesskey="p" rel="prev">Generating Documention</a>, Up: <a href="Ruby-Documentation-_002d_002d_002d-RDoc.html#Ruby-Documentation-_002d_002d_002d-RDoc" accesskey="u" rel="up">Ruby Documentation --- RDoc</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Generating-Documention.html#Generating-Documention" accesskey="n" rel="next">Generating Documention</a>, Up: <a href="RDoc.html#RDoc" accesskey="u" rel="up">RDoc</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="Writing-Documentation-for-RDoc"></a>
-<h3 class="appendixsec">B.2 Writing Documentation for RDoc</h3>
+<h4 class="subsubsection">2.2.1.1 Writing Documentation for RDoc</h4>
 <a name="index-writing-documentation"></a>
 
 <p>To write documentation for RDoc place a comment above the class, module,
@@ -97,12 +97,24 @@ class Shape
 end
 </pre></div>
 
+<a name="Comment-Markup-Formats"></a>
+<h4 class="subheading">Comment Markup Formats</h4>
+<a name="index-comment-markup-format"></a>
+<a name="index-RDoc_003a_003aMarkup"></a>
+<a name="index-TomDoc"></a>
+<a name="index-Markdown"></a>
+<a name="index-RD"></a>
+
 <p>The default comment markup format is the <samp>RDoc::Markup</samp> format.
 <samp>TomDoc</samp>, <samp>Markdown</samp> and <samp>RD</samp> format comments are also
 supported.
 </p>
 <a name="Directives"></a>
 <h4 class="subheading">Directives</h4>
+<a name="index-directives"></a>
+<a name="index-RDoc_003a_003aMarkup_0040Directives"></a>
+<a name="index-RDoc_003a_003aParser_003a_003aRuby"></a>
+<a name="index-metaprogram-methods"></a>
 
 <p>Comments can contain directives that tell RDoc information that it cannot
 otherwise discover through parsing.  See <samp>RDoc::Markup@Directives</samp> to
@@ -112,17 +124,12 @@ to teach RDoc about metaprogrammed methods.
 </p>
 <a name="Documentation-Coverage-Report"></a>
 <h4 class="subheading">Documentation Coverage Report</h4>
+<a name="index-documentation-coverage-report"></a>
 
 <p>To determine how well your project is documented run <code>rdoc -C lib</code> to
 get a documentation coverage report.  <code>rdoc -C1 lib</code> includes parameter
 names in the documentation coverage report.
 </p>
-
-
-<table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="Markup-Directives.html#Markup-Directives" accesskey="1">Markup Directives</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
-</td></tr>
-</table>
 
 
 
