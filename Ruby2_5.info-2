@@ -69,6 +69,19 @@ File: Ruby2_5.info,  Node: Ruby Basics,  Next: Advanced Ruby,  Up: Programming R
 B.1.1 Ruby Basics
 -----------------
 
+* Menu:
+
+* Installation - Running - About::
+* Language Conventions::
+* Data Types::
+* Methods and Variables::
+
+
+File: Ruby2_5.info,  Node: Installation - Running - About,  Next: Language Conventions,  Up: Ruby Basics
+
+B.1.1.1 Installation - Running - About
+......................................
+
 Installation on Mac OS
 ----------------------
 
@@ -138,15 +151,10 @@ What is written in Ruby?
         * static pages generators - 'Jekyll'
         * programming tools
 
-* Menu:
-
-* Language Conventions::
-* Data Types::
-
 
-File: Ruby2_5.info,  Node: Language Conventions,  Next: Data Types,  Up: Ruby Basics
+File: Ruby2_5.info,  Node: Language Conventions,  Next: Data Types,  Prev: Installation - Running - About,  Up: Ruby Basics
 
-B.1.1.1 Language Conventions
+B.1.1.2 Language Conventions
 ............................
 
 Class Names
@@ -185,9 +193,9 @@ Mutation
 methods mutating state end with '!' (exclamation mark)
 
 
-File: Ruby2_5.info,  Node: Data Types,  Prev: Language Conventions,  Up: Ruby Basics
+File: Ruby2_5.info,  Node: Data Types,  Next: Methods and Variables,  Prev: Language Conventions,  Up: Ruby Basics
 
-B.1.1.2 Data Types
+B.1.1.3 Data Types
 ..................
 
 In Ruby everything is an object, including arrays or numbers.  However
@@ -251,6 +259,46 @@ Symbols
 -------
 
 "Symbol" is a keyword.  It always maps to the same object instance.
+
+
+File: Ruby2_5.info,  Node: Methods and Variables,  Prev: Data Types,  Up: Ruby Basics
+
+B.1.1.4 Methods and Variables
+.............................
+
+Methods
+-------
+
+Methods are called using the "dot" operator.
+
+   Operators are actually methods.
+
+     3 + 3 # => 6
+     3.+(3) # => 6
+
+     [1,2][0] #=> 1
+     [1,2].[](0) # => 1
+
+Variables
+---------
+
+Global
+     "Global variables" are prefixed with '$'.
+
+Class
+     Classes have "class variables" prefixed with '@@'.
+
+     You should prefer '@instance_variables' in class-level methods,
+     as they have more predicatable behavior.
+
+Instance
+     Objects have "instance variables" prefixed with '@'.
+
+Local
+     "Local variables" are simple identifiers with no prefix.
+
+Constant
+     "Constants" are in all UPPER_CASE.
 
 
 File: Ruby2_5.info,  Node: Advanced Ruby,  Next: Ruby Testing,  Prev: Ruby Basics,  Up: Programming Ruby by Hulan
@@ -1948,7 +1996,7 @@ Index
 * arithmetic:                            FAQ Extension Library.
                                                             (line  26)
 * Array:                                 To Ruby From C and C++.
-                                                            (line 156)
+                                                            (line 155)
 * array literals in brackets:            To Ruby From C and C++.
                                                             (line 114)
 * array type:                            Data Types.        (line  36)
@@ -1975,7 +2023,7 @@ Index
 * attribute accessors:                   Ruby User's Guide On Accessors.
                                                             (line   6)
 * attributes:                            To Ruby From C and C++.
-                                                            (line 138)
+                                                            (line 137)
 * attributes <1>:                        Ruby User's Guide On Accessors.
                                                             (line   6)
 * attr_accessor :name:                   Altering Classes.  (line   9)
@@ -1989,7 +2037,7 @@ Index
 * block <1>:                             To Ruby From C and C++.
                                                             (line 106)
 * block for iterator:                    To Ruby From C and C++.
-                                                            (line 155)
+                                                            (line 154)
 * block object, passed to iterator:      FAQ Iterators.     (line   9)
 * block ruby comments:                   Block Ruby Comments.
                                                             (line   6)
@@ -2015,9 +2063,9 @@ Index
                                                             (line  18)
 * calling method 2 levels up:            FAQ Methods.       (line  64)
 * case conventions, enforced:            To Ruby From C and C++.
-                                                            (line 145)
+                                                            (line 144)
 * cast:                                  To Ruby From C and C++.
-                                                            (line 150)
+                                                            (line 149)
 * casting, none:                         To Ruby From Java. (line  49)
 * chop:                                  Ruby User's Guide on Regular Expressions.
                                                             (line  83)
@@ -2044,6 +2092,8 @@ Index
                                                             (line  18)
 * class methods, defining, 2 ways:       FAQ Classes and Modules.
                                                             (line  62)
+* class variable:                        Methods and Variables.
+                                                            (line  22)
 * class variable @@:                     Naming conventions.
                                                             (line   9)
 * class variables vs class instance variables: FAQ Classes and Modules.
@@ -2064,8 +2114,10 @@ Index
                                                             (line  17)
 * closures, proc objects:                Ruby User's Guide On Local Variables.
                                                             (line  57)
-* cloud management:                      Ruby Basics.       (line  70)
-* cloud platforms:                       Ruby Basics.       (line  69)
+* cloud management:                      Installation - Running - About.
+                                                            (line  70)
+* cloud platforms:                       Installation - Running - About.
+                                                            (line  69)
 * collect:                               Pointers on Iteration.
                                                             (line  17)
 * collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
@@ -2082,18 +2134,21 @@ Index
                                                             (line  21)
 * comments, multi-line:                  Block Ruby Comments.
                                                             (line   6)
-* compilers in Ruby:                     Ruby Basics.       (line  65)
+* compilers in Ruby:                     Installation - Running - About.
+                                                            (line  65)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
 * constant:                              Variable Scope.    (line   6)
+* constant <1>:                          Methods and Variables.
+                                                            (line  22)
 * constant naming convention:            Naming conventions.
                                                             (line   9)
 * constant, class:                       Ruby User's Guide On Class Constants.
                                                             (line   6)
 * constructor:                           To Ruby From C and C++.
-                                                            (line 132)
+                                                            (line 131)
 * constructor <1>:                       To Ruby From Java. (line  52)
 * container types:                       To Ruby From C and C++.
-                                                            (line 156)
+                                                            (line 155)
 * continuations, using:                  FAQ Other Features.
                                                             (line  20)
 * control structures:                    Ruby User's Guide On Control Structures.
@@ -2127,7 +2182,8 @@ Index
 * destructive method vs nondestructive method: Ruby User's Guide on Regular Expressions.
                                                             (line  83)
 * developing Ruby:                       Developing Ruby.   (line   6)
-* devops tools:                          Ruby Basics.       (line  68)
+* devops tools:                          Installation - Running - About.
+                                                            (line  68)
 * dictionary:                            Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
 * differential programming:              Ruby User's Guide on Inheritance.
@@ -2146,6 +2202,8 @@ Index
                                                             (line  48)
 * documentation tool:                    To Ruby From Java. (line  23)
 * documentation, generating:             Generating Documention.
+                                                            (line   6)
+* dot:                                   Methods and Variables.
                                                             (line   6)
 * dot notation:                          Ruby User's Guide on Methods.
                                                             (line  22)
@@ -2167,7 +2225,8 @@ Index
                                                             (line  36)
 * Eiffel and Ruby:                       Ruby User's Guide On Simple Examples.
                                                             (line  54)
-* Emacs:                                 Ruby Basics.       (line  71)
+* Emacs:                                 Installation - Running - About.
+                                                            (line  71)
 * empty string:                          FAQ Syntax.        (line  73)
 * empty value:                           Data Types.        (line  23)
 * end keyword:                           Ruby User's Guide on Classes.
@@ -2234,6 +2293,8 @@ Index
 * gemsets, manage different using RVM:   RVM.               (line   6)
 * getting started:                       Ruby-Doc.          (line  20)
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
+* global variable:                       Methods and Variables.
+                                                            (line  22)
 * global variable $:                     Naming conventions.
                                                             (line   9)
 * global variable $!:                    Ruby User's Guide On Exception Processing And rescue.
@@ -2245,7 +2306,7 @@ Index
 * global variables, predefined:          Variable Scope.    (line  38)
 * globals:                               Files API.         (line  19)
 * green threads vs native threads:       To Ruby From C and C++.
-                                                            (line 161)
+                                                            (line 160)
 * gsub method:                           Ruby User's Guide on Regular Expressions.
                                                             (line 113)
 * gtk+:                                  FAQ Extension Library.
@@ -2254,7 +2315,7 @@ Index
                                                             (line  49)
 * GUI toolkits:                          To Ruby From Java. (line  31)
 * Hash:                                  To Ruby From C and C++.
-                                                            (line 156)
+                                                            (line 155)
 * hash:                                  Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
 * hash styles:                           Data Types.        (line  51)
@@ -2289,13 +2350,16 @@ Index
 * insert code into a string:             Defining Methods.  (line  43)
 * inspect method:                        Ruby User's Guide On Accessors.
                                                             (line  59)
-* install on macOS:                      Ruby Basics.       (line   9)
+* install on macOS:                      Installation - Running - About.
+                                                            (line   9)
 * installer, third party:                Installers.        (line   6)
 * instance of a class:                   Ruby User's Guide on Classes.
                                                             (line   6)
 * instance variabes, as attributes:      Ruby User's Guide On Accessors.
                                                             (line   6)
 * instance variable:                     Defining Methods.  (line  86)
+* instance variable <1>:                 Methods and Variables.
+                                                            (line  22)
 * instance variable @:                   Naming conventions.
                                                             (line   9)
 * instance variables:                    Ruby User's Guide On Instance Variables.
@@ -2317,14 +2381,16 @@ Index
 * irb:                                   Interactive Ruby.  (line   6)
 * irb <1>:                               To Ruby From Python.
                                                             (line  13)
-* irb <2>:                               Ruby Basics.       (line  31)
+* irb <2>:                               Installation - Running - About.
+                                                            (line  31)
 * irb tool:                              Interactive Ruby Execution.
                                                             (line   6)
-* IronRuby:                              Ruby Basics.       (line  53)
+* IronRuby:                              Installation - Running - About.
+                                                            (line  53)
 * issue tracker:                         Developing Ruby.   (line  62)
 * issue tracking:                        Issue Tracking.    (line   6)
 * iteration:                             To Ruby From C and C++.
-                                                            (line 155)
+                                                            (line 154)
 * iteration <1>:                         Pointers on Iteration.
                                                             (line   6)
 * iterator:                              Large Class Definition.
@@ -2332,7 +2398,7 @@ Index
 * iterator as substitute for for loop:   Ruby User's Guide On Control Structures.
                                                             (line 128)
 * iterator method:                       To Ruby From C and C++.
-                                                            (line 155)
+                                                            (line 154)
 * iterator, block:                       FAQ Iterators.     (line  56)
 * iterator, defining:                    Ruby User's Guide On Iterators.
                                                             (line  17)
@@ -2342,12 +2408,14 @@ Index
 * iterators, Ruby User's Guide:          Ruby User's Guide On Iterators.
                                                             (line   6)
 * javadoc:                               To Ruby From Java. (line  23)
-* Jekyll:                                Ruby Basics.       (line  72)
+* Jekyll:                                Installation - Running - About.
+                                                            (line  72)
 * join:                                  Ruby User's Guide On Arrays And Hashes.
                                                             (line  29)
 * join method, respond to:               Large Class Definition.
                                                             (line 116)
-* JRuby:                                 Ruby Basics.       (line  53)
+* JRuby:                                 Installation - Running - About.
+                                                            (line  53)
 * json style hash:                       Data Types.        (line  51)
 * Kernel:                                FAQ Syntax.        (line 149)
 * key, for hash:                         Ruby User's Guide On Arrays And Hashes.
@@ -2362,12 +2430,15 @@ Index
 * lambda as a synonym of Proc:           FAQ Iterators.     (line  87)
 * lambda method:                         Blocks are Objects.
                                                             (line  19)
-* LessJS compiler:                       Ruby Basics.       (line  65)
+* LessJS compiler:                       Installation - Running - About.
+                                                            (line  65)
 * line number of input file:             FAQ Built-In Libraries.
                                                             (line  24)
 * load:                                  FAQ Syntax.        (line 245)
 * load <1>:                              Ruby User's Guide On Nuts And Bolts.
                                                             (line 119)
+* local variable:                        Methods and Variables.
+                                                            (line  22)
 * local variable scope:                  Ruby User's Guide On Local Variables.
                                                             (line  15)
 * local variables:                       Ruby User's Guide On Local Variables.
@@ -2379,8 +2450,10 @@ Index
                                                             (line 104)
 * loops using while:                     Ruby User's Guide On Control Structures.
                                                             (line  53)
-* macOS, install:                        Ruby Basics.       (line   9)
-* MagLev:                                Ruby Basics.       (line  53)
+* macOS, install:                        Installation - Running - About.
+                                                            (line   9)
+* MagLev:                                Installation - Running - About.
+                                                            (line  53)
 * mailing lists:                         Developing Ruby.   (line  62)
 * manage Rubies using chruby:            chruby.            (line   6)
 * Markdown:                              Writing Documentation.
@@ -2393,7 +2466,7 @@ Index
 * matching operator:                     Ruby User's Guide on Regular Expressions.
                                                             (line 130)
 * member variables, access to:           To Ruby From C and C++.
-                                                            (line 138)
+                                                            (line 137)
 * memory management:                     To Ruby From Java. (line  18)
 * messages to objects:                   Ruby User's Guide on Methods.
                                                             (line   9)
@@ -2415,10 +2488,12 @@ Index
 * method, invoking <1>:                  Defining Methods.  (line  26)
 * methods:                               Ruby User's Guide on Methods.
                                                             (line   6)
+* methods <1>:                           Methods and Variables.
+                                                            (line   6)
 * methods api:                           Files API.         (line  55)
 * methods api <1>:                       Methods API.       (line   6)
 * methods are virtual:                   To Ruby From C and C++.
-                                                            (line 133)
+                                                            (line 132)
 * methods, calling:                      Files API.         (line  44)
 * methods, class:                        FAQ Classes and Modules.
                                                             (line  18)
@@ -2431,7 +2506,7 @@ Index
 * mixin technique:                       Ruby User's Guide On Modules.
                                                             (line  50)
 * mixins:                                To Ruby From C and C++.
-                                                            (line 143)
+                                                            (line 142)
 * mixins <1>:                            To Ruby From Java. (line  53)
 * module function?:                      FAQ Classes and Modules.
                                                             (line  50)
@@ -2443,16 +2518,18 @@ Index
                                                             (line  34)
 * modules, subclassing?:                 FAQ Classes and Modules.
                                                             (line  56)
-* MRI:                                   Ruby Basics.       (line  53)
-* mruby:                                 Ruby Basics.       (line  53)
+* MRI:                                   Installation - Running - About.
+                                                            (line  53)
+* mruby:                                 Installation - Running - About.
+                                                            (line  53)
 * multiple inheritance:                  To Ruby From C and C++.
-                                                            (line 143)
+                                                            (line 142)
 * multiple inheritance <1>:              Ruby User's Guide On Modules.
                                                             (line  43)
 * multiple installations, manage using RVM: RVM.            (line   6)
 * multiple Rubies, command-line tool uru: uru.              (line   6)
 * multithreading:                        To Ruby From C and C++.
-                                                            (line 161)
+                                                            (line 160)
 * negated conditions:                    Ruby User's Guide On Control Structures.
                                                             (line  68)
 * new keyword:                           Ruby User's Guide on Classes.
@@ -2468,17 +2545,18 @@ Index
 * null vs nil:                           To Ruby From Java. (line  55)
 * number classes:                        Data Types.        (line  18)
 * object reference is self:              To Ruby From C and C++.
-                                                            (line 139)
+                                                            (line 138)
 * Object#instance_methods:               Defining Methods.  (line 116)
 * Object#respond_to?:                    Defining Methods.  (line 146)
 * object, create from class definition:  Defining Methods.  (line  95)
 * objects, everything including numbers: To Ruby From Java. (line  40)
 * objects, strongly and dynamically typed: To Ruby From C and C++.
-                                                            (line 130)
+                                                            (line 129)
 * objects, strongly typed:               To Ruby From Java. (line  19)
 * object_id methods:                     Symbols are not lightweight Strings.
                                                             (line  21)
-* OpenShift cloud platform:              Ruby Basics.       (line  69)
+* OpenShift cloud platform:              Installation - Running - About.
+                                                            (line  69)
 * operators?:                            FAQ Methods.       (line  12)
 * p method:                              Ruby User's Guide On Accessors.
                                                             (line  78)
@@ -2544,7 +2622,8 @@ Index
                                                             (line  26)
 * range operators .. vs ...:             FAQ Syntax.        (line 203)
 * rbenv:                                 rbenv.             (line   6)
-* rbenv <1>:                             Ruby Basics.       (line  22)
+* rbenv <1>:                             Installation - Running - About.
+                                                            (line  22)
 * rbenv version manager:                 ruby-build.        (line   6)
 * rbeval:                                Ruby Eval Utility. (line  10)
 * RD:                                    Writing Documentation.
@@ -2576,7 +2655,8 @@ Index
                                                             (line  74)
 * redo <1>:                              Ruby User's Guide On Iterators.
                                                             (line  58)
-* reference implementation, MRI:         Ruby Basics.       (line  53)
+* reference implementation, MRI:         Installation - Running - About.
+                                                            (line  53)
 * reference, core:                       Ruby-Doc.          (line   6)
 * reference, standard library:           Ruby-Doc.          (line   6)
 * reflection:                            Ruby User's Guide On Object Initialization.
@@ -2620,7 +2700,8 @@ Index
                                                             (line  24)
 * rocket style hash:                     Data Types.        (line  51)
 * Rubies, switch between:                Installers.        (line   6)
-* Rubinius:                              Ruby Basics.       (line  53)
+* Rubinius:                              Installation - Running - About.
+                                                            (line  53)
 * Ruby 2.5.1. API:                       API Documentation. (line   6)
 * Ruby core:                             Developing Ruby.   (line  16)
 * Ruby Core mailing list:                Developing Ruby.   (line  62)
@@ -2653,7 +2734,7 @@ Index
 * self, meaning:                         FAQ Classes and Modules.
                                                             (line  84)
 * self, object reference:                To Ruby From C and C++.
-                                                            (line 139)
+                                                            (line 138)
 * send:                                  FAQ Syntax.        (line 129)
 * shared libraries:                      FAQ Syntax.        (line 249)
 * simple functions?:                     FAQ Methods.       (line  43)
@@ -2685,7 +2766,8 @@ Index
 * statement vs expression:               Ruby User's Guide On Simple Examples.
                                                             (line 124)
 * static checking, none:                 To Ruby From Java. (line  41)
-* static page generators:                Ruby Basics.       (line  72)
+* static page generators:                Installation - Running - About.
+                                                            (line  72)
 * statically typed:                      To Ruby From C and C++.
                                                             (line  28)
 * STDIN:                                 Ruby User's Guide On Puzzle Program.
@@ -2736,7 +2818,7 @@ Index
 * Tcl/Tk, use:                           FAQ Extension Library.
                                                             (line  18)
 * templates:                             To Ruby From C and C++.
-                                                            (line 150)
+                                                            (line 149)
 * ternary operator:                      FAQ Other Features.
                                                             (line   9)
 * testing:                               Ruby Testing.      (line   5)
@@ -2744,7 +2826,7 @@ Index
 * thread vs fork:                        FAQ Built-In Libraries.
                                                             (line  57)
 * threads, native vs green:              To Ruby From C and C++.
-                                                            (line 161)
+                                                            (line 160)
 * Tk, won't work:                        FAQ Extension Library.
                                                             (line  21)
 * TomDoc:                                Writing Documentation.
@@ -2762,12 +2844,14 @@ Index
 * truth values:                          To Ruby From C and C++.
                                                             (line 111)
 * type conversions:                      To Ruby From C and C++.
-                                                            (line 158)
+                                                            (line 157)
 * type declarations, none:               To Ruby From Java. (line  46)
-* typed dynamically:                     Ruby Basics.       (line  60)
-* typed strongly:                        Ruby Basics.       (line  55)
+* typed dynamically:                     Installation - Running - About.
+                                                            (line  60)
+* typed strongly:                        Installation - Running - About.
+                                                            (line  55)
 * unit testing lib:                      To Ruby From C and C++.
-                                                            (line 162)
+                                                            (line 161)
 * unless:                                Ruby User's Guide On Control Structures.
                                                             (line  68)
 * until:                                 Ruby User's Guide On Control Structures.
@@ -2789,6 +2873,8 @@ Index
                                                             (line   6)
 * variable-length argument lists:        Ruby User's Guide On Object Initialization.
                                                             (line  65)
+* variables:                             Methods and Variables.
+                                                            (line   6)
 * variables, 4 types:                    Variable Scope.    (line   6)
 * variables, description:                Ruby User's Guide On Variables.
                                                             (line   6)
@@ -2802,7 +2888,8 @@ Index
 * versions,multiple:                     Installers.        (line   6)
 * visibility features:                   To Ruby From Java. (line  20)
 * visibility, changing:                  FAQ Methods.       (line  55)
-* web applications:                      Ruby Basics.       (line  67)
+* web applications:                      Installation - Running - About.
+                                                            (line  67)
 * while:                                 Ruby User's Guide On Puzzle Program.
                                                             (line  27)
 * while statement:                       Ruby User's Guide On Control Structures.

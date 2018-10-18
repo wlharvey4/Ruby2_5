@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Installation - Running - About (Ruby2_5 Information)</title>
+
+<meta name="description" content="Installation - Running - About (Ruby2_5 Information)">
+<meta name="keywords" content="Installation - Running - About (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-Basics.html#Ruby-Basics" rel="up" title="Ruby Basics">
+<link href="Language-Conventions.html#Language-Conventions" rel="next" title="Language Conventions">
+<link href="Ruby-Basics.html#Ruby-Basics" rel="prev" title="Ruby Basics">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Installation-_002d-Running-_002d-About"></a>
+<div class="header">
+<p>
+Next: <a href="Language-Conventions.html#Language-Conventions" accesskey="n" rel="next">Language Conventions</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Installation-_002d-Running-_002d-About-1"></a>
+<h4 class="appendixsubsubsec">B.1.1.1 Installation - Running - About</h4>
+
+<a name="Installation-on-Mac-OS"></a>
+<h4 class="subheading">Installation on Mac OS</h4>
+<a name="index-install-on-macOS"></a>
+<a name="index-macOS_002c-install"></a>
+
+<p>The simplest way to install Ruby on macOS is to use homebrew package manager:
+</p>
+<div class="example">
+<pre class="example">$ brew install ruby
+</pre></div>
+
+<p>In case there is a need to have multiple installations <code>rbenv</code>
+(see section <a href="rbenv.html#rbenv"><code>rbenv</code></a>) is a good tool to use.  Another popular tool is called
+<code>rvm</code> (see section <a href="RVM.html#RVM">RVM (&ldquo;Ruby Version Manager&rdquo;)</a> but nowadays they do too much magic and we recommend
+using <code>rbenv</code> instead.
+</p>
+<a name="Running-Ruby"></a>
+<h4 class="subheading">Running Ruby</h4>
+<a name="index-rbenv-1"></a>
+
+<p>Usually you put <code>ruby</code> and related commands on <code>PATH</code> so you do not
+need to always specify the whole path to the executable.  With tools like
+<code>rbenv</code> this is done for you.
+</p>
+<div class="example">
+<pre class="example">$ ruby script.rb
+</pre></div>
+
+<a name="Interactive-Ruby-2"></a>
+<h4 class="subsubheading">Interactive Ruby</h4>
+<a name="index-irb-2"></a>
+
+<p>Ruby comes with an interactive interpreter called <code>irb</code>
+(see section <a href="Interactive-Ruby.html#Interactive-Ruby">Interactive Ruby</a>), which allows you to enter commands and see results
+instantly.
+</p>
+<div class="example">
+<pre class="example">$ irb
+</pre></div>
+
+<a name="About-Ruby"></a>
+<h4 class="subheading">About Ruby</h4>
+
+<dl compact="compact">
+<dt><b>Interpreted</b></dt>
+<dd><p>The Ruby code is interpreted when the script is load, there is no compile
+phase.
+</p></dd>
+<dt><b>Universal</b></dt>
+<dd><p>Ruby can be used for writing scripts, one-liners, web applications and even for
+mobile and desktop applications.
+</p></dd>
+<dt><b>Fully Object oriented</b></dt>
+<dd><p>In Ruby everything is an object and you send messages to those objects.
+</p></dd>
+<dt><b>Everything Is An Expression</b></dt>
+<dd><p>Everything command in Ruby has a return value.
+</p></dd>
+<dt><b>Atomic memory management</b></dt>
+<dt><b>MRI</b></dt>
+<dd><a name="index-reference-implementation_002c-MRI"></a>
+<a name="index-MRI"></a>
+<a name="index-JRuby"></a>
+<a name="index-Rubinius"></a>
+<a name="index-IronRuby"></a>
+<a name="index-MagLev"></a>
+<a name="index-mruby"></a>
+<p><samp>MRI</samp> is the Ruby reference implementation, with several other
+implementations like <samp>JRuby</samp>, <samp>Rubinius</samp>, <samp>IronRuby</samp> or
+<samp>MagLev</samp>.  As well, there is ISO standard implemented in <code>mruby</code>.
+<a name="index-typed-strongly"></a>
+</p></dd>
+<dt><b>Strongly Typed</b></dt>
+<dd><p>There are some implicit conversions (e.g. every object has <code>to_s</code> method
+to provide string representation) but in most cases in case you try to operate
+on different types Ruby will complain, unless such operation is explicitly
+provided.
+<a name="index-typed-dynamically"></a>
+</p></dd>
+<dt><b>Dynamically Typed</b></dt>
+<dd><p>The type of a variable is defined by the value assigned to that variable.  There
+is no explicit type information in the code.
+</p></dd>
+<dt><b>What is written in Ruby?</b></dt>
+<dd><ul>
+<li> <a name="index-compilers-in-Ruby"></a>
+<a name="index-LessJS-compiler"></a>
+programming languages: Ruby (<samp>Rubinius</samp>),
+</li><li> compilers (<samp>LessJS</samp>)
+</li><li> <a name="index-web-applications"></a>
+web applications: Github, Gitlab, Redmine, BaseCamp
+</li><li> <a name="index-devops-tools"></a>
+devops tools: Puppet/Chef/Vagrant
+</li><li> <a name="index-cloud-platforms"></a>
+<a name="index-OpenShift-cloud-platform"></a>
+cloud platforms: OpenShift (v2)
+</li><li> <a name="index-cloud-management"></a>
+cloud management: Foreman, ManageIQ
+</li><li> <a name="index-Emacs"></a>
+VIM/Emacs scripts
+</li><li> <a name="index-Jekyll"></a>
+<a name="index-static-page-generators"></a>
+static pages generators - <samp>Jekyll</samp>
+</li><li> programming tools
+</li></ul>
+</dd>
+</dl>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Language-Conventions.html#Language-Conventions" accesskey="n" rel="next">Language Conventions</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

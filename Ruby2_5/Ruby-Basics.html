@@ -28,7 +28,7 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" rel="up" title="Programming Ruby by Hulan">
-<link href="Language-Conventions.html#Language-Conventions" rel="next" title="Language Conventions">
+<link href="Installation-_002d-Running-_002d-About.html#Installation-_002d-Running-_002d-About" rel="next" title="Installation - Running - About">
 <link href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" rel="prev" title="Programming Ruby by Hulan">
 <style type="text/css">
 <!--
@@ -72,127 +72,18 @@ Next: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="n" rel="next">Advanc
 <h4 class="appendixsubsec">B.1.1 Ruby Basics</h4>
 <a name="index-basics"></a>
 
-<a name="Installation-on-Mac-OS"></a>
-<h4 class="subheading">Installation on Mac OS</h4>
-<a name="index-install-on-macOS"></a>
-<a name="index-macOS_002c-install"></a>
-
-<p>The simplest way to install Ruby on macOS is to use homebrew package manager:
-</p>
-<div class="example">
-<pre class="example">$ brew install ruby
-</pre></div>
-
-<p>In case there is a need to have multiple installations <code>rbenv</code>
-(see section <a href="rbenv.html#rbenv"><code>rbenv</code></a>) is a good tool to use.  Another popular tool is called
-<code>rvm</code> (see section <a href="RVM.html#RVM">RVM (&ldquo;Ruby Version Manager&rdquo;)</a> but nowadays they do too much magic and we recommend
-using <code>rbenv</code> instead.
-</p>
-<a name="Running-Ruby"></a>
-<h4 class="subheading">Running Ruby</h4>
-<a name="index-rbenv-1"></a>
-
-<p>Usually you put <code>ruby</code> and related commands on <code>PATH</code> so you do not
-need to always specify the whole path to the executable.  With tools like
-<code>rbenv</code> this is done for you.
-</p>
-<div class="example">
-<pre class="example">$ ruby script.rb
-</pre></div>
-
-<a name="Interactive-Ruby-2"></a>
-<h4 class="subsubheading">Interactive Ruby</h4>
-<a name="index-irb-2"></a>
-
-<p>Ruby comes with an interactive interpreter called <code>irb</code>
-(see section <a href="Interactive-Ruby.html#Interactive-Ruby">Interactive Ruby</a>), which allows you to enter commands and see results
-instantly.
-</p>
-<div class="example">
-<pre class="example">$ irb
-</pre></div>
-
-<a name="About-Ruby"></a>
-<h4 class="subheading">About Ruby</h4>
-
-<dl compact="compact">
-<dt><b>Interpreted</b></dt>
-<dd><p>The Ruby code is interpreted when the script is load, there is no compile
-phase.
-</p></dd>
-<dt><b>Universal</b></dt>
-<dd><p>Ruby can be used for writing scripts, one-liners, web applications and even for
-mobile and desktop applications.
-</p></dd>
-<dt><b>Fully Object oriented</b></dt>
-<dd><p>In Ruby everything is an object and you send messages to those objects.
-</p></dd>
-<dt><b>Everything Is An Expression</b></dt>
-<dd><p>Everything command in Ruby has a return value.
-</p></dd>
-<dt><b>Atomic memory management</b></dt>
-<dt><b>MRI</b></dt>
-<dd><a name="index-reference-implementation_002c-MRI"></a>
-<a name="index-MRI"></a>
-<a name="index-JRuby"></a>
-<a name="index-Rubinius"></a>
-<a name="index-IronRuby"></a>
-<a name="index-MagLev"></a>
-<a name="index-mruby"></a>
-<p><samp>MRI</samp> is the Ruby reference implementation, with several other
-implementations like <samp>JRuby</samp>, <samp>Rubinius</samp>, <samp>IronRuby</samp> or
-<samp>MagLev</samp>.  As well, there is ISO standard implemented in <code>mruby</code>.
-<a name="index-typed-strongly"></a>
-</p></dd>
-<dt><b>Strongly Typed</b></dt>
-<dd><p>There are some implicit conversions (e.g. every object has <code>to_s</code> method
-to provide string representation) but in most cases in case you try to operate
-on different types Ruby will complain, unless such operation is explicitly
-provided.
-<a name="index-typed-dynamically"></a>
-</p></dd>
-<dt><b>Dynamically Typed</b></dt>
-<dd><p>The type of a variable is defined by the value assigned to that variable.  There
-is no explicit type information in the code.
-</p></dd>
-<dt><b>What is written in Ruby?</b></dt>
-<dd><ul>
-<li> <a name="index-compilers-in-Ruby"></a>
-<a name="index-LessJS-compiler"></a>
-programming languages: Ruby (<samp>Rubinius</samp>),
-</li><li> compilers (<samp>LessJS</samp>)
-</li><li> <a name="index-web-applications"></a>
-web applications: Github, Gitlab, Redmine, BaseCamp
-</li><li> <a name="index-devops-tools"></a>
-devops tools: Puppet/Chef/Vagrant
-</li><li> <a name="index-cloud-platforms"></a>
-<a name="index-OpenShift-cloud-platform"></a>
-cloud platforms: OpenShift (v2)
-</li><li> <a name="index-cloud-management"></a>
-cloud management: Foreman, ManageIQ
-</li><li> <a name="index-Emacs"></a>
-VIM/Emacs scripts
-</li><li> <a name="index-Jekyll"></a>
-<a name="index-static-page-generators"></a>
-static pages generators - <samp>Jekyll</samp>
-</li><li> programming tools
-</li></ul>
-</dd>
-</dl>
-
 
 <table class="menu" border="0" cellspacing="0">
-<tr><td align="left" valign="top">&bull; <a href="Language-Conventions.html#Language-Conventions" accesskey="1">Language Conventions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Installation-_002d-Running-_002d-About.html#Installation-_002d-Running-_002d-About" accesskey="1">Installation - Running - About</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="Data-Types.html#Data-Types" accesskey="2">Data Types</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+<tr><td align="left" valign="top">&bull; <a href="Language-Conventions.html#Language-Conventions" accesskey="2">Language Conventions</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Data-Types.html#Data-Types" accesskey="3">Data Types</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Methods-and-Variables.html#Methods-and-Variables" accesskey="4">Methods and Variables</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
 </td></tr>
 </table>
 
-<hr>
-<div class="header">
-<p>
-Next: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="n" rel="next">Advanced Ruby</a>, Up: <a href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" accesskey="u" rel="up">Programming Ruby by Hulan</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
-</div>
 
 
 

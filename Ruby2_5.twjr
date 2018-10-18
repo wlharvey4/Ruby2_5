@@ -12630,6 +12630,11 @@ By Marek Hulán, Marek Jelen, Ivan Nečas, Version 0.2 September 25, 2017.
 @appendixsubsec Ruby Basics
 @cindex basics
 
+@c _____________________________________
+
+@node Installation - Running - About
+@appendixsubsubsec Installation - Running - About
+
 @subheading Installation on Mac OS
 @cindex install on macOS
 @cindex macOS, install
@@ -12842,6 +12847,58 @@ guidelines recommend (and enforce) using @code{rockets} everywhere.
 @cindex symbol type
 
 @dfn{Symbol} is a keyword.  It always maps to the same object instance.
+
+@c _____________________________________
+
+@node Methods and Variables
+@appendixsubsubsec Methods and Variables
+@cindex methods
+@cindex dot
+@cindex variables
+
+@subheading Methods
+
+Methods are called using the ``dot'' operator.
+
+Operators are actually methods.
+
+@example
+3 + 3 # => 6
+3.+(3) # => 6
+
+[1,2][0] #=> 1
+[1,2].[](0) # => 1
+@end example
+
+@subheading Variables
+@cindex global variable
+@cindex class variable
+@cindex instance variable
+@cindex local variable
+@cindex constant
+
+@table @b
+@item Global
+@dfn{Global variables} are prefixed with @kbd{$}.
+
+@item Class
+Classes have @dfn{class variables} prefixed with @kbd{@@@@}.
+
+You should prefer @code{@@instance_variables} in class-level methods, as they
+have more predicatable behavior.
+
+@item Instance
+Objects have @dfn{instance variables} prefixed with @kbd{@@}.
+
+@item Local
+@dfn{Local variables} are simple identifiers with no prefix.
+
+@item Constant
+@dfn{Constants} are in all UPPER_CASE.
+
+@end table
+
+
 
 @c -----------------------------------------------------------------------------
 
