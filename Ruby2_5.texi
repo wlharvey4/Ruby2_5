@@ -495,6 +495,19 @@ Ruby Basics
 * Language Conventions::
 * Data Types::
 * Methods and Variables::
+* Conditions::
+* Logical Operators::
+* Regular Expressions::
+* Loops::
+* Methods::
+* Using Code From Other Files::
+* Blocks::
+* Objects::
+* Inheritance::
+* Modules::
+* Method Access::
+* Duck Typing::
+* Exceptions::
 
 Utility Programs
 
@@ -13224,6 +13237,19 @@ By Marek Hulán, Marek Jelen, Ivan Nečas, Version 0.2 September 25, 2017.
 * Language Conventions::
 * Data Types::
 * Methods and Variables::
+* Conditions::
+* Logical Operators::
+* Regular Expressions::
+* Loops::
+* Methods::
+* Using Code From Other Files::
+* Blocks::
+* Objects::
+* Inheritance::
+* Modules::
+* Method Access::
+* Duck Typing::
+* Exceptions::
 @end menu
 
 @node Installation - Running - About
@@ -13492,6 +13518,519 @@ Objects have @dfn{instance variables} prefixed with @kbd{@@}.
 
 @end table
 
+@c _____________________________________
+
+@node Conditions
+@appendixsubsubsec Conditions
+
+Everything is @code{true} except @code{false} (and @code{nil}).
+
+@code{if} and @code{unless} (@code{if}'s negative)
+
+@subheading Modifier Statements
+@cindex modifier statements
+@cindex inline conditional
+
+Ruby has inline method of using conditionals called @dfn{modifier statements}.
+
+@example
+puts "Hello" if true
+puts "Hello" unless false
+@end example
+
+@subheading Ternary Operator
+
+@samp{experssion ? 'was evaluated true' : 'was evaluated false'}
+
+@subheading Case Statement
+@cindex @code{case} statement
+
+Another way to do conditions is to use @code{case} statement.
+
+@example
+case input
+  when 'q', 'e'
+    quit
+  when 'f'
+    format
+  else
+    help
+end
+@end example
+
+@code{case} statement can also check on a variable's @code{class}.
+
+@example
+case var
+  when String
+    "it's string"
+  when Class
+    "it's class"
+  when Number
+    "it's number"
+end
+@end example
+
+Another way to use the @code{case} statement is to use it as @code{if} and
+@code{elsif}.
+
+@example
+case
+  when a == "a"
+    "a equals a"
+  when b == "b"
+    "b equals b"
+end
+@end example
+
+@c _____________________________________
+
+@node Logical Operators
+@appendixsubsubsec Logical Operators
+@cindex logical operators
+
+@subheading Logical Expressions
+@cindex logical expressions
+@cindex and
+@cindex or
+@cindex not
+
+@table @b
+
+@item and
+@code{&&}
+@code{and}
+
+@item or
+@code{||}
+@code{or}
+
+@item not
+@code{!}
+@code{not}
+
+@end table
+
+@subheading Comparison Operators
+@cindex comparison operators
+@cindex equal
+@cindex not equal
+@cindex less than, less than or equal
+@cindex greater than, greater than or equal
+@cindex match, regular expression
+@cindex regular expression match
+
+@table @b
+
+@item equal
+@code{==}
+
+@item not equal
+@code{!=}
+
+@item less than
+@code{<}
+
+@item greater than
+@code{>}
+
+@item less than or equal
+@code{<=}
+
+@item greater than or equal
+@code{>=}
+
+@item regular expression match
+@code{=~}
+
+@end table
+
+@c _____________________________________
+
+@node Regular Expressions
+@appendixsubsubsec Regular Expressions
+@cindex regular expressions
+@cindex @code{match} method
+
+Regular expression literals are enclosed between @code{/@dots{}/}:@*
+@samp{string =~ /(.)*:(.)+/ # sets $1 a $2}.
+
+String has a @code{match} method:@* @samp{data = string.match(/^(.):(\d+)$/) #
+sets data[1] and data[2]}.
+
+@c _____________________________________
+
+@node Loops
+@appendixsubsubsec Loops
+@cindex loops
+@cindex while
+@cindex until
+
+@table @code
+
+@item while
+repeats as long as the condition is true.
+
+@example
+while a < b
+  a += 1
+end
+
+# do loop at least once
+begin
+  a += 1
+end while a < b
+
+a += 1 while a < b # inline loop
+@end example
+
+@item until
+repeats as long as a condition is false
+
+@example
+until a > b
+  a += 1
+end
+@end example
+
+@end table
+
+@c _____________________________________
+
+@node Methods
+@appendixsubsubsec Methods
+@cindex methods, return value
+@cindex @code{return} keyword
+
+@subheading Method Return Value
+
+Methods always return a value.  If a method does not explicitly return using
+the @code{return} keyword, then the return value is the value of the last
+expression.
+ 
+@subheading Method Arguments
+@cindex arguments
+
+@example
+def mth1(a, b=1) # argument default value
+end
+
+def meth2(*args) # accepts multiple arguments in Array @code{args}
+end
+
+def meth3(a, b, *args) # must have at least 2 arguments
+end
+@end example
+
+@c _____________________________________
+
+@node Using Code From Other Files
+@appendixsubsubsec Using Code From Other Files
+
+@table @code
+
+@cindex @code{require}
+@cindex load path
+@cindex @code{$LOAD_PATH}
+@cindex @code{$:}
+@item require
+Loads code from another file.  Ruby keeps track of required files (in the
+@code{$"} global variable) and skips loading files that would be loaded 2nd
+time.
+
+Files are looked up using Ruby’s @dfn{load path}, which is represented using an
+array in @code{$LOAD_PATH} and @code{$:}.
+
+@cindex @code{load}
+@item load
+loads code from another file, but does not keep track of loaded files.
+
+@end table
+
+@subheading Allowed Extensions
+@cindex extensions that can be omitted
+
+The following file extensions can be omitted:
+
+@samp{rb, so, o, dll, bundle, jar}
+
+@c _____________________________________
+
+@node Blocks
+@appendixsubsubsec Blocks
+@cindex blocks
+@cindex @code{call} method
+
+Blocks are not executed when defined, but have to be called through the
+@code{call} method (though the calling of the @code{call} method is most of the
+time hidden).
+
+@cindex @code{each} method
+Arrays have a method called @code{each} that accepts a block and calls the block
+for every single element in the array.
+
+@example
+arr = [1,2,3,4]
+arr.each do |el|
+  puts el
+end
+
+# alternative syntax
+arr.each @{ |el| puts el @}
+
+@end example
+
+@subheading Block Scope
+@cindex block scope
+
+Blocks have access to their enclosing environment, and create their own
+scope internally.
+
+@subheading Yield Statement
+@cindex @code{yield}
+
+Any method can accept a block and call it using @code{yield}.
+
+@example
+def mth
+  return nil unless block_given?
+  yield
+end
+@end example
+
+This method will return @code{nil} if no block was given or will call the block
+without any argument and the return value of the block will be return from the
+method.
+
+@subheading Block Arguments Using Prefix @code{&}
+
+Method may also accept blocks using a named argument which is prefixed by
+@code{&}.
+
+@example
+def mth(num, &block)
+  block.call(num)
+end
+@end example
+
+@c _____________________________________
+
+@node Objects
+@appendixsubsubsec Objects
+
+Everything is an object.  Even a class is an instance of @file{Class}.  Objects
+can have methods (@code{def}) and instance variables (@code{@@}).
+
+@subheading Attributes
+@cindex attributes
+@cindex @code{attr_reader}
+@cindex @code{attr_writer}
+@cindex @code{attr_accessor}
+
+To allow instance variables to be accessible from outside their defining class,
+define them using @dfn{attributes}.
+
+@example
+class Hello
+  attr_reader :one
+  attr_writer :two
+  attr_accessor :three
+end
+@end example
+
+@c _____________________________________
+
+@node Inheritance
+@appendixsubsubsec Inheritance
+@cindex inheritance
+@cindex object inheritance
+@cindex overridden method
+@cindex @code{super}
+
+Ruby has single @dfn{object inheritance}.  All methods, including constructors,
+are inherited.  Methods can be @dfn{overridden} in children.  @code{super}
+keyword is used to call the overridden method.
+
+@example
+class A
+  def a
+    "hello"
+  end
+end
+
+puts A.new.a # => hello
+
+class B < A
+end
+
+puts B.new.a # => hello
+
+class C < A
+  def a
+    super + " world"
+  end
+end
+
+puts C.new.a # => hello world
+@end example
+
+@subheading Class Variables
+@cindex class variables
+
+Class variables should not be used ``because of some pitfalls in their
+inheritance.''
+
+@c _____________________________________
+
+@node Modules
+@appendixsubsubsec Modules
+@cindex modules
+
+@dfn{Modules} are a way to organize your classes in a similar fashion to
+namespaces.  Classes can be included into modules or into other classes.
+
+@example
+class A
+  class B
+  end
+end
+
+module Some
+  class Thing
+  end
+end
+@end example
+
+@subheading Mixins
+@cindex mixins
+@cindex multiple inherance using mixins
+
+Modules are used as @dfn{mixins} to provide a form of multiple inheritance.
+When module is included in a class, all methods defined in that module are
+available in the class as instance methods.
+
+@example
+module Helper
+  def something
+  end
+end
+
+class An
+  include Helper
+end
+
+A.new.something
+@end example
+
+@cindex @code{extend}
+When a module is used with @code{extend}, the methods are included as class
+methods.
+
+@example
+module Helper
+  def something
+  end
+end
+
+class A
+  extend Helper
+end
+
+A.something
+@end example
+
+@c _____________________________________
+
+@node Method Access
+@appendixsubsubsec Method Access
+@cindex method access
+@cindex @code{public}
+@cindex @code{protected}
+@cindex @code{private}
+
+By default methods are @code{public}, but methods can be made explicitly
+@code{protected} or @code{private}.
+
+@example
+class A
+  def public_method
+  end
+
+  protected
+
+  def protected_method
+  end
+
+  private
+
+  def private_method
+  end
+end
+@end example
+
+@c _____________________________________
+
+@node Duck Typing
+@appendixsubsubsec Duck Typing
+@cindex duck typing
+
+@dfn{Duck typing} is coding by behavior rather than identify.
+
+@example
+class Hunter
+  def shoot(animal)
+    animal.respond_to?(:quack) && bang!
+  end
+end
+@end example
+
+If an animal ``quacks'', then it will be shot like a duck.
+
+@c _____________________________________
+
+@node Exceptions
+@appendixsubsubsec Exceptions
+@cindex exceptions
+
+@dfn{Exceptions} represent a special state in the execution of a program.  When
+an @code{exception} is raised, it will ``bubble up'' (rise through) the stack
+until it is ``caught''.
+
+@subheading @code{raise} And @code{rescue} Exceptions
+@cindex @code{raise}
+
+@cindex @code{raise}
+Exceptions are explicitly raised using the @code{raise} keyword: @samp{raise
+"This is not expected"}.
+
+@cindex @code{rescue}
+@cindex @code{ensure}
+@cindex @file{StandarError} class
+On the other hand when an exception needs to be caught, a code block can be
+extended with a @code{rescue} statement that is called when an exception is
+caught and optionally with an @code{ensure} block that is called after both
+exceptional and non-exceptional states.  Unless an exception class is specified
+explicitly after the @code{rescue} keyword, the @file{StandardError} class and
+it’s ancestors are rescued.
+
+@example
+begin
+  raise "This is not expected"
+rescue => e
+  puts e.message
+ensure
+  puts "always"
+end
+@end example
+
+@subheading Inherit From @file{StandardError}
+@cindex @file{Exception} class
+@cindex @file{StandardError} class
+
+Don’t inherit directly from an @file{Exception} class; instead, use
+@file{StandardError}.  The direct descendants of @file{Exception} are usually
+exceptions one doesn't want to rescue from, such as @file{SystemExit} or
+@file{NoMemoryError}.
 
 
 @c -----------------------------------------------------------------------------

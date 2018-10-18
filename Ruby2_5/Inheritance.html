@@ -17,19 +17,19 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Advanced Ruby (Ruby2_5 Information)</title>
+<title>Inheritance (Ruby2_5 Information)</title>
 
-<meta name="description" content="Advanced Ruby (Ruby2_5 Information)">
-<meta name="keywords" content="Advanced Ruby (Ruby2_5 Information)">
+<meta name="description" content="Inheritance (Ruby2_5 Information)">
+<meta name="keywords" content="Inheritance (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" rel="up" title="Programming Ruby by Hulan">
-<link href="Ruby-Testing.html#Ruby-Testing" rel="next" title="Ruby Testing">
-<link href="Exceptions.html#Exceptions" rel="prev" title="Exceptions">
+<link href="Ruby-Basics.html#Ruby-Basics" rel="up" title="Ruby Basics">
+<link href="Modules.html#Modules" rel="next" title="Modules">
+<link href="Objects.html#Objects" rel="prev" title="Objects">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -62,19 +62,53 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Advanced-Ruby"></a>
+<a name="Inheritance"></a>
 <div class="header">
 <p>
-Next: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="n" rel="next">Ruby Testing</a>, Previous: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="p" rel="prev">Ruby Basics</a>, Up: <a href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" accesskey="u" rel="up">Programming Ruby by Hulan</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Modules.html#Modules" accesskey="n" rel="next">Modules</a>, Previous: <a href="Objects.html#Objects" accesskey="p" rel="prev">Objects</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Advanced-Ruby-1"></a>
-<h4 class="appendixsubsec">B.1.2 Advanced Ruby</h4>
-<a name="index-advanced"></a>
+<a name="Inheritance-1"></a>
+<h4 class="appendixsubsubsec">B.1.1.13 Inheritance</h4>
+<a name="index-inheritance-1"></a>
+<a name="index-object-inheritance"></a>
+<a name="index-overridden-method"></a>
+<a name="index-super-1"></a>
 
+<p>Ruby has single <em>object inheritance</em>.  All methods, including constructors,
+are inherited.  Methods can be <em>overridden</em> in children.  <code>super</code>
+keyword is used to call the overridden method.
+</p>
+<div class="example">
+<pre class="example">class A
+  def a
+    &quot;hello&quot;
+  end
+end
 
+puts A.new.a # =&gt; hello
 
+class B &lt; A
+end
 
+puts B.new.a # =&gt; hello
+
+class C &lt; A
+  def a
+    super + &quot; world&quot;
+  end
+end
+
+puts C.new.a # =&gt; hello world
+</pre></div>
+
+<a name="Class-Variables"></a>
+<h4 class="subheading">Class Variables</h4>
+<a name="index-class-variables"></a>
+
+<p>Class variables should not be used &ldquo;because of some pitfalls in their
+inheritance.&rdquo;
+</p>
 
 
 

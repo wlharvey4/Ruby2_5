@@ -17,10 +17,10 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Method Access (Ruby2_5 Information)</title>
+<title>Modules (Ruby2_5 Information)</title>
 
-<meta name="description" content="Method Access (Ruby2_5 Information)">
-<meta name="keywords" content="Method Access (Ruby2_5 Information)">
+<meta name="description" content="Modules (Ruby2_5 Information)">
+<meta name="keywords" content="Modules (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
@@ -28,8 +28,8 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Ruby-Basics.html#Ruby-Basics" rel="up" title="Ruby Basics">
-<link href="Duck-Typing.html#Duck-Typing" rel="next" title="Duck Typing">
-<link href="Modules.html#Modules" rel="prev" title="Modules">
+<link href="Method-Access.html#Method-Access" rel="next" title="Method Access">
+<link href="Inheritance.html#Inheritance" rel="prev" title="Inheritance">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -62,37 +62,68 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Method-Access"></a>
+<a name="Modules"></a>
 <div class="header">
 <p>
-Next: <a href="Duck-Typing.html#Duck-Typing" accesskey="n" rel="next">Duck Typing</a>, Previous: <a href="Modules.html#Modules" accesskey="p" rel="prev">Modules</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Method-Access.html#Method-Access" accesskey="n" rel="next">Method Access</a>, Previous: <a href="Inheritance.html#Inheritance" accesskey="p" rel="prev">Inheritance</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Method-Access-1"></a>
-<h4 class="appendixsubsubsec">B.1.1.15 Method Access</h4>
-<a name="index-method-access"></a>
-<a name="index-public"></a>
-<a name="index-protected"></a>
-<a name="index-private"></a>
+<a name="Modules-1"></a>
+<h4 class="appendixsubsubsec">B.1.1.14 Modules</h4>
+<a name="index-modules-1"></a>
 
-<p>By default methods are <code>public</code>, but methods can be made explicitly
-<code>protected</code> or <code>private</code>.
+<p><em>Modules</em> are a way to organize your classes in a similar fashion to
+namespaces.  Classes can be included into modules or into other classes.
 </p>
 <div class="example">
 <pre class="example">class A
-  def public_method
-  end
-
-  protected
-
-  def protected_method
-  end
-
-  private
-
-  def private_method
+  class B
   end
 end
+
+module Some
+  class Thing
+  end
+end
+</pre></div>
+
+<a name="Mixins"></a>
+<h4 class="subheading">Mixins</h4>
+<a name="index-mixins-2"></a>
+<a name="index-multiple-inherance-using-mixins"></a>
+
+<p>Modules are used as <em>mixins</em> to provide a form of multiple inheritance.
+When module is included in a class, all methods defined in that module are
+available in the class as instance methods.
+</p>
+<div class="example">
+<pre class="example">module Helper
+  def something
+  end
+end
+
+class An
+  include Helper
+end
+
+A.new.something
+</pre></div>
+
+<a name="index-extend"></a>
+<p>When a module is used with <code>extend</code>, the methods are included as class
+methods.
+</p>
+<div class="example">
+<pre class="example">module Helper
+  def something
+  end
+end
+
+class A
+  extend Helper
+end
+
+A.something
 </pre></div>
 
 

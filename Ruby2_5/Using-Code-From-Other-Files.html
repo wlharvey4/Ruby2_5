@@ -17,19 +17,19 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Advanced Ruby (Ruby2_5 Information)</title>
+<title>Using Code From Other Files (Ruby2_5 Information)</title>
 
-<meta name="description" content="Advanced Ruby (Ruby2_5 Information)">
-<meta name="keywords" content="Advanced Ruby (Ruby2_5 Information)">
+<meta name="description" content="Using Code From Other Files (Ruby2_5 Information)">
+<meta name="keywords" content="Using Code From Other Files (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" rel="up" title="Programming Ruby by Hulan">
-<link href="Ruby-Testing.html#Ruby-Testing" rel="next" title="Ruby Testing">
-<link href="Exceptions.html#Exceptions" rel="prev" title="Exceptions">
+<link href="Ruby-Basics.html#Ruby-Basics" rel="up" title="Ruby Basics">
+<link href="Blocks.html#Blocks" rel="next" title="Blocks">
+<link href="Methods.html#Methods" rel="prev" title="Methods">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -62,19 +62,46 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Advanced-Ruby"></a>
+<a name="Using-Code-From-Other-Files"></a>
 <div class="header">
 <p>
-Next: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="n" rel="next">Ruby Testing</a>, Previous: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="p" rel="prev">Ruby Basics</a>, Up: <a href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" accesskey="u" rel="up">Programming Ruby by Hulan</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Blocks.html#Blocks" accesskey="n" rel="next">Blocks</a>, Previous: <a href="Methods.html#Methods" accesskey="p" rel="prev">Methods</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Advanced-Ruby-1"></a>
-<h4 class="appendixsubsec">B.1.2 Advanced Ruby</h4>
-<a name="index-advanced"></a>
+<a name="Using-Code-From-Other-Files-1"></a>
+<h4 class="appendixsubsubsec">B.1.1.10 Using Code From Other Files</h4>
 
+<dl compact="compact">
+<dd>
+<a name="index-require-3"></a>
+<a name="index-load-path"></a>
+<a name="index-_0024LOAD_005fPATH"></a>
+<a name="index-_0024_003a"></a>
+</dd>
+<dt><code>require</code></dt>
+<dd><p>Loads code from another file.  Ruby keeps track of required files (in the
+<code>$&quot;</code> global variable) and skips loading files that would be loaded 2nd
+time.
+</p>
+<p>Files are looked up using Rubyâs <em>load path</em>, which is represented using an
+array in <code>$LOAD_PATH</code> and <code>$:</code>.
+</p>
+<a name="index-load-2"></a>
+</dd>
+<dt><code>load</code></dt>
+<dd><p>loads code from another file, but does not keep track of loaded files.
+</p>
+</dd>
+</dl>
 
+<a name="Allowed-Extensions"></a>
+<h4 class="subheading">Allowed Extensions</h4>
+<a name="index-extensions-that-can-be-omitted"></a>
 
-
+<p>The following file extensions can be omitted:
+</p>
+<p>&lsquo;<samp>rb, so, o, dll, bundle, jar</samp>&rsquo;
+</p>
 
 
 

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Exceptions (Ruby2_5 Information)</title>
+
+<meta name="description" content="Exceptions (Ruby2_5 Information)">
+<meta name="keywords" content="Exceptions (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-Basics.html#Ruby-Basics" rel="up" title="Ruby Basics">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="next" title="Advanced Ruby">
+<link href="Duck-Typing.html#Duck-Typing" rel="prev" title="Duck Typing">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Exceptions"></a>
+<div class="header">
+<p>
+Previous: <a href="Duck-Typing.html#Duck-Typing" accesskey="p" rel="prev">Duck Typing</a>, Up: <a href="Ruby-Basics.html#Ruby-Basics" accesskey="u" rel="up">Ruby Basics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Exceptions-1"></a>
+<h4 class="appendixsubsubsec">B.1.1.17 Exceptions</h4>
+<a name="index-exceptions-1"></a>
+
+<p><em>Exceptions</em> represent a special state in the execution of a program.  When
+an <code>exception</code> is raised, it will &ldquo;bubble up&rdquo; (rise through) the stack
+until it is &ldquo;caught&rdquo;.
+</p>
+<a name="raise-And-rescue-Exceptions"></a>
+<h4 class="subheading"><code>raise</code> And <code>rescue</code> Exceptions</h4>
+<a name="index-raise"></a>
+
+<a name="index-raise-1"></a>
+<p>Exceptions are explicitly raised using the <code>raise</code> keyword: &lsquo;<samp>raise
+&quot;This is not expected&quot;</samp>&rsquo;.
+</p>
+<a name="index-rescue-1"></a>
+<a name="index-ensure-1"></a>
+<a name="index-StandarError-class"></a>
+<p>On the other hand when an exception needs to be caught, a code block can be
+extended with a <code>rescue</code> statement that is called when an exception is
+caught and optionally with an <code>ensure</code> block that is called after both
+exceptional and non-exceptional states.  Unless an exception class is specified
+explicitly after the <code>rescue</code> keyword, the <samp>StandardError</samp> class and
+itâs ancestors are rescued.
+</p>
+<div class="example">
+<pre class="example">begin
+  raise &quot;This is not expected&quot;
+rescue =&gt; e
+  puts e.message
+ensure
+  puts &quot;always&quot;
+end
+</pre></div>
+
+<a name="Inherit-From-StandardError"></a>
+<h4 class="subheading">Inherit From <samp>StandardError</samp></h4>
+<a name="index-Exception-class"></a>
+<a name="index-StandardError-class"></a>
+
+<p>Donât inherit directly from an <samp>Exception</samp> class; instead, use
+<samp>StandardError</samp>.  The direct descendants of <samp>Exception</samp> are usually
+exceptions one doesn&rsquo;t want to rescue from, such as <samp>SystemExit</samp> or
+<samp>NoMemoryError</samp>.
+</p>
+
+
+
+
+
+</body>
+</html>

@@ -236,6 +236,19 @@ Ruby Basics
 * Language Conventions::
 * Data Types::
 * Methods and Variables::
+* Conditions::
+* Logical Operators::
+* Regular Expressions::
+* Loops::
+* Methods::
+* Using Code From Other Files::
+* Blocks::
+* Objects::
+* Inheritance::
+* Modules::
+* Method Access::
+* Duck Typing::
+* Exceptions::
 
 Utility Programs
 
@@ -394,9 +407,9 @@ Installation Methods
 There are several ways to install Ruby:
 
    * Package Manager: When you are on a UNIX-like operating system,
-     using your system’s package manager is the easiest way of getting
-     started.  However, the packaged Ruby version usually is not the
-     newest one.
+     using your system’s package manager is the easiest way of
+     getting started.  However, the packaged Ruby version usually is
+     not the newest one.
    * Installers: can be used to install a specific or multiple Ruby
      versions.  There is also an installer for Windows.
    * Managers help you to switch between multiple Ruby installations
@@ -420,8 +433,8 @@ File: Ruby2_5.info,  Node: Package Management Systems,  Next: Installers,  Up: I
 --------------------------------
 
 If you cannot compile your own Ruby, and you do not want to use a
-third-party tool, you can use your system’s package manager to install
-Ruby.
+third-party tool, you can use your system’s package manager to
+install Ruby.
 
    Certain members in the Ruby community feel very strongly that you
 should never use a package manager to install Ruby and that you should
@@ -598,8 +611,8 @@ tools.
 
    Installing from the source code is a great solution for when you
 are comfortable enough with your platform and perhaps need specific
-settings for your environment.  It’s also a good solution in the event
-that there are no other premade packages for your platform.
+settings for your environment.  It’s also a good solution in the
+event that there are no other premade packages for your platform.
 
 * Menu:
 
@@ -1005,8 +1018,8 @@ File: Ruby2_5.info,  Node: Developing Ruby,  Next: Getting Started,  Prev: Help 
 Ruby Core (https://www.ruby-lang.org/en/community/ruby-core/)
 
    Now is a fantastic time to follow Ruby’s development.  With the
-increased attention Ruby has received in the past few years, there’s a
-growing need for good talent to help enhance Ruby and document its
+increased attention Ruby has received in the past few years, there’s
+a growing need for good talent to help enhance Ruby and document its
 parts.  So, where do you start?
 
 Ruby Core
@@ -1044,8 +1057,8 @@ are expected to migrate their changes to Ruby’s trunk, so often the
 branches are very similar, with the exception of improvements made by
 Matz and Nobu to the language itself.
 
-   If you prefer, you may browse Ruby’s Subversion repository via the
-web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
+   If you prefer, you may browse Ruby’s Subversion repository via
+the web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
 
 How to Use Git With the Main Ruby Repository
 ............................................
@@ -1347,8 +1360,8 @@ The Empty String
 ----------------
 
 An empty string ('""') returns 'true' in a conditional expression!  In
-Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and 'false'
-are 'false' in conditional contexts.
+Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and
+'false' are 'false' in conditional contexts.
 
    You can use 'empty?', compare the string to '""', or compare the
 string’s size or length to 0 to find out if a string is empty.
@@ -1390,8 +1403,8 @@ How can I access the value of a symbol?
 
 To get the value of the variable corresponding to a symbol, you can
 use 'symbol.to_s' or '"#{symbol}"' to get the name of the variable,
-and then 'eval' that in the scope of the symbol to get the variable’s
-contents:
+and then 'eval' that in the scope of the symbol to get the
+variable’s contents:
 
      a = "This is the content of `a'"
      b = eval("#{:a}")
@@ -1902,8 +1915,8 @@ last expression it evaluated.  To print:
      -| irb(main):003:0>
 
    'puts' is the basic command to print something out in Ruby.  But
-then what’s the '=> nil' bit?  That’s the result of the expression.
-'puts' always returns 'nil', which is Ruby’s
+then what’s the '=> nil' bit?  That’s the result of the
+expression.  'puts' always returns 'nil', which is Ruby’s
 absolutely-positively-nothing value.
 
 
@@ -1921,8 +1934,8 @@ Define a method:
 
    The code 'def hi' starts the definition of the method.  The next
 line is the body of the method.  Finally, the last line end tells Ruby
-we’re done defining the method.  Ruby’s response -| '=> :hi' tells us
-that it knows we're done defining the method.
+we’re done defining the method.  Ruby’s response -| '=> :hi' tells
+us that it knows we're done defining the method.
 
    Try running that method a few times:
 
@@ -2115,8 +2128,8 @@ File: Ruby2_5.info,  Node: Large Class Definition,  Next: Run MegaGreeter,  Prev
 ..............................
 
 What if we had some kind of MegaGreeter that could either greet the
-world, one person, or a whole list of people?  Let’s write this one in
-a file instead of directly in the interactive Ruby interpreter IRB.
+world, one person, or a whole list of people?  Let’s write this one
+in a file instead of directly in the interactive Ruby interpreter IRB.
 
 {'ri20min.rb'} ==
      #!/usr/bin/env ruby
@@ -2218,8 +2231,8 @@ The Real Power of Blocks
 
 The real power of blocks is when dealing with things that are more
 complicated than lists.  Beyond handling simple housekeeping details
-within the method, you can also handle setup, teardown, and errors—all
-hidden away from the cares of the user.
+within the method, you can also handle setup, teardown, and
+errors—all hidden away from the cares of the user.
 
 'say_bye' Method
 ----------------
@@ -2406,9 +2419,9 @@ Similarities With C
 Similarities with C++
 ---------------------
 
-   * You’ve got mostly the same operators (even '::').  '<<' is often
-     used for appending elements to a list.  One note though: with
-     Ruby you never use '->' -- it's always just '.'.
+   * You’ve got mostly the same operators (even '::').  '<<' is
+     often used for appending elements to a list.  One note though:
+     with Ruby you never use '->' -- it's always just '.'.
    * 'public', 'private', and 'protected' do similar jobs.
    * Inheritance syntax is still only one character, but it's '<'
      instead of ':'.
@@ -2429,8 +2442,8 @@ Differences From C
      (usually referred to as "methods") and classes in the main source
      code files.
    * There’s no '#define'.  Just use constants instead.
-   * All variables live on the heap.  Further, you don’t need to free
-     them yourself -- the garbage collector takes care of that.
+   * All variables live on the heap.  Further, you don’t need to
+     free them yourself -- the garbage collector takes care of that.
    * Arguments to methods (i.e.  functions) are passed by value, where
      the values are always object references.
    * It's 'require 'foo'' instead of '#include <foo>' or '#include
@@ -2466,8 +2479,9 @@ Differences From C
 Differences from C++
 --------------------
 
-   * There’s no explicit references.  That is, in Ruby, every variable
-     is just an automatically dereferenced name for some object.
+   * There’s no explicit references.  That is, in Ruby, every
+     variable is just an automatically dereferenced name for some
+     object.
    * Objects are strongly but _dynamically_ typed.  The runtime
      discovers _at runtime_ if that method call actually works.
    * The "constructor" is called 'initialize' instead of the class
@@ -2496,8 +2510,8 @@ Differences from C++
      'each') that takes a block of code to which it passes successive
      elements.
    * There’s only two container types: 'Array' and 'Hash'.
-   * There’s no type conversions.  With Ruby though, you’ll probably
-     find that they aren’t necessary.
+   * There’s no type conversions.  With Ruby though, you’ll
+     probably find that they aren’t necessary.
    * Multithreading is built-in, but as of Ruby 1.8 they are "green
      threads" (implemented only within the interpreter) as opposed to
      native threads.
@@ -2620,10 +2634,10 @@ Differences From Perl
    * There’s no diamond operator ('<>').  You usually use
      'IO.some_method' instead.
    * The fat comma '=>' is only used for hash literals.
-   * There’s no 'undef'.  In Ruby you have 'nil'.  'nil' is an object
-     (like anything else in Ruby).  It's not the same as an undefined
-     variable.  It evaluates to 'false' if you treat it like a
-     boolean.
+   * There’s no 'undef'.  In Ruby you have 'nil'.  'nil' is an
+     object (like anything else in Ruby).  It's not the same as an
+     undefined variable.  It evaluates to 'false' if you treat it like
+     a boolean.
    * When tested for truth, only 'false' and 'nil' evaluate to a
      'false' value.  Everything else is 'true' (including '0', '0.0',
      and '"0"').
@@ -2635,8 +2649,8 @@ File: Ruby2_5.info,  Node: To Ruby From PHP,  Next: To Ruby From Python,  Prev: 
 ........................
 
 PHP is in widespread use for web applications, but if you want to use
-Ruby on Rails or just want a language that’s more tailored for general
-use, Ruby is worth a look.
+Ruby on Rails or just want a language that’s more tailored for
+general use, Ruby is worth a look.
 
 Similarities with PHP
 ---------------------
@@ -2661,8 +2675,8 @@ Similarities with PHP
 Differences From PHP
 --------------------
 
-   * There’s strong typing.  You’ll need to call 'to_s', 'to_i' etc.
-     to convert between strings, integers and so on, instead of
+   * There’s strong typing.  You’ll need to call 'to_s', 'to_i'
+     etc.  to convert between strings, integers and so on, instead of
      relying on the language to do it.
    * Strings, numbers, arrays, hashes, etc.  are objects.  Instead of
      calling 'abs(-1)' it’s '-1.abs'.
@@ -2717,8 +2731,8 @@ Differences From Python
 -----------------------
 
    * Strings are mutable.
-   * You can make constants (variables whose value you don’t intend to
-     change).
+   * You can make constants (variables whose value you don’t intend
+     to change).
    * There are some enforced case-conventions (ex.  class names start
      with a capital letter, variables start with a lowercase letter).
    * There's only one kind of list container (an 'Array'), and it's
@@ -2729,10 +2743,10 @@ Differences From Python
      strings without having to '"add " + "strings " + "together"').
      Single-quoted strings are like Python's 'r"raw strings"'.
    * There are no "new style" and "old style" classes.  Just one kind.
-     (Python 3+ doesn’t have this issue, but it isn’t fully backward
-     compatible with Python 2.)
-   * You never directly access attributes.  With Ruby, it’s all method
-     calls.
+     (Python 3+ doesn’t have this issue, but it isn’t fully
+     backward compatible with Python 2.)
+   * You never directly access attributes.  With Ruby, it’s all
+     method calls.
    * Parentheses for method calls are usually optional.
    * There's 'public', 'private', and 'protected' to enforce access,
      instead of Python's '_voluntary_' underscore '__convention__'.
@@ -2740,8 +2754,8 @@ Differences From Python
    * You can add or modify the methods of built-in classes.  Both
      languages let you open up and modify classes at any point, but
      Python prevents modification of built-ins -- Ruby does not.
-   * You’ve got 'true' and 'false' instead of 'True' and 'False' (and
-     'nil' instead of 'None').
+   * You’ve got 'true' and 'false' instead of 'True' and 'False'
+     (and 'nil' instead of 'None').
    * When tested for truth, only 'false' and 'nil' evaluate to a
      'false' value.  Everything else is 'true' (including '0', '0.0',
      '""', and '[]').
@@ -2753,10 +2767,10 @@ Differences From Python
    * There are a number of shortcuts that, although give you more to
      remember, you quickly learn.  They tend to make Ruby fun and very
      productive.
-   * There’s no way to unset a variable once set (like Python's 'del'
-     statement).  You can reset a variable to 'nil', allowing the old
-     contents to be garbage collected, but the variable will remain in
-     the symbol table as long as it is in scope.
+   * There’s no way to unset a variable once set (like Python's
+     'del' statement).  You can reset a variable to 'nil', allowing
+     the old contents to be garbage collected, but the variable will
+     remain in the symbol table as long as it is in scope.
    * The 'yield' keyword behaves differently.  In Python it will
      return execution to the scope outside the function's invocation.
      External code is responsible for resuming the function.  In Ruby
@@ -2867,8 +2881,8 @@ the same characters references the same Object in memory.  For any
 given two Symbols that represent the same characters, the 'object_id's
 match.
 
-   Now take a look at the String ('“george”').  The 'object_id's don't
-match.  That means they're referencing two different objects in
+   Now take a look at the String ('“george”').  The 'object_id's
+don't match.  That means they're referencing two different objects in
 memory.  Whenever you use a new String, Ruby allocates memory for it.
 
    If you're in doubt whether to use a Symbol or a String, consider
@@ -3235,8 +3249,8 @@ File: Ruby2_5.info,  Node: Learning Ruby,  Next: Ruby Essentials,  Prev: Importa
 Learning Ruby (http://rubylearning.com/)
 
    A thorough collection of Ruby study notes for those who are new to
-the language and in search of a solid introduction to Ruby’s concepts
-and constructs.
+the language and in search of a solid introduction to Ruby’s
+concepts and constructs.
 
 
 File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Learning Ruby,  Up: Getting Started
