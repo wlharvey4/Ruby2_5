@@ -13,7 +13,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.6a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -28,7 +28,7 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Ruby-Testing.html#Ruby-Testing" rel="up" title="Ruby Testing">
-<link href="Utility-Programs.html#Utility-Programs" rel="next" title="Utility Programs">
+<link href="Testing-Web-Applications.html#Testing-Web-Applications" rel="next" title="Testing Web Applications">
 <link href="Testing-Frameworks.html#Testing-Frameworks" rel="prev" title="Testing Frameworks">
 <style type="text/css">
 <!--
@@ -65,7 +65,7 @@ ul.no-bullet {list-style: none}
 <a name="Minitest"></a>
 <div class="header">
 <p>
-Previous: <a href="Testing-Frameworks.html#Testing-Frameworks" accesskey="p" rel="prev">Testing Frameworks</a>, Up: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="u" rel="up">Ruby Testing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Testing-Web-Applications.html#Testing-Web-Applications" accesskey="n" rel="next">Testing Web Applications</a>, Previous: <a href="Testing-Frameworks.html#Testing-Frameworks" accesskey="p" rel="prev">Testing Frameworks</a>, Up: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="u" rel="up">Ruby Testing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
 <a name="Minitest-1"></a>
@@ -290,14 +290,187 @@ all tests, like requiring additional testing libraries.  You can also put
 <code>require minitest/autorun</code> there.  Just note that you need to
 <code>require 'test_helper'</code> as first line of every test file.
 </p>
+<a name="Test-Coverage"></a>
+<h4 class="subheading">Test Coverage</h4>
+<a name="index-test-coverage"></a>
+<a name="index-simplecov-gem"></a>
 
+<p>To get a good overview of what needs test coverage itâs useful to
+setup code coverage check.  A <samp>simplecov</samp> gem can generate an HTML
+report.  Just put the following on top of your <samp>test_helper.rb</samp>:
+</p>
+<div class="example">
+<pre class="example">require 'simplecov'
+SimpleCov.start
+</pre></div>
 
+<p>you can also define a minimum coverage in percents:
+</p>
+<div class="example">
+<pre class="example">SimpleCov.minimum_coverage 95
+</pre></div>
+
+<a name="index-coverage-report"></a>
+<a name="index-coverage"></a>
+<p>Now when you run your test suite, a new directory called
+<samp>coverage</samp> will be created.  See <samp>coverage/index.html</samp> for
+details how well your code is covered with tests.
+</p>
+
+<a name="Stubbing"></a>
+<h4 class="subheading">Stubbing</h4>
+<a name="index-stubbing"></a>
+
+<p>Sometimes we donât want to call the entire method chain when we test
+&mdash; just a single method behavior.  This applies especially in unit
+testing where we test just small piece of code.  Since Ruby is a
+dynamic language, itâs easy to cut off some methods.  This is called
+<em>stubbing</em> (leaving stubs).
+</p>
+<p>Letâs look at the following example:
+</p>
+<div class="example">
+<pre class="example">class TemperatureMeter
+  def measure(output)
+    temp = rand(21) + 20
+    output.puts temp
+    temp
+  end
+end
+</pre></div>
+
+<p>The test covering this should call the method <code>measure</code> and
+verify it returns a reasonable temperature.  We donât want our test to
+print anything to <code>STDOUT</code>.  We can stub out <code>puts</code> method
+easily like this:
+</p>
+<div class="example">
+<pre class="example">def test_measure
+  meter = TemperatureMeter.new
+  STDOUT.stub(:puts, nil) do
+    result = meter.measure(STDOUT)
+    assert_kind_of Fixnum, result
+    assert_includes 20..40, result
+  end
+end
+</pre></div>
+
+<p>With this stubbing, the <code>puts</code> method is replaced by a new empty
+method that returns the second argument, in this case <code>nil</code>.  The
+stub is applied only within the stub block.
+</p>
+<a name="Mocking"></a>
+<h4 class="subheading">Mocking</h4>
+<a name="index-mocking"></a>
+<a name="index-mock-object"></a>
+<a name="index-expectations"></a>
+
+<p>Mocking is related to stubbing.  Imagine we wanted to check that a
+<code>measure</code> method really called <code>puts</code> on the output object.
+The method is written in a way that it accepts a custom output object,
+which makes testing easy.  We can simply pass any object that
+implements the method <code>puts</code>, e.g. a file handler, socket or our
+own testing object.  Or we can use <code>mock</code>.  <code>Mock</code> is a
+blank object on which we can define expectations.
+</p>
+<p>For example we can create a <code>mock</code> instance and specify that its
+method <code>puts</code> should be called exactly once during the test.
+</p>
+<div class="example">
+<pre class="example">def test_measure_print_the_value
+  meter = TemperatureMeter.new
+  mock = Minitest::Mock.new
+  mock.expect(:puts, nil, [20..40])
+  result = meter.measure(mock)
+  mock.verify
+end
+</pre></div>
+
+<p>The first <code>expect</code> argument is the name of the method to be
+called, the second is the return value, and the third is the array
+containing arguments which the <code>puts</code> should be called.
+</p>
+<p>You could also stub the <code>rand</code> method to return letâs say 0 and
+then setup an expectation that <code>mock</code>âs <code>puts</code> method will
+receive 20 as a parameter to print.  But the range also works so the
+<code>mock</code> accepts any value between 20 and 40.
+</p>
+<p>You have to call verify on <code>mock</code> so it runs assertions on how
+many times the expected method was called.  To expect another call of
+<code>puts</code>, just define new expectation with <code>.expect</code>.
+</p>
+<a name="Stubbing-Network-Calls"></a>
+<h4 class="subheading">Stubbing Network Calls</h4>
+<a name="index-network-calls_002c-stubbing"></a>
+<a name="index-stubbing-network-calls"></a>
+
+<p>If your app communicates with external services over HTTP you most
+likely need to fake the communication in your test suite.  Reasons
+include performance, spamming of remote services, avoiding credentials
+leaks, error state testing.  Constructing the whole net/http response
+object can be complicated.  Luckily there are tools that can help you
+greatly.
+</p>
+<a name="webmock-Gem"></a>
+<h4 class="subsubheading"><samp>webmock</samp> Gem</h4>
+<a name="index-webmock-gem"></a>
+
+<p>First is the <samp>webmock</samp> gem.  It provides helpers to stub low-level methods
+easily.  To use it, install the gem and just add following to your tests.
+</p>
+<div class="example">
+<pre class="example">require 'webmock/minitest'
+stub_request(:get, 'www.example.com')
+First is the
+Net::HTTP.get('www.example.com', '/') # this will succeed
+</pre></div>
+
+<p>You can also specify more conditions to match the request as well as the return
+value:
+</p>
+<div class="example">
+<pre class="example">stub_request(:post, 'www.example.com').with(:body =&gt; 'ping').to_return(:body =&gt;
+  'pong')
+</pre></div>
+
+<a name="index-Restclient-gem"></a>
+<p>Custome headers can be added too.  <samp>Webmock</samp> works with high level
+libraries such as the popular <samp>Restclient</samp> gem.
+</p>
+<a name="vcr"></a>
+<h4 class="subsubheading"><samp>vcr</samp></h4>
+<a name="index-vcr"></a>
+
+<p>Another useful tool is <samp>vcr</samp>.  The name was chosen because of analogy
+with videocassette recorder.  It can record a real network communication and
+replay it later.  This can be nicely used in tests.  You only record the
+communication once during writing tests and replay it while running tests in
+the future or on a CI server.  You can have multiple communications recorded
+and just swap cassettes for each test.  Example follows:
+</p>
+<div class="example">
+<pre class="example">require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = &quot;fixtures/vcr_cassettes&quot; # storage for cassetes
+  config.hook_into :webmock				 # webmock integration
+end
+
+class VCRTest &lt; Minitest::Test
+  def test_example_dot_com
+    VCR.use_cassette(&quot;success_info&quot;) do
+      response = Net::HTTP.get_response(URI('http://www.example.com/'))
+      assert_match /Example Domain/, response.body
+    end
+  end
+end
+</pre></div>
 
 
 <hr>
 <div class="header">
 <p>
-Previous: <a href="Testing-Frameworks.html#Testing-Frameworks" accesskey="p" rel="prev">Testing Frameworks</a>, Up: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="u" rel="up">Ruby Testing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Testing-Web-Applications.html#Testing-Web-Applications" accesskey="n" rel="next">Testing Web Applications</a>, Previous: <a href="Testing-Frameworks.html#Testing-Frameworks" accesskey="p" rel="prev">Testing Frameworks</a>, Up: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="u" rel="up">Ruby Testing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 
 

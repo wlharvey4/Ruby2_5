@@ -113,7 +113,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.5a
+@set EDITION 0.6a
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -521,6 +521,8 @@ Ruby Testing
 
 * Testing Frameworks::
 * Minitest::
+* Testing Web Applications::
+* Cucumber::
 
 Utility Programs
 
@@ -14708,6 +14710,8 @@ it and most projects are well covered.  A TDD is also popular among rubyist.
 @menu
 * Testing Frameworks::
 * Minitest::
+* Testing Web Applications::
+* Cucumber::
 @end menu
 
 @node Testing Frameworks
@@ -14933,6 +14937,286 @@ named @file{test_helper.rb}.  This file contains everything that is needed for
 all tests, like requiring additional testing libraries.  You can also put
 @command{require minitest/autorun} there.  Just note that you need to
 @command{require 'test_helper'} as first line of every test file.
+
+@subheading Test Coverage
+@cindex test coverage
+@cindex @file{simplecov} gem
+
+To get a good overview of what needs test coverage it’s useful to
+setup code coverage check.  A @file{simplecov} gem can generate an HTML
+report.  Just put the following on top of your @file{test_helper.rb}:
+
+@example
+require 'simplecov'
+SimpleCov.start
+@end example
+
+you can also define a minimum coverage in percents:
+
+@example
+SimpleCov.minimum_coverage 95
+@end example
+
+@cindex coverage report
+@cindex @file{coverage}
+Now when you run your test suite, a new directory called
+@file{coverage} will be created.  See @file{coverage/index.html} for
+details how well your code is covered with tests.
+
+
+@subheading Stubbing
+@cindex stubbing
+
+Sometimes we don’t want to call the entire method chain when we test
+--- just a single method behavior.  This applies especially in unit
+testing where we test just small piece of code.  Since Ruby is a
+dynamic language, it’s easy to cut off some methods.  This is called
+@dfn{stubbing} (leaving stubs).
+
+Let’s look at the following example:
+
+@example
+class TemperatureMeter
+  def measure(output)
+    temp = rand(21) + 20
+    output.puts temp
+    temp
+  end
+end
+@end example
+
+The test covering this should call the method @code{measure} and
+verify it returns a reasonable temperature.  We don’t want our test to
+print anything to @env{STDOUT}.  We can stub out @code{puts} method
+easily like this:
+
+@example
+def test_measure
+  meter = TemperatureMeter.new
+  STDOUT.stub(:puts, nil) do
+    result = meter.measure(STDOUT)
+    assert_kind_of Fixnum, result
+    assert_includes 20..40, result
+  end
+end
+@end example
+
+With this stubbing, the @code{puts} method is replaced by a new empty
+method that returns the second argument, in this case @code{nil}.  The
+stub is applied only within the stub block.
+
+@subheading Mocking
+@cindex mocking
+@cindex @code{mock} object
+@cindex expectations
+
+Mocking is related to stubbing.  Imagine we wanted to check that a
+@code{measure} method really called @code{puts} on the output object.
+The method is written in a way that it accepts a custom output object,
+which makes testing easy.  We can simply pass any object that
+implements the method @code{puts}, e.g. a file handler, socket or our
+own testing object.  Or we can use @code{mock}.  @code{Mock} is a
+blank object on which we can define expectations.
+
+For example we can create a @code{mock} instance and specify that its
+method @code{puts} should be called exactly once during the test.
+
+@example
+def test_measure_print_the_value
+  meter = TemperatureMeter.new
+  mock = Minitest::Mock.new
+  mock.expect(:puts, nil, [20..40])
+  result = meter.measure(mock)
+  mock.verify
+end
+@end example
+
+The first @code{expect} argument is the name of the method to be
+called, the second is the return value, and the third is the array
+containing arguments which the @code{puts} should be called.
+
+You could also stub the @code{rand} method to return let’s say 0 and
+then setup an expectation that @code{mock}’s @code{puts} method will
+receive 20 as a parameter to print.  But the range also works so the
+@code{mock} accepts any value between 20 and 40.
+
+You have to call verify on @code{mock} so it runs assertions on how
+many times the expected method was called.  To expect another call of
+@code{puts}, just define new expectation with @code{.expect}.
+
+@subheading Stubbing Network Calls
+@cindex network calls, stubbing
+@cindex stubbing network calls
+
+If your app communicates with external services over HTTP you most
+likely need to fake the communication in your test suite.  Reasons
+include performance, spamming of remote services, avoiding credentials
+leaks, error state testing.  Constructing the whole net/http response
+object can be complicated.  Luckily there are tools that can help you
+greatly.
+
+@subsubheading @file{webmock} Gem
+@cindex @file{webmock} gem
+
+First is the @file{webmock} gem.  It provides helpers to stub low-level methods
+easily.  To use it, install the gem and just add following to your tests.
+
+@example
+require 'webmock/minitest'
+stub_request(:get, 'www.example.com')
+First is the
+Net::HTTP.get('www.example.com', '/') # this will succeed
+@end example
+
+You can also specify more conditions to match the request as well as the return
+value:
+
+@example
+stub_request(:post, 'www.example.com').with(:body => 'ping').to_return(:body =>
+  'pong')
+@end example
+
+@cindex @file{Restclient} gem
+Custome headers can be added too.  @file{Webmock} works with high level
+libraries such as the popular @file{Restclient} gem.
+
+@subsubheading @file{vcr}
+@cindex @file{vcr}
+
+Another useful tool is @file{vcr}.  The name was chosen because of analogy
+with videocassette recorder.  It can record a real network communication and
+replay it later.  This can be nicely used in tests.  You only record the
+communication once during writing tests and replay it while running tests in
+the future or on a CI server.  You can have multiple communications recorded
+and just swap cassettes for each test.  Example follows:
+
+@example
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes" # storage for cassetes
+  config.hook_into :webmock				 # webmock integration
+end
+
+class VCRTest < Minitest::Test
+  def test_example_dot_com
+    VCR.use_cassette("success_info") do
+      response = Net::HTTP.get_response(URI('http://www.example.com/'))
+      assert_match /Example Domain/, response.body
+    end
+  end
+end
+@end example
+
+@c _____________________________________
+
+@node Testing Web Applications
+@appendixsubsubsec Testing Web Applications
+@cindex test web applications
+@cindex web applications, test
+@cindex @file{capybara} gem
+@cindex @file{RackTest}
+@cindex @file{rack}
+
+If you work on web applications, you can also easily test the interaction like
+users will interact through web browser.  This is useful when you write
+integration tests.  A de facto standard is the @file{capybara} gem that
+provides drivers for various browser backends.  The simplest driver to setup is
+@file{RackTest}, so you can start with it as long as your app uses @file{rack}.
+
+@file{Selenium} driver
+@file{Firefox}
+@file{Poltergeist} driver
+@file{PhantomJS}
+If you need advanced stuff like testing pages with asynchronous requests
+through AJAX you can use @file{Selenium} driver which runs @file{Firefox} in
+headless mode.  If you want to run such tests on CI server without X11 server,
+there’s @file{Poltergeist} driver using @file{PhantomJS}.
+
+An example of simple test, supposing @file{my_app.rb} contains
+@file{rack}-based app (e.g. using @file{Sinatra}).
+
+@example
+require 'minitest/autorun'
+require 'capybara/dsl'
+require './my_app.rb'
+
+Capybara.app = MyApp
+Capybara.default_driver = :rack_test
+
+class MyAppTest < Minitest::Test
+  include Capybara::DSL
+
+  def test_index
+    visit '/'
+    click_link 'login'
+    fill_in('Login', with: 'Marek')
+    fill_in('Password', with: 'secret')
+    click_button('Submit')
+
+    assert page.has_selector('div p.success')
+    assert page.has_content?('Welcome Marek')
+  end
+
+  def teardown
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+end
+@end example
+
+@c _____________________________________
+
+@node Cucumber
+@appendixsubsubsec Cucumber
+@cindex @file{Cucumber}
+@cindex BDD
+
+We can use the @file{Cucumber} framework for testing using the BDD aproach.  It
+allows us to write the behavior specification in a natural language style first
+and then convert it to tests step-by-step.  Imagine you’d describe a feature
+like this:
+
+@example
+Feature: logout of logged in user
+
+  Scenario: User can log out from app
+    Given I'm logged in as user ares
+      And I'm on host list page
+    When I click logout link
+    Then I should see logout notification
+@end example
+
+@cindex feature
+It’s a valid @file{cucumber} test (aka feature) which only needs implementing
+those steps, using @file{capybara} for example.
+
+@example
+Given(/^I'm logged in as user (.*)$/) do |user|
+  visit '/'
+  fill_in "login", with: user
+  fill_in "password", with: 'testpassword'
+  click_button 'login'
+end
+
+Given(/^I'm on (.*) (.*) page$/) do |resource, action|
+  visit "/#@{resource@}/#@{action@}"
+end
+
+When(/^I click (.*) link$/) do |identifier|
+  click_link identifier
+end
+
+Then(/^I should see logout notification$/) do
+  assert page.has_content 'div p.logout_notification'
+end
+@end example
+
+One advantage that it brings is, that your tests are live documentation too.
+
+
+
+
 
 
 
