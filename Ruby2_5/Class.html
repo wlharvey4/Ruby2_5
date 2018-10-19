@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Class (Ruby2_5 Information)</title>
+
+<meta name="description" content="Class (Ruby2_5 Information)">
+<meta name="keywords" content="Class (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="up" title="Advanced Ruby">
+<link href="Advanced-Methods.html#Advanced-Methods" rel="next" title="Advanced Methods">
+<link href="Context.html#Context" rel="prev" title="Context">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Class"></a>
+<div class="header">
+<p>
+Next: <a href="Advanced-Methods.html#Advanced-Methods" accesskey="n" rel="next">Advanced Methods</a>, Previous: <a href="Context.html#Context" accesskey="p" rel="prev">Context</a>, Up: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="u" rel="up">Advanced Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Class-1"></a>
+<h4 class="appendixsubsubsec">B.1.2.3 Class</h4>
+
+<a name="Open-Classes_003a-Monkey-Patching"></a>
+<h4 class="subheading">Open Classes: Monkey Patching</h4>
+<a name="index-monkey-patching"></a>
+
+<p>Unlike most languages, Ruby classes are open for modifications.  Developers can
+modify behavior of classes defined by frameworks or Ruby itself.  This
+technique is called <em>monkey patching</em>.
+</p>
+<div class="example">
+<pre class="example">class Clazz
+  def call
+    &quot;A&quot;
+  end
+end
+
+class Clazz
+  def call
+    &quot;B&quot;
+  end
+end
+
+Clazz.new.call # &rArr; &quot;B&quot;
+</pre></div>
+
+<a name="What-Is-A-Class_003f"></a>
+<h4 class="subheading">What Is A Class?</h4>
+
+<p>Letâs start with a definition:
+</p>
+<a name="index-Class"></a>
+<blockquote>
+<p>Classes are instances of class <samp>Class</samp>.
+</p></blockquote>
+
+<p>Everything in Ruby is an object &hellip; even a class.
+</p>
+<div class="example">
+<pre class="example">class A
+  def self.call
+    &quot;A&quot;
+  end
+end
+
+B = Class.new
+def B.call
+  &quot;called&quot;
+end
+
+A.call      # &rArr; &quot;called&quot;
+B.call      # &rArr; &quot;called&quot;
+
+A.object_id # &rArr; [some number]
+B.object_id # &rArr; [some number]
+
+A.class     # &rArr; Class
+B.class     # &rArr; Class
+</pre></div>
+
+<p>Class <code>A</code> was defined using the <code>class</code> keyword and then a class
+method was defined.  Class <code>B</code> was created by creating a new instance of
+the <samp>Class</samp> class and the object was assigned to constant <code>B</code>.  As
+both of those classes are objects, itâs possible to check their class and the
+ID of the objects.
+</p>
+<a name="Inheritance-2"></a>
+<h4 class="subheading">Inheritance</h4>
+<a name="index-inheritance-2"></a>
+
+<p>In Ruby classes can inherit from each other, though Ruby has only single-class
+inheritance &mdash; itâs not possible to inherit from multiple classes, only from
+one.
+</p>
+<div class="example">
+<pre class="example">class A
+  def call
+    &quot;called&quot;
+  end
+end
+
+class B &lt; A
+end
+
+C = Class.new(B)
+
+B.new.call # &rArr; &quot;called&quot;
+C.new.call # &rArr; &quot;called&quot;
+</pre></div>
+
+<a name="Mixins-1"></a>
+<h4 class="subheading">Mixins</h4>
+<a name="index-mixins-3"></a>
+<a name="index-Module"></a>
+<a name="index-loopup-path"></a>
+
+<p>When some class needs to inherit from multiple classes, itâs not possible, but
+Ruby provides a workaround through mixins.  It is possible to include many
+Modules into a class; the methods defined in those modules will become part of
+the lookup path as if they were defined in the class.
+</p>
+<div class="example">
+<pre class="example">module Methods
+  def call
+    &quot;called&quot;
+  end
+end
+
+class A
+  include Methods
+end
+
+A.new.call # &rArr; &quot;called&quot;
+</pre></div>
+
+<a name="Class-Introspections"></a>
+<h4 class="subheading">Class Introspections</h4>
+<a name="index-introspection"></a>
+
+<p>Ruby allows many introspections on classes and many other objects.
+</p>
+<a name="name"></a>
+<h4 class="subsubheading"><code>name</code></h4>
+<a name="index-name"></a>
+
+<p>There is method <code>name</code> defined on a class that returns the name of the
+current class.
+</p>
+<div class="example">
+<pre class="example">Array.name    # &rArr; &quot;Array&quot;
+
+[].class.name # &rArr; &quot;Array&quot;
+</pre></div>
+
+<a name="methods"></a>
+<h4 class="subsubheading"><code>methods</code></h4>
+<a name="index-methods-2"></a>
+
+<p>Itâs possible to list methods of an object:
+</p>
+<div class="example">
+<pre class="example">class A
+  def call
+  end
+end
+
+A.new.methods # &rArr; array of methods
+</pre></div>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Advanced-Methods.html#Advanced-Methods" accesskey="n" rel="next">Advanced Methods</a>, Previous: <a href="Context.html#Context" accesskey="p" rel="prev">Context</a>, Up: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="u" rel="up">Advanced Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

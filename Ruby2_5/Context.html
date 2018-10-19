@@ -17,19 +17,19 @@ This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Ruby Testing (Ruby2_5 Information)</title>
+<title>Context (Ruby2_5 Information)</title>
 
-<meta name="description" content="Ruby Testing (Ruby2_5 Information)">
-<meta name="keywords" content="Ruby Testing (Ruby2_5 Information)">
+<meta name="description" content="Context (Ruby2_5 Information)">
+<meta name="keywords" content="Context (Ruby2_5 Information)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="makeinfo">
 <link href="index.html#Top" rel="start" title="Top">
 <link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
-<link href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" rel="up" title="Programming Ruby by Hulan">
-<link href="Utility-Programs.html#Utility-Programs" rel="next" title="Utility Programs">
-<link href="Advanced-Methods.html#Advanced-Methods" rel="prev" title="Advanced Methods">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="up" title="Advanced Ruby">
+<link href="Class.html#Class" rel="next" title="Class">
+<link href="Return-Values.html#Return-Values" rel="prev" title="Return Values">
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -62,22 +62,39 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<a name="Ruby-Testing"></a>
+<a name="Context"></a>
 <div class="header">
 <p>
-Previous: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="p" rel="prev">Advanced Ruby</a>, Up: <a href="Programming-Ruby-by-Hulan.html#Programming-Ruby-by-Hulan" accesskey="u" rel="up">Programming Ruby by Hulan</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+Next: <a href="Class.html#Class" accesskey="n" rel="next">Class</a>, Previous: <a href="Return-Values.html#Return-Values" accesskey="p" rel="prev">Return Values</a>, Up: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="u" rel="up">Advanced Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
 <hr>
-<a name="Ruby-Testing-1"></a>
-<h4 class="appendixsubsec">B.1.3 Ruby Testing</h4>
-<a name="index-testing"></a>
+<a name="Context-1"></a>
+<h4 class="appendixsubsubsec">B.1.2.2 Context</h4>
+<a name="index-context"></a>
+<a name="index-current-object"></a>
 
+<a name="Context_003a-Current-Context"></a>
+<h4 class="subheading">Context: Current Context</h4>
 
+<p>In Ruby everything is executed in some context.  This <em>context</em> is known as
+the <em>current object</em> and is always represented by <code>self</code>.
+</p>
+<div class="example">
+<pre class="example">self.class # &rArr; Object
 
+class B
+  self
+end
+# &rArr; Class
 
+class A
+  def call
+    self
+  end
+end
 
-
-
+A.new.call # &rArr; #&lt;A:some number&gt;
+</pre></div>
 
 
 

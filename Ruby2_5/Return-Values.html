@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Return Values (Ruby2_5 Information)</title>
+
+<meta name="description" content="Return Values (Ruby2_5 Information)">
+<meta name="keywords" content="Return Values (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="up" title="Advanced Ruby">
+<link href="Context.html#Context" rel="next" title="Context">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="prev" title="Advanced Ruby">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Return-Values"></a>
+<div class="header">
+<p>
+Next: <a href="Context.html#Context" accesskey="n" rel="next">Context</a>, Up: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="u" rel="up">Advanced Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Return-Values-1"></a>
+<h4 class="appendixsubsubsec">B.1.2.1 Return Values</h4>
+<a name="index-return-values"></a>
+
+<p>In Ruby everything is an expression &mdash; it executes and returns some value, the
+result of itâs execution.  For example:
+</p>
+<div class="example">
+<pre class="example">5 + 2        # &rArr; 7
+
+&quot;hello&quot;      # &rArr; &quot;hello&quot;
+
+&quot;a&quot; if true  # &rArr; &quot;a&quot;
+&quot;a&quot; if false # &rArr; nil
+
+class A; end # &rArr; ???
+</pre></div>
+
+<a name="index-result"></a>
+<p>What is the result of the last expression?  It could be obvious &mdash; &ldquo;we
+defined class A&rdquo;.  But not really.  The fact we have defined a class is only
+an effect of the expression; not the result.  A <em>result</em> is a value
+returned from the expression itself.
+</p>
+<div class="example">
+<pre class="example">class A; end # &rArr; nil
+</pre></div>
+
+<p>The result is simply <code>nil</code>.  Itâs similar to the expression &lsquo;<samp>&quot;a&quot; if
+false # &rArr; nil</samp>&rsquo; above.  The condition is evaluated as <code>false</code> and
+there is no <code>else</code> so there is nothing to return, so the result is
+<code>nil</code>.  In this case a class was defined, but there was nothing returned,
+as the body of the class was empty, so the result is <code>nil</code>.  Letâs modify
+the example to return a value:
+</p>
+<div class="example">
+<pre class="example">class A; 1; end          # &rArr; 1
+class A; 1; &quot;hello&quot;; end # &rArr; &quot;hello&quot;
+class A; self; end       # &rArr; A
+</pre></div>
+
+<p>It was said that &ldquo;the return value of a method is the result of itâs last
+expression.&rdquo;  Itâs obvious that in this example itâs very similar.  It can
+be generalized for all structures, even though sometimes it may not be obvious
+on first sight:
+</p>
+<blockquote>
+<p>The return value is the result of the last expression.
+</p></blockquote>
+
+
+
+
+
+</body>
+</html>
