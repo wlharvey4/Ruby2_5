@@ -1322,6 +1322,217 @@ File: Ruby2_5.info,  Node: Ruby Testing,  Prev: Advanced Ruby,  Up: Programming 
 B.1.3 Ruby Testing
 ------------------
 
+Writing automated tests for code is essential.  The Ruby community
+emphasizes it and most projects are well covered.  A TDD is also
+popular among rubyist.
+
+* Menu:
+
+* Testing Frameworks::
+* Minitest::
+
+
+File: Ruby2_5.info,  Node: Testing Frameworks,  Next: Minitest,  Up: Ruby Testing
+
+B.1.3.1 Testing Frameworks
+..........................
+
+Today the de facto standard is to use the Minitest
+(https://github.com/seattlerb/minitest) testing framework.  You can
+see RSpec (http://rspec.info) still being used too, but 'Minitest'
+already offers the same capabilities and more.  Both can be easily
+used for TDD. For BDD there’s the popular ecosystem called Cucumber
+(https://cucumber.io) which started as a Ruby gem but quickly evolved
+into a polyglot tool.
+
+
+File: Ruby2_5.info,  Node: Minitest,  Prev: Testing Frameworks,  Up: Ruby Testing
+
+B.1.3.2 Minitest
+................
+
+Th syntax you can see in tests can be in two forms.  Either something
+we call 'Testunit' (aka 'junit') or 'spec' that was taken from
+'Rspec'.  The internal implementation is the same for both and it’s
+mostly a matter of taste.  Tests are regular ruby scripts that test
+other scripts.  Test are usually to be found in the 'test/' directory,
+and the file name should reflect test class defined inside, e.g.
+'morse_coder_test.rb'.
+
+'Testunit' Syntax
+-----------------
+
+     require 'minitest/autorun'
+     require 'morse_coder.rb'
+
+     class MorseCoderTest < Minitest::Test
+       def setup
+         @coder = MorseCoder.new(...)
+       end
+
+       def test_encode_for_single_letters
+         assert_equal ".-", @coder.encode "a"
+         assert_equal "-...", @coder.encode "b"
+       end
+     end
+   'Minitest::Test'
+
+   A test class should inherit from 'Minitest::Test' so test helpers
+(assertions) are available.  Testing methods must start with 'test_'.
+Other methods are regular methods that can be used from testing
+methods, e.g.  to build some fixtures.
+
+   There are a few method names with special meaning.  In the example
+you can see a method with th name 'setup'.  This method gets
+automatically executed before every testing method.  Similarly there’s
+a 'teardown' method that get’s executed after each testing method.
+It’s usually used for cleaning up any mess the testing method created.
+
+Assertions
+----------
+
+'skip()' One testing method can contain more than one assertion.  The
+first assertion failure stops the method being run and marks the test
+as a failure (F). If method raises an exception the result of the test
+is marked as an error (E). If all assertions defined in the method
+pass, the test succeeds (.).  If you plan to implement the test later
+you can skip the test by calling 'skip("Sorry, I’m lazy")'.
+
+   The simplest assertion is one testing a boolean value:
+
+     assert @something
+   'assert' 'refute'
+
+   This will succeed if '@something' is considered 'true', but fail
+otherwise.  The negative form is 'refute', e.g.  the following would
+pass: 'refute false'.
+
+   You could obvisouly add tests like assert '@something == 'that I
+expect'' but it would generate very generic messages on failures.  You
+can specify custome message by passing extra argument like this:
+
+     assert @something == 'that I expect', '@something does not match expected
+     string'
+
+   but it’s always better to use assert helper that matches the
+use-case best.  The following example demonstrates how to check
+equality of two values; the failure message would automatically
+include information about what @something is and what it was expected
+to be.
+
+     assert_equal @something, 'that I expect'
+
+   Useful 'assert' helpers are listed in the example below.  All of
+them can be found in the Minitest documentation.
+(http://docs.seattlerb.org/minitest/Minitest/Assertions.html)
+
+'assert arg'
+     'arg' is 'true'
+'refute arg'
+     'arg' is 'false'
+'assert_equal'
+     'expected, actual'
+'assert_includes'
+     'collection, object'
+'assert_kind_of'
+     'class, object'
+'assert_nil'
+     'object'
+'assert_match'
+     'expected, actual'
+'assert_raises'
+     'exception_class, &block'
+
+Table B.1: Table of Assertion Helpers
+
+Spec Syntax
+-----------
+
+'Spec' Syntax
+
+   Subjectively better structured, less repeating, more readable and
+TDD supporting syntax can be used.  See the following example.
+
+     require 'minitest/autorun'
+     require 'morse_coder.rb'
+
+     describe MorseCoder do
+       let(:coder) { MorseCoder.new(...) }
+
+       describe 'single letters encoding' do
+         let(:a) { coder.a }
+         let(:b) { coder.b }
+
+         specify { a.must_equal '.-' }
+         specify { b.must_equal '-...' }
+       end
+     end
+
+   'describe' block 'before' 'let' 'specify' 'must_$assert'
+'wont_$assert' 'describe' block wraps logical block.  Each such block
+can have it’s own 'before' (aka 'setup').  With 'let' we define a
+method that can be called later within any nested block.  'let' is
+lazy.  'specify' accepts a block that uses assertion helpers in form
+of 'must_$assert' or 'wont_$assert'.  There are many other extensions
+to this language so it reads more naturally.
+
+   Note that since the implementation is the same, you can combine
+both at the same time.
+
+Output Of Test Run
+------------------
+
+     Run options: --seed 25127
+
+     # Running tests:
+
+     ..S.....F........
+
+     Finished tests in 101.524752s, 6.4319 tests/s, 9.0618 assertions/s
+     63 tests, 92 assertions, 1 failures, 0 errors, S skips
+
+       1) Failure:
+     TestConnector#test_connection [./connector.rb:5]:
+       Expected: nil
+       Actual: "that I expect"
+
+   The seed is random number representing the order of test.  Note
+that your tests should be order-independant.
+
+Running Multiple Test Files
+---------------------------
+
+It’s common to have more than just one test file in project.  To run
+all tests at once we can use 'Rake'.  Usually tests are put in 'test'
+directory in the project tree structure.  In such setup we can easily
+define test tasks in a 'Rakefile'.  'Rake' provides a built-in class
+for this; we just need to configure it.  Just put following into your
+'Rakefile':
+
+     require 'rake/testtask'
+
+     Rake::TestTask.new do |t|
+       t.libs << 'test'
+       t.test_files = Dir.glob('test/**/*_test.rb')
+       t.verbose true
+     end
+
+   We can run 'rake test' which will load a run all ruby scripts with
+'_test' suffix in the test directory including all of its
+subdirectories.  If you prefer 'test' to be the default 'rake' task,
+add following to the 'Rakefile':
+
+     task :default => [ :test ]
+
+   Now you can run all tests just by running 'rake'.
+
+   Another common practise is to have one file that is loaded at
+start, usually named 'test_helper.rb'.  This file contains everything
+that is needed for all tests, like requiring additional testing
+libraries.  You can also put 'require minitest/autorun' there.  Just
+note that you need to 'require 'test_helper'' as first line of every
+test file.
+
 
 File: Ruby2_5.info,  Node: Utility Programs,  Next: Initial Setup and Post Create,  Prev: Resources,  Up: Top
 
@@ -2804,6 +3015,7 @@ List of Tables
                                          List of Classes and ...
 * Table A.3: table:api-methods.          List of API Methods
 * Table A.4: table:core-topics.          Table of Core Topics
+* Table B.1: AssertionHelpers.           Table of Assertion Helpers
 
 
 File: Ruby2_5.info,  Node: Concept Index,  Next: Program Index,  Prev: List of Tables,  Up: Top
@@ -3034,6 +3246,7 @@ Index
                                                             (line  16)
 * arrays, repeating:                     Ruby User's Guide On Arrays And Hashes.
                                                             (line  16)
+* assertions:                            Minitest.          (line  46)
 * associative array:                     Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
 * attribute accessors:                   Ruby User's Guide On Accessors.
@@ -3575,6 +3788,7 @@ Index
 * methods, return value:                 Methods.           (line   6)
 * method_missing:                        Advanced Methods.  (line 145)
 * method_missing method:                 Missing methods.   (line   6)
+* Minitest:                              Minitest.          (line   6)
 * mixin:                                 Ruby User's Guide On Modules.
                                                             (line  43)
 * mixin example:                         FAQ Classes and Modules.
@@ -3844,6 +4058,7 @@ Index
                                                             (line 138)
 * send:                                  FAQ Syntax.        (line 129)
 * send method:                           Advanced Methods.  (line  83)
+* setup:                                 Minitest.          (line  37)
 * shared libraries:                      FAQ Syntax.        (line 249)
 * simple functions?:                     FAQ Methods.       (line  43)
 * singleton class?:                      FAQ Classes and Modules.
@@ -3925,15 +4140,22 @@ Index
 * symbols as hash keys:                  FAQ Syntax.        (line  99)
 * symbols, unique constants:             FAQ Syntax.        (line 105)
 * syntax:                                Files API.         (line  37)
+* syntax, Testunit:                      Minitest.          (line  17)
 * tabs, expand into spaces:              FAQ Built-In Libraries.
                                                             (line  45)
 * Tcl/Tk, use:                           FAQ Extension Library.
                                                             (line  18)
+* TDD:                                   Minitest.          (line 103)
+* teardown:                              Minitest.          (line  37)
 * templates:                             To Ruby From C and C++.
                                                             (line 149)
 * ternary operator:                      FAQ Other Features.
                                                             (line   9)
-* testing:                               Ruby Testing.      (line   5)
+* test syntax forms:                     Minitest.          (line   6)
+* testing:                               Ruby Testing.      (line   6)
+* testing frameworks:                    Testing Frameworks.
+                                                            (line   6)
+* Testunit:                              Minitest.          (line  17)
 * Texinfo document formatting language:  Conventions.       (line   6)
 * thread vs fork:                        FAQ Built-In Libraries.
                                                             (line  57)

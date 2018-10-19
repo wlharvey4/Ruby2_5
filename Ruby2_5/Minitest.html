@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Minitest (Ruby2_5 Information)</title>
+
+<meta name="description" content="Minitest (Ruby2_5 Information)">
+<meta name="keywords" content="Minitest (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-Testing.html#Ruby-Testing" rel="up" title="Ruby Testing">
+<link href="Utility-Programs.html#Utility-Programs" rel="next" title="Utility Programs">
+<link href="Testing-Frameworks.html#Testing-Frameworks" rel="prev" title="Testing Frameworks">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Minitest"></a>
+<div class="header">
+<p>
+Previous: <a href="Testing-Frameworks.html#Testing-Frameworks" accesskey="p" rel="prev">Testing Frameworks</a>, Up: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="u" rel="up">Ruby Testing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Minitest-1"></a>
+<h4 class="appendixsubsubsec">B.1.3.2 Minitest</h4>
+<a name="index-Minitest"></a>
+<a name="index-test-syntax-forms"></a>
+
+<p>Th syntax you can see in tests can be in two forms.  Either something we call
+<samp>Testunit</samp> (aka <code>junit</code>) or <code>spec</code> that was taken from
+<samp>Rspec</samp>.  The internal implementation is the same for both and itâs mostly
+a matter of taste.  Tests are regular ruby scripts that test other scripts.
+Test are usually to be found in the <samp>test/</samp> directory, and the file name
+should reflect test class defined inside, e.g. <samp>morse_coder_test.rb</samp>.
+</p>
+<a name="Testunit-Syntax"></a>
+<h4 class="subheading"><samp>Testunit</samp> Syntax</h4>
+<a name="index-Testunit"></a>
+<a name="index-syntax_002c-Testunit"></a>
+
+<div class="example">
+<pre class="example">require 'minitest/autorun'
+require 'morse_coder.rb'
+
+class MorseCoderTest &lt; Minitest::Test
+  def setup
+    @coder = MorseCoder.new(...)
+  end
+
+  def test_encode_for_single_letters
+    assert_equal &quot;.-&quot;, @coder.encode &quot;a&quot;
+    assert_equal &quot;-...&quot;, @coder.encode &quot;b&quot;
+  end
+end
+</pre></div>
+<p><samp>Minitest::Test</samp>
+</p>
+<p>A test class should inherit from <samp>Minitest::Test</samp> so test helpers
+(assertions) are available.  Testing methods must start with <code>test_</code>.
+Other methods are regular methods that can be used from testing methods,
+e.g. to build some fixtures.
+</p>
+<a name="index-setup"></a>
+<a name="index-teardown"></a>
+<p>There are a few method names with special meaning.  In the example you can see
+a method with th name <code>setup</code>.  This method gets automatically executed
+before every testing method.  Similarly thereâs a <code>teardown</code> method that
+getâs executed after each testing method.  Itâs usually used for cleaning up
+any mess the testing method created.
+</p>
+<a name="Assertions"></a>
+<h4 class="subheading">Assertions</h4>
+<a name="index-assertions"></a>
+
+<p><code>skip()</code>
+One testing method can contain more than one assertion.  The first assertion
+failure stops the method being run and marks the test as a failure (F).  If
+method raises an exception the result of the test is marked as an error (E).
+If all assertions defined in the method pass, the test succeeds (.).  If you
+plan to implement the test later you can skip the test by calling <code>skip(&quot;Sorry,
+Iâm lazy&quot;)</code>.
+</p>
+<p>The simplest assertion is one testing a boolean value:
+</p>
+<div class="example">
+<pre class="example">assert @something
+</pre></div>
+<p><code>assert</code>
+<code>refute</code>
+</p>
+<p>This will succeed if <code>@something</code> is considered <code>true</code>, but fail
+otherwise.  The negative form is <code>refute</code>, e.g. the following would pass:
+&lsquo;<samp>refute false</samp>&rsquo;.
+</p>
+<p>You could obvisouly add tests like assert &lsquo;<samp>@something == 'that I expect'</samp>&rsquo;
+but it would generate very generic messages on failures.  You can specify
+custome message by passing extra argument like this:
+</p>
+<div class="example">
+<pre class="example">assert @something == 'that I expect', '@something does not match expected
+string'
+</pre></div>
+
+<p>but itâs always better to use assert helper that matches the use-case
+best.  The following example demonstrates how to check equality of two values; the
+failure message would automatically include information about what
+@something is and what it was expected to be.
+</p>
+<div class="example">
+<pre class="example">assert_equal @something, 'that I expect'
+</pre></div>
+
+<p>Useful <code>assert</code> helpers are listed in the example below.  All of them can
+be found in the
+<a href="http://docs.seattlerb.org/minitest/Minitest/Assertions.html">Minitest
+documentation.</a>
+</p>
+<div class="float"><a name="AssertionHelpers"></a>
+<dl compact="compact">
+<dt><code>assert arg</code></dt>
+<dd><p><code>arg</code> is <code>true</code>
+</p></dd>
+<dt><code>refute arg</code></dt>
+<dd><p><code>arg</code> is <code>false</code>
+</p></dd>
+<dt><code>assert_equal</code></dt>
+<dd><p><code>expected, actual</code>
+</p></dd>
+<dt><code>assert_includes</code></dt>
+<dd><p><code>collection, object</code>
+</p></dd>
+<dt><code>assert_kind_of</code></dt>
+<dd><p><code>class, object</code>
+</p></dd>
+<dt><code>assert_nil</code></dt>
+<dd><p><code>object</code>
+</p></dd>
+<dt><code>assert_match</code></dt>
+<dd><p><code>expected, actual</code>
+</p></dd>
+<dt><code>assert_raises</code></dt>
+<dd><p><code>exception_class, &amp;block</code>
+</p></dd>
+</dl>
+
+<div class="float-caption"><p><strong>Table B.1: </strong>Table of Assertion Helpers</p></div></div>
+<a name="Spec-Syntax"></a>
+<h4 class="subheading">Spec Syntax</h4>
+<p><samp>Spec</samp> Syntax
+<a name="index-TDD"></a>
+</p>
+<p>Subjectively better structured, less repeating, more readable and TDD
+supporting syntax can be used.  See the following example.
+</p>
+<div class="example">
+<pre class="example">require 'minitest/autorun'
+require 'morse_coder.rb'
+
+describe MorseCoder do
+  let(:coder) { MorseCoder.new(...) }
+
+  describe 'single letters encoding' do
+    let(:a) { coder.a }
+    let(:b) { coder.b }
+
+    specify { a.must_equal '.-' }
+    specify { b.must_equal '-...' }
+  end
+end
+</pre></div>
+
+<p><code>describe</code> block
+<code>before</code>
+<code>let</code>
+<code>specify</code>
+<code>must_$assert</code>
+<code>wont_$assert</code>
+<code>describe</code> block wraps logical block.  Each such block can have itâs own
+<code>before</code> (aka <code>setup</code>).  With <code>let</code> we define a method that can
+be called later within any nested block.  <code>let</code> is lazy.  <code>specify</code>
+accepts a block that uses assertion helpers in form of <code>must_$assert</code> or
+<code>wont_$assert</code>.  There are many other extensions to this language so it
+reads more naturally.
+</p>
+<p>Note that since the implementation is the same, you can combine both at the
+same time.
+</p>
+<a name="Output-Of-Test-Run"></a>
+<h4 class="subheading">Output Of Test Run</h4>
+
+<div class="example">
+<pre class="example">Run options: --seed 25127
+
+# Running tests:
+
+..S.....F........
+
+Finished tests in 101.524752s, 6.4319 tests/s, 9.0618 assertions/s
+63 tests, 92 assertions, 1 failures, 0 errors, S skips
+
+  1) Failure:
+TestConnector#test_connection [./connector.rb:5]:
+  Expected: nil
+  Actual: &quot;that I expect&quot;
+</pre></div>
+
+<p>The seed is random number representing the order of test.  Note that your tests
+should be order-independant.
+</p>
+<a name="Running-Multiple-Test-Files"></a>
+<h4 class="subheading">Running Multiple Test Files</h4>
+
+<p>Itâs common to have more than just one test file in project.  To run all tests
+at once we can use <samp>Rake</samp>.  Usually tests are put in <samp>test</samp> directory
+in the project tree structure.  In such setup we can easily define test tasks
+in a <samp>Rakefile</samp>.  <samp>Rake</samp> provides a  built-in class for this; we just
+need to configure it.  Just put following into your <samp>Rakefile</samp>:
+</p>
+<div class="example">
+<pre class="example">require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs &lt;&lt; 'test'
+  t.test_files = Dir.glob('test/**/*_test.rb')
+  t.verbose true
+end
+</pre></div>
+
+<p>We can run <code>rake test</code> which will load a run all ruby scripts with
+<code>_test</code> suffix in the test directory including all of its subdirectories.
+If you prefer <code>test</code> to be the default <code>rake</code> task, add following
+to the <samp>Rakefile</samp>:
+</p>
+<div class="example">
+<pre class="example">task :default =&gt; [ :test ]
+</pre></div>
+
+<p>Now you can run all tests just by running <code>rake</code>.
+</p>
+<p>Another common practise is to have one file that is loaded at start, usually
+named <samp>test_helper.rb</samp>.  This file contains everything that is needed for
+all tests, like requiring additional testing libraries.  You can also put
+<code>require minitest/autorun</code> there.  Just note that you need to
+<code>require 'test_helper'</code> as first line of every test file.
+</p>
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Testing-Frameworks.html#Testing-Frameworks" accesskey="p" rel="prev">Testing Frameworks</a>, Up: <a href="Ruby-Testing.html#Ruby-Testing" accesskey="u" rel="up">Ruby Testing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
