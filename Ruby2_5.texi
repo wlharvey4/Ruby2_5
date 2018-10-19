@@ -515,6 +515,7 @@ Advanced Ruby
 * Context::
 * Class::
 * Advanced Methods::
+* Advanced Objects::
 
 Utility Programs
 
@@ -14053,6 +14054,7 @@ exceptions one doesn't want to rescue from, such as @file{SystemExit} or
 * Context::
 * Class::
 * Advanced Methods::
+* Advanced Objects::
 @end menu
 
 @node Return Values
@@ -14446,6 +14448,245 @@ end
 
 A.new.something("a") # @result{} method something called with args ["a"]
 @end example
+
+@c _____________________________________
+
+@node Advanced Objects
+@appendixsubsubsec Advanced Objects
+@cindex objects
+@cindex state, object
+@cindex behavior, class
+
+Objects complement classes:
+
+@quotation
+Objects define state while classes define behavior.
+@end quotation
+
+Behavior is defined as a class; then an object is created for that class to
+hold the state.  Every object has to be of some class.
+
+@subheading Creating A New Object
+@cindex object, create
+@cindex @code{new} method
+
+To create an object of a class there is the @code{new} method on respective
+class.
+
+@example
+class Dog
+end
+
+dog = Dog.new
+@end example
+
+@subheading Defining Methods
+@cindex method, define
+
+In the example above many methods were defined in simple or more fancy
+styles.  But let’s get back to the core and try to define a method.
+
+@example
+class A
+  def call
+  end
+end
+@end example
+
+Here we use @code{def} keyword to define a method call.  Where will @code{def}
+define the method?  The answer is simple and complex.
+
+@quotation
+@code{def} defines methods into the nearest class.
+@end quotation
+
+@cindex current context
+So in the previous example the nearest class is @code{A}.  That is obvious from
+next example where the current context is returned and inspected:
+
+@example
+var = class A; self; end
+
+var.class # @result{} Class
+var.name  # @result{} "A"
+@end example
+
+@cindex class method
+OK, so the the current context is a Class and thus it is obvious that the
+nearest class is this class.  Now let’s try to define a class method:
+
+@example
+class A
+  def self.call
+    "string"
+  end
+end
+@end example
+
+Where will Ruby define the method now??  It is a bit more complicated.  To
+understand this, we have to explain something else first.
+
+@subheading Eigenclass
+@cindex eigenclass
+
+To understand how Ruby works, we have to understand what @dfn{eigenclasses}
+are. Let’s start with simple definition:
+
+@quotation
+Every object in Ruby has it's own eigenclass => an instance of Class
+@end quotation
+
+@cindex method lookup
+Why is this important?  Because, while the eigenclasses are basically
+invisible to developers, they take an important part in method lookups.
+
+When Ruby is trying to look up a method, it follows a basic chain (will be
+described a bit later). What is important is that before the class the object
+is linked to, there is the one more class --- the object’s eigenclass.  Every
+single object in Ruby has it’s own eigenclass and because Classes are objects as
+well, eigenclasses has their own eigenclasses as well.
+
+@quotation
+The closest class to an object is not it's class but it's eigenclass.
+@end quotation
+
+Back to the example we were talking about:
+
+@example
+class A
+  def self.call
+    "string"
+  end
+end
+@end example
+
+To see it more clearly we can rewrite this example identically as:
+
+@example
+class A
+end
+
+def A.call
+  "string"
+end
+@end example
+
+These two expressions are identical.  To understand why it is important to
+understand this:
+
+@example
+class A
+end
+
+scope = class A
+  self
+end
+
+A == scope # @result{} true
+@end example
+
+But back to the original question @dots{} where is the method going to be
+defined?  In the context of the instance of the class @code{A}.  The important
+part in the above statement is the phrase @emph{instance of}.  What is the
+closest class to an instance (object)?  As stated above it’s its eigenclass.
+Now you might have guessed that from implementation point of view:
+
+@cindex class method
+@quotation
+There are no class methods in Ruby
+@end quotation
+
+@cindex eigenclass
+@strong{What would be called a class method is only an instance method defined
+on the eigenclass associated with object representing the class.}
+
+So eigenclass is some stealth object that we can not see?  Not really.  Ruby has
+ways to access eigenclasses.
+
+@example
+eigenclass = class << some_object
+  self
+end
+
+eigenclass = some_object.singleton_class
+@end example
+
+@cindex eigenclass, access
+Now that we can access eigenclasses, let’s see how we could define ``class
+methods'' (instance methods in the eigenclass).
+
+@example
+class A
+  def self.call
+    "called"
+  end
+end
+
+class B
+  class << self
+    def call
+      "called"
+    end
+  end
+end
+
+D = Class.new
+class << D
+  def call
+    "called"
+  end
+end
+@end example
+
+All those examples are identical.
+
+@subheading Method Lookups
+@cindex method lookups
+
+Now that you know where and how are methods defined, lets see how methods are
+looked up.  Let’s see how the class hierarchy looks for class:
+
+@example
+SomeClass -> Class -> Module -> Object -> BasicObject
+@end example
+
+and for objects
+
+@example
+object -> SomeClass -> Object -> BasicObject
+@end example
+
+Though in reality it is a bit more complex.
+
+@cindex eigenclass
+@quotation
+Eigenclasses are not visible as classes of objects.
+@end quotation
+
+@example
+o1 = Object.new
+
+def o1.meth
+  "string"
+end
+
+o1.meth  # @result{} "string"
+o1.class # @result{} Object
+
+o2 = Object.new
+
+o2.meth  # @result{} undefined method `meth`
+o2.class # => Object
+@end example
+
+This example shows that having two instances of same objects.  Both can behave
+differently because in the case of @code{o1} the method is stored in the eigenclass,
+that is not accessible by @code{o2}.
+
+@cindex eigenclass
+@quotation
+Eigenclasses are used when a specific behavior of an object is expected.
+@end quotation
 
 
 @c .....................................

@@ -756,6 +756,7 @@ B.1.2 Advanced Ruby
 * Context::
 * Class::
 * Advanced Methods::
+* Advanced Objects::
 
 
 File: Ruby2_5.info,  Node: Return Values,  Next: Context,  Up: Advanced Ruby
@@ -959,7 +960,7 @@ It’s possible to list methods of an object:
      A.new.methods # => array of methods
 
 
-File: Ruby2_5.info,  Node: Advanced Methods,  Prev: Class,  Up: Advanced Ruby
+File: Ruby2_5.info,  Node: Advanced Methods,  Next: Advanced Objects,  Prev: Class,  Up: Advanced Ruby
 
 B.1.2.4 Advanced Methods
 ........................
@@ -1113,6 +1114,207 @@ whenever there is a call to undefined method on that object.
      end
 
      A.new.something("a") # => method something called with args ["a"]
+
+
+File: Ruby2_5.info,  Node: Advanced Objects,  Prev: Advanced Methods,  Up: Advanced Ruby
+
+B.1.2.5 Advanced Objects
+........................
+
+Objects complement classes:
+
+     Objects define state while classes define behavior.
+
+   Behavior is defined as a class; then an object is created for that
+class to hold the state.  Every object has to be of some class.
+
+Creating A New Object
+---------------------
+
+To create an object of a class there is the 'new' method on respective
+class.
+
+     class Dog
+     end
+
+     dog = Dog.new
+
+Defining Methods
+----------------
+
+In the example above many methods were defined in simple or more fancy
+styles.  But let’s get back to the core and try to define a method.
+
+     class A
+       def call
+       end
+     end
+
+   Here we use 'def' keyword to define a method call.  Where will
+'def' define the method?  The answer is simple and complex.
+
+     'def' defines methods into the nearest class.
+
+   So in the previous example the nearest class is 'A'.  That is
+obvious from next example where the current context is returned and
+inspected:
+
+     var = class A; self; end
+
+     var.class # => Class
+     var.name  # => "A"
+
+   OK, so the the current context is a Class and thus it is obvious
+that the nearest class is this class.  Now let’s try to define a class
+method:
+
+     class A
+       def self.call
+         "string"
+       end
+     end
+
+   Where will Ruby define the method now??  It is a bit more
+complicated.  To understand this, we have to explain something else
+first.
+
+Eigenclass
+----------
+
+To understand how Ruby works, we have to understand what
+"eigenclasses" are.  Let’s start with simple definition:
+
+     Every object in Ruby has it's own eigenclass => an instance of
+     Class
+
+   Why is this important?  Because, while the eigenclasses are
+basically invisible to developers, they take an important part in
+method lookups.
+
+   When Ruby is trying to look up a method, it follows a basic chain
+(will be described a bit later).  What is important is that before the
+class the object is linked to, there is the one more class -- the
+object’s eigenclass.  Every single object in Ruby has it’s own
+eigenclass and because Classes are objects as well, eigenclasses has
+their own eigenclasses as well.
+
+     The closest class to an object is not it's class but it's
+     eigenclass.
+
+   Back to the example we were talking about:
+
+     class A
+       def self.call
+         "string"
+       end
+     end
+
+   To see it more clearly we can rewrite this example identically as:
+
+     class A
+     end
+
+     def A.call
+       "string"
+     end
+
+   These two expressions are identical.  To understand why it is
+important to understand this:
+
+     class A
+     end
+
+     scope = class A
+       self
+     end
+
+     A == scope # => true
+
+   But back to the original question ... where is the method going to
+be defined?  In the context of the instance of the class 'A'.  The
+important part in the above statement is the phrase _instance of_.
+What is the closest class to an instance (object)?  As stated above
+it’s its eigenclass.  Now you might have guessed that from
+implementation point of view:
+
+     There are no class methods in Ruby
+
+   *What would be called a class method is only an instance method
+defined on the eigenclass associated with object representing the
+class.*
+
+   So eigenclass is some stealth object that we can not see?  Not
+really.  Ruby has ways to access eigenclasses.
+
+     eigenclass = class << some_object
+       self
+     end
+
+     eigenclass = some_object.singleton_class
+
+   Now that we can access eigenclasses, let’s see how we could define
+"class methods" (instance methods in the eigenclass).
+
+     class A
+       def self.call
+         "called"
+       end
+     end
+
+     class B
+       class << self
+         def call
+           "called"
+         end
+       end
+     end
+
+     D = Class.new
+     class << D
+       def call
+         "called"
+       end
+     end
+
+   All those examples are identical.
+
+Method Lookups
+--------------
+
+Now that you know where and how are methods defined, lets see how
+methods are looked up.  Let’s see how the class hierarchy looks for
+class:
+
+     SomeClass -> Class -> Module -> Object -> BasicObject
+
+   and for objects
+
+     object -> SomeClass -> Object -> BasicObject
+
+   Though in reality it is a bit more complex.
+
+     Eigenclasses are not visible as classes of objects.
+
+     o1 = Object.new
+
+     def o1.meth
+       "string"
+     end
+
+     o1.meth  # => "string"
+     o1.class # => Object
+
+     o2 = Object.new
+
+     o2.meth  # => undefined method `meth`
+     o2.class # => Object
+
+   This example shows that having two instances of same objects.  Both
+can behave differently because in the case of 'o1' the method is
+stored in the eigenclass, that is not accessible by 'o2'.
+
+     Eigenclasses are used when a specific behavior of an object is
+     expected.
 
 
 File: Ruby2_5.info,  Node: Ruby Testing,  Prev: Advanced Ruby,  Up: Programming Ruby by Hulan
@@ -2848,6 +3050,7 @@ Index
 * attr_writer:                           Objects.           (line  12)
 * basics:                                Ruby Basics.       (line   6)
 * behavior:                              Advanced Methods.  (line  34)
+* behavior, class:                       Advanced Objects.  (line   6)
 * binary Ruby extension modules:         FAQ Syntax.        (line 249)
 * binding of { ... }:                    FAQ Iterators.     (line  36)
 * binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
@@ -2912,6 +3115,8 @@ Index
 * class keyword:                         Defining Methods.  (line  70)
 * class keyword <1>:                     Ruby User's Guide on Classes.
                                                             (line  13)
+* class method:                          Advanced Objects.  (line  49)
+* class method <1>:                      Advanced Objects.  (line 122)
 * class methods:                         FAQ Classes and Modules.
                                                             (line  18)
 * class methods, defining, 2 ways:       FAQ Classes and Modules.
@@ -2990,6 +3195,7 @@ Index
 * Core API:                              Ruby-Doc.          (line   6)
 * core api:                              Ruby-Doc.          (line  10)
 * core reference:                        Ruby-Doc.          (line   6)
+* current context:                       Advanced Objects.  (line  40)
 * current object:                        Context.           (line   6)
 * dangerous, destructive methods:        FAQ Methods.       (line  73)
 * data types:                            Data Types.        (line   6)
@@ -3058,6 +3264,11 @@ Index
                                                             (line  36)
 * Eiffel and Ruby:                       Ruby User's Guide On Simple Examples.
                                                             (line  54)
+* eigenclass:                            Advanced Objects.  (line  66)
+* eigenclass <1>:                        Advanced Objects.  (line 124)
+* eigenclass <2>:                        Advanced Objects.  (line 178)
+* eigenclass <3>:                        Advanced Objects.  (line 198)
+* eigenclass, access:                    Advanced Objects.  (line 137)
 * Emacs:                                 Installation - Running - About.
                                                             (line  71)
 * empty string:                          FAQ Syntax.        (line  73)
@@ -3336,11 +3547,14 @@ Index
                                                             (line  13)
 * method invocation:                     Ruby User's Guide on Methods.
                                                             (line  22)
+* method lookup:                         Advanced Objects.  (line  72)
+* method lookups:                        Advanced Objects.  (line 166)
 * method overloading:                    Ruby User's Guide On Object Initialization.
                                                             (line  65)
 * method parameters:                     Defining Methods.  (line  33)
 * method redefinition:                   Ruby User's Guide on Redefinition Of Methods.
                                                             (line   6)
+* method, define:                        Advanced Objects.  (line  27)
 * method, destructive:                   FAQ Methods.       (line  70)
 * method, invoking:                      FAQ Methods.       (line   9)
 * method, invoking <1>:                  Defining Methods.  (line  26)
@@ -3404,6 +3618,7 @@ Index
                                                             (line  68)
 * new keyword:                           Ruby User's Guide on Classes.
                                                             (line  33)
+* new method:                            Advanced Objects.  (line  16)
 * NewtonScript:                          Ruby User's Guide On Singleton Methods.
                                                             (line  17)
 * next:                                  Ruby User's Guide On Control Structures.
@@ -3421,7 +3636,9 @@ Index
                                                             (line 138)
 * Object#instance_methods:               Defining Methods.  (line 116)
 * Object#respond_to?:                    Defining Methods.  (line 146)
+* object, create:                        Advanced Objects.  (line  16)
 * object, create from class definition:  Defining Methods.  (line  95)
+* objects:                               Advanced Objects.  (line   6)
 * objects, everything including numbers: To Ruby From Java. (line  40)
 * objects, strongly and dynamically typed: To Ruby From C and C++.
                                                             (line 129)
@@ -3654,6 +3871,7 @@ Index
 * Standard Library reference:            Ruby-Doc.          (line   6)
 * StandardError class:                   Exceptions.        (line  34)
 * StandarError class:                    Exceptions.        (line  16)
+* state, object:                         Advanced Objects.  (line   6)
 * statement delimiters:                  Ruby User's Guide On Nuts And Bolts.
                                                             (line   9)
 * statement vs expression:               Ruby User's Guide On Simple Examples.

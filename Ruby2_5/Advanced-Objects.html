@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.5a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Advanced Objects (Ruby2_5 Information)</title>
+
+<meta name="description" content="Advanced Objects (Ruby2_5 Information)">
+<meta name="keywords" content="Advanced Objects (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Ruby.html#Advanced-Ruby" rel="up" title="Advanced Ruby">
+<link href="Ruby-Testing.html#Ruby-Testing" rel="next" title="Ruby Testing">
+<link href="Advanced-Methods.html#Advanced-Methods" rel="prev" title="Advanced Methods">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Advanced-Objects"></a>
+<div class="header">
+<p>
+Previous: <a href="Advanced-Methods.html#Advanced-Methods" accesskey="p" rel="prev">Advanced Methods</a>, Up: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="u" rel="up">Advanced Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Advanced-Objects-1"></a>
+<h4 class="appendixsubsubsec">B.1.2.5 Advanced Objects</h4>
+<a name="index-objects"></a>
+<a name="index-state_002c-object"></a>
+<a name="index-behavior_002c-class"></a>
+
+<p>Objects complement classes:
+</p>
+<blockquote>
+<p>Objects define state while classes define behavior.
+</p></blockquote>
+
+<p>Behavior is defined as a class; then an object is created for that class to
+hold the state.  Every object has to be of some class.
+</p>
+<a name="Creating-A-New-Object"></a>
+<h4 class="subheading">Creating A New Object</h4>
+<a name="index-object_002c-create"></a>
+<a name="index-new-method"></a>
+
+<p>To create an object of a class there is the <code>new</code> method on respective
+class.
+</p>
+<div class="example">
+<pre class="example">class Dog
+end
+
+dog = Dog.new
+</pre></div>
+
+<a name="Defining-Methods-2"></a>
+<h4 class="subheading">Defining Methods</h4>
+<a name="index-method_002c-define"></a>
+
+<p>In the example above many methods were defined in simple or more fancy
+styles.  But letâs get back to the core and try to define a method.
+</p>
+<div class="example">
+<pre class="example">class A
+  def call
+  end
+end
+</pre></div>
+
+<p>Here we use <code>def</code> keyword to define a method call.  Where will <code>def</code>
+define the method?  The answer is simple and complex.
+</p>
+<blockquote>
+<p><code>def</code> defines methods into the nearest class.
+</p></blockquote>
+
+<a name="index-current-context"></a>
+<p>So in the previous example the nearest class is <code>A</code>.  That is obvious from
+next example where the current context is returned and inspected:
+</p>
+<div class="example">
+<pre class="example">var = class A; self; end
+
+var.class # &rArr; Class
+var.name  # &rArr; &quot;A&quot;
+</pre></div>
+
+<a name="index-class-method"></a>
+<p>OK, so the the current context is a Class and thus it is obvious that the
+nearest class is this class.  Now letâs try to define a class method:
+</p>
+<div class="example">
+<pre class="example">class A
+  def self.call
+    &quot;string&quot;
+  end
+end
+</pre></div>
+
+<p>Where will Ruby define the method now??  It is a bit more complicated.  To
+understand this, we have to explain something else first.
+</p>
+<a name="Eigenclass"></a>
+<h4 class="subheading">Eigenclass</h4>
+<a name="index-eigenclass"></a>
+
+<p>To understand how Ruby works, we have to understand what <em>eigenclasses</em>
+are. Letâs start with simple definition:
+</p>
+<blockquote>
+<p>Every object in Ruby has it&rsquo;s own eigenclass =&gt; an instance of Class
+</p></blockquote>
+
+<a name="index-method-lookup"></a>
+<p>Why is this important?  Because, while the eigenclasses are basically
+invisible to developers, they take an important part in method lookups.
+</p>
+<p>When Ruby is trying to look up a method, it follows a basic chain (will be
+described a bit later). What is important is that before the class the object
+is linked to, there is the one more class &mdash; the objectâs eigenclass.  Every
+single object in Ruby has itâs own eigenclass and because Classes are objects as
+well, eigenclasses has their own eigenclasses as well.
+</p>
+<blockquote>
+<p>The closest class to an object is not it&rsquo;s class but it&rsquo;s eigenclass.
+</p></blockquote>
+
+<p>Back to the example we were talking about:
+</p>
+<div class="example">
+<pre class="example">class A
+  def self.call
+    &quot;string&quot;
+  end
+end
+</pre></div>
+
+<p>To see it more clearly we can rewrite this example identically as:
+</p>
+<div class="example">
+<pre class="example">class A
+end
+
+def A.call
+  &quot;string&quot;
+end
+</pre></div>
+
+<p>These two expressions are identical.  To understand why it is important to
+understand this:
+</p>
+<div class="example">
+<pre class="example">class A
+end
+
+scope = class A
+  self
+end
+
+A == scope # &rArr; true
+</pre></div>
+
+<p>But back to the original question &hellip; where is the method going to be
+defined?  In the context of the instance of the class <code>A</code>.  The important
+part in the above statement is the phrase <em>instance of</em>.  What is the
+closest class to an instance (object)?  As stated above itâs its eigenclass.
+Now you might have guessed that from implementation point of view:
+</p>
+<a name="index-class-method-1"></a>
+<blockquote>
+<p>There are no class methods in Ruby
+</p></blockquote>
+
+<a name="index-eigenclass-1"></a>
+<p><strong>What would be called a class method is only an instance method defined
+on the eigenclass associated with object representing the class.</strong>
+</p>
+<p>So eigenclass is some stealth object that we can not see?  Not really.  Ruby has
+ways to access eigenclasses.
+</p>
+<div class="example">
+<pre class="example">eigenclass = class &lt;&lt; some_object
+  self
+end
+
+eigenclass = some_object.singleton_class
+</pre></div>
+
+<a name="index-eigenclass_002c-access"></a>
+<p>Now that we can access eigenclasses, letâs see how we could define &ldquo;class
+methods&rdquo; (instance methods in the eigenclass).
+</p>
+<div class="example">
+<pre class="example">class A
+  def self.call
+    &quot;called&quot;
+  end
+end
+
+class B
+  class &lt;&lt; self
+    def call
+      &quot;called&quot;
+    end
+  end
+end
+
+D = Class.new
+class &lt;&lt; D
+  def call
+    &quot;called&quot;
+  end
+end
+</pre></div>
+
+<p>All those examples are identical.
+</p>
+<a name="Method-Lookups"></a>
+<h4 class="subheading">Method Lookups</h4>
+<a name="index-method-lookups"></a>
+
+<p>Now that you know where and how are methods defined, lets see how methods are
+looked up.  Letâs see how the class hierarchy looks for class:
+</p>
+<div class="example">
+<pre class="example">SomeClass -&gt; Class -&gt; Module -&gt; Object -&gt; BasicObject
+</pre></div>
+
+<p>and for objects
+</p>
+<div class="example">
+<pre class="example">object -&gt; SomeClass -&gt; Object -&gt; BasicObject
+</pre></div>
+
+<p>Though in reality it is a bit more complex.
+</p>
+<a name="index-eigenclass-2"></a>
+<blockquote>
+<p>Eigenclasses are not visible as classes of objects.
+</p></blockquote>
+
+<div class="example">
+<pre class="example">o1 = Object.new
+
+def o1.meth
+  &quot;string&quot;
+end
+
+o1.meth  # &rArr; &quot;string&quot;
+o1.class # &rArr; Object
+
+o2 = Object.new
+
+o2.meth  # &rArr; undefined method `meth`
+o2.class # =&gt; Object
+</pre></div>
+
+<p>This example shows that having two instances of same objects.  Both can behave
+differently because in the case of <code>o1</code> the method is stored in the eigenclass,
+that is not accessible by <code>o2</code>.
+</p>
+<a name="index-eigenclass-3"></a>
+<blockquote>
+<p>Eigenclasses are used when a specific behavior of an object is expected.
+</p></blockquote>
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Advanced-Methods.html#Advanced-Methods" accesskey="p" rel="prev">Advanced Methods</a>, Up: <a href="Advanced-Ruby.html#Advanced-Ruby" accesskey="u" rel="up">Advanced Ruby</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
