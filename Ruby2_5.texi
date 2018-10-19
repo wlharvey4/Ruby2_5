@@ -113,7 +113,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.6a
+@set EDITION 0.6b
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -296,6 +296,7 @@ and @url{https://github.com/ruby, Ruby-Github}.
 * Introduction::
 * Documentation::
 * Ruby-Doc::
+* Ruby Gems::
 * Resources::
 * Utility Programs::
 * Initial Setup and Post Create::
@@ -478,6 +479,24 @@ API Documentation
 * Classes And Modules API::
 * Methods API::
 * Beginner Core Topics::
+
+Learn how RubyGems works, and how to make your own.
+
+* Ruby Gem Guides::
+
+Ruby Gem Guides
+
+* Ruby Gems Basics::
+* What Is A Gem::
+* Make A Gem::
+
+Introduction to Making a Gem
+
+* Your First Gem::
+* Requiring More Files::
+* Adding An Executable::
+* Writing Tests::
+* Documenting Your Code::
 
 Resources
 
@@ -13207,6 +13226,456 @@ Class
 
 
 
+
+@c *****************************************************************************
+
+@node Ruby Gems
+@appendix Ruby Gems
+@cindex gems
+
+@url{https://rubygems.org/,Ruby Gems}
+
+@noindent @url{https://github.com/rubygems, Ruby Gems Github Home}
+
+@heading About
+
+@indicateurl{RubyGems.org} is the Ruby community’s gem hosting
+service.  Instantly publish your gems and then install them.  Use the API to find
+out more about available gems.  Become a contributor and improve the site
+yourself.
+
+@heading Guides
+@cindex gems guides
+@cindex guides, gems
+
+@subsubheading Learn how RubyGems works, and how to make your own.
+@cindex gem definition
+@cindex @file{RubyGems} software
+
+The @file{RubyGems} software allows you to easily download, install, and use
+ruby software packages on your system.  The software package is called a @dfn{gem}
+which contains a packaged Ruby application or library.
+
+Gems can be used to extend or modify functionality in Ruby
+applications.  Commonly they’re used to distribute reusable functionality that
+is shared with other Rubyists for use in their applications and libraries.  Some
+gems provide command line utilities to help automate tasks and speed up your
+work.
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@menu
+* Ruby Gem Guides::
+@end menu
+
+@node Ruby Gem Guides
+@appendixsec Ruby Gem Guides
+
+@url{https://guides.rubygems.org/,Guides}
+
+@itemize
+@item
+@url{https://guides.rubygems.org/rubygems-basics/,RUBYGEMS BASICS}
+@item
+@url{https://guides.rubygems.org/what-is-a-gem/,WHAT IS A GEM?}
+@item
+@url{https://guides.rubygems.org/make-your-own-gem/,MAKE YOUR OWN GEM}
+@item
+GEMS WITH EXTENSIONS
+@item
+@url{https://guides.rubygems.org/name-your-gem/,NAME YOUR GEM}
+@item
+PUBLISHING YOUR GEM
+@item
+SECURITY PRACTICES
+@item
+SSL CERTIFICATE UPDATE
+@item
+@url{https://guides.rubygems.org/patterns/,PATTERNS}
+@item
+@url{https://guides.rubygems.org/specification-reference/,SPECIFICATION REFERENCE}
+@item
+@url{https://guides.rubygems.org/command-reference/,COMMAND REFERENCE}
+@item
+@url{http://docs.seattlerb.org/rubygems/,RUBYGEMS API}
+@item
+@url{https://guides.rubygems.org/rubygems-org-api/,RUBYGEMS.ORG API}
+@item
+@url{https://guides.rubygems.org/rubygems-org-api-v2/,RUBYGEMS.ORG API V2.0}
+@item
+RUN YOUR OWN GEM SERVER
+@item
+@url{https://guides.rubygems.org/resources/,RESOURCES}
+@item
+@url{https://guides.rubygems.org/resources/,CONTRIBUTING TO RUBYGEMS}
+@item
+@url{https://guides.rubygems.org/faqs/,FREQUENTLY ASKED QUESTIONS}
+@item
+PLUGINS
+@item
+CREDITS
+@item
+COMMON VULNERABILITIES AND EXPOSURES
+@item
+RELEASING RUBYGEMS
+@end itemize
+
+
+
+
+@c .....................................
+
+@menu
+* Ruby Gems Basics::
+* What Is A Gem::
+* Make A Gem::
+@end menu
+
+@node Ruby Gems Basics
+@appendixsubsec Ruby Gems Basics
+@cindex gems basics
+
+@cindex @command{gem} command
+The @command{gem} command allows you to interact with RubyGems.
+
+@cindex download RubyGems
+@cindex RubyGems download
+@cindex upgrade RubyGems
+@cindex RubyGems upgrade
+Ruby 1.9 and newer ships with RubyGems built-in.
+@url{https://rubygems.org/pages/download, Download RubyGems}.  To upgrade to
+the latest RubyGems: @samp{$ gem update --system}.
+
+
+@c .....................................
+
+@node What Is A Gem
+@appendixsubsec What Is A Gem?
+@cindex gem, what one is
+
+@heading STRUCTURE OF A GEM
+
+Each gem has a
+
+@itemize
+@item
+name,
+@item
+version, and
+@item
+platform.
+@end itemize
+
+For example, the @file{rake} gem has a 0.8.7 version (from May, 2009).
+@file{Rake}’s platform is ruby, which means it works on any platform Ruby runs
+on.
+
+@subheading Platforms
+@cindex platforms, gems
+@cindex gems platforms
+
+Platforms are based on the CPU architecture, operating system type and
+sometimes the operating system version.  Examples include @samp{x86-mingw32} or
+@samp{java}.  The platform indicates the gem only works with a ruby built for
+the same platform.  RubyGems will automatically download the correct version for
+your platform.  See @command{gem help platform} for full detail.
+
+@subheading Components
+@cindex gem components
+
+Inside gems are the following components:
+
+@itemize
+@item
+Code (including tests and supporting utilities)
+@item
+Documentation
+@item
+gemspec
+@end itemize
+
+@subheading Code Organization
+@cindex gem code organization
+
+Each gem follows the same standard structure of code organization:
+
+@example
+% tree freewill
+freewill/
+├── bin/
+│   └── freewill
+├── lib/
+│   └── freewill.rb
+├── test/
+│   └── test_freewill.rb
+├── README
+├── Rakefile
+└── freewill.gemspec
+@end example
+
+Here, you can see the major components of a gem:
+@cindex gem components
+@cindex components of gem
+
+@float Table,RubyGemComponents
+@table @file
+@cindex @file{lib} directory
+@item lib
+The lib directory contains the code for the gem
+
+@cindex @file{test} directory
+@item test
+The test or spec directory contains tests, depending on which test framework
+the developer uses
+
+@cindex @file{Rakefile}
+@cindex @file{rake}
+@item Rakefile
+A gem usually has a @file{Rakefile}, which the @file{rake} program uses to
+automate tests, generate code, and perform other tasks.
+
+@cindex @file{bin} directory
+@cindex @env{PATH} environment variable
+@item bin
+This gem also includes an executable file in the @file{bin} directory, which
+will be loaded into the user’s @env{PATH} when the gem is installed.
+
+@cindex @file{README}
+@item README
+Documentation is usually included in the @file{README} and inline with the
+code.  When you install a gem, documentation is generated automatically for
+you.  Most gems include RDoc documentation, but some use YARD docs instead.
+
+@cindex gemspec
+@item gemspec
+The final piece is the gemspec, which contains information about the gem. The
+gem’s files, test information, platform, version number and more are all laid
+out here along with the author’s email and name.
+
+@end table
+@caption{Table of RubyGem Components}
+@end float
+
+@subheading The Gemspec
+@cindex gemspec
+
+The gemspec specifies the information about a gem such as its name, version,
+description, authors and homepage.
+
+Here’s an example of a gemspec file.
+@cindex gemspec example
+
+@example
+% cat freewill.gemspec
+Gem::Specification.new do |s|
+  s.name        = 'freewill'
+  s.version     = '1.0.0'
+  s.summary     = "Freewill!"
+  s.description = "I will choose Freewill!"
+  s.authors     = ["Nick Quaranto"]
+  s.email       = 'nick@@quaran.to'
+  s.homepage    = 'http://example.com/freewill'
+  s.files       = ["lib/freewill.rb", ...]
+end
+@end example
+
+
+
+
+@c .....................................
+
+@node Make A Gem
+@appendixsubsec Make a Gem
+@cindex gem, make
+@cindex Bundler
+
+@quotation
+@b{NOTE:} Many people use Bundler to create Gems.  You can learn how to do that
+by reading the @cite{Developing a RubyGem using Bundler} guide on the
+@url{https://bundler.io/v1.13/guides/creating_gem,Bundler website}.
+@end quotation
+
+@heading Introduction to Making a Gem
+
+Creating and publishing your own gem is simple thanks to the tools baked right
+into RubyGems.  Let’s make a simple ``hello world'' gem, and feel free to play
+along at home!  The code for the gem we’re going to make here is up on
+@url{https://github.com/qrush/hola,GitHub Hello World}.
+
+@c _____________________________________
+
+@menu
+* Your First Gem::
+* Requiring More Files::
+* Adding An Executable::
+* Writing Tests::
+* Documenting Your Code::
+@end menu
+
+@node Your First Gem
+@appendixsubsubsec Your First Gem
+
+I started with just one Ruby file for my @file{hola} gem, and the gemspec.
+You’ll need a new name for yours (maybe @file{hola_yourusername}) to publish
+it.  Check the Patterns guide for basic recommendations to follow when naming a
+gem.
+
+@example
+% tree
+.
+├── hola.gemspec
+└── lib
+    └── hola.rb
+@end example
+
+@subheading @file{lib} Directory
+
+Code for your package is placed within the @file{lib} directory.  The
+convention is to have one Ruby file with the same name as your gem, since that
+gets loaded when @code{require 'hola'} is run.  That one file is in charge of
+setting up your gem’s code and API.
+
+@subheading @file{hola.rb}
+
+The code inside of @file{lib/hola.rb} is pretty bare bones.  It just makes sure that
+you can see some output from the gem:
+
+@need 400
+@anchor{hola-rb}
+@cdindex @r{@{@file{hola.rb}@}}, definition
+@noindent
+@r{@{@file{hola.rb}@}} @equiv{}
+@example
+class Hola
+  def self.hi
+    puts "Hello world!"
+  end
+end
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+@iftex
+@textfonts @rm
+@end iftex
+
+
+@verbatim
+ @post_create hola.rb mkdir -p src/gems/hola/lib/ && mv hola.rb src/gems/hola/lib
+@end verbatim
+
+
+@subheading @file{hola.gemspec}
+
+The gemspec defines what’s in the gem, who made it, and the version of the gem.
+It’s also your interface to @indicateurl{RubyGems.org}.  All of the information
+you see on a gem page (like @url{http://rubygems.org/gems/jekyll,jekyll’s})
+comes from the gemspec.
+
+@need 400
+@anchor{hola-gemspec}
+@cdindex @r{@{@file{hola.gemspec}@}}, definition
+@noindent
+@r{@{@file{hola.gemspec}@}} @equiv{}
+@example
+Gem::Specification.new do |s|
+  s.name        = 'hola'
+  s.version     = '0.0.0'
+  s.date        = '2010-04-28'
+  s.summary     = "Hola!"
+  s.description = "A simple hello world gem"
+  s.authors     = ["Nick Quaranto"]
+  s.email       = 'nick@@quaran.to'
+  s.files       = ["lib/hola.rb"]
+  s.homepage    =
+    'http://rubygems.org/gems/hola'
+  s.license       = 'MIT'
+end
+@end example
+@iftex
+@smallfonts @rm
+@end iftex
+@iftex
+@textfonts @rm
+@end iftex
+
+
+@verbatim
+ @post_create hola.gemspec mv hola.gemspec src/gems/hola/ && cd src/gems/hola
+@end verbatim
+
+@quotation
+@b{NOTE:} The @command{description} member can be much longer than you see in
+this example.  If it matches @samp{/^== [A-Z]/} then the description will be
+run through RDoc’s markup formatter for display on the RubyGems web site.  Be
+aware though that other consumers of the data might not understand this markup.
+@end quotation
+
+Look familiar?  The gemspec is also Ruby, so you can wrap scripts to generate
+the file names and bump the version number.  There are lots of fields the
+gemspec can contain.  To see them all check out the full
+@url{https://guides.rubygems.org/specification-reference,reference}.
+
+@subheading @command{build} and @command{install} A Gem From The Gemspec
+@cindex @command{build} gemspec
+@cindex @command{install} gem
+
+After you have created a gemspec, you can @command{build} a gem from
+it.  Then you can @command{install} the generated gem locally to test
+it out.
+
+@example
+% gem build hola.gemspec
+Successfully built RubyGem
+Name: hola
+Version: 0.0.0
+File: hola-0.0.0.gem
+
+% gem install ./hola-0.0.0.gem
+Successfully installed hola-0.0.0
+1 gem installed
+@end example
+
+The final step is to @command{require} the gem and use it:
+
+@example
+% irb
+>> require 'hola'
+=> true
+>> Hola.hi
+Hello world!
+@end example
+
+@c _____________________________________
+
+@node Requiring More Files
+@appendixsubsubsec Requiring More Files
+
+@c _____________________________________
+
+@node Adding An Executable
+@appendixsubsubsec Adding An Executable
+
+@c _____________________________________
+
+@node Writing Tests
+@appendixsubsubsec Writing Tests
+
+@c _____________________________________
+
+@node Documenting Your Code
+@appendixsubsubsec Documenting Your Code
+
+
+
+
+
+
+
+
 @c *****************************************************************************
 
 @node Resources
@@ -17000,6 +17469,12 @@ This chunk is defined in
 @item @r{@{@file{guess.rb}@}}
 This chunk is defined in
 @ref{guess-rb}.
+@item @r{@{@file{hola.gemspec}@}}
+This chunk is defined in
+@ref{hola-gemspec}.
+@item @r{@{@file{hola.rb}@}}
+This chunk is defined in
+@ref{hola-rb}.
 @item @r{@{@file{regx.rb}@}}
 This chunk is defined in
 @ref{regx-rb}.

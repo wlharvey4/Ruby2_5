@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.6b of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>What Is A Gem (Ruby2_5 Information)</title>
+
+<meta name="description" content="What Is A Gem (Ruby2_5 Information)">
+<meta name="keywords" content="What Is A Gem (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Ruby-Gem-Guides.html#Ruby-Gem-Guides" rel="up" title="Ruby Gem Guides">
+<link href="Make-A-Gem.html#Make-A-Gem" rel="next" title="Make A Gem">
+<link href="Ruby-Gems-Basics.html#Ruby-Gems-Basics" rel="prev" title="Ruby Gems Basics">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="What-Is-A-Gem"></a>
+<div class="header">
+<p>
+Next: <a href="Make-A-Gem.html#Make-A-Gem" accesskey="n" rel="next">Make A Gem</a>, Previous: <a href="Ruby-Gems-Basics.html#Ruby-Gems-Basics" accesskey="p" rel="prev">Ruby Gems Basics</a>, Up: <a href="Ruby-Gem-Guides.html#Ruby-Gem-Guides" accesskey="u" rel="up">Ruby Gem Guides</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="What-Is-A-Gem_003f"></a>
+<h4 class="appendixsubsec">B.1.2 What Is A Gem?</h4>
+<a name="index-gem_002c-what-one-is"></a>
+
+<a name="STRUCTURE-OF-A-GEM"></a>
+<h3 class="heading">STRUCTURE OF A GEM</h3>
+
+<p>Each gem has a
+</p>
+<ul>
+<li> name,
+</li><li> version, and
+</li><li> platform.
+</li></ul>
+
+<p>For example, the <samp>rake</samp> gem has a 0.8.7 version (from May, 2009).
+<samp>Rake</samp>âs platform is ruby, which means it works on any platform Ruby runs
+on.
+</p>
+<a name="Platforms"></a>
+<h4 class="subheading">Platforms</h4>
+<a name="index-platforms_002c-gems"></a>
+<a name="index-gems-platforms"></a>
+
+<p>Platforms are based on the CPU architecture, operating system type and
+sometimes the operating system version.  Examples include &lsquo;<samp>x86-mingw32</samp>&rsquo; or
+&lsquo;<samp>java</samp>&rsquo;.  The platform indicates the gem only works with a ruby built for
+the same platform.  RubyGems will automatically download the correct version for
+your platform.  See <code>gem help platform</code> for full detail.
+</p>
+<a name="Components"></a>
+<h4 class="subheading">Components</h4>
+<a name="index-gem-components"></a>
+
+<p>Inside gems are the following components:
+</p>
+<ul>
+<li> Code (including tests and supporting utilities)
+</li><li> Documentation
+</li><li> gemspec
+</li></ul>
+
+<a name="Code-Organization"></a>
+<h4 class="subheading">Code Organization</h4>
+<a name="index-gem-code-organization"></a>
+
+<p>Each gem follows the same standard structure of code organization:
+</p>
+<div class="example">
+<pre class="example">% tree freewill
+freewill/
+âââ bin/
+â   âââ freewill
+âââ lib/
+â   âââ freewill.rb
+âââ test/
+â   âââ test_freewill.rb
+âââ README
+âââ Rakefile
+âââ freewill.gemspec
+</pre></div>
+
+<p>Here, you can see the major components of a gem:
+<a name="index-gem-components-1"></a>
+<a name="index-components-of-gem"></a>
+</p>
+<div class="float"><a name="RubyGemComponents"></a>
+<dl compact="compact">
+<dd><a name="index-lib-directory"></a>
+</dd>
+<dt><samp>lib</samp></dt>
+<dd><p>The lib directory contains the code for the gem
+</p>
+<a name="index-test-directory"></a>
+</dd>
+<dt><samp>test</samp></dt>
+<dd><p>The test or spec directory contains tests, depending on which test framework
+the developer uses
+</p>
+<a name="index-Rakefile"></a>
+<a name="index-rake"></a>
+</dd>
+<dt><samp>Rakefile</samp></dt>
+<dd><p>A gem usually has a <samp>Rakefile</samp>, which the <samp>rake</samp> program uses to
+automate tests, generate code, and perform other tasks.
+</p>
+<a name="index-bin-directory"></a>
+<a name="index-PATH-environment-variable"></a>
+</dd>
+<dt><samp>bin</samp></dt>
+<dd><p>This gem also includes an executable file in the <samp>bin</samp> directory, which
+will be loaded into the userâs <code>PATH</code> when the gem is installed.
+</p>
+<a name="index-README"></a>
+</dd>
+<dt><samp>README</samp></dt>
+<dd><p>Documentation is usually included in the <samp>README</samp> and inline with the
+code.  When you install a gem, documentation is generated automatically for
+you.  Most gems include RDoc documentation, but some use YARD docs instead.
+</p>
+<a name="index-gemspec"></a>
+</dd>
+<dt><samp>gemspec</samp></dt>
+<dd><p>The final piece is the gemspec, which contains information about the gem. The
+gemâs files, test information, platform, version number and more are all laid
+out here along with the authorâs email and name.
+</p>
+</dd>
+</dl>
+
+<div class="float-caption"><p><strong>Table B.1: </strong>Table of RubyGem Components</p></div></div>
+<a name="The-Gemspec"></a>
+<h4 class="subheading">The Gemspec</h4>
+<a name="index-gemspec-1"></a>
+
+<p>The gemspec specifies the information about a gem such as its name, version,
+description, authors and homepage.
+</p>
+<p>Hereâs an example of a gemspec file.
+<a name="index-gemspec-example"></a>
+</p>
+<div class="example">
+<pre class="example">% cat freewill.gemspec
+Gem::Specification.new do |s|
+  s.name        = 'freewill'
+  s.version     = '1.0.0'
+  s.summary     = &quot;Freewill!&quot;
+  s.description = &quot;I will choose Freewill!&quot;
+  s.authors     = [&quot;Nick Quaranto&quot;]
+  s.email       = 'nick@quaran.to'
+  s.homepage    = 'http://example.com/freewill'
+  s.files       = [&quot;lib/freewill.rb&quot;, ...]
+end
+</pre></div>
+
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Make-A-Gem.html#Make-A-Gem" accesskey="n" rel="next">Make A Gem</a>, Previous: <a href="Ruby-Gems-Basics.html#Ruby-Gems-Basics" accesskey="p" rel="prev">Ruby Gems Basics</a>, Up: <a href="Ruby-Gem-Guides.html#Ruby-Gem-Guides" accesskey="u" rel="up">Ruby Gem Guides</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -10,279 +10,292 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.6a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.6b of 'Ruby 2.5 Information and Documentation'.
 
 
 Indirect:
 Ruby2_5.info-1: 371
-Ruby2_5.info-2: 418400
-Ruby2_5.info-3: 600674
+Ruby2_5.info-2: 418704
+Ruby2_5.info-3: 613921
 
 Tag Table:
 (Indirect)
 Node: Top371
-Node: Preface6018
-Node: Audience6220
-Node: Overview6595
-Node: Conventions6765
-Node: Acknowledgements7685
-Node: Introduction7801
-Node: Documentation8098
-Node: Installing Ruby8507
-Node: Package Management Systems9415
-Node: Homebrew (OS X)10240
-Node: Installers10666
-Node: ruby-build11262
-Node: ruby-install11815
-Node: Managers12430
-Node: chruby12800
-Node: rbenv13059
-Node: RVM13577
-Node: uru13948
-Node: Building From Source14214
-Node: Releases Page15226
-Node: Branches Page16326
-Node: Issue Tracking18126
-Node: Help Tools18610
-Ref: Help Tools-Footnote-119389
-Node: RDoc19518
-Node: Writing Documentation20208
-Node: Generating Documention21794
-Node: Markup Directives22791
-Node: ri24684
-Node: Ruby Debugger26769
-Node: Developing Ruby27301
-Ref: subversion28046
-Ref: MainRubyRepo29198
-Ref: PatchByPatch29526
-Node: Getting Started30323
-Node: Try Ruby!30711
-Node: Official FAQ31041
-Node: FAQ Iterators32118
-Node: FAQ Syntax36057
-Ref: immediate value37202
-Ref: nil vs false37837
-Ref: empty string38451
-Ref: symbol object38804
-Ref: value of symbol39942
-Ref: loop40820
-Ref: post-test loop41046
-Ref: hash literal41472
-Ref: pos val41754
-Ref: \1 and \\142130
-Ref: 2 dots vs 3 dots42538
-Ref: or and42776
-Ref: function pointers43578
-Ref: load vs require43900
-Ref: exception handling44255
-Node: FAQ Methods45252
-Ref: singleton-method45610
-Node: FAQ Classes and Modules47366
-Ref: class-method47970
-Node: FAQ Built-In Libraries49762
-Node: FAQ Extension Library51740
-Node: FAQ Other Features52419
-Node: Ruby Koans52969
-Node: Why’s (Poignant) Guide to Ruby53373
-Node: Ruby in Twenty Minutes53847
-Node: Interactive Ruby54520
-Node: Defining Methods55475
-Node: Altering Classes60979
-Node: Large Class Definition62315
-Ref: ri20min-rb62719
-Ref: MegaGreeter---Initialize-Method63528
-Ref: MegaGreeter---say-hi-Method64250
-Ref: MegaGreeter---say-bye-Method66467
-Ref: MegaGreeter---Main-Script67415
-Node: Run MegaGreeter67947
-Node: Ruby from Other Languages68473
-Node: To Ruby From C and C++69191
-Node: To Ruby From Java76725
-Node: To Ruby From Perl79292
-Node: To Ruby From PHP82251
-Node: To Ruby From Python84429
-Node: Important Language Features88564
-Node: Pointers on Iteration89318
-Node: Everything has a value90114
-Node: Symbols are not lightweight Strings90594
-Node: Everything is an Object92039
-Node: Variable Constants92600
-Node: Naming conventions92993
-Node: Keyword arguments93689
-Node: The universal truth94239
-Node: Access modifiers are Methods94991
-Node: Method access95994
-Node: Classes are open97608
-Node: Funny method names98323
-Node: Singleton methods99125
-Node: Missing methods99752
-Node: Message passing --- not function calls100831
-Node: Blocks are Objects101252
-Node: Operators are syntactic sugar102163
-Node: Learning Ruby103176
-Node: Ruby Essentials103544
-Node: Interactive Ruby Execution103981
-Node: Block Ruby Comments104433
-Node: Variable Scope104782
-Node: Learn to Program106592
-Node: Manuals106971
-Node: Ruby User's Guide107207
-Node: Ruby User's Guide On What Ruby IS108748
-Node: Ruby User's Guide On Simple Examples109782
-Ref: fact-rb110257
-Ref: RubyEval112812
-Ref: Ruby User's Guide On Simple Examples-Footnote-1114020
-Node: Ruby User's Guide on Strings114102
-Node: Ruby User's Guide On Puzzle Program115485
-Ref: guess-rb115714
-Node: Ruby User's Guide on Regular Expressions118998
-Ref: regx-rb120110
-Node: Ruby User's Guide On Arrays And Hashes124251
-Node: Ruby User's Guide On Control Structures126188
-Node: Ruby User's Guide On Iterators130706
-Node: Ruby User's Guide On Object-Oriented Thinking134227
-Node: Ruby User's Guide on Methods137508
-Node: Ruby User's Guide on Classes140773
-Node: Ruby User's Guide on Inheritance142649
-Node: Ruby User's Guide on Redefinition Of Methods144931
-Node: Ruby User's Guide On Access Control146836
-Node: Ruby User's Guide On Singleton Methods150663
-Node: Ruby User's Guide On Modules151670
-Node: Ruby User's Guide On Procedure Objects154203
-Node: Ruby User's Guide On Variables156376
-Ref: table:variable-identifiers157270
-Node: Ruby User's Guide On Global Variables158084
-Ref: table:global-variables159602
-Node: Ruby User's Guide On Instance Variables160303
-Node: Ruby User's Guide On Local Variables161348
-Node: Ruby User's Guide On Class Constants165019
-Node: Ruby User's Guide On Exception Processing And rescue166885
-Node: Ruby User's Guide On Exception Processing and ensure170198
-Node: Ruby User's Guide On Accessors171514
-Ref: table:accessor-shortcuts174679
-Node: Ruby User's Guide On Object Initialization176664
-Node: Ruby User's Guide On Nuts And Bolts179451
-Node: Ruby Programming Wikibook184468
-Node: Pragmatic Programmer's Guide184850
-Node: Editors and IDEs189259
-Node: Further Reading189409
-Node: Ruby-Doc189707
-Node: API Documentation190559
-Node: Files API190889
-Ref: table:api191018
-Ref: Globals191332
-Node: Classes And Modules API192795
-Ref: table:api-classes-and-modules192972
-Node: Methods API202721
-Ref: table:api-methods202885
-Node: Beginner Core Topics418400
-Ref: table:core-topics418550
-Node: Resources419094
-Node: Programming Ruby by Hulan419332
-Node: Ruby Basics419693
-Node: Installation - Running - About420152
-Node: Language Conventions422643
-Node: Data Types423297
-Node: Methods and Variables424880
-Node: Conditions425673
-Node: Logical Operators426789
-Node: Regular Expressions427280
-Node: Loops427642
-Node: Methods428131
-Node: Using Code From Other Files428708
-Node: Blocks429397
-Node: Objects430593
-Node: Inheritance431088
-Node: Modules431794
-Node: Method Access432720
-Node: Duck Typing433131
-Node: Exceptions433504
-Node: Advanced Ruby434759
-Node: Return Values435009
-Node: Context436501
-Node: Class436997
-Node: Advanced Methods439601
-Node: Advanced Objects443587
-Node: Ruby Testing448487
-Node: Testing Frameworks448867
-Node: Minitest449423
-Ref: AssertionHelpers452480
-Node: Testing Web Applications460691
-Node: Cucumber462311
-Node: Utility Programs463636
-Node: Ruby Eval Utility463918
-Ref: eval-rb464735
-Node: eval Module Code466707
-Ref: eval---EvalWrapper--Constants466872
-Node: eval Indentation Deltas Code467399
-Ref: eval---EvalWrapper--Indentation-Deltas467620
-Node: eval Main Get Line Code468499
-Ref: eval---Main--Get-Line468721
-Node: eval Main Process Line Code469181
-Ref: eval---Main--Process-Line469402
-Node: eval If Not Line Code470043
-Ref: eval---Main--Process-Line-If-Not-Line470229
-Node: eval If Is Line Code470576
-Ref: eval---Main--Process-Line-Is-Line470760
-Ref: eval---Main--Process-Line-Is-Line-Indentation471610
-Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-472331
-Node: eval.rb Post Create473047
-Node: API Utility473356
-Ref: apiutil-awk473804
-Node: apiutil.awk BEGIN Block474748
-Ref: apiutil---BEGIN-Block474920
-Node: apiutil.awk BEGNFILE Block475521
-Ref: apiutil---BEGINFILE-Block475799
-Node: apiutil.awk MAIN Block475978
-Ref: apiutil---MAIN-Block476181
-Ref: apiutil---BEGIN--Variable-Defns-1477574
-Ref: apiutil---MAIN-Block--Main-Loop478277
-Ref: apiutil---MAIN-Block--Main-Loop-Inside-1479186
-Ref: apiutil---MAIN-Block--Main-Loop-Inside-2480135
-Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-1482480
-Ref: apiutil---BEGIN--Variable-Defns-2483269
-Ref: apiutil---BEGIN--Variable-Defns-3483835
-Ref: apiutil---BEGIN--Variable-Defns-4484578
-Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-2484984
-Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-3486442
-Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-4487565
-Ref: apiutil.awk MAIN Block-Footnote-1488076
-Node: apiutil.awk ENDFILE Block488162
-Ref: apiutil---ENDFILE-Block488366
-Node: apiutil.awk END Block488592
-Ref: apiutil---END-Block488786
-Node: apiutil Ord Function488944
-Ref: apiutil---BEGIN--Ord-Function-Init489910
-Ref: apiutil---MAIN-Block--Ord-Function-Defn-1490143
-Ref: apiutil---MAIN-Block--Ord-Function-Defn-2490705
-Node: convertsymbols() Function Definition491251
-Ref: apiutil---MAIN-Block--Convert-Symbols-Function-Defn491803
-Node: apiutil Makefile Target493348
-Ref: Makefile---Utility-Targets-1493814
-Node: Initial Setup and Post Create494114
-Node: Initial Setup494472
-Ref: setpath-sh495265
-Node: Post Create495385
-Node: The Makefile495973
-Ref: Makefile496142
-Node: Makefile Variable Definitions497098
-Ref: Makefile---Variable-Definitions497276
-Node: Makefile Default Rule497500
-Ref: Makefile---Default-Target498052
-Node: Makefile TWJR Targets498352
-Ref: Makefile---TWJR-Targets498521
-Node: Makefile Utility Targets499483
-Ref: Makefile---Utility-Targets-2499659
-Node: Makefile Clean Targets499892
-Ref: Makefile---Clean-Targets500034
-Node: Code Chunk Summaries500866
-Node: File Definitions501251
-Node: Code Chunk Definitions501910
-Node: Code Chunk References505720
-Node: Bibliography509996
-Ref: ProgrammingRuby510129
-Node: List of Tables510252
-Node: Concept Index510937
-Node: Program Index600674
+Node: Preface6322
+Node: Audience6524
+Node: Overview6899
+Node: Conventions7069
+Node: Acknowledgements7989
+Node: Introduction8105
+Node: Documentation8402
+Node: Installing Ruby8811
+Node: Package Management Systems9719
+Node: Homebrew (OS X)10544
+Node: Installers10970
+Node: ruby-build11566
+Node: ruby-install12119
+Node: Managers12734
+Node: chruby13104
+Node: rbenv13363
+Node: RVM13881
+Node: uru14252
+Node: Building From Source14518
+Node: Releases Page15530
+Node: Branches Page16630
+Node: Issue Tracking18430
+Node: Help Tools18914
+Ref: Help Tools-Footnote-119693
+Node: RDoc19822
+Node: Writing Documentation20512
+Node: Generating Documention22098
+Node: Markup Directives23095
+Node: ri24988
+Node: Ruby Debugger27073
+Node: Developing Ruby27605
+Ref: subversion28350
+Ref: MainRubyRepo29502
+Ref: PatchByPatch29830
+Node: Getting Started30627
+Node: Try Ruby!31015
+Node: Official FAQ31345
+Node: FAQ Iterators32422
+Node: FAQ Syntax36361
+Ref: immediate value37506
+Ref: nil vs false38141
+Ref: empty string38755
+Ref: symbol object39108
+Ref: value of symbol40246
+Ref: loop41124
+Ref: post-test loop41350
+Ref: hash literal41776
+Ref: pos val42058
+Ref: \1 and \\142434
+Ref: 2 dots vs 3 dots42842
+Ref: or and43080
+Ref: function pointers43882
+Ref: load vs require44204
+Ref: exception handling44559
+Node: FAQ Methods45556
+Ref: singleton-method45914
+Node: FAQ Classes and Modules47670
+Ref: class-method48274
+Node: FAQ Built-In Libraries50066
+Node: FAQ Extension Library52044
+Node: FAQ Other Features52723
+Node: Ruby Koans53273
+Node: Why’s (Poignant) Guide to Ruby53677
+Node: Ruby in Twenty Minutes54151
+Node: Interactive Ruby54824
+Node: Defining Methods55779
+Node: Altering Classes61283
+Node: Large Class Definition62619
+Ref: ri20min-rb63023
+Ref: MegaGreeter---Initialize-Method63832
+Ref: MegaGreeter---say-hi-Method64554
+Ref: MegaGreeter---say-bye-Method66771
+Ref: MegaGreeter---Main-Script67719
+Node: Run MegaGreeter68251
+Node: Ruby from Other Languages68777
+Node: To Ruby From C and C++69495
+Node: To Ruby From Java77029
+Node: To Ruby From Perl79596
+Node: To Ruby From PHP82555
+Node: To Ruby From Python84733
+Node: Important Language Features88868
+Node: Pointers on Iteration89622
+Node: Everything has a value90418
+Node: Symbols are not lightweight Strings90898
+Node: Everything is an Object92343
+Node: Variable Constants92904
+Node: Naming conventions93297
+Node: Keyword arguments93993
+Node: The universal truth94543
+Node: Access modifiers are Methods95295
+Node: Method access96298
+Node: Classes are open97912
+Node: Funny method names98627
+Node: Singleton methods99429
+Node: Missing methods100056
+Node: Message passing --- not function calls101135
+Node: Blocks are Objects101556
+Node: Operators are syntactic sugar102467
+Node: Learning Ruby103480
+Node: Ruby Essentials103848
+Node: Interactive Ruby Execution104285
+Node: Block Ruby Comments104737
+Node: Variable Scope105086
+Node: Learn to Program106896
+Node: Manuals107275
+Node: Ruby User's Guide107511
+Node: Ruby User's Guide On What Ruby IS109052
+Node: Ruby User's Guide On Simple Examples110086
+Ref: fact-rb110561
+Ref: RubyEval113116
+Ref: Ruby User's Guide On Simple Examples-Footnote-1114324
+Node: Ruby User's Guide on Strings114406
+Node: Ruby User's Guide On Puzzle Program115789
+Ref: guess-rb116018
+Node: Ruby User's Guide on Regular Expressions119302
+Ref: regx-rb120414
+Node: Ruby User's Guide On Arrays And Hashes124555
+Node: Ruby User's Guide On Control Structures126492
+Node: Ruby User's Guide On Iterators131010
+Node: Ruby User's Guide On Object-Oriented Thinking134531
+Node: Ruby User's Guide on Methods137812
+Node: Ruby User's Guide on Classes141077
+Node: Ruby User's Guide on Inheritance142953
+Node: Ruby User's Guide on Redefinition Of Methods145235
+Node: Ruby User's Guide On Access Control147140
+Node: Ruby User's Guide On Singleton Methods150967
+Node: Ruby User's Guide On Modules151974
+Node: Ruby User's Guide On Procedure Objects154507
+Node: Ruby User's Guide On Variables156680
+Ref: table:variable-identifiers157574
+Node: Ruby User's Guide On Global Variables158388
+Ref: table:global-variables159906
+Node: Ruby User's Guide On Instance Variables160607
+Node: Ruby User's Guide On Local Variables161652
+Node: Ruby User's Guide On Class Constants165323
+Node: Ruby User's Guide On Exception Processing And rescue167189
+Node: Ruby User's Guide On Exception Processing and ensure170502
+Node: Ruby User's Guide On Accessors171818
+Ref: table:accessor-shortcuts174983
+Node: Ruby User's Guide On Object Initialization176968
+Node: Ruby User's Guide On Nuts And Bolts179755
+Node: Ruby Programming Wikibook184772
+Node: Pragmatic Programmer's Guide185154
+Node: Editors and IDEs189563
+Node: Further Reading189713
+Node: Ruby-Doc190011
+Node: API Documentation190863
+Node: Files API191193
+Ref: table:api191322
+Ref: Globals191636
+Node: Classes And Modules API193099
+Ref: table:api-classes-and-modules193276
+Node: Methods API203025
+Ref: table:api-methods203189
+Node: Beginner Core Topics418704
+Ref: table:core-topics418854
+Node: Ruby Gems419398
+Node: Ruby Gem Guides420511
+Node: Ruby Gems Basics421840
+Node: What Is A Gem422207
+Ref: RubyGemComponents423576
+Node: Make A Gem425172
+Node: Your First Gem425984
+Ref: hola-rb426875
+Ref: hola-gemspec427341
+Node: Requiring More Files429062
+Node: Adding An Executable429241
+Node: Writing Tests429419
+Node: Documenting Your Code429584
+Node: Resources429736
+Node: Programming Ruby by Hulan429975
+Node: Ruby Basics430336
+Node: Installation - Running - About430795
+Node: Language Conventions433286
+Node: Data Types433940
+Node: Methods and Variables435523
+Node: Conditions436316
+Node: Logical Operators437432
+Node: Regular Expressions437923
+Node: Loops438285
+Node: Methods438774
+Node: Using Code From Other Files439351
+Node: Blocks440040
+Node: Objects441236
+Node: Inheritance441731
+Node: Modules442437
+Node: Method Access443363
+Node: Duck Typing443774
+Node: Exceptions444147
+Node: Advanced Ruby445402
+Node: Return Values445652
+Node: Context447144
+Node: Class447640
+Node: Advanced Methods450244
+Node: Advanced Objects454230
+Node: Ruby Testing459130
+Node: Testing Frameworks459510
+Node: Minitest460066
+Ref: AssertionHelpers463123
+Node: Testing Web Applications471334
+Node: Cucumber472954
+Node: Utility Programs474279
+Node: Ruby Eval Utility474561
+Ref: eval-rb475378
+Node: eval Module Code477350
+Ref: eval---EvalWrapper--Constants477515
+Node: eval Indentation Deltas Code478042
+Ref: eval---EvalWrapper--Indentation-Deltas478263
+Node: eval Main Get Line Code479142
+Ref: eval---Main--Get-Line479364
+Node: eval Main Process Line Code479824
+Ref: eval---Main--Process-Line480045
+Node: eval If Not Line Code480686
+Ref: eval---Main--Process-Line-If-Not-Line480872
+Node: eval If Is Line Code481219
+Ref: eval---Main--Process-Line-Is-Line481403
+Ref: eval---Main--Process-Line-Is-Line-Indentation482253
+Ref: eval---Main--Process-Line-Is-Line-Worth-Evaluating-482974
+Node: eval.rb Post Create483690
+Node: API Utility483999
+Ref: apiutil-awk484447
+Node: apiutil.awk BEGIN Block485391
+Ref: apiutil---BEGIN-Block485563
+Node: apiutil.awk BEGNFILE Block486164
+Ref: apiutil---BEGINFILE-Block486442
+Node: apiutil.awk MAIN Block486621
+Ref: apiutil---MAIN-Block486824
+Ref: apiutil---BEGIN--Variable-Defns-1488217
+Ref: apiutil---MAIN-Block--Main-Loop488920
+Ref: apiutil---MAIN-Block--Main-Loop-Inside-1489829
+Ref: apiutil---MAIN-Block--Main-Loop-Inside-2490778
+Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-1493123
+Ref: apiutil---BEGIN--Variable-Defns-2493912
+Ref: apiutil---BEGIN--Variable-Defns-3494478
+Ref: apiutil---BEGIN--Variable-Defns-4495221
+Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-2495627
+Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-3497085
+Ref: apiutil---MAIN-Block--Main-Loop-Inside-Processing-4498208
+Ref: apiutil.awk MAIN Block-Footnote-1498719
+Node: apiutil.awk ENDFILE Block498805
+Ref: apiutil---ENDFILE-Block499009
+Node: apiutil.awk END Block499235
+Ref: apiutil---END-Block499429
+Node: apiutil Ord Function499587
+Ref: apiutil---BEGIN--Ord-Function-Init500553
+Ref: apiutil---MAIN-Block--Ord-Function-Defn-1500786
+Ref: apiutil---MAIN-Block--Ord-Function-Defn-2501348
+Node: convertsymbols() Function Definition501894
+Ref: apiutil---MAIN-Block--Convert-Symbols-Function-Defn502446
+Node: apiutil Makefile Target503991
+Ref: Makefile---Utility-Targets-1504457
+Node: Initial Setup and Post Create504757
+Node: Initial Setup505115
+Ref: setpath-sh505908
+Node: Post Create506028
+Node: The Makefile506616
+Ref: Makefile506785
+Node: Makefile Variable Definitions507741
+Ref: Makefile---Variable-Definitions507919
+Node: Makefile Default Rule508143
+Ref: Makefile---Default-Target508695
+Node: Makefile TWJR Targets508995
+Ref: Makefile---TWJR-Targets509164
+Node: Makefile Utility Targets510126
+Ref: Makefile---Utility-Targets-2510302
+Node: Makefile Clean Targets510535
+Ref: Makefile---Clean-Targets510677
+Node: Code Chunk Summaries511509
+Node: File Definitions511894
+Node: Code Chunk Definitions512681
+Node: Code Chunk References516491
+Node: Bibliography520767
+Ref: ProgrammingRuby520900
+Node: List of Tables521023
+Node: Concept Index521770
+Node: Program Index613921
 
 End Tag Table

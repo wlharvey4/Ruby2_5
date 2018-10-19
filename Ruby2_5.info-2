@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.6a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.6b of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Beginner Core Topics,  Prev: Methods API,  Up: API Documentation
@@ -34,9 +34,359 @@ Operator Precedence
 Table A.4: Table of Core Topics
 
 
-File: Ruby2_5.info,  Node: Resources,  Next: Utility Programs,  Prev: Ruby-Doc,  Up: Top
+File: Ruby2_5.info,  Node: Ruby Gems,  Next: Resources,  Prev: Ruby-Doc,  Up: Top
 
-Appendix B Resources
+Appendix B Ruby Gems
+********************
+
+Ruby Gems (https://rubygems.org/)
+
+Ruby Gems Github Home (https://github.com/rubygems)
+
+About
+=====
+
+'RubyGems.org' is the Ruby community’s gem hosting service.
+Instantly publish your gems and then install them.  Use the API to
+find out more about available gems.  Become a contributor and improve
+the site yourself.
+
+Guides
+======
+
+Learn how RubyGems works, and how to make your own.
+...................................................
+
+The 'RubyGems' software allows you to easily download, install, and
+use ruby software packages on your system.  The software package is
+called a "gem" which contains a packaged Ruby application or library.
+
+   Gems can be used to extend or modify functionality in Ruby
+applications.  Commonly they’re used to distribute reusable
+functionality that is shared with other Rubyists for use in their
+applications and libraries.  Some gems provide command line utilities
+to help automate tasks and speed up your work.
+
+* Menu:
+
+* Ruby Gem Guides::
+
+
+File: Ruby2_5.info,  Node: Ruby Gem Guides,  Up: Ruby Gems
+
+B.1 Ruby Gem Guides
+===================
+
+Guides (https://guides.rubygems.org/)
+
+   * RUBYGEMS BASICS (https://guides.rubygems.org/rubygems-basics/)
+   * WHAT IS A GEM? (https://guides.rubygems.org/what-is-a-gem/)
+   * MAKE YOUR OWN GEM
+     (https://guides.rubygems.org/make-your-own-gem/)
+   * GEMS WITH EXTENSIONS
+   * NAME YOUR GEM (https://guides.rubygems.org/name-your-gem/)
+   * PUBLISHING YOUR GEM
+   * SECURITY PRACTICES
+   * SSL CERTIFICATE UPDATE
+   * PATTERNS (https://guides.rubygems.org/patterns/)
+   * SPECIFICATION REFERENCE
+     (https://guides.rubygems.org/specification-reference/)
+   * COMMAND REFERENCE
+     (https://guides.rubygems.org/command-reference/)
+   * RUBYGEMS API (http://docs.seattlerb.org/rubygems/)
+   * RUBYGEMS.ORG API (https://guides.rubygems.org/rubygems-org-api/)
+   * RUBYGEMS.ORG API V2.0
+     (https://guides.rubygems.org/rubygems-org-api-v2/)
+   * RUN YOUR OWN GEM SERVER
+   * RESOURCES (https://guides.rubygems.org/resources/)
+   * CONTRIBUTING TO RUBYGEMS (https://guides.rubygems.org/resources/)
+   * FREQUENTLY ASKED QUESTIONS (https://guides.rubygems.org/faqs/)
+   * PLUGINS
+   * CREDITS
+   * COMMON VULNERABILITIES AND EXPOSURES
+   * RELEASING RUBYGEMS
+
+* Menu:
+
+* Ruby Gems Basics::
+* What Is A Gem::
+* Make A Gem::
+
+
+File: Ruby2_5.info,  Node: Ruby Gems Basics,  Next: What Is A Gem,  Up: Ruby Gem Guides
+
+B.1.1 Ruby Gems Basics
+----------------------
+
+The 'gem' command allows you to interact with RubyGems.
+
+   Ruby 1.9 and newer ships with RubyGems built-in.  Download RubyGems
+(https://rubygems.org/pages/download).  To upgrade to the latest
+RubyGems: '$ gem update --system'.
+
+
+File: Ruby2_5.info,  Node: What Is A Gem,  Next: Make A Gem,  Prev: Ruby Gems Basics,  Up: Ruby Gem Guides
+
+B.1.2 What Is A Gem?
+--------------------
+
+STRUCTURE OF A GEM
+==================
+
+Each gem has a
+
+   * name,
+   * version, and
+   * platform.
+
+   For example, the 'rake' gem has a 0.8.7 version (from May, 2009).
+'Rake'’s platform is ruby, which means it works on any platform Ruby
+runs on.
+
+Platforms
+---------
+
+Platforms are based on the CPU architecture, operating system type and
+sometimes the operating system version.  Examples include
+'x86-mingw32' or 'java'.  The platform indicates the gem only works
+with a ruby built for the same platform.  RubyGems will automatically
+download the correct version for your platform.  See 'gem help
+platform' for full detail.
+
+Components
+----------
+
+Inside gems are the following components:
+
+   * Code (including tests and supporting utilities)
+   * Documentation
+   * gemspec
+
+Code Organization
+-----------------
+
+Each gem follows the same standard structure of code organization:
+
+     % tree freewill
+     freewill/
+     ├── bin/
+     │   └── freewill
+     ├── lib/
+     │   └── freewill.rb
+     ├── test/
+     │   └── test_freewill.rb
+     ├── README
+     ├── Rakefile
+     └── freewill.gemspec
+
+   Here, you can see the major components of a gem:
+
+'lib'
+     The lib directory contains the code for the gem
+
+'test'
+     The test or spec directory contains tests, depending on which
+     test framework the developer uses
+
+'Rakefile'
+     A gem usually has a 'Rakefile', which the 'rake' program uses to
+     automate tests, generate code, and perform other tasks.
+
+'bin'
+     This gem also includes an executable file in the 'bin' directory,
+     which will be loaded into the user’s 'PATH' when the gem is
+     installed.
+
+'README'
+     Documentation is usually included in the 'README' and inline with
+     the code.  When you install a gem, documentation is generated
+     automatically for you.  Most gems include RDoc documentation, but
+     some use YARD docs instead.
+
+'gemspec'
+     The final piece is the gemspec, which contains information about
+     the gem.  The gem’s files, test information, platform, version
+     number and more are all laid out here along with the author’s
+     email and name.
+
+Table B.1: Table of RubyGem Components
+
+The Gemspec
+-----------
+
+The gemspec specifies the information about a gem such as its name,
+version, description, authors and homepage.
+
+   Here’s an example of a gemspec file.
+
+     % cat freewill.gemspec
+     Gem::Specification.new do |s|
+       s.name        = 'freewill'
+       s.version     = '1.0.0'
+       s.summary     = "Freewill!"
+       s.description = "I will choose Freewill!"
+       s.authors     = ["Nick Quaranto"]
+       s.email       = 'nick@quaran.to'
+       s.homepage    = 'http://example.com/freewill'
+       s.files       = ["lib/freewill.rb", ...]
+     end
+
+
+File: Ruby2_5.info,  Node: Make A Gem,  Prev: What Is A Gem,  Up: Ruby Gem Guides
+
+B.1.3 Make a Gem
+----------------
+
+     NOTE: Many people use Bundler to create Gems.  You can learn how
+     to do that by reading the 'Developing a RubyGem using Bundler'
+     guide on the Bundler website
+     (https://bundler.io/v1.13/guides/creating_gem).
+
+Introduction to Making a Gem
+============================
+
+Creating and publishing your own gem is simple thanks to the tools
+baked right into RubyGems.  Let’s make a simple "hello world" gem,
+and feel free to play along at home!  The code for the gem we’re
+going to make here is up on GitHub Hello World
+(https://github.com/qrush/hola).
+
+* Menu:
+
+* Your First Gem::
+* Requiring More Files::
+* Adding An Executable::
+* Writing Tests::
+* Documenting Your Code::
+
+
+File: Ruby2_5.info,  Node: Your First Gem,  Next: Requiring More Files,  Up: Make A Gem
+
+B.1.3.1 Your First Gem
+......................
+
+I started with just one Ruby file for my 'hola' gem, and the gemspec.
+You’ll need a new name for yours (maybe 'hola_yourusername') to
+publish it.  Check the Patterns guide for basic recommendations to
+follow when naming a gem.
+
+     % tree
+     .
+     ├── hola.gemspec
+     └── lib
+         └── hola.rb
+
+'lib' Directory
+---------------
+
+Code for your package is placed within the 'lib' directory.  The
+convention is to have one Ruby file with the same name as your gem,
+since that gets loaded when 'require 'hola'' is run.  That one file is
+in charge of setting up your gem’s code and API.
+
+'hola.rb'
+---------
+
+The code inside of 'lib/hola.rb' is pretty bare bones.  It just makes
+sure that you can see some output from the gem:
+
+{'hola.rb'} ==
+     class Hola
+       def self.hi
+         puts "Hello world!"
+       end
+     end
+
+ @post_create hola.rb mkdir -p src/gems/hola/lib/ && mv hola.rb src/gems/hola/lib
+
+'hola.gemspec'
+--------------
+
+The gemspec defines what’s in the gem, who made it, and the version
+of the gem.  It’s also your interface to 'RubyGems.org'.  All of the
+information you see on a gem page (like jekyll’s
+(http://rubygems.org/gems/jekyll)) comes from the gemspec.
+
+{'hola.gemspec'} ==
+     Gem::Specification.new do |s|
+       s.name        = 'hola'
+       s.version     = '0.0.0'
+       s.date        = '2010-04-28'
+       s.summary     = "Hola!"
+       s.description = "A simple hello world gem"
+       s.authors     = ["Nick Quaranto"]
+       s.email       = 'nick@quaran.to'
+       s.files       = ["lib/hola.rb"]
+       s.homepage    =
+         'http://rubygems.org/gems/hola'
+       s.license       = 'MIT'
+     end
+
+ @post_create hola.gemspec mv hola.gemspec src/gems/hola/ && cd src/gems/hola
+
+     NOTE: The 'description' member can be much longer than you see in
+     this example.  If it matches '/^== [A-Z]/' then the description
+     will be run through RDoc’s markup formatter for display on the
+     RubyGems web site.  Be aware though that other consumers of the
+     data might not understand this markup.
+
+   Look familiar?  The gemspec is also Ruby, so you can wrap scripts
+to generate the file names and bump the version number.  There are
+lots of fields the gemspec can contain.  To see them all check out the
+full reference (https://guides.rubygems.org/specification-reference).
+
+'build' and 'install' A Gem From The Gemspec
+--------------------------------------------
+
+After you have created a gemspec, you can 'build' a gem from it.  Then
+you can 'install' the generated gem locally to test it out.
+
+     % gem build hola.gemspec
+     Successfully built RubyGem
+     Name: hola
+     Version: 0.0.0
+     File: hola-0.0.0.gem
+
+     % gem install ./hola-0.0.0.gem
+     Successfully installed hola-0.0.0
+     1 gem installed
+
+   The final step is to 'require' the gem and use it:
+
+     % irb
+     >> require 'hola'
+     => true
+     >> Hola.hi
+     Hello world!
+
+
+File: Ruby2_5.info,  Node: Requiring More Files,  Next: Adding An Executable,  Prev: Your First Gem,  Up: Make A Gem
+
+B.1.3.2 Requiring More Files
+............................
+
+
+File: Ruby2_5.info,  Node: Adding An Executable,  Next: Writing Tests,  Prev: Requiring More Files,  Up: Make A Gem
+
+B.1.3.3 Adding An Executable
+............................
+
+
+File: Ruby2_5.info,  Node: Writing Tests,  Next: Documenting Your Code,  Prev: Adding An Executable,  Up: Make A Gem
+
+B.1.3.4 Writing Tests
+.....................
+
+
+File: Ruby2_5.info,  Node: Documenting Your Code,  Prev: Writing Tests,  Up: Make A Gem
+
+B.1.3.5 Documenting Your Code
+.............................
+
+
+File: Ruby2_5.info,  Node: Resources,  Next: Utility Programs,  Prev: Ruby Gems,  Up: Top
+
+Appendix C Resources
 ********************
 
 Here are some additional resources that I have found helpful.
@@ -48,7 +398,7 @@ Here are some additional resources that I have found helpful.
 
 File: Ruby2_5.info,  Node: Programming Ruby by Hulan,  Up: Resources
 
-B.1 Programming Ruby by Hulan
+C.1 Programming Ruby by Hulan
 =============================
 
 'Programming Ruby' (See item 'ProgrammingRuby' in *note Bibliography:
@@ -66,7 +416,7 @@ By Marek Hulán, Marek Jelen, Ivan Nečas, Version 0.2 September 25,
 
 File: Ruby2_5.info,  Node: Ruby Basics,  Next: Advanced Ruby,  Up: Programming Ruby by Hulan
 
-B.1.1 Ruby Basics
+C.1.1 Ruby Basics
 -----------------
 
 * Menu:
@@ -92,7 +442,7 @@ B.1.1 Ruby Basics
 
 File: Ruby2_5.info,  Node: Installation - Running - About,  Next: Language Conventions,  Up: Ruby Basics
 
-B.1.1.1 Installation - Running - About
+C.1.1.1 Installation - Running - About
 ......................................
 
 Installation on Mac OS
@@ -167,7 +517,7 @@ What is written in Ruby?
 
 File: Ruby2_5.info,  Node: Language Conventions,  Next: Data Types,  Prev: Installation - Running - About,  Up: Ruby Basics
 
-B.1.1.2 Language Conventions
+C.1.1.2 Language Conventions
 ............................
 
 Class Names
@@ -208,7 +558,7 @@ methods mutating state end with '!' (exclamation mark)
 
 File: Ruby2_5.info,  Node: Data Types,  Next: Methods and Variables,  Prev: Language Conventions,  Up: Ruby Basics
 
-B.1.1.3 Data Types
+C.1.1.3 Data Types
 ..................
 
 In Ruby everything is an object, including arrays or numbers.  However
@@ -276,7 +626,7 @@ Symbols
 
 File: Ruby2_5.info,  Node: Methods and Variables,  Next: Conditions,  Prev: Data Types,  Up: Ruby Basics
 
-B.1.1.4 Methods and Variables
+C.1.1.4 Methods and Variables
 .............................
 
 Methods
@@ -316,7 +666,7 @@ Constant
 
 File: Ruby2_5.info,  Node: Conditions,  Next: Logical Operators,  Prev: Methods and Variables,  Up: Ruby Basics
 
-B.1.1.5 Conditions
+C.1.1.5 Conditions
 ..................
 
 Everything is 'true' except 'false' (and 'nil').
@@ -375,7 +725,7 @@ Another way to do conditions is to use 'case' statement.
 
 File: Ruby2_5.info,  Node: Logical Operators,  Next: Regular Expressions,  Prev: Conditions,  Up: Ruby Basics
 
-B.1.1.6 Logical Operators
+C.1.1.6 Logical Operators
 .........................
 
 Logical Expressions
@@ -417,7 +767,7 @@ regular expression match
 
 File: Ruby2_5.info,  Node: Regular Expressions,  Next: Loops,  Prev: Logical Operators,  Up: Ruby Basics
 
-B.1.1.7 Regular Expressions
+C.1.1.7 Regular Expressions
 ...........................
 
 Regular expression literals are enclosed between '/.../':
@@ -429,7 +779,7 @@ Regular expression literals are enclosed between '/.../':
 
 File: Ruby2_5.info,  Node: Loops,  Next: Methods,  Prev: Regular Expressions,  Up: Ruby Basics
 
-B.1.1.8 Loops
+C.1.1.8 Loops
 .............
 
 'while'
@@ -456,7 +806,7 @@ B.1.1.8 Loops
 
 File: Ruby2_5.info,  Node: Methods,  Next: Using Code From Other Files,  Prev: Loops,  Up: Ruby Basics
 
-B.1.1.9 Methods
+C.1.1.9 Methods
 ...............
 
 Method Return Value
@@ -481,7 +831,7 @@ Method Arguments
 
 File: Ruby2_5.info,  Node: Using Code From Other Files,  Next: Blocks,  Prev: Methods,  Up: Ruby Basics
 
-B.1.1.10 Using Code From Other Files
+C.1.1.10 Using Code From Other Files
 ....................................
 
 'require'
@@ -506,7 +856,7 @@ The following file extensions can be omitted:
 
 File: Ruby2_5.info,  Node: Blocks,  Next: Objects,  Prev: Using Code From Other Files,  Up: Ruby Basics
 
-B.1.1.11 Blocks
+C.1.1.11 Blocks
 ...............
 
 Blocks are not executed when defined, but have to be called through
@@ -558,7 +908,7 @@ by '&'.
 
 File: Ruby2_5.info,  Node: Objects,  Next: Inheritance,  Prev: Blocks,  Up: Ruby Basics
 
-B.1.1.12 Objects
+C.1.1.12 Objects
 ................
 
 Everything is an object.  Even a class is an instance of 'Class'.
@@ -579,7 +929,7 @@ defining class, define them using "attributes".
 
 File: Ruby2_5.info,  Node: Inheritance,  Next: Modules,  Prev: Objects,  Up: Ruby Basics
 
-B.1.1.13 Inheritance
+C.1.1.13 Inheritance
 ....................
 
 Ruby has single "object inheritance".  All methods, including
@@ -616,7 +966,7 @@ inheritance."
 
 File: Ruby2_5.info,  Node: Modules,  Next: Method Access,  Prev: Inheritance,  Up: Ruby Basics
 
-B.1.1.14 Modules
+C.1.1.14 Modules
 ................
 
 "Modules" are a way to organize your classes in a similar fashion to
@@ -668,7 +1018,7 @@ class methods.
 
 File: Ruby2_5.info,  Node: Method Access,  Next: Duck Typing,  Prev: Modules,  Up: Ruby Basics
 
-B.1.1.15 Method Access
+C.1.1.15 Method Access
 ......................
 
 By default methods are 'public', but methods can be made explicitly
@@ -692,7 +1042,7 @@ By default methods are 'public', but methods can be made explicitly
 
 File: Ruby2_5.info,  Node: Duck Typing,  Next: Exceptions,  Prev: Method Access,  Up: Ruby Basics
 
-B.1.1.16 Duck Typing
+C.1.1.16 Duck Typing
 ....................
 
 "Duck typing" is coding by behavior rather than identify.
@@ -708,7 +1058,7 @@ B.1.1.16 Duck Typing
 
 File: Ruby2_5.info,  Node: Exceptions,  Prev: Duck Typing,  Up: Ruby Basics
 
-B.1.1.17 Exceptions
+C.1.1.17 Exceptions
 ...................
 
 "Exceptions" represent a special state in the execution of a program.
@@ -747,7 +1097,7 @@ exceptions one doesn't want to rescue from, such as 'SystemExit' or
 
 File: Ruby2_5.info,  Node: Advanced Ruby,  Next: Ruby Testing,  Prev: Ruby Basics,  Up: Programming Ruby by Hulan
 
-B.1.2 Advanced Ruby
+C.1.2 Advanced Ruby
 -------------------
 
 * Menu:
@@ -761,7 +1111,7 @@ B.1.2 Advanced Ruby
 
 File: Ruby2_5.info,  Node: Return Values,  Next: Context,  Up: Advanced Ruby
 
-B.1.2.1 Return Values
+C.1.2.1 Return Values
 .....................
 
 In Ruby everything is an expression -- it executes and returns some
@@ -804,7 +1154,7 @@ sometimes it may not be obvious on first sight:
 
 File: Ruby2_5.info,  Node: Context,  Next: Class,  Prev: Return Values,  Up: Advanced Ruby
 
-B.1.2.2 Context
+C.1.2.2 Context
 ...............
 
 Context: Current Context
@@ -831,7 +1181,7 @@ known as the "current object" and is always represented by 'self'.
 
 File: Ruby2_5.info,  Node: Class,  Next: Advanced Methods,  Prev: Context,  Up: Advanced Ruby
 
-B.1.2.3 Class
+C.1.2.3 Class
 .............
 
 Open Classes: Monkey Patching
@@ -962,7 +1312,7 @@ It’s possible to list methods of an object:
 
 File: Ruby2_5.info,  Node: Advanced Methods,  Next: Advanced Objects,  Prev: Class,  Up: Advanced Ruby
 
-B.1.2.4 Advanced Methods
+C.1.2.4 Advanced Methods
 ........................
 
 As everything else in Ruby even methods are instances of class
@@ -1118,7 +1468,7 @@ whenever there is a call to undefined method on that object.
 
 File: Ruby2_5.info,  Node: Advanced Objects,  Prev: Advanced Methods,  Up: Advanced Ruby
 
-B.1.2.5 Advanced Objects
+C.1.2.5 Advanced Objects
 ........................
 
 Objects complement classes:
@@ -1319,7 +1669,7 @@ stored in the eigenclass, that is not accessible by 'o2'.
 
 File: Ruby2_5.info,  Node: Ruby Testing,  Prev: Advanced Ruby,  Up: Programming Ruby by Hulan
 
-B.1.3 Ruby Testing
+C.1.3 Ruby Testing
 ------------------
 
 Writing automated tests for code is essential.  The Ruby community
@@ -1336,7 +1686,7 @@ popular among rubyist.
 
 File: Ruby2_5.info,  Node: Testing Frameworks,  Next: Minitest,  Up: Ruby Testing
 
-B.1.3.1 Testing Frameworks
+C.1.3.1 Testing Frameworks
 ..........................
 
 Today the de facto standard is to use the Minitest
@@ -1350,7 +1700,7 @@ into a polyglot tool.
 
 File: Ruby2_5.info,  Node: Minitest,  Next: Testing Web Applications,  Prev: Testing Frameworks,  Up: Ruby Testing
 
-B.1.3.2 Minitest
+C.1.3.2 Minitest
 ................
 
 Th syntax you can see in tests can be in two forms.  Either something
@@ -1446,7 +1796,7 @@ them can be found in the Minitest documentation.
 'assert_raises'
      'exception_class, &block'
 
-Table B.1: Table of Assertion Helpers
+Table C.1: Table of Assertion Helpers
 
 Spec Syntax
 -----------
@@ -1687,7 +2037,7 @@ test.  Example follows:
 
 File: Ruby2_5.info,  Node: Testing Web Applications,  Next: Cucumber,  Prev: Minitest,  Up: Ruby Testing
 
-B.1.3.3 Testing Web Applications
+C.1.3.3 Testing Web Applications
 ................................
 
 If you work on web applications, you can also easily test the
@@ -1736,7 +2086,7 @@ server, there’s 'Poltergeist' driver using 'PhantomJS'.
 
 File: Ruby2_5.info,  Node: Cucumber,  Prev: Testing Web Applications,  Up: Ruby Testing
 
-B.1.3.4 Cucumber
+C.1.3.4 Cucumber
 ................
 
 We can use the 'Cucumber' framework for testing using the BDD aproach.
@@ -1780,7 +2130,7 @@ documentation too.
 
 File: Ruby2_5.info,  Node: Utility Programs,  Next: Initial Setup and Post Create,  Prev: Resources,  Up: Top
 
-Appendix C Utility Programs
+Appendix D Utility Programs
 ***************************
 
 Here are some utility programs that I either found or created.
@@ -1793,7 +2143,7 @@ Here are some utility programs that I either found or created.
 
 File: Ruby2_5.info,  Node: Ruby Eval Utility,  Next: API Utility,  Up: Utility Programs
 
-C.1 Ruby Eval Utility
+D.1 Ruby Eval Utility
 =====================
 
 *Note RubyEval::
@@ -1875,7 +2225,7 @@ Line>
 
 File: Ruby2_5.info,  Node: eval Module Code,  Next: eval Indentation Deltas Code,  Up: Ruby Eval Utility
 
-C.1.1 'eval.rb' Module Code
+D.1.1 'eval.rb' Module Code
 ---------------------------
 
 <eval--EvalWrapper-Constants> ==
@@ -1896,7 +2246,7 @@ eval-rb::.
 
 File: Ruby2_5.info,  Node: eval Indentation Deltas Code,  Next: eval Main Get Line Code,  Prev: eval Module Code,  Up: Ruby Eval Utility
 
-C.1.2 'eval.rb' Indentation Deltas Code
+D.1.2 'eval.rb' Indentation Deltas Code
 ---------------------------------------
 
 <eval--EvalWrapper-Indentation Deltas> ==
@@ -1933,7 +2283,7 @@ eval-rb::.
 
 File: Ruby2_5.info,  Node: eval Main Get Line Code,  Next: eval Main Process Line Code,  Prev: eval Indentation Deltas Code,  Up: Ruby Eval Utility
 
-C.1.3 'eval.rb' Main Get Line Code
+D.1.3 'eval.rb' Main Get Line Code
 ----------------------------------
 
 <eval--Main-Get Line> ==
@@ -1958,7 +2308,7 @@ eval-rb::.
 
 File: Ruby2_5.info,  Node: eval Main Process Line Code,  Next: eval.rb Post Create,  Prev: eval Main Get Line Code,  Up: Ruby Eval Utility
 
-C.1.4 'eval.rb' Main Process Line Code
+D.1.4 'eval.rb' Main Process Line Code
 --------------------------------------
 
 <eval--Main-Process Line> ==
@@ -1985,7 +2335,7 @@ Line-Is Line>             *note eval---Main--Process-Line-Is-Line::.
 
 File: Ruby2_5.info,  Node: eval If Not Line Code,  Next: eval If Is Line Code,  Up: eval Main Process Line Code
 
-C.1.4.1 'eval.rb' If Not Line Code
+D.1.4.1 'eval.rb' If Not Line Code
 ..................................
 
 <eval--Main-Process Line-If Not Line> ==
@@ -2001,7 +2351,7 @@ definition at *note eval---Main--Process-Line::.
 
 File: Ruby2_5.info,  Node: eval If Is Line Code,  Prev: eval If Not Line Code,  Up: eval Main Process Line Code
 
-C.1.4.2 'eval.rb' If Is Line Code
+D.1.4.2 'eval.rb' If Is Line Code
 .................................
 
 <eval--Main-Process Line-Is Line> ==
@@ -2085,7 +2435,7 @@ first definition at *note eval---Main--Process-Line-Is-Line::.
 
 File: Ruby2_5.info,  Node: eval.rb Post Create,  Prev: eval Main Process Line Code,  Up: Ruby Eval Utility
 
-C.1.5 'eval.rb' Post Create
+D.1.5 'eval.rb' Post Create
 ---------------------------
 
 The following line is executed after 'jrtangle' runs.
@@ -2095,7 +2445,7 @@ The following line is executed after 'jrtangle' runs.
 
 File: Ruby2_5.info,  Node: API Utility,  Prev: Ruby Eval Utility,  Up: Utility Programs
 
-C.2 API Utility
+D.2 API Utility
 ===============
 
 The purpose of this little utility is to assist with the construction
@@ -2139,7 +2489,7 @@ Block>
 
 File: Ruby2_5.info,  Node: apiutil.awk BEGIN Block,  Next: apiutil.awk BEGNFILE Block,  Up: API Utility
 
-C.2.1 'apiutil.awk' BEGIN Block
+D.2.1 'apiutil.awk' BEGIN Block
 -------------------------------
 
 <apiutil--BEGIN Block> ==
@@ -2163,7 +2513,7 @@ Defns>                    *note apiutil---BEGIN--Variable-Defns-1::.
 
 File: Ruby2_5.info,  Node: apiutil.awk BEGNFILE Block,  Next: apiutil.awk MAIN Block,  Prev: apiutil.awk BEGIN Block,  Up: API Utility
 
-C.2.2 'apiutil.awk' BEGINFILE BLOCK
+D.2.2 'apiutil.awk' BEGINFILE BLOCK
 -----------------------------------
 
 This will allow this filename to be changed a little more easily.
@@ -2180,7 +2530,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 
 File: Ruby2_5.info,  Node: apiutil.awk MAIN Block,  Next: apiutil.awk ENDFILE Block,  Prev: apiutil.awk BEGNFILE Block,  Up: API Utility
 
-C.2.3 'apiutil.awk' MAIN Block
+D.2.3 'apiutil.awk' MAIN Block
 ------------------------------
 
 <apiutil--MAIN Block> ==
@@ -2544,7 +2894,7 @@ for better style
 
 File: Ruby2_5.info,  Node: apiutil.awk ENDFILE Block,  Next: apiutil.awk END Block,  Prev: apiutil.awk MAIN Block,  Up: API Utility
 
-C.2.4 'apiutil.awk' ENDFILE Block
+D.2.4 'apiutil.awk' ENDFILE Block
 ---------------------------------
 
 <apiutil--ENDFILE Block> ==
@@ -2559,7 +2909,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 
 File: Ruby2_5.info,  Node: apiutil.awk END Block,  Next: apiutil Ord Function,  Prev: apiutil.awk ENDFILE Block,  Up: API Utility
 
-C.2.5 'apiutil.awk' END Block
+D.2.5 'apiutil.awk' END Block
 -----------------------------
 
 <apiutil--END Block> ==
@@ -2573,7 +2923,7 @@ This chunk is called by {'apiutil.awk'}; see its first definition at
 
 File: Ruby2_5.info,  Node: apiutil Ord Function,  Next: convertsymbols() Function Definition,  Prev: apiutil.awk END Block,  Up: API Utility
 
-C.2.6 'apiutil' Ord Function
+D.2.6 'apiutil' Ord Function
 ----------------------------
 
 I need to turn symbols (like '=' and '+') into their hexadecimal
@@ -2646,7 +2996,7 @@ definition at *note apiutil---MAIN-Block::.
 
 File: Ruby2_5.info,  Node: convertsymbols() Function Definition,  Next: apiutil Makefile Target,  Prev: apiutil Ord Function,  Up: API Utility
 
-C.2.7 'convertsymbols()' Function Definition
+D.2.7 'convertsymbols()' Function Definition
 --------------------------------------------
 
 This function, 'convertsymbols()', takes a method name and converts
@@ -2715,7 +3065,7 @@ definition at *note apiutil---MAIN-Block::.
 
 File: Ruby2_5.info,  Node: apiutil Makefile Target,  Prev: convertsymbols() Function Definition,  Up: API Utility
 
-C.2.8 apiutil Makefile Target
+D.2.8 apiutil Makefile Target
 -----------------------------
 
 Add a target for running 'apiutil.awk' in the Makefile.  Note that the
@@ -2740,7 +3090,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Initial Setup and Post Create,  Next: The Makefile,  Prev: Utility Programs,  Up: Top
 
-Appendix D Initial Setup and Post Create
+Appendix E Initial Setup and Post Create
 ****************************************
 
 TexiwebJr has a couple of new utility commands for working with files:
@@ -2756,7 +3106,7 @@ TexiwebJr has a couple of new utility commands for working with files:
 
 File: Ruby2_5.info,  Node: Initial Setup,  Next: Post Create,  Up: Initial Setup and Post Create
 
-D.1 Initial Setup
+E.1 Initial Setup
 =================
 
 TexiwebJR added a new command '@initial_setup' that executes some
@@ -2786,7 +3136,7 @@ from the command line as 'source setpath.sh').
 
 File: Ruby2_5.info,  Node: Post Create,  Prev: Initial Setup,  Up: Initial Setup and Post Create
 
-D.2 Post Create
+E.2 Post Create
 ===============
 
 Make 'apiutil.awk' executable and move it into 'bin'.  It can be run
@@ -2800,7 +3150,7 @@ variable, which must be run "by hand" as 'source setpath.sh'.
 
 File: Ruby2_5.info,  Node: The Makefile,  Next: Code Chunk Summaries,  Prev: Initial Setup and Post Create,  Up: Top
 
-Appendix E The Makefile
+Appendix F The Makefile
 ***********************
 
 {'Makefile'} ==
@@ -2843,7 +3193,7 @@ Definitions>
 
 File: Ruby2_5.info,  Node: Makefile Variable Definitions,  Next: Makefile Default Rule,  Up: The Makefile
 
-E.1 Makefile Variable Definitions
+F.1 Makefile Variable Definitions
 =================================
 
 <Makefile--Variable Definitions> ==
@@ -2859,7 +3209,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Default Rule,  Next: Makefile TWJR Targets,  Prev: Makefile Variable Definitions,  Up: The Makefile
 
-E.2 Default Rule
+F.2 Default Rule
 ================
 
 The 'default' rule is to create a PDF document and all HTML files.
@@ -2883,7 +3233,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile TWJR Targets,  Next: Makefile Utility Targets,  Prev: Makefile Default Rule,  Up: The Makefile
 
-E.3 TWJR Targets
+F.3 TWJR Targets
 ================
 
 <Makefile--TWJR Targets> ==
@@ -2931,7 +3281,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Utility Targets,  Next: Makefile Clean Targets,  Prev: Makefile TWJR Targets,  Up: The Makefile
 
-E.4 Utility Targets
+F.4 Utility Targets
 ===================
 
 <Makefile--Utility Targets> +==
@@ -2946,7 +3296,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Makefile Clean Targets,  Prev: Makefile Utility Targets,  Up: The Makefile
 
-E.5 Clean Targets
+F.5 Clean Targets
 =================
 
 <Makefile--Clean Targets> ==
@@ -2979,7 +3329,7 @@ This chunk is called by {'Makefile'}; see its first definition at
 
 File: Ruby2_5.info,  Node: Code Chunk Summaries,  Next: Bibliography,  Prev: The Makefile,  Up: Top
 
-Appendix F Code Chunk Summaries
+Appendix G Code Chunk Summaries
 *******************************
 
 This major node presents alphabetical lists of all the file
@@ -2995,7 +3345,7 @@ references.
 
 File: Ruby2_5.info,  Node: File Definitions,  Next: Code Chunk Definitions,  Up: Code Chunk Summaries
 
-F.1 Source File Definitions
+G.1 Source File Definitions
 ===========================
 
 {'Makefile'}
@@ -3008,6 +3358,10 @@ F.1 Source File Definitions
      This chunk is defined in *note fact-rb::.
 {'guess.rb'}
      This chunk is defined in *note guess-rb::.
+{'hola.gemspec'}
+     This chunk is defined in *note hola-gemspec::.
+{'hola.rb'}
+     This chunk is defined in *note hola-rb::.
 {'regx.rb'}
      This chunk is defined in *note regx-rb::.
 {'ri20min.rb'}
@@ -3018,7 +3372,7 @@ F.1 Source File Definitions
 
 File: Ruby2_5.info,  Node: Code Chunk Definitions,  Next: Code Chunk References,  Prev: File Definitions,  Up: Code Chunk Summaries
 
-F.2 Code Chunk Definitions
+G.2 Code Chunk Definitions
 ==========================
 
 <Makefile--Clean Targets>
@@ -3109,7 +3463,7 @@ F.2 Code Chunk Definitions
 
 File: Ruby2_5.info,  Node: Code Chunk References,  Prev: Code Chunk Definitions,  Up: Code Chunk Summaries
 
-F.3 Code Chunk References
+G.3 Code Chunk References
 =========================
 
 <Makefile--Clean Targets>
@@ -3259,7 +3613,8 @@ List of Tables
                                          List of Classes and ...
 * Table A.3: table:api-methods.          List of API Methods
 * Table A.4: table:core-topics.          Table of Core Topics
-* Table B.1: AssertionHelpers.           Table of Assertion Helpers
+* Table B.1: RubyGemComponents.          Table of RubyGem ...
+* Table C.1: AssertionHelpers.           Table of Assertion Helpers
 
 
 File: Ruby2_5.info,  Node: Concept Index,  Next: Program Index,  Prev: List of Tables,  Up: Top
@@ -3427,6 +3782,8 @@ Index
                                                             (line  17)
 * {guess.rb}, definition:                Ruby User's Guide On Puzzle Program.
                                                             (line   6)
+* {hola.gemspec}, definition:            Your First Gem.    (line  48)
+* {hola.rb}, definition:                 Your First Gem.    (line  31)
 * {Makefile}, definition:                The Makefile.      (line   6)
 * {regx.rb}, definition:                 Ruby User's Guide on Regular Expressions.
                                                             (line  31)
@@ -3509,6 +3866,7 @@ Index
 * BDD:                                   Cucumber.          (line   6)
 * behavior:                              Advanced Methods.  (line  34)
 * behavior, class:                       Advanced Objects.  (line   6)
+* bin directory:                         What Is A Gem.     (line  68)
 * binary Ruby extension modules:         FAQ Syntax.        (line 249)
 * binding of { ... }:                    FAQ Iterators.     (line  36)
 * binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
@@ -3539,6 +3897,8 @@ Index
                                                             (line  54)
 * buffering:                             Ruby User's Guide On Puzzle Program.
                                                             (line  84)
+* build gemspec:                         Your First Gem.    (line  79)
+* Bundler:                               Make A Gem.        (line   6)
 * C library, use:                        FAQ Extension Library.
                                                             (line  15)
 * call method:                           Ruby User's Guide On Procedure Objects.
@@ -3627,6 +3987,7 @@ Index
 * comparison operators:                  Logical Operators. (line  21)
 * compilers in Ruby:                     Installation - Running - About.
                                                             (line  65)
+* components of gem:                     What Is A Gem.     (line  55)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
 * constant:                              Variable Scope.    (line   6)
 * constant <1>:                          Methods and Variables.
@@ -3706,6 +4067,7 @@ Index
                                                             (line   6)
 * dot notation:                          Ruby User's Guide on Methods.
                                                             (line  22)
+* download RubyGems:                     Ruby Gems Basics.  (line   8)
 * downloads, ruby-doc resources:         Ruby-Doc.          (line  24)
 * duck typing:                           Large Class Definition.
                                                             (line 123)
@@ -3806,7 +4168,21 @@ Index
 * function-like methods, where from?:    FAQ Methods.       (line  46)
 * FXRuby:                                To Ruby From Java. (line  31)
 * garbage collector:                     To Ruby From Java. (line  18)
+* gem code organization:                 What Is A Gem.     (line  41)
+* gem command:                           Ruby Gems Basics.  (line   6)
+* gem components:                        What Is A Gem.     (line  32)
+* gem components <1>:                    What Is A Gem.     (line  55)
+* gem definition:                        Ruby Gems.         (line  24)
+* gem, make:                             Make A Gem.        (line   6)
+* gem, what one is:                      What Is A Gem.     (line   6)
+* gems:                                  Ruby Gems.         (line   6)
+* gems basics:                           Ruby Gems Basics.  (line   6)
+* gems guides:                           Ruby Gems.         (line  21)
+* gems platforms:                        What Is A Gem.     (line  22)
 * gemsets, manage different using RVM:   RVM.               (line   6)
+* gemspec:                               What Is A Gem.     (line  79)
+* gemspec <1>:                           What Is A Gem.     (line  90)
+* gemspec example:                       What Is A Gem.     (line  93)
 * getting started:                       Ruby-Doc.          (line  20)
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
 * global variable:                       Methods and Variables.
@@ -3831,6 +4207,7 @@ Index
 * guess.chop!:                           Ruby User's Guide On Puzzle Program.
                                                             (line  49)
 * GUI toolkits:                          To Ruby From Java. (line  31)
+* guides, gems:                          Ruby Gems.         (line  21)
 * Hash:                                  To Ruby From C and C++.
                                                             (line 156)
 * hash:                                  Ruby User's Guide On Arrays And Hashes.
@@ -3870,6 +4247,7 @@ Index
 * insert code into a string:             Defining Methods.  (line  43)
 * inspect method:                        Ruby User's Guide On Accessors.
                                                             (line  59)
+* install gem:                           Your First Gem.    (line  79)
 * install on macOS:                      Installation - Running - About.
                                                             (line   9)
 * installer, third party:                Installers.        (line   6)
@@ -3954,6 +4332,7 @@ Index
 * less than, less than or equal:         Logical Operators. (line  21)
 * LessJS compiler:                       Installation - Running - About.
                                                             (line  65)
+* lib directory:                         What Is A Gem.     (line  57)
 * line number of input file:             FAQ Built-In Libraries.
                                                             (line  24)
 * load:                                  FAQ Syntax.        (line 245)
@@ -4131,6 +4510,8 @@ Index
 * parentheses, optional in method calls: To Ruby From Java. (line  38)
 * Patch Writer's Guide:                  Developing Ruby.   (line  73)
 * patching of Ruby:                      Developing Ruby.   (line  38)
+* PATH environment variable:             What Is A Gem.     (line  68)
+* platforms, gems:                       What Is A Gem.     (line  22)
 * polymorphism:                          Ruby User's Guide on Methods.
                                                             (line  37)
 * Pragmatic Programmer's Guide:          Pragmatic Programmer's Guide.
@@ -4186,6 +4567,8 @@ Index
                                                             (line  51)
 * raise exception:                       Ruby User's Guide On Exception Processing And rescue.
                                                             (line  78)
+* rake:                                  What Is A Gem.     (line  64)
+* Rakefile:                              What Is A Gem.     (line  64)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
 * range expression:                      Ruby User's Guide On Control Structures.
@@ -4219,6 +4602,7 @@ Index
                                                             (line  39)
 * reader accessor:                       Ruby User's Guide On Accessors.
                                                             (line   6)
+* README:                                What Is A Gem.     (line  73)
 * redefine a method:                     Ruby User's Guide on Redefinition Of Methods.
                                                             (line   6)
 * redo:                                  Ruby User's Guide On Control Structures.
@@ -4299,6 +4683,9 @@ Index
 * ruby-build plugin:                     ruby-build.        (line   6)
 * Ruby-Doc:                              Ruby-Doc.          (line   6)
 * Ruby-GNOME2:                           To Ruby From Java. (line  31)
+* RubyGems download:                     Ruby Gems Basics.  (line   8)
+* RubyGems software:                     Ruby Gems.         (line  24)
+* RubyGems upgrade:                      Ruby Gems Basics.  (line   8)
 * RVM version manager:                   Installers.        (line   6)
 * scope of local variable:               Ruby User's Guide On Local Variables.
                                                             (line  15)
@@ -4415,6 +4802,7 @@ Index
 * ternary operator:                      FAQ Other Features.
                                                             (line   9)
 * test coverage:                         Minitest.          (line 192)
+* test directory:                        What Is A Gem.     (line  60)
 * test syntax forms:                     Minitest.          (line   6)
 * test web applications:                 Testing Web Applications.
                                                             (line   6)
@@ -4457,6 +4845,7 @@ Index
 * until:                                 Ruby User's Guide On Control Structures.
                                                             (line  68)
 * until <1>:                             Loops.             (line   6)
+* upgrade RubyGems:                      Ruby Gems Basics.  (line   8)
 * uru:                                   uru.               (line   6)
 * utility programs:                      Utility Programs.  (line   6)
 * value, everthing has one:              Everything has a value.

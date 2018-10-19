@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.6a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.6b of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Top,  Next: Preface,  Up: (dir)
@@ -30,7 +30,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.6a of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.6b of 'Ruby 2.5 Information and Documentation'.
 
 * Menu:
 
@@ -38,6 +38,7 @@ General Public License, version 3.
 * Introduction::
 * Documentation::
 * Ruby-Doc::
+* Ruby Gems::
 * Resources::
 * Utility Programs::
 * Initial Setup and Post Create::
@@ -219,6 +220,24 @@ API Documentation
 * Classes And Modules API::
 * Methods API::
 * Beginner Core Topics::
+
+Learn how RubyGems works, and how to make your own.
+
+* Ruby Gem Guides::
+
+Ruby Gem Guides
+
+* Ruby Gems Basics::
+* What Is A Gem::
+* Make A Gem::
+
+Introduction to Making a Gem
+
+* Your First Gem::
+* Requiring More Files::
+* Adding An Executable::
+* Writing Tests::
+* Documenting Your Code::
 
 Resources
 
@@ -5708,7 +5727,7 @@ information about Ruby.  (See item 'ProgrammingRuby' in *note
 Bibliography: ProgrammingRuby.)
 
 
-File: Ruby2_5.info,  Node: Ruby-Doc,  Next: Resources,  Prev: Documentation,  Up: Top
+File: Ruby2_5.info,  Node: Ruby-Doc,  Next: Ruby Gems,  Prev: Documentation,  Up: Top
 
 Appendix A Ruby-Doc
 *******************
