@@ -113,7 +113,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.6b
+@set EDITION 0.6c
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -295,6 +295,7 @@ and @url{https://github.com/ruby, Ruby-Github}.
 * Preface::
 * Introduction::
 * Documentation::
+* Implementations::
 * Ruby-Doc::
 * Ruby Gems::
 * Resources::
@@ -469,6 +470,13 @@ Ruby User's Guide
 * Ruby User's Guide On Object Initialization::
 * Ruby User's Guide On Nuts And Bolts::
 
+Implementations
+
+* YARV Implementation::
+* JRuby Implementation::
+* Rubinius Implementation::
+* The Rubinius Book::
+
 Ruby-Doc
 
 * API Documentation::
@@ -500,7 +508,19 @@ Introduction to Making a Gem
 
 Resources
 
+* Ruby Association::
 * Programming Ruby by Hulan::
+
+Mission Statement
+
+* Certified Ruby Programmer Examinations::
+* Study Materials::
+
+Ruby Association Certified Ruby Programmer Examinations
+
+* Certified Ruby Programmer Silver version 2.1::
+* Certified Ruby Programmer Gold version 2.1::
+* Certified Ruby Programmer Platinum::
 
 Programming Ruby by Hulan
 
@@ -6944,6 +6964,99 @@ have taken days.
 information about Ruby.  @mybibcite{ProgrammingRuby}
 
 
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node Implementations
+@chapter Implementations
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@menu
+* YARV Implementation::
+* JRuby Implementation::
+* Rubinius Implementation::
+* The Rubinius Book::
+@end menu
+
+@node YARV Implementation
+@section YARV Implementation
+@cindex YARV implementation
+@cindex Matsumoto, Yokihiro
+@cindex Sasada, Koichi
+@cindex KRI
+@cindex MRI
+
+@acronym{YARV} stands for ``Yet Another Ruby VM'' and is a bytecode interpreter
+that was developed for the Ruby programming language by Koichi Sasada.  See
+@uref{http://www.atdot.net/yarv/oopsla2005eabstract-rc1.pdf,YARV}.  The goal of
+the project was to greatly reduce the execution time of Ruby programs.  Since
+@acronym{YARV} has become the official Ruby interpreter for Ruby 1.9, it is
+also named @acronym{KRI} (``Koichi's Ruby Interpreter''), in the same vein as
+the original Ruby @acronym{MRI}, named for Ruby's creator Yukihiro Matsumoto.
+
+@acronym{YARV} was merged into the Ruby Subversion repository on January 1,
+2007.  It was released as part of Ruby 1.9.0 on December 26, 2007, replacing
+Ruby @acronym{MRI}.
+
+
+@c -----------------------------------------------------------------------------
+
+@node JRuby Implementation
+@section JRuby Implementation
+@cindex jruby
+
+@heading The Ruby Programming Language On The JVM
+
+JRuby 9.2.x is our new major version of JRuby.  It is expected to be
+compatible with Ruby 2.5.x and stay in sync with C Ruby.  JRuby 9.2.0.0
+is our first release for 2.5 support.
+
+@noindent @url{https://www.jruby.org, JRuby}
+
+@noindent @url{https://www.jruby.org/download, Latest Release}
+
+@noindent @url{https://github.com/jruby/jruby/wiki, JRuby Wiki}
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Rubinius Implementation
+@section Rubinius Implementation
+@cindex @file{Rubinius}
+
+@dfn{Rubinius} is an alternative Ruby implementation created by Evan Phoenix.
+
+@url{https://rubinius.com,Rubinius} follows in the Lisp and Smalltalk
+traditions, by natively implementing as much of Ruby as possible in Ruby code.
+
+The current @file{Rubinius} release is version 3.107.  @file{Rubinius} provides
+Homebrew binaries that should be compatible with 10.8 (Mountain Lion) and newer
+OS X releases.  To install @file{Rubinius} on Homebrew, follow these steps:
+@example
+$ brew update
+$ brew tap rubinius/apps
+$ brew install rubinius
+@end example
+
+
+@c -----------------------------------------------------------------------------
+
+@node The Rubinius Book
+@section The Rubinius Book
+@cindex @file{Rubinius} book
+
+@url{https://book.rubinius.com, The Rubinius Book}
 
 
 
@@ -13684,11 +13797,282 @@ Hello world!
 Here are some additional resources that I have found helpful.
 
 
+
+
 @c -----------------------------------------------------------------------------
 
 @menu
+* Ruby Association::
 * Programming Ruby by Hulan::
 @end menu
+
+@node Ruby Association
+@appendixsec Ruby Association
+
+@url{https://www.ruby.or.jp/en/, Ruby Association}
+
+Ruby Association is a organization dovoted to advancing Ruby programming language.
+
+@heading Mission Statement
+
+The Ruby Association is a non-profit organization devoted to the advancement of
+the Ruby programming language.  Our goal is to strengthen relationships between
+Ruby-related projects, communities, and businesses and to work towards solving
+the problems faced by Ruby users.
+
+
+@c .....................................
+
+@menu
+* Certified Ruby Programmer Examinations::
+* Study Materials::
+@end menu
+
+@node Certified Ruby Programmer Examinations
+@appendixsubsec Ruby Association Certified Ruby Programmer Examinations
+
+The Ruby Association Certified Ruby Programmer examinations are intended for
+engineers who design, develop, and/or operate Ruby-based systems, consultants
+who make Ruby-based system proposals, and instructors who teach Ruby.  Those who
+are certified are recognized for their skills as Ruby engineers and as having
+high levels of Ruby-based system development capabilities.  Those who pass the
+examination are certified by the Ruby Association as a Ruby Association
+Certified Ruby Programmer.
+
+@c _____________________________________
+
+@menu
+* Certified Ruby Programmer Silver version 2.1::
+* Certified Ruby Programmer Gold version 2.1::
+* Certified Ruby Programmer Platinum::
+@end menu
+
+@node Certified Ruby Programmer Silver version 2.1
+@appendixsubsubsec Ruby Association Certified Ruby Programmer Silver version 2.1
+
+This is a basic skill-level certification of the knowledge on the background,
+grammar, classes, objects, and standard libraries of Ruby.  The logo below
+identifies people who are certified.
+
+@subheading Scope
+
+@itemize
+@item
+SYNTAX
+
+@itemize
+@item
+Comment
+
+@item
+Literal (e.g., numbers, booleans, strings, characters, arrays, hashes)
+
+@item
+Variables, constants, and scope
+
+@item
+Operators
+
+@item
+Conditional branching
+
+@item
+Loops
+
+@item
+Exception handling
+
+@item
+Method calls
+
+@item
+Blocks
+
+@item
+Method definition
+
+@item
+Class definition
+
+@item
+Module definition
+
+@item
+Multilingualization
+
+@end itemize
+
+@item BUILT-IN LIBRARIES
+
+@itemize
+@item
+Well-used built-in classes and modules (e.g., Object, Numerical classes,
+String, Array, Hash, Kernel, Enumerable, Comparable)
+
+@end itemize
+
+@item OBJECT ORIENTATION
+
+@itemize
+@item
+Polymorphism
+
+@item
+Inheritance
+
+@item
+mix-in
+
+@end itemize
+@end itemize
+
+@c _____________________________________
+
+@node Certified Ruby Programmer Gold version 2.1
+@appendixsubsubsec Ruby Association Certified Ruby Programmer Gold version 2.1
+
+This is a certification of a deeper understanding of the topics covered under
+Silver certification (syntax, object oriented programming, embedded libraries,
+operating environments, etc.) in addition to knowledge of the standard Ruby
+libraries and knowledge related to classes and objects required for Ruby
+application design.
+
+@subheading Scope
+
+@itemize
+
+@item
+EXECUTION ENVIRONMENT
+
+@itemize
+@item
+Command line options
+
+@item
+Pre-defined variables and constants
+
+@end itemize
+
+@item
+SYNTAX
+
+@itemize
+@item
+Variables and constants Operators
+
+@item
+Blocks
+
+@item
+Exceptions
+
+@item
+Non local exit
+
+@item
+Keyword arguments
+
+@item
+lambda
+
+@end itemize
+
+@item
+OBJECT-ORIENTED PROGRAMING
+
+@itemize
+@item
+Details of Method
+
+@item
+Access control
+
+@item
+Details of Class
+
+@item
+Class inheritance
+
+@item
+Details of modules
+
+@item
+Module#prepend
+
+@item
+Refinements
+
+@end itemize
+
+@item
+BUILT-IN LIBRARIES
+
+@itemize
+
+@item
+Well-used built-in classes and modules 
+（e.g., Object, Module, Kernel, Enumerable, Comparable）
+
+@item
+Numeric
+
+@item
+Regular expression
+
+@item
+Proc
+
+@item
+Thread/Fiber
+
+@end itemize
+
+@item
+STANDARD LIBRARY
+
+@itemize
+
+@item
+Well-used standard libraries（e.g., socket, date, stringio）
+
+@end itemize
+@end itemize
+
+
+@c _____________________________________
+
+@node  Certified Ruby Programmer Platinum
+@appendixsubsubsec Ruby Association Certified Ruby Programmer Platinum
+
+Under development
+
+
+@c .....................................
+
+@node Study Materials
+@appendixsubsec Study Materials
+
+@itemize
+@item
+@url{https://www.ruby.or.jp/assets/images/en/certification/exam_prep_en.pdf,
+Ruby Association official prep test}
+
+@item
+@url{https://github.com/ruby-association/prep-test/blob/master/silver.md, New
+prep test for the Silver exam}
+
+@item
+@url{http://shop.oreilly.com/product/9780596516178.do, The Ruby Programming
+Language}
+
+@item
+@url{http://ruby-doc.com/docs/ProgrammingRuby/, Programming Ruby}
+
+@end itemize
+
+
+
+@c -----------------------------------------------------------------------------
 
 @node Programming Ruby by Hulan
 @appendixsec Programming Ruby by Hulan
@@ -13782,35 +14166,54 @@ $ irb
 @item Interpreted
 The Ruby code is interpreted when the script is load, there is no compile
 phase.
+
 @item Universal
 Ruby can be used for writing scripts, one-liners, web applications and even for
 mobile and desktop applications.
+
 @item Fully Object oriented
 In Ruby everything is an object and you send messages to those objects.
+
 @item Everything Is An Expression
 Everything command in Ruby has a return value.
+
 @item Atomic memory management
+
 @item MRI
-@cindex reference implementation, MRI
 @cindex @file{MRI}
 @cindex @file{JRuby}
 @cindex @file{Rubinius}
 @cindex @file{IronRuby}
 @cindex @file{MagLev}
 @cindex @command{mruby}
-@file{MRI} is the Ruby reference implementation, with several other
-implementations like @file{JRuby}, @file{Rubinius}, @file{IronRuby} or
-@file{MagLev}.  As well, there is ISO standard implemented in @command{mruby}.
+@dfn{MRI} (``Matz's Ruby Interpreter'') (aka @file{CRuby}) is the Ruby
+reference implementation, with several other implementations like @file{JRuby},
+@file{Rubinius}, @file{IronRuby} or @file{MagLev}.  As well, there is ISO
+standard implemented in @command{mruby}.
+
+@cindex YARV
+@cindex KRI
+@item YARV
+Starting with Ruby 1.9, and continuing with Ruby 2.x and above, the official
+Ruby interpreter has been YARV (``Yet Another Ruby VM'').  @dfn{YARV} is a
+bytecode interpreter that was developed for the Ruby programming language by
+Koichi Sasada.  The goal of the project was to greatly reduce the execution
+time of Ruby programs.  Since YARV has become the official Ruby interpreter for
+Ruby 1.9, it is also named KRI (Koichi's Ruby Interpreter), in the same vein as
+the original Ruby MRI, named for Ruby's creator Yukihiro Matsumoto.
+
 @cindex typed strongly
 @item Strongly Typed
 There are some implicit conversions (e.g. every object has @code{to_s} method
 to provide string representation) but in most cases in case you try to operate
 on different types Ruby will complain, unless such operation is explicitly
 provided.
+
 @cindex typed dynamically
 @item Dynamically Typed
 The type of a variable is defined by the value assigned to that variable.  There
 is no explicit type information in the code.
+
 @item What is written in Ruby?
 @itemize
 @item

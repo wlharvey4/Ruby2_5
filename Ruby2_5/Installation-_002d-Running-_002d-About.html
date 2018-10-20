@@ -13,7 +13,7 @@ The Ruby2.5 Information and Documentation program is copyright
 the conditions of the GNU General Public License, version 3.
 
 
-This is Edition 0.6b of Ruby 2.5 Information and Documentation. -->
+This is Edition 0.6c of Ruby 2.5 Information and Documentation. -->
 <!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -69,7 +69,7 @@ Next: <a href="Language-Conventions.html#Language-Conventions" accesskey="n" rel
 </div>
 <hr>
 <a name="Installation-_002d-Running-_002d-About-1"></a>
-<h4 class="appendixsubsubsec">C.1.1.1 Installation - Running - About</h4>
+<h4 class="appendixsubsubsec">C.2.1.1 Installation - Running - About</h4>
 
 <a name="Installation-on-Mac-OS"></a>
 <h4 class="subheading">Installation on Mac OS</h4>
@@ -118,42 +118,61 @@ instantly.
 <dt><b>Interpreted</b></dt>
 <dd><p>The Ruby code is interpreted when the script is load, there is no compile
 phase.
-</p></dd>
+</p>
+</dd>
 <dt><b>Universal</b></dt>
 <dd><p>Ruby can be used for writing scripts, one-liners, web applications and even for
 mobile and desktop applications.
-</p></dd>
+</p>
+</dd>
 <dt><b>Fully Object oriented</b></dt>
 <dd><p>In Ruby everything is an object and you send messages to those objects.
-</p></dd>
+</p>
+</dd>
 <dt><b>Everything Is An Expression</b></dt>
 <dd><p>Everything command in Ruby has a return value.
-</p></dd>
+</p>
+</dd>
 <dt><b>Atomic memory management</b></dt>
 <dt><b>MRI</b></dt>
-<dd><a name="index-reference-implementation_002c-MRI"></a>
-<a name="index-MRI"></a>
+<dd><a name="index-MRI-1"></a>
 <a name="index-JRuby"></a>
-<a name="index-Rubinius"></a>
+<a name="index-Rubinius-1"></a>
 <a name="index-IronRuby"></a>
 <a name="index-MagLev"></a>
 <a name="index-mruby"></a>
-<p><samp>MRI</samp> is the Ruby reference implementation, with several other
-implementations like <samp>JRuby</samp>, <samp>Rubinius</samp>, <samp>IronRuby</samp> or
-<samp>MagLev</samp>.  As well, there is ISO standard implemented in <code>mruby</code>.
+<p><em>MRI</em> (&ldquo;Matz&rsquo;s Ruby Interpreter&rdquo;) (aka <samp>CRuby</samp>) is the Ruby
+reference implementation, with several other implementations like <samp>JRuby</samp>,
+<samp>Rubinius</samp>, <samp>IronRuby</samp> or <samp>MagLev</samp>.  As well, there is ISO
+standard implemented in <code>mruby</code>.
+</p>
+<a name="index-YARV"></a>
+<a name="index-KRI-1"></a>
+</dd>
+<dt><b>YARV</b></dt>
+<dd><p>Starting with Ruby 1.9, and continuing with Ruby 2.x and above, the official
+Ruby interpreter has been YARV (&ldquo;Yet Another Ruby VM&rdquo;).  <em>YARV</em> is a
+bytecode interpreter that was developed for the Ruby programming language by
+Koichi Sasada.  The goal of the project was to greatly reduce the execution
+time of Ruby programs.  Since YARV has become the official Ruby interpreter for
+Ruby 1.9, it is also named KRI (Koichi&rsquo;s Ruby Interpreter), in the same vein as
+the original Ruby MRI, named for Ruby&rsquo;s creator Yukihiro Matsumoto.
+</p>
 <a name="index-typed-strongly"></a>
-</p></dd>
+</dd>
 <dt><b>Strongly Typed</b></dt>
 <dd><p>There are some implicit conversions (e.g. every object has <code>to_s</code> method
 to provide string representation) but in most cases in case you try to operate
 on different types Ruby will complain, unless such operation is explicitly
 provided.
+</p>
 <a name="index-typed-dynamically"></a>
-</p></dd>
+</dd>
 <dt><b>Dynamically Typed</b></dt>
 <dd><p>The type of a variable is defined by the value assigned to that variable.  There
 is no explicit type information in the code.
-</p></dd>
+</p>
+</dd>
 <dt><b>What is written in Ruby?</b></dt>
 <dd><ul>
 <li> <a name="index-compilers-in-Ruby"></a>
