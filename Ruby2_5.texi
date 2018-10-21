@@ -113,7 +113,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.6c
+@set EDITION 0.6d
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -296,6 +296,7 @@ and @url{https://github.com/ruby, Ruby-Github}.
 * Introduction::
 * Documentation::
 * Implementations::
+* My Ruby Reference::
 * Ruby-Doc::
 * Ruby Gems::
 * Resources::
@@ -307,311 +308,6 @@ and @url{https://github.com/ruby, Ruby-Github}.
 * List of Tables::
 * Concept Index::
 * Program Index::
-
-@detailmenu
- --- The Detailed Node Listing ---
-
-Preface
-
-* Audience::
-* Overview::
-* Conventions::
-* Acknowledgements::
-
-Documentation
-
-* Installing Ruby::
-* Help Tools::
-* Developing Ruby::
-* Getting Started::
-* Manuals::
-* Editors and IDEs::
-* Further Reading::
-
-Installation Methods
-
-* Package Management Systems::
-* Installers::
-* Managers::
-* Building From Source::
-
-Package Management Systems
-
-* Homebrew (OS X)::
-
-Installers
-
-* ruby-build::
-* ruby-install::
-
-Managers
-
-* chruby::
-* rbenv::
-* RVM::
-* uru::
-
-Building From Source
-
-* Releases Page::
-* Branches Page::
-* Issue Tracking::
-
-Ruby Help Tools
-
-* RDoc::
-* ri::
-* Ruby Debugger::
-
-RDoc
-
-* Writing Documentation::
-* Generating Documention::
-* Markup Directives::
-
-Getting Started
-
-* Try Ruby!::
-* Official FAQ::
-* Ruby Koans::
-* Why’s (Poignant) Guide to Ruby::
-* Ruby in Twenty Minutes::
-* Ruby from Other Languages::
-* Important Language Features::
-* Learning Ruby::
-* Ruby Essentials::
-* Learn to Program::
-
-Official FAQ
-
-* FAQ Iterators::
-* FAQ Syntax::
-* FAQ Methods::
-* FAQ Classes and Modules::
-* FAQ Built-In Libraries::
-* FAQ Extension Library::
-* FAQ Other Features::
-
-Ruby in Twenty Minutes
-
-* Interactive Ruby::
-* Defining Methods::
-* Altering Classes::
-* Large Class Definition::
-* Run MegaGreeter::
-
-Ruby from Other Languages
-
-* To Ruby From C and C++::
-* To Ruby From Java::
-* To Ruby From Perl::
-* To Ruby From PHP::
-* To Ruby From Python::
-
-Important Language Features
-
-* Pointers on Iteration::
-* Everything has a value::
-* Symbols are not lightweight Strings::
-* Everything is an Object::
-* Variable Constants::
-* Naming conventions::
-* Keyword arguments::
-* The universal truth::
-* Access modifiers are Methods::
-* Method access::
-* Classes are open::
-* Funny method names::
-* Singleton methods::
-* Missing methods::
-* Message passing --- not function calls::
-* Blocks are Objects::
-* Operators are syntactic sugar::
-
-Ruby Essentials
-
-* Interactive Ruby Execution::
-* Block Ruby Comments::
-* Variable Scope::
-
-Manuals
-
-* Ruby User's Guide::
-* Ruby Programming Wikibook::
-* Pragmatic Programmer's Guide::
-
-Ruby User's Guide
-
-* Ruby User's Guide On What Ruby IS::
-* Ruby User's Guide On Simple Examples::
-* Ruby User's Guide on Strings::
-* Ruby User's Guide On Puzzle Program::
-* Ruby User's Guide on Regular Expressions::
-* Ruby User's Guide On Arrays And Hashes::
-* Ruby User's Guide On Control Structures::
-* Ruby User's Guide On Iterators::
-* Ruby User's Guide On Object-Oriented Thinking::
-* Ruby User's Guide on Methods::
-* Ruby User's Guide on Classes::
-* Ruby User's Guide on Inheritance::
-* Ruby User's Guide on Redefinition Of Methods::
-* Ruby User's Guide On Access Control::
-* Ruby User's Guide On Singleton Methods::
-* Ruby User's Guide On Modules::
-* Ruby User's Guide On Procedure Objects::
-* Ruby User's Guide On Variables::
-* Ruby User's Guide On Global Variables::
-* Ruby User's Guide On Instance Variables::
-* Ruby User's Guide On Local Variables::
-* Ruby User's Guide On Class Constants::
-* Ruby User's Guide On Exception Processing And @code{rescue}::
-* Ruby User's Guide On Exception Processing and @code{ensure}::
-* Ruby User's Guide On Accessors::
-* Ruby User's Guide On Object Initialization::
-* Ruby User's Guide On Nuts And Bolts::
-
-Implementations
-
-* YARV Implementation::
-* JRuby Implementation::
-* Rubinius Implementation::
-* The Rubinius Book::
-
-Ruby-Doc
-
-* API Documentation::
-
-API Documentation
-
-* Files API::
-* Classes And Modules API::
-* Methods API::
-* Beginner Core Topics::
-
-Learn how RubyGems works, and how to make your own.
-
-* Ruby Gem Guides::
-
-Ruby Gem Guides
-
-* Ruby Gems Basics::
-* What Is A Gem::
-* Make A Gem::
-
-Introduction to Making a Gem
-
-* Your First Gem::
-* Requiring More Files::
-* Adding An Executable::
-* Writing Tests::
-* Documenting Your Code::
-
-Resources
-
-* Ruby Association::
-* Programming Ruby by Hulan::
-
-Mission Statement
-
-* Certified Ruby Programmer Examinations::
-* Study Materials::
-
-Ruby Association Certified Ruby Programmer Examinations
-
-* Certified Ruby Programmer Silver version 2.1::
-* Certified Ruby Programmer Gold version 2.1::
-* Certified Ruby Programmer Platinum::
-
-Programming Ruby by Hulan
-
-* Ruby Basics::
-* Advanced Ruby::
-* Ruby Testing::
-
-Ruby Basics
-
-* Installation - Running - About::
-* Language Conventions::
-* Data Types::
-* Methods and Variables::
-* Conditions::
-* Logical Operators::
-* Regular Expressions::
-* Loops::
-* Methods::
-* Using Code From Other Files::
-* Blocks::
-* Objects::
-* Inheritance::
-* Modules::
-* Method Access::
-* Duck Typing::
-* Exceptions::
-
-Advanced Ruby
-
-* Return Values::
-* Context::
-* Class::
-* Advanced Methods::
-* Advanced Objects::
-
-Ruby Testing
-
-* Testing Frameworks::
-* Minitest::
-* Testing Web Applications::
-* Cucumber::
-
-Utility Programs
-
-* Ruby Eval Utility::
-* API Utility::
-
-Ruby Eval Utility
-
-* eval Module Code::
-* eval Indentation Deltas Code::
-* eval Main Get Line Code::
-* eval Main Process Line Code::
-* @file{eval.rb} Post Create::
-
-@file{eval.rb} Main Process Line Code
-
-* eval If Not Line Code::
-* eval If Is Line Code::
-
-API Utility
-
-* @file{apiutil.awk} BEGIN Block::
-* @file{apiutil.awk} BEGNFILE Block::
-* @file{apiutil.awk} MAIN Block::
-* @file{apiutil.awk} ENDFILE Block::
-* @file{apiutil.awk} END Block::
-* @file{apiutil} Ord Function::
-* @command{convertsymbols()} Function Definition::
-* apiutil Makefile Target::
-
-Initial Setup and Post Create
-
-* Initial Setup::
-* Post Create::
-
-The Makefile
-
-* Makefile Variable Definitions::
-* Makefile Default Rule::
-* Makefile TWJR Targets::
-* Makefile Utility Targets::
-* Makefile Clean Targets::
-
-Code Chunk Summaries
-
-* File Definitions::
-* Code Chunk Definitions::
-* Code Chunk References::
-
-@end detailmenu
 @end menu
 
 @c =============================================================================
@@ -645,13 +341,6 @@ Code Chunk Summaries
 
 
 @c -----------------------------------------------------------------------------
-
-@menu
-* Audience::
-* Overview::
-* Conventions::
-* Acknowledgements::
-@end menu
 
 @node Audience
 @unnumberedsec Intended Audience
@@ -765,16 +454,6 @@ in handy when you feel like coding in Ruby.
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* Installing Ruby::
-* Help Tools::
-* Developing Ruby::
-* Getting Started::
-* Manuals::
-* Editors and IDEs::
-* Further Reading::
-@end menu
-
 @node Installing Ruby
 @section Installing Ruby
 
@@ -804,13 +483,6 @@ and platforms.
 @c .....................................
 
 
-@menu
-* Package Management Systems::
-* Installers::
-* Managers::
-* Building From Source::
-@end menu
-
 @node Package Management Systems
 @subsection Package Management Systems
 
@@ -829,10 +501,6 @@ instead.
 
 @c _____________________________________
 
-
-@menu
-* Homebrew (OS X)::
-@end menu
 
 @node Homebrew (OS X)
 @subsubsection Homebrew (OS X)
@@ -870,11 +538,6 @@ you do not need a separate installer, it comes with its own.
 
 @c _____________________________________
 
-
-@menu
-* ruby-build::
-* ruby-install::
-@end menu
 
 @node ruby-build
 @subsubsection @command{ruby-build}
@@ -922,13 +585,6 @@ communities are very helpful, however.
 
 @c _____________________________________
 
-
-@menu
-* chruby::
-* rbenv::
-* RVM::
-* uru::
-@end menu
 
 @node chruby
 @subsubsection chruby
@@ -1017,12 +673,6 @@ other premade packages for your platform.
 
 @c _____________________________________
 
-
-@menu
-* Releases Page::
-* Branches Page::
-* Issue Tracking::
-@end menu
 
 @node Releases Page
 @subsubsection Releases Page
@@ -1187,12 +837,6 @@ documentation for Ruby projects.
 
 @c .....................................
 
-@menu
-* RDoc::
-* ri::
-* Ruby Debugger::
-@end menu
-
 @node RDoc
 @subsection RDoc
 @cindex RDoc
@@ -1208,12 +852,6 @@ You can see RDoc markup in many of the C files in the Ruby source tree
 and many of the Ruby files in the Ruby installation.
 
 @c _____________________________________
-
-@menu
-* Writing Documentation::
-* Generating Documention::
-* Markup Directives::
-@end menu
 
 @node Writing Documentation
 @subsubsection Writing Documentation for RDoc
@@ -1562,19 +1200,6 @@ Patch}
 @c .....................................
 
 
-@menu
-* Try Ruby!::
-* Official FAQ::
-* Ruby Koans::
-* Why’s (Poignant) Guide to Ruby::
-* Ruby in Twenty Minutes::
-* Ruby from Other Languages::
-* Important Language Features::
-* Learning Ruby::
-* Ruby Essentials::
-* Learn to Program::
-@end menu
-
 @node Try Ruby!
 @subsection Try Ruby!
 
@@ -1631,16 +1256,6 @@ Other features
 
 @c _____________________________________
 
-
-@menu
-* FAQ Iterators::
-* FAQ Syntax::
-* FAQ Methods::
-* FAQ Classes and Modules::
-* FAQ Built-In Libraries::
-* FAQ Extension Library::
-* FAQ Other Features::
-@end menu
 
 @node FAQ Iterators
 @subsubsection FAQ Iterators
@@ -2468,14 +2083,6 @@ before you get started.)
 @c _____________________________________
 
 
-@menu
-* Interactive Ruby::
-* Defining Methods::
-* Altering Classes::
-* Large Class Definition::
-* Run MegaGreeter::
-@end menu
-
 @node Interactive Ruby
 @subsubsection Interactive Ruby
 @cindex @command{irb}
@@ -3036,14 +2643,6 @@ might compare to what you’re already familiar with.
 
 @c _____________________________________
 
-
-@menu
-* To Ruby From C and C++::
-* To Ruby From Java::
-* To Ruby From Perl::
-* To Ruby From PHP::
-* To Ruby From Python::
-@end menu
 
 @node To Ruby From C and C++
 @subsubsection To Ruby From C and C++
@@ -3681,26 +3280,6 @@ learning Ruby.
 @c _____________________________________
 
 
-@menu
-* Pointers on Iteration::
-* Everything has a value::
-* Symbols are not lightweight Strings::
-* Everything is an Object::
-* Variable Constants::
-* Naming conventions::
-* Keyword arguments::
-* The universal truth::
-* Access modifiers are Methods::
-* Method access::
-* Classes are open::
-* Funny method names::
-* Singleton methods::
-* Missing methods::
-* Message passing --- not function calls::
-* Blocks are Objects::
-* Operators are syntactic sugar::
-@end menu
-
 @node Pointers on Iteration
 @subsubsection Pointers on Iteration
 @cindex iteration
@@ -4216,12 +3795,6 @@ to follow [sic] guide to learning Ruby.
 @c _____________________________________
 
 
-@menu
-* Interactive Ruby Execution::
-* Block Ruby Comments::
-* Variable Scope::
-@end menu
-
 @node Interactive Ruby Execution
 @subsubsection Interactive Ruby Execution
 @cindex @command{irb} tool
@@ -4371,12 +3944,6 @@ Manuals
 @c .....................................
 
 
-@menu
-* Ruby User's Guide::
-* Ruby Programming Wikibook::
-* Pragmatic Programmer's Guide::
-@end menu
-
 @node Ruby User's Guide
 @subsection Ruby User's Guide
 
@@ -4388,36 +3955,6 @@ nice overview of many aspects of the Ruby language.
 
 @c _____________________________________
 
-
-@menu
-* Ruby User's Guide On What Ruby IS::
-* Ruby User's Guide On Simple Examples::
-* Ruby User's Guide on Strings::
-* Ruby User's Guide On Puzzle Program::
-* Ruby User's Guide on Regular Expressions::
-* Ruby User's Guide On Arrays And Hashes::
-* Ruby User's Guide On Control Structures::
-* Ruby User's Guide On Iterators::
-* Ruby User's Guide On Object-Oriented Thinking::
-* Ruby User's Guide on Methods::
-* Ruby User's Guide on Classes::
-* Ruby User's Guide on Inheritance::
-* Ruby User's Guide on Redefinition Of Methods::
-* Ruby User's Guide On Access Control::
-* Ruby User's Guide On Singleton Methods::
-* Ruby User's Guide On Modules::
-* Ruby User's Guide On Procedure Objects::
-* Ruby User's Guide On Variables::
-* Ruby User's Guide On Global Variables::
-* Ruby User's Guide On Instance Variables::
-* Ruby User's Guide On Local Variables::
-* Ruby User's Guide On Class Constants::
-* Ruby User's Guide On Exception Processing And @code{rescue}::
-* Ruby User's Guide On Exception Processing and @code{ensure}::
-* Ruby User's Guide On Accessors::
-* Ruby User's Guide On Object Initialization::
-* Ruby User's Guide On Nuts And Bolts::
-@end menu
 
 @node Ruby User's Guide On What Ruby IS
 @subsubsection On What Ruby Is
@@ -6980,13 +6517,6 @@ information about Ruby.  @mybibcite{ProgrammingRuby}
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* YARV Implementation::
-* JRuby Implementation::
-* Rubinius Implementation::
-* The Rubinius Book::
-@end menu
-
 @node YARV Implementation
 @section YARV Implementation
 @cindex YARV implementation
@@ -7057,6 +6587,153 @@ $ brew install rubinius
 @cindex @file{Rubinius} book
 
 @url{https://book.rubinius.com, The Rubinius Book}
+
+
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node My Ruby Reference
+@chapter My Ruby Reference
+@cindex reference
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Operators
+@section Operators
+@cindex operators
+@cindex operators that are methods
+@cindex methods that are operators
+
+Most operators are actually method calls.  For example, @samp{a + b} is
+interpreted as @samp{a.+(b)}, where the @kbd{+} method in the object referred
+to by variable @code{a} is called with @code{b} as its argument.
+
+For each operator (@samp{+ - * / % ** & | ^ << >> && ||}), there is a
+corresponding form of abbreviated assignment operator (@samp{+= -=} etc.).
+
+@cindex method overriding
+@cindex overriding methods
+Operators that are methods may be overridden.
+
+
+@c .....................................
+
+@node Arithmetic Operators
+@subsection Arithmetic Operators
+@cindex arithmetic operators
+@cindex operators, arithmetic
+
+@float Table,ArithmeticOperators
+@multitable @columnfractions .1 .9
+
+@item
+@code{+} @tab Addition --- Adds values on either side of the operator.
+
+@item
+@code{-} @tab Subtraction --- Subtracts right hand operand from left hand
+operand.
+
+@item
+@code{*} @tab Multiplication --- Multiplies values on either side of the
+operator.
+
+@item
+@code{/} @tab Division --- Divides left hand operand by right hand operand.
+
+@item
+@code{%} @tab Modulus --- Divides left hand operand by right hand operand and
+returns remainder.
+
+@item
+@code{**} @tab Exponent − Performs exponential (power) calculation on
+operators.
+
+@end multitable
+@shortcaption{Arithmetic Operators}
+@caption{Table of Arithmetic Operators}
+@end float
+
+
+@c .....................................
+
+@node Comparison Operators
+@subsection Comparison Operators
+@cindex comparison operators
+@cindex operators, comparison
+
+
+@c .....................................
+
+@node Assignment Operators
+@subsection Assighnment Operators
+@cindex assignment operators
+@cindex operators, assignment
+
+
+@c .....................................
+
+@node Bitwise Operators
+@subsection Bitwise Operators
+@cindex bitwise operators
+@cindex operators, bitwise
+
+
+@c .....................................
+
+@node Logical Operators
+@subsection Logical Operators
+@cindex logical operators
+@cindex operators, logical
+
+
+@c .....................................
+
+@node Ternary Operator
+@subsection Ternary Operator
+@cindex ternary operator
+@cindex operator, ternary
+
+
+@c .....................................
+
+@node Range Operators
+@subsection Range Operators
+@cindex range operators
+@cindex operators, range
+
+
+@c .....................................
+
+@node Defined? Operators
+@subsection Defined? Operators
+@cindex @code{defined?} operators
+@cindex operators, @code{defined}
+
+
+@c .....................................
+
+@node Dot And Colon Operators
+@subsection Dot and Colon Operators
+@cindex dot operators
+@cindex colon operators
+@cindex operators, dot and colon
+
+
+@c .....................................
+
+@node Operator Precedence
+@subsection Operator Precedence
+@cindex operator precedence
+@cindex precedence, operator
+
 
 
 
@@ -7135,10 +6812,6 @@ A collection of resources for those just starting out with Ruby.
 @c -----------------------------------------------------------------------------
 
 
-@menu
-* API Documentation::
-@end menu
-
 @node API Documentation
 @appendixsec API Documentation
 @cindex Ruby 2.5.1. API
@@ -7157,13 +6830,6 @@ This is the API documentation for Ruby 2.5.1.
 
 @c _____________________________________
 
-
-@menu
-* Files API::
-* Classes And Modules API::
-* Methods API::
-* Beginner Core Topics::
-@end menu
 
 @node Files API
 @appendixsubsec Files API
@@ -13380,10 +13046,6 @@ work.
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* Ruby Gem Guides::
-@end menu
-
 @node Ruby Gem Guides
 @appendixsec Ruby Gem Guides
 
@@ -13440,12 +13102,6 @@ RELEASING RUBYGEMS
 
 
 @c .....................................
-
-@menu
-* Ruby Gems Basics::
-* What Is A Gem::
-* Make A Gem::
-@end menu
 
 @node Ruby Gems Basics
 @appendixsubsec Ruby Gems Basics
@@ -13620,14 +13276,6 @@ along at home!  The code for the gem we’re going to make here is up on
 
 @c _____________________________________
 
-@menu
-* Your First Gem::
-* Requiring More Files::
-* Adding An Executable::
-* Writing Tests::
-* Documenting Your Code::
-@end menu
-
 @node Your First Gem
 @appendixsubsubsec Your First Gem
 
@@ -13801,11 +13449,6 @@ Here are some additional resources that I have found helpful.
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* Ruby Association::
-* Programming Ruby by Hulan::
-@end menu
-
 @node Ruby Association
 @appendixsec Ruby Association
 
@@ -13823,11 +13466,6 @@ the problems faced by Ruby users.
 
 @c .....................................
 
-@menu
-* Certified Ruby Programmer Examinations::
-* Study Materials::
-@end menu
-
 @node Certified Ruby Programmer Examinations
 @appendixsubsec Ruby Association Certified Ruby Programmer Examinations
 
@@ -13840,12 +13478,6 @@ examination are certified by the Ruby Association as a Ruby Association
 Certified Ruby Programmer.
 
 @c _____________________________________
-
-@menu
-* Certified Ruby Programmer Silver version 2.1::
-* Certified Ruby Programmer Gold version 2.1::
-* Certified Ruby Programmer Platinum::
-@end menu
 
 @node Certified Ruby Programmer Silver version 2.1
 @appendixsubsubsec Ruby Association Certified Ruby Programmer Silver version 2.1
@@ -14088,37 +13720,11 @@ By Marek Hulán, Marek Jelen, Ivan Nečas, Version 0.2 September 25, 2017.
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* Ruby Basics::
-* Advanced Ruby::
-* Ruby Testing::
-@end menu
-
 @node Ruby Basics
 @appendixsubsec Ruby Basics
 @cindex basics
 
 @c _____________________________________
-
-@menu
-* Installation - Running - About::
-* Language Conventions::
-* Data Types::
-* Methods and Variables::
-* Conditions::
-* Logical Operators::
-* Regular Expressions::
-* Loops::
-* Methods::
-* Using Code From Other Files::
-* Blocks::
-* Objects::
-* Inheritance::
-* Modules::
-* Method Access::
-* Duck Typing::
-* Exceptions::
-@end menu
 
 @node Installation - Running - About
 @appendixsubsubsec Installation - Running - About
@@ -14472,8 +14078,8 @@ end
 
 @c _____________________________________
 
-@node Logical Operators
-@appendixsubsubsec Logical Operators
+@node A Few Logical Operators
+@appendixsubsubsec A Few Logical Operators
 @cindex logical operators
 
 @subheading Logical Expressions
@@ -14927,14 +14533,6 @@ exceptions one doesn't want to rescue from, such as @file{SystemExit} or
 @cindex advanced
 
 @c _____________________________________
-
-@menu
-* Return Values::
-* Context::
-* Class::
-* Advanced Methods::
-* Advanced Objects::
-@end menu
 
 @node Return Values
 @appendixsubsubsec Return Values
@@ -15579,13 +15177,6 @@ it and most projects are well covered.  A TDD is also popular among rubyist.
 
 @c _____________________________________
 
-@menu
-* Testing Frameworks::
-* Minitest::
-* Testing Web Applications::
-* Cucumber::
-@end menu
-
 @node Testing Frameworks
 @appendixsubsubsec Testing Frameworks
 @cindex testing frameworks
@@ -16106,11 +15697,6 @@ Here are some utility programs that I either found or created.
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* Ruby Eval Utility::
-* API Utility::
-@end menu
-
 @node Ruby Eval Utility
 @appendixsec Ruby Eval Utility
 @pindex eval.rb
@@ -16203,14 +15789,6 @@ The following table lists called chunk definition points.
 
 
 @c .....................................
-
-@menu
-* eval Module Code::
-* eval Indentation Deltas Code::
-* eval Main Get Line Code::
-* eval Main Process Line Code::
-* @file{eval.rb} Post Create::
-@end menu
 
 @node eval Module Code
 @appendixsubsec @file{eval.rb} Module Code
@@ -16365,11 +15943,6 @@ The following table lists called chunk definition points.
 @end iftex
 
 @c _____________________________________
-
-@menu
-* eval If Not Line Code::
-* eval If Is Line Code::
-@end menu
 
 @node eval If Not Line Code
 @appendixsubsubsec @file{eval.rb} If Not Line Code
@@ -16583,17 +16156,6 @@ The following table lists called chunk definition points.
 
 
 @c .....................................
-
-@menu
-* @file{apiutil.awk} BEGIN Block::
-* @file{apiutil.awk} BEGNFILE Block::
-* @file{apiutil.awk} MAIN Block::
-* @file{apiutil.awk} ENDFILE Block::
-* @file{apiutil.awk} END Block::
-* @file{apiutil} Ord Function::
-* @command{convertsymbols()} Function Definition::
-* apiutil Makefile Target::
-@end menu
 
 @node @file{apiutil.awk} BEGIN Block
 @appendixsubsec @file{apiutil.awk} BEGIN Block
@@ -17484,11 +17046,6 @@ TexiwebJr has a couple of new utility commands for working with files:
 
 @c -----------------------------------------------------------------------------
 
-@menu
-* Initial Setup::
-* Post Create::
-@end menu
-
 @node Initial Setup
 @appendixsec Initial Setup
 
@@ -17613,14 +17170,6 @@ The following table lists called chunk definition points.
 
 @c -----------------------------------------------------------------------------
 
-
-@menu
-* Makefile Variable Definitions::
-* Makefile Default Rule::
-* Makefile TWJR Targets::
-* Makefile Utility Targets::
-* Makefile Clean Targets::
-@end menu
 
 @node Makefile Variable Definitions
 @appendixsec Makefile Variable Definitions
@@ -17846,12 +17395,6 @@ the code chunk definitions, and the code chunk references.
 
 @c -----------------------------------------------------------------------------
 
-
-@menu
-* File Definitions::
-* Code Chunk Definitions::
-* Code Chunk References::
-@end menu
 
 @node File Definitions
 @appendixsec Source File Definitions

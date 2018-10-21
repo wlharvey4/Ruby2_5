@@ -95,7 +95,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.6c
+@set EDITION 0.6d
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -6417,6 +6417,153 @@ $ brew install rubinius
 @cindex @file{Rubinius} book
 
 @url{https://book.rubinius.com, The Rubinius Book}
+
+
+
+
+
+
+
+
+@c *****************************************************************************
+
+@node My Ruby Reference
+@chapter My Ruby Reference
+@cindex reference
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Operators
+@section Operators
+@cindex operators
+@cindex operators that are methods
+@cindex methods that are operators
+
+Most operators are actually method calls.  For example, @samp{a + b} is
+interpreted as @samp{a.+(b)}, where the @kbd{+} method in the object referred
+to by variable @code{a} is called with @code{b} as its argument.
+
+For each operator (@samp{+ - * / % ** & | ^ << >> && ||}), there is a
+corresponding form of abbreviated assignment operator (@samp{+= -=} etc.).
+
+@cindex method overriding
+@cindex overriding methods
+Operators that are methods may be overridden.
+
+
+@c .....................................
+
+@node Arithmetic Operators
+@subsection Arithmetic Operators
+@cindex arithmetic operators
+@cindex operators, arithmetic
+
+@float Table,ArithmeticOperators
+@multitable @columnfractions .1 .9
+
+@item
+@code{+} @tab Addition --- Adds values on either side of the operator.
+
+@item
+@code{-} @tab Subtraction --- Subtracts right hand operand from left hand
+operand.
+
+@item
+@code{*} @tab Multiplication --- Multiplies values on either side of the
+operator.
+
+@item
+@code{/} @tab Division --- Divides left hand operand by right hand operand.
+
+@item
+@code{%} @tab Modulus --- Divides left hand operand by right hand operand and
+returns remainder.
+
+@item
+@code{**} @tab Exponent − Performs exponential (power) calculation on
+operators.
+
+@end multitable
+@shortcaption{Arithmetic Operators}
+@caption{Table of Arithmetic Operators}
+@end float
+
+
+@c .....................................
+
+@node Comparison Operators
+@subsection Comparison Operators
+@cindex comparison operators
+@cindex operators, comparison
+
+
+@c .....................................
+
+@node Assignment Operators
+@subsection Assighnment Operators
+@cindex assignment operators
+@cindex operators, assignment
+
+
+@c .....................................
+
+@node Bitwise Operators
+@subsection Bitwise Operators
+@cindex bitwise operators
+@cindex operators, bitwise
+
+
+@c .....................................
+
+@node Logical Operators
+@subsection Logical Operators
+@cindex logical operators
+@cindex operators, logical
+
+
+@c .....................................
+
+@node Ternary Operator
+@subsection Ternary Operator
+@cindex ternary operator
+@cindex operator, ternary
+
+
+@c .....................................
+
+@node Range Operators
+@subsection Range Operators
+@cindex range operators
+@cindex operators, range
+
+
+@c .....................................
+
+@node Defined? Operators
+@subsection Defined? Operators
+@cindex @code{defined?} operators
+@cindex operators, @code{defined}
+
+
+@c .....................................
+
+@node Dot And Colon Operators
+@subsection Dot and Colon Operators
+@cindex dot operators
+@cindex colon operators
+@cindex operators, dot and colon
+
+
+@c .....................................
+
+@node Operator Precedence
+@subsection Operator Precedence
+@cindex operator precedence
+@cindex precedence, operator
+
 
 
 
@@ -13741,8 +13888,8 @@ end
 
 @c _____________________________________
 
-@node Logical Operators
-@appendixsubsubsec Logical Operators
+@node A Few Logical Operators
+@appendixsubsubsec A Few Logical Operators
 @cindex logical operators
 
 @subheading Logical Expressions
