@@ -6306,18 +6306,10 @@ have taken days.
 
 
 
-
-
-
-
 @c -----------------------------------------------------------------------------
 
 @node Editors and IDEs
 @section Editors and IDEs
-
-
-
-
 
 
 
@@ -6327,8 +6319,22 @@ have taken days.
 @node Further Reading
 @section Further Reading
 
-@cite{Programming Ruby}, by Marek Hulan, et al., contains succinct advanced
-information about Ruby.  @mybibcite{ProgrammingRuby}
+@table @cite
+@item Programming Ruby
+by Marek Hulan, et al., contains succinct advanced information about Ruby.
+@xref{Programming Ruby by Hulan}.  @mybibcite{ProgrammingRuby}
+
+@item Pragmatic Programmer's Guide --- The Pickaxe (aka Programming Ruby)
+by Dave Thomas and Andy Hunt.  The place where just about every Ruby beginner
+starts.  @xref{Pragmatic Programmer's Guide, The Pickaxe aka Programming Ruby -
+The Pragmatic Programmer's Guide}.
+
+@item The Ruby Way
+by Hal Fulton.  When you're reasonably familiar with Ruby, but want to learn
+more and see how to accomplish all sorts of tasks with it, then
+@url{http://therubyway.io}, is the logical next step.
+
+@end table
 
 
 

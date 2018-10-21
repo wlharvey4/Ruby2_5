@@ -51,6 +51,326 @@ General Public License, version 3.
 * Concept Index::
 * Program Index::
 
+ -- The Detailed Node Listing --
+
+Preface
+
+* Audience::
+* Overview::
+* Conventions::
+* Acknowledgements::
+
+Documentation
+
+* Installing Ruby::
+* Help Tools::
+* Developing Ruby::
+* Getting Started::
+* Manuals::
+* Editors and IDEs::
+* Further Reading::
+
+Installation Methods
+
+* Package Management Systems::
+* Installers::
+* Managers::
+* Building From Source::
+
+Package Management Systems
+
+* Homebrew (OS X)::
+
+Installers
+
+* ruby-build::
+* ruby-install::
+
+Managers
+
+* chruby::
+* rbenv::
+* RVM::
+* uru::
+
+Building From Source
+
+* Releases Page::
+* Branches Page::
+* Issue Tracking::
+
+Ruby Help Tools
+
+* RDoc::
+* ri::
+* Ruby Debugger::
+
+RDoc
+
+* Writing Documentation::
+* Generating Documention::
+* Markup Directives::
+
+Getting Started
+
+* Try Ruby!::
+* Official FAQ::
+* Ruby Koans::
+* Why’s (Poignant) Guide to Ruby::
+* Ruby in Twenty Minutes::
+* Ruby from Other Languages::
+* Important Language Features::
+* Learning Ruby::
+* Ruby Essentials::
+* Learn to Program::
+
+Official FAQ
+
+* FAQ Iterators::
+* FAQ Syntax::
+* FAQ Methods::
+* FAQ Classes and Modules::
+* FAQ Built-In Libraries::
+* FAQ Extension Library::
+* FAQ Other Features::
+
+Ruby in Twenty Minutes
+
+* Interactive Ruby::
+* Defining Methods::
+* Altering Classes::
+* Large Class Definition::
+* Run MegaGreeter::
+
+Ruby from Other Languages
+
+* To Ruby From C and C++::
+* To Ruby From Java::
+* To Ruby From Perl::
+* To Ruby From PHP::
+* To Ruby From Python::
+
+Important Language Features
+
+* Pointers on Iteration::
+* Everything has a value::
+* Symbols are not lightweight Strings::
+* Everything is an Object::
+* Variable Constants::
+* Naming conventions::
+* Keyword arguments::
+* The universal truth::
+* Access modifiers are Methods::
+* Method access::
+* Classes are open::
+* Funny method names::
+* Singleton methods::
+* Missing methods::
+* Message passing --- not function calls::
+* Blocks are Objects::
+* Operators are syntactic sugar::
+
+Ruby Essentials
+
+* Interactive Ruby Execution::
+* Block Ruby Comments::
+* Variable Scope::
+
+Manuals
+
+* Ruby User's Guide::
+* Ruby Programming Wikibook::
+* Pragmatic Programmer's Guide::
+
+Ruby User's Guide
+
+* Ruby User's Guide On What Ruby IS::
+* Ruby User's Guide On Simple Examples::
+* Ruby User's Guide on Strings::
+* Ruby User's Guide On Puzzle Program::
+* Ruby User's Guide on Regular Expressions::
+* Ruby User's Guide On Arrays And Hashes::
+* Ruby User's Guide On Control Structures::
+* Ruby User's Guide On Iterators::
+* Ruby User's Guide On Object-Oriented Thinking::
+* Ruby User's Guide on Methods::
+* Ruby User's Guide on Classes::
+* Ruby User's Guide on Inheritance::
+* Ruby User's Guide on Redefinition Of Methods::
+* Ruby User's Guide On Access Control::
+* Ruby User's Guide On Singleton Methods::
+* Ruby User's Guide On Modules::
+* Ruby User's Guide On Procedure Objects::
+* Ruby User's Guide On Variables::
+* Ruby User's Guide On Global Variables::
+* Ruby User's Guide On Instance Variables::
+* Ruby User's Guide On Local Variables::
+* Ruby User's Guide On Class Constants::
+* Ruby User's Guide On Exception Processing And rescue::
+* Ruby User's Guide On Exception Processing and ensure::
+* Ruby User's Guide On Accessors::
+* Ruby User's Guide On Object Initialization::
+* Ruby User's Guide On Nuts And Bolts::
+
+Implementations
+
+* YARV Implementation::
+* JRuby Implementation::
+* Rubinius Implementation::
+* The Rubinius Book::
+
+My Ruby Reference
+
+* Operators::
+
+Operators
+
+* Arithmetic Operators::
+* Comparison Operators::
+* Assignment Operators::
+* Bitwise Operators::
+* Logical Operators::
+* Ternary Operator::
+* Range Operators::
+* Defined? Operators::
+* Dot And Colon Operators::
+* Operator Precedence::
+
+Ruby-Doc
+
+* API Documentation::
+
+API Documentation
+
+* Files API::
+* Classes And Modules API::
+* Methods API::
+* Beginner Core Topics::
+
+Learn how RubyGems works, and how to make your own.
+
+* Ruby Gem Guides::
+
+Ruby Gem Guides
+
+* Ruby Gems Basics::
+* What Is A Gem::
+* Make A Gem::
+
+Introduction to Making a Gem
+
+* Your First Gem::
+* Requiring More Files::
+* Adding An Executable::
+* Writing Tests::
+* Documenting Your Code::
+
+Resources
+
+* Ruby Association::
+* Programming Ruby by Hulan::
+
+Mission Statement
+
+* Certified Ruby Programmer Examinations::
+* Study Materials::
+
+Ruby Association Certified Ruby Programmer Examinations
+
+* Certified Ruby Programmer Silver version 2.1::
+* Certified Ruby Programmer Gold version 2.1::
+* Certified Ruby Programmer Platinum::
+
+Programming Ruby by Hulan
+
+* Ruby Basics::
+* Advanced Ruby::
+* Ruby Testing::
+
+Ruby Basics
+
+* Installation - Running - About::
+* Language Conventions::
+* Data Types::
+* Methods and Variables::
+* Conditions::
+* A Few Logical Operators::
+* Regular Expressions::
+* Loops::
+* Methods::
+* Using Code From Other Files::
+* Blocks::
+* Objects::
+* Inheritance::
+* Modules::
+* Method Access::
+* Duck Typing::
+* Exceptions::
+
+Advanced Ruby
+
+* Return Values::
+* Context::
+* Class::
+* Advanced Methods::
+* Advanced Objects::
+
+Ruby Testing
+
+* Testing Frameworks::
+* Minitest::
+* Testing Web Applications::
+* Cucumber::
+
+Utility Programs
+
+* Ruby Eval Utility::
+* API Utility::
+
+Ruby Eval Utility
+
+* eval Module Code::
+* eval Indentation Deltas Code::
+* eval Main Get Line Code::
+* eval Main Process Line Code::
+* eval.rb Post Create::
+
+'eval.rb' Main Process Line Code
+
+* eval If Not Line Code::
+* eval If Is Line Code::
+
+API Utility
+
+* apiutil.awk BEGIN Block::
+* apiutil.awk BEGNFILE Block::
+* apiutil.awk MAIN Block::
+* apiutil.awk ENDFILE Block::
+* apiutil.awk END Block::
+* apiutil Ord Function::
+* convertsymbols() Function Definition::
+* apiutil Makefile Target::
+
+Initial Setup and Post Create
+
+* Initial Setup::
+* Post Create::
+
+The Makefile
+
+* Makefile Variable Definitions::
+* Makefile Default Rule::
+* Makefile TWJR Targets::
+* Makefile Utility Targets::
+* Makefile Clean Targets::
+
+Code Chunk Summaries
+
+* File Definitions::
+* Code Chunk Definitions::
+* Code Chunk References::
+
+
 
 File: Ruby2_5.info,  Node: Preface,  Next: Introduction,  Prev: Top,  Up: Top
 
@@ -73,8 +393,8 @@ Intended Audience
 =================
 
      The combination of the power of a pure object-oriented language
-     with the convenience of a scripting language makes Ruby a favorite
-     tool of intelligent, forward-thinking programmers.
+     with the convenience of a scripting language makes Ruby a
+     favorite tool of intelligent, forward-thinking programmers.
    'Programming Ruby', by Dave Thomas and Chad Fowler and _Andy Hunt_
 
 
@@ -92,16 +412,16 @@ Typographical Conventions
 =========================
 
 This Info file is written in an enhanced version of Texinfo
-(http://www.gnu.org/software/texinfo/), the GNU documentation formatting
-language.  A single Texinfo source file is used to produce both the
-printed and online versions of a program's documentation.
+(http://www.gnu.org/software/texinfo/), the GNU documentation
+formatting language.  A single Texinfo source file is used to produce
+both the printed and online versions of a program's documentation.
 
    Examples you would type at the command-line are preceded by the
-common shell primary and secondary prompts, '$' and '>'.  Input that you
-type is shown 'like this'.  Output from the command is preceded by the
-glyph "-|".  This typically represents the command's standard output.
-Error messages, and other output on the command's standard error, are
-preceded by the glyph "error->".  For example:
+common shell primary and secondary prompts, '$' and '>'.  Input that
+you type is shown 'like this'.  Output from the command is preceded by
+the glyph "-|".  This typically represents the command's standard
+output.  Error messages, and other output on the command's standard
+error, are preceded by the glyph "error->".  For example:
 
      $ echo hi on stdout
      -| hi on stdout
@@ -164,8 +484,8 @@ There are several ways to install Ruby:
      newest one.
    * Installers: can be used to install a specific or multiple Ruby
      versions.  There is also an installer for Windows.
-   * Managers help you to switch between multiple Ruby installations on
-     your system.
+   * Managers help you to switch between multiple Ruby installations
+     on your system.
    * Source: And finally, you can also build Ruby from source.
 
    The following overview lists available installation methods for
@@ -192,9 +512,10 @@ Ruby.
 should never use a package manager to install Ruby and that you should
 use tools instead.  While the full list of pros and cons is outside of
 the scope of this page, the most basic reason is that most package
-managers have older versions of Ruby in their official repositories.  If
-you would like to use the newest Ruby, make sure you use the correct
-package name, or use the tools described further below instead.
+managers have older versions of Ruby in their official repositories.
+If you would like to use the newest Ruby, make sure you use the
+correct package name, or use the tools described further below
+instead.
 
 * Menu:
 
@@ -210,8 +531,8 @@ Homebrew (http://brew.sh/)
 
    On macOS (High) Sierra and OS X El Capitan, Ruby 2.0 is included.
 
-   Many people on OS X use Homebrew as a package manager.  It is really
-easy to get a newer version of Ruby using Homebrew:
+   Many people on OS X use Homebrew as a package manager.  It is
+really easy to get a newer version of Ruby using Homebrew:
 
      $ brew install ruby
 
@@ -223,12 +544,12 @@ File: Ruby2_5.info,  Node: Installers,  Next: Managers,  Prev: Package Managemen
 2.1.2 Installers
 ----------------
 
-If the version of Ruby provided by your system or package manager is out
-of date, a newer one can be installed using a third-party installer.
-Some of them also allow you to install multiple versions on the same
-system; associated managers can help to switch between the different
-Rubies.  If you are planning to use RVM as a version manager you do not
-need a separate installer, it comes with its own.
+If the version of Ruby provided by your system or package manager is
+out of date, a newer one can be installed using a third-party
+installer.  Some of them also allow you to install multiple versions
+on the same system; associated managers can help to switch between the
+different Rubies.  If you are planning to use RVM as a version manager
+you do not need a separate installer, it comes with its own.
 
 * Menu:
 
@@ -267,8 +588,8 @@ File: Ruby2_5.info,  Node: ruby-install,  Prev: ruby-build,  Up: Installers
 
    'ruby-install' allows you to compile and install different versions
 of Ruby into arbitrary directories.  There is also a sibling, 'chruby'
-(*note chruby::), which handles switching between Ruby versions.  It is
-available for OS X, Linux, and other UNIX-like operating systems.
+(*note chruby::), which handles switching between Ruby versions.  It
+is available for OS X, Linux, and other UNIX-like operating systems.
 
 
 File: Ruby2_5.info,  Node: Managers,  Next: Building From Source,  Prev: Installers,  Up: Installing Ruby
@@ -276,9 +597,9 @@ File: Ruby2_5.info,  Node: Managers,  Next: Building From Source,  Prev: Install
 2.1.3 Managers
 --------------
 
-Many Rubyists use Ruby managers to manage multiple Rubies.  They confer
-various advantages but are not officially supported.  Their respective
-communities are very helpful, however.
+Many Rubyists use Ruby managers to manage multiple Rubies.  They
+confer various advantages but are not officially supported.  Their
+respective communities are very helpful, however.
 
 * Menu:
 
@@ -294,8 +615,8 @@ File: Ruby2_5.info,  Node: chruby,  Next: rbenv,  Up: Managers
 ..............
 
 'chruby' allows you to switch between multiple Rubies.  'chruby' can
-manage Rubies installed by 'ruby-install' (*note ruby-install::) or even
-built from source.
+manage Rubies installed by 'ruby-install' (*note ruby-install::) or
+even built from source.
 
 
 File: Ruby2_5.info,  Node: rbenv,  Next: RVM,  Prev: chruby,  Up: Managers
@@ -308,8 +629,8 @@ File: Ruby2_5.info,  Node: rbenv,  Next: RVM,  Prev: chruby,  Up: Managers
    'ruby-build'
 (https://www.ruby-lang.org/en/documentation/installation/#ruby-build)
 
-   'rbenv' allows you to manage multiple installations of Ruby.  It does
-not support installing Ruby, but there is a popular plugin named
+   'rbenv' allows you to manage multiple installations of Ruby.  It
+does not support installing Ruby, but there is a popular plugin named
 'ruby-build' (*note ruby-build::) to install Ruby.  Both tools are
 available for OS X, Linux, or other UNIX-like operating systems.
 
@@ -322,8 +643,8 @@ File: Ruby2_5.info,  Node: RVM,  Next: uru,  Prev: rbenv,  Up: Managers
 RVM (http://rvm.io/)
 
    RVM allows you to install and manage multiple installations of Ruby
-on your system.  It can also manage different gemsets.  It is available
-for OS X, Linux, or other UNIX-like operating systems.
+on your system.  It can also manage different gemsets.  It is
+available for OS X, Linux, or other UNIX-like operating systems.
 
 
 File: Ruby2_5.info,  Node: uru,  Prev: RVM,  Up: Managers
@@ -333,8 +654,8 @@ File: Ruby2_5.info,  Node: uru,  Prev: RVM,  Up: Managers
 
 Uru (https://bitbucket.org/jonforums/uru)
 
-   Uru is a lightweight, multi-platform command line tool that helps you
-to use multiple Rubies on OS X, Linux, or Windows systems.
+   Uru is a lightweight, multi-platform command line tool that helps
+you to use multiple Rubies on OS X, Linux, or Windows systems.
 
 
 File: Ruby2_5.info,  Node: Building From Source,  Prev: Managers,  Up: Installing Ruby
@@ -360,10 +681,10 @@ pass the '--prefix=DIR' option to the './configure' script.
 idea, though, because the installed Ruby won’t be managed by any
 tools.
 
-   Installing from the source code is a great solution for when you are
-comfortable enough with your platform and perhaps need specific settings
-for your environment.  It’s also a good solution in the event that
-there are no other premade packages for your platform.
+   Installing from the source code is a great solution for when you
+are comfortable enough with your platform and perhaps need specific
+settings for your environment.  It’s also a good solution in the event
+that there are no other premade packages for your platform.
 
 * Menu:
 
@@ -413,8 +734,8 @@ File: Ruby2_5.info,  Node: Branches Page,  Next: Issue Tracking,  Prev: Releases
 
 Branches Page (https://www.ruby-lang.org/en/downloads/branches/)
 
-   Information about the current maintenance status of the various Ruby
-branches can be found on the Branches page.
+   Information about the current maintenance status of the various
+Ruby branches can be found on the Branches page.
 
    This page lists the current maintenance status of the various Ruby
 branches.  This is a preliminary list of Ruby branches and their
@@ -424,15 +745,15 @@ versions of release posts or EOL announcements.
    The Ruby branches or release series are categorized below into the
 following phases:
 
-   * normal maintenance (bug fix): Branch receives general bug fixes and
-     security fixes.
+   * normal maintenance (bug fix): Branch receives general bug fixes
+     and security fixes.
    * security maintenance (security fix): Only security fixes are
      backported to this branch.
    * eol (end-of-life): Branch is not supported by the ruby-core team
      any longer and does not receive any fixes.  No further patch
      release will be released.
-   * preview: Only previews or release candidates have been released for
-     this branch so far.
+   * preview: Only previews or release candidates have been released
+     for this branch so far.
 
 Ruby 2.6
 ........
@@ -535,13 +856,13 @@ File: Ruby2_5.info,  Node: RDoc,  Next: ri,  Up: Help Tools
 ----------
 
 RDoc and the tool 'rdoc' are a program documentation system.  RDoc
-produces HTML and command-line documentation for Ruby projects.  If you
-put comments in your program files (Ruby or C) in the prescribed RDoc
-format, 'rdoc' scans your files, extracts the comments, organizes them
-intelligently (indexed according to what they comment on), and creates
-nicely formatted documentation from them.  You can see RDoc markup in
-many of the C files in the Ruby source tree and many of the Ruby files
-in the Ruby installation.
+produces HTML and command-line documentation for Ruby projects.  If
+you put comments in your program files (Ruby or C) in the prescribed
+RDoc format, 'rdoc' scans your files, extracts the comments, organizes
+them intelligently (indexed according to what they comment on), and
+creates nicely formatted documentation from them.  You can see RDoc
+markup in many of the C files in the Ruby source tree and many of the
+Ruby files in the Ruby installation.
 
 * Menu:
 
@@ -555,8 +876,8 @@ File: Ruby2_5.info,  Node: Writing Documentation,  Next: Generating Documention,
 2.2.1.1 Writing Documentation for RDoc
 ......................................
 
-To write documentation for RDoc place a comment above the class, module,
-method, constant, or attribute you want documented:
+To write documentation for RDoc place a comment above the class,
+module, method, constant, or attribute you want documented:
 
      ##
      # This class represents an arbitrary shape by a series of points.
@@ -590,16 +911,16 @@ Directives
 Comments can contain directives that tell RDoc information that it
 cannot otherwise discover through parsing.  See
 'RDoc::Markup@Directives' to control what is or is not documented, to
-define method arguments or to break up methods in a class by topic.  See
-'RDoc::Parser::Ruby' for directives used to teach RDoc about
+define method arguments or to break up methods in a class by topic.
+See 'RDoc::Parser::Ruby' for directives used to teach RDoc about
 metaprogrammed methods.
 
 Documentation Coverage Report
 -----------------------------
 
 To determine how well your project is documented run 'rdoc -C lib' to
-get a documentation coverage report.  'rdoc -C1 lib' includes parameter
-names in the documentation coverage report.
+get a documentation coverage report.  'rdoc -C1 lib' includes
+parameter names in the documentation coverage report.
 
 
 File: Ruby2_5.info,  Node: Generating Documention,  Next: Markup Directives,  Prev: Writing Documentation,  Up: RDoc
@@ -614,11 +935,12 @@ Create documentation using the 'rdoc' command:
 
    A typical use might be to generate documentation for a package of
 Ruby source.  The command 'rdoc' generates documentation for all the
-Ruby and C source files in and below the current directory.  These will
-be stored in a documentation tree starting in the subdirectory 'doc'.
+Ruby and C source files in and below the current directory.  These
+will be stored in a documentation tree starting in the subdirectory
+'doc'.
 
-   You can make this slightly more useful for your readers by having the
-index page contain the documentation for the primary file.
+   You can make this slightly more useful for your readers by having
+the index page contain the documentation for the primary file.
 
      $ rdoc --main README.rdoc
 
@@ -664,16 +986,17 @@ Method arguments
 Sections
 --------
 
-Sections allow you to group methods in a class into sensible containers.
-If you use the sections 'Public', 'Internal' and 'Deprecated' (the three
-allowed method statuses from TomDoc) the sections will be displayed in
-that order placing the most useful methods at the top.  Otherwise,
-sections will be displayed in alphabetical order.
+Sections allow you to group methods in a class into sensible
+containers.  If you use the sections 'Public', 'Internal' and
+'Deprecated' (the three allowed method statuses from TomDoc) the
+sections will be displayed in that order placing the most useful
+methods at the top.  Otherwise, sections will be displayed in
+alphabetical order.
 
 ':category: section'
-     Adds this item to the named section overriding the current section.
-     Use this to group methods by section in RDoc output while
-     maintaining a sensible ordering (like alphabetical).
+     Adds this item to the named section overriding the current
+     section.  Use this to group methods by section in RDoc output
+     while maintaining a sensible ordering (like alphabetical).
 
 Other directives
 ----------------
@@ -681,13 +1004,13 @@ Other directives
 ':markup: type'
      Overrides the default markup type for this comment with the
      specified markup type.  For Ruby files, if the first comment
-     contains this directive it is applied automatically to all comments
-     in the file.
+     contains this directive it is applied automatically to all
+     comments in the file.
 
      Unless you are converting between markup formats you should use a
      '.rdoc_options' file to specify the default documentation format
-     for your entire project.  See Saved Options at 'RDoc::Options' for
-     instructions.
+     for your entire project.  See Saved Options at 'RDoc::Options'
+     for instructions.
 
 
 File: Ruby2_5.info,  Node: ri,  Next: Ruby Debugger,  Prev: RDoc,  Up: Help Tools
@@ -700,42 +1023,42 @@ File: Ruby2_5.info,  Node: ri,  Next: Ruby Debugger,  Prev: RDoc,  Up: Help Tool
 
    The Ruby 'ri' tool is used to view the Ruby documentation off-line.
 Open a command window and invoke 'ri' followed by the name of a Ruby
-class, module or method.  'ri' will display documentation for you.  You
-may specify a method name without a qualifying class or module name, but
-this will just show you a list of all methods by that name (unless the
-method is unique).  Normally, you can separate a class or module name
-from a method name with a period.  If a class defines a class method and
-an instance method by the same name, you must instead use '::' to refer
-to a class method or '#' to refer to the instance method.  Here are some
-example invocations of 'ri':
+class, module or method.  'ri' will display documentation for you.
+You may specify a method name without a qualifying class or module
+name, but this will just show you a list of all methods by that name
+(unless the method is unique).  Normally, you can separate a class or
+module name from a method name with a period.  If a class defines a
+class method and an instance method by the same name, you must instead
+use '::' to refer to a class method or '#' to refer to the instance
+method.  Here are some example invocations of 'ri':
 
      ri Array
      ri Array.sort
      ri Hash#each
      ri Math::sqrt
 
-   'ri' dovetails with RDoc: It gives you a way to view the information
-that RDoc has extracted and organized.  Specifically (although not
-exclusively, if you customize it), 'ri' is configured to display the
-RDoc information from the Ruby source files.  Thus on any system that
-has Ruby fully installed, you can get detailed information about Ruby
-with a simple command-line invocation of 'ri'.  Some more information is
-available here:
+   'ri' dovetails with RDoc: It gives you a way to view the
+information that RDoc has extracted and organized.  Specifically
+(although not exclusively, if you customize it), 'ri' is configured to
+display the RDoc information from the Ruby source files.  Thus on any
+system that has Ruby fully installed, you can get detailed information
+about Ruby with a simple command-line invocation of 'ri'.  Some more
+information is available here:
 
 Classes
 -------
 
-To see a list of all the classes for which 'ri' has documentation, type
-the following: 'ri -c'.  Then try accessing the documentation for a
-sample class: 'ri Hash'.  Next, try viewing the documentation for a
+To see a list of all the classes for which 'ri' has documentation,
+type the following: 'ri -c'.  Then try accessing the documentation for
+a sample class: 'ri Hash'.  Next, try viewing the documentation for a
 given method, for example, one from the 'Array' class, rather than
-'Hash', just to give as much variety as possible: 'ri 'Array#<<''.  You
-will sometimes need to quote the method name, in this case '<<', to
-avoid the shell interpreting certain metacharacters.
+'Hash', just to give as much variety as possible: 'ri 'Array#<<''.
+You will sometimes need to quote the method name, in this case '<<',
+to avoid the shell interpreting certain metacharacters.
 
-   In one of your shell's start-up files, you may care to alias 'ri' to
-'ri -f ansi', which will ensure you get a nice coloured display (as in
-the example above) when displaying documentation.
+   In one of your shell's start-up files, you may care to alias 'ri'
+to 'ri -f ansi', which will ensure you get a nice coloured display (as
+in the example above) when displaying documentation.
 
 
 File: Ruby2_5.info,  Node: Ruby Debugger,  Prev: ri,  Up: Help Tools
@@ -754,9 +1077,9 @@ done as follows:
                  arguments
                  ]
 
-   The debugger can do all the usual sorts of things you would expect it
-to, such as set breakpoints, step into and over code, print out the call
-stack, etc.
+   The debugger can do all the usual sorts of things you would expect
+it to, such as set breakpoints, step into and over code, print out the
+call stack, etc.
 
 
 File: Ruby2_5.info,  Node: Developing Ruby,  Next: Getting Started,  Prev: Help Tools,  Up: Documentation
@@ -784,27 +1107,27 @@ The topics related to Ruby development covered here are:
 Using Subversion to Track Ruby Development
 ..........................................
 
-Getting the latest Ruby source code is a matter of an anonymous checkout
-from the Subversion (http://subversion.apache.org/) repository.  From
-your command line:
+Getting the latest Ruby source code is a matter of an anonymous
+checkout from the Subversion (http://subversion.apache.org/)
+repository.  From your command line:
 
      $ svn co https://svn.ruby-lang.org/repos/ruby/trunk ruby
 
-   The 'ruby' directory will now contain the latest source code for the
-development version of Ruby ('ruby-trunk').  Currently patches applied
-to the trunk are backported to the stable 2.5, 2.4, and 2.3 branches
-(see below).
+   The 'ruby' directory will now contain the latest source code for
+the development version of Ruby ('ruby-trunk').  Currently patches
+applied to the trunk are backported to the stable 2.5, 2.4, and 2.3
+branches (see below).
 
    If you’d like to follow patching of Ruby 2.5, you should use the
 ruby_2_5 branch when checking out:
 
      $ svn co https://svn.ruby-lang.org/repos/ruby/branches/ruby_2_5
 
-   This will check out the respective development tree into a 'ruby_2_5'
-directory.  Developers working on the maintenance branches are expected
-to migrate their changes to Ruby’s trunk, so often the branches are
-very similar, with the exception of improvements made by Matz and Nobu
-to the language itself.
+   This will check out the respective development tree into a
+'ruby_2_5' directory.  Developers working on the maintenance branches
+are expected to migrate their changes to Ruby’s trunk, so often the
+branches are very similar, with the exception of improvements made by
+Matz and Nobu to the language itself.
 
    If you prefer, you may browse Ruby’s Subversion repository via the
 web (https://svn.ruby-lang.org/cgi-bin/viewvc.cgi/).
@@ -813,8 +1136,8 @@ How to Use Git With the Main Ruby Repository
 ............................................
 
 Those who prefer to use Git over Subversion can find instructions with
-the mirror on GitHub (https://github.com/ruby/ruby), both for those with
-commit access and everybody else
+the mirror on GitHub (https://github.com/ruby/ruby), both for those
+with commit access and everybody else
 (https://github.com/shyouhei/ruby/wiki/noncommitterhowto).
 
 Improving Ruby, Patch by Patch
@@ -823,14 +1146,15 @@ Improving Ruby, Patch by Patch
 The core team maintains an issue tracker (https://bugs.ruby-lang.org/)
 for submitting patches and bug reports to Matz and the gang.  These
 reports also get submitted to the Ruby-Core mailing list
-(https://www.ruby-lang.org/en/community/mailing-lists/) for discussion,
-so you can be sure your request won’t go unnoticed.  You can also send
-your patches straight to the mailing list.  Either way, you are
-encouraged to take part in the discussion that ensues.
+(https://www.ruby-lang.org/en/community/mailing-lists/) for
+discussion, so you can be sure your request won’t go unnoticed.  You
+can also send your patches straight to the mailing list.  Either way,
+you are encouraged to take part in the discussion that ensues.
 
    Please look over the Patch Writer’s Guide
-(https://www.ruby-lang.org/en/community/ruby-core/writing-patches/) for
-some tips, straight from Matz, on how to get your patches considered.
+(https://www.ruby-lang.org/en/community/ruby-core/writing-patches/)
+for some tips, straight from Matz, on how to get your patches
+considered.
 
    Steps for Building a Patch
 (https://www.ruby-lang.org/en/community/ruby-core/)
@@ -863,8 +1187,8 @@ File: Ruby2_5.info,  Node: Try Ruby!,  Next: Official FAQ,  Up: Getting Started
 Try Ruby!  (https://ruby.github.io/TryRuby/)
 
    An interactive tutorial that lets you try out Ruby right in your
-browser.  This 15-minute tutorial is aimed at beginners who want to get
-a feeling of the language.
+browser.  This 15-minute tutorial is aimed at beginners who want to
+get a feeling of the language.
 
 
 File: Ruby2_5.info,  Node: Official FAQ,  Next: Ruby Koans,  Prev: Try Ruby!,  Up: Getting Started
@@ -917,8 +1241,8 @@ What is an iterator?
 --------------------
 
 An iterator is a method which accepts a block or a 'Proc' object.  In
-the source file, the block is placed immediately after the invocation of
-the method.  Iterators are used to produce user-defined control
+the source file, the block is placed immediately after the invocation
+of the method.  Iterators are used to produce user-defined control
 structures -- especially loops.
 
    Let’s look at an example to see how this works.  Iterators are
@@ -941,8 +1265,8 @@ successive elements of the array.
        puts i
      }
 
-   This code has the same meaning as the last example.  However, in some
-cases, precedence issues cause 'do ... end' and '{ ... }' to act
+   This code has the same meaning as the last example.  However, in
+some cases, precedence issues cause 'do ... end' and '{ ... }' to act
 differently.
 
      foobar a, b do ... end	# foobar is the iterator.
@@ -950,15 +1274,15 @@ differently.
 
    This is because '{ ... }' binds more tightly to the preceding
 expression than does a 'do ... end' block.  The first example is
-equivalent to 'foobar(a, b) do ... end', while the second is 'foobar(a,
-b { ... })'.
+equivalent to 'foobar(a, b) do ... end', while the second is
+'foobar(a, b { ... })'.
 
 How can I pass a block to an iterator?
 --------------------------------------
 
-You simply place the block after the iterator call.  You can also pass a
-'Proc' object by prepending '&' to the variable or constant name that
-refers to the 'Proc'.
+You simply place the block after the iterator call.  You can also pass
+a 'Proc' object by prepending '&' to the variable or constant name
+that refers to the 'Proc'.
 
 How is a block used in an iterator?
 -----------------------------------
@@ -970,8 +1294,8 @@ confirmation._
 
   1. the 'yield' control structure;
 
-     The 'yield' statement calls the block, optionally passing it one or
-     more arguments.
+     The 'yield' statement calls the block, optionally passing it one
+     or more arguments.
 
           def my_iterator
             yield 1, 2
@@ -996,13 +1320,14 @@ confirmation._
 
   3. using 'Proc.new' followed by a 'call'.
 
-     'Proc.new' (or the equivalent 'proc' or 'lambda' calls), when used
-     in an iterator definition, takes the block which is given to the
-     method as its argument and generates a procedure object from it.
-     ('proc' and 'lambda' are effectively synonyms.)
+     'Proc.new' (or the equivalent 'proc' or 'lambda' calls), when
+     used in an iterator definition, takes the block which is given to
+     the method as its argument and generates a procedure object from
+     it.  ('proc' and 'lambda' are effectively synonyms.)
 
      _[Update needed: 'lambda' behaves in a slightly different way and
-     produces a warning 'tried to create Proc object without a block'.]_
+     produces a warning 'tried to create Proc object without a
+     block'.]_
 
           def my_iterator
             Proc.new.call(3, 4)
@@ -1013,8 +1338,9 @@ confirmation._
           my_iterator {|a, b| puts a, b }
 
      Perhaps surprisingly, 'Proc.new' and friends do not in any sense
-     consume the block attached to the method -- each call to 'Proc.new'
-     generates a new procedure object out of the same block.
+     consume the block attached to the method -- each call to
+     'Proc.new' generates a new procedure object out of the same
+     block.
 
      You can tell if there is a block associated with a method by
      calling 'block_given?'.
@@ -1024,8 +1350,8 @@ What does Proc.new without a block do?
 
 'Proc.new' without a block cannot generate a procedure object and an
 error occurs.  In a method definition, however, 'Proc.new' without a
-block implies the existence of a block at the time the method is called,
-and so no error will occur.
+block implies the existence of a block at the time the method is
+called, and so no error will occur.
 
 How can I run iterators in parallel?
 ------------------------------------
@@ -1079,21 +1405,21 @@ What is the difference between an immediate value and a reference?
 ------------------------------------------------------------------
 
 'Fixnum', 'true', 'nil', and 'false' are implemented as "immediate
-values".  With immediate values, variables hold the objects themselves,
-rather than references to them.
+values".  With immediate values, variables hold the objects
+themselves, rather than references to them.
 
-   Singleton methods cannot be defined for such objects.  Two 'Fixnums'
-of the same value always represent the same object instance, so (for
-example) instance variables for the 'Fixnum' with the value 1 are shared
-between all the 1's in the system.  This makes it impossible to define a
-singleton method for just one of these.
+   Singleton methods cannot be defined for such objects.  Two
+'Fixnums' of the same value always represent the same object instance,
+so (for example) instance variables for the 'Fixnum' with the value 1
+are shared between all the 1's in the system.  This makes it
+impossible to define a singleton method for just one of these.
 
 What is the difference between 'nil' and 'false'?
 -------------------------------------------------
 
 First the similarity: 'nil' and 'false' are the only two objects that
-evaluate to 'false' in a boolean context.  (In other words: they are the
-only "falsy" values; all other objects are "truthy".)
+evaluate to 'false' in a boolean context.  (In other words: they are
+the only "falsy" values; all other objects are "truthy".)
 
    However, 'nil' and 'false' are instances of different classes
 ('NilClass' and 'FalseClass'), and have different behavior elsewhere.
@@ -1106,8 +1432,8 @@ The Empty String
 ----------------
 
 An empty string ('""') returns 'true' in a conditional expression!  In
-Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and
-'false' are 'false' in conditional contexts.
+Perl, it’s 'false'.  It’s very simple: in Ruby, only 'nil' and 'false'
+are 'false' in conditional contexts.
 
    You can use 'empty?', compare the string to '""', or compare the
 string’s size or length to 0 to find out if a string is empty.
@@ -1123,15 +1449,15 @@ program's execution the same Symbol object will be created for a given
 name or string.  Symbols can also be created with '"name".intern' or
 '"name".to_sym'.
 
-   Symbol objects can represent identifiers for methods, variables, and
-so on.  Some methods, like 'define_method', 'method_missing', or
+   Symbol objects can represent identifiers for methods, variables,
+and so on.  Some methods, like 'define_method', 'method_missing', or
 'trace_var', require a symbol.  Other methods, e.g.  'attr_accessor',
 'send', or 'autoload', also accept a string.
 
    Due to the fact that they are created only once, Symbols are often
-used as hash keys.  String hash keys would create a new object for every
-single use, thereby causing some memory overhead.  There is even a
-special syntax for symbol hash keys:
+used as hash keys.  String hash keys would create a new object for
+every single use, thereby causing some memory overhead.  There is even
+a special syntax for symbol hash keys:
 
      person_1 = { :name => "John", :age => 42 }
      person_2 = { name: "Jane", age: 24 }        # alternate syntax
@@ -1147,9 +1473,10 @@ values to constants:
 How can I access the value of a symbol?
 ---------------------------------------
 
-To get the value of the variable corresponding to a symbol, you can use
-'symbol.to_s' or '"#{symbol}"' to get the name of the variable, and then
-'eval' that in the scope of the symbol to get the variable’s contents:
+To get the value of the variable corresponding to a symbol, you can
+use 'symbol.to_s' or '"#{symbol}"' to get the name of the variable,
+and then 'eval' that in the scope of the symbol to get the variable’s
+contents:
 
      a = "This is the content of `a'"
      b = eval("#{:a}")
@@ -1180,9 +1507,9 @@ object, which you may then call:
 Is 'loop' a control structure?
 ------------------------------
 
-Although 'loop' looks like a control structure, it is actually a method
-defined in 'Kernel'.  The block which follows introduces a new scope for
-local variables.
+Although 'loop' looks like a control structure, it is actually a
+method defined in 'Kernel'.  The block which follows introduces a new
+scope for local variables.
 
 Ruby doesn’t have a post-test loop
 ----------------------------------
@@ -1203,9 +1530,9 @@ same effect:
 Why can’t I pass a hash literal to a method: 'p {}'?
 ----------------------------------------------------
 
-The '{}' is parsed as a block, not a 'Hash' constructor.  You can force
-the '{}' to be treated as an expression by making the fact that it's a
-parameter explicit: 'p({})'.
+The '{}' is parsed as a block, not a 'Hash' constructor.  You can
+force the '{}' to be treated as an expression by making the fact that
+it's a parameter explicit: 'p({})'.
 
 I can’t get 'def pos=(val)' to work!
 ------------------------------------
@@ -1228,8 +1555,8 @@ They have the same meaning.  In a single quoted string, only '\'' and
 '\\' are transformed and other combinations remain unchanged.
 
    However, in a double quoted string, '"\1"' is the byte '\001' (an
-octal bit pattern), while '"\\1"' is the two character string containing
-a backslash and the character '"1"'.
+octal bit pattern), while '"\\1"' is the two character string
+containing a backslash and the character '"1"'.
 
 What is the difference between '..' and '...'?
 ----------------------------------------------
@@ -1242,8 +1569,8 @@ What is the difference between '..' and '...'?
 What is the difference between 'or' and '||'?
 ---------------------------------------------
 
-'p(nil || "Hello")' prints '"Hello"', while 'p(nil or "Hello")' gives a
-parse error.  Why?
+'p(nil || "Hello")' prints '"Hello"', while 'p(nil or "Hello")' gives
+a parse error.  Why?
 
    'or' has a very low precedence; 'p( (nil or "Hello") )' will work.
 
@@ -1308,8 +1635,8 @@ clauses may be omitted.
 
    This expression returns the value of the 'begin' clause.
 
-   The latest exception is accessed by the global variable '$!' (and so
-its type can be determined using '$!.type').
+   The latest exception is accessed by the global variable '$!' (and
+so its type can be determined using '$!.type').
 
 
 File: Ruby2_5.info,  Node: FAQ Methods,  Next: FAQ Classes and Modules,  Prev: FAQ Syntax,  Up: Official FAQ
@@ -1329,9 +1656,9 @@ Where are '++' and '--' ?
 What is a singleton method?
 ---------------------------
 
-A "singleton method" is an instance method associated with one specific
-object.  You create a singleton method by including the object in the
-definition:
+A "singleton method" is an instance method associated with one
+specific object.  You create a singleton method by including the
+object in the definition:
 
      class Foo; end
 
@@ -1415,8 +1742,9 @@ defined in the metaclass, but that is pretty much transparent).
    Another way of looking at it is to say that _a class method is a
 method whose receiver is a class._
 
-   It all comes down to the fact that you can call class methods without
-having to have instances of that class (objects) as the receiver.
+   It all comes down to the fact that you can call class methods
+without having to have instances of that class (objects) as the
+receiver.
 
      class Foo
        def self.test
@@ -1592,9 +1920,10 @@ File: Ruby2_5.info,  Node: Ruby Koans,  Next: Why’s (Poignant) Guide to Ruby, 
 
 Ruby Koans (http://rubykoans.com/)
 
-   The Koans walk you along the path to enlightenment in order to learn
-Ruby.  The goal is to learn the Ruby language, syntax, structure, and
-some common functions and libraries.  We also teach you culture.
+   The Koans walk you along the path to enlightenment in order to
+learn Ruby.  The goal is to learn the Ruby language, syntax,
+structure, and some common functions and libraries.  We also teach you
+culture.
 
 
 File: Ruby2_5.info,  Node: Why’s (Poignant) Guide to Ruby,  Next: Ruby in Twenty Minutes,  Prev: Ruby Koans,  Up: Getting Started
@@ -1605,8 +1934,8 @@ File: Ruby2_5.info,  Node: Why’s (Poignant) Guide to Ruby,  Next: Ruby in Twen
 Why's Guide to Ruby (http://mislav.uniqpath.com/poignant-guide/)
 
    An unconventional but interesting book that will teach you Ruby
-through stories, wit, and comics.  Originally created by 'why the lucky
-stiff', this guide remains a classic for Ruby learners.
+through stories, wit, and comics.  Originally created by 'why the
+lucky stiff', this guide remains a classic for Ruby learners.
 
 
 File: Ruby2_5.info,  Node: Ruby in Twenty Minutes,  Next: Ruby from Other Languages,  Prev: Why’s (Poignant) Guide to Ruby,  Up: Getting Started
@@ -1617,10 +1946,10 @@ File: Ruby2_5.info,  Node: Ruby in Twenty Minutes,  Next: Ruby from Other Langua
 Ruby in Twenty Minutes
 (https://www.ruby-lang.org/en/documentation/quickstart/)
 
-   A nice tutorial covering the basics of Ruby.  From start to finish it
-shouldn’t take you more than twenty minutes.  It makes the assumption
-that you already have Ruby installed.  (If you do not have Ruby on your
-computer install it before you get started.)
+   A nice tutorial covering the basics of Ruby.  From start to finish
+it shouldn’t take you more than twenty minutes.  It makes the
+assumption that you already have Ruby installed.  (If you do not have
+Ruby on your computer install it before you get started.)
 
 * Menu:
 
@@ -1637,8 +1966,8 @@ File: Ruby2_5.info,  Node: Interactive Ruby,  Next: Defining Methods,  Up: Ruby 
 ........................
 
 Ruby comes with a program that will show the results of any Ruby
-statements you feed it.  Playing with Ruby code in interactive sessions
-like this is a terrific way to learn the language.
+statements you feed it.  Playing with Ruby code in interactive
+sessions like this is a terrific way to learn the language.
 
    Open up 'IRB' (which stands for Interactive Ruby).
 
@@ -1657,8 +1986,8 @@ last expression it evaluated.  To print:
      => nil
      -| irb(main):003:0>
 
-   'puts' is the basic command to print something out in Ruby.  But then
-what’s the '=> nil' bit?  That’s the result of the expression.
+   'puts' is the basic command to print something out in Ruby.  But
+then what’s the '=> nil' bit?  That’s the result of the expression.
 'puts' always returns 'nil', which is Ruby’s
 absolutely-positively-nothing value.
 
@@ -1675,10 +2004,10 @@ Define a method:
      irb(main):012:1> end
      => :hi
 
-   The code 'def hi' starts the definition of the method.  The next line
-is the body of the method.  Finally, the last line end tells Ruby
-we’re done defining the method.  Ruby’s response -| '=> :hi' tells
-us that it knows we're done defining the method.
+   The code 'def hi' starts the definition of the method.  The next
+line is the body of the method.  Finally, the last line end tells Ruby
+we’re done defining the method.  Ruby’s response -| '=> :hi' tells us
+that it knows we're done defining the method.
 
    Try running that method a few times:
 
@@ -1723,18 +2052,18 @@ properly capitalized:
      Hello World!
      => nil
 
-   A couple of other tricks to spot here.  One is that we're calling the
-method without parentheses again.  If it's obvious what you’re doing,
-the parentheses are optional.  The other trick is the default parameter
-World.  What this is saying is "If the name isn't supplied, use the
-default name of "World"".
+   A couple of other tricks to spot here.  One is that we're calling
+the method without parentheses again.  If it's obvious what you’re
+doing, the parentheses are optional.  The other trick is the default
+parameter World.  What this is saying is "If the name isn't supplied,
+use the default name of "World"".
 
 Create a Class
 --------------
 
-What if we want a real greeter around, one that remembers your name and
-welcomes you and treats you always with respect.  You might want to use
-an object for that.  Let’s create a “Greeter” class.
+What if we want a real greeter around, one that remembers your name
+and welcomes you and treats you always with respect.  You might want
+to use an object for that.  Let’s create a “Greeter” class.
 
      irb(main):024:0> class Greeter
      irb(main):025:1>   def initialize(name = "World")
@@ -1751,8 +2080,8 @@ an object for that.  Let’s create a “Greeter” class.
 
    The new keyword here is 'class'.  This defines a new class called
 'Greeter' and a bunch of methods for that class.  Also notice '@name'.
-This is an instance variable, and is available to all the methods of the
-class.  As you can see it’s used by 'say_hi' and 'say_bye'.
+This is an instance variable, and is available to all the methods of
+the class.  As you can see it’s used by 'say_hi' and 'say_bye'.
 
 Create an Object
 ----------------
@@ -1772,9 +2101,9 @@ Instance Variables
 ------------------
 
 Instance variables are hidden away inside the object.  They’re not
-terribly hidden, you see them whenever you inspect the object, and there
-are other ways of accessing them, but Ruby uses the good object-oriented
-approach of keeping data sort-of hidden away.
+terribly hidden, you see them whenever you inspect the object, and
+there are other ways of accessing them, but Ruby uses the good
+object-oriented approach of keeping data sort-of hidden away.
 
    So what methods do exist for Greeter objects?
 
@@ -1795,10 +2124,11 @@ approach of keeping data sort-of hidden away.
          :!, :==, :!=, :__send__, :equal?, :instance_eval, :instance_exec, :__id__]
 
    We only defined two methods.  What’s going on here?  Well this is
-all of the methods for Greeter objects, a complete list, including ones
-defined by ancestor classes.  If we want to just list methods defined
-for Greeter we can tell it to not include ancestors by passing it the
-parameter false, meaning we don’t want methods defined by ancestors.
+all of the methods for Greeter objects, a complete list, including
+ones defined by ancestor classes.  If we want to just list methods
+defined for Greeter we can tell it to not include ancestors by passing
+it the parameter false, meaning we don’t want methods defined by
+ancestors.
 
    'Object#instance_methods(false)'
 
@@ -1891,7 +2221,7 @@ a file instead of directly in the interactive Ruby interpreter IRB.
 
 The following table lists called chunk definition points.
 Chunk name                First definition point
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 <MegaGreeter--Initialize  See *note MegaGreeter---Initialize-Method::.
 Method>
 <MegaGreeter--Main        See *note MegaGreeter---Main-Script::.
@@ -1917,12 +2247,12 @@ This chunk is called by {'ri20min.rb'}; see its first definition at
 'say_hi' Method
 ---------------
 
-The 'say_hi' method has become a bit more complicated.  It now looks at
-the '@names' instance variable to make decisions.  If it's 'nil', it
-just prints out three dots.  No point greeting nobody, right?
+The 'say_hi' method has become a bit more complicated.  It now looks
+at the '@names' instance variable to make decisions.  If it's 'nil',
+it just prints out three dots.  No point greeting nobody, right?
 
-   If the '@names' object responds to each, it is something that you can
-iterate over, so iterate over it and greet each person in turn.
+   If the '@names' object responds to each, it is something that you
+can iterate over, so iterate over it and greet each person in turn.
 Finally, if '@names' is anything else, just let it get turned into a
 string automatically and do the default greeting.
 
@@ -1954,19 +2284,19 @@ Let’s look at that iterator in more depth:
        puts "Hello #{name}!"
      end
 
-   'each' is a method that accepts a block of code then runs that block
-of code for every element in a list, and the bit between 'do' and 'end'
-is just such a block.  A "block" is like an anonymous function or
-lambda.  The variable between pipe characters is the parameter for this
-block.
+   'each' is a method that accepts a block of code then runs that
+block of code for every element in a list, and the bit between 'do'
+and 'end' is just such a block.  A "block" is like an anonymous
+function or lambda.  The variable between pipe characters is the
+parameter for this block.
 
-   What happens here is that for every entry in a list, 'name' is bound
-to that list element, and then the expression puts '"Hello #{name}!"' is
-run with that name.
+   What happens here is that for every entry in a list, 'name' is
+bound to that list element, and then the expression puts '"Hello
+#{name}!"' is run with that name.
 
    Internally, the 'each' method will essentially call 'yield'
-'"Albert"', then 'yield' '"Brenda"' and then 'yield' '"Charles"', and so
-on.
+'"Albert"', then 'yield' '"Brenda"' and then 'yield' '"Charles"', and
+so on.
 
 The Real Power of Blocks
 ........................
@@ -1987,12 +2317,12 @@ Duck Typing
 ...........
 
 This method of not caring about the actual type of a variable, just
-relying on what methods it supports is known as "Duck Typing", as in "if
-it walks like a duck and quacks like a duck...".  The benefit of this is
-that it doesn't unnecessarily restrict the types of variables that are
-supported.  If someone comes up with a new kind of list class, as long
-as it implements the 'join' method with the same semantics as other
-lists, everything will work as planned.
+relying on what methods it supports is known as "Duck Typing", as in
+"if it walks like a duck and quacks like a duck...".  The benefit of
+this is that it doesn't unnecessarily restrict the types of variables
+that are supported.  If someone comes up with a new kind of list
+class, as long as it implements the 'join' method with the same
+semantics as other lists, everything will work as planned.
 
 <MegaGreeter--say_bye Method> ==
        # Say bye to everybody
@@ -2018,11 +2348,12 @@ There’s one final trick to notice, and that’s the line:
 
      if __FILE__ == $0
 
-   __FILE__ is the magic variable that contains the name of the current
-file.  $0 is the name of the file used to start the program.  This check
-says "If this is the main file being used..." This allows a file to be
-used as a library, and not to execute code in that context, but if the
-file is being used as an executable, then execute that code.
+   __FILE__ is the magic variable that contains the name of the
+current file.  $0 is the name of the file used to start the program.
+This check says "If this is the main file being used..." This allows a
+file to be used as a library, and not to execute code in that context,
+but if the file is being used as an executable, then execute that
+code.
 
 <MegaGreeter--Main Script> ==
        mg = MegaGreeter.new
@@ -2080,8 +2411,8 @@ File: Ruby2_5.info,  Node: Ruby from Other Languages,  Next: Important Language 
 Ruby from Other Languages
 (https://www.ruby-lang.org/en/documentation/ruby-from-other-languages/)
 
-   This document contains two major sections.  The first attempts to be
-a rapid-fire summary of what you can expect to see when going from
+   This document contains two major sections.  The first attempts to
+be a rapid-fire summary of what you can expect to see when going from
 language X to Ruby.  The second section tackles the major language
 features and how they might compare to what you’re already familiar
 with.
@@ -2103,21 +2434,21 @@ File: Ruby2_5.info,  Node: To Ruby From C and C++,  Next: To Ruby From Java,  Up
 Everything Is Differerent
 -------------------------
 
-It's difficult to write a bulleted list describing how your code will be
-different in Ruby from C or C++ because it's quite a large difference.
-One reason is that the Ruby runtime does so much for you.  Ruby seems
-about as far as you can get from C's "no hidden mechanism"
-principle--the whole point of Ruby is to make the human's job easier at
-the expense of making the runtime shoulder more of the work.
+It's difficult to write a bulleted list describing how your code will
+be different in Ruby from C or C++ because it's quite a large
+difference.  One reason is that the Ruby runtime does so much for you.
+Ruby seems about as far as you can get from C's "no hidden mechanism"
+principle--the whole point of Ruby is to make the human's job easier
+at the expense of making the runtime shoulder more of the work.
 
 Ruby is Quicker to Code But Slower to Execute
 .............................................
 
-That said, for one thing, you can expect your Ruby code to execute much
-more slowly than "equivalent" C or C++ code.  At the same time, your
-head will spin at how rapidly you can get a Ruby program up and running,
-as well as at how few lines of code it will take to write it.  Ruby is
-much much simpler than C++.
+That said, for one thing, you can expect your Ruby code to execute
+much more slowly than "equivalent" C or C++ code.  At the same time,
+your head will spin at how rapidly you can get a Ruby program up and
+running, as well as at how few lines of code it will take to write it.
+Ruby is much much simpler than C++.
 
 Dynamically Typed
 -----------------
@@ -2153,23 +2484,23 @@ Similarities With C
      keyword.  'Const'-ness is enforced by a naming convention instead
      -- names starting with a capital letter are for constants.
    * Strings go in double-quotes and are mutable
-   * Just like man pages, you can read most docs in your terminal window
-     -- though using the 'ri' command.
+   * Just like man pages, you can read most docs in your terminal
+     window -- though using the 'ri' command.
    * You’ve got the same sort of command-line debugger available.
 
 Similarities with C++
 ---------------------
 
    * You’ve got mostly the same operators (even '::').  '<<' is often
-     used for appending elements to a list.  One note though: with Ruby
-     you never use '->' -- it's always just '.'.
+     used for appending elements to a list.  One note though: with
+     Ruby you never use '->' -- it's always just '.'.
    * 'public', 'private', and 'protected' do similar jobs.
    * Inheritance syntax is still only one character, but it's '<'
      instead of ':'.
-   * You may put your code into "modules", similar to how 'namespace' in
-     C++ is used.
-   * Exceptions work in a similar manner, though the keyword names have
-     been changed to protect the innocent.
+   * You may put your code into "modules", similar to how 'namespace'
+     in C++ is used.
+   * Exceptions work in a similar manner, though the keyword names
+     have been changed to protect the innocent.
 
 Differences From C
 ------------------
@@ -2179,9 +2510,9 @@ Differences From C
      type at all).
    * There’s no macros or preprocessor; no casts; no pointers (nor
      pointer arithmetic); no typedefs, sizeof, or enums.
-   * There are no header files.  You just define your functions (usually
-     referred to as "methods") and classes in the main source code
-     files.
+   * There are no header files.  You just define your functions
+     (usually referred to as "methods") and classes in the main source
+     code files.
    * There’s no '#define'.  Just use constants instead.
    * All variables live on the heap.  Further, you don’t need to free
      them yourself -- the garbage collector takes care of that.
@@ -2203,15 +2534,17 @@ Differences From C
      call out to the block while it executes.
    * There are no variable declarations.  You just assign to new names
      on-the-fly when you need them.
-   * When tested for truth, only 'false' and 'nil' evaluate to a 'false'
-     value.  Everything else is true (including '0', '0.0', and '"0"').
+   * When tested for truth, only 'false' and 'nil' evaluate to a
+     'false' value.  Everything else is true (including '0', '0.0',
+     and '"0"').
    * There is no 'char' -- they are just 1-letter strings.
    * Strings don’t end with a null byte.
    * Array literals go in brackets instead of braces.
    * Arrays just automatically get bigger when you stuff more elements
      into them.
    * If you add two arrays, you get back a new and bigger array (of
-     course, allocated on the heap) instead of doing pointer arithmetic.
+     course, allocated on the heap) instead of doing pointer
+     arithmetic.
    * More often than not, everything is an expression (that is, things
      like 'while' statements actually evaluate to an 'rvalue').
 
@@ -2222,7 +2555,8 @@ Differences from C++
      is just an automatically dereferenced name for some object.
    * Objects are strongly but _dynamically_ typed.  The runtime
      discovers _at runtime_ if that method call actually works.
-   * The "constructor" is called 'initialize' instead of the class name.
+   * The "constructor" is called 'initialize' instead of the class
+     name.
    * All methods are always virtual.
    * "Class" ('static') variable names always begin with '@@' (as in
      '@@total_widgets').
@@ -2239,8 +2573,8 @@ Differences from C++
    * Parentheses for method calls are usually optional.
    * You can re-open a class anytime and add more methods.
    * There’s no need of C++ templates (since you can assign any kind
-     of object to a given variable, and types get figured out at runtime
-     anyway).  No casting either.
+     of object to a given variable, and types get figured out at
+     runtime anyway).  No casting either.
    * Iteration is done a bit differently.  In Ruby, you don't use a
      separate iterator object (like 'vector<T>::const_iterator iter').
      Instead you use an iterator method of the container object (like
@@ -2264,9 +2598,10 @@ Ruby is Less Verbose
 --------------------
 
 Java is mature.  It's tested.  And it's fast (contrary to what the
-anti-Java crowd may still claim).  It's also quite verbose.  Going from
-Java to Ruby, expect your code size to shrink down considerably.  You
-can also expect it to take less time to knock together quick prototypes.
+anti-Java crowd may still claim).  It's also quite verbose.  Going
+from Java to Ruby, expect your code size to shrink down considerably.
+You can also expect it to take less time to knock together quick
+prototypes.
 
 Similarities with Java
 ----------------------
@@ -2282,16 +2617,18 @@ Differences From Java
 ---------------------
 
    * You don’t need to compile your code.  You just run it directly.
-   * There are several different popular third-party GUI toolkits.  Ruby
-     users can try 'WxRuby', 'FXRuby', 'Ruby-GNOME2', 'Qt', or the
-     bundled-in 'Ruby Tk' for example.
+   * There are several different popular third-party GUI toolkits.
+     Ruby users can try 'WxRuby', 'FXRuby', 'Ruby-GNOME2', 'Qt', or
+     the bundled-in 'Ruby Tk' for example.
    * You use the 'end' keyword after defining things like classes,
      instead of having to put braces around blocks of code.
    * You have 'require' instead of 'import'.
    * All member variables are private.  From the outside, you access
      everything via methods.
-   * Parentheses in method calls are usually optional and often omitted.
-   * Everything is an object, including numbers like '2' and '3.14159'.
+   * Parentheses in method calls are usually optional and often
+     omitted.
+   * Everything is an object, including numbers like '2' and
+     '3.14159'.
    * There’s no static type checking.
    * Variable names are just labels.  They don’t have a type
      associated with them.
@@ -2302,15 +2639,15 @@ Differences From Java
      should tell you before you even run the code if you’re going to
      see an exception.
    * It's 'foo = Foo.new("hi")' instead of 'Foo foo = new Foo("hi")'.
-   * The constructor is always named 'initialize' instead of the name of
-     the class.
+   * The constructor is always named 'initialize' instead of the name
+     of the class.
    * You have "mixins" instead of interfaces.
    * YAML tends to be favored over XML.
    * It's 'nil' instead of 'null'.
-   * '==' and 'equals()' are handled differently in Ruby.  Use '==' when
-     you want to test "equivalence" in Ruby ('equals()' in Java).  Use
-     'equal?()' when you want to know if two objects are "the same"
-     ('==' in Java).
+   * '==' and 'equals()' are handled differently in Ruby.  Use '=='
+     when you want to test "equivalence" in Ruby ('equals()' in Java).
+     Use 'equal?()' when you want to know if two objects are "the
+     same" ('==' in Java).
 
 
 File: Ruby2_5.info,  Node: To Ruby From Perl,  Next: To Ruby From PHP,  Prev: To Ruby From Java,  Up: Ruby from Other Languages
@@ -2321,8 +2658,8 @@ File: Ruby2_5.info,  Node: To Ruby From Perl,  Next: To Ruby From PHP,  Prev: To
 Perl is awesome.  Perl's docs are awesome.  The Perl community is --
 awesome.  However, the language is fairly large and arguably complex.
 For those Perlers who long for a simpler time, a more orthogonal
-language, and elegant OO features built-in from the beginning, Ruby may
-be for you.
+language, and elegant OO features built-in from the beginning, Ruby
+may be for you.
 
 Similarities with Perl
 ----------------------
@@ -2362,17 +2699,19 @@ Differences From Perl
      Incidentally, you end things like function definitions, class
      definitions, and case statements with the 'end' keyword.
    * Objects are strongly typed.  You’ll be manually calling
-     'foo.to_i', 'foo.to_s', etc., if you need to convert between types.
+     'foo.to_i', 'foo.to_s', etc., if you need to convert between
+     types.
    * There’s no 'eq', 'ne', 'lt', 'gt', 'ge', nor 'le'.
    * There’s no diamond operator ('<>').  You usually use
      'IO.some_method' instead.
    * The fat comma '=>' is only used for hash literals.
    * There’s no 'undef'.  In Ruby you have 'nil'.  'nil' is an object
      (like anything else in Ruby).  It's not the same as an undefined
-     variable.  It evaluates to 'false' if you treat it like a boolean.
-   * When tested for truth, only 'false' and 'nil' evaluate to a 'false'
-     value.  Everything else is 'true' (including '0', '0.0', and
-     '"0"').
+     variable.  It evaluates to 'false' if you treat it like a
+     boolean.
+   * When tested for truth, only 'false' and 'nil' evaluate to a
+     'false' value.  Everything else is 'true' (including '0', '0.0',
+     and '"0"').
 
 
 File: Ruby2_5.info,  Node: To Ruby From PHP,  Next: To Ruby From Python,  Prev: To Ruby From Perl,  Up: Ruby from Other Languages
@@ -2389,8 +2728,8 @@ Similarities with PHP
 
    * Ruby is dynamically typed, like in PHP, so you don’t need to
      worry about having to declare variables.
-   * There are classes, and you can control access to them like in PHP 5
-     (public, protected and private).
+   * There are classes, and you can control access to them like in PHP
+     5 (public, protected and private).
    * Some variables start with '$', like in PHP (but not all).
    * There's 'eval', too.
    * You can use string interpolation.  Instead of doing '"$foo is a
@@ -2399,16 +2738,17 @@ Similarities with PHP
    * There’s heredocs.
    * Ruby has exceptions, like PHP 5.
    * There’s a fairly large standard library.
-   * Arrays and hashes work like expected, if you exchange 'array()' for
-     '{' and '}': 'array('a' => 'b')' becomes '{'a' => 'b'}'.
-   * 'true' and 'false' behave like in PHP, but 'null' is called 'nil'.
+   * Arrays and hashes work like expected, if you exchange 'array()'
+     for '{' and '}': 'array('a' => 'b')' becomes '{'a' => 'b'}'.
+   * 'true' and 'false' behave like in PHP, but 'null' is called
+     'nil'.
 
 Differences From PHP
 --------------------
 
    * There’s strong typing.  You’ll need to call 'to_s', 'to_i' etc.
-     to convert between strings, integers and so on, instead of relying
-     on the language to do it.
+     to convert between strings, integers and so on, instead of
+     relying on the language to do it.
    * Strings, numbers, arrays, hashes, etc.  are objects.  Instead of
      calling 'abs(-1)' it’s '-1.abs'.
    * Parentheses are optional in method calls, except to clarify which
@@ -2422,7 +2762,8 @@ Differences From PHP
    * Hashes and arrays are not interchangeable.
    * Only 'false' and 'nil' are false: '0', 'array()' and '""' are all
      true in conditionals.
-   * Almost everything is a method call, even 'raise' ('throw' in PHP).
+   * Almost everything is a method call, even 'raise' ('throw' in
+     PHP).
 
 
 File: Ruby2_5.info,  Node: To Ruby From Python,  Prev: To Ruby From PHP,  Up: Ruby from Other Languages
@@ -2430,9 +2771,9 @@ File: Ruby2_5.info,  Node: To Ruby From Python,  Prev: To Ruby From PHP,  Up: Ru
 2.4.6.5 To Ruby From Python
 ...........................
 
-Python is another very nice general purpose programming language.  Going
-from Python to Ruby, you'll find that there's a little bit more syntax
-to learn than with Python.
+Python is another very nice general purpose programming language.
+Going from Python to Ruby, you'll find that there's a little bit more
+syntax to learn than with Python.
 
 Similarities With Python
 ------------------------
@@ -2441,8 +2782,8 @@ Similarities With Python
    * You can read docs on the command line (with the 'ri' command
      instead of 'pydoc').
    * There are no special line terminators (except the usual newline).
-   * String literals can span multiple lines like Python's triple-quoted
-     strings.
+   * String literals can span multiple lines like Python's
+     triple-quoted strings.
    * Brackets are for lists, and braces are for dicts (which, in Ruby,
      are called "hashes").
    * Arrays work the same (adding them makes one long array, but
@@ -2469,8 +2810,8 @@ Differences From Python
      mutable.
    * Double-quoted strings allow escape sequences (like '\t') and a
      special "expression substitution" syntax (which allows you to
-     insert the results of Ruby expressions directly into other strings
-     without having to '"add " + "strings " + "together"').
+     insert the results of Ruby expressions directly into other
+     strings without having to '"add " + "strings " + "together"').
      Single-quoted strings are like Python's 'r"raw strings"'.
    * There are no "new style" and "old style" classes.  Just one kind.
      (Python 3+ doesn’t have this issue, but it isn’t fully backward
@@ -2486,12 +2827,12 @@ Differences From Python
      Python prevents modification of built-ins -- Ruby does not.
    * You’ve got 'true' and 'false' instead of 'True' and 'False' (and
      'nil' instead of 'None').
-   * When tested for truth, only 'false' and 'nil' evaluate to a 'false'
-     value.  Everything else is 'true' (including '0', '0.0', '""', and
-     '[]').
+   * When tested for truth, only 'false' and 'nil' evaluate to a
+     'false' value.  Everything else is 'true' (including '0', '0.0',
+     '""', and '[]').
    * It's 'elsif' instead of 'elif'.
-   * It's 'require' instead of 'import'.  Otherwise though, usage is the
-     same.
+   * It's 'require' instead of 'import'.  Otherwise though, usage is
+     the same.
    * The usual-style comments on the line(s) above things (instead of
      docstrings below them) are used for generating docs.
    * There are a number of shortcuts that, although give you more to
@@ -2501,11 +2842,11 @@ Differences From Python
      statement).  You can reset a variable to 'nil', allowing the old
      contents to be garbage collected, but the variable will remain in
      the symbol table as long as it is in scope.
-   * The 'yield' keyword behaves differently.  In Python it will return
-     execution to the scope outside the function's invocation.  External
-     code is responsible for resuming the function.  In Ruby 'yield'
-     will execute another function that has been passed as the final
-     argument, then immediately resume.
+   * The 'yield' keyword behaves differently.  In Python it will
+     return execution to the scope outside the function's invocation.
+     External code is responsible for resuming the function.  In Ruby
+     'yield' will execute another function that has been passed as the
+     final argument, then immediately resume.
    * Python supports just one kind of anonymous functions, lambdas,
      while Ruby contains blocks, Procs, and lambdas.
 
@@ -2515,8 +2856,8 @@ File: Ruby2_5.info,  Node: Important Language Features,  Next: Learning Ruby,  P
 2.4.7 Important Language Features
 ---------------------------------
 
-Here are some pointers and hints on major Ruby features you'll see while
-learning Ruby.
+Here are some pointers and hints on major Ruby features you'll see
+while learning Ruby.
 
 * Menu:
 
@@ -2546,9 +2887,9 @@ File: Ruby2_5.info,  Node: Pointers on Iteration,  Next: Everything has a value,
 
 Two Ruby features that are a bit unlike what you may have seen before,
 and which take some getting used to, are "blocks" and iterators.
-Instead of looping over an index (like with C, C++, or pre-1.5 Java), or
-looping over a list (like Perl's 'for (@a) {...}', or Python's 'for i in
-aList: ...'), with Ruby you'll very often instead see:
+Instead of looping over an index (like with C, C++, or pre-1.5 Java),
+or looping over a list (like Perl's 'for (@a) {...}', or Python's 'for
+i in aList: ...'), with Ruby you'll very often instead see:
 
      some_list.each do |this_item|
        # We're inside the block.
@@ -2571,7 +2912,8 @@ File: Ruby2_5.info,  Node: Everything has a value,  Next: Symbols are not lightw
 ..............................
 
 There’s no difference between an expression and a statement.
-Everything has a value, even if that value is 'nil'.  This is possible:
+Everything has a value, even if that value is 'nil'.  This is
+possible:
 
      x = 10
      y = 11
@@ -2588,11 +2930,12 @@ File: Ruby2_5.info,  Node: Symbols are not lightweight Strings,  Next: Everythin
 2.4.7.3 Symbols are not lightweight Strings
 ...........................................
 
-Many Ruby newbies struggle with understanding what Symbols are, and what
-they can be used for.
+Many Ruby newbies struggle with understanding what Symbols are, and
+what they can be used for.
 
-   "Symbols" can best be described as identities.  A symbol is all about
-who it is, not what it is.  Fire up 'irb' and see the difference:
+   "Symbols" can best be described as identities.  A symbol is all
+about who it is, not what it is.  Fire up 'irb' and see the
+difference:
 
      irb(main):001:0> :george.object_id == :george.object_id
      => true
@@ -2601,15 +2944,16 @@ who it is, not what it is.  Fire up 'irb' and see the difference:
      irb(main):003:0>
 
    The 'object_id' methods returns the identity of an Object.  If two
-objects have the same 'object_id', they are the same (point to the same
-Object in memory).
+objects have the same 'object_id', they are the same (point to the
+same Object in memory).
 
-   As you can see, once you have used a Symbol once, any Symbol with the
-same characters references the same Object in memory.  For any given two
-Symbols that represent the same characters, the 'object_id's match.
+   As you can see, once you have used a Symbol once, any Symbol with
+the same characters references the same Object in memory.  For any
+given two Symbols that represent the same characters, the 'object_id's
+match.
 
-   Now take a look at the String ('“george”').  The 'object_id's
-don't match.  That means they're referencing two different objects in
+   Now take a look at the String ('“george”').  The 'object_id's don't
+match.  That means they're referencing two different objects in
 memory.  Whenever you use a new String, Ruby allocates memory for it.
 
    If you're in doubt whether to use a Symbol or a String, consider
@@ -2639,9 +2983,9 @@ File: Ruby2_5.info,  Node: Variable Constants,  Next: Naming conventions,  Prev:
 2.4.7.5 Variable Constants
 ..........................
 
-Constants are not really constant.  If you modify an already initialized
-constant, it will trigger a warning, but not halt your program.  That
-isn't to say you should redefine constants, though.
+Constants are not really constant.  If you modify an already
+initialized constant, it will trigger a warning, but not halt your
+program.  That isn't to say you should redefine constants, though.
 
 
 File: Ruby2_5.info,  Node: Naming conventions,  Next: Keyword arguments,  Prev: Variable Constants,  Up: Important Language Features
@@ -2688,10 +3032,10 @@ File: Ruby2_5.info,  Node: The universal truth,  Next: Access modifiers are Meth
 2.4.7.8 The universal truth
 ...........................
 
-In Ruby, everything except 'nil' and 'false' is considered true.  In C,
-Python and many other languages, '0' and possibly other values, such as
-empty lists, are considered false.  Take a look at the following Python
-code (the example applies to other languages, too):
+In Ruby, everything except 'nil' and 'false' is considered true.  In
+C, Python and many other languages, '0' and possibly other values,
+such as empty lists, are considered false.  Take a look at the
+following Python code (the example applies to other languages, too):
 
      # in Python
      if 0:
@@ -2727,9 +3071,9 @@ Access modifiers apply until the end of scope.
      end
 
    You might expect 'another_method' to be public.  Not so.  The
-'private' access modifier continues until the end of the scope, or until
-another access modifier pops up, whichever comes first.  By default,
-methods are public:
+'private' access modifier continues until the end of the scope, or
+until another access modifier pops up, whichever comes first.  By
+default, methods are public:
 
      class MyClass
        # Now a_method is public
@@ -2761,14 +3105,14 @@ else; and 'private' means nobody besides the class's instances can
 access the method.
 
    Ruby differs slightly.  'public' is, naturally, public.  'private'
-means the method(s) are accessible only when they can be called without
-an explicit receiver.  Only 'self' is allowed to be the receiver of a
-private method call.
+means the method(s) are accessible only when they can be called
+without an explicit receiver.  Only 'self' is allowed to be the
+receiver of a private method call.
 
    'protected' is the one to be on the lookout for.  A 'protected'
 method can be called from a class or descendant class instances, but
-also with another instance as its receiver.  Here is an example (adapted
-from The Ruby Language FAQ):
+also with another instance as its receiver.  Here is an example
+(adapted from The Ruby Language FAQ):
 
      class Test
        # public by default
@@ -2811,8 +3155,8 @@ File: Ruby2_5.info,  Node: Classes are open,  Next: Funny method names,  Prev: M
 
 Ruby classes are open.  You can open them up, add to them, and change
 them at any time.  Even core classes, like 'Fixnum' or even 'Object',
-the parent of all objects.  Ruby on Rails defines a bunch of methods for
-dealing with time on 'Fixnum'.  Watch:
+the parent of all objects.  Ruby on Rails defines a bunch of methods
+for dealing with time on 'Fixnum'.  Watch:
 
      class Fixnum
        def hours
@@ -2837,9 +3181,9 @@ marks (e.g.  'Array#empty?', which returns 'true' if the receiver is
 empty).  Potentially "dangerous" methods by convention end with
 exclamation marks (e.g.  methods that modify 'self' or the arguments,
 'exit!', etc.).  Not all methods that change their arguments end with
-exclamation marks, though.  'Array#replace' replaces the contents of an
-array with the contents of another array.  It doesn’t make much sense
-to have a method like that that doesn't modify self.
+exclamation marks, though.  'Array#replace' replaces the contents of
+an array with the contents of another array.  It doesn’t make much
+sense to have a method like that that doesn't modify self.
 
 
 File: Ruby2_5.info,  Node: Singleton methods,  Next: Missing methods,  Prev: Funny method names,  Up: Important Language Features
@@ -2847,8 +3191,8 @@ File: Ruby2_5.info,  Node: Singleton methods,  Next: Missing methods,  Prev: Fun
 2.4.7.13 Singleton methods
 ..........................
 
-"Singleton methods" are per-object methods.  They are only available on
-the Object you defined it on.
+"Singleton methods" are per-object methods.  They are only available
+on the Object you defined it on.
 
      class Car
        def inspect
@@ -2875,10 +3219,10 @@ File: Ruby2_5.info,  Node: Missing methods,  Next: Message passing --- not funct
 ........................
 
 Ruby doesn't give up if it can't find a method that responds to a
-particular message.  It calls the 'method_missing' method with the name
-of the method it couldn't find and the arguments.  By default,
-'method_missing' raises a 'NameError' exception, but you can redefine it
-to better fit your application, and many libraries do.  Here is an
+particular message.  It calls the 'method_missing' method with the
+name of the method it couldn't find and the arguments.  By default,
+'method_missing' raises a 'NameError' exception, but you can redefine
+it to better fit your application, and many libraries do.  Here is an
 example:
 
      # id is the name of the method called, the * syntax collects
@@ -2892,8 +3236,8 @@ example:
      # => Method __ was called, but not found. It has these
      # arguments: a, b, 10
 
-   The code above just prints the details of the call, but you are free
-to handle the message in any way that is appropriate.
+   The code above just prints the details of the call, but you are
+free to handle the message in any way that is appropriate.
 
 
 File: Ruby2_5.info,  Node: Message passing --- not function calls,  Next: Blocks are Objects,  Prev: Missing methods,  Up: Important Language Features
@@ -2916,8 +3260,8 @@ File: Ruby2_5.info,  Node: Blocks are Objects,  Next: Operators are syntactic su
 2.4.7.16 Blocks are Objects
 ...........................
 
-Blocks (closures, really) are heavily used by the standard library.  To
-call a block, you can either use 'yield', or make it a 'Proc' by
+Blocks (closures, really) are heavily used by the standard library.
+To call a block, you can either use 'yield', or make it a 'Proc' by
 appending a special argument to the argument list, like so:
 
      def block(&the_block)
@@ -2955,11 +3299,11 @@ rules) for method calls.  You can, for example, override 'Fixnum'’s
 
    You don’t need C++'s 'operator+', etc.
 
-   You can even have array-style access if you define the '[]' and '[]='
-methods.  To define the unary '+' and '-' (think '+1' and '-2'), you
-must define the '+@' and '-@' methods, respectively.  The operators
-below are not syntactic sugar, though.  They are not methods, and cannot
-be redefined:
+   You can even have array-style access if you define the '[]' and
+'[]=' methods.  To define the unary '+' and '-' (think '+1' and '-2'),
+you must define the '+@' and '-@' methods, respectively.  The
+operators below are not syntactic sugar, though.  They are not
+methods, and cannot be redefined:
 
      =, .., ..., not, &&, and, ||, or, ::
 
@@ -2987,8 +3331,8 @@ File: Ruby2_5.info,  Node: Ruby Essentials,  Next: Learn to Program,  Prev: Lear
 
 Ruby Essentials (http://www.techotopia.com/index.php/Ruby_Essentials)
 
-   Ruby Essentials is a free on-line book designed to provide a concise
-and easy to follow [sic] guide to learning Ruby.
+   Ruby Essentials is a free on-line book designed to provide a
+concise and easy to follow [sic] guide to learning Ruby.
 
 * Menu:
 
@@ -3022,9 +3366,9 @@ File: Ruby2_5.info,  Node: Block Ruby Comments,  Next: Variable Scope,  Prev: In
 2.4.9.2 Block Ruby Commenets
 ............................
 
-Multiple lines of text or code can be defined as comments using the Ruby
-'=begin' and '=end' comment markers.  These are known as the "comment
-block markers".
+Multiple lines of text or code can be defined as comments using the
+Ruby '=begin' and '=end' comment markers.  These are known as the
+"comment block markers".
 
 
 File: Ruby2_5.info,  Node: Variable Scope,  Prev: Block Ruby Comments,  Up: Ruby Essentials
@@ -3048,8 +3392,8 @@ Detecting The Scope Of A Variable
 
 Sometimes you need to find out the scope programmatically.  A useful
 technique to find out the scope of a variable is to use the 'defined?'
-method.  'defined?' will return the scope of the variable referenced, or
-'nil' if the variable is not defined in the current context.
+method.  'defined?' will return the scope of the variable referenced,
+or 'nil' if the variable is not defined in the current context.
 
      x = 10
      => 10
@@ -3127,8 +3471,8 @@ File: Ruby2_5.info,  Node: Ruby User's Guide,  Next: Ruby Programming Wikibook, 
 -----------------------
 
 Translated from the original Japanese version written by Yukihiro
-Matsumoto (the creator of Ruby), this version, by Goto Kentaro and Mark
-Slagell, is a nice overview of many aspects of the Ruby language.
+Matsumoto (the creator of Ruby), this version, by Goto Kentaro and
+Mark Slagell, is a nice overview of many aspects of the Ruby language.
 
    Ruby User's Guide (http://www.rubyist.net/~slagell/ruby/)
 
@@ -3230,8 +3574,8 @@ definition of "n factorial" is:
 Command Line Arguments -- In Array ARGV
 .......................................
 
-'ARGV' is an array which contains the command line arguments, and 'to_i'
-converts a character string to an integer.(1)
+'ARGV' is an array which contains the command line arguments, and
+'to_i' converts a character string to an integer.(1)
 
 The 'end' Statement
 ...................
@@ -3246,9 +3590,9 @@ Takeaway -- 'return' Statement Optional
 
 You may also notice the lack of a 'return' statement.
 
-     [A 'return' statement] is unneeded because *a ruby function returns
-     the last thing that was evaluated in it*.  Use of a 'return'
-     statement here is permissible but unnecessary.
+     [A 'return' statement] is unneeded because *a ruby function
+     returns the last thing that was evaluated in it*.  Use of a
+     'return' statement here is permissible but unnecessary.
 
 Running 'fact.rb'
 .................
@@ -3284,8 +3628,8 @@ memory.  So 400!  can be calculated:
 The Input/Evaluation Loop
 -------------------------
 
-When you invoke ruby with no arguments, it reads commands from standard
-input and executes them after the end of input:
+When you invoke ruby with no arguments, it reads commands from
+standard input and executes them after the end of input:
 
      % ruby
      puts "hello world"
@@ -3301,8 +3645,8 @@ Ruby also comes with a program called 'eval.rb' (*note Ruby Eval
 Utility::) that allows you to enter ruby code from the keyboard in an
 interactive loop, showing you the results as you go.  It will be used
 extensively through the rest of this guide.  You should use this
-enhanced 'eval.rb' (http://www.rubyist.net/~slagell/ruby/eval.txt) that
-adds visual indenting assistance, warning reports, and color
+enhanced 'eval.rb' (http://www.rubyist.net/~slagell/ruby/eval.txt)
+that adds visual indenting assistance, warning reports, and color
 highlighting.
 
    Here is a short 'eval.rb' session:
@@ -3323,9 +3667,9 @@ No Distinction Between Statement and Expression
      evaluating a piece of code basically means the same thing as
      executing it.
 
-   Here, 'nil' indicates that 'puts' does not return a meaningful value.
-Note that we can leave this interpreter loop by saying 'exit', although
-<C-D> still works too.
+   Here, 'nil' indicates that 'puts' does not return a meaningful
+value.  Note that we can leave this interpreter loop by saying 'exit',
+although <C-D> still works too.
 
    ---------- Footnotes ----------
 
@@ -3345,8 +3689,9 @@ A string may be double-quoted ('"..."') or single-quoted (''...'').
 
    Double- and single-quoting have different effects in some cases.  A
 double-quoted string allows character escapes by a leading backslash,
-and the evaluation of embedded expressions using '#{}'.  A single-quoted
-string does not do this interpreting; what you see is what you get.
+and the evaluation of embedded expressions using '#{}'.  A
+single-quoted string does not do this interpreting; what you see is
+what you get.
 
 String Methods
 --------------
@@ -3411,34 +3756,37 @@ between 'while' and its corresponding 'end' will execute repeatedly as
 long as some specified condition remains true.  In this case,
 'guess=STDIN.gets' is both an active statement (collecting a line of
 user input and storing it as guess), and a condition (if there is no
-input, guess, which repesents the value of the whole 'guess=STDIN.gets'
-expression, has a 'nil' value, causing while to stop looping).
+input, guess, which repesents the value of the whole
+'guess=STDIN.gets' expression, has a 'nil' value, causing while to
+stop looping).
 
 Standard Input Object -- STDIN
 ------------------------------
 
-STDIN is the standard input object.  Usually, 'guess=gets' does the same
-thing as 'guess=STDIN.gets'.  In line 5 we read one line from standard
-input by the method STDIN.'gets'.  If EOF (end of file) occurs while
-getting the line, 'gets' returns 'nil'.  So the code associated with
-this 'while' will repeat until it sees <^D> signifying the end of input.
+STDIN is the standard input object.  Usually, 'guess=gets' does the
+same thing as 'guess=STDIN.gets'.  In line 5 we read one line from
+standard input by the method STDIN.'gets'.  If EOF (end of file)
+occurs while getting the line, 'gets' returns 'nil'.  So the code
+associated with this 'while' will repeat until it sees <^D> signifying
+the end of input.
 
 'guess.chop!'
 -------------
 
-'guess.chop!' in line 6 deletes the last character from 'guess'; in this
-case it will always be a 'newline' character, 'gets' includes that
-character to reflect the user's <return> keystroke, but we're not
+'guess.chop!' in line 6 deletes the last character from 'guess'; in
+this case it will always be a 'newline' character, 'gets' includes
+that character to reflect the user's <return> keystroke, but we're not
 interested in it.
 
 Printing Variables
 ------------------
 
 In line 15 we print the secret word.  We have written this as a 'puts'
-('put s'tring) statement with two arguments, which are printed one after
-the other; but it would have been equally effective to do it with a
-single argument, writing secret as '#{secret}' to make it clear that it
-is a variable to be evaluated, not a literal word to be printed:
+('put s'tring) statement with two arguments, which are printed one
+after the other; but it would have been equally effective to do it
+with a single argument, writing secret as '#{secret}' to make it clear
+that it is a variable to be evaluated, not a literal word to be
+printed:
 
      puts "the word is #{secret}."
 
@@ -3448,27 +3796,27 @@ is a variable to be evaluated, not a literal word to be printed:
 'print' vs 'puts'
 -----------------
 
-Also, we are by now used to the idea of using 'puts' for standard script
-output, but this script uses 'print' instead, in lines 4 and 13.  They
-are not quite the same thing.  'print' outputs exactly what it is given;
-'puts' also ensures that the output line ends.  Using 'print' in lines 4
-and 13 leaves the cursor next to what was just printed, rather than
-moving it to the beginning of the next line.  This creates a
-recognizable prompt for user input.  In general, the four output calls
-below are equivalent:
+Also, we are by now used to the idea of using 'puts' for standard
+script output, but this script uses 'print' instead, in lines 4 and
+13.  They are not quite the same thing.  'print' outputs exactly what
+it is given; 'puts' also ensures that the output line ends.  Using
+'print' in lines 4 and 13 leaves the cursor next to what was just
+printed, rather than moving it to the beginning of the next line.
+This creates a recognizable prompt for user input.  In general, the
+four output calls below are equivalent:
 
 Flushing Standard Output
 ------------------------
 
-Sometimes a text window is programmed to _buffer_ output for the sake of
-speed, collecting individual characters and displaying them only when it
-is given a <newline> character.  So if the guessing game script
-misbehaves by not showing the prompt lines until after the user supplies
-a guess, _buffering_ is the likely culprit.  To make sure this doesn't
-happen, you can "flush" the output as soon as you have printed the
-prompt.  It tells the standard output device (an object named STDOUT),
-"don't wait; display what you have in your buffer right now."  '04 print
-"guess? "; STDOUT.flush'.
+Sometimes a text window is programmed to _buffer_ output for the sake
+of speed, collecting individual characters and displaying them only
+when it is given a <newline> character.  So if the guessing game
+script misbehaves by not showing the prompt lines until after the user
+supplies a guess, _buffering_ is the likely culprit.  To make sure
+this doesn't happen, you can "flush" the output as soon as you have
+printed the prompt.  It tells the standard output device (an object
+named STDOUT), "don't wait; display what you have in your buffer right
+now."  '04 print "guess? "; STDOUT.flush'.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Regular Expressions,  Next: Ruby User's Guide On Arrays And Hashes,  Prev: Ruby User's Guide On Puzzle Program,  Up: Ruby User's Guide
@@ -3493,8 +3841,8 @@ Program To Help Experiment With Regular Expressions
 ---------------------------------------------------
 
 Here is a little program to help you experiment with regular
-expressions.  Store it as 'regx.rb' and run it by typing 'ruby regx.rb'
-at the command line.
+expressions.  Store it as 'regx.rb' and run it by typing 'ruby
+regx.rb' at the command line.
 
    The program requires input twice, once for a string and once for a
 regular expression.  The string is tested against the regular
@@ -3524,9 +3872,9 @@ Explication of 'regx.rb'
 The 'break' Statement
 .....................
 
-In line 6, the condition for 'while' is hardwired to 'true', so it forms
-what looks like an infinite loop.  However we put 'break' statements in
-the 8th and 10th lines to escape the loop.
+In line 6, the condition for 'while' is hardwired to 'true', so it
+forms what looks like an infinite loop.  However we put 'break'
+statements in the 8th and 10th lines to escape the loop.
 
 'if' Modifiers
 ..............
@@ -3535,13 +3883,13 @@ the 8th and 10th lines to escape the loop.
      break if pat.empty?
 
    These two 'break's are also an example of "if modifiers".  An 'if'
-modifier executes the statement on its left hand side if and only if the
-specified condition is satisfied.  This construction is unusual in that
-it operates logically from right to left, but it is provided because for
-many people it mimics a similar pattern in natural speech.  It also has
-the advantage of brevity, as it needs no 'end' statement to tell the
-interpreter how much of the following code is supposed to be
-conditional.  An 'if' modifier is conventionally used in situations
+modifier executes the statement on its left hand side if and only if
+the specified condition is satisfied.  This construction is unusual in
+that it operates logically from right to left, but it is provided
+because for many people it mimics a similar pattern in natural speech.
+It also has the advantage of brevity, as it needs no 'end' statement
+to tell the interpreter how much of the following code is supposed to
+be conditional.  An 'if' modifier is conventionally used in situations
 where a statement and condition are short enough to fit comfortably
 together on one script line.
 
@@ -3554,14 +3902,14 @@ Nondestructive 'chops' vs Destructive 'chops!'
 ..............................................
 
 In lines 7 and 9 we have a "non-destructive" 'chop'; again, we're
-getting rid of the unwanted newline character we always get from 'gets'.
-Add the exclamation point, and we have a "destructive" chop.  What's the
-difference?  In ruby, we conventionally attach '!' or '?' to the end of
-certain method names.  The exclamation point ('!', sometimes pronounced
-aloud as "bang!")  indicates something potentially destructive, that is
-to say, something that can change the value of what it touches.  'chop!'
-affects a string directly, but 'chop' gives you a chopped copy without
-damaging the original.
+getting rid of the unwanted newline character we always get from
+'gets'.  Add the exclamation point, and we have a "destructive" chop.
+What's the difference?  In ruby, we conventionally attach '!' or '?'
+to the end of certain method names.  The exclamation point ('!',
+sometimes pronounced aloud as "bang!")  indicates something
+potentially destructive, that is to say, something that can change the
+value of what it touches.  'chop!' affects a string directly, but
+'chop' gives you a chopped copy without damaging the original.
 
 'chomp' And 'chomp!'
 ....................
@@ -3570,8 +3918,8 @@ You'll also sometimes see 'chomp' and 'chomp'!  used.  These are more
 selective: the end of a string gets bit off only if it happens to be a
 newline.  So for example, '"XYZ".chomp!' does nothing.  If you need a
 trick to remember the difference, think of a person or animal tasting
-something before deciding to take a bite, as opposed to an axe chopping
-indiscriminately.
+something before deciding to take a bite, as opposed to an axe
+chopping indiscriminately.
 
 Predicate Method Naming Convention
 ..................................
@@ -3585,13 +3933,14 @@ Regular Expressions At Work
 
 Line 11 creates a regular expression object out of the string supplied
 by the user.  The real work is finally done in line 12, which uses
-'gsub' to globally substitute each match of that expression with itself,
-but surrounded by ansi markups; also the same line outputs the results.
+'gsub' to globally substitute each match of that expression with
+itself, but surrounded by ansi markups; also the same line outputs the
+results.
 
    In line 12 we see '\\&'.  This is a little tricky.  Since the
-replacement string is in double quotes, the pair of backslashes will be
-interpreted as a single backslash; what 'gsub' actually sees will be
-'\&', and that happens to be a special code that refers to whatever
+replacement string is in double quotes, the pair of backslashes will
+be interpreted as a single backslash; what 'gsub' actually sees will
+be '\&', and that happens to be a special code that refers to whatever
 matched the pattern in the first place.  So the new string, when
 displayed, looks just like the old one, except that the parts that
 matched the given pattern are highlighted in inverse video.
@@ -3638,18 +3987,19 @@ Converted To And From Strings
 -----------------------------
 
 Arrays can be converted to and from strings, using 'join' and 'split'
-respecitvely.  'str = ary.join(":")' => '"1:2:3"'.  'str.split(":")' =>
-'["1", "2", "3"]'.
+respecitvely.  'str = ary.join(":")' => '"1:2:3"'.  'str.split(":")'
+=> '["1", "2", "3"]'.
 
 Hashes
 ------
 
-An "associative array" has elements that are accessed not by sequential
-index numbers, but by keys which can have any sort of value.  Such an
-array is sometimes called a "hash" or "dictionary"; in the ruby world,
-we prefer the term hash.  A hash can be constructed by quoting pairs of
-items within curly braces ('{}').  You use a key to find something in a
-hash, much as you use an index to find something in an array.
+An "associative array" has elements that are accessed not by
+sequential index numbers, but by keys which can have any sort of
+value.  Such an array is sometimes called a "hash" or "dictionary"; in
+the ruby world, we prefer the term hash.  A hash can be constructed by
+quoting pairs of items within curly braces ('{}').  You use a key to
+find something in a hash, much as you use an index to find something
+in an array.
 
      ruby> h = {1 => 2, "2" => "4"}
         {1=>2, "2"=>"4"}
@@ -3680,8 +4030,8 @@ The 'case' Statement
 --------------------
 
 We use the 'case' statement to test a sequence of conditions.  This is
-superficially similar to 'switch' in C and Java but is considerably more
-powerful, as we shall see.
+superficially similar to 'switch' in C and Java but is considerably
+more powerful, as we shall see.
 
      ruby> i=8
      ruby> case i
@@ -3723,22 +4073,23 @@ the 'when' condition.
 The 'while' Statement
 ---------------------
 
-Ruby provides convenient ways to construct loops, although you will find
-in the next chapter that learning how to use iterators will make it
-unnecessary to write explicit loops very often.
+Ruby provides convenient ways to construct loops, although you will
+find in the next chapter that learning how to use iterators will make
+it unnecessary to write explicit loops very often.
 
-   A 'while' is a repeated 'if'.  We used it in our word-guessing puzzle
-and in the regular expression programs (see the previous chapter);
-there, it took the form 'while condition ... end' surrounding a block of
-code to be repeated while condition was true.  But 'while' and 'if' can
-as easily be applied to individual statements: 'puts "It's zero." if
-i==0' => 'It's zero.' and 'puts i+=1 while i<3' => '1 2 3'.
+   A 'while' is a repeated 'if'.  We used it in our word-guessing
+puzzle and in the regular expression programs (see the previous
+chapter); there, it took the form 'while condition ... end'
+surrounding a block of code to be repeated while condition was true.
+But 'while' and 'if' can as easily be applied to individual
+statements: 'puts "It's zero." if i==0' => 'It's zero.' and 'puts i+=1
+while i<3' => '1 2 3'.
 
 Negated Conditions
 ..................
 
-Sometimes you want to negate a test condition.  An 'unless' is a negated
-'if', and an 'until' is a negated 'while'.
+Sometimes you want to negate a test condition.  An 'unless' is a
+negated 'if', and an 'until' is a negated 'while'.
 
 Interrupting A Loop
 -------------------
@@ -3746,8 +4097,8 @@ Interrupting A Loop
 There are four ways to interrupt the progress of a loop from inside.
 
   1. First, 'break' means, as in C, to escape from the loop entirely.
-  2. Second, 'next' skips to the beginning of the next iteration of the
-     loop (corresponding to C's continue).
+  2. Second, 'next' skips to the beginning of the next iteration of
+     the loop (corresponding to C's continue).
   3. Third, ruby has 'redo', which restarts the current iteration.
   4. The fourth way to get out of a loop from the inside is 'return'.
      An evaluation of 'return' causes escape not only from a loop but
@@ -3755,8 +4106,8 @@ There are four ways to interrupt the progress of a loop from inside.
      it will be returned from the method call, otherwise 'nil' is
      returned.
 
-   The following is C code illustrating the meanings of 'break', 'next',
-and 'redo':
+   The following is C code illustrating the meanings of 'break',
+'next', and 'redo':
 
      while (condition) {
      label_redo:
@@ -3773,10 +4124,11 @@ and 'redo':
 The 'for' Statement
 -------------------
 
-C programmers will be wondering by now how to make a 'for' loop.  Ruby's
-'for' can serve the same purpose, but adds some flexibility.  The loop
-below runs once for each element in a collection (array, hash, numeric
-sequence, etc.), but doesn't make the programmer think about indices:
+C programmers will be wondering by now how to make a 'for' loop.
+Ruby's 'for' can serve the same purpose, but adds some flexibility.
+The loop below runs once for each element in a collection (array,
+hash, numeric sequence, etc.), but doesn't make the programmer think
+about indices:
 
      for elt in collection
        # ... here, elt refers to an element of the collection
@@ -3819,10 +4171,11 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Iterators,  Next: Ruby User's Gu
 2.5.1.8 Ruby User's Guide On Iterators
 ......................................
 
-Iterators are not an original concept with ruby.  They are in common use
-in object-oriented languages.  They are also used in Lisp, though there
-they are not called iterators.  However the concept of iterator is an
-unfamiliar one for many so it should be explained in more detail.
+Iterators are not an original concept with ruby.  They are in common
+use in object-oriented languages.  They are also used in Lisp, though
+there they are not called iterators.  However the concept of iterator
+is an unfamiliar one for many so it should be explained in more
+detail.
 
    An "iterator" is something that does the same thing many times.
 
@@ -3839,25 +4192,25 @@ Iterators In String
 Ruby's String type has some useful iterators:
 
    'each_byte' is an iterator for each character in the string.  Each
-character is substituted into the local variable c: '"abc".each_byte{|c|
-printf "<%c>", c}; print "\n"'.
+character is substituted into the local variable c:
+'"abc".each_byte{|c| printf "<%c>", c}; print "\n"'.
 
-   The 'each_byte' iterator is both conceptually simpler and more likely
-to continue to work even if the String class happens to be radically
-modified in the future.  One benefit of iterators is that they tend to
-be robust in the face of such changes; indeed that is a characteristic
-of good code in general.
+   The 'each_byte' iterator is both conceptually simpler and more
+likely to continue to work even if the String class happens to be
+radically modified in the future.  One benefit of iterators is that
+they tend to be robust in the face of such changes; indeed that is a
+characteristic of good code in general.
 
-   Another iterator of String is 'each_line': '"a\nb\nc\n".each_line{|l|
-print l}'.
+   Another iterator of String is 'each_line':
+'"a\nb\nc\n".each_line{|l| print l}'.
 
    The tasks that would take most of the programming effort in C
 (finding line delimiters, generating substrings, etc.)  are easily
 tackled using iterators.
 
-   The 'for' statement appearing in the previous chapter does iteration
-by way of an 'each' iterator.  String's 'each' works the same as
-'each_line', so let's rewrite the above example with 'for':
+   The 'for' statement appearing in the previous chapter does
+iteration by way of an 'each' iterator.  String's 'each' works the
+same as 'each_line', so let's rewrite the above example with 'for':
 
      ruby> for l in "a\nb\nc\n"
          |   print l
@@ -3871,15 +4224,16 @@ Control Structures 'retry' And 'redo'
 -------------------------------------
 
 We can use a control structure 'retry' in conjunction with an iterated
-loop, and it will retry the loop from the beginning.  'redo' causes just
-the current iteration of the loop to be redone.
+loop, and it will retry the loop from the beginning.  'redo' causes
+just the current iteration of the loop to be redone.
 
 'yield' In Iterators
 --------------------
 
 'yield' occurs sometimes in a definition of an iterator.  "'yield'"
-moves control to the block of code that is passed to the iterator (this
-will be explored in more detail in the chapter about procedure objects).
+moves control to the block of code that is passed to the iterator
+(this will be explored in more detail in the chapter about procedure
+objects).
 
    The following example defines an iterator 'repeat', which repeats a
 block of code the number of times specified in an argument.
@@ -3912,11 +4266,12 @@ ruby's standard 'while'.
 Summary On Iterarors
 --------------------
 
-There are a few restrictions, but you can write your original iterators;
-and in fact, whenever you define a new data type, it is often convenient
-to define suitable iterators to go with it.  In this sense, the above
-examples are not terribly useful.  We can talk about practical iterators
-after we have a better understanding of what classes are.
+There are a few restrictions, but you can write your original
+iterators; and in fact, whenever you define a new data type, it is
+often convenient to define suitable iterators to go with it.  In this
+sense, the above examples are not terribly useful.  We can talk about
+practical iterators after we have a better understanding of what
+classes are.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Object-Oriented Thinking,  Next: Ruby User's Guide on Methods,  Prev: Ruby User's Guide On Iterators,  Up: Ruby User's Guide
@@ -3931,53 +4286,53 @@ let's think for a moment about the traditional programming paradigm.
    Traditionally, a programming problem is attacked by coming up with
 some kinds of _data representations_, and _procedures_ that operate on
 that data.  Under this model, data is inert, passive, and helpless; it
-sits at the complete mercy of a large procedural body, which is active,
-logical, and all-powerful.
+sits at the complete mercy of a large procedural body, which is
+active, logical, and all-powerful.
 
    The problem with this approach is that programs are written by
 programmers, who are only human and can only keep so much detail clear
 in their heads at any one time.  As a project gets larger, its
-procedural core grows to the point where it is difficult to remember how
-the whole thing works.  Minor lapses of thinking and typographical
-errors become more likely to result in well-concealed bugs.  Complex and
-unintended interactions begin to emerge within the procedural core, and
-maintaining it becomes like trying to carry around an angry squid
-without letting any tentacles touch your face.  There are guidelines for
-programming that can help to minimize and localize bugs within this
-traditional paradigm, but there is a better solution that involves
-fundamentally changing the way we work.
+procedural core grows to the point where it is difficult to remember
+how the whole thing works.  Minor lapses of thinking and typographical
+errors become more likely to result in well-concealed bugs.  Complex
+and unintended interactions begin to emerge within the procedural
+core, and maintaining it becomes like trying to carry around an angry
+squid without letting any tentacles touch your face.  There are
+guidelines for programming that can help to minimize and localize bugs
+within this traditional paradigm, but there is a better solution that
+involves fundamentally changing the way we work.
 
    What object-oriented programming does is to let us delegate most of
 the mundane and repetitive logical work to the data itself; it changes
 our concept of data from passive to active.  Put another way,
 
-   * We stop treating each piece of data as a box with an open lid that
-     lets us reach in and throw things around.
+   * We stop treating each piece of data as a box with an open lid
+     that lets us reach in and throw things around.
    * We start treating each piece of data as a working machine with a
      closed lid and a few well-marked switches and dials.
 
-   What is described above as a "machine" may be very simple or complex
-on the inside; we can't tell from the outside, and we don't allow
-ourselves to open the machine up (except when we are absolutely sure
-something is wrong with its design), so we are required to do things
-like flip the switches and read the dials to interact with the data.
-Once the machine is built, we don't want to have to think about how it
-operates.
+   What is described above as a "machine" may be very simple or
+complex on the inside; we can't tell from the outside, and we don't
+allow ourselves to open the machine up (except when we are absolutely
+sure something is wrong with its design), so we are required to do
+things like flip the switches and read the dials to interact with the
+data.  Once the machine is built, we don't want to have to think about
+how it operates.
 
-   You might think we are just making more work for ourselves, but this
-approach tends to do a nice job of preventing all kinds of things from
-going wrong.
+   You might think we are just making more work for ourselves, but
+this approach tends to do a nice job of preventing all kinds of things
+from going wrong.
 
    It's worth noting here that the use of an OO language will not
 enforce proper OO design.  Indeed it is possible in any language to
-write code that is unclear, sloppy, ill-conceived, buggy, and wobbly all
-over.  What ruby does for you (as opposed, especially, to C++) is to
-make the practice of OO programming feel natural enough that even when
-you are working on a small scale you don't feel a necessity to resort to
-ugly code to save effort.  We will be discussing the ways in which ruby
-accomplishes that admirable goal as this guide progresses; the next
-topic will be the "switches and dials" (object methods) and from there
-we'll move on to the "factories" (classes).
+write code that is unclear, sloppy, ill-conceived, buggy, and wobbly
+all over.  What ruby does for you (as opposed, especially, to C++) is
+to make the practice of OO programming feel natural enough that even
+when you are working on a small scale you don't feel a necessity to
+resort to ugly code to save effort.  We will be discussing the ways in
+which ruby accomplishes that admirable goal as this guide progresses;
+the next topic will be the "switches and dials" (object methods) and
+from there we'll move on to the "factories" (classes).
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Methods,  Next: Ruby User's Guide on Classes,  Prev: Ruby User's Guide On Object-Oriented Thinking,  Up: Ruby User's Guide
@@ -3992,47 +4347,48 @@ What is a "method"?  In OO programming, we don't think of operating on
 data directly from outside an object; rather, objects have some
 understanding of how to operate on themselves (when asked nicely to do
 so).  You might say we pass messages to an object, and those messages
-will generally elicit some kind of an action or meaningful reply.  This
-ought to happen without our necessarily knowing or caring how the object
-really works inside.  The tasks we are allowed to ask an object to
-perform (or equivalently, the messages it understands) are that object's
-methods.
+will generally elicit some kind of an action or meaningful reply.
+This ought to happen without our necessarily knowing or caring how the
+object really works inside.  The tasks we are allowed to ask an object
+to perform (or equivalently, the messages it understands) are that
+object's methods.
 
 Invoking Methods Of An Object
 -----------------------------
 
 In ruby, we invoke a method of an object with dot notation (just as in
 C++ or Java).  The object being talked to is named to the left of the
-dot.  '"abcdef".length'.  Intuitively, this string object is being asked
-how long it is.  Technically, we are invoking the 'length' method of the
-object 'abcdef'.
+dot.  '"abcdef".length'.  Intuitively, this string object is being
+asked how long it is.  Technically, we are invoking the 'length'
+method of the object 'abcdef'.
 
-   Other objects may have a slightly different interpretation of length,
-or none at all.  Decisions about how to respond to a message are made on
-the fly, during program execution, and the action taken may change
-depending on what a variable refers to.  What we mean by length can vary
-depending on what object we are talking about.
+   Other objects may have a slightly different interpretation of
+length, or none at all.  Decisions about how to respond to a message
+are made on the fly, during program execution, and the action taken
+may change depending on what a variable refers to.  What we mean by
+length can vary depending on what object we are talking about.
 
 Polymorphism
 ------------
 
-An array knows something about what it means to be an array.  Pieces of
-data in ruby carry such knowledge with them, so that the demands made on
-them can automatically be satisfied in the various appropriate ways.
-This relieves the programmer from the burden of memorizing a great many
-specific function names, because a relatively small number of method
-names, corresponding to concepts that we know how to express in natural
-language, can be applied to different kinds of data and the results will
-be what we expect.  This feature of OO programming languages (which,
-IMHO, Java has done a poor job of exploiting) is called "polymorphism".
+An array knows something about what it means to be an array.  Pieces
+of data in ruby carry such knowledge with them, so that the demands
+made on them can automatically be satisfied in the various appropriate
+ways.  This relieves the programmer from the burden of memorizing a
+great many specific function names, because a relatively small number
+of method names, corresponding to concepts that we know how to express
+in natural language, can be applied to different kinds of data and the
+results will be what we expect.  This feature of OO programming
+languages (which, IMHO, Java has done a poor job of exploiting) is
+called "polymorphism".
 
 Errors Are Raised
 -----------------
 
-When an object receives a message that it does not understand, an error
-is "raised": 'ERR: (eval):1: undefined method `length' for 5(Fixnum)'.
-So it is necessary to know what methods are acceptable to an object,
-though we need not know how the methods are processed.
+When an object receives a message that it does not understand, an
+error is "raised": 'ERR: (eval):1: undefined method `length' for
+5(Fixnum)'.  So it is necessary to know what methods are acceptable to
+an object, though we need not know how the methods are processed.
 
 Arguments To A Method
 ---------------------
@@ -4045,13 +4401,13 @@ The Special Variable 'self'
 ---------------------------
 
 There is a special variable self in ruby; it refers to whatever object
-calls a method.  This happens so often that for convenience the 'self.'
-may be omitted from method calls from an object to itself:
+calls a method.  This happens so often that for convenience the
+'self.' may be omitted from method calls from an object to itself:
 'self.method_name(args...)' is the same as 'method_name(args...)'.
 
-   What we would think of traditionally as a function call is just this
-abbreviated way of writing method invocations by self.  This makes ruby
-what is called a pure object oriented language.
+   What we would think of traditionally as a function call is just
+this abbreviated way of writing method invocations by self.  This
+makes ruby what is called a pure object oriented language.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Classes,  Next: Ruby User's Guide on Inheritance,  Prev: Ruby User's Guide on Methods,  Up: Ruby User's Guide
@@ -4060,15 +4416,15 @@ File: Ruby2_5.info,  Node: Ruby User's Guide on Classes,  Next: Ruby User's Guid
 ...................
 
 In OO programming terminology, a category of objects like "dog" is
-called a class, and some specific object belonging to a class is called
-an instance of that class.
+called a class, and some specific object belonging to a class is
+called an instance of that class.
 
 Making An Object From A Class
 -----------------------------
 
-Generally, to make an object in ruby or any other OO language, first one
-defines the characteristics of a class, then creates an instance.  To
-illustrate the process, let's first define a simple 'Dog' class.
+Generally, to make an object in ruby or any other OO language, first
+one defines the characteristics of a class, then creates an instance.
+To illustrate the process, let's first define a simple 'Dog' class.
 
      ruby> class Dog
          |   def speak
@@ -4091,8 +4447,8 @@ Now that we have defined a 'Dog' class, we can use it to make a dog:
      ruby> pochi = Dog.new
         #<Dog:0xbcb90>
 
-   We have made a new instance of the class 'Dog', and have given it the
-name 'pochi'.  The 'new' method of any class makes a new instance.
+   We have made a new instance of the class 'Dog', and have given it
+the name 'pochi'.  The 'new' method of any class makes a new instance.
 Because 'pochi' is a 'Dog' according to our class definition, it has
 whatever properties we decided a 'Dog' should have.  Since our idea of
 'Dog'-ness was very simple, there is just one trick we can ask 'pochi'
@@ -4102,9 +4458,10 @@ to do.
      Bow Wow
         nil
 
-   Making a new instance of a class is sometimes called "instantiating"
-that class.  We need to have a dog before we can experience the pleasure
-of its conversation; we can't merely ask the 'Dog' class to bark for us.
+   Making a new instance of a class is sometimes called
+"instantiating" that class.  We need to have a dog before we can
+experience the pleasure of its conversation; we can't merely ask the
+'Dog' class to bark for us.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Inheritance,  Next: Ruby User's Guide on Redefinition Of Methods,  Prev: Ruby User's Guide on Classes,  Up: Ruby User's Guide
@@ -4134,11 +4491,11 @@ breathe.
         nil
 
    Though we didn't specify how a 'Cat' should breathe, every cat will
-inherit that behavior from the 'Mammal' class since 'Cat' was defined as
-a subclass of 'Mammal'.  (In OO terminology, the smaller class is a
+inherit that behavior from the 'Mammal' class since 'Cat' was defined
+as a subclass of 'Mammal'.  (In OO terminology, the smaller class is a
 "subclass" and the larger class is a "superclass".)  Hence from a
-programmer's standpoint, cats get the ability to breathe for free; after
-we add a 'speak' method, our cats can both breathe and speak.
+programmer's standpoint, cats get the ability to breathe for free;
+after we add a 'speak' method, our cats can both breathe and speak.
 
      ruby> tama = Cat.new
         #<Cat:0xbd80e8>
@@ -4154,7 +4511,8 @@ Differential Programming
 
 There will be situations where certain properties of the superclass
 should not be inherited by a particular subclass.  Though birds
-generally know how to fly, penguins are a flightless subclass of birds.
+generally know how to fly, penguins are a flightless subclass of
+birds.
 
      ruby> class Bird
          |   def preen
@@ -4174,9 +4532,9 @@ generally know how to fly, penguins are a flightless subclass of birds.
 
    Rather than exhaustively define every characteristic of every new
 class, we need only to append or to redefine the differences between
-each subclass and its superclass.  This use of inheritance is sometimes
-called "differential programming".  It is one of the benefits of
-object-oriented programming.
+each subclass and its superclass.  This use of inheritance is
+sometimes called "differential programming".  It is one of the
+benefits of object-oriented programming.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide on Redefinition Of Methods,  Next: Ruby User's Guide On Access Control,  Prev: Ruby User's Guide on Inheritance,  Up: Ruby User's Guide
@@ -4184,8 +4542,8 @@ File: Ruby2_5.info,  Node: Ruby User's Guide on Redefinition Of Methods,  Next: 
 2.5.1.13 On Redefinition of Methods
 ...................................
 
-In a subclass, we can change the behavior of the instances by redefining
-superclass methods.
+In a subclass, we can change the behavior of the instances by
+redefining superclass methods.
 
      ruby> class Human
          |   def identify
@@ -4261,9 +4619,9 @@ Earlier, we said that ruby has no functions, only methods.  However
 there is more than one kind of method.  In this chapter we introduce
 "access controls".
 
-   Consider what happens when we define a method in the "top level", not
-inside a class definition.  We can think of such a method as analogous
-to a function in a more traditional language like C.
+   Consider what happens when we define a method in the "top level",
+not inside a class definition.  We can think of such a method as
+analogous to a function in a more traditional language like C.
 
      ruby> def square(n)
          |   n * n
@@ -4276,9 +4634,9 @@ to a function in a more traditional language like C.
 ruby gives it to the 'Object' class, which is a superclass of every
 other class.  As a result, any object should now be able to use that
 method.  That turns out to be true, but there's a small catch: it is a
-_private_ method of every class.  We'll discuss some of what this means
-below, but one consequence is that it may be invoked only in function
-style, as here:
+_private_ method of every class.  We'll discuss some of what this
+means below, but one consequence is that it may be invoked only in
+function style, as here:
 
      ruby> class Foo
          |   def fourth_power_of(x)
@@ -4302,18 +4660,18 @@ language.
 Rationale For Private Methods: Encapsulation
 --------------------------------------------
 
-A common mental discipline in OO programming, which we have hinted at in
-an earlier chapter, concerns the separation of specification and
+A common mental discipline in OO programming, which we have hinted at
+in an earlier chapter, concerns the separation of specification and
 implementation, or what tasks an object is supposed to accomplish and
 how it actually accomplishes them.  The internal workings of an object
 should be kept generally hidden from its users; they should only care
-about what goes in and what comes out, and trust the object to know what
-it is doing internally.  As such it is often helpful for classes to have
-methods that the outside world does not see, but which are used
-internally (and can be improved by the programmer whenever desired,
-without changing the way users see objects of that class).  In the
-trivial example below, think of engine as the invisible inner workings
-of the class.
+about what goes in and what comes out, and trust the object to know
+what it is doing internally.  As such it is often helpful for classes
+to have methods that the outside world does not see, but which are
+used internally (and can be improved by the programmer whenever
+desired, without changing the way users see objects of that class).
+In the trivial example below, think of engine as the invisible inner
+workings of the class.
 
      ruby> class Test
          |   def times_two(a)
@@ -4333,17 +4691,17 @@ of the class.
      6 times two is 12.
         nil
 
-   We might have expected 'test.engine(6)' to return 12, but instead we
-learn that 'engine' is inaccessible when we are acting as a user of a
-'Test' object.  Only other 'Test' methods, such as 'times_two', are
+   We might have expected 'test.engine(6)' to return 12, but instead
+we learn that 'engine' is inaccessible when we are acting as a user of
+a 'Test' object.  Only other 'Test' methods, such as 'times_two', are
 allowed to use engine.  We are required to go through the public
-interface, which consists of the 'times_two' method.  The programmer who
-is in charge of this class can change 'engine' freely (here, perhaps by
-changing 'b*2' to 'b+b', assuming for the sake of argument that it
-improved performance) without affecting how the user interacts with
-'Test' objects.  This example is of course much too simple to be useful;
-the benefits of access controls become more clear only when we begin to
-create more complicated and interesting classes.
+interface, which consists of the 'times_two' method.  The programmer
+who is in charge of this class can change 'engine' freely (here,
+perhaps by changing 'b*2' to 'b+b', assuming for the sake of argument
+that it improved performance) without affecting how the user interacts
+with 'Test' objects.  This example is of course much too simple to be
+useful; the benefits of access controls become more clear only when we
+begin to create more complicated and interesting classes.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Singleton Methods,  Next: Ruby User's Guide On Modules,  Prev: Ruby User's Guide On Access Control,  Up: Ruby User's Guide
@@ -4351,16 +4709,16 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Singleton Methods,  Next: Ruby U
 2.5.1.15 On Singleton Methods
 .............................
 
-The behavior of an instance is determined by its class, but there may be
-times we know that a particular instance should have special behavior.
-In most languages, we must go to the trouble of defining another class,
-which would then only be instantiated once.  In ruby we can give any
-object its own methods.  A method given only to a single object is
-called a "singleton method".
+The behavior of an instance is determined by its class, but there may
+be times we know that a particular instance should have special
+behavior.  In most languages, we must go to the trouble of defining
+another class, which would then only be instantiated once.  In ruby we
+can give any object its own methods.  A method given only to a single
+object is called a "singleton method".
 
    Singleton methods are often used for elements of a graphic user
-interface (GUI), where different actions need to be taken when different
-buttons are pressed.
+interface (GUI), where different actions need to be taken when
+different buttons are pressed.
 
    Singleton methods are not unique to ruby, as they appear in CLOS,
 Dylan, etc.  Also, some languages, for example, Self and NewtonScript,
@@ -4379,8 +4737,8 @@ Modules in ruby are similar to classes, except:
    * A module can have no subclasses.
    * A module is defined by 'module ... end'.
 
-   Actually...  the 'Module' class of 'module' is the superclass of the
-'Class' class of 'class'.  Got that?  No?  Let's move on.
+   Actually...  the 'Module' class of 'module' is the superclass of
+the 'Class' class of 'class'.  Got that?  No?  Let's move on.
 
 Module As Collection
 --------------------
@@ -4413,15 +4771,15 @@ Module As Mixin
 Another use of modules is called "mixin".  Some OO programming
 languages, including C++, allow "multiple inheritance", that is,
 inheritance from more than one superclass.  A real-world example of
-multiple inheritance is an alarm clock; you can think of alarm clocks as
-belonging to the class of clocks and also the class of things with
+multiple inheritance is an alarm clock; you can think of alarm clocks
+as belonging to the class of clocks and also the class of things with
 buzzers.
 
-   Ruby purposely does not implement true multiple inheritance, but the
-"mixin technique" is a good alternative.  Remember that modules cannot
-be instantiated or subclassed; but if we 'include' a module in a class
-definition, its methods are effectively appended, or _mixed in_, to the
-class.
+   Ruby purposely does not implement true multiple inheritance, but
+the "mixin technique" is a good alternative.  Remember that modules
+cannot be instantiated or subclassed; but if we 'include' a module in
+a class definition, its methods are effectively appended, or _mixed
+in_, to the class.
 
 Mixin As Properties
 ...................
@@ -4435,8 +4793,8 @@ Modules Instead Of Multiple Inheritance
 .......................................
 
 This use of modules gives us the basic functionality of multiple
-inheritance but allows us to represent class relationships with a simple
-tree structure, and so simplifies the language implementation
+inheritance but allows us to represent class relationships with a
+simple tree structure, and so simplifies the language implementation
 considerably (a similar choice was made by the designers of Java).
 
 
@@ -4446,9 +4804,9 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Procedure Objects,  Next: Ruby U
 .....................................
 
 It is often desirable to be able to specify responses to unexpected
-events.  As it turns out, this is most easily done if we can pass blocks
-of code as arguments to other methods, which means we want to be able to
-treat code as if it were data.
+events.  As it turns out, this is most easily done if we can pass
+blocks of code as arguments to other methods, which means we want to
+be able to treat code as if it were data.
 
    A new procedure object is formed using 'proc':
 
@@ -4457,9 +4815,9 @@ treat code as if it were data.
          | }
         #<Proc:0x4017357c>
 
-   Now what 'quux' refers to is an object, and like most objects, it has
-behavior that can be invoked.  Specifically, we can ask it to execute,
-via its 'call' method:
+   Now what 'quux' refers to is an object, and like most objects, it
+has behavior that can be invoked.  Specifically, we can ask it to
+execute, via its 'call' method:
 
      ruby> quux.call
      QUUXQUUXQUUX!!!
@@ -4487,21 +4845,21 @@ system signal.
      ruby> trap "SIGINT", inthandler
         #<Proc:0x401735e0>
 
-   Normally pressing <^C> makes the interpreter quit.  Now a message is
-printed and the interpreter continues running, so you don't lose the
-work you were doing.  (You're not trapped in the interpreter forever;
-you can still exit by typing 'exit'.)
+   Normally pressing <^C> makes the interpreter quit.  Now a message
+is printed and the interpreter continues running, so you don't lose
+the work you were doing.  (You're not trapped in the interpreter
+forever; you can still exit by typing 'exit'.)
 
 Anonymous Procedure Objects
 ---------------------------
 
 A final note before we move on to other topics: it's not strictly
 necessary to give a procedure object a name before binding it to a
-signal.  An equivalent anonymous procedure object would look like 'trap
-"SIGINT", proc{ puts "^C was pressed." }', or more compactly still, '
-trap "SIGINT", 'puts "^C was pressed."''.  This abbreviated form
-provides some convenience and readability when you write small anonymous
-procedures.
+signal.  An equivalent anonymous procedure object would look like
+'trap "SIGINT", proc{ puts "^C was pressed." }', or more compactly
+still, ' trap "SIGINT", 'puts "^C was pressed."''.  This abbreviated
+form provides some convenience and readability when you write small
+anonymous procedures.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Variables,  Next: Ruby User's Guide On Global Variables,  Prev: Ruby User's Guide On Procedure Objects,  Up: Ruby User's Guide
@@ -4509,25 +4867,26 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Variables,  Next: Ruby User's Gu
 2.5.1.18 On Variables
 .....................
 
-Ruby has three kinds of variables, one kind of constant and exactly two
-pseudo-variables.  The variables and the constants have no type.  While
-untyped variables have some drawbacks, they have many more advantages
-and fit well with ruby's quick and easy philosophy.
+Ruby has three kinds of variables, one kind of constant and exactly
+two pseudo-variables.  The variables and the constants have no type.
+While untyped variables have some drawbacks, they have many more
+advantages and fit well with ruby's quick and easy philosophy.
 
 No Variable Declarations
 ------------------------
 
 Variables must be declared in most languages in order to specify their
-type, modifiability (i.e., whether they are constants), and scope; since
-type is not an issue, and the rest is evident from the variable name as
-you are about to see, we do not need variable declarations in ruby.
+type, modifiability (i.e., whether they are constants), and scope;
+since type is not an issue, and the rest is evident from the variable
+name as you are about to see, we do not need variable declarations in
+ruby.
 
    The first character of an identifier categorizes it at a glance:
 
-$                                    global variable
-@                                    instance variable
-[a-z] or _                           local variable
-[A-Z]                                constant
+$                                   global variable
+@                                   instance variable
+[a-z] or _                          local variable
+[A-Z]                               constant
 
 Table 2.1: List of Variable Identifiers
 
@@ -4535,14 +4894,15 @@ Pseudo-Variables
 ----------------
 
 The only exceptions to the above are ruby's pseudo-variables: 'self',
-which always refers to the currently executing object, and 'nil', which
-is the meaningless value assigned to uninitialized variables.  Both are
-named as if they are local variables, but 'self' is a global variable
-maintained by the interpreter, and 'nil' is really a constant.  As these
-are the only two exceptions, they don't confuse things too much.
+which always refers to the currently executing object, and 'nil',
+which is the meaningless value assigned to uninitialized variables.
+Both are named as if they are local variables, but 'self' is a global
+variable maintained by the interpreter, and 'nil' is really a
+constant.  As these are the only two exceptions, they don't confuse
+things too much.
 
-   You may not assign values to 'self' or 'nil'.  'main', as a value of
-'self', refers to the top-level object.
+   You may not assign values to 'self' or 'nil'.  'main', as a value
+of 'self', refers to the top-level object.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Global Variables,  Next: Ruby User's Guide On Instance Variables,  Prev: Ruby User's Guide On Variables,  Up: Ruby User's Guide
@@ -4551,23 +4911,24 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Global Variables,  Next: Ruby Us
 ............................
 
 A "global variable" has a name beginning with '$'.  It can be referred
-to from anywhere in a program.  Before initialization, a global variable
-has the special value 'nil'.
+to from anywhere in a program.  Before initialization, a global
+variable has the special value 'nil'.
 
    Global variables should be used sparingly.  They are dangerous
 because they can be written to from anywhere.  Overuse of globals can
-make isolating bugs difficult; it also tends to indicate that the design
-of a program has not been carefully thought out.  Whenever you do find
-it necessary to use a global variable, be sure to give it a descriptive
-name that is unlikely to be inadvertently used for something else later
-(calling it something like $foo as above is probably a bad idea).
+make isolating bugs difficult; it also tends to indicate that the
+design of a program has not been carefully thought out.  Whenever you
+do find it necessary to use a global variable, be sure to give it a
+descriptive name that is unlikely to be inadvertently used for
+something else later (calling it something like $foo as above is
+probably a bad idea).
 
 Global Variables Can Be Traced
 ------------------------------
 
-One nice feature of a global variable is that it can be traced; you can
-specify a procedure which is invoked whenever the value of the variable
-is changed.
+One nice feature of a global variable is that it can be traced; you
+can specify a procedure which is invoked whenever the value of the
+variable is changed.
 
      ruby> trace_var :$x, proc{puts "$x is now #{$x}"}
         nil
@@ -4575,9 +4936,10 @@ is changed.
      $x is now 5
         5
 
-   When a global variable has been rigged to work as a trigger to invoke
-a procedure whenever changed, we sometimes call it an "active variable".
-For instance, it might be useful for keeping a GUI display up to date.
+   When a global variable has been rigged to work as a trigger to
+invoke a procedure whenever changed, we sometimes call it an "active
+variable".  For instance, it might be useful for keeping a GUI display
+up to date.
 
 List Of Major System Variables
 ------------------------------
@@ -4609,11 +4971,11 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Instance Variables,  Next: Ruby 
 An instance variable has a name beginning with '@', and its scope is
 confined to whatever object 'self' refers to.  Two different objects,
 even if they belong to the same class, are allowed to have different
-values for their instance variables.  From outside the object, instance
-variables cannot be altered or even observed (i.e., ruby's instance
-variables are never 'public') except by whatever methods are explicitly
-provided by the programmer.  As with globals, instance variables have
-the 'nil' value until they are initialized.
+values for their instance variables.  From outside the object,
+instance variables cannot be altered or even observed (i.e., ruby's
+instance variables are never 'public') except by whatever methods are
+explicitly provided by the programmer.  As with globals, instance
+variables have the 'nil' value until they are initialized.
 
 Instance Variables Are Not Declared
 -----------------------------------
@@ -4632,10 +4994,10 @@ A local variable has a name starting with a lower case letter or an
 underscore character ('_').  Local variables do not, like globals and
 instance variables, have the value 'nil' before initialization.
 
-   The first assignment you make to a local variable acts something like
-a declaration.  If you refer to an uninitialized local variable, ruby
-will report an error: 'ERR: (eval):1: undefined local variable or method
-`foo' for main(Object)'.
+   The first assignment you make to a local variable acts something
+like a declaration.  If you refer to an uninitialized local variable,
+ruby will report an error: 'ERR: (eval):1: undefined local variable or
+method `foo' for main(Object)'.
 
    Generally, the scope of a local variable is one of:
 
@@ -4651,8 +5013,8 @@ defined.  It returns a description of the identifier if it is defined,
 or 'nil' otherwise.
 
    Procedure objects that live in the same scope share whatever local
-variables also belong to that scope.  Here, the local variable 'bar' is
-shared by 'main' and the procedure objects 'p1' and 'p2':
+variables also belong to that scope.  Here, the local variable 'bar'
+is shared by 'main' and the procedure objects 'p1' and 'p2':
 
      ruby> bar=nil
         nil
@@ -4671,17 +5033,17 @@ shared by 'main' and the procedure objects 'p1' and 'p2':
 ensures that the scope of bar will encompass 'p1' and 'p2'.  Otherwise
 'p1' and 'p2' would each end up with its own local variable bar, and
 calling 'p2' would have resulted in an 'undefined local variable or
-method' error.  We could have said 'bar=0' instead, but using 'nil' is a
-courtesy to others who will read your code later.  It indicates fairly
-clearly that you are only establishing scope, because the value being
-assigned is not intended to be meaningful.
+method' error.  We could have said 'bar=0' instead, but using 'nil' is
+a courtesy to others who will read your code later.  It indicates
+fairly clearly that you are only establishing scope, because the value
+being assigned is not intended to be meaningful.
 
 'Proc' Objects Are Closures
 ---------------------------
 
-A powerful feature of procedure objects follows from their ability to be
-passed as arguments: shared local variables remain valid even when they
-are passed out of the original scope.
+A powerful feature of procedure objects follows from their ability to
+be passed as arguments: shared local variables remain valid even when
+they are passed out of the original scope.
 
      ruby> def box
          |   contents = nil
@@ -4699,11 +5061,11 @@ are passed out of the original scope.
      ruby> reader.call
         2
 
-   Ruby is particularly smart about scope.  It is evident in our example
-that the 'contents' variable is being shared between the 'reader' and
-'writer'.  But we can also manufacture multiple 'reader-writer' pairs
-using 'box' as defined above; each pair shares a 'contents' variable,
-and the pairs do not interfere with each other.
+   Ruby is particularly smart about scope.  It is evident in our
+example that the 'contents' variable is being shared between the
+'reader' and 'writer'.  But we can also manufacture multiple
+'reader-writer' pairs using 'box' as defined above; each pair shares a
+'contents' variable, and the pairs do not interfere with each other.
 
      ruby> reader_1, writer_1 = box
         [#<Proc:0x40172820>, #<Proc:0x4017280c>]
@@ -4737,8 +5099,8 @@ ruby, reassignment of a constant generates a warning but not an error
 Class Constants Accessible Outside Class
 ----------------------------------------
 
-Constants may be defined within classes, but unlike instance variables,
-they are accessible outside the class.
+Constants may be defined within classes, but unlike instance
+variables, they are accessible outside the class.
 
      ruby> class ConstClass
          |   C1=101
@@ -4806,9 +5168,9 @@ programmers are expected to check the result of every system call that
 could possibly fail, and immediately decide what is to be done.
 
    This is such a tiresome practice that programmers can tend to grow
-careless and neglect it, and the result is a program that doesn't handle
-exceptions well.  On the other hand, doing the job right can make
-programs hard to read, because there is so much error handling
+careless and neglect it, and the result is a program that doesn't
+handle exceptions well.  On the other hand, doing the job right can
+make programs hard to read, because there is so much error handling
 cluttering up the meaningful code.
 
 'begin' And 'rescue' Blocks
@@ -4818,8 +5180,8 @@ In ruby, as in many modern languages, we can handle exceptions for
 blocks of code in a compartmentalized way, thus dealing with surprises
 effectively but not unduly burdening either the programmer or anyone
 else trying to read the code later.  The block of code marked with
-'begin' executes until there is an exception, which causes control to be
-transferred to a block of error handling code, which is marked with
+'begin' executes until there is an exception, which causes control to
+be transferred to a block of error handling code, which is marked with
 'rescue'.  If no exception occurs, the 'rescue' code is not used.  The
 following method returns the first line of a text file, or 'nil' if
 there is an exception:
@@ -4835,9 +5197,9 @@ there is an exception:
        end
      end
 
-   There will be times when we would like to be able to creatively work
-around a problem.  Here, if the file we want is unavailable, we try to
-use standard input instead:
+   There will be times when we would like to be able to creatively
+work around a problem.  Here, if the file we want is unavailable, we
+try to use standard input instead:
 
      begin
        file = open("some_file")
@@ -4867,11 +5229,12 @@ compactly:
 'raise'ing Exceptions
 ---------------------
 
-Every ruby library raises an exception if any error occurs, and you can
-raise exceptions explicitly in your code too.  To raise an exception,
-use 'raise'.  It takes one argument, which should be a string that
-describes the exception.  The argument is optional but should not be
-omitted.  It can be accessed later via the special global variable '$!'.
+Every ruby library raises an exception if any error occurs, and you
+can raise exceptions explicitly in your code too.  To raise an
+exception, use 'raise'.  It takes one argument, which should be a
+string that describes the exception.  The argument is optional but
+should not be omitted.  It can be accessed later via the special
+global variable '$!'.
 
      ruby> raise "test error"
         test error
@@ -4891,15 +5254,16 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Exception Processing and ensure,
 
 There may be cleanup work that is necessary when a method finishes its
 work.  Perhaps an open file should be closed, buffered data should be
-flushed, etc.  If there were always only one exit point for each method,
-we could confidently put our cleanup code in one place and know that it
-would be executed; however, a method might return from several places,
-or our intended cleanup code might be unexpectedly skipped because of an
-exception.
+flushed, etc.  If there were always only one exit point for each
+method, we could confidently put our cleanup code in one place and
+know that it would be executed; however, a method might return from
+several places, or our intended cleanup code might be unexpectedly
+skipped because of an exception.
 
-   For this reason we add another keyword to the 'begin...rescue...end'
-scheme, which is 'ensure'.  The 'ensure' code block executes regardless
-of the success or failure of the 'begin' block.
+   For this reason we add another keyword to the
+'begin...rescue...end' scheme, which is 'ensure'.  The 'ensure' code
+block executes regardless of the success or failure of the 'begin'
+block.
 
      file = open("/tmp/some_file", "w")
      begin
@@ -4911,8 +5275,8 @@ of the success or failure of the 'begin' block.
      end
 
    It is possible to use 'ensure' without 'rescue', or vice versa, but
-if they are used together in the same 'begin...end' block, the 'rescue'
-must precede the 'ensure'.
+if they are used together in the same 'begin...end' block, the
+'rescue' must precede the 'ensure'.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Accessors,  Next: Ruby User's Guide On Object Initialization,  Prev: Ruby User's Guide On Exception Processing and ensure,  Up: Ruby User's Guide
@@ -4921,13 +5285,13 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Accessors,  Next: Ruby User's Gu
 .....................
 
 We briefly discussed instance variables in an earlier chapter, but
-haven't done much with them yet.  An object's instance variables are its
-"attributes", the things that distinguish it from other objects of the
-same class.  It is important to be able to write and read these
-attributes; doing so requires methods called attribute accessors.  We'll
-see in a moment that we don't always have to write accessor methods
-explicitly, but let's go through all the motions for now.  The two kinds
-of accessors are writers and readers.
+haven't done much with them yet.  An object's instance variables are
+its "attributes", the things that distinguish it from other objects of
+the same class.  It is important to be able to write and read these
+attributes; doing so requires methods called attribute accessors.
+We'll see in a moment that we don't always have to write accessor
+methods explicitly, but let's go through all the motions for now.  The
+two kinds of accessors are writers and readers.
 
 Accessors: Writers And Readers
 ------------------------------
@@ -4950,9 +5314,9 @@ Accessors: Writers And Readers
      ruby> f1                    # inspect the object
         #<Fruit:0xfd7e7c8c @kind="peach">
 
-   Simple enough; we can store and retrieve information about what kind
-of fruit we're looking at.  But our method names are a little wordy.
-The following is more concise, and more conventional:
+   Simple enough; we can store and retrieve information about what
+kind of fruit we're looking at.  But our method names are a little
+wordy.  The following is more concise, and more conventional:
 
      ruby> class Fruit
          |   def kind=(k)
@@ -4973,12 +5337,12 @@ The following is more concise, and more conventional:
 The 'inspect' Method
 --------------------
 
-A short digression is in order.  You've noticed by now that when we try
-to look at an object directly, we are shown something cryptic like
-'#<anObject:0x83678>'.  This is just a default behavior, and we are free
-to change it.  All we need to do is add a method named 'inspect'.  It
-should return a string that describes the object in some sensible way,
-including the states of some or all of its instance variables.
+A short digression is in order.  You've noticed by now that when we
+try to look at an object directly, we are shown something cryptic like
+'#<anObject:0x83678>'.  This is just a default behavior, and we are
+free to change it.  All we need to do is add a method named 'inspect'.
+It should return a string that describes the object in some sensible
+way, including the states of some or all of its instance variables.
 
      ruby> class Fruit
          |   def inspect
@@ -4994,8 +5358,8 @@ including the states of some or all of its instance variables.
 
 A related method is 'to_s' (convert to string), which is used when
 printing an object.  In general, you can think of 'inspect' as a tool
-for when you are writing and debugging programs, and 'to_s' as a way of
-refining program output.  'eval.rb' (*note Ruby Eval Utility:: uses
+for when you are writing and debugging programs, and 'to_s' as a way
+of refining program output.  'eval.rb' (*note Ruby Eval Utility:: uses
 'inspect' whenever it displays results.  You can use the 'p' method to
 easily get debugging output from programs.
 
@@ -5010,7 +5374,7 @@ Since many instance variables need accessor methods, Ruby provides
 convenient shortcuts for the standard forms.
 
 Shortcut                  Effect
---------------------------------------------------------------------------
+-------------------------------------------------------------------------
 attr_reader :v            def v; ;< end
 attr_writer :v            def v=(value); =<value; end
 attr_accessor :v          attr_reader :v; attr_writer :v
@@ -5018,8 +5382,8 @@ attr_accessor :v, :w      attr_accessor :v; attr_accessor :w
 
 Table 2.3: List of Accessor Shortcuts
 
-   Let's take advantage of this and add freshness information.  First we
-ask for an automatically generated reader and writer, and then we
+   Let's take advantage of this and add freshness information.  First
+we ask for an automatically generated reader and writer, and then we
 incorporate the new information into 'inspect':
 
      ruby> class Fruit
@@ -5058,13 +5422,14 @@ that instance variables don't exist until values are assigned to them.
      ERR: failed to convert nil into String
 
    It is the 'inspect' method that is complaining here, and with good
-reason.  We have asked it to report on the kind and condition of a piece
-of fruit, but as yet 'f3' has not been assigned either attribute.  If we
-wanted to, we could rewrite the 'inspect' method so it tests instance
-variables using the 'defined?' method and then only reports on them if
-they exist, but maybe that's not very useful; since every piece of fruit
-has a kind and condition, it seems we should make sure those always get
-defined somehow.  That is the topic of the next chapter.
+reason.  We have asked it to report on the kind and condition of a
+piece of fruit, but as yet 'f3' has not been assigned either
+attribute.  If we wanted to, we could rewrite the 'inspect' method so
+it tests instance variables using the 'defined?' method and then only
+reports on them if they exist, but maybe that's not very useful; since
+every piece of fruit has a kind and condition, it seems we should make
+sure those always get defined somehow.  That is the topic of the next
+chapter.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Object Initialization,  Next: Ruby User's Guide On Nuts And Bolts,  Prev: Ruby User's Guide On Accessors,  Up: Ruby User's Guide
@@ -5072,12 +5437,12 @@ File: Ruby2_5.info,  Node: Ruby User's Guide On Object Initialization,  Next: Ru
 2.5.1.26 On Object Initialization
 .................................
 
-Our 'Fruit' class from the previous chapter had two instance variables,
-one to describe the kind of fruit and another to describe its condition.
-It was only after writing a custom 'inspect' method for the class that
-we realized it didn't make sense for a piece of fruit to lack those
-characteristics.  Fortunately, ruby provides a way to ensure that
-instance variables always get initialized.
+Our 'Fruit' class from the previous chapter had two instance
+variables, one to describe the kind of fruit and another to describe
+its condition.  It was only after writing a custom 'inspect' method
+for the class that we realized it didn't make sense for a piece of
+fruit to lack those characteristics.  Fortunately, ruby provides a way
+to ensure that instance variables always get initialized.
 
 Default Argument Values in 'initialize'
 ---------------------------------------
@@ -5087,12 +5452,13 @@ Whenever Ruby creates a new object, it looks for a method named
 'initialize' method to put default values into all the instance
 variables, so the 'inspect' method will have something to say.
 
-   There will be times when a default value doesn't make a lot of sense.
-Is there such a thing as a default kind of fruit?  It may be preferable
-to require that each piece of fruit have its kind specified at the time
-of its creation.  To do this, we would add a formal argument to the
-'initialize' method.  For reasons we won't get into here, arguments you
-supply to 'new' are actually delivered to 'initialize'.
+   There will be times when a default value doesn't make a lot of
+sense.  Is there such a thing as a default kind of fruit?  It may be
+preferable to require that each piece of fruit have its kind specified
+at the time of its creation.  To do this, we would add a formal
+argument to the 'initialize' method.  For reasons we won't get into
+here, arguments you supply to 'new' are actually delivered to
+'initialize'.
 
      ruby> class Fruit
          |   def initialize( k )
@@ -5130,10 +5496,10 @@ default values come last.
 Object Reflection, Variable-Length Argument Lists, Method Overloading
 ---------------------------------------------------------------------
 
-Sometimes it is useful to provide several ways to initialize an object.
-Although it is outside the scope of this tutorial, ruby supports object
-reflection and variable-length argument lists, which together
-effectively allow method overloading.
+Sometimes it is useful to provide several ways to initialize an
+object.  Although it is outside the scope of this tutorial, ruby
+supports object reflection and variable-length argument lists, which
+together effectively allow method overloading.
 
 
 File: Ruby2_5.info,  Node: Ruby User's Guide On Nuts And Bolts,  Prev: Ruby User's Guide On Object Initialization,  Up: Ruby User's Guide
@@ -5149,36 +5515,38 @@ Some languages require some kind of punctuation, often a semicolon
 convention used in shells like 'sh' and 'csh'.  Multiple statements on
 one line must be separated by semicolons, but they are not required at
 the end of a line; a linefeed is treated like a semicolon.  If a line
-ends with a backslash ('\'), the linefeed following it is ignored; this
-allows you to have a single logical line that spans several lines.
+ends with a backslash ('\'), the linefeed following it is ignored;
+this allows you to have a single logical line that spans several
+lines.
 
 Comments
 --------
 
 Why write comments?  Although well written code tends to be
-self-documenting, it is often helpful to scribble in the margins, and it
-can be a mistake to believe that others will be able to look at your
-code and immediately see it the way you do.  Besides, for practical
-purposes, you yourself are a different person within a few days anyway;
-which of us hasn't gone back to fix or enhance a program after the
-passage of time and said, I know I wrote this, but what in blazes does
-it mean?
+self-documenting, it is often helpful to scribble in the margins, and
+it can be a mistake to believe that others will be able to look at
+your code and immediately see it the way you do.  Besides, for
+practical purposes, you yourself are a different person within a few
+days anyway; which of us hasn't gone back to fix or enhance a program
+after the passage of time and said, I know I wrote this, but what in
+blazes does it mean?
 
    Some experienced programmers will point out, quite correctly, that
 contradictory or outdated comments can be worse than none at all.
-Certainly, comments shouldn't be a substitute for readable code; if your
-code is unclear, it's probably also buggy.  You may find that you need
-to comment more while you are learning ruby, and then less as you become
-better at expressing your ideas in simple, elegant, readable code.
+Certainly, comments shouldn't be a substitute for readable code; if
+your code is unclear, it's probably also buggy.  You may find that you
+need to comment more while you are learning ruby, and then less as you
+become better at expressing your ideas in simple, elegant, readable
+code.
 
    Ruby follows a common scripting convention, which is to use a pound
 symbol ('#') to denote the start of a comment.  Anything following an
-unquoted '#', to the end of the line on which it appears, is ignored by
-the interpreter.
+unquoted '#', to the end of the line on which it appears, is ignored
+by the interpreter.
 
    Also, to facilitate large comment blocks, the ruby interpreter also
-ignores anything between a line starting with '=begin' and another line
-starting with '=end'.
+ignores anything between a line starting with '=begin' and another
+line starting with '=end'.
 
      #!/usr/bin/env ruby
 
@@ -5193,9 +5561,9 @@ starting with '=end'.
 Organizing Your Code
 --------------------
 
-Ruby's unusually high level of dynamism means that classes, modules, and
-methods exist only after their defining code runs.  If you're used to
-programming in a more static language, this can sometimes lead to
+Ruby's unusually high level of dynamism means that classes, modules,
+and methods exist only after their defining code runs.  If you're used
+to programming in a more static language, this can sometimes lead to
 surprises.
 
      # The below results in an "undefined method" error:
@@ -5208,14 +5576,14 @@ surprises.
 
    Although the interpreter checks over the entire script file for
 syntax before executing it, the 'def successor ... end' code has to
-actually run in order to create the 'successor' method.  So the order in
-which you arrange a script can matter.
+actually run in order to create the 'successor' method.  So the order
+in which you arrange a script can matter.
 
    This does not, as it might seem at first glance, force you to
 organize your code in a strictly bottom-up fashion.  When the
 interpreter encounters a method definition, it can safely include
-undefined references, as long as you can be sure they will be defined by
-the time the method is actually invoked:
+undefined references, as long as you can be sure they will be defined
+by the time the method is actually invoked:
 
      # Conversion of fahrenheit to celsius, broken
      # down into two steps.
@@ -5233,11 +5601,11 @@ the time the method is actually invoked:
    So while this may seem less convenient than what you may be used to
 in Perl or Java, it is less restrictive than trying to write C without
 prototypes (which would require you to always maintain a partial
-ordering of what references what).  Putting top-level code at the bottom
-of a source file always works.  And even this is less of an annoyance
-than it might at first seem.  A sensible and painless way to enforce the
-behavior you want is to define a 'main' function at the top of the file,
-and call it from the bottom.
+ordering of what references what).  Putting top-level code at the
+bottom of a source file always works.  And even this is less of an
+annoyance than it might at first seem.  A sensible and painless way to
+enforce the behavior you want is to define a 'main' function at the
+top of the file, and call it from the bottom.
 
      #!/usr/bin/env ruby
 
@@ -5252,11 +5620,11 @@ and call it from the bottom.
 'load' And 'require'
 --------------------
 
-It also helps that ruby provides tools for breaking complicated programs
-into readable, reusable, logically related chunks.  We have already seen
-the use of 'include' for accessing modules (*note Ruby User's Guide On
-Modules::.  You will also find the 'load' and 'require' facilities
-useful.
+It also helps that ruby provides tools for breaking complicated
+programs into readable, reusable, logically related chunks.  We have
+already seen the use of 'include' for accessing modules (*note Ruby
+User's Guide On Modules::.  You will also find the 'load' and
+'require' facilities useful.
 
 'load'
      works as if the file it refers to were copied and pasted in
@@ -5288,16 +5656,16 @@ Programming Ruby (http://ruby-doc.com/docs/ProgrammingRuby/)
 What This Book Is
 .................
 
-This book is a tutorial and reference for the Ruby programming language.
-Use Ruby, and you'll write better code, be more productive, and enjoy
-programming more.
+This book is a tutorial and reference for the Ruby programming
+language.  Use Ruby, and you'll write better code, be more productive,
+and enjoy programming more.
 
 What Ruby Is
 ............
 
 Take a true object-oriented language, such as Smalltalk.  Drop the
-unfamiliar syntax and move to more conventional, file-based source code.
-Now add in a good measure of the flexibility and convenience of
+unfamiliar syntax and move to more conventional, file-based source
+code.  Now add in a good measure of the flexibility and convenience of
 languages such as Python and Perl.
 
    You end up with Ruby.
@@ -5315,26 +5683,26 @@ Ruby is Perl and Python
 
 At the same time, Perl and Python wizards will find many of their
 favorite features: full regular expression support, tight integration
-with the underlying operating system, convenient shortcuts, and dynamic
-evaluation.
+with the underlying operating system, convenient shortcuts, and
+dynamic evaluation.
 
 Principle of Lease Surprise
 ...........................
 
-Ruby follows the Principle of Least Surprise -- things work the way you
-would expect them to, with very few special cases or exceptions.
+Ruby follows the Principle of Least Surprise -- things work the way
+you would expect them to, with very few special cases or exceptions.
 
 Ruby is a "Transparent" Language
 ................................
 
 We call Ruby a "transparent" language.  By that we mean that Ruby
 doesn't obscure the solutions you write behind lots of syntax and the
-need to churn out reams of support code just to get simple things done.
-With Ruby you write programs close to the problem domain.  Rather than
-constantly mapping your ideas and designs down to the pedestrian level
-of most languages, with Ruby you'll find you can express them directly
-and express them elegantly.  This means you code faster.  It also means
-your programs stay readable and maintainable.
+need to churn out reams of support code just to get simple things
+done.  With Ruby you write programs close to the problem domain.
+Rather than constantly mapping your ideas and designs down to the
+pedestrian level of most languages, with Ruby you'll find you can
+express them directly and express them elegantly.  This means you code
+faster.  It also means your programs stay readable and maintainable.
 
 Ruby is a "Scripting" Language
 ..............................
@@ -5344,25 +5712,25 @@ distinction worth making.  In Ruby, you can access all the underlying
 operating system features.  You can do the same stuff in Ruby that you
 can in Perl or Python, and you can do it more cleanly.  But Ruby is
 fundamentally different.  It is a true programming language, too, with
-strong theoretical roots and an elegant, lightweight syntax.  You could
-hack together a mess of "scripts" with Ruby, but you probably won't.
-Instead, you'll be more inclined to engineer a solution, to produce a
-program that is easy to understand, simple to maintain, and a piece of
-cake to extend and reuse in the future.
+strong theoretical roots and an elegant, lightweight syntax.  You
+could hack together a mess of "scripts" with Ruby, but you probably
+won't.  Instead, you'll be more inclined to engineer a solution, to
+produce a program that is easy to understand, simple to maintain, and
+a piece of cake to extend and reuse in the future.
 
 Ruby is a General Purpose Programming Language
 ..............................................
 
 Although we have used Ruby for scripting jobs, most of the time we use
 it as a general-purpose programming language.  We've used it to write
-GUI applications and middle-tier server processes, and we're using it to
-format large parts of this book.  Others have used it for managing
+GUI applications and middle-tier server processes, and we're using it
+to format large parts of this book.  Others have used it for managing
 server machines and databases.  Ruby is serving Web pages, interfacing
 to databases and generating dynamic content.  People are writing
 artificial intelligence and machine learning programs in Ruby, and at
 least one person is using it to investigate natural evolution.  Ruby's
-finding a home as a vehicle for exploratory mathematics.  And people all
-over the world are using it as a way of gluing together all their
+finding a home as a vehicle for exploratory mathematics.  And people
+all over the world are using it as a way of gluing together all their
 different applications.  It truly is a great language for producing
 solutions in a wide variety of problem domains.
 
@@ -5391,9 +5759,20 @@ File: Ruby2_5.info,  Node: Further Reading,  Prev: Editors and IDEs,  Up: Docume
 2.7 Further Reading
 ===================
 
-'Programming Ruby', by Marek Hulan, et al., contains succinct advanced
-information about Ruby.  (See item 'ProgrammingRuby' in *note
-Bibliography: ProgrammingRuby.)
+'Programming Ruby'
+     by Marek Hulan, et al., contains succinct advanced information
+     about Ruby.  *Note Programming Ruby by Hulan::.  (See item
+     'ProgrammingRuby' in *note Bibliography: ProgrammingRuby.)
+
+'Pragmatic Programmer's Guide -- The Pickaxe (aka Programming Ruby)'
+     by Dave Thomas and Andy Hunt.  The place where just about every
+     Ruby beginner starts.  *Note The Pickaxe aka Programming Ruby -
+     The Pragmatic Programmer's Guide: Pragmatic Programmer's Guide.
+
+'The Ruby Way'
+     by Hal Fulton.  When you're reasonably familiar with Ruby, but
+     want to learn more and see how to accomplish all sorts of tasks
+     with it, then <http://therubyway.io>, is the logical next step.
 
 
 File: Ruby2_5.info,  Node: Implementations,  Next: My Ruby Reference,  Prev: Documentation,  Up: Top
@@ -5414,13 +5793,13 @@ File: Ruby2_5.info,  Node: YARV Implementation,  Next: JRuby Implementation,  Up
 3.1 YARV Implementation
 =======================
 
-YARV stands for "Yet Another Ruby VM" and is a bytecode interpreter that
-was developed for the Ruby programming language by Koichi Sasada.  See
-YARV (http://www.atdot.net/yarv/oopsla2005eabstract-rc1.pdf).  The goal
-of the project was to greatly reduce the execution time of Ruby
-programs.  Since YARV has become the official Ruby interpreter for Ruby
-1.9, it is also named KRI ("Koichi's Ruby Interpreter"), in the same
-vein as the original Ruby MRI, named for Ruby's creator Yukihiro
+YARV stands for "Yet Another Ruby VM" and is a bytecode interpreter
+that was developed for the Ruby programming language by Koichi Sasada.
+See YARV (http://www.atdot.net/yarv/oopsla2005eabstract-rc1.pdf).  The
+goal of the project was to greatly reduce the execution time of Ruby
+programs.  Since YARV has become the official Ruby interpreter for
+Ruby 1.9, it is also named KRI ("Koichi's Ruby Interpreter"), in the
+same vein as the original Ruby MRI, named for Ruby's creator Yukihiro
 Matsumoto.
 
    YARV was merged into the Ruby Subversion repository on January 1,
@@ -5437,8 +5816,8 @@ The Ruby Programming Language On The JVM
 ========================================
 
 JRuby 9.2.x is our new major version of JRuby.  It is expected to be
-compatible with Ruby 2.5.x and stay in sync with C Ruby.  JRuby 9.2.0.0
-is our first release for 2.5 support.
+compatible with Ruby 2.5.x and stay in sync with C Ruby.  JRuby
+9.2.0.0 is our first release for 2.5 support.
 
 JRuby (https://www.jruby.org)
 
@@ -5456,13 +5835,13 @@ File: Ruby2_5.info,  Node: Rubinius Implementation,  Next: The Rubinius Book,  P
 Phoenix.
 
    Rubinius (https://rubinius.com) follows in the Lisp and Smalltalk
-traditions, by natively implementing as much of Ruby as possible in Ruby
-code.
+traditions, by natively implementing as much of Ruby as possible in
+Ruby code.
 
-   The current 'Rubinius' release is version 3.107.  'Rubinius' provides
-Homebrew binaries that should be compatible with 10.8 (Mountain Lion)
-and newer OS X releases.  To install 'Rubinius' on Homebrew, follow
-these steps:
+   The current 'Rubinius' release is version 3.107.  'Rubinius'
+provides Homebrew binaries that should be compatible with 10.8
+(Mountain Lion) and newer OS X releases.  To install 'Rubinius' on
+Homebrew, follow these steps:
      $ brew update
      $ brew tap rubinius/apps
      $ brew install rubinius
@@ -5492,8 +5871,8 @@ File: Ruby2_5.info,  Node: Operators,  Up: My Ruby Reference
 =============
 
 Most operators are actually method calls.  For example, 'a + b' is
-interpreted as 'a.+(b)', where the '+' method in the object referred to
-by variable 'a' is called with 'b' as its argument.
+interpreted as 'a.+(b)', where the '+' method in the object referred
+to by variable 'a' is called with 'b' as its argument.
 
    For each operator ('+ - * / % ** & | ^ << >> && ||'), there is a
 corresponding form of abbreviated assignment operator ('+= -=' etc.).
@@ -5529,8 +5908,8 @@ File: Ruby2_5.info,  Node: Arithmetic Operators,  Next: Comparison Operators,  U
         
 '/'     Division -- Divides left hand operand by right hand operand.
         
-'%'     Modulus -- Divides left hand operand by right hand operand and
-        returns remainder.
+'%'     Modulus -- Divides left hand operand by right hand operand
+        and returns remainder.
         
 '**'    Exponent − Performs exponential (power) calculation on
         operators.
@@ -5604,8 +5983,8 @@ Help and documentation for the Ruby programming language.
 
    * Core API (http://ruby-doc.org/core)
 
-     These are the API documents for the base classes and modules in the
-     current stable release of Ruby 2.5.
+     These are the API documents for the base classes and modules in
+     the current stable release of Ruby 2.5.
 
    * Standard Library API (http://ruby-doc.org/stdlib/)
 
@@ -8456,12 +8835,12 @@ A.1.3 Methods API
      'Encoding/Converter#destination_encoding' (Instance Method)
 
 'destination_encoding (http://ruby-doc.org/core-2.5.1/Encoding/InvalidByteSequenceError.html#method-i-destination_encoding)'
-     'Encoding/InvalidByteSequenceError#destination_encoding' (Instance
-     Method)
+     'Encoding/InvalidByteSequenceError#destination_encoding'
+     (Instance Method)
 
 'destination_encoding (http://ruby-doc.org/core-2.5.1/Encoding/UndefinedConversionError.html#method-i-destination_encoding)'
-     'Encoding/UndefinedConversionError#destination_encoding' (Instance
-     Method)
+     'Encoding/UndefinedConversionError#destination_encoding'
+     (Instance Method)
 
 'destination_encoding_name (http://ruby-doc.org/core-2.5.1/Encoding/InvalidByteSequenceError.html#method-i-destination_encoding_name)'
      'Encoding/InvalidByteSequenceError#destination_encoding_name'
@@ -10894,12 +11273,12 @@ A.1.3 Methods API
      Method)
 
 'source_encoding_name (http://ruby-doc.org/core-2.5.1/Encoding/InvalidByteSequenceError.html#method-i-source_encoding_name)'
-     'Encoding/InvalidByteSequenceError#source_encoding_name' (Instance
-     Method)
+     'Encoding/InvalidByteSequenceError#source_encoding_name'
+     (Instance Method)
 
 'source_encoding_name (http://ruby-doc.org/core-2.5.1/Encoding/UndefinedConversionError.html#method-i-source_encoding_name)'
-     'Encoding/UndefinedConversionError#source_encoding_name' (Instance
-     Method)
+     'Encoding/UndefinedConversionError#source_encoding_name'
+     (Instance Method)
 
 'source_location (http://ruby-doc.org/core-2.5.1/Method.html#method-i-source_location)'
      'Method#source_location' (Instance Method)
