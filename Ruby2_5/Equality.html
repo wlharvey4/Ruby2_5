@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.6d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Equality (Ruby2_5 Information)</title>
+
+<meta name="description" content="Equality (Ruby2_5 Information)">
+<meta name="keywords" content="Equality (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="My-Ruby-Reference.html#My-Ruby-Reference" rel="up" title="My Ruby Reference">
+<link href="Ruby_002dDoc.html#Ruby_002dDoc" rel="next" title="Ruby-Doc">
+<link href="Operator-Precedence.html#Operator-Precedence" rel="prev" title="Operator Precedence">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Equality"></a>
+<div class="header">
+<p>
+Previous: <a href="Operators.html#Operators" accesskey="p" rel="prev">Operators</a>, Up: <a href="My-Ruby-Reference.html#My-Ruby-Reference" accesskey="u" rel="up">My Ruby Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Equality-1"></a>
+<h3 class="section">4.2 Equality</h3>
+<a name="index-equality"></a>
+
+<p>Ruby objects implement five different methods that test for equality.
+</p>
+<a name="equal_003f-_002d_002d_002d-Object-Identity"></a>
+<h3 class="heading"><code>equal?</code> &mdash; Object Identity</h3>
+<a name="index-equal_003f"></a>
+
+<p>The most basic comparison is the <code>equal?</code> method (which comes from
+<samp>BasicObject</samp>.  It returns <code>true</code> if its receiver and parameter have
+the same object ID.  This is a fundamental part of the semantics of objects,
+and shouldn&rsquo;t be overridden.
+</p>
+<a name="g_t_003d_003d-_002d_002d_002d-Value-Equality"></a>
+<h3 class="heading"><code>==</code> &mdash; Value Equality</h3>
+<a name="index-_003d_003d"></a>
+
+<p>The most common test for equality uses the method <code>==</code>, which tests the
+values of its receiver with its argument.
+</p>
+<a name="eql_003f-_002d_002d_002d-Strict-Equality"></a>
+<h3 class="heading"><code>eql?</code> &mdash; Strict Equality</h3>
+<a name="index-eql_003f"></a>
+
+<p>Next on the scale of abstraction is the method <code>eql?</code>, which is part of
+<samp>Object</samp>.  (Actually, <code>eql?</code> is implemented in the <code>Kernel</code>
+module, which is mixed into <samp>Object</samp>.  Like the <code>==</code> operator,
+<code>eql?</code>  compares its receiver and its argument, but it is slightly
+stricter.  For example, different numeric objects will be coerced into a common
+type when compared using <code>==</code>, but objects of different types will never
+test equal using <code>eql?</code>.
+</p>
+<div class="example">
+<pre class="example">1 == 1.0   # &rArr; true
+1.eql? 1.0 # &rArr; false
+</pre></div>
+
+<p>The <code>eql?</code> method exists for one reason: It is used to compare the values
+of hash keys.  If you want to override Ruby&rsquo;s default behavior when using your
+objects as hash keys, you&rsquo;ll need to override the methods <code>eql?</code> and
+<code>hash</code> for those objects.
+</p>
+<a name="g_t_003d_003d_003d-_002d_002d_002d-Triple-Equal-Case-Equality"></a>
+<h3 class="heading"><code>===</code> &mdash; Triple Equal Case Equality</h3>
+<a name="index-_003d_003d_003d-1"></a>
+<a name="index-triple-equal"></a>
+
+<p>The <code>===</code> method is used to compare the target in a <code>case</code> statement
+against each of the selectors, using <code>selector === target</code>.  This rule
+allows Ruby <code>case</code> statements to be intuitive in practice.  For example,
+you can <code>switch</code> on the class of an object:
+</p>
+<div class="example">
+<pre class="example">case an_object
+  when String
+    puts &quot;It's a string.&quot;
+  when Numeric
+    puts &quot;It's a number.&quot;
+  else
+    puts &quot;It's something else entirely.&quot;
+  end
+</pre></div>
+
+<p>This works because class <samp>Module</samp> implements <code>===</code> to test whether
+its parameter is an instance of its receiver (or the receiver&rsquo;s parents).
+Therefore, if <code>an_object</code> is the string <code>cat</code>, the expression
+<code>String === an_object</code> would be true, and the first clause in the
+<code>case</code> statement would fire.
+</p>
+<a name="g_t_003d_007e-_002d_002d_002d-Match-Operator"></a>
+<h3 class="heading"><code>=~</code> &mdash; Match Operator</h3>
+<a name="index-_003d_007e"></a>
+<a name="index-match-operator"></a>
+
+<p>This is used by strings and regular expressions to implement pattern matching.
+It may freely be overloaded.
+</p>
+<a name="Negated-Equals-_0021_003d-and-_0021_007e"></a>
+<h3 class="heading">Negated Equals <code>!=</code> and <code>!~</code></h3>
+<a name="index-_0021_003d"></a>
+<a name="index-_0021_007e"></a>
+<a name="index-negated-equals"></a>
+
+<p>The equality tests <code>==</code> and <code>=~</code> also have the negated forms
+<code>!=</code> and <code>!~</code>, respectively.  These are implemented internally by
+reversing the sense of the non-negated forms.  This means that if you implement
+a method, you get the negated form for free.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Operators.html#Operators" accesskey="p" rel="prev">Operators</a>, Up: <a href="My-Ruby-Reference.html#My-Ruby-Reference" accesskey="u" rel="up">My Ruby Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

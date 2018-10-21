@@ -277,6 +277,11 @@ and @url{https://github.com/ruby, Ruby-Github}.
 
 @emph{Think think think think @dots{}}
 
+@quotation
+Just remember that in Ruby, @file{Class} is an object, and @file{Object} is a
+class.
+@end quotation
+---Hal Fulton, @cite{The Ruby Way}
 
 
 
@@ -2849,7 +2854,7 @@ It's @code{nil} instead of @code{null}.
 @code{==} and @code{equals()} are handled differently in Ruby.  Use @code{==}
 when you want to test ``equivalence'' in Ruby (@code{equals()} in Java).  Use
 @code{equal?()} when you want to know if two objects are ``the same''
-(@code{==} in Java).
+(@code{==} in Java).  @xref{Equality}
 @cindex equivalence vs the same
 @cindex @code{==} vs @code{equals()}
 @end itemize
@@ -6569,6 +6574,95 @@ operators.
 @subsection Operator Precedence
 @cindex operator precedence
 @cindex precedence, operator
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Equality
+@section Equality
+@cindex equality
+
+Ruby objects implement five different methods that test for equality.
+
+@heading @code{equal?} --- Object Identity
+@cindex @code{equal?}
+
+The most basic comparison is the @code{equal?} method (which comes from
+@file{BasicObject}.  It returns @code{true} if its receiver and parameter have
+the same object ID.  This is a fundamental part of the semantics of objects,
+and shouldn't be overridden.
+
+@heading @code{==} --- Value Equality
+@cindex @code{==}
+
+The most common test for equality uses the method @code{==}, which tests the
+values of its receiver with its argument.
+
+@heading @code{eql?} --- Strict Equality
+@cindex @code{eql?}
+
+Next on the scale of abstraction is the method @code{eql?}, which is part of
+@file{Object}.  (Actually, @code{eql?} is implemented in the @code{Kernel}
+module, which is mixed into @file{Object}.  Like the @code{==} operator,
+@code{eql?}  compares its receiver and its argument, but it is slightly
+stricter.  For example, different numeric objects will be coerced into a common
+type when compared using @code{==}, but objects of different types will never
+test equal using @code{eql?}.
+
+@example
+1 == 1.0   # @result{} true
+1.eql? 1.0 # @result{} false
+@end example
+
+The @code{eql?} method exists for one reason: It is used to compare the values
+of hash keys.  If you want to override Ruby's default behavior when using your
+objects as hash keys, you'll need to override the methods @code{eql?} and
+@code{hash} for those objects.
+
+@heading @code{===} --- Triple Equal Case Equality
+@cindex @code{===}
+@cindex triple equal
+
+The @code{===} method is used to compare the target in a @code{case} statement
+against each of the selectors, using @code{selector === target}.  This rule
+allows Ruby @code{case} statements to be intuitive in practice.  For example,
+you can @code{switch} on the class of an object:
+
+@example
+case an_object
+  when String
+    puts "It's a string."
+  when Numeric
+    puts "It's a number."
+  else
+    puts "It's something else entirely."
+  end
+@end example
+
+This works because class @file{Module} implements @code{===} to test whether
+its parameter is an instance of its receiver (or the receiver's parents).
+Therefore, if @code{an_object} is the string @code{cat}, the expression
+@code{String === an_object} would be true, and the first clause in the
+@code{case} statement would fire.
+
+@heading @code{=~} --- Match Operator
+@cindex @code{=~}
+@cindex match operator
+
+This is used by strings and regular expressions to implement pattern matching.
+It may freely be overloaded.
+
+@heading Negated Equals @code{!=} and @code{!~}
+@cindex @code{!=}
+@cindex @code{!~}
+@cindex negated equals
+
+The equality tests @code{==} and @code{=~} also have the negated forms
+@code{!=} and @code{!~}, respectively.  These are implemented internally by
+reversing the sense of the non-negated forms.  This means that if you implement
+a method, you get the negated form for free.
 
 
 

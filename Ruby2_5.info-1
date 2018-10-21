@@ -222,6 +222,7 @@ Implementations
 My Ruby Reference
 
 * Operators::
+* Equality::
 
 Operators
 
@@ -378,6 +379,10 @@ Preface
 *******
 
 _Think think think think ..._
+
+     Just remember that in Ruby, 'Class' is an object, and 'Object' is
+     a class.
+   --Hal Fulton, 'The Ruby Way'
 
 * Menu:
 
@@ -2647,7 +2652,7 @@ Differences From Java
    * '==' and 'equals()' are handled differently in Ruby.  Use '=='
      when you want to test "equivalence" in Ruby ('equals()' in Java).
      Use 'equal?()' when you want to know if two objects are "the
-     same" ('==' in Java).
+     same" ('==' in Java).  *Note Equality::
 
 
 File: Ruby2_5.info,  Node: To Ruby From Perl,  Next: To Ruby From PHP,  Prev: To Ruby From Java,  Up: Ruby from Other Languages
@@ -5863,9 +5868,10 @@ File: Ruby2_5.info,  Node: My Ruby Reference,  Next: Ruby-Doc,  Prev: Implementa
 * Menu:
 
 * Operators::
+* Equality::
 
 
-File: Ruby2_5.info,  Node: Operators,  Up: My Ruby Reference
+File: Ruby2_5.info,  Node: Operators,  Next: Equality,  Up: My Ruby Reference
 
 4.1 Operators
 =============
@@ -5970,6 +5976,84 @@ File: Ruby2_5.info,  Node: Operator Precedence,  Prev: Dot And Colon Operators, 
 
 4.1.10 Operator Precedence
 --------------------------
+
+
+File: Ruby2_5.info,  Node: Equality,  Prev: Operators,  Up: My Ruby Reference
+
+4.2 Equality
+============
+
+Ruby objects implement five different methods that test for equality.
+
+'equal?' -- Object Identity
+===========================
+
+The most basic comparison is the 'equal?' method (which comes from
+'BasicObject'.  It returns 'true' if its receiver and parameter have
+the same object ID. This is a fundamental part of the semantics of
+objects, and shouldn't be overridden.
+
+'==' -- Value Equality
+======================
+
+The most common test for equality uses the method '==', which tests
+the values of its receiver with its argument.
+
+'eql?' -- Strict Equality
+=========================
+
+Next on the scale of abstraction is the method 'eql?', which is part
+of 'Object'.  (Actually, 'eql?' is implemented in the 'Kernel' module,
+which is mixed into 'Object'.  Like the '==' operator, 'eql?' compares
+its receiver and its argument, but it is slightly stricter.  For
+example, different numeric objects will be coerced into a common type
+when compared using '==', but objects of different types will never
+test equal using 'eql?'.
+
+     1 == 1.0   # => true
+     1.eql? 1.0 # => false
+
+   The 'eql?' method exists for one reason: It is used to compare the
+values of hash keys.  If you want to override Ruby's default behavior
+when using your objects as hash keys, you'll need to override the
+methods 'eql?' and 'hash' for those objects.
+
+'===' -- Triple Equal Case Equality
+===================================
+
+The '===' method is used to compare the target in a 'case' statement
+against each of the selectors, using 'selector === target'.  This rule
+allows Ruby 'case' statements to be intuitive in practice.  For
+example, you can 'switch' on the class of an object:
+
+     case an_object
+       when String
+         puts "It's a string."
+       when Numeric
+         puts "It's a number."
+       else
+         puts "It's something else entirely."
+       end
+
+   This works because class 'Module' implements '===' to test whether
+its parameter is an instance of its receiver (or the receiver's
+parents).  Therefore, if 'an_object' is the string 'cat', the
+expression 'String === an_object' would be true, and the first clause
+in the 'case' statement would fire.
+
+'=~' -- Match Operator
+======================
+
+This is used by strings and regular expressions to implement pattern
+matching.  It may freely be overloaded.
+
+Negated Equals '!=' and '!~'
+============================
+
+The equality tests '==' and '=~' also have the negated forms '!=' and
+'!~', respectively.  These are implemented internally by reversing the
+sense of the non-negated forms.  This means that if you implement a
+method, you get the negated form for free.
 
 
 File: Ruby2_5.info,  Node: Ruby-Doc,  Next: Ruby Gems,  Prev: My Ruby Reference,  Up: Top

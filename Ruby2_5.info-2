@@ -3839,6 +3839,8 @@ Index
  [index ]
 * Menu:
 
+* !=:                                    Equality.          (line  73)
+* !~:                                    Equality.          (line  73)
 * "#symbol":                             FAQ Syntax.        (line 115)
 * "falsey" values:                       FAQ Syntax.        (line  59)
 * "name".intern:                         FAQ Syntax.        (line  83)
@@ -3975,13 +3977,16 @@ Index
                                                             (line  63)
 * <MegaGreeter--say_hi Method>, use:     Large Class Definition.
                                                             (line  10)
+* ==:                                    Equality.          (line  19)
 * == vs equals():                        To Ruby From Java. (line  59)
 * ===:                                   Ruby User's Guide On Control Structures.
                                                             (line  33)
+* === <1>:                               Equality.          (line  44)
 * =begin:                                Block Ruby Comments.
                                                             (line   6)
 * =end:                                  Block Ruby Comments.
                                                             (line   6)
+* =~:                                    Equality.          (line  67)
 * =~ matching operator:                  Ruby User's Guide on Regular Expressions.
                                                             (line 130)
 * @post_create eval.rb:                  eval.rb Post Create.
@@ -4333,8 +4338,11 @@ Index
                                                             (line   6)
 * ensure <1>:                            Exceptions.        (line  16)
 * ensure clause:                         FAQ Syntax.        (line 265)
+* eql?:                                  Equality.          (line  25)
 * equal:                                 A Few Logical Operators.
                                                             (line  21)
+* equal?:                                Equality.          (line  11)
+* equality:                              Equality.          (line   6)
 * equivalence vs the same:               To Ruby From Java. (line  59)
 * errors in OO:                          Ruby User's Guide on Methods.
                                                             (line  51)
@@ -4613,6 +4621,7 @@ Index
                                                             (line  60)
 * match method:                          Regular Expressions.
                                                             (line   6)
+* match operator:                        Equality.          (line  67)
 * match, regular expression:             A Few Logical Operators.
                                                             (line  21)
 * MatchData#begin and MatchData#end:     FAQ Other Features.
@@ -4711,6 +4720,7 @@ Index
 * name:                                  Class.             (line 112)
 * negated conditions:                    Ruby User's Guide On Control Structures.
                                                             (line  68)
+* negated equals:                        Equality.          (line  73)
 * network calls, stubbing:               Minitest.          (line 280)
 * new keyword:                           Ruby User's Guide on Classes.
                                                             (line  33)
@@ -5108,6 +5118,7 @@ Index
                                                             (line  62)
 * trap method, and Proc:                 Ruby User's Guide On Procedure Objects.
                                                             (line  40)
+* triple equal:                          Equality.          (line  44)
 * truth values:                          To Ruby From C and C++.
                                                             (line 111)
 * type conversions:                      To Ruby From C and C++.
