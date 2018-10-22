@@ -4098,6 +4098,8 @@ Index
 * behavior, class:                       Advanced Objects.  (line   6)
 * bin directory:                         What Is A Gem.     (line  68)
 * binary Ruby extension modules:         FAQ Syntax.        (line 249)
+* binding:                               Evaluating Code Dynamically.
+                                                            (line  33)
 * binding of { ... }:                    FAQ Iterators.     (line  36)
 * binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
 * bitwise operators:                     Bitwise Operators. (line   6)
@@ -4195,6 +4197,8 @@ Index
                                                             (line   6)
 * classes, modifying:                    Altering Classes.  (line  19)
 * classes, open:                         Classes are open.  (line   6)
+* class_eval:                            Evaluating Code Dynamically.
+                                                            (line  16)
 * CLOS:                                  Ruby User's Guide On Singleton Methods.
                                                             (line  17)
 * closures, proc objects:                Ruby User's Guide On Local Variables.
@@ -4203,6 +4207,8 @@ Index
                                                             (line  90)
 * cloud platforms:                       Installation - Running - About.
                                                             (line  89)
+* code evaluation:                       Evaluating Code Dynamically.
+                                                            (line   6)
 * collect:                               Pointers on Iteration.
                                                             (line  17)
 * collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
@@ -4322,6 +4328,8 @@ Index
 * duck typing <2>:                       Advanced Methods.  (line  42)
 * Dylan:                                 Ruby User's Guide On Singleton Methods.
                                                             (line  17)
+* dynamic code evaluation:               Evaluating Code Dynamically.
+                                                            (line   6)
 * dynamicly typed:                       To Ruby From C and C++.
                                                             (line  28)
 * each:                                  Pointers on Iteration.
@@ -4361,8 +4369,14 @@ Index
 * errors in OO:                          Ruby User's Guide on Methods.
                                                             (line  51)
 * eval:                                  FAQ Syntax.        (line 115)
+* eval():                                Evaluating Code Dynamically.
+                                                            (line   6)
 * eval.rb:                               Ruby User's Guide On Simple Examples.
                                                             (line 102)
+* evaluate code:                         Evaluating Code Dynamically.
+                                                            (line   6)
+* evaluation:                            Evaluating Code Dynamically.
+                                                            (line   6)
 * Exception class:                       Exceptions.        (line  34)
 * exception handling:                    FAQ Syntax.        (line 254)
 * exception processing:                  Ruby User's Guide On Exception Processing And rescue.
@@ -4521,6 +4535,8 @@ Index
                                                             (line   6)
 * instance variables, accessing:         FAQ Methods.       (line  49)
 * instance variables, encapsulation:     Defining Methods.  (line 109)
+* instance_eval:                         Evaluating Code Dynamically.
+                                                            (line  16)
 * instance_methods(false):               FAQ Built-In Libraries.
                                                             (line   9)
 * instantiating a class:                 Ruby User's Guide on Classes.
@@ -4577,6 +4593,8 @@ Index
 * json style hash:                       A Little About Data Types.
                                                             (line  51)
 * Kernel:                                FAQ Syntax.        (line 149)
+* Kernel#binding:                        Evaluating Code Dynamically.
+                                                            (line  33)
 * key, for hash:                         Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
 * keyword def:                           Ruby User's Guide on Classes.
@@ -4721,6 +4739,8 @@ Index
                                                             (line  34)
 * modules, subclassing?:                 FAQ Classes and Modules.
                                                             (line  56)
+* module_eval:                           Evaluating Code Dynamically.
+                                                            (line  16)
 * monkey patching:                       Class.             (line   9)
 * MRI:                                   YARV Implementation.
                                                             (line   6)

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.6d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Evaluating Code Dynamically (Ruby2_5 Information)</title>
+
+<meta name="description" content="Evaluating Code Dynamically (Ruby2_5 Information)">
+<meta name="keywords" content="Evaluating Code Dynamically (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="My-Ruby-Reference.html#My-Ruby-Reference" rel="up" title="My Ruby Reference">
+<link href="Ruby_002dDoc.html#Ruby_002dDoc" rel="next" title="Ruby-Doc">
+<link href="Equality.html#Equality" rel="prev" title="Equality">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Evaluating-Code-Dynamically"></a>
+<div class="header">
+<p>
+Previous: <a href="Equality.html#Equality" accesskey="p" rel="prev">Equality</a>, Up: <a href="My-Ruby-Reference.html#My-Ruby-Reference" accesskey="u" rel="up">My Ruby Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Evaluating-Code-Dynamically-1"></a>
+<h3 class="section">4.7 Evaluating Code Dynamically</h3>
+<a name="index-eval_0028_0029"></a>
+<a name="index-evaluate-code"></a>
+<a name="index-evaluation"></a>
+<a name="index-code-evaluation"></a>
+<a name="index-dynamic-code-evaluation"></a>
+
+<p>The global function <code>eval()</code> compiles and executes a string that contains
+a fragment of Ruby code.  This is a powerful (but extremely dangerous) mechanism,
+because it allows you to build up code to be executed at runtime.
+</p>
+<div class="example">
+<pre class="example">eval(&quot;2 + 3&quot;) # &rArr; 5
+</pre></div>
+
+<a name="Other-Methods-That-Evaluate-Code-Dynamically"></a>
+<h3 class="heading">Other Methods That Evaluate Code Dynamically</h3>
+<a name="index-class_005feval"></a>
+<a name="index-module_005feval"></a>
+<a name="index-instance_005feval"></a>
+
+<ol>
+<li> class_eval
+
+</li><li> module_eval
+
+</li><li> instance_eval
+
+</li></ol>
+
+<p>The first two are synonyms.  All three do effectively the same thing: evaluate
+a string or a block, but while doing so they change the value of <code>self</code> to
+their own receiver.  The most common use of <code>class_eval</code> allows you to add
+methods to a class when all you have is a reference to that class.
+</p>
+<p>You can see an example in the Standard Library <samp>delegate.rb</samp>.
+</p>
+<a name="Evaluating-Local-Variables-In-New-Scope"></a>
+<h3 class="heading">Evaluating Local Variables In New Scope</h3>
+<a name="index-binding"></a>
+<a name="index-Kernel_0023binding"></a>
+
+<p>The <code>eval()</code> method also makes it possible to evaluate local variables in
+a context outside their scope.  Ruby associates local variables with blocks,
+with high-level definition constructs (class, module, and method definitions),
+and with the top-level of your program (the code outside any definition
+constructs).  Associated with each of these scopes is the binding of variables,
+along with housekeeping details.
+</p>
+<p>You can encapsulate the current binding in an object using the method
+<code>Kernel#binding</code>.  Having done that, you can pass the binding as the
+second parameter to <code>eval()</code>, setting the execution context for the code
+being evaluated.
+</p>
+<div class="example">
+<pre class="example">def some_method
+  a = &quot;local variable&quot;
+  return binding
+end
+
+the_binding = some_method
+eval &quot;a&quot;, the_binding # &rArr; &quot;local variable&quot;
+</pre></div>
+
+<p>The presence of a block associated with a method is stored as part of the
+binding, enabling:
+</p>
+<div class="example">
+<pre class="example">def some_method
+  return binding
+end
+
+the_binding = some_method { puts &quot;hello&quot; }
+eval &quot;yield&quot;, the_binding # &rArr; &quot;hello&quot;
+</pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Equality.html#Equality" accesskey="p" rel="prev">Equality</a>, Up: <a href="My-Ruby-Reference.html#My-Ruby-Reference" accesskey="u" rel="up">My Ruby Reference</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

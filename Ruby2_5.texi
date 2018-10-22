@@ -486,6 +486,7 @@ My Ruby Reference
 * Variables::
 * Comments::
 * Equality::
+* Evaluating Code Dynamically::
 
 Data Types
 
@@ -7125,6 +7126,7 @@ $ brew install rubinius
 * Variables::
 * Comments::
 * Equality::
+* Evaluating Code Dynamically::
 @end menu
 
 @node Data Types
@@ -7653,6 +7655,87 @@ The equality tests @code{==} and @code{=~} also have the negated forms
 @code{!=} and @code{!~}, respectively.  These are implemented internally by
 reversing the sense of the non-negated forms.  This means that if you implement
 a method, you get the negated form for free.
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Evaluating Code Dynamically
+@section Evaluating Code Dynamically
+@cindex @code{eval()}
+@cindex evaluate code
+@cindex evaluation
+@cindex code evaluation
+@cindex dynamic code evaluation
+
+The global function @code{eval()} compiles and executes a string that contains
+a fragment of Ruby code.  This is a powerful (but extremely dangerous) mechanism,
+because it allows you to build up code to be executed at runtime.
+
+@example
+eval("2 + 3") # @result{} 5
+@end example
+
+@heading Other Methods That Evaluate Code Dynamically
+@cindex @code{class_eval}
+@cindex @code{module_eval}
+@cindex @code{instance_eval}
+
+@enumerate
+
+@item class_eval
+
+@item module_eval
+
+@item instance_eval
+
+@end enumerate
+
+The first two are synonyms.  All three do effectively the same thing: evaluate
+a string or a block, but while doing so they change the value of @code{self} to
+their own receiver.  The most common use of @code{class_eval} allows you to add
+methods to a class when all you have is a reference to that class.
+
+You can see an example in the Standard Library @file{delegate.rb}.
+
+@heading Evaluating Local Variables In New Scope
+@cindex binding
+@cindex @code{Kernel#binding}
+
+The @code{eval()} method also makes it possible to evaluate local variables in
+a context outside their scope.  Ruby associates local variables with blocks,
+with high-level definition constructs (class, module, and method definitions),
+and with the top-level of your program (the code outside any definition
+constructs).  Associated with each of these scopes is the binding of variables,
+along with housekeeping details.
+
+You can encapsulate the current binding in an object using the method
+@code{Kernel#binding}.  Having done that, you can pass the binding as the
+second parameter to @code{eval()}, setting the execution context for the code
+being evaluated.
+
+@example
+def some_method
+  a = "local variable"
+  return binding
+end
+
+the_binding = some_method
+eval "a", the_binding # @result{} "local variable"
+@end example
+
+The presence of a block associated with a method is stored as part of the
+binding, enabling:
+
+@example
+def some_method
+  return binding
+end
+
+the_binding = some_method @{ puts "hello" @}
+eval "yield", the_binding # @result{} "hello"
+@end example
 
 
 

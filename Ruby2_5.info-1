@@ -227,6 +227,7 @@ My Ruby Reference
 * Variables::
 * Comments::
 * Equality::
+* Evaluating Code Dynamically::
 
 Data Types
 
@@ -5886,6 +5887,7 @@ File: Ruby2_5.info,  Node: My Ruby Reference,  Next: Ruby-Doc,  Prev: Implementa
 * Variables::
 * Comments::
 * Equality::
+* Evaluating Code Dynamically::
 
 
 File: Ruby2_5.info,  Node: Data Types,  Next: Operators,  Up: My Ruby Reference
@@ -6214,7 +6216,7 @@ File: Ruby2_5.info,  Node: Comments,  Next: Equality,  Prev: Variables,  Up: My 
           end
 
 
-File: Ruby2_5.info,  Node: Equality,  Prev: Comments,  Up: My Ruby Reference
+File: Ruby2_5.info,  Node: Equality,  Next: Evaluating Code Dynamically,  Prev: Comments,  Up: My Ruby Reference
 
 4.6 Equality
 ============
@@ -6290,6 +6292,69 @@ The equality tests '==' and '=~' also have the negated forms '!=' and
 '!~', respectively.  These are implemented internally by reversing the
 sense of the non-negated forms.  This means that if you implement a
 method, you get the negated form for free.
+
+
+File: Ruby2_5.info,  Node: Evaluating Code Dynamically,  Prev: Equality,  Up: My Ruby Reference
+
+4.7 Evaluating Code Dynamically
+===============================
+
+The global function 'eval()' compiles and executes a string that
+contains a fragment of Ruby code.  This is a powerful (but extremely
+dangerous) mechanism, because it allows you to build up code to be
+executed at runtime.
+
+     eval("2 + 3") # => 5
+
+Other Methods That Evaluate Code Dynamically
+============================================
+
+  1. class_eval
+
+  2. module_eval
+
+  3. instance_eval
+
+   The first two are synonyms.  All three do effectively the same
+thing: evaluate a string or a block, but while doing so they change
+the value of 'self' to their own receiver.  The most common use of
+'class_eval' allows you to add methods to a class when all you have is
+a reference to that class.
+
+   You can see an example in the Standard Library 'delegate.rb'.
+
+Evaluating Local Variables In New Scope
+=======================================
+
+The 'eval()' method also makes it possible to evaluate local variables
+in a context outside their scope.  Ruby associates local variables
+with blocks, with high-level definition constructs (class, module, and
+method definitions), and with the top-level of your program (the code
+outside any definition constructs).  Associated with each of these
+scopes is the binding of variables, along with housekeeping details.
+
+   You can encapsulate the current binding in an object using the
+method 'Kernel#binding'.  Having done that, you can pass the binding
+as the second parameter to 'eval()', setting the execution context for
+the code being evaluated.
+
+     def some_method
+       a = "local variable"
+       return binding
+     end
+
+     the_binding = some_method
+     eval "a", the_binding # => "local variable"
+
+   The presence of a block associated with a method is stored as part
+of the binding, enabling:
+
+     def some_method
+       return binding
+     end
+
+     the_binding = some_method { puts "hello" }
+     eval "yield", the_binding # => "hello"
 
 
 File: Ruby2_5.info,  Node: Ruby-Doc,  Next: Ruby Gems,  Prev: My Ruby Reference,  Up: Top
