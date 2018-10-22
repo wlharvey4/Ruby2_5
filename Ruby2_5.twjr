@@ -6447,6 +6447,99 @@ $ brew install rubinius
 
 @c -----------------------------------------------------------------------------
 
+@node Data Types
+@section Data Types
+@cindex data types
+
+
+@c .....................................
+
+@node Number Data Types
+@subsection Number Data Types
+@cindex number
+
+
+@c .....................................
+
+@node Character Data Type
+@subsection Character Data Type
+@cindex character
+
+
+@c .....................................
+
+@node String Data Type
+@subsection String Data Type
+@cindex string
+
+@c .....................................
+
+@node Array Data Type
+@subsection Array Data Type
+@cindex array
+
+All arrays are instances of the class @file{Array}.  They may contain data of
+any type, including mixed types.  An array constant is delimited by brackets
+(@kbd{[@dots{}]}).  Arrays are zero-based and dynamic.
+
+An array variable uses brackets enclosing an expression to index into its array
+object.  This allows the variable to both reveal its content and update its
+content.
+
+@example
+[1, 2, 3]
+["a", "b", "c"]
+[1, "a", 2, "b", 3, "c"]
+
+arr = [1, 2, 3]
+arr[0]     # @result{} 1
+arr[3] = 4 # @result{} [1, 2, 3, 4]
+@end example
+
+@heading Special Forms for String Arrays
+@cindex string array, special syntax
+
+Because the array of strings is so common (and inconvenient to type), a special
+syntax has been created for it: no quotes or commas are needed.  Whitespace
+separates the elements (so strings with whitespace will need quotes).
+
+@example
+%w[alpha beta gamma]
+%w(alpha beta gamma)
+%w/alpha beta gamma/
+@end example
+
+
+
+@c .....................................
+
+@node Hash Data Type
+@subsection Hash Data Type
+@cindex hash
+
+A @dfn{hash} is a set of associations between paired pieces of data.  Each hash
+is an instance of the class @file{Hash}.
+
+A hash constant is represented between delimiting braces with the fat arrow
+separating the individual keys and values: @samp{@{key => value@}}.
+
+Hashes also have an additional syntax that creates keys that are instances of
+the @file{Symbol} class: @samp{@{symbol: value@}}.
+
+Hash variable content is accessed using brackets enclosing the key:
+@samp{hsh["key"]} or symbol: @samp{hsh[:symbol]}.
+
+@example
+@{odds => [1, 3, 5, 7, 9], evens => [2, 4, 6, 8]
+
+@{hydrogen: 1, helium: 2, carbon: 3@}
+@end example
+
+
+
+
+@c -----------------------------------------------------------------------------
+
 @node Operators
 @section Operators
 @cindex operators
@@ -6574,6 +6667,202 @@ operators.
 @subsection Operator Precedence
 @cindex operator precedence
 @cindex precedence, operator
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Keywords
+@section Keywords
+@cindex keywords
+
+@itemize
+@item
+BEGIN
+
+@item
+END
+
+@item
+alias
+
+@item
+and
+
+@item
+begin
+
+@item
+break
+
+@item
+case
+
+@item
+class
+
+@item
+def
+
+@item
+defined?
+
+@item
+do
+
+@item
+else
+
+@item
+elsif
+
+@item
+end
+
+@item
+ensure
+
+@item
+false
+
+@item
+for
+
+@item
+if
+
+@item
+in
+
+@item
+module
+
+@item
+next
+
+@item
+nil
+
+@item
+not
+
+@item
+or
+
+@item
+redo
+
+@item
+rescue
+
+@item
+retry
+
+@item
+return
+
+@item
+self
+
+@item
+super
+
+@item
+then
+
+@item
+true
+
+@item
+undef
+
+@item
+unless
+
+@item
+unless
+
+@item
+until
+
+@item
+when
+
+@item
+while
+
+@item
+yield
+
+@end itemize
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Variables
+@section Variables
+@cindex variables
+
+Variables do not have types, but the objects they refer to do have types.
+
+@table @b
+
+@item Local
+Begin with a lowercase letter or underscore
+
+@item Global
+Begin with a @kbd{$}; special variables starting with a @kbd{$} are set by the
+Ruby interpreter directly
+
+@item Instance
+Begin with an @kbd{@@}
+
+@item Class
+Begin with two @kbd{@@@@}
+
+@item Constant
+Begin with a capital letter
+
+@end table
+
+
+
+
+@c -----------------------------------------------------------------------------
+
+@node Comments
+@section Comments
+@cindex comments
+
+@itemize
+
+@item
+@kbd{#} to @var{eol}
+
+@item
+@code{=begin} @dots{} @code{=end}
+
+@item
+Comments immediately before definitions typically document the thing that is
+about to be defined.  The embedded documentation can often be retrieved from
+the program text with an external tool.  Typical documentation can run to
+several comment-lines in a row.
+
+@example
+# Some documentation
+# Some more documentation
+class Clazz
+  some content @dots{}
+end
+@end example
+
+@end itemize
+
+
+
 
 
 
@@ -13799,8 +14088,8 @@ methods mutating state end with @kbd{!} (exclamation mark)
 
 @c _____________________________________
 
-@node Data Types
-@appendixsubsubsec Data Types
+@node A Little About Data Types
+@appendixsubsubsec A Little About Data Types
 @cindex data types
 
 In Ruby everything is an object, including arrays or numbers.  However there are
