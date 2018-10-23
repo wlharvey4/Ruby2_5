@@ -514,6 +514,8 @@ Dynamic Features
 * Dynamic Instance Variables::
 * Dynamic Objects::
 * Eval'ing Code::
+* Retrieving By Name::
+* Defining Methods Dynamically::
 
 Ruby-Doc
 
@@ -7678,6 +7680,8 @@ a method, you get the negated form for free.
 * Dynamic Instance Variables::
 * Dynamic Objects::
 * Eval'ing Code::
+* Retrieving By Name::
+* Defining Methods Dynamically::
 @end menu
 
 @node Dynamic Instance Variables
@@ -7809,6 +7813,193 @@ end
 
 the_binding = some_method @{ puts "hello" @}
 eval "yield", the_binding # @result{} "hello"
+@end example
+
+
+
+
+@c .....................................
+
+@node Retrieving By Name
+@subsection Retrieving By Name
+@cindex @code{const_get}
+
+@heading Retrieving A Constant From A Module Or Class
+
+The @code{const_get} method retrieves the value of a constant (by name) from
+the module or class to which it belongs.
+
+@example
+str = "PI"
+Math.const_get(str) # @result{} Math::PI
+@end example
+
+This is a way of avoiding the use of @code{eval}, both dangerous and inelegant.
+This type of solution is better code, its computationally cheaper, and it's
+safer.  @code{const_get} is much faster than @code{eval}.
+
+The usefulness of @code{const_get} is that it is easier to read, more specific,
+and more self-documenting.  This is the real reason to use it.  
+
+Other similar methods are:
+
+@itemize
+@item
+@code{instance_variable_set}
+@item
+@code{instance_variable_get}
+@item
+@code{define_method}
+@end itemize
+
+@heading Retrieving A Class By Name From A String
+@cindex @code{Object.const_get}
+@cindex global namespace
+@cindex @file{Object} containing global namespace
+
+Given a string containing the name of a class, how to create an instance of
+that class?  Classes in Ruby are normally named as constants in the ``global''
+namespace --- that is, members of @file{Object}.  That means the proper way is
+with @code{const_get}:
+
+@example
+classname = "Array"
+klass = Object.const_get(classname)
+x = klass.new(4, 1) # @result{} [1, 1, 1, 1]
+@end example
+
+If the constant is inside a namespace, just provide a string with namespaces
+delimited by two colons (as if you were writing Ruby directly):
+
+@example
+class Alpha
+  class Beta
+    class Gamma
+      FOOBAR = 237
+    end
+  end
+end
+
+str = "Alpha::Beta::Gamma::FOOBAR"
+val = Object.const_get(str) # @result{} 237
+@end example
+
+
+@c .....................................
+
+@node Defining Methods Dynamically
+@subsection Defining Methods Dynamically
+@cindex @code{define_method}
+
+@heading @code{define_method} Definition
+
+@defmethod Module define_method (@var{symbol}, @var{method}) @expansion{} Symbol
+@defmethodx Module define_method (@var{symbol}) @{ @var{block} @} @expansion{} Symbol
+Defines an instance method in the receiver.  The method parameter can be a
+Proc, a Method or an UnboundMethod object.  If a block is specified, it is used
+as the method body.  This block is evaluated using @code{instance_eval}, a
+point that is tricky to demonstrate because @code{define_method} is private.
+(This is why we resort to the @code{send} hack in this example.)
+@end defmethod
+
+@subheading @code{define_method} Example
+
+@example
+class A
+  def fred
+    puts "In Fred"
+  end
+  def create_method(name, &block)
+    self.class.send(:define_method, name, &block)
+  end
+  define_method(:wilma) @{ puts "Charge it!" @}
+end
+
+class B < A
+  define_method(:barney, instance_method(:fred))
+end
+
+a = B.new
+a.barney		# @print{} In Fred
+a.wilma		# @print{} Charge it!
+a.create_method(:betty) @{ p self @}
+a.betty		# @print{} #<B:0x401b39e8>
+@end example
+
+
+@heading @code{define_method} Description
+
+@code{define_method} allows you to add a method to a class or object at
+runtime.  @code{define_method} takes a symbol (for the name of the method)
+and a block (for the body of the method):
+
+@example
+if today =~ /Saturday|Sunday/
+  define_method(:activity) @{puts "Playing"@}
+else
+  define_method(:activity) @{puts "Working"@}
+end
+@end example
+
+However, @code{define_method} is private.  This means that calling it from
+inside a class definition or method will work.
+
+@example
+class MyClass
+  define_method(:body_method) @{ puts "The class body" @}
+
+  def self.new_method(name, &block)
+    define_method(name, &block)
+  end
+end
+
+MyClass.new_method(:class_method) @{ puts "A class method" @}
+
+x = MyClass.new 
+x.body_method	# @print{} "The class body"
+x.class_method  # @print{} "A class method"
+@end example
+
+We can even create an instance method that dynamically defines other instance
+methods:
+
+@example
+class MyClass
+  def new_method(name, &block)
+    self.class.send(:define_method, name, &block)
+  end
+end
+
+x = MyClass.new
+x.new_method(:mymeth) @{ puts "An instance method" @}
+x.mymeth # @print{} "An instance method"
+@end example
+
+We are still defining an instance method dynamically; but the means of invoking
+@code{new_method} has changed.  The @code{send} method is used to circumvent
+the privacy of @code{define_method}.  This works because @code{send} always
+allows you to call private methods.  (This ``loophole'', as some would call it,
+has to be used responsibly.)
+
+@code{define_method} takes a block, and a block is a closure.  This means that,
+unlike an ordinary method definition, we are capturing context when we define the
+method.  The following example illustrates the point:
+
+@example
+class MyClass
+  def self.new_method(name, &block)
+    define_method(name, &block)
+  end
+end
+
+a, b = 3, 79
+MyClass.new_method(:compute) @{ a * b @}
+
+x = MyClass.new
+puts x.compute   # @print{} 237
+
+a, b = 23, 34
+puts x.compute   # @print{} 552
 @end example
 
 
@@ -16895,7 +17086,7 @@ moved into @file{src} with its original @file{eval.rb} intact.
 @noindent
 @r{@{@file{eval.rb}@}} @equiv{}
 @example
-#! /usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 #######################################################
 #

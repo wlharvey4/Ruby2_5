@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.6d of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Retrieving By Name (Ruby2_5 Information)</title>
+
+<meta name="description" content="Retrieving By Name (Ruby2_5 Information)">
+<meta name="keywords" content="Retrieving By Name (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Dynamic-Features.html#Dynamic-Features" rel="up" title="Dynamic Features">
+<link href="Defining-Methods-Dynamically.html#Defining-Methods-Dynamically" rel="next" title="Defining Methods Dynamically">
+<link href="Eval_0027ing-Code.html#Eval_0027ing-Code" rel="prev" title="Eval'ing Code">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Retrieving-By-Name"></a>
+<div class="header">
+<p>
+Next: <a href="Defining-Methods-Dynamically.html#Defining-Methods-Dynamically" accesskey="n" rel="next">Defining Methods Dynamically</a>, Previous: <a href="Eval_0027ing-Code.html#Eval_0027ing-Code" accesskey="p" rel="prev">Eval'ing Code</a>, Up: <a href="Dynamic-Features.html#Dynamic-Features" accesskey="u" rel="up">Dynamic Features</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Retrieving-By-Name-1"></a>
+<h4 class="subsection">4.7.4 Retrieving By Name</h4>
+<a name="index-const_005fget"></a>
+
+<a name="Retrieving-A-Constant-From-A-Module-Or-Class"></a>
+<h3 class="heading">Retrieving A Constant From A Module Or Class</h3>
+
+<p>The <code>const_get</code> method retrieves the value of a constant (by name) from
+the module or class to which it belongs.
+</p>
+<div class="example">
+<pre class="example">str = &quot;PI&quot;
+Math.const_get(str) # &rArr; Math::PI
+</pre></div>
+
+<p>This is a way of avoiding the use of <code>eval</code>, both dangerous and inelegant.
+This type of solution is better code, its computationally cheaper, and it&rsquo;s
+safer.  <code>const_get</code> is much faster than <code>eval</code>.
+</p>
+<p>The usefulness of <code>const_get</code> is that it is easier to read, more specific,
+and more self-documenting.  This is the real reason to use it.  
+</p>
+<p>Other similar methods are:
+</p>
+<ul>
+<li> <code>instance_variable_set</code>
+</li><li> <code>instance_variable_get</code>
+</li><li> <code>define_method</code>
+</li></ul>
+
+<a name="Retrieving-A-Class-By-Name-From-A-String"></a>
+<h3 class="heading">Retrieving A Class By Name From A String</h3>
+<a name="index-Object_002econst_005fget"></a>
+<a name="index-global-namespace"></a>
+<a name="index-Object-containing-global-namespace"></a>
+
+<p>Given a string containing the name of a class, how to create an instance of
+that class?  Classes in Ruby are normally named as constants in the &ldquo;global&rdquo;
+namespace &mdash; that is, members of <samp>Object</samp>.  That means the proper way is
+with <code>const_get</code>:
+</p>
+<div class="example">
+<pre class="example">classname = &quot;Array&quot;
+klass = Object.const_get(classname)
+x = klass.new(4, 1) # &rArr; [1, 1, 1, 1]
+</pre></div>
+
+<p>If the constant is inside a namespace, just provide a string with namespaces
+delimited by two colons (as if you were writing Ruby directly):
+</p>
+<div class="example">
+<pre class="example">class Alpha
+  class Beta
+    class Gamma
+      FOOBAR = 237
+    end
+  end
+end
+
+str = &quot;Alpha::Beta::Gamma::FOOBAR&quot;
+val = Object.const_get(str) # &rArr; 237
+</pre></div>
+
+
+
+
+
+
+</body>
+</html>
