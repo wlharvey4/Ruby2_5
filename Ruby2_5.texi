@@ -486,7 +486,7 @@ My Ruby Reference
 * Variables::
 * Comments::
 * Equality::
-* Evaluating Code Dynamically::
+* Dynamic Features::
 
 Data Types
 
@@ -508,6 +508,12 @@ Operators
 * Defined? Operators::
 * Dot And Colon Operators::
 * Operator Precedence::
+
+Dynamic Features
+
+* Dynamic Instance Variables::
+* Dynamic Objects::
+* Eval'ing Code::
 
 Ruby-Doc
 
@@ -7126,7 +7132,7 @@ $ brew install rubinius
 * Variables::
 * Comments::
 * Equality::
-* Evaluating Code Dynamically::
+* Dynamic Features::
 @end menu
 
 @node Data Types
@@ -7661,8 +7667,76 @@ a method, you get the negated form for free.
 
 @c -----------------------------------------------------------------------------
 
-@node Evaluating Code Dynamically
-@section Evaluating Code Dynamically
+@node Dynamic Features
+@section Dynamic Features
+@cindex dynamic features
+
+
+@c .....................................
+
+@menu
+* Dynamic Instance Variables::
+* Dynamic Objects::
+* Eval'ing Code::
+@end menu
+
+@node Dynamic Instance Variables
+@subsection Dynamic Instance Variables
+@cindex dynamic instance variables
+
+@heading Is An Instance Variable Defined?
+@cindex @code{instance_variable_defined?()}
+
+There is a special method to determine whether an instance variable is
+already defined: @code{instance_variable_defined?(<sym>)}.
+
+@heading Get And Set Instance Variables Using A String
+@cindex @code{instance_variable_get}
+@cindex @code{instance_variable_set}
+
+Ruby has methods that can retrieve or assign instance variables given
+the variable name as a string:
+
+@itemize
+@item
+@code{instance_variable_set(<string>)}
+@item
+@code{instance_variable_get(<string>}
+@end itemize
+
+@example
+obj.instance_variable_set("@@alpha", 234)
+obj.instance_variable_get("@@alpha")
+@end example
+
+You must use the @code{@@} sign.
+
+
+@c .....................................
+
+@node Dynamic Objects
+@subsection Dynamic Objects
+@cindex dynamic objects
+
+@heading Sending A Message To An Object
+@cindex @code{send()}
+@cindex @code{__SEND__}
+@cindex @code{public_send()}
+
+Every time you invoke a method, you are sending a message to an object.  Most
+of the time, these messages are hard-coded as in a static language, but they
+need not always be.  We can write code that determines at runtime which method
+to call.  The @code{send()} method will allow us to us a @file{Symbol} to
+represent a method name.  @code{__SEND__} is an alias.  @code{public_send()} is
+used to send a message to only public methods.
+
+
+
+
+@c .....................................
+
+@node Eval'ing Code
+@subsection Eval'ing Code
 @cindex @code{eval()}
 @cindex evaluate code
 @cindex evaluation

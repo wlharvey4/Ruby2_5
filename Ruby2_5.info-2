@@ -46,10 +46,10 @@ Ruby Gems Github Home (https://github.com/rubygems)
 About
 =====
 
-'RubyGems.org' is the Ruby community’s gem hosting service.
-Instantly publish your gems and then install them.  Use the API to
-find out more about available gems.  Become a contributor and improve
-the site yourself.
+'RubyGems.org' is the Ruby community’s gem hosting service.  Instantly
+publish your gems and then install them.  Use the API to find out more
+about available gems.  Become a contributor and improve the site
+yourself.
 
 Guides
 ======
@@ -246,10 +246,9 @@ Introduction to Making a Gem
 ============================
 
 Creating and publishing your own gem is simple thanks to the tools
-baked right into RubyGems.  Let’s make a simple "hello world" gem,
-and feel free to play along at home!  The code for the gem we’re
-going to make here is up on GitHub Hello World
-(https://github.com/qrush/hola).
+baked right into RubyGems.  Let’s make a simple "hello world" gem, and
+feel free to play along at home!  The code for the gem we’re going to
+make here is up on GitHub Hello World (https://github.com/qrush/hola).
 
 * Menu:
 
@@ -302,8 +301,8 @@ sure that you can see some output from the gem:
 'hola.gemspec'
 --------------
 
-The gemspec defines what’s in the gem, who made it, and the version
-of the gem.  It’s also your interface to 'RubyGems.org'.  All of the
+The gemspec defines what’s in the gem, who made it, and the version of
+the gem.  It’s also your interface to 'RubyGems.org'.  All of the
 information you see on a gem page (like jekyll’s
 (http://rubygems.org/gems/jekyll)) comes from the gemspec.
 
@@ -564,8 +563,7 @@ Scope
 
    * STANDARD LIBRARY
 
-        * Well-used standard libraries（e.g., socket, date,
-          stringio）
+        * Well-used standard libraries（e.g., socket, date, stringio）
 
 
 File: Ruby2_5.info,  Node: Certified Ruby Programmer Platinum,  Prev: Certified Ruby Programmer Gold version 2.1,  Up: Certified Ruby Programmer Examinations
@@ -1350,8 +1348,8 @@ is a value returned from the expression itself.
 
      class A; end # => nil
 
-   The result is simply 'nil'.  It’s similar to the expression '"a"
-if false # => nil' above.  The condition is evaluated as 'false' and
+   The result is simply 'nil'.  It’s similar to the expression '"a" if
+false # => nil' above.  The condition is evaluated as 'false' and
 there is no 'else' so there is nothing to return, so the result is
 'nil'.  In this case a class was defined, but there was nothing
 returned, as the body of the class was empty, so the result is 'nil'.
@@ -1362,8 +1360,8 @@ Let’s modify the example to return a value:
      class A; self; end       # => A
 
    It was said that "the return value of a method is the result of
-it’s last expression."  It’s obvious that in this example it’s
-very similar.  It can be generalized for all structures, even though
+it’s last expression."  It’s obvious that in this example it’s very
+similar.  It can be generalized for all structures, even though
 sometimes it may not be obvious on first sight:
 
      The return value is the result of the last expression.
@@ -1454,15 +1452,15 @@ Let’s start with a definition:
    Class 'A' was defined using the 'class' keyword and then a class
 method was defined.  Class 'B' was created by creating a new instance
 of the 'Class' class and the object was assigned to constant 'B'.  As
-both of those classes are objects, it’s possible to check their
-class and the ID of the objects.
+both of those classes are objects, it’s possible to check their class
+and the ID of the objects.
 
 Inheritance
 -----------
 
 In Ruby classes can inherit from each other, though Ruby has only
-single-class inheritance -- it’s not possible to inherit from
-multiple classes, only from one.
+single-class inheritance -- it’s not possible to inherit from multiple
+classes, only from one.
 
      class A
        def call
@@ -1560,8 +1558,8 @@ with appropriate arguments.
 Checking Method Existence
 -------------------------
 
-Because Ruby is a very dynamic language, it’s not possible to know
-in advance what kind of arguments will be received.  In most cases the
+Because Ruby is a very dynamic language, it’s not possible to know in
+advance what kind of arguments will be received.  In most cases the
 developer should not care what class the argument is, but whether the
 argument responds to a method.
 
@@ -1646,15 +1644,15 @@ Defining methods programmatically
 ---------------------------------
 
 The way to define methods using the 'def' keyword shown before is not
-the only one.  It’s also possible to define a method in a more
-dynamic way.  It makes sense.  We can inspect methods of an object, we
-can extract methods of an object and also call methods of an object in
-a dynamic way.  To dynamically define a method use the 'define_method'
+the only one.  It’s also possible to define a method in a more dynamic
+way.  It makes sense.  We can inspect methods of an object, we can
+extract methods of an object and also call methods of an object in a
+dynamic way.  To dynamically define a method use the 'define_method'
 method of a class.
 
    However, 'Class.define_method' is private.  To get around this
-obstacle, it’s possible to use the 'send' method and bypass the
-access modifier.
+obstacle, it’s possible to use the 'send' method and bypass the access
+modifier.
 
      class A
      end
@@ -1732,8 +1730,8 @@ inspected:
      var.name  # => "A"
 
    OK, so the the current context is a Class and thus it is obvious
-that the nearest class is this class.  Now let’s try to define a
-class method:
+that the nearest class is this class.  Now let’s try to define a class
+method:
 
      class A
        def self.call
@@ -1819,8 +1817,8 @@ really.  Ruby has ways to access eigenclasses.
 
      eigenclass = some_object.singleton_class
 
-   Now that we can access eigenclasses, let’s see how we could
-define "class methods" (instance methods in the eigenclass).
+   Now that we can access eigenclasses, let’s see how we could define
+"class methods" (instance methods in the eigenclass).
 
      class A
        def self.call
@@ -1953,10 +1951,9 @@ methods, e.g.  to build some fixtures.
 
    There are a few method names with special meaning.  In the example
 you can see a method with th name 'setup'.  This method gets
-automatically executed before every testing method.  Similarly
-there’s a 'teardown' method that get’s executed after each testing
-method.  It’s usually used for cleaning up any mess the testing
-method created.
+automatically executed before every testing method.  Similarly there’s
+a 'teardown' method that get’s executed after each testing method.
+It’s usually used for cleaning up any mess the testing method created.
 
 Assertions
 ----------
@@ -2141,9 +2138,8 @@ dynamic language, it’s easy to cut off some methods.  This is called
      end
 
    The test covering this should call the method 'measure' and verify
-it returns a reasonable temperature.  We don’t want our test to
-print anything to 'STDOUT'.  We can stub out 'puts' method easily like
-this:
+it returns a reasonable temperature.  We don’t want our test to print
+anything to 'STDOUT'.  We can stub out 'puts' method easily like this:
 
      def test_measure
        meter = TemperatureMeter.new
@@ -2185,8 +2181,8 @@ the second is the return value, and the third is the array containing
 arguments which the 'puts' should be called.
 
    You could also stub the 'rand' method to return let’s say 0 and
-then setup an expectation that 'mock'’s 'puts' method will receive
-20 as a parameter to print.  But the range also works so the 'mock'
+then setup an expectation that 'mock'’s 'puts' method will receive 20
+as a parameter to print.  But the range also works so the 'mock'
 accepts any value between 20 and 40.
 
    You have to call verify on 'mock' so it runs assertions on how many
@@ -2308,8 +2304,8 @@ C.2.3.4 Cucumber
 
 We can use the 'Cucumber' framework for testing using the BDD aproach.
 It allows us to write the behavior specification in a natural language
-style first and then convert it to tests step-by-step.  Imagine
-you’d describe a feature like this:
+style first and then convert it to tests step-by-step.  Imagine you’d
+describe a feature like this:
 
      Feature: logout of logged in user
 
@@ -3999,6 +3995,7 @@ Index
                                                             (line  54)
 * __FILE__ special variable:             Large Class Definition.
                                                             (line 151)
+* __SEND__:                              Dynamic Objects.   (line   9)
 * {apiutil.awk}, definition:             API Utility.       (line  12)
 * {eval.rb}, definition:                 Ruby Eval Utility. (line  20)
 * {fact.rb}, definition:                 Ruby User's Guide On Simple Examples.
@@ -4051,7 +4048,7 @@ Index
 * arithmetic operators:                  Arithmetic Operators.
                                                             (line   6)
 * Array:                                 To Ruby From C and C++.
-                                                            (line 156)
+                                                            (line 155)
 * array:                                 Array Data Type.   (line   6)
 * array literals in brackets:            To Ruby From C and C++.
                                                             (line 114)
@@ -4075,7 +4072,7 @@ Index
                                                             (line  16)
 * arrays, repeating:                     Ruby User's Guide On Arrays And Hashes.
                                                             (line  16)
-* assertions:                            Minitest.          (line  47)
+* assertions:                            Minitest.          (line  46)
 * assignment operators:                  Assignment Operators.
                                                             (line   6)
 * associative array:                     Ruby User's Guide On Arrays And Hashes.
@@ -4083,7 +4080,7 @@ Index
 * attribute accessors:                   Ruby User's Guide On Accessors.
                                                             (line   6)
 * attributes:                            To Ruby From C and C++.
-                                                            (line 138)
+                                                            (line 137)
 * attributes <1>:                        Ruby User's Guide On Accessors.
                                                             (line   6)
 * attributes <2>:                        Objects.           (line  12)
@@ -4098,8 +4095,7 @@ Index
 * behavior, class:                       Advanced Objects.  (line   6)
 * bin directory:                         What Is A Gem.     (line  68)
 * binary Ruby extension modules:         FAQ Syntax.        (line 249)
-* binding:                               Evaluating Code Dynamically.
-                                                            (line  33)
+* binding:                               Eval'ing Code.     (line  33)
 * binding of { ... }:                    FAQ Iterators.     (line  36)
 * binding.local_variable_get(:symbol):   FAQ Syntax.        (line 127)
 * bitwise operators:                     Bitwise Operators. (line   6)
@@ -4108,7 +4104,7 @@ Index
 * block <1>:                             To Ruby From C and C++.
                                                             (line 106)
 * block for iterator:                    To Ruby From C and C++.
-                                                            (line 155)
+                                                            (line 154)
 * block object, passed to iterator:      FAQ Iterators.     (line   9)
 * block ruby comments:                   Block Ruby Comments.
                                                             (line   6)
@@ -4143,10 +4139,10 @@ Index
 * capybara gem:                          Testing Web Applications.
                                                             (line   6)
 * case conventions, enforced:            To Ruby From C and C++.
-                                                            (line 145)
+                                                            (line 144)
 * case statement:                        Conditions.        (line  27)
 * cast:                                  To Ruby From C and C++.
-                                                            (line 150)
+                                                            (line 149)
 * casting, none:                         To Ruby From Java. (line  49)
 * character:                             Character Data Type.
                                                             (line   5)
@@ -4197,8 +4193,7 @@ Index
                                                             (line   6)
 * classes, modifying:                    Altering Classes.  (line  19)
 * classes, open:                         Classes are open.  (line   6)
-* class_eval:                            Evaluating Code Dynamically.
-                                                            (line  16)
+* class_eval:                            Eval'ing Code.     (line  16)
 * CLOS:                                  Ruby User's Guide On Singleton Methods.
                                                             (line  17)
 * closures, proc objects:                Ruby User's Guide On Local Variables.
@@ -4207,8 +4202,7 @@ Index
                                                             (line  90)
 * cloud platforms:                       Installation - Running - About.
                                                             (line  89)
-* code evaluation:                       Evaluating Code Dynamically.
-                                                            (line   6)
+* code evaluation:                       Eval'ing Code.     (line   6)
 * collect:                               Pointers on Iteration.
                                                             (line  17)
 * collection, looping over a range of values using for: Ruby User's Guide On Control Structures.
@@ -4244,10 +4238,10 @@ Index
 * constant, class:                       Ruby User's Guide On Class Constants.
                                                             (line   6)
 * constructor:                           To Ruby From C and C++.
-                                                            (line 132)
+                                                            (line 131)
 * constructor <1>:                       To Ruby From Java. (line  52)
 * container types:                       To Ruby From C and C++.
-                                                            (line 156)
+                                                            (line 155)
 * context:                               Context.           (line   6)
 * continuations, using:                  FAQ Other Features.
                                                             (line  20)
@@ -4263,8 +4257,8 @@ Index
 * Core API:                              Ruby-Doc.          (line   6)
 * core api:                              Ruby-Doc.          (line  10)
 * core reference:                        Ruby-Doc.          (line   6)
-* coverage:                              Minitest.          (line 203)
-* coverage report:                       Minitest.          (line 203)
+* coverage:                              Minitest.          (line 202)
+* coverage report:                       Minitest.          (line 202)
 * Cucumber:                              Cucumber.          (line   6)
 * current context:                       Advanced Objects.  (line  40)
 * current object:                        Context.           (line   6)
@@ -4328,8 +4322,11 @@ Index
 * duck typing <2>:                       Advanced Methods.  (line  42)
 * Dylan:                                 Ruby User's Guide On Singleton Methods.
                                                             (line  17)
-* dynamic code evaluation:               Evaluating Code Dynamically.
+* dynamic code evaluation:               Eval'ing Code.     (line   6)
+* dynamic features:                      Dynamic Features.  (line   6)
+* dynamic instance variables:            Dynamic Instance Variables.
                                                             (line   6)
+* dynamic objects:                       Dynamic Objects.   (line   6)
 * dynamicly typed:                       To Ruby From C and C++.
                                                             (line  28)
 * each:                                  Pointers on Iteration.
@@ -4369,14 +4366,11 @@ Index
 * errors in OO:                          Ruby User's Guide on Methods.
                                                             (line  51)
 * eval:                                  FAQ Syntax.        (line 115)
-* eval():                                Evaluating Code Dynamically.
-                                                            (line   6)
+* eval():                                Eval'ing Code.     (line   6)
 * eval.rb:                               Ruby User's Guide On Simple Examples.
                                                             (line 102)
-* evaluate code:                         Evaluating Code Dynamically.
-                                                            (line   6)
-* evaluation:                            Evaluating Code Dynamically.
-                                                            (line   6)
+* evaluate code:                         Eval'ing Code.     (line   6)
+* evaluation:                            Eval'ing Code.     (line   6)
 * Exception class:                       Exceptions.        (line  34)
 * exception handling:                    FAQ Syntax.        (line 254)
 * exception processing:                  Ruby User's Guide On Exception Processing And rescue.
@@ -4385,7 +4379,7 @@ Index
                                                             (line   6)
 * exceptions:                            Files API.         (line  49)
 * exceptions <1>:                        Exceptions.        (line   6)
-* expectations:                          Minitest.          (line 247)
+* expectations:                          Minitest.          (line 245)
 * expression vs statement:               Ruby User's Guide On Simple Examples.
                                                             (line 124)
 * extend:                                Modules.           (line  38)
@@ -4467,7 +4461,7 @@ Index
 * greater than, greater than or equal:   A Few Logical Operators.
                                                             (line  21)
 * green threads vs native threads:       To Ruby From C and C++.
-                                                            (line 161)
+                                                            (line 160)
 * gsub method:                           Ruby User's Guide on Regular Expressions.
                                                             (line 113)
 * gtk+:                                  FAQ Extension Library.
@@ -4477,7 +4471,7 @@ Index
 * GUI toolkits:                          To Ruby From Java. (line  31)
 * guides, gems:                          Ruby Gems.         (line  21)
 * Hash:                                  To Ruby From C and C++.
-                                                            (line 156)
+                                                            (line 155)
 * hash:                                  Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
 * hash <1>:                              Hash Data Type.    (line   6)
@@ -4535,10 +4529,15 @@ Index
                                                             (line   6)
 * instance variables, accessing:         FAQ Methods.       (line  49)
 * instance variables, encapsulation:     Defining Methods.  (line 109)
-* instance_eval:                         Evaluating Code Dynamically.
-                                                            (line  16)
+* instance_eval:                         Eval'ing Code.     (line  16)
 * instance_methods(false):               FAQ Built-In Libraries.
                                                             (line   9)
+* instance_variable_defined?():          Dynamic Instance Variables.
+                                                            (line   9)
+* instance_variable_get:                 Dynamic Instance Variables.
+                                                            (line  15)
+* instance_variable_set:                 Dynamic Instance Variables.
+                                                            (line  15)
 * instantiating a class:                 Ruby User's Guide on Classes.
                                                             (line  33)
 * Interactive Ruby (IRB):                Interactive Ruby Execution.
@@ -4562,7 +4561,7 @@ Index
 * issue tracker:                         Developing Ruby.   (line  62)
 * issue tracking:                        Issue Tracking.    (line   6)
 * iteration:                             To Ruby From C and C++.
-                                                            (line 155)
+                                                            (line 154)
 * iteration <1>:                         Pointers on Iteration.
                                                             (line   6)
 * iterator:                              Large Class Definition.
@@ -4570,7 +4569,7 @@ Index
 * iterator as substitute for for loop:   Ruby User's Guide On Control Structures.
                                                             (line 128)
 * iterator method:                       To Ruby From C and C++.
-                                                            (line 155)
+                                                            (line 154)
 * iterator, block:                       FAQ Iterators.     (line  56)
 * iterator, defining:                    Ruby User's Guide On Iterators.
                                                             (line  17)
@@ -4593,8 +4592,7 @@ Index
 * json style hash:                       A Little About Data Types.
                                                             (line  51)
 * Kernel:                                FAQ Syntax.        (line 149)
-* Kernel#binding:                        Evaluating Code Dynamically.
-                                                            (line  33)
+* Kernel#binding:                        Eval'ing Code.     (line  33)
 * key, for hash:                         Ruby User's Guide On Arrays And Hashes.
                                                             (line  36)
 * keyword def:                           Ruby User's Guide on Classes.
@@ -4669,7 +4667,7 @@ Index
 * Matsumoto, Yokihiro:                   YARV Implementation.
                                                             (line   6)
 * member variables, access to:           To Ruby From C and C++.
-                                                            (line 138)
+                                                            (line 137)
 * memory management:                     To Ruby From Java. (line  18)
 * messages to objects:                   Ruby User's Guide on Methods.
                                                             (line   9)
@@ -4703,7 +4701,7 @@ Index
 * methods api:                           Files API.         (line  55)
 * methods api <1>:                       Methods API.       (line   6)
 * methods are virtual:                   To Ruby From C and C++.
-                                                            (line 133)
+                                                            (line 132)
 * methods that are operators:            Operators.         (line   6)
 * methods, calling:                      Files API.         (line  44)
 * methods, class:                        FAQ Classes and Modules.
@@ -4720,12 +4718,12 @@ Index
 * mixin technique:                       Ruby User's Guide On Modules.
                                                             (line  50)
 * mixins:                                To Ruby From C and C++.
-                                                            (line 143)
+                                                            (line 142)
 * mixins <1>:                            To Ruby From Java. (line  53)
 * mixins <2>:                            Modules.           (line  23)
 * mixins <3>:                            Class.             (line  86)
-* mock object:                           Minitest.          (line 247)
-* mocking:                               Minitest.          (line 247)
+* mock object:                           Minitest.          (line 245)
+* mocking:                               Minitest.          (line 245)
 * modifier statements:                   Conditions.        (line  13)
 * Module:                                Class.             (line  86)
 * module function?:                      FAQ Classes and Modules.
@@ -4739,8 +4737,7 @@ Index
                                                             (line  34)
 * modules, subclassing?:                 FAQ Classes and Modules.
                                                             (line  56)
-* module_eval:                           Evaluating Code Dynamically.
-                                                            (line  16)
+* module_eval:                           Eval'ing Code.     (line  16)
 * monkey patching:                       Class.             (line   9)
 * MRI:                                   YARV Implementation.
                                                             (line   6)
@@ -4750,18 +4747,18 @@ Index
                                                             (line  58)
 * multiple inherance using mixins:       Modules.           (line  23)
 * multiple inheritance:                  To Ruby From C and C++.
-                                                            (line 143)
+                                                            (line 142)
 * multiple inheritance <1>:              Ruby User's Guide On Modules.
                                                             (line  43)
 * multiple installations, manage using RVM: RVM.            (line   6)
 * multiple Rubies, command-line tool uru: uru.              (line   6)
 * multithreading:                        To Ruby From C and C++.
-                                                            (line 161)
+                                                            (line 160)
 * name:                                  Class.             (line 112)
 * negated conditions:                    Ruby User's Guide On Control Structures.
                                                             (line  68)
 * negated equals:                        Equality.          (line  73)
-* network calls, stubbing:               Minitest.          (line 282)
+* network calls, stubbing:               Minitest.          (line 280)
 * new keyword:                           Ruby User's Guide on Classes.
                                                             (line  33)
 * new method:                            Advanced Objects.  (line  16)
@@ -4784,7 +4781,7 @@ Index
                                                             (line  18)
 * object inheritance:                    Inheritance.       (line   6)
 * object reference is self:              To Ruby From C and C++.
-                                                            (line 139)
+                                                            (line 138)
 * Object#instance_methods:               Defining Methods.  (line 116)
 * Object#respond_to?:                    Defining Methods.  (line 146)
 * object, create:                        Advanced Objects.  (line  16)
@@ -4792,7 +4789,7 @@ Index
 * objects:                               Advanced Objects.  (line   6)
 * objects, everything including numbers: To Ruby From Java. (line  40)
 * objects, strongly and dynamically typed: To Ruby From C and C++.
-                                                            (line 130)
+                                                            (line 129)
 * objects, strongly typed:               To Ruby From Java. (line  19)
 * object_id methods:                     Symbols are not lightweight Strings.
                                                             (line  21)
@@ -4879,6 +4876,7 @@ Index
 * pseudo-variables self and nil:         Ruby User's Guide On Variables.
                                                             (line  32)
 * public:                                Method Access.     (line   6)
+* public_send():                         Dynamic Objects.   (line   9)
 * puts:                                  Ruby User's Guide On Puzzle Program.
                                                             (line  57)
 * Qt:                                    To Ruby From Java. (line  31)
@@ -4972,7 +4970,7 @@ Index
                                                             (line  54)
 * response to method:                    Advanced Methods.  (line  34)
 * respository, GitHub:                   Developing Ruby.   (line  54)
-* Restclient gem:                        Minitest.          (line 307)
+* Restclient gem:                        Minitest.          (line 305)
 * result:                                Return Values.     (line  18)
 * retry:                                 Ruby User's Guide On Iterators.
                                                             (line  58)
@@ -5034,13 +5032,14 @@ Index
 * self, meaning:                         FAQ Classes and Modules.
                                                             (line  84)
 * self, object reference:                To Ruby From C and C++.
-                                                            (line 139)
+                                                            (line 138)
 * send:                                  FAQ Syntax.        (line 129)
 * send method:                           Advanced Methods.  (line  83)
+* send():                                Dynamic Objects.   (line   9)
 * setup:                                 Minitest.          (line  37)
 * shared libraries:                      FAQ Syntax.        (line 249)
 * simple functions?:                     FAQ Methods.       (line  43)
-* simplecov gem:                         Minitest.          (line 192)
+* simplecov gem:                         Minitest.          (line 191)
 * singleton class?:                      FAQ Classes and Modules.
                                                             (line  47)
 * singleton method:                      FAQ Methods.       (line  15)
@@ -5096,8 +5095,8 @@ Index
                                                             (line  42)
 * strongly typed objects:                To Ruby From C and C++.
                                                             (line  80)
-* stubbing:                              Minitest.          (line 210)
-* stubbing network calls:                Minitest.          (line 282)
+* stubbing:                              Minitest.          (line 209)
+* stubbing network calls:                Minitest.          (line 280)
 * sub vs sub!:                           FAQ Built-In Libraries.
                                                             (line  51)
 * subclass:                              Ruby User's Guide on Inheritance.
@@ -5131,14 +5130,14 @@ Index
                                                             (line  45)
 * Tcl/Tk, use:                           FAQ Extension Library.
                                                             (line  18)
-* TDD:                                   Minitest.          (line 104)
+* TDD:                                   Minitest.          (line 103)
 * teardown:                              Minitest.          (line  37)
 * templates:                             To Ruby From C and C++.
-                                                            (line 150)
+                                                            (line 149)
 * ternary operator:                      FAQ Other Features.
                                                             (line   9)
 * ternary operator <1>:                  Ternary Operator.  (line   6)
-* test coverage:                         Minitest.          (line 192)
+* test coverage:                         Minitest.          (line 191)
 * test directory:                        What Is A Gem.     (line  60)
 * test syntax forms:                     Minitest.          (line   6)
 * test web applications:                 Testing Web Applications.
@@ -5151,7 +5150,7 @@ Index
 * thread vs fork:                        FAQ Built-In Libraries.
                                                             (line  57)
 * threads, native vs green:              To Ruby From C and C++.
-                                                            (line 161)
+                                                            (line 160)
 * Tk, won't work:                        FAQ Extension Library.
                                                             (line  21)
 * TomDoc:                                Writing Documentation.
@@ -5170,14 +5169,14 @@ Index
 * truth values:                          To Ruby From C and C++.
                                                             (line 111)
 * type conversions:                      To Ruby From C and C++.
-                                                            (line 158)
+                                                            (line 157)
 * type declarations, none:               To Ruby From Java. (line  46)
 * typed dynamically:                     Installation - Running - About.
                                                             (line  80)
 * typed strongly:                        Installation - Running - About.
                                                             (line  74)
 * unit testing lib:                      To Ruby From C and C++.
-                                                            (line 162)
+                                                            (line 161)
 * unless:                                Ruby User's Guide On Control Structures.
                                                             (line  68)
 * until:                                 Ruby User's Guide On Control Structures.
@@ -5211,7 +5210,7 @@ Index
                                                             (line   6)
 * varible, global $:                     Naming conventions.
                                                             (line   9)
-* vcr:                                   Minitest.          (line 313)
+* vcr:                                   Minitest.          (line 311)
 * version managers:                      Installers.        (line   6)
 * versions, multiple installations using rbenv: rbenv.      (line   6)
 * versions, switch between using chruby: chruby.            (line   6)
@@ -5222,7 +5221,7 @@ Index
                                                             (line  87)
 * web applications, test:                Testing Web Applications.
                                                             (line   6)
-* webmock gem:                           Minitest.          (line 292)
+* webmock gem:                           Minitest.          (line 290)
 * while:                                 Ruby User's Guide On Puzzle Program.
                                                             (line  27)
 * while <1>:                             Loops.             (line   6)
