@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.7a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Features of Yard (Ruby2_5 Information)</title>
+
+<meta name="description" content="Features of Yard (Ruby2_5 Information)">
+<meta name="keywords" content="Features of Yard (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Yard.html#Yard" rel="up" title="Yard">
+<link href="Yard-Guides.html#Yard-Guides" rel="next" title="Yard Guides">
+<link href="Yard.html#Yard" rel="prev" title="Yard">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Features-of-Yard"></a>
+<div class="header">
+<p>
+Next: <a href="Yard-Guides.html#Yard-Guides" accesskey="n" rel="next">Yard Guides</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Features-of-Yard-1"></a>
+<h4 class="subsubsection">2.2.4.1 Features of Yard</h4>
+<a name="index-yard-features"></a>
+
+<a name="Yardoc-Meta_002dtag-Formatting"></a>
+<h4 class="subheading">Yardoc Meta-tag Formatting</h4>
+<a name="index-meta_002dtag-formatting"></a>
+
+<p>YARD uses a <code>@tag</code> style definition syntax (like Python, Java,
+Objective-C and other languages) for meta tags alongside regular code
+documentation.  These tags should be able to happily sit side by side RDoc
+formatted documentation, but provide a much more consistent and usable way to
+describe important information about objects, such as what parameters they take
+and what types they are expected to be, what type a method should return, what
+exceptions it can raise, if it is deprecated, etc..  It also allows information
+to be better (and more consistently) organized during the output generation
+phase.  You can find a list of tags in the
+<a href="http://yardoc.org/docs/yard/file/docs/Tags.md#List_of_Available_Tags">Tags.md</a> file.
+</p>
+<p>YARD also supports an optional <em>types</em> declarations for certain tags.
+This allows the developer to document type signatures for ruby methods and
+parameters in a non intrusive but helpful and consistent manner.  Instead of
+describing this data in the body of the description, a developer may formally
+declare the parameter or return type(s) in a single line.  Consider the
+following Yardoc&rsquo;d method:
+</p>
+<div class="example">
+<pre class="example"># Reverses the contents of a String or IO object. 
+# 
+# @param [String, #read] contents the contents to reverse 
+# @return [String] the contents reversed lexically 
+def reverse(contents) 
+  contents = contents.read if respond_to? :read 
+  contents.reverse 
+end
+</pre></div>
+
+<p>With the above <code>@param</code> tag, we learn that the contents parameter can
+either be a String or any object that responds to the <code>read</code> method, which
+is more powerful than the textual description, which says it should be an IO
+object.  This also informs the developer that they should expect to receive a
+String object returned by the method, and although this may be obvious for a
+<code>reverse</code> method, it becomes very useful when the method name may not be
+as descriptive.
+</p>
+<a name="RDoc-Formatting-Compatibility"></a>
+<h4 class="subheading">RDoc Formatting Compatibility</h4>
+<a name="index-RDoc-compatibility"></a>
+
+<p>YARD is made to be compatible with RDoc formatting.  In fact, YARD does no
+processing on RDoc documentation strings, and leaves this up to the output
+generation tool to decide how to render the documentation.
+</p>
+<a name="A-Local-Documentation-Server"></a>
+<h4 class="subheading">A Local Documentation Server</h4>
+<a name="index-local-documentation-server"></a>
+
+<p>YARD can serve documentation for projects or installed gems (similar to gem
+server) with the added benefit of dynamic searching, as well as live reloading.
+Using the live reload feature, you can document your code and immediately
+preview the results by refreshing the page; YARD will do all the work in
+re-generating the HTML.  This makes writing documentation a much faster
+process.
+</p>
+<a name="Custom-Constructs-and-Extensibility"></a>
+<h4 class="subheading">Custom Constructs and Extensibility</h4>
+<a name="index-yard-plugins"></a>
+<a name="index-extend-yard"></a>
+
+<p>YARD is designed to be extended and customized by plugins.  Take for instance
+the scenario where you need to document the following code:
+</p>
+<div class="example">
+<pre class="example"># Sets the publisher name for the list.
+cattr_accessor :publisher
+</pre></div>
+
+<p>This custom declaration provides dynamically generated code that is hard for a
+documentation tool to properly document without help from the developer.  To
+ease the pains of manually documenting the procedure, YARD can be extended by
+the developer to handle the <code>cattr_accessor</code> construct and automatically
+create an attribute on the class with the associated documentation.  This makes
+documenting external API&rsquo;s, especially dynamic ones, a lot more consistent for
+consumption by the users.
+</p>
+<p>YARD is also designed for extensibility everywhere else, allowing you to add
+support for new programming languages, new data structures and even where/how
+data is stored.
+</p>
+<a name="Template-Customization"></a>
+<h4 class="subheading">Template Customization</h4>
+<a name="index-yard-templates"></a>
+
+<p>YARD makes it easy to customize templates using a specially designed templating
+system.  The design allows plugin developers to make small modifications to a
+template without breaking changes that may have been made from another
+plugin.  This means you can install multiple plugins that each make independent
+modifications without running into problems with your template.  It also allows
+you to easily make small changes (like adding your own stylesheets) without
+digging into any markup.
+</p>
+<a name="Raw-Data-Output"></a>
+<h4 class="subheading">Raw Data Output</h4>
+<a name="index-yard-raw-data-output"></a>
+
+<p>YARD also outputs documented objects as raw data (the dumped Namespace) which
+can be reloaded to do generation at a later date, or even auditing on
+code.  This means that any developer can use the raw data to perform output
+generation for any custom format, such as YAML, for instance. While YARD plans
+to support XHTML style documentation output as well as command line (text
+based) and possibly XML, this may still be useful for those who would like to
+reap the benefits of YARD&rsquo;s processing in other forms, such as throwing all the
+documentation into a database.  Another useful way of exploiting this raw data
+format would be to write tools that can auto generate test cases, for example,
+or show possible unhandled exceptions in code.
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Yard-Guides.html#Yard-Guides" accesskey="n" rel="next">Yard Guides</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

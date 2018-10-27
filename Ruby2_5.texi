@@ -113,7 +113,7 @@
 
 @c These apply across the board.
 @set UPDATE-MONTH OCTOBER, 2018
-@set EDITION 0.6d
+@set EDITION 0.7a
 @set DRAFT @i{DRAFT}
 
 @set TITLE Ruby 2.5 Information and Documentation
@@ -363,12 +363,21 @@ Ruby Help Tools
 * RDoc::
 * ri::
 * Ruby Debugger::
+* Yard::
 
 RDoc
 
 * Writing Documentation::
 * Generating Documention::
 * Markup Directives::
+
+What Is Yard?
+
+* Features of Yard::
+* Yard Guides::
+* Using YARD to Generate Documentation::
+* Configuring YARD::
+* Yard API Documentation::
 
 Getting Started
 
@@ -1236,6 +1245,7 @@ documentation for Ruby projects.
 * RDoc::
 * ri::
 * Ruby Debugger::
+* Yard::
 @end menu
 
 @node RDoc
@@ -1491,6 +1501,841 @@ ruby -r debug [
 
 The debugger can do all the usual sorts of things you would expect it to, such
 as set breakpoints, step into and over code, print out the call stack, etc.
+
+
+@c .....................................
+
+@node Yard
+@subsection Yard
+@cindex yard
+
+@url{https://yardoc.org/, Yard}
+
+@heading Yard --- A Ruby Documentation Tool
+
+@subheading What Is Yard?
+
+@dfn{YARD} is a documentation generation tool for the Ruby programming
+language.  It enables the user to generate consistent, usable documentation
+that can be exported to a number of formats very easily, and also supports
+extending for custom Ruby constructs such as custom class level definitions.
+
+And of course YARD comes with much more functionality, including the ability to
+serve documentation for gems, the ability to group methods into logical
+sections, and much more.  You can read about all of the new features in YARD
+0.6 in the @url{https://www.rubydoc.info/gems/yard/file/docs/WhatsNew.md,
+What's New} document.
+
+@c _____________________________________
+
+@menu
+* Features of Yard::
+* Yard Guides::
+* Using YARD to Generate Documentation::
+* Configuring YARD::
+* Yard API Documentation::
+@end menu
+
+@node Features of Yard
+@subsubsection Features of Yard
+@cindex yard features
+
+@subheading Yardoc Meta-tag Formatting
+@cindex meta-tag formatting
+
+YARD uses a @code{@@tag} style definition syntax (like Python, Java,
+Objective-C and other languages) for meta tags alongside regular code
+documentation.  These tags should be able to happily sit side by side RDoc
+formatted documentation, but provide a much more consistent and usable way to
+describe important information about objects, such as what parameters they take
+and what types they are expected to be, what type a method should return, what
+exceptions it can raise, if it is deprecated, etc..  It also allows information
+to be better (and more consistently) organized during the output generation
+phase.  You can find a list of tags in the
+@url{http://yardoc.org/docs/yard/file/docs/Tags.md#List_of_Available_Tags,
+Tags.md} file.
+
+YARD also supports an optional @emph{types} declarations for certain tags.
+This allows the developer to document type signatures for ruby methods and
+parameters in a non intrusive but helpful and consistent manner.  Instead of
+describing this data in the body of the description, a developer may formally
+declare the parameter or return type(s) in a single line.  Consider the
+following Yardoc'd method:
+
+@example
+# Reverses the contents of a String or IO object. 
+# 
+# @@param [String, #read] contents the contents to reverse 
+# @@return [String] the contents reversed lexically 
+def reverse(contents) 
+  contents = contents.read if respond_to? :read 
+  contents.reverse 
+end
+@end example
+
+With the above @code{@@param} tag, we learn that the contents parameter can
+either be a String or any object that responds to the @code{read} method, which
+is more powerful than the textual description, which says it should be an IO
+object.  This also informs the developer that they should expect to receive a
+String object returned by the method, and although this may be obvious for a
+@code{reverse} method, it becomes very useful when the method name may not be
+as descriptive.
+
+@subheading RDoc Formatting Compatibility
+@cindex RDoc compatibility
+
+YARD is made to be compatible with RDoc formatting.  In fact, YARD does no
+processing on RDoc documentation strings, and leaves this up to the output
+generation tool to decide how to render the documentation.
+
+@subheading A Local Documentation Server
+@cindex local documentation server
+
+YARD can serve documentation for projects or installed gems (similar to gem
+server) with the added benefit of dynamic searching, as well as live reloading.
+Using the live reload feature, you can document your code and immediately
+preview the results by refreshing the page; YARD will do all the work in
+re-generating the HTML.  This makes writing documentation a much faster
+process.
+
+@subheading Custom Constructs and Extensibility
+@cindex yard plugins
+@cindex extend yard
+
+YARD is designed to be extended and customized by plugins.  Take for instance
+the scenario where you need to document the following code:
+
+@example
+# Sets the publisher name for the list.
+cattr_accessor :publisher
+@end example
+
+This custom declaration provides dynamically generated code that is hard for a
+documentation tool to properly document without help from the developer.  To
+ease the pains of manually documenting the procedure, YARD can be extended by
+the developer to handle the @code{cattr_accessor} construct and automatically
+create an attribute on the class with the associated documentation.  This makes
+documenting external API's, especially dynamic ones, a lot more consistent for
+consumption by the users.
+
+YARD is also designed for extensibility everywhere else, allowing you to add
+support for new programming languages, new data structures and even where/how
+data is stored.
+
+@subheading Template Customization
+@cindex yard templates
+
+YARD makes it easy to customize templates using a specially designed templating
+system.  The design allows plugin developers to make small modifications to a
+template without breaking changes that may have been made from another
+plugin.  This means you can install multiple plugins that each make independent
+modifications without running into problems with your template.  It also allows
+you to easily make small changes (like adding your own stylesheets) without
+digging into any markup.
+
+@subheading Raw Data Output
+@cindex yard raw data output
+
+YARD also outputs documented objects as raw data (the dumped Namespace) which
+can be reloaded to do generation at a later date, or even auditing on
+code.  This means that any developer can use the raw data to perform output
+generation for any custom format, such as YAML, for instance. While YARD plans
+to support XHTML style documentation output as well as command line (text
+based) and possibly XML, this may still be useful for those who would like to
+reap the benefits of YARD's processing in other forms, such as throwing all the
+documentation into a database.  Another useful way of exploiting this raw data
+format would be to write tools that can auto generate test cases, for example,
+or show possible unhandled exceptions in code.
+
+@c _____________________________________
+
+@node Yard Guides
+@subsubsection Yard Guides
+@cindex yard guides
+
+@heading Getting Started with YARD
+@cindex yard getting started guide
+@cindex getting started with yard
+
+@url{https://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md}
+
+@subheading Documenting Code with YARD
+@cindex meta-data syntax, yard
+@cindex tags, yard
+
+By default, YARD is compatible with the same RDoc syntax most Ruby developers
+are already familiar with.  However, one of the biggest advantages of YARD is
+the extended meta-data syntax, commonly known as @dfn{tags}, that you can use
+to express small bits of information in a structured and formal manner.  While
+RDoc syntax expects you to describe your method in a completely free-form
+manner, YARD recommends declaring your parameters, return types, etc. with the
+@code{@@tag} syntax, which makes outputting the documentation more consistent
+and easier to read.  Consider the RDoc documentation for a method to_format:
+
+@example
+# Converts the object into textual markup given a specific `format`
+# (defaults to `:html`)
+#
+# == Parameters:
+# format::
+#   A Symbol declaring the format to convert the object to. This
+#   can be `:text` or `:html`.
+#
+# == Returns:
+# A string representing the object in a specified
+# format.
+#
+def to_format(format = :html)
+  # format the object
+end
+@end example
+
+While this may seem easy enough to read and understand, it's hard for a machine
+to properly pull this data back out of our documentation.  Also we've tied our
+markup to our content, and now our documentation becomes hard to maintain if we
+decide later to change our markup style (maybe we don't want the @kbd{:} suffix
+on our headers anymore).
+
+In YARD, we would simply define our method as:
+
+@example
+# Converts the object into textual markup given a specific format.
+#
+# @@param format [Symbol] the format type, `:text` or `:html`
+# @@return [String] the object converted into the expected format.
+def to_format(format = :html)
+  # format the object
+end
+@end example
+
+Using tags we can add semantic metadata to our code without worrying about
+presentation.  YARD will handle presentation for us when we decide to generate
+documentation later.
+
+@subheading Which Markup Format?
+@cindex markup, yard
+
+YARD does not impose a specific markup.  The above example uses standard RDoc
+markup formatting, but YARD also supports @emph{textile} and @emph{markdown}
+via the command-line switch or @file{.yardopts} file (see below).  This means
+that you are free to use whatever formatting you like.  This guide is actually
+written using @emph{markdown}.  YARD, however, does add a few important syntaxes
+that are processed no matter which markup formatting you use, such as tag
+support and inter-document linking. These syntaxes are discussed below.
+
+@subheading Adding Tags to Documentation
+
+The tag syntax that YARD uses is the same @code{@@tag}-style syntax you may
+have seen if you've ever coded in Java, Python, PHP, Objective-C or a myriad of
+other languages.  The following tag adds an @var{author} tag to your class:
+
+@example
+# @@author Loren Segal
+class MyClass
+end
+@end example
+
+To allow for large amounts of text, the @code{@@tag} syntax will recognize any
+indented lines following a tag as part of the tag data.  For example:
+
+@example
+# @@deprecated Use @{#my_new_method@} instead of this method because
+#   it uses a library that is no longer supported in Ruby 1.9.
+#   The new method accepts the same parameters.
+def mymethod
+end
+@end example
+
+@subheading List of Tags
+@cindex yard tags list
+@cindex tags list, yard
+
+A list of tags can be found in
+@url{https://www.rubydoc.info/gems/yard/file/docs/Tags.md#taglist, Tags}.
+
+@subheading Reference Tags
+
+To reduce the amount of duplication in writing documentation for repetitive
+code, YARD introduces @dfn{reference tags}, which are not quite tags, but not
+quite docstrings either.  In a sense, they are tag (and docstring) modifiers.
+Basically, any docstring (or tag) that begins with @samp{(see OTHEROBJECT)}
+will implicitly link the docstring or tag to the @samp{OTHEROBJECT}, copying
+any data from that docstring/tag into your current object.  Consider the
+example:
+
+@example
+class MyWebServer
+  # Handles a request
+  # @@param request [Request] the request object
+  # @@return [String] the resulting webpage
+  def get(request) "hello" end
+
+  # (see #get)
+  def post(request) "hello" end
+end
+@end example
+
+
+The above @code{#post} method takes the docstring and all tags (param and
+return) of the @code{#get} method.  When you generate HTML documentation, you
+will see this duplication automatically, so you don't have to manually type it
+out.  We can also add our own custom docstring information below the @samp{see}
+reference, and whatever we write will be appended to the docstring:
+
+@example
+# (see #get)
+# @@note This method may modify our application state!
+def post(request) self.state += 1; "hello" end
+@end example
+
+Here we added another tag, but we could have also added plain text.  The text
+must be appended after the @samp{(see ...)} statement, preferably on a
+separate line.
+
+Note that we don't have to ``refer'' the whole docstring.  We can also link
+individual tags instead.  Since @code{get} and @code{post} actually have
+different descriptions, a more accurate example would be to only refer our
+parameter and return tags:
+
+@example
+class MyWebServer
+  # Handles a GET request
+  # @@param request [Request] the request object
+  # @@return [String] the resulting webpage
+  def get(request) "hello" end
+
+  # Handles a POST request
+  # @@note This method may modify our application state!
+  # @@param (see #get)
+  # @@return (see #get)
+  def post(request) self.state += 1; "hello" end
+end
+@end example
+
+The above copies all of the param and return tags from @code{#get}.  Note that
+you cannot copy individual tags of a specific type with this syntax.
+
+@subheading Declaring Types
+@cindex yard declare types
+
+Some tags also have an optional ``types'' field which let us declare a list of
+types associated with the tag.  For instance, a return tag can be declared with
+or without a types field.
+
+@example
+# @@return [String, nil] the contents of our object or nil
+#   if the object has not been filled with data.
+def validate; end
+
+# We don't care about the "type" here:
+# @@return the object
+def to_obj; end
+@end example
+
+The list of types is in the form @samp{[type1, type2, ...]} and is mostly
+free-form, so we can also specify duck-types or constant values.  For example:
+
+@example
+# @@param argname [#to_s] any object that responds to `#to_s`
+# @@param argname [true, false] only true or false
+@end example
+
+Note the latter example can be replaced by the meta-type ``Boolean''.  Another
+meta-type is ``void'', which stands for ``no meaningful value'' and is used for
+return values.  These meta-types are by convention only, but are recommended.
+
+List types can be specified in the form @code{CollectionClass<ElementType,
+...>}.  For instance, consider the following Array that holds a set of Strings
+and Symbols:
+
+@example
+# @@param list [Array<String, Symbol>] the list of strings and symbols.
+@end example
+
+We mentioned that these type fields are "mostly" free-form.  In truth, they are
+defined ``by convention''.  To view samples of common type specifications and
+recommended conventions for writing type specifications, see
+@url{http://yardoc.org/types.html}.  Note that these conventions may change
+every now and then, although we are working on a more ``formal'' type
+specification proposal.
+
+@subheading Documenting Attributes
+@cindex yard document attributes
+@cindex attributes, documenting in yard
+
+To document a Ruby attribute, add documentation text above the attribute
+definition.
+
+@example
+# Controls the amplitude of the waveform.
+# @@return [Numeric] the amplitude of the waveform
+attr_accessor :amplitude
+@end example
+
+As a short-hand syntax for declaring reader and writer attribute pairs, YARD
+will automatically wire up the correct method types and information by simply
+defining documentation in the @code{@@return} tag.  For example, the following
+declaration will show the correct information for the waveform attribute, both
+for the getter's return type and the setter's value parameter type:
+
+@example
+# @@return [Numeric] the amplitude of the waveform
+attr_accessor :amplitude
+@end example
+
+In this case, the most important details for the attribute are the object type
+declaration and its descriptive text.
+
+@subheading Documentation for a Separate Attribute Writer
+
+Usually an attribute will get and set a value using the same syntax, so there
+is no reason to have separate documentation for an attribute writer.  In the
+above amplitude case, the Numeric type is both used for the getter and setter
+types.
+
+Sometimes, however, you might want to have separate documentation for the
+getter and setter.  In this case, you would still add the documentation text to
+the getter declaration (or attr_accessor) and use @code{@@overload} tags to
+declare the separate docstrings.  For example:
+
+@example
+# @@overload amplitude
+#   Gets the current waveform amplitude.
+#   @@return [Numeric] the amplitude of the waveform
+# @@overload amplitude=(value)
+#   Sets the new amplitude.
+#   @@param value [Numeric] the new amplitude value
+#   @@note The new amplitude will only take effect if @{#restart@}
+#     is called on the stream.
+@end example
+
+Note that by default, YARD exposes the reader portion of the attribute in HTML
+output.  If you have separate @code{attr_reader} and @code{attr_writer}
+declarations, make sure to put your documentation (for both reader and writer
+methods) on the reader declaration using @code{@@overload} tags as described
+above.  For example:
+
+@example
+# @@overload ...documentation here...
+attr_reader :amplitude
+
+# This documentation will be ignored by YARD.
+attr_writer :amplitude
+@end example
+
+@subheading Documenting Custom DSL Methods
+@cindex DSL methods, yard
+
+@dots{} As of version 0.7.0, YARD will automatically pick up on these basic
+methods if you document them with a docstring. Therefore, simply adding some
+comments to the code will cause it to generate documentation: @dots{}
+
+@subheading Macros
+@cindex yard macros
+@cindex macros in yard
+
+Fortunately YARD 0.7.0 also adds macros, a powerful way to add support for
+these DSL methods on the fly without writing extra plugins.  Macros allow you to
+interpolate arguments from the method call inside the docstring, reducing
+duplication.  If we re-wrote the property example from above using a macro, it
+might look like: @dots{}
+
+@heading Customized YARD Markup
+
+YARD supports a special syntax to link to other code objects, URLs, files, or
+embed docstrings between documents.  This syntax has the general form of
+@samp{@{Name OptionalTitle@}} (where @samp{OptionalTitle} can have spaces, but
+@samp{Name} cannot).
+
+@subheading Linking Objects @samp{@{@dots{}@}}
+
+To link another ``object'' (class, method, module, etc.), use the format:
+@dots{}
+
+@subheading Linking URLs @samp{@{http://@dots{}@}}
+
+URLs are also linked using this @samp{@{@dots{}@}} syntax: @dots{}
+
+@subheading Linking Files @samp{@{file:@dots{}@}}
+
+Files can also be linked using this same syntax but by adding the @code{file:}
+prefix to the object name.  Files refer to extra readme files you added via the
+command-line. Consider the following examples: @dots{}
+
+@subheading Embedding Docstrings @samp{@{include:@dots{}@}}
+
+We saw the @samp{(see @dots{})} syntax above, which allowed us to link an
+entire docstring with another.  Sometimes, however, we just want to copy
+docstring text without tags.  Using the same @samp{@{@dots{}@}} syntax, but
+using the @code{include:} prefix, we can embed a docstring (minus tags) at a
+specific point in the text.  @dots{}
+
+@subheading Embedding Files @samp{@{include:file:@dots{}@}}
+
+You can embed the contents of files using @code{@{include:file:path/to/file@}},
+similar to the @code{@{include:OBJECT@}} tag above.  If the file uses a specific
+markup type, it will be applied and embedded as marked up text.  The following
+shows how the tag can be used inside of comments: @dots{}
+
+@subheading Rendering Objects @samp{@{render:@dots{}@}}
+
+Entire objects can also be rendered in place in documentation.  This can be used
+for guide-style documentation which does not document the entire source tree,
+but instead selectively renders important classes or methods.  Consider the
+following documentation inside of a README file: @dots{}
+
+@c _____________________________________
+
+@node Using YARD to Generate Documentation
+@subsubsection Using YARD to Generate Documentation
+@cindex yard, generate documentation
+
+@heading @command{yard} Executable
+@cindex @command{yard} executable
+
+YARD ships with a single executable aptly named @command{yard}.  In addition to
+generating standard documentation for your project, you would use this tool if
+you wanted to:
+
+@itemize
+@item
+Document all installed gems
+@item
+Run a local documentation server
+@item
+Generate UML diagrams using Graphviz
+@item
+View ri-style documentation
+@item
+Diff your documentation
+@item
+Diff your documentation
+@end itemize
+
+@subheading @command{yard} Commands
+@cindex @command{yard} commands
+
+The following commands are available in YARD 0.6.x (see @command{yard help} for
+a full list):
+
+@example
+Usage: yard <command> [options]
+
+Commands:
+config   Views or edits current global configuration
+diff     Returns the object diff of two gems or .yardoc files
+doc      Generates documentation
+gems     Builds YARD index for gems
+graph    Graphs class diagram using Graphviz
+help     Retrieves help for a command
+ri       A tool to view documentation in the console like `ri`
+server   Runs a local documentation server
+stats    Prints documentation statistics on a set of files
+@end example
+
+@cindex @command{yardoc}
+@cindex @command{yard doc}
+@cindex @command{yri}
+@cindex @command{yard ri}
+Note that @command{yardoc} is an alias for @command{yard doc}, and
+@command{yri} is an alias for @command{yard ri}.  These commands are maintained
+for backwards compatibility.
+
+@subheading @file{.yardopts} Options File
+@cindex @file{.yardopts} options file
+
+Unless your documentation is very small, you'll end up needing to run
+@command{yardoc} with many options.  The @command{yardoc} tool will use the
+options found in this file.  It is recommended to check this in to your
+repository and distribute it with your source.  This file is placed at the root
+of your project (in the directory you run @command{yardoc} from) and contains
+all of arguments you would otherwise pass to the command-line tool.  For
+instance, if you often type:
+
+@example
+yardoc --no-private --protected app/**/*.rb - README LEGAL COPYING
+@end example
+
+You can place the following into your @file{.yardopts}:
+
+@example
+--no-private --protected app/**/*.rb - README LEGAL COPYING
+@end example
+
+This way, you only need to type: @command{yardoc}.  Any extra switches passed
+to the command-line now will be appended to your @file{.yardopts} options.
+
+@cindex @file{YARD::CLI::Yardoc}
+Note that options for @command{yardoc} are discussed in the @file{README}, and
+a full overview of the @file{.yardopts} file can be found in
+@file{YARD::CLI::Yardoc}.
+
+@subheading Documenting Extra Files
+
+@dfn{Extra files} are extra guide style documents that help to give a brief
+overview of how to use your library/framework, as well as any extra information
+that might be vital for your users.  The most common @dfn{extra file} is the
+@file{README}, which is automatically detected by YARD if found in the root of
+your project (any file starting with @file{README*}).  You can specify extra
+files on the command line (or in the @file{.yardopts} file) by listing them
+after the @kbd{-} separator:
+
+@example
+yardoc lib/**/*.rb ext/**/*.c - LICENSE.txt
+@end example
+
+Note that the @file{README} will automatically be picked up, so you do not need
+to specify it.  If you don't want to modify the default file globs, you can
+ignore the first set of arguments:
+
+@example
+yardoc - LICENSE.txt
+@end example
+
+Below you can read about how to customize the look of these extra files, both
+with markup and pretty titles.
+
+@subheading Adding Meta-Data to Extra Files
+
+You can add YARD-style @code{@@tag} metadata to the top of any extra file if
+prefixed by a # hash comment.  YARD allows for arbitrary meta-data, but pays
+special attention to the tags @code{@@markup}, @code{@@encoding}, and
+@code{@@title}.  Note that there cannot be any whitespace before the tags.  Here
+is an example of some tag data in a README:
+
+@example
+# @@markup markdown
+# @@title The Best Library in the World!
+# @@author The Author Name
+
+This is the best library you will ever meet. Lipsum @dots{}
+@end example
+
+The @code{@@markup} tag allows you to specify a markup format to use for the
+file, including "markdown", "textile", "rdoc", "ruby", "text", "html", or
+"none" (no markup).  This can be used when the markup cannot be auto-detected
+using the extension of the filename, if the file has no extension, or if you
+want to override the auto-detection.
+
+By using @code{@@encoding} you can specify a non-standard encoding.  @dots{}
+
+The @code{@@title} tag allows you to specify a full title name for the
+document.  By default, YARD uses the filename as the title of the document and
+lists it in the file list in the index and file menu.  In some cases, the file
+name might not be descriptive enough, so YARD allows you to specify a full
+title:
+
+@example
+contents of TITLE.txt:
+# @@title The Title of The Document
+@end example
+
+@dots{}
+
+@c _____________________________________
+
+@node Configuring YARD
+@subsubsection Configuring YARD
+@cindex yard configuration
+@cindex configure yard
+
+YARD (0.6.2+) supports a global configuration file stored in
+@file{~/.yard/config}.  This file is stored as a YAML file and can contain
+arbitrary keys and values that can be used by YARD at run-time.  YARD defines
+specific keys that are used to control various features, and they are listed in
+@file{YARD::Config::DEFAULT_CONFIG_OPTIONS}.  A sample configuration file might
+look like:
+
+@example
+:load_plugins: false
+:ignored_plugins:
+  - my_plugin
+  - my_other_plugin
+:autoload_plugins:
+  - my_autoload_plugin
+:safe_mode: false
+@end example
+
+You can also view and edit these configuration options from the commandline
+using the yard @command{config} command.  To list your configuration, use
+@samp{yard config --list}.  To view a key, use @samp{yard config ITEM}, and to
+set it, use @samp{yard config ITEM VALUE}.
+
+@heading Extending YARD
+
+@dots{}
+
+@heading Templating YARD
+
+@dots{}
+
+@heading Plugin Support
+
+@dots{}
+
+
+@c _____________________________________
+
+@node Yard API Documentation
+@subsubsection Yard API Documentation
+@cindex yard API
+
+@url{https://www.rubydoc.info/gems/yard}
+
+YARD is a documentation generation tool for the Ruby programming language.  It
+enables the user to generate consistent, usable documentation that can be
+exported to a number of formats very easily, and also supports extending for
+custom Ruby constructs such as custom class level definitions.
+
+@heading Installing
+@cindex yard install
+@cindex install yard
+
+To install YARD, use the following command:
+
+@example
+$ gem install yard
+@end example
+
+@cindex @command{rake}
+Alternatively, if you've checked the source out directly, you can call
+@command{rake install} from the root project directory.
+
+@heading Usage
+
+There are a couple of ways to use YARD.  The first is via command-line, and the
+second is the Rake task.
+
+@enumerate
+@item
+@command{yard} Command-line Tool
+
+YARD comes packaged with an executable named @command{yard} which can control
+the many functions of YARD, including generating documentation, graphs running
+the YARD server, and so on.  To view a list of available YARD commands, type:
+
+@example
+$ yard --help
+@end example
+
+@subheading Generating Documentation
+
+The @command{yardoc} executable is a shortcut for @command{yard doc}.
+
+The most common command you will probably use is @command{yard doc}, or
+@command{yardoc}.  You can type @command{yardoc --help} to see the options that
+YARD provides, but the easiest way to generate docs for your code is to simply
+type @command{yardoc} in your project root.  This will assume your files are
+located in the @file{lib/} directory.  If they are located elsewhere, you can
+specify paths and globs from the commandline via:
+
+@example
+$ yardoc 'lib/**/*.rb' 'app/**/*.rb' ...etc...
+@end example
+
+The tool will generate a @file{.yardoc} file which will store the cached
+database of your source code and documentation.  If you want to re-generate
+your docs with another template you can simply use the @option{--use-cache} (or
+@option{-c}) option to speed up the generation process by skipping source
+parsing.
+
+YARD will by default only document code in your public visibility.  You can
+document your protected and private code by adding @option{--protected} or
+@option{--private} to the option switches.  In addition, you can add
+@option{--no-private} to also ignore any object that has the @code{@@private}
+meta-tag.  This is similar to RDoc's @code{:nodoc:} behaviour, though the distinction
+is important.  RDoc implies that the object with @code{:nodoc:} would not be
+documented, whereas YARD still recommends documenting private objects for the
+private API (for maintainer/developer consumption).
+
+You can also add extra informative files (@file{README}, @file{LICENSE}) by
+separating the globs and the filenames with @kbd{-}.
+
+@example
+$ yardoc 'app/**/*.rb' - README LICENSE FAQ
+@end example
+
+If no globs precede the @kbd{-} argument, the default glob (@samp{lib/**/*.rb})
+is used:
+
+@example
+$ yardoc - README LICENSE FAQ
+@end example
+
+Note that the README file can be specified with its own @option{--readme} switch.
+
+You can also add a @file{.yardopts} file to your project directory which lists
+the switches separated by whitespace (newlines or space) to pass to
+@command{yardoc} whenever it is run.  A full overview of the @file{.yardopts}
+file can be found in @file{YARD::CLI::Yardoc}.
+
+@subheading Queries
+
+The yardoc tool also supports a @option{--query} argument to only include
+objects that match a certain data or meta-data query.  The query syntax is
+Ruby, though a few shortcuts are available.  For instance, to document only
+objects that have an @code{@@api} tag with the value @code{public}, all of the
+following syntaxes would give the same result:
+
+@example
+--query '@@api.text == "public"'
+--query 'object.has_tag?(:api) && object.tag(:api).text == "public"'
+--query 'has_tag?(:api) && tag(:api).text == "public"'
+@end example
+
+@dots{}
+
+@item
+Rake Task
+
+@dots{}
+
+@item
+@command{yri} RI Implementation
+
+@dots{}
+
+@item
+@command{yard server} Documentation Server
+
+The @command{yard server} command serves documentation for a local project or
+all installed RubyGems.  To serve documentation for a project you are working
+on, simply run:
+
+@example
+$ yard server
+@end example
+
+And the project inside the current directory will be parsed (if the source has
+not yet been scanned by YARD) and served at
+@indicateurl{http://localhost:8808}.
+
+@subheading Live Reloading
+
+If you want to serve documentation on a project while you document it so that
+you can preview the results, simply pass @option{--reload} (@option{-r}) to the
+above command and YARD will reload any changed files on each request.  This will
+allow you to change any documentation in the source and refresh to see the new
+contents.
+
+@subheading Serving Gems
+
+To serve documentation for all installed gems, call:
+
+@example
+$ yard server --gems
+@end example
+
+This will also automatically build documentation for any gems that have not
+been previously scanned.  Note that in this case there will be a slight delay
+between the first request of a newly parsed gem.
+
+@item
+@command{yard graph} Graphviz Generator
+
+@dots{}
+
+@end enumerate
 
 
 
@@ -7011,6 +7856,20 @@ The Pragmatic Programmer's Guide}.
 by Hal Fulton.  When you're reasonably familiar with Ruby, but want to learn
 more and see how to accomplish all sorts of tasks with it, then
 @url{http://therubyway.io}, is the logical next step.
+
+@item The Bastards Book Of Ruby
+A Programming Primer for Counting and Other Unconventional Tasks by Dan Nguyen
+@url{http://ruby.bastardsbook.com/}
+
+The Bastards Book of Ruby is an introduction to programming and its practical
+uses for journalists, researchers, scientists, analysts, and anyone else whose
+job is to seek out, make sense from, and show the hard-to-find data.
+
+@item The Bastards Book Of Regular Expressions
+A free guide to finding patterns in text by Dan Nguyen.
+@url{http://regex.bastardsbook.com/} and
+@url{http://regex.bastardsbook.com/files/bastards-regexes.pdf}
+
 
 @end table
 

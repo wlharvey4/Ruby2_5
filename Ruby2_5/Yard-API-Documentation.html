@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.7a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Yard API Documentation (Ruby2_5 Information)</title>
+
+<meta name="description" content="Yard API Documentation (Ruby2_5 Information)">
+<meta name="keywords" content="Yard API Documentation (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Yard.html#Yard" rel="up" title="Yard">
+<link href="Developing-Ruby.html#Developing-Ruby" rel="next" title="Developing Ruby">
+<link href="Configuring-YARD.html#Configuring-YARD" rel="prev" title="Configuring YARD">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Yard-API-Documentation"></a>
+<div class="header">
+<p>
+Previous: <a href="Configuring-YARD.html#Configuring-YARD" accesskey="p" rel="prev">Configuring YARD</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Yard-API-Documentation-1"></a>
+<h4 class="subsubsection">2.2.4.5 Yard API Documentation</h4>
+<a name="index-yard-API"></a>
+
+<p><a href="https://www.rubydoc.info/gems/yard">https://www.rubydoc.info/gems/yard</a>
+</p>
+<p>YARD is a documentation generation tool for the Ruby programming language.  It
+enables the user to generate consistent, usable documentation that can be
+exported to a number of formats very easily, and also supports extending for
+custom Ruby constructs such as custom class level definitions.
+</p>
+<a name="Installing"></a>
+<h3 class="heading">Installing</h3>
+<a name="index-yard-install"></a>
+<a name="index-install-yard"></a>
+
+<p>To install YARD, use the following command:
+</p>
+<div class="example">
+<pre class="example">$ gem install yard
+</pre></div>
+
+<a name="index-rake"></a>
+<p>Alternatively, if you&rsquo;ve checked the source out directly, you can call
+<code>rake install</code> from the root project directory.
+</p>
+<a name="Usage"></a>
+<h3 class="heading">Usage</h3>
+
+<p>There are a couple of ways to use YARD.  The first is via command-line, and the
+second is the Rake task.
+</p>
+<ol>
+<li> <code>yard</code> Command-line Tool
+
+<p>YARD comes packaged with an executable named <code>yard</code> which can control
+the many functions of YARD, including generating documentation, graphs running
+the YARD server, and so on.  To view a list of available YARD commands, type:
+</p>
+<div class="example">
+<pre class="example">$ yard --help
+</pre></div>
+
+<a name="Generating-Documentation"></a>
+<h4 class="subheading">Generating Documentation</h4>
+
+<p>The <code>yardoc</code> executable is a shortcut for <code>yard doc</code>.
+</p>
+<p>The most common command you will probably use is <code>yard doc</code>, or
+<code>yardoc</code>.  You can type <code>yardoc --help</code> to see the options that
+YARD provides, but the easiest way to generate docs for your code is to simply
+type <code>yardoc</code> in your project root.  This will assume your files are
+located in the <samp>lib/</samp> directory.  If they are located elsewhere, you can
+specify paths and globs from the commandline via:
+</p>
+<div class="example">
+<pre class="example">$ yardoc 'lib/**/*.rb' 'app/**/*.rb' ...etc...
+</pre></div>
+
+<p>The tool will generate a <samp>.yardoc</samp> file which will store the cached
+database of your source code and documentation.  If you want to re-generate
+your docs with another template you can simply use the <samp>--use-cache</samp> (or
+<samp>-c</samp>) option to speed up the generation process by skipping source
+parsing.
+</p>
+<p>YARD will by default only document code in your public visibility.  You can
+document your protected and private code by adding <samp>--protected</samp> or
+<samp>--private</samp> to the option switches.  In addition, you can add
+<samp>--no-private</samp> to also ignore any object that has the <code>@private</code>
+meta-tag.  This is similar to RDoc&rsquo;s <code>:nodoc:</code> behaviour, though the distinction
+is important.  RDoc implies that the object with <code>:nodoc:</code> would not be
+documented, whereas YARD still recommends documenting private objects for the
+private API (for maintainer/developer consumption).
+</p>
+<p>You can also add extra informative files (<samp>README</samp>, <samp>LICENSE</samp>) by
+separating the globs and the filenames with <kbd>-</kbd>.
+</p>
+<div class="example">
+<pre class="example">$ yardoc 'app/**/*.rb' - README LICENSE FAQ
+</pre></div>
+
+<p>If no globs precede the <kbd>-</kbd> argument, the default glob (&lsquo;<samp>lib/**/*.rb</samp>&rsquo;)
+is used:
+</p>
+<div class="example">
+<pre class="example">$ yardoc - README LICENSE FAQ
+</pre></div>
+
+<p>Note that the README file can be specified with its own <samp>--readme</samp> switch.
+</p>
+<p>You can also add a <samp>.yardopts</samp> file to your project directory which lists
+the switches separated by whitespace (newlines or space) to pass to
+<code>yardoc</code> whenever it is run.  A full overview of the <samp>.yardopts</samp>
+file can be found in <samp>YARD::CLI::Yardoc</samp>.
+</p>
+<a name="Queries"></a>
+<h4 class="subheading">Queries</h4>
+
+<p>The yardoc tool also supports a <samp>--query</samp> argument to only include
+objects that match a certain data or meta-data query.  The query syntax is
+Ruby, though a few shortcuts are available.  For instance, to document only
+objects that have an <code>@api</code> tag with the value <code>public</code>, all of the
+following syntaxes would give the same result:
+</p>
+<div class="example">
+<pre class="example">--query '@api.text == &quot;public&quot;'
+--query 'object.has_tag?(:api) &amp;&amp; object.tag(:api).text == &quot;public&quot;'
+--query 'has_tag?(:api) &amp;&amp; tag(:api).text == &quot;public&quot;'
+</pre></div>
+
+<p>&hellip;
+</p>
+</li><li> Rake Task
+
+<p>&hellip;
+</p>
+</li><li> <code>yri</code> RI Implementation
+
+<p>&hellip;
+</p>
+</li><li> <code>yard server</code> Documentation Server
+
+<p>The <code>yard server</code> command serves documentation for a local project or
+all installed RubyGems.  To serve documentation for a project you are working
+on, simply run:
+</p>
+<div class="example">
+<pre class="example">$ yard server
+</pre></div>
+
+<p>And the project inside the current directory will be parsed (if the source has
+not yet been scanned by YARD) and served at
+&lsquo;<code>http://localhost:8808</code>&rsquo;.
+</p>
+<a name="Live-Reloading"></a>
+<h4 class="subheading">Live Reloading</h4>
+
+<p>If you want to serve documentation on a project while you document it so that
+you can preview the results, simply pass <samp>--reload</samp> (<samp>-r</samp>) to the
+above command and YARD will reload any changed files on each request.  This will
+allow you to change any documentation in the source and refresh to see the new
+contents.
+</p>
+<a name="Serving-Gems"></a>
+<h4 class="subheading">Serving Gems</h4>
+
+<p>To serve documentation for all installed gems, call:
+</p>
+<div class="example">
+<pre class="example">$ yard server --gems
+</pre></div>
+
+<p>This will also automatically build documentation for any gems that have not
+been previously scanned.  Note that in this case there will be a slight delay
+between the first request of a newly parsed gem.
+</p>
+</li><li> <code>yard graph</code> Graphviz Generator
+
+<p>&hellip;
+</p>
+</li></ol>
+
+
+
+
+
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Configuring-YARD.html#Configuring-YARD" accesskey="p" rel="prev">Configuring YARD</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

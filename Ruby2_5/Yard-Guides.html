@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.7a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Yard Guides (Ruby2_5 Information)</title>
+
+<meta name="description" content="Yard Guides (Ruby2_5 Information)">
+<meta name="keywords" content="Yard Guides (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Yard.html#Yard" rel="up" title="Yard">
+<link href="Using-YARD-to-Generate-Documentation.html#Using-YARD-to-Generate-Documentation" rel="next" title="Using YARD to Generate Documentation">
+<link href="Features-of-Yard.html#Features-of-Yard" rel="prev" title="Features of Yard">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Yard-Guides"></a>
+<div class="header">
+<p>
+Next: <a href="Using-YARD-to-Generate-Documentation.html#Using-YARD-to-Generate-Documentation" accesskey="n" rel="next">Using YARD to Generate Documentation</a>, Previous: <a href="Features-of-Yard.html#Features-of-Yard" accesskey="p" rel="prev">Features of Yard</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Yard-Guides-1"></a>
+<h4 class="subsubsection">2.2.4.2 Yard Guides</h4>
+<a name="index-yard-guides"></a>
+
+<a name="Getting-Started-with-YARD"></a>
+<h3 class="heading">Getting Started with YARD</h3>
+<a name="index-yard-getting-started-guide"></a>
+<a name="index-getting-started-with-yard"></a>
+
+<p><a href="https://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md">https://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md</a>
+</p>
+<a name="Documenting-Code-with-YARD"></a>
+<h4 class="subheading">Documenting Code with YARD</h4>
+<a name="index-meta_002ddata-syntax_002c-yard"></a>
+<a name="index-tags_002c-yard"></a>
+
+<p>By default, YARD is compatible with the same RDoc syntax most Ruby developers
+are already familiar with.  However, one of the biggest advantages of YARD is
+the extended meta-data syntax, commonly known as <em>tags</em>, that you can use
+to express small bits of information in a structured and formal manner.  While
+RDoc syntax expects you to describe your method in a completely free-form
+manner, YARD recommends declaring your parameters, return types, etc. with the
+<code>@tag</code> syntax, which makes outputting the documentation more consistent
+and easier to read.  Consider the RDoc documentation for a method to_format:
+</p>
+<div class="example">
+<pre class="example"># Converts the object into textual markup given a specific `format`
+# (defaults to `:html`)
+#
+# == Parameters:
+# format::
+#   A Symbol declaring the format to convert the object to. This
+#   can be `:text` or `:html`.
+#
+# == Returns:
+# A string representing the object in a specified
+# format.
+#
+def to_format(format = :html)
+  # format the object
+end
+</pre></div>
+
+<p>While this may seem easy enough to read and understand, it&rsquo;s hard for a machine
+to properly pull this data back out of our documentation.  Also we&rsquo;ve tied our
+markup to our content, and now our documentation becomes hard to maintain if we
+decide later to change our markup style (maybe we don&rsquo;t want the <kbd>:</kbd> suffix
+on our headers anymore).
+</p>
+<p>In YARD, we would simply define our method as:
+</p>
+<div class="example">
+<pre class="example"># Converts the object into textual markup given a specific format.
+#
+# @param format [Symbol] the format type, `:text` or `:html`
+# @return [String] the object converted into the expected format.
+def to_format(format = :html)
+  # format the object
+end
+</pre></div>
+
+<p>Using tags we can add semantic metadata to our code without worrying about
+presentation.  YARD will handle presentation for us when we decide to generate
+documentation later.
+</p>
+<a name="Which-Markup-Format_003f"></a>
+<h4 class="subheading">Which Markup Format?</h4>
+<a name="index-markup_002c-yard"></a>
+
+<p>YARD does not impose a specific markup.  The above example uses standard RDoc
+markup formatting, but YARD also supports <em>textile</em> and <em>markdown</em>
+via the command-line switch or <samp>.yardopts</samp> file (see below).  This means
+that you are free to use whatever formatting you like.  This guide is actually
+written using <em>markdown</em>.  YARD, however, does add a few important syntaxes
+that are processed no matter which markup formatting you use, such as tag
+support and inter-document linking. These syntaxes are discussed below.
+</p>
+<a name="Adding-Tags-to-Documentation"></a>
+<h4 class="subheading">Adding Tags to Documentation</h4>
+
+<p>The tag syntax that YARD uses is the same <code>@tag</code>-style syntax you may
+have seen if you&rsquo;ve ever coded in Java, Python, PHP, Objective-C or a myriad of
+other languages.  The following tag adds an <var>author</var> tag to your class:
+</p>
+<div class="example">
+<pre class="example"># @author Loren Segal
+class MyClass
+end
+</pre></div>
+
+<p>To allow for large amounts of text, the <code>@tag</code> syntax will recognize any
+indented lines following a tag as part of the tag data.  For example:
+</p>
+<div class="example">
+<pre class="example"># @deprecated Use {#my_new_method} instead of this method because
+#   it uses a library that is no longer supported in Ruby 1.9.
+#   The new method accepts the same parameters.
+def mymethod
+end
+</pre></div>
+
+<a name="List-of-Tags"></a>
+<h4 class="subheading">List of Tags</h4>
+<a name="index-yard-tags-list"></a>
+<a name="index-tags-list_002c-yard"></a>
+
+<p>A list of tags can be found in
+<a href="https://www.rubydoc.info/gems/yard/file/docs/Tags.md#taglist">Tags</a>.
+</p>
+<a name="Reference-Tags"></a>
+<h4 class="subheading">Reference Tags</h4>
+
+<p>To reduce the amount of duplication in writing documentation for repetitive
+code, YARD introduces <em>reference tags</em>, which are not quite tags, but not
+quite docstrings either.  In a sense, they are tag (and docstring) modifiers.
+Basically, any docstring (or tag) that begins with &lsquo;<samp>(see OTHEROBJECT)</samp>&rsquo;
+will implicitly link the docstring or tag to the &lsquo;<samp>OTHEROBJECT</samp>&rsquo;, copying
+any data from that docstring/tag into your current object.  Consider the
+example:
+</p>
+<div class="example">
+<pre class="example">class MyWebServer
+  # Handles a request
+  # @param request [Request] the request object
+  # @return [String] the resulting webpage
+  def get(request) &quot;hello&quot; end
+
+  # (see #get)
+  def post(request) &quot;hello&quot; end
+end
+</pre></div>
+
+
+<p>The above <code>#post</code> method takes the docstring and all tags (param and
+return) of the <code>#get</code> method.  When you generate HTML documentation, you
+will see this duplication automatically, so you don&rsquo;t have to manually type it
+out.  We can also add our own custom docstring information below the &lsquo;<samp>see</samp>&rsquo;
+reference, and whatever we write will be appended to the docstring:
+</p>
+<div class="example">
+<pre class="example"># (see #get)
+# @note This method may modify our application state!
+def post(request) self.state += 1; &quot;hello&quot; end
+</pre></div>
+
+<p>Here we added another tag, but we could have also added plain text.  The text
+must be appended after the &lsquo;<samp>(see ...)</samp>&rsquo; statement, preferably on a
+separate line.
+</p>
+<p>Note that we don&rsquo;t have to &ldquo;refer&rdquo; the whole docstring.  We can also link
+individual tags instead.  Since <code>get</code> and <code>post</code> actually have
+different descriptions, a more accurate example would be to only refer our
+parameter and return tags:
+</p>
+<div class="example">
+<pre class="example">class MyWebServer
+  # Handles a GET request
+  # @param request [Request] the request object
+  # @return [String] the resulting webpage
+  def get(request) &quot;hello&quot; end
+
+  # Handles a POST request
+  # @note This method may modify our application state!
+  # @param (see #get)
+  # @return (see #get)
+  def post(request) self.state += 1; &quot;hello&quot; end
+end
+</pre></div>
+
+<p>The above copies all of the param and return tags from <code>#get</code>.  Note that
+you cannot copy individual tags of a specific type with this syntax.
+</p>
+<a name="Declaring-Types"></a>
+<h4 class="subheading">Declaring Types</h4>
+<a name="index-yard-declare-types"></a>
+
+<p>Some tags also have an optional &ldquo;types&rdquo; field which let us declare a list of
+types associated with the tag.  For instance, a return tag can be declared with
+or without a types field.
+</p>
+<div class="example">
+<pre class="example"># @return [String, nil] the contents of our object or nil
+#   if the object has not been filled with data.
+def validate; end
+
+# We don't care about the &quot;type&quot; here:
+# @return the object
+def to_obj; end
+</pre></div>
+
+<p>The list of types is in the form &lsquo;<samp>[type1, type2, ...]</samp>&rsquo; and is mostly
+free-form, so we can also specify duck-types or constant values.  For example:
+</p>
+<div class="example">
+<pre class="example"># @param argname [#to_s] any object that responds to `#to_s`
+# @param argname [true, false] only true or false
+</pre></div>
+
+<p>Note the latter example can be replaced by the meta-type &ldquo;Boolean&rdquo;.  Another
+meta-type is &ldquo;void&rdquo;, which stands for &ldquo;no meaningful value&rdquo; and is used for
+return values.  These meta-types are by convention only, but are recommended.
+</p>
+<p>List types can be specified in the form <code>CollectionClass&lt;ElementType,
+...&gt;</code>.  For instance, consider the following Array that holds a set of Strings
+and Symbols:
+</p>
+<div class="example">
+<pre class="example"># @param list [Array&lt;String, Symbol&gt;] the list of strings and symbols.
+</pre></div>
+
+<p>We mentioned that these type fields are &quot;mostly&quot; free-form.  In truth, they are
+defined &ldquo;by convention&rdquo;.  To view samples of common type specifications and
+recommended conventions for writing type specifications, see
+<a href="http://yardoc.org/types.html">http://yardoc.org/types.html</a>.  Note that these conventions may change
+every now and then, although we are working on a more &ldquo;formal&rdquo; type
+specification proposal.
+</p>
+<a name="Documenting-Attributes"></a>
+<h4 class="subheading">Documenting Attributes</h4>
+<a name="index-yard-document-attributes"></a>
+<a name="index-attributes_002c-documenting-in-yard"></a>
+
+<p>To document a Ruby attribute, add documentation text above the attribute
+definition.
+</p>
+<div class="example">
+<pre class="example"># Controls the amplitude of the waveform.
+# @return [Numeric] the amplitude of the waveform
+attr_accessor :amplitude
+</pre></div>
+
+<p>As a short-hand syntax for declaring reader and writer attribute pairs, YARD
+will automatically wire up the correct method types and information by simply
+defining documentation in the <code>@return</code> tag.  For example, the following
+declaration will show the correct information for the waveform attribute, both
+for the getter&rsquo;s return type and the setter&rsquo;s value parameter type:
+</p>
+<div class="example">
+<pre class="example"># @return [Numeric] the amplitude of the waveform
+attr_accessor :amplitude
+</pre></div>
+
+<p>In this case, the most important details for the attribute are the object type
+declaration and its descriptive text.
+</p>
+<a name="Documentation-for-a-Separate-Attribute-Writer"></a>
+<h4 class="subheading">Documentation for a Separate Attribute Writer</h4>
+
+<p>Usually an attribute will get and set a value using the same syntax, so there
+is no reason to have separate documentation for an attribute writer.  In the
+above amplitude case, the Numeric type is both used for the getter and setter
+types.
+</p>
+<p>Sometimes, however, you might want to have separate documentation for the
+getter and setter.  In this case, you would still add the documentation text to
+the getter declaration (or attr_accessor) and use <code>@overload</code> tags to
+declare the separate docstrings.  For example:
+</p>
+<div class="example">
+<pre class="example"># @overload amplitude
+#   Gets the current waveform amplitude.
+#   @return [Numeric] the amplitude of the waveform
+# @overload amplitude=(value)
+#   Sets the new amplitude.
+#   @param value [Numeric] the new amplitude value
+#   @note The new amplitude will only take effect if {#restart}
+#     is called on the stream.
+</pre></div>
+
+<p>Note that by default, YARD exposes the reader portion of the attribute in HTML
+output.  If you have separate <code>attr_reader</code> and <code>attr_writer</code>
+declarations, make sure to put your documentation (for both reader and writer
+methods) on the reader declaration using <code>@overload</code> tags as described
+above.  For example:
+</p>
+<div class="example">
+<pre class="example"># @overload ...documentation here...
+attr_reader :amplitude
+
+# This documentation will be ignored by YARD.
+attr_writer :amplitude
+</pre></div>
+
+<a name="Documenting-Custom-DSL-Methods"></a>
+<h4 class="subheading">Documenting Custom DSL Methods</h4>
+<a name="index-DSL-methods_002c-yard"></a>
+
+<p>&hellip; As of version 0.7.0, YARD will automatically pick up on these basic
+methods if you document them with a docstring. Therefore, simply adding some
+comments to the code will cause it to generate documentation: &hellip;
+</p>
+<a name="Macros"></a>
+<h4 class="subheading">Macros</h4>
+<a name="index-yard-macros"></a>
+<a name="index-macros-in-yard"></a>
+
+<p>Fortunately YARD 0.7.0 also adds macros, a powerful way to add support for
+these DSL methods on the fly without writing extra plugins.  Macros allow you to
+interpolate arguments from the method call inside the docstring, reducing
+duplication.  If we re-wrote the property example from above using a macro, it
+might look like: &hellip;
+</p>
+<a name="Customized-YARD-Markup"></a>
+<h3 class="heading">Customized YARD Markup</h3>
+
+<p>YARD supports a special syntax to link to other code objects, URLs, files, or
+embed docstrings between documents.  This syntax has the general form of
+&lsquo;<samp>{Name OptionalTitle}</samp>&rsquo; (where &lsquo;<samp>OptionalTitle</samp>&rsquo; can have spaces, but
+&lsquo;<samp>Name</samp>&rsquo; cannot).
+</p>
+<a name="Linking-Objects-_007b_2026_007d"></a>
+<h4 class="subheading">Linking Objects &lsquo;<samp>{&hellip;}</samp>&rsquo;</h4>
+
+<p>To link another &ldquo;object&rdquo; (class, method, module, etc.), use the format:
+&hellip;
+</p>
+<a name="Linking-URLs-_007bhttp_003a_002f_002f_2026_007d"></a>
+<h4 class="subheading">Linking URLs &lsquo;<samp>{http://&hellip;}</samp>&rsquo;</h4>
+
+<p>URLs are also linked using this &lsquo;<samp>{&hellip;}</samp>&rsquo; syntax: &hellip;
+</p>
+<a name="Linking-Files-_007bfile_003a_2026_007d"></a>
+<h4 class="subheading">Linking Files &lsquo;<samp>{file:&hellip;}</samp>&rsquo;</h4>
+
+<p>Files can also be linked using this same syntax but by adding the <code>file:</code>
+prefix to the object name.  Files refer to extra readme files you added via the
+command-line. Consider the following examples: &hellip;
+</p>
+<a name="Embedding-Docstrings-_007binclude_003a_2026_007d"></a>
+<h4 class="subheading">Embedding Docstrings &lsquo;<samp>{include:&hellip;}</samp>&rsquo;</h4>
+
+<p>We saw the &lsquo;<samp>(see &hellip;)</samp>&rsquo; syntax above, which allowed us to link an
+entire docstring with another.  Sometimes, however, we just want to copy
+docstring text without tags.  Using the same &lsquo;<samp>{&hellip;}</samp>&rsquo; syntax, but
+using the <code>include:</code> prefix, we can embed a docstring (minus tags) at a
+specific point in the text.  &hellip;
+</p>
+<a name="Embedding-Files-_007binclude_003afile_003a_2026_007d"></a>
+<h4 class="subheading">Embedding Files &lsquo;<samp>{include:file:&hellip;}</samp>&rsquo;</h4>
+
+<p>You can embed the contents of files using <code>{include:file:path/to/file}</code>,
+similar to the <code>{include:OBJECT}</code> tag above.  If the file uses a specific
+markup type, it will be applied and embedded as marked up text.  The following
+shows how the tag can be used inside of comments: &hellip;
+</p>
+<a name="Rendering-Objects-_007brender_003a_2026_007d"></a>
+<h4 class="subheading">Rendering Objects &lsquo;<samp>{render:&hellip;}</samp>&rsquo;</h4>
+
+<p>Entire objects can also be rendered in place in documentation.  This can be used
+for guide-style documentation which does not document the entire source tree,
+but instead selectively renders important classes or methods.  Consider the
+following documentation inside of a README file: &hellip;
+</p>
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Using-YARD-to-Generate-Documentation.html#Using-YARD-to-Generate-Documentation" accesskey="n" rel="next">Using YARD to Generate Documentation</a>, Previous: <a href="Features-of-Yard.html#Features-of-Yard" accesskey="p" rel="prev">Features of Yard</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
+
+Copyright (C) 2018 
+
+wlharvey4 
+
+All Rights Reserved.
+
+The Ruby2.5 Information and Documentation program is copyright
+(C) 2018 by wlharvey4. It is published under
+the conditions of the GNU General Public License, version 3.
+
+
+This is Edition 0.7a of Ruby 2.5 Information and Documentation. -->
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Configuring YARD (Ruby2_5 Information)</title>
+
+<meta name="description" content="Configuring YARD (Ruby2_5 Information)">
+<meta name="keywords" content="Configuring YARD (Ruby2_5 Information)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="Concept-Index.html#Concept-Index" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Yard.html#Yard" rel="up" title="Yard">
+<link href="Yard-API-Documentation.html#Yard-API-Documentation" rel="next" title="Yard API Documentation">
+<link href="Using-YARD-to-Generate-Documentation.html#Using-YARD-to-Generate-Documentation" rel="prev" title="Using YARD to Generate Documentation">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="Configuring-YARD"></a>
+<div class="header">
+<p>
+Next: <a href="Yard-API-Documentation.html#Yard-API-Documentation" accesskey="n" rel="next">Yard API Documentation</a>, Previous: <a href="Using-YARD-to-Generate-Documentation.html#Using-YARD-to-Generate-Documentation" accesskey="p" rel="prev">Using YARD to Generate Documentation</a>, Up: <a href="Yard.html#Yard" accesskey="u" rel="up">Yard</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html#Concept-Index" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<a name="Configuring-YARD-1"></a>
+<h4 class="subsubsection">2.2.4.4 Configuring YARD</h4>
+<a name="index-yard-configuration"></a>
+<a name="index-configure-yard"></a>
+
+<p>YARD (0.6.2+) supports a global configuration file stored in
+<samp>~/.yard/config</samp>.  This file is stored as a YAML file and can contain
+arbitrary keys and values that can be used by YARD at run-time.  YARD defines
+specific keys that are used to control various features, and they are listed in
+<samp>YARD::Config::DEFAULT_CONFIG_OPTIONS</samp>.  A sample configuration file might
+look like:
+</p>
+<div class="example">
+<pre class="example">:load_plugins: false
+:ignored_plugins:
+  - my_plugin
+  - my_other_plugin
+:autoload_plugins:
+  - my_autoload_plugin
+:safe_mode: false
+</pre></div>
+
+<p>You can also view and edit these configuration options from the commandline
+using the yard <code>config</code> command.  To list your configuration, use
+&lsquo;<samp>yard config --list</samp>&rsquo;.  To view a key, use &lsquo;<samp>yard config ITEM</samp>&rsquo;, and to
+set it, use &lsquo;<samp>yard config ITEM VALUE</samp>&rsquo;.
+</p>
+<a name="Extending-YARD"></a>
+<h3 class="heading">Extending YARD</h3>
+
+<p>&hellip;
+</p>
+<a name="Templating-YARD"></a>
+<h3 class="heading">Templating YARD</h3>
+
+<p>&hellip;
+</p>
+<a name="Plugin-Support"></a>
+<h3 class="heading">Plugin Support</h3>
+
+<p>&hellip;
+</p>
+
+
+
+
+
+</body>
+</html>

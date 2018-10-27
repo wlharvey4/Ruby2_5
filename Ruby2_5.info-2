@@ -10,7 +10,7 @@ All Rights Reserved.
 General Public License, version 3.
 
 
-   This is Edition 0.6d of 'Ruby 2.5 Information and Documentation'.
+   This is Edition 0.7a of 'Ruby 2.5 Information and Documentation'.
 
 
 File: Ruby2_5.info,  Node: Beginner Core Topics,  Prev: Methods API,  Up: API Documentation
@@ -3858,6 +3858,8 @@ Index
                                                             (line   6)
 * ++ and --:                             FAQ Methods.       (line  15)
 * .. vs. ...:                            FAQ Syntax.        (line 203)
+* .yardopts options file:                Using YARD to Generate Documentation.
+                                                            (line  46)
 * :: operator:                           Ruby User's Guide On Modules.
                                                             (line  27)
 * <apiutil--BEGIN Block>, definition:    apiutil.awk BEGIN Block.
@@ -4088,6 +4090,7 @@ Index
 * attributes <1>:                        Ruby User's Guide On Accessors.
                                                             (line   6)
 * attributes <2>:                        Objects.           (line  12)
+* attributes, documenting in yard:       Yard Guides.       (line 202)
 * attr_accessor:                         Objects.           (line  12)
 * attr_accessor :name:                   Altering Classes.  (line   9)
 * attr_accessor, methods defined:        Altering Classes.  (line  41)
@@ -4234,6 +4237,7 @@ Index
                                                             (line  85)
 * components of gem:                     What Is A Gem.     (line  55)
 * conditional expression, false values:  FAQ Syntax.        (line  73)
+* configure yard:                        Configuring YARD.  (line   6)
 * constant:                              Variable Scope.    (line   6)
 * constant <1>:                          Methods and Variables.
                                                             (line  22)
@@ -4328,6 +4332,7 @@ Index
                                                             (line   6)
 * download RubyGems:                     Ruby Gems Basics.  (line   8)
 * downloads, ruby-doc resources:         Ruby-Doc.          (line  24)
+* DSL methods, yard:                     Yard Guides.       (line 259)
 * duck typing:                           Large Class Definition.
                                                             (line 123)
 * duck typing <1>:                       Duck Typing.       (line   6)
@@ -4395,6 +4400,7 @@ Index
 * expression vs statement:               Ruby User's Guide On Simple Examples.
                                                             (line 124)
 * extend:                                Modules.           (line  38)
+* extend yard:                           Features of Yard.  (line  67)
 * extension modules:                     To Ruby From C and C++.
                                                             (line  36)
 * extensions that can be omitted:        Using Code From Other Files.
@@ -4457,6 +4463,7 @@ Index
 * gemspec <1>:                           What Is A Gem.     (line  90)
 * gemspec example:                       What Is A Gem.     (line  93)
 * getting started:                       Ruby-Doc.          (line  20)
+* getting started with yard:             Yard Guides.       (line   9)
 * GitHub, ruby repository:               Developing Ruby.   (line  54)
 * global namespace:                      Retrieving By Name.
                                                             (line  32)
@@ -4529,6 +4536,8 @@ Index
 * install gem:                           Your First Gem.    (line  79)
 * install on macOS:                      Installation - Running - About.
                                                             (line   9)
+* install yard:                          Yard API Documentation.
+                                                            (line  17)
 * installer, third party:                Installers.        (line   6)
 * instance of a class:                   Ruby User's Guide on Classes.
                                                             (line   6)
@@ -4638,6 +4647,7 @@ Index
                                                             (line  14)
 * load path:                             Using Code From Other Files.
                                                             (line   6)
+* local documentation server:            Features of Yard.  (line  57)
 * local variable:                        Methods and Variables.
                                                             (line  22)
 * local variable scope:                  Ruby User's Guide On Local Variables.
@@ -4660,6 +4670,7 @@ Index
 * loopup path:                           Class.             (line  86)
 * macOS, install:                        Installation - Running - About.
                                                             (line   9)
+* macros in yard:                        Yard Guides.       (line 267)
 * MagLev:                                Installation - Running - About.
                                                             (line  58)
 * mailing lists:                         Developing Ruby.   (line  62)
@@ -4667,6 +4678,7 @@ Index
 * Markdown:                              Writing Documentation.
                                                             (line  32)
 * markup directives:                     Markup Directives. (line   6)
+* markup, yard:                          Yard Guides.       (line  64)
 * Marshal:                               FAQ Built-In Libraries.
                                                             (line  60)
 * match method:                          Regular Expressions.
@@ -4685,6 +4697,8 @@ Index
 * memory management:                     To Ruby From Java. (line  18)
 * messages to objects:                   Ruby User's Guide on Methods.
                                                             (line   9)
+* meta-data syntax, yard:                Yard Guides.       (line  14)
+* meta-tag formatting:                   Features of Yard.  (line   9)
 * metaclass:                             FAQ Classes and Modules.
                                                             (line  21)
 * metaprogram methods:                   Writing Documentation.
@@ -4908,7 +4922,9 @@ Index
                                                             (line  51)
 * raise exception:                       Ruby User's Guide On Exception Processing And rescue.
                                                             (line  78)
-* rake:                                  What Is A Gem.     (line  64)
+* rake:                                  Yard API Documentation.
+                                                            (line  21)
+* rake <1>:                              What Is A Gem.     (line  64)
 * Rakefile:                              What Is A Gem.     (line  64)
 * random number seeds:                   FAQ Built-In Libraries.
                                                             (line  12)
@@ -4934,6 +4950,7 @@ Index
 * rdoc <4>:                              To Ruby From Perl. (line  30)
 * rdoc <5>:                              To Ruby From Python.
                                                             (line  29)
+* RDoc compatibility:                    Features of Yard.  (line  49)
 * RDoc::Markup:                          Writing Documentation.
                                                             (line  32)
 * RDoc::Markup@Directives:               Writing Documentation.
@@ -5146,6 +5163,8 @@ Index
 * syntax, Testunit:                      Minitest.          (line  17)
 * tabs, expand into spaces:              FAQ Built-In Libraries.
                                                             (line  45)
+* tags list, yard:                       Yard Guides.       (line  98)
+* tags, yard:                            Yard Guides.       (line  14)
 * Tcl/Tk, use:                           FAQ Extension Library.
                                                             (line  18)
 * TDD:                                   Minitest.          (line 104)
@@ -5254,6 +5273,36 @@ Index
                                                             (line  24)
 * XML vs YAML:                           To Ruby From Java. (line  54)
 * YAML vs XML:                           To Ruby From Java. (line  54)
+* yard:                                  Yard.              (line   6)
+* yard API:                              Yard API Documentation.
+                                                            (line   6)
+* yard commands:                         Using YARD to Generate Documentation.
+                                                            (line  23)
+* yard configuration:                    Configuring YARD.  (line   6)
+* yard declare types:                    Yard Guides.       (line 162)
+* yard doc:                              Using YARD to Generate Documentation.
+                                                            (line  39)
+* yard document attributes:              Yard Guides.       (line 202)
+* yard executable:                       Using YARD to Generate Documentation.
+                                                            (line   9)
+* yard features:                         Features of Yard.  (line   6)
+* yard getting started guide:            Yard Guides.       (line   9)
+* yard guides:                           Yard Guides.       (line   6)
+* yard install:                          Yard API Documentation.
+                                                            (line  17)
+* yard macros:                           Yard Guides.       (line 267)
+* yard plugins:                          Features of Yard.  (line  67)
+* yard raw data output:                  Features of Yard.  (line 101)
+* yard ri:                               Using YARD to Generate Documentation.
+                                                            (line  39)
+* yard tags list:                        Yard Guides.       (line  98)
+* yard templates:                        Features of Yard.  (line  89)
+* yard, generate documentation:          Using YARD to Generate Documentation.
+                                                            (line   6)
+* YARD::CLI::Yardoc:                     Using YARD to Generate Documentation.
+                                                            (line  64)
+* yardoc:                                Using YARD to Generate Documentation.
+                                                            (line  39)
 * YARV:                                  Installation - Running - About.
                                                             (line  63)
 * YARV implementation:                   YARV Implementation.
@@ -5267,4 +5316,6 @@ Index
 * yield <3>:                             Blocks.            (line  31)
 * yield control structor, or statement:  FAQ Iterators.     (line  56)
 * yield control structure in iterator:   FAQ Iterators.     (line  61)
+* yri:                                   Using YARD to Generate Documentation.
+                                                            (line  39)
 
